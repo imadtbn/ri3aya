@@ -248,3 +248,11 @@ if ('IntersectionObserver' in window) {
     
     lazyImages.forEach(img => imageObserver.observe(img));
 }
+
+// Dropdown menu (الأقسام)
+document.querySelectorAll('.dropdown > a').forEach(link => {
+    link.addEventListener('click', function (e) {
+        e.preventDefault(); // يمنع # من القفز للأعلى
+        this.parentElement.classList.toggle('open');
+    });
+});
