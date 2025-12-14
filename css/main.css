@@ -1477,3 +1477,17 @@ footer {
         margin-bottom: 10px;
     }
 }
+
+
+/* إخفاء القائمة افتراضياً */
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background: #fff;
+    z-index: 1000;
+}
+
+/* عند الفتح */
+.dropdown.open .dropdown-menu {
+    display: block;
+}
