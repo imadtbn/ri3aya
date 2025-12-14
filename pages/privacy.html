@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سياسة الخصوصية - موقع رعاية الرضيع</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary-color: #2575fc;
+            --secondary-color: #6a11cb;
+            --accent-color: #ffd166;
+            --light-color: #f8f9fa;
+            --dark-color: #1a2a6c;
+            --text-color: #333;
+            --text-light: #666;
+            --border-color: #e0e0e0;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: var(--text-color);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* تنسيقات الهيدر */
+        header {
+            background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%);
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo i {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+        }
+        
+        .logo span {
+            color: var(--accent-color);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .current-page {
+            background-color: rgba(255, 255, 255, 0.15);
+            border-bottom: 3px solid var(--accent-color);
+        }
+        
+        /* تنسيقات صفحة سياسة الخصوصية */
+        .privacy-hero {
+            background: linear-gradient(rgba(26, 42, 108, 0.85), rgba(26, 42, 108, 0.9)), url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+            margin-bottom: 60px;
+        }
+        
+        .privacy-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .privacy-hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        
+        /* محتوى سياسة الخصوصية */
+        .privacy-container {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 80px;
+        }
+        
+        /* الفهرس الجانبي */
+        .privacy-sidebar {
+            width: 300px;
+            flex-shrink: 0;
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            height: fit-content;
+            position: sticky;
+            top: 30px;
+        }
+        
+        .privacy-sidebar h3 {
+            color: var(--dark-color);
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--accent-color);
+        }
+        
+        .sidebar-links {
+            list-style: none;
+        }
+        
+        .sidebar-links li {
+            margin-bottom: 12px;
+        }
+        
+        .sidebar-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            padding: 10px 15px;
+            display: block;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            border-right: 3px solid transparent;
+        }
+        
+        .sidebar-links a:hover {
+            background-color: rgba(37, 117, 252, 0.1);
+            border-right-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+        
+        .sidebar-links a.active {
+            background-color: rgba(37, 117, 252, 0.1);
+            border-right-color: var(--primary-color);
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        
+        /* المحتوى الرئيسي */
+        .privacy-content {
+            flex-grow: 1;
+            background-color: white;
+            border-radius: 10px;
+            padding: 50px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        }
+        
+        .privacy-section {
+            margin-bottom: 50px;
+            scroll-margin-top: 30px;
+        }
+        
+        .privacy-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .privacy-section h2 {
+            color: var(--dark-color);
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--accent-color);
+            font-size: 1.8rem;
+        }
+        
+        .privacy-section h3 {
+            color: var(--dark-color);
+            margin: 25px 0 15px;
+            font-size: 1.3rem;
+        }
+        
+        .privacy-section p {
+            margin-bottom: 15px;
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+        
+        .privacy-section ul, .privacy-section ol {
+            margin: 15px 0 15px 30px;
+            color: var(--text-light);
+        }
+        
+        .privacy-section li {
+            margin-bottom: 10px;
+            line-height: 1.7;
+        }
+        
+        /* مربعات التنبيه */
+        .alert-box {
+            padding: 20px;
+            border-radius: 8px;
+            margin: 25px 0;
+            border-right: 5px solid;
+        }
+        
+        .info-box {
+            background-color: rgba(37, 117, 252, 0.1);
+            border-right-color: var(--primary-color);
+        }
+        
+        .warning-box {
+            background-color: rgba(255, 209, 102, 0.15);
+            border-right-color: var(--accent-color);
+        }
+        
+        .important-box {
+            background-color: rgba(106, 17, 203, 0.1);
+            border-right-color: var(--secondary-color);
+        }
+        
+        .alert-box h4 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            color: var(--dark-color);
+        }
+        
+        .alert-box h4 i {
+            font-size: 1.2rem;
+        }
+        
+        /* جدول سياسة الخصوصية */
+        .privacy-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .privacy-table th {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 15px;
+            text-align: right;
+            font-weight: 600;
+        }
+        
+        .privacy-table td {
+            padding: 15px;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-light);
+        }
+        
+        .privacy-table tr:nth-child(even) {
+            background-color: rgba(248, 249, 250, 0.5);
+        }
+        
+        .privacy-table tr:hover {
+            background-color: rgba(37, 117, 252, 0.05);
+        }
+        
+        /* قسم التحديثات */
+        .update-section {
+            background-color: rgba(248, 249, 250, 0.8);
+            border-radius: 10px;
+            padding: 25px;
+            margin-top: 40px;
+            border: 1px solid var(--border-color);
+        }
+        
+        .update-section h3 {
+            color: var(--dark-color);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .update-section p {
+            color: var(--text-light);
+            margin-bottom: 10px;
+        }
+        
+        /* الفوتر */
+        footer {
+            background: linear-gradient(to right, #1a2a6c, #2a3b8f, #3a4cb3);
+            color: #fff;
+            padding: 60px 0 20px;
+            margin-top: auto;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+        
+        .footer-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+            color: #fff;
+        }
+        
+        .footer-section h3:after {
+            content: '';
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background-color: #ffd166;
+        }
+        
+        .footer-section p {
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            color: rgba(255, 255, 255, 0.85);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.85);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+        
+        .footer-links a i {
+            margin-left: 8px;
+            font-size: 0.9rem;
+        }
+        
+        .footer-links a:hover {
+            color: #ffd166;
+            padding-right: 8px;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .contact-item i {
+            margin-left: 10px;
+            font-size: 1.2rem;
+            color: #ffd166;
+            width: 25px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background-color: #ffd166;
+            transform: translateY(-3px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+        
+        /* التجاوب مع الشاشات المختلفة */
+        @media (max-width: 992px) {
+            .privacy-container {
+                flex-direction: column;
+            }
+            
+            .privacy-sidebar {
+                width: 100%;
+                position: static;
+            }
+            
+            .privacy-content {
+                padding: 30px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .privacy-hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .privacy-hero p {
+                font-size: 1.1rem;
+            }
+            
+            .privacy-content {
+                padding: 25px;
+            }
+            
+            .privacy-table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+        
+        /* تأثيرات الرسوم المتحركة */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate {
+            animation: fadeIn 0.6s ease forwards;
+        }
+        
+        .delay-1 { animation-delay: 0.1s; opacity: 0; }
+        .delay-2 { animation-delay: 0.2s; opacity: 0; }
+        .delay-3 { animation-delay: 0.3s; opacity: 0; }
+        
+        /* أزرار التنقل بين الأقسام */
+        .section-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .nav-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 25px;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-btn:hover {
+            background-color: var(--dark-color);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-btn.prev i {
+            margin-right: 5px;
+        }
+        
+        .nav-btn.next i {
+            margin-left: 5px;
+        }
+        
+        /* تذييل الصفحة */
+        .last-updated {
+            text-align: center;
+            color: var(--text-light);
+            font-style: italic;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px dashed var(--border-color);
+        }
+    </style>
+
+</head>
+<body>
+    <!-- الهيدر -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-baby"></i>
+                <h1>رعاية <span>الرضيع</span></h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="about.html">من نحن</a></li>
+                    <li><a href="services.html">خدماتنا</a></li>
+                    <li><a href="articles.html">مقالات</a></li>
+                    <li><a href="contact.html">اتصل بنا</a></li>
+                    <li><a href="privacy.html" class="current-page">سياسة الخصوصية</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- قسم البطل -->
+    <section class="privacy-hero">
+        <div class="container">
+            <h1 class="animate">سياسة الخصوصية</h1>
+            <p class="animate delay-1">نحن في موقع رعاية الرضيع نحرص على حماية خصوصية معلوماتك. اقرأ سياسة الخصوصية هذه لفهم كيفية تعاملنا مع بياناتك الشخصية.</p>
+        </div>
+    </section>
+
+    <!-- محتوى صفحة سياسة الخصوصية -->
+    <div class="container">
+        <div class="privacy-container">
+            <!-- الفهرس الجانبي -->
+            <aside class="privacy-sidebar">
+                <h3>فهرس المحتويات</h3>
+                <ul class="sidebar-links">
+                    <li><a href="#intro" class="active">مقدمة</a></li>
+                    <li><a href="#data-collection">المعلومات التي نجمعها</a></li>
+                    <li><a href="#data-usage">كيف نستخدم معلوماتك</a></li>
+                    <li><a href="#data-sharing">مشاركة المعلومات</a></li>
+                    <li><a href="#data-protection">حماية المعلومات</a></li>
+                    <li><a href="#cookies">ملفات تعريف الارتباط (كوكيز)</a></li>
+                    <li><a href="#children-privacy">خصوصية الأطفال</a></li>
+                    <li><a href="#user-rights">حقوق المستخدم</a></li>
+                    <li><a href="#policy-changes">التغييرات على السياسة</a></li>
+                    <li><a href="#contact">اتصل بنا</a></li>
+                </ul>
+                
+                <div class="alert-box info-box">
+                    <h4><i class="fas fa-info-circle"></i> ملاحظة مهمة</h4>
+                    <p>تطبق سياسة الخصوصية هذه على جميع خدمات موقع رعاية الرضيع.</p>
+                </div>
+            </aside>
+            
+            <!-- المحتوى الرئيسي -->
+            <main class="privacy-content">
+                <!-- المقدمة -->
+                <section id="intro" class="privacy-section">
+                    <h2>مقدمة</h2>
+                    <p>مرحباً بكم في سياسة الخصوصية لموقع رعاية الرضيع. نحن ندرك أهمية الخصوصية ونوليها أولوية قصوى، خاصة عندما يتعلق الأمر بموقع يختص برعاية الأطفال والرضع.</p>
+                    <p>تشرح هذه السياسة كيفية جمع معلوماتك الشخصية واستخدامها وحمايتها عندما تزور موقعنا أو تستخدم خدماتنا. نحن نلتزم بحماية خصوصيتك وضمان أمان معلوماتك الشخصية.</p>
+                    
+                    <div class="alert-box warning-box">
+                        <h4><i class="fas fa-exclamation-triangle"></i> تنويه</h4>
+                        <p>باستخدامك لموقع رعاية الرضيع، فإنك توافق على شروط سياسة الخصوصية هذه. إذا كنت لا توافق على هذه السياسة، يرجى عدم استخدام موقعنا.</p>
+                    </div>
+                </section>
+                
+                <!-- المعلومات التي نجمعها -->
+                <section id="data-collection" class="privacy-section">
+                    <h2>المعلومات التي نجمعها</h2>
+                    <p>قد نجمع أنواعاً مختلفة من المعلومات عند تفاعلك مع موقعنا، بما في ذلك:</p>
+                    
+                    <h3>المعلومات التي تقدمها مباشرة</h3>
+                    <ul>
+                        <li>معلومات الهوية: الاسم، البريد الإلكتروني، رقم الهاتف</li>
+                        <li>معلومات الحساب: اسم المستخدم، كلمة المرور</li>
+                        <li>معلومات الاتصال: العنوان، المدينة، الرمز البريدي</li>
+                        <li>المعلومات الصحية (إذا قدمتها طواعية): عمر الطفل، الوزن، الحالة الصحية</li>
+                        <li>الرسائل والاستفسارات التي ترسلها عبر النماذج المختلفة</li>
+                    </ul>
+                    
+                    <h3>المعلومات التي نجمعها تلقائياً</h3>
+                    <ul>
+                        <li>معلومات الجهاز: نوع الجهاز، نظام التشغيل، إصدار المتصفح</li>
+                        <li>معلومات الاتصال: عنوان IP، مزود خدمة الإنترنت</li>
+                        <li>معلومات الاستخدام: الصفحات التي تزورها، وقت الزيارة، النقرات</li>
+                        <li>بيانات ملفات تعريف الارتباط (الكوكيز)</li>
+                    </ul>
+                    
+                    <h3>المعلومات التي نحصل عليها من مصادر أخرى</h3>
+                    <p>قد نحصل على معلومات عنك من مصادر خارجية بشرط حصولنا على موافقتك أو أن يكون ذلك قانونياً.</p>
+                </section>
+                
+                <!-- كيفية استخدام المعلومات -->
+                <section id="data-usage" class="privacy-section">
+                    <h2>كيف نستخدم معلوماتك</h2>
+                    <p>نستخدم المعلومات التي نجمعها للأغراض التالية:</p>
+                    
+                    <table class="privacy-table">
+                        <thead>
+                            <tr>
+                                <th>الغرض</th>
+                                <th>التفاصيل</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>تقديم الخدمات</td>
+                                <td>توفير المحتوى والخدمات المطلوبة، ومعالجة طلباتك واستفساراتك</td>
+                            </tr>
+                            <tr>
+                                <td>تحسين الموقع</td>
+                                <td>تحليل استخدام الموقع لتحسين تجربة المستخدم وتطوير خدمات جديدة</td>
+                            </tr>
+                            <tr>
+                                <td>الاتصال</td>
+                                <td>الرد على استفساراتك، إرسال تحديثات ونشرات إخبارية (بموافقتك)</td>
+                            </tr>
+                            <tr>
+                                <td>الأمان</td>
+                                <td>حماية موقعنا ومستخدمينا من الأنشطة الاحتيالية والتهديدات الأمنية</td>
+                            </tr>
+                            <tr>
+                                <td>الامتثال القانوني</td>
+                                <td>الامتثال للقوانين واللوائح المعمول بها والإجراءات القضائية</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <div class="alert-box info-box">
+                        <h4><i class="fas fa-shield-alt"></i> مبدأ الحد الأدنى من البيانات</h4>
+                        <p>نلتزم بمبدأ جمع واستخدام الحد الأدنى من البيانات اللازمة لتقديم خدماتنا فقط. نحن لا نجمع معلومات أكثر مما نحتاجه، ولا نحتفظ بها لفترة أطول من اللازم.</p>
+                    </div>
+                </section>
+                
+                <!-- مشاركة المعلومات -->
+                <section id="data-sharing" class="privacy-section">
+                    <h2>مشاركة المعلومات</h2>
+                    <p>نحن لا نبيع أو نؤجر معلوماتك الشخصية لأطراف ثالثة. ومع ذلك، قد نشارك معلوماتك مع:</p>
+                    
+                    <ol>
+                        <li><strong>مزودي الخدمات:</strong> نتعامل مع جهات خارجية موثوقة لمساعدتنا في تشغيل موقعنا (مثل استضافة الويب، تحليلات البيانات).</li>
+                        <li><strong>السلطات القانونية:</strong> عندما يقتضي القانون أو نعتقد بحسن نية أن الكشف مطلوب لحماية حقوقنا أو سلامة المستخدمين أو الامتثال للقوانين.</li>
+                        <li><strong>في حالة الاندماج أو البيع:</strong> إذا تم دمج موقعنا مع شركة أخرى أو بيعها، فقد تنتقل معلوماتك إلى الشركة الجديدة.</li>
+                    </ol>
+                    
+                    <p>نحن نتأكد من أن جميع الأطراف الثالثة التي نشارك معها البيانات تلتزم بمعايير الخصوصية والأمان المناسبة.</p>
+                </section>
+                
+                <!-- حماية المعلومات -->
+                <section id="data-protection" class="privacy-section">
+                    <h2>حماية المعلومات</h2>
+                    <p>نحن نستخدم إجراءات أمنية تقنية وإدارية مناسبة لحماية معلوماتك الشخصية من الوصول غير المصرح به أو التعديل أو الإفشاء أو التدمير.</p>
+                    
+                    <h3>الإجراءات التي نتخذها:</h3>
+                    <ul>
+                        <li>التشفير: نستخدم تشفير SSL لحماية البيانات المنقولة بين متصفحك وخوادمنا</li>
+                        <li>جدران الحماية: خوادمنا محمية بجدران حماية متقدمة</li>
+                        <li>الوصول المحدود: يقتصر الوصول إلى معلوماتك الشخصية على الموظفين المخولين فقط</li>
+                        <li>النسخ الاحتياطي: نقوم بعمل نسخ احتياطية منتظمة للبيانات</li>
+                        <li>التدريب: يتم تدريب موظفينا على إجراءات الخصوصية والأمان</li>
+                    </ul>
+                    
+                    <div class="alert-box warning-box">
+                        <h4><i class="fas fa-exclamation-triangle"></i> مسؤولية المستخدم</h4>
+                        <p>على الرغم من جهودنا لحماية معلوماتك، لا يمكن ضمان أمن نقل البيانات عبر الإنترنت بنسبة 100%. أنت مسؤول عن الحفاظ على سرية معلومات تسجيل الدخول الخاصة بك.</p>
+                    </div>
+                </section>
+                
+                <!-- ملفات تعريف الارتباط -->
+                <section id="cookies" class="privacy-section">
+                    <h2>ملفات تعريف الارتباط (كوكيز)</h2>
+                    <p>يستخدم موقعنا ملفات تعريف الارتباط (كوكيز) لتعزيز تجربة المستخدم وتحليل استخدام الموقع.</p>
+                    
+                    <h3>أنواع ملفات تعريف الارتباط التي نستخدمها:</h3>
+                    <ul>
+                        <li><strong>الكوكيز الأساسية:</strong> ضرورية لتشغيل الموقع بشكل صحيح</li>
+                        <li><strong>كوكيز الأداء:</strong> تساعدنا في فهم كيفية استخدام الزوار لموقعنا</li>
+                        <li><strong>كوكيز الوظائف:</strong> تذكر خياراتك وتفضيلاتك</li>
+                        <li><strong>كوكيز التسويق:</strong> تستخدم لعرض إعلانات ذات صلة باهتماماتك</li>
+                    </ul>
+                    
+                    <p>يمكنك التحكم في ملفات تعريف الارتباط من خلال إعدادات متصفحك. يرجى ملاحظة أن تعطيل بعض ملفات تعريف الارتباط قد يؤثر على وظائف الموقع.</p>
+                </section>
+                
+                <!-- خصوصية الأطفال -->
+                <section id="children-privacy" class="privacy-section">
+                    <h2>خصوصية الأطفال</h2>
+                    <p>نحن نولي اهتماماً خاصاً لخصوصية الأطفال. موقعنا موجه للبالغين (الأمهات والآباء ومقدمي الرعاية) ولا نجمع معلومات شخصية عن الأطفال دون سن 13 عاماً عن قصد.</p>
+                    
+                    <div class="alert-box important-box">
+                        <h4><i class="fas fa-child"></i> معلومات مهمة للآباء والأمهات</h4>
+                        <p>إذا كنت تعتقد أن طفلك قد زودنا بمعلومات شخصية دون موافقتك، يرجى الاتصال بنا على الفور وسنقوم بحذف هذه المعلومات من سجلاتنا.</p>
+                    </div>
+                    
+                    <p>نشجع الآباء والأمهات على:</p>
+                    <ul>
+                        <li>مراقبة نشاط أطفالهم على الإنترنت</li>
+                        <li>التعرف على مواقع الويب التي يزورها أطفالهم</li>
+                        <li>مناقشة أهمية عدم مشاركة المعلومات الشخصية عبر الإنترنت</li>
+                    </ul>
+                </section>
+                
+                <!-- حقوق المستخدم -->
+                <section id="user-rights" class="privacy-section">
+                    <h2>حقوق المستخدم</h2>
+                    <p>بموجب قوانين الخصوصية المعمول بها، لديك الحقوق التالية فيما يتعلق ببياناتك الشخصية:</p>
+                    
+                    <ol>
+                        <li><strong>حق الوصول:</strong> يمكنك طلب نسخة من معلوماتك الشخصية التي نحتفظ بها</li>
+                        <li><strong>حق التصحيح:</strong> يمكنك طلب تصحيح أي معلومات غير دقيقة أو غير كاملة</li>
+                        <li><strong>حق الحذف:</strong> يمكنك طلب حذف معلوماتك الشخصية في ظروف معينة</li>
+                        <li><strong>حق الاعتراض:</strong> يمكنك الاعتراض على معالجة بياناتك لأغراض معينة</li>
+                        <li><strong>حق نقل البيانات:</strong> يمكنك طلب نقل بياناتك إلى جهة أخرى</li>
+                        <li><strong>حق سحب الموافقة:</strong> يمكنك سحب موافقتك على معالجة بياناتك في أي وقت</li>
+                    </ol>
+                    
+                    <p>لممارسة أي من هذه الحقوق، يرجى الاتصال بنا عبر نموذج الاتصال في موقعنا أو البريد الإلكتروني المخصص للخصوصية.</p>
+                </section>
+                
+                <!-- التغييرات على السياسة -->
+                <section id="policy-changes" class="privacy-section">
+                    <h2>التغييرات على سياسة الخصوصية</h2>
+                    <p>قد نقوم بتحديث سياسة الخصوصية هذه من وقت لآخر لتعكس التغييرات في ممارساتنا أو لأسباب تشغيلية أو قانونية أو تنظيمية.</p>
+                    
+                    <div class="update-section">
+                        <h3><i class="fas fa-history"></i> آخر تحديث</h3>
+                        <p><strong>تاريخ آخر تحديث:</strong> 15 أكتوبر 2023</p>
+                        <p><strong>التغييرات الرئيسية:</strong> إضافة قسم خاص بخصوصية الأطفال، توضيح حقوق المستخدم، تحديث إجراءات حماية البيانات.</p>
+                    </div>
+                    
+                    <p>سنقوم بنشر أي تغييرات على هذه الصفحة وسنعلمك عبر البريد الإلكتروني إذا كانت التغييرات جوهرية. ننصحك بمراجعة هذه الصفحة بشكل دوري للاطلاع على أي تحديثات.</p>
+                </section>
+                
+                <!-- اتصل بنا -->
+                <section id="contact" class="privacy-section">
+                    <h2>اتصل بنا</h2>
+                    <p>إذا كان لديك أي أسئلة أو استفسارات حول سياسة الخصوصية هذه أو ممارسات الخصوصية لدينا، يرجى الاتصال بنا عبر:</p>
+                    
+                    <ul>
+                        <li><strong>البريد الإلكتروني للخصوصية:</strong> privacy@babycare.com</li>
+                        <li><strong>الهاتف:</strong> +966 11 123 4567 (الرجاء طلب قسم الخصوصية)</li>
+                        <li><strong>العنوان البريدي:</strong> قسم الخصوصية، موقع رعاية الرضيع، شارع الأمومة والطفولة، الرياض، المملكة العربية السعودية</li>
+                    </ul>
+                    
+                    <p>سنبذل قصارى جهدنا للرد على استفساراتك في غضون 3 أيام عمل.</p>
+                </section>
+                
+                <!-- تذييل الصفحة -->
+                <div class="last-updated">
+                    <p>آخر تحديث: 15 أكتوبر 2023</p>
+                </div>
+                
+                <!-- أزرار التنقل -->
+                <div class="section-nav">
+                    <a href="terms.html" class="nav-btn prev"><i class="fas fa-arrow-right"></i> الشروط والأحكام</a>
+                    <a href="contact.html" class="nav-btn next">اتصل بنا <i class="fas fa-arrow-left"></i></a>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- الفوتر -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-section">
+                    <h3>عن رعاية الرضيع</h3>
+                    <p>نحن موقع متخصص في تقديم النصائح والخبرات حول رعاية الرضع منذ الولادة حتى سن الثالثة. نهدف إلى دعم الآباء والأمهات بتقديم معلومات موثوقة وعملية.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>روابط سريعة</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html"><i class="fas fa-chevron-left"></i> الصفحة الرئيسية</a></li>
+                        <li><a href="about.html"><i class="fas fa-chevron-left"></i> من نحن</a></li>
+                        <li><a href="services.html"><i class="fas fa-chevron-left"></i> خدماتنا</a></li>
+                        <li><a href="articles.html"><i class="fas fa-chevron-left"></i> المقالات</a></li>
+                        <li><a href="contact.html"><i class="fas fa-chevron-left"></i> اتصل بنا</a></li>
+                        <li><a href="privacy.html"><i class="fas fa-chevron-left"></i> سياسة الخصوصية</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>معلومات الاتصال</h3>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>شارع الأمومة والطفولة، الرياض، المملكة العربية السعودية</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+966 11 123 4567</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>info@babycare.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-clock"></i>
+                            <span>الأحد - الخميس: 8 صباحاً - 5 مساءً</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>النشرة البريدية</h3>
+                    <p>اشترك في نشرتنا البريدية لتصلك أحدث النصائح والمقالات حول رعاية الرضع.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="أدخل بريدك الإلكتروني" required>
+                        <button type="submit" class="btn">اشتراك</button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p class="copyright">© 2023 موقع رعاية الرضيع. جميع الحقوق محفوظة.</p>
+                <p>تم التطوير بروح الأبوة والأمومة ❤️</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // تفاعل الفهرس الجانبي
+        document.addEventListener('DOMContentLoaded', function() {
+            const sidebarLinks = document.querySelectorAll('.sidebar-links a');
+            const sections = document.querySelectorAll('.privacy-section');
+            
+            // تفعيل الرابط المناسب عند التمرير
+            function activateLinkOnScroll() {
+                let currentSectionId = '';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - 100;
+                    const sectionHeight = section.clientHeight;
+                    const scrollPosition = window.scrollY;
+                    
+                    if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                        currentSectionId = '#' + section.id;
+                    }
+                });
+                
+                sidebarLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === currentSectionId) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+            
+            // تفعيل عند التحميل
+            activateLinkOnScroll();
+            
+            // تفعيل عند التمرير
+            window.addEventListener('scroll', activateLinkOnScroll);
+            
+            // تنقل سلس عند النقر على روابط الفهرس
+            sidebarLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+                    
+                    if (targetSection) {
+                        window.scrollTo({
+                            top: targetSection.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                        
+                        // تحديث الرابط النشط
+                        sidebarLinks.forEach(l => l.classList.remove('active'));
+                        this.classList.add('active');
+                    }
+                });
+            });
+            
+            // محاكاة إرسال النشرة البريدية
+            document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const emailInput = this.querySelector('input[type="email"]');
+                alert(`شكراً على اشتراكك في نشرتنا البريدية! سيصلك جديدنا على ${emailInput.value}`);
+                emailInput.value = '';
+            });
+            
+            // تأثيرات الرسوم المتحركة عند التمرير
+            const animatedElements = document.querySelectorAll('.animate');
+            
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            animatedElements.forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+
+</body>
+</html>

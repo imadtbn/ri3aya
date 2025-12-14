@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="مخطط النمو للرضع والأطفال - تتبع تطور الوزن والطول ومحيط الرأس">
+    <title>مخطط النمو | رعاية الرضع</title>
+
+    <!-- الخطوط العربية -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&family=Tajawal:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+
+    <!-- الأيقونات -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- الأنماط -->
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="../css/growth.css">
+
+    <!-- مكتبة الرسوم البيانية -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+</head>
+
+<body>
+    <!-- شريط التنقل -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <!-- الشعار -->
+            <a href="../index.html" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-baby"></i>
+                </div>
+                <div class="logo-text">
+                    <h1>رعاية الرضع</h1>
+                    <p>دليل الأم الحديثة</p>
+                </div>
+            </a>
+
+            <!-- قائمة الهاتف المحمول -->
+            <button class="mobile-menu-btn" aria-label="فتح القائمة">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <!-- القائمة الرئيسية -->
+            <ul class="nav-menu">
+                <li><a href="../index.html"><i class="fas fa-home"></i> الرئيسية</a></li>
+                <li class="dropdown">
+                    <a href="#"><i class="fas fa-th-large"></i> الأقسام <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="crying.html"><i class="fas fa-baby-cry"></i> فهم بكاء الرضيع</a></li>
+                        <li><a href="sleep.html"><i class="fas fa-bed"></i> النوم الآمن</a></li>
+                        <li><a href="diapers.html"><i class="fas fa-baby"></i> العناية بالحفاضات</a></li>
+                        <li><a href="digestive.html"><i class="fas fa-stomach"></i> صحة الجهاز الهضمي</a></li>
+                        <li><a href="nutrition.html"><i class="fas fa-utensils"></i> التغذية</a></li>
+                        <li><a href="bath.html"><i class="fas fa-bath"></i> وقت الاستحمام</a></li>
+                        <li><a href="vaccine.html"><i class="fas fa-syringe"></i> جدول التلقيح</a></li>
+                        <li><a href="growth.html" class="active"><i class="fas fa-chart-line"></i> مخطط النمو</a></li>
+                        <li><a href="diseases.html"><i class="fas fa-heartbeat"></i> الأمراض الشائعة</a></li>
+                        <li><a href="tips.html"><i class="fas fa-lightbulb"></i> نصائح عامة</a></li>
+                    </ul>
+                </li>
+                <li><a href="tools.html"><i class="fas fa-tools"></i> الأدوات التفاعلية</a></li>
+                <li><a href="blog.html"><i class="fas fa-blog"></i> المدونة</a></li>
+                <li><a href="contact.html"><i class="fas fa-envelope"></i> اتصل بنا</a></li>
+            </ul>
+
+            <!-- بحث -->
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="ابحث عن نصائح...">
+                <button class="search-btn"><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- رأس الصفحة -->
+    <section class="page-header growth-header">
+        <div class="container">
+            <div class="header-content">
+                <h1><i class="fas fa-chart-line"></i> مخطط النمو</h1>
+                <p>تابعي تطور طفلك ومقارنته بالمعدلات الطبيعية للوزن والطول ومحيط الرأس</p>
+                <div class="breadcrumb">
+                    <a href="../index.html">الرئيسية</a> / <a href="growth.html">مخطط النمو</a>
+                </div>
+            </div>
+            <div class="header-image">
+                <img src="../images/growth-header.svg" alt="طفل يتم قياس طوله ووزنه" loading="lazy">
+            </div>
+        </div>
+    </section>
+
+    <!-- المحتوى الرئيسي -->
+    <main class="growth-page">
+        <div class="container">
+            <!-- مقدمة عن مخططات النمو -->
+            <section class="intro-section">
+                <div class="section-card">
+                    <h2><i class="fas fa-info-circle"></i> أهمية متابعة نمو الطفل</h2>
+                    <p>مخططات النمو هي أدوات أساسية تساعد في تقييم نمو الطفل وتطوره بشكل صحيح. تعكس هذه المخططات مدى
+                        تقدم الطفل مقارنة بالأطفال الآخرين من نفس العمر والجنس، وتساعد في الكشف المبكر عن أي مشاكل في
+                        النمو أو التغذية.</p>
+
+                    <div class="growth-stats">
+                        <div class="stat-item">
+                            <i class="fas fa-weight"></i>
+                            <div>
+                                <h3>الوزن</h3>
+                                <p>المؤشر الأكثر دقة على التغذية الجيدة والصحة العامة</p>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-ruler-vertical"></i>
+                            <div>
+                                <h3>الطول</h3>
+                                <p>يعكس النمو العظمي والصحة العامة والتغذية طويلة الأمد</p>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-brain"></i>
+                            <div>
+                                <h3>محيط الرأس</h3>
+                                <p>مؤشر مهم لنمو الدماغ خاصة خلال السنتين الأوليين</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- أداة تقييم النمو -->
+            <section class="growth-calculator">
+                <div class="section-card">
+                    <h2><i class="fas fa-calculator"></i> حاسبة النمو والتطور</h2>
+                    <p>أدخلي بيانات طفلك لمعرفة مكانه على مخطط النمو وتلقي التوصيات المناسبة</p>
+
+                    <div class="calculator-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="child-gender"><i class="fas fa-venus-mars"></i> جنس الطفل</label>
+                                <select id="child-gender" class="form-select">
+                                    <option value="male">ذكر</option>
+                                    <option value="female">أنثى</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="child-age"><i class="fas fa-calendar-alt"></i> العمر</label>
+                                <div class="age-input">
+                                    <input type="number" id="child-years" min="0" max="5" value="0" placeholder="سنوات">
+                                    <span>سنة</span>
+                                    <input type="number" id="child-months" min="0" max="11" value="3"
+                                        placeholder="أشهر">
+                                    <span>شهر</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="child-weight"><i class="fas fa-weight"></i> الوزن (كجم)</label>
+                                <input type="number" step="0.1" id="child-weight" placeholder="مثال: 6.5" value="6.5">
+                            </div>
+                            <div class="form-group">
+                                <label for="child-height"><i class="fas fa-ruler-vertical"></i> الطول (سم)</label>
+                                <input type="number" id="child-height" placeholder="مثال: 65" value="65">
+                            </div>
+                            <div class="form-group">
+                                <label for="child-head"><i class="fas fa-brain"></i> محيط الرأس (سم)</label>
+                                <input type="number" step="0.1" id="child-head" placeholder="مثال: 42.5" value="42.5">
+                            </div>
+                        </div>
+
+                        <button class="btn btn-primary" id="calculate-growth">
+                            <i class="fas fa-chart-bar"></i> احسب مؤشرات النمو
+                        </button>
+                    </div>
+
+                    <div class="calculator-results" id="growth-results">
+                        <!-- سيتم عرض النتائج هنا -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- الرسوم البيانية للنمو -->
+            <section class="growth-charts">
+                <h2 class="section-title"><i class="fas fa-chart-area"></i> مخططات النمو المرجعية</h2>
+
+                <div class="chart-tabs">
+                    <button class="chart-tab-btn active" data-chart="weight">مخطط الوزن</button>
+                    <button class="chart-tab-btn" data-chart="height">مخطط الطول</button>
+                    <button class="chart-tab-btn" data-chart="head">مخطط محيط الرأس</button>
+                </div>
+
+                <div class="chart-container">
+                    <div class="chart-wrapper">
+                        <canvas id="growth-chart"></canvas>
+                    </div>
+                    <div class="chart-legend">
+                        <h4><i class="fas fa-info-circle"></i> فهم المخططات</h4>
+                        <ul>
+                            <li><span class="legend-line percentile-97"></span> النسبة 97%: أعلى من 97% من الأطفال</li>
+                            <li><span class="legend-line percentile-85"></span> النسبة 85%: أعلى من 85% من الأطفال</li>
+                            <li><span class="legend-line percentile-50"></span> النسبة 50%: المتوسط الطبيعي</li>
+                            <li><span class="legend-line percentile-15"></span> النسبة 15%: أعلى من 15% من الأطفال</li>
+                            <li><span class="legend-line percentile-3"></span> النسبة 3%: أعلى من 3% من الأطفال</li>
+                        </ul>
+                        <p class="chart-note">ملاحظة: هذه مخططات إرشادية عامة. يرجى استشارة طبيب الأطفال لتقييم دقيق
+                            لنمو طفلك.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- مراحل النمو حسب العمر -->
+            <section class="growth-milestones">
+                <div class="section-card">
+                    <h2><i class="fas fa-star"></i> مراحل النمو والتطور حسب العمر</h2>
+
+                    <div class="milestones-timeline">
+                        <!-- حديث الولادة - شهر -->
+                        <div class="milestone-card">
+                            <div class="milestone-age">0-1 شهر</div>
+                            <div class="milestone-content">
+                                <h3>حديث الولادة</h3>
+                                <ul>
+                                    <li><i class="fas fa-check-circle"></i> الوزن: يولد معظم الأطفال بوزن 2.5-4.5 كجم
+                                    </li>
+                                    <li><i class="fas fa-check-circle"></i> يفقد 5-10% من الوزن أول أسبوع ثم يكتسب 20-30
+                                        جرام يومياً</li>
+                                    <li><i class="fas fa-check-circle"></i> محيط الرأس: 33-38 سم عند الولادة</li>
+                                    <li><i class="fas fa-check-circle"></i> يرفع الرأس لفترات قصيرة أثناء الاستلقاء على
+                                        البطن</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- 1-3 أشهر -->
+                        <div class="milestone-card">
+                            <div class="milestone-age">1-3 أشهر</div>
+                            <div class="milestone-content">
+                                <h3>مرحلة الابتسامات الأولى</h3>
+                                <ul>
+                                    <li><i class="fas fa-check-circle"></i> يكتسب 150-200 جرام أسبوعياً</li>
+                                    <li><i class="fas fa-check-circle"></i> ينمو 2.5-4 سم شهرياً في الطول</li>
+                                    <li><i class="fas fa-check-circle"></i> يبتسم رداً على الابتسامات (الابتسامات
+                                        الاجتماعية)</li>
+                                    <li><i class="fas fa-check-circle"></i> يتابع الأشياء المتحركة بعينيه</li>
+                                    <li><i class="fas fa-check-circle"></i> يبدأ بإصدار أصوات هديل (المناغاة)</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- 4-6 أشهر -->
+                        <div class="milestone-card">
+                            <div class="milestone-age">4-6 أشهر</div>
+                            <div class="milestone-content">
+                                <h3>مرحلة التقلب والجلوس</h3>
+                                <ul>
+                                    <li><i class="fas fa-check-circle"></i> يضاعف وزنه عند الولادة تقريباً</li>
+                                    <li><i class="fas fa-check-circle"></i> ينمو 1.25-2.5 سم شهرياً</li>
+                                    <li><i class="fas fa-check-circle"></i> يتقلب من البطن إلى الظهر وبالعكس</li>
+                                    <li><i class="fas fa-check-circle"></i> يجلس مع الدعم ثم بدون دعم</li>
+                                    <li><i class="fas fa-check-circle"></i> يمسك بالألعاب وينقلها من يد لأخرى</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- 7-9 أشهر -->
+                        <div class="milestone-card">
+                            <div class="milestone-age">7-9 أشهر</div>
+                            <div class="milestone-content">
+                                <h3>مرحلة الحبو والوقوف</h3>
+                                <ul>
+                                    <li><i class="fas fa-check-circle"></i> يكتسب 85-140 جرام أسبوعياً</li>
+                                    <li><i class="fas fa-check-circle"></i> ينمو 1-1.5 سم شهرياً</li>
+                                    <li><i class="fas fa-check-circle"></i> يحبو أو يزحف على بطنه</li>
+                                    <li><i class="fas fa-check-circle"></i> يسحب نفسه للوقوف مع التمسك بالأثاث</li>
+                                    <li><i class="fas fa-check-circle"></i> يقول "ماما" أو "بابا" بشكل غير مميز</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- 10-12 شهر -->
+                        <div class="milestone-card">
+                            <div class="milestone-age">10-12 شهر</div>
+                            <div class="milestone-content">
+                                <h3>مرحة الخطوات الأولى</h3>
+                                <ul>
+                                    <li><i class="fas fa-check-circle"></i> يضاعف وزنه عند الولادة 3 مرات</li>
+                                    <li><i class="fas fa-check-circle"></i> ينمو 1 سم شهرياً تقريباً</li>
+                                    <li><i class="fas fa-check-circle"></i> يقف بدون مساعدة لبضع ثوان</li>
+                                    <li><i class="fas fa-check-circle"></i> يخطو خطواته الأولى مع المساعدة</li>
+                                    <li><i class="fas fa-check-circle"></i> يقول كلمة أو كلمتين بمعنى</li>
+                                    <li><i class="fas fa-check-circle"></i> يفهم الأوامر البسيطة مثل "لا"</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- مؤشرات النمو الطبيعي والإنذارية -->
+            <section class="growth-indicators">
+                <h2 class="section-title"><i class="fas fa-clipboard-check"></i> مؤشرات النمو: الطبيعي والإنذاري</h2>
+
+                <div class="indicators-grid">
+                    <!-- مؤشرات الوزن -->
+                    <div class="indicator-card">
+                        <div class="indicator-header">
+                            <i class="fas fa-weight"></i>
+                            <h3>مؤشرات الوزن</h3>
+                        </div>
+                        <div class="indicator-body">
+                            <div class="indicator-status normal">
+                                <h4>طبيعي</h4>
+                                <ul>
+                                    <li>يكتسب وزنًا منتظمًا حسب مخطط النمو</li>
+                                    <li>يتضاعف الوزن عند 4-6 أشهر</li>
+                                    <li>يتضاعف 3 مرات عند 12 شهر</li>
+                                </ul>
+                            </div>
+                            <div class="indicator-status warning">
+                                <h4>يحتاج مراقبة</h4>
+                                <ul>
+                                    <li>عدم اكتساب الوزن لمدة شهرين</li>
+                                    <li>فقدان أكثر من 10% من الوزن</li>
+                                    <li>ترتيب أقل من النسبة 5% للمرحلة العمرية</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- مؤشرات الطول -->
+                    <div class="indicator-card">
+                        <div class="indicator-header">
+                            <i class="fas fa-ruler-vertical"></i>
+                            <h3>مؤشرات الطول</h3>
+                        </div>
+                        <div class="indicator-body">
+                            <div class="indicator-status normal">
+                                <h4>طبيعي</h4>
+                                <ul>
+                                    <li>ينمو 2.5-4 سم شهرياً أول 6 أشهر</li>
+                                    <li>ينمو 1.25-2.5 سم شهرياً 6-12 شهر</li>
+                                    <li>ينمو وفق المنحنى المئوي الخاص به</li>
+                                </ul>
+                            </div>
+                            <div class="indicator-status warning">
+                                <h4>يحتاج مراقبة</h4>
+                                <ul>
+                                    <li>توقف النمو في الطول لمدة 6 أشهر</li>
+                                    <li>انحراف عن المنحنى المئوي بأكثر من خطين</li>
+                                    <li>ترتيب أقل من النسبة 5% للمرحلة العمرية</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- مؤشرات محيط الرأس -->
+                    <div class="indicator-card">
+                        <div class="indicator-header">
+                            <i class="fas fa-brain"></i>
+                            <h3>مؤشرات محيط الرأس</h3>
+                        </div>
+                        <div class="indicator-body">
+                            <div class="indicator-status normal">
+                                <h4>طبيعي</h4>
+                                <ul>
+                                    <li>يزيد 2 سم شهرياً أول 3 أشهر</li>
+                                    <li>يزيد 1 سم شهرياً 4-6 أشهر</li>
+                                    <li>يزيد 0.5 سم شهرياً 6-12 شهر</li>
+                                </ul>
+                            </div>
+                            <div class="indicator-status warning">
+                                <h4>يحتاج مراقبة</h4>
+                                <ul>
+                                    <li>زيادة سريعة جداً (استسقاء الرأس)</li>
+                                    <li>زيادة بطيئة جداً (صغر الرأس)</li>
+                                    <li>انحراف عن المنحنى المئوي بأكثر من خطين</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- نصائح لتعزيز النمو الصحي -->
+            <section class="growth-tips">
+                <div class="section-card">
+                    <h2><i class="fas fa-lightbulb"></i> نصائح لتعزيز النمو الصحي</h2>
+
+                    <div class="tips-grid">
+                        <div class="tip-card">
+                            <div class="tip-icon">
+                                <i class="fas fa-utensils"></i>
+                            </div>
+                            <h3>التغذية المتوازنة</h3>
+                            <ul>
+                                <li>الرضاعة الطبيعية أو الحليب الصناعي المناسب</li>
+                                <li>إدخال الأطعمة الصلبة في عمر 6 أشهر</li>
+                                <li>تنويع الغذاء بعد 8 أشهر</li>
+                                <li>تجنب السكريات والأملاح الزائدة</li>
+                            </ul>
+                        </div>
+
+                        <div class="tip-card">
+                            <div class="tip-icon">
+                                <i class="fas fa-bed"></i>
+                            </div>
+                            <h3>النوم الكافي</h3>
+                            <ul>
+                                <li>حديثو الولادة: 14-17 ساعة يومياً</li>
+                                <li>4-12 شهر: 12-16 ساعة يومياً</li>
+                                <li>نوم القيلولة مهم للنمو</li>
+                                <li>النوم العميل يزيد إفراز هرمون النمو</li>
+                            </ul>
+                        </div>
+
+                        <div class="tip-card">
+                            <div class="tip-icon">
+                                <i class="fas fa-running"></i>
+                            </div>
+                            <h3>النشاط البدني</h3>
+                            <ul>
+                                <li>وقت النوم على البطن لتقوية العضلات</li>
+                                <li>تشجيع الحبو والحركة الحرة</li>
+                                <li>اللعب التفاعلي لتنمية المهارات</li>
+                                <li>تجنب الجلوس الطويل في الكراسي والمشايات</li>
+                            </ul>
+                        </div>
+
+                        <div class="tip-card">
+                            <div class="tip-icon">
+                                <i class="fas fa-heartbeat"></i>
+                            </div>
+                            <h3>الصحة العامة</h3>
+                            <ul>
+                                <li>الالتزام بجدول التطعيمات</li>
+                                <li>الفحوصات الدورية عند طبيب الأطفال</li>
+                                <li>الاهتمام بالنظافة الشخصية</li>
+                                <li>البيئة الآمنة خالية من المخاطر</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- تسجيل النمو -->
+            <section class="growth-tracker">
+                <div class="section-card tracker-card">
+                    <h2><i class="fas fa-clipboard-list"></i> سجل متابعة النمو</h2>
+                    <p>سجلي قياسات طفلك دورياً لتتبع تطور نموه بسهولة</p>
+
+                    <div class="tracker-table-container">
+                        <table class="tracker-table">
+                            <thead>
+                                <tr>
+                                    <th>التاريخ</th>
+                                    <th>العمر</th>
+                                    <th>الوزن (كجم)</th>
+                                    <th>الطول (سم)</th>
+                                    <th>محيط الرأس (سم)</th>
+                                    <th>ملاحظات</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tracker-body">
+                                <!-- ستملأ بالبيانات من localStorage -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="tracker-form">
+                        <h4><i class="fas fa-plus-circle"></i> إضافة قياس جديد</h4>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="track-date">التاريخ</label>
+                                <input type="date" id="track-date" class="form-input">
+                            </div>
+                            <div class="form-group">
+                                <label for="track-age">العمر (شهر)</label>
+                                <input type="number" id="track-age" class="form-input" min="0" max="60"
+                                    placeholder="الأشهر">
+                            </div>
+                            <div class="form-group">
+                                <label for="track-weight">الوزن (كجم)</label>
+                                <input type="number" step="0.1" id="track-weight" class="form-input"
+                                    placeholder="مثال: 7.2">
+                            </div>
+                            <div class="form-group">
+                                <label for="track-height">الطول (سم)</label>
+                                <input type="number" id="track-height" class="form-input" placeholder="مثال: 68">
+                            </div>
+                            <div class="form-group">
+                                <label for="track-head">محيط الرأس (سم)</label>
+                                <input type="number" step="0.1" id="track-head" class="form-input"
+                                    placeholder="مثال: 44.5">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="track-notes">ملاحظات</label>
+                            <textarea id="track-notes" class="form-input" rows="2"
+                                placeholder="ملاحظات إضافية..."></textarea>
+                        </div>
+
+                        <div class="tracker-buttons">
+                            <button class="btn btn-primary" id="add-measurement">
+                                <i class="fas fa-save"></i> إضافة القياس
+                            </button>
+                            <button class="btn btn-secondary" id="clear-tracker">
+                                <i class="fas fa-trash-alt"></i> مسح السجل
+                            </button>
+                            <button class="btn btn-secondary" id="print-tracker">
+                                <i class="fas fa-print"></i> طباعة السجل
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- أسئلة شائعة -->
+            <section class="faq-section">
+                <div class="section-card">
+                    <h2><i class="fas fa-question-circle"></i> أسئلة شائعة حول نمو الأطفال</h2>
+                    <div class="faq-list">
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <span>ابني يأكل جيداً ولكن وزنه لا يزيد بسرعة، هل هذا طبيعي؟</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="faq-answer">
+                                <p>نعم، هذا طبيعي في كثير من الحالات. بعض الأطفال يكون تركيز نموهم على الطول أولاً ثم
+                                    الوزن. المهم أن يكون النمو مستمراً وفق منحنى النمو الخاص به. إذا كان الطفل نشيطاً
+                                    ويتبول بشكل طبيعي وينام جيداً، فغالباً لا داعي للقلق. استشيري طبيب الأطفال إذا كان
+                                    الوزن أقل من النسبة المئوية الخامسة أو إذا توقف النمو.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <span>طفلي لا يزال لا يحبو في عمر 9 أشهر، هل هذا متأخر؟</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="faq-answer">
+                                <p>كل طفل له سرعته الخاصة في التطور. بعض الأطفال يتخطون مرحلة الحبو تماماً ويمشون
+                                    مباشرة. المهم أن يكون الطفل قادراً على التحرك بطريقة ما (الزحف، التدحرج، الحبو على
+                                    المؤخرة). إذا كان الطفل يجلس بمفرده ويثقل جسمه على رجليه عند مسكه، فهذه علامات جيدة.
+                                    استشيري الطبيب إذا كان الطفل لا يستطيع الجلوس بمفرده في عمر 9 أشهر.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <span>ابنتي وزنها أعلى من المعدل الطبيعي، هل يجب أن أقلق من السمنة؟</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="faq-answer">
+                                <p>في السنة الأولى، نادراً ما نشخص السمنة عند الرضع. بعض الأطفال يكونون "سمينين" بشكل
+                                    طبيعي ويخف وزنهم عندما يبدأون الحركة والمشي. ركزي على تقديم غذاء صحي وتشجيع الحركة
+                                    والنشاط. تجنبي العصائر المحلاة والسكريات. إذا كان وزن الطفل فوق النسبة المئوية 95
+                                    واستمر في نفس المنحنى، استشيري طبيب الأطفال للتأكد من أن النمو متناسق بين الوزن
+                                    والطول.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <span>كم مرة يجب قياس وزن وطول الطفل؟</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="faq-answer">
+                                <p>في السنة الأولى، يفضل قياس الوزن والطول كل شهر أو شهرين. محيط الرأس يقاس عادة في
+                                    زيارات التطعيم (عند الولادة، شهرين، 4 أشهر، 6 أشهر، 9 أشهر، 12 شهر). بعد السنة
+                                    الأولى، يكفي القياس كل 3-6 أشهر. تسجيل هذه القياسات في مخطط النمو يساعد في متابعة
+                                    التطور واكتشاف أي مشاكل مبكراً.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- تذييل الصفحة -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <!-- معلومات الموقع -->
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <i class="fas fa-baby"></i>
+                        <h3>رعاية الرضع</h3>
+                    </div>
+                    <p class="footer-description">
+                        موقع متخصص في تقديم نصائح موثوقة وبسيطة للأمهات والمربيات في رحلة رعاية الرضع.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" aria-label="فيسبوك"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="تويتر"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="انستجرام"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="يوتيوب"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <!-- روابط سريعة -->
+                <div class="footer-col">
+                    <h4>روابط سريعة</h4>
+                    <ul class="footer-links">
+                        <li><a href="../index.html"><i class="fas fa-chevron-left"></i> الرئيسية</a></li>
+                        <li><a href="sections.html"><i class="fas fa-chevron-left"></i> جميع الأقسام</a></li>
+                        <li><a href="tools.html"><i class="fas fa-chevron-left"></i> الأدوات التفاعلية</a></li>
+                        <li><a href="blog.html"><i class="fas fa-chevron-left"></i> المدونة</a></li>
+                        <li><a href="faq.html"><i class="fas fa-chevron-left"></i> الأسئلة الشائعة</a></li>
+                    </ul>
+                </div>
+
+                <!-- معلومات الاتصال -->
+                <div class="footer-col">
+                    <h4>اتصل بنا</h4>
+                    <ul class="footer-contact">
+                        <li><i class="fas fa-envelope"></i> info@raayatalarada.com</li>
+                        <li><i class="fas fa-phone"></i> +966 12 345 6789</li>
+                        <li><i class="fas fa-map-marker-alt"></i> الرياض، المملكة العربية السعودية</li>
+                    </ul>
+                </div>
+
+                <!-- النشرة البريدية -->
+                <div class="footer-col">
+                    <h4>اشترك في النشرة البريدية</h4>
+                    <p>احصلي على أحدث النصائح والمقالات مباشرة في بريدك الإلكتروني</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="بريدك الإلكتروني" required>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i> اشتراك
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2024 رعاية الرضع. جميع الحقوق محفوظة.</p>
+                <div class="footer-legal">
+                    <a href="privacy.html">سياسة الخصوصية</a>
+                    <a href="terms.html">شروط الاستخدام</a>
+                    <a href="disclaimer.html">إخلاء المسؤولية</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- زر العودة للأعلى -->
+    <button class="back-to-top" aria-label="العودة للأعلى">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- JavaScript -->
+    <script src="../js/main.js"></script>
+    <script src="../js/growth.js"></script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فهم بكاء الرضيع - رعاية الرضع</title>
+
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="../css/crying-analyzer.css">
+
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- شريط التنقل -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <!-- الشعار -->
+            <a href="../index.html" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-baby"></i>
+                </div>
+                <div class="logo-text">
+                    <h1>رعاية الرضع</h1>
+                    <p>دليل الأم الحديثة</p>
+                </div>
+            </a>
+
+            <!-- قائمة الهاتف المحمول -->
+            <button class="mobile-menu-btn" aria-label="فتح القائمة">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <!-- القائمة الرئيسية -->
+            <ul class="nav-menu">
+                <li><a href="../../bebe/index.html" class="active"><i class="fas fa-home"></i> الرئيسية</a></li>
+                <li class="dropdown">
+                    <a href="#"><i class="fas fa-th-large"></i> الأقسام <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="pages/crying.html"><i class="fas fa-baby-cry"></i> فهم بكاء الرضيع</a></li>
+                        <li><a href="../pages/sleep.html"><i class="fas fa-bed"></i> النوم الآمن</a></li>
+                        <li><a href="../pages/diapers.html"><i class="fas fa-baby"></i> العناية بالحفاضات</a></li>
+                        <li><a href="../pages/digestive.html"><i class="fas fa-stomach"></i> صحة الجهاز الهضمي</a></li>
+                        <li><a href="../pages/nutrition.html"><i class="fas fa-utensils"></i> التغذية</a></li>
+                        <li><a href="../pages/bath.html"><i class="fas fa-bath"></i> وقت الاستحمام</a></li>
+                        <li><a href="../pages/vaccine.html"><i class="fas fa-syringe"></i> جدول التلقيح</a></li>
+                        <li><a href="../pages/growth.html"><i class="fas fa-chart-line"></i> مخطط النمو</a></li>
+                        <li><a href="../pages/diseases.html"><i class="fas fa-heartbeat"></i> الأمراض الشائعة</a></li>
+                        <li><a href="../pages/tips.html"><i class="fas fa-lightbulb"></i> نصائح عامة</a></li>
+                    </ul>
+                </li>
+                <li><a href="../pages/tools.html"><i class="fas fa-tools"></i> الأدوات التفاعلية</a></li>
+                <li><a href="../pages/blog.html"><i class="fas fa-blog"></i> المدونة</a></li>
+                <li><a href="../pages/contact.html"><i class="fas fa-envelope"></i> اتصل بنا</a></li>
+            </ul>
+
+            <!-- بحث -->
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="ابحث عن نصائح...">
+                <button class="search-btn"><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- رأس الصفحة -->
+    <section class="page-header">
+        <div class="container">
+            <div class="page-header-content">
+                <h1><i class="fas fa-baby-cry"></i> فهم بكاء الرضيع</h1>
+                <p>البكاء هو لغة طفلك الوحيدة للتواصل معك. تعلمي كيف تفهمين احتياجاته من خلال صوت بكائه.</p>
+                <div class="breadcrumb">
+                    <a href="../index.html">الرئيسية</a>
+                    <i class="fas fa-chevron-left"></i>
+                    <span>فهم بكاء الرضيع</span>
+                </div>
+            </div>
+            <div class="page-header-image">
+                <img src="images/crying.jpg" alt="فهم بكاء الرضيع" loading="lazy">
+            </div>
+        </div>
+    </section>
+
+    <!-- محتوى الصفحة -->
+    <section class="page-content">
+        <div class="container">
+            <div class="content-wrapper">
+                <!-- المحتوى الرئيسي -->
+                <main class="main-content">
+                    <!-- مقدمة -->
+                    <article class="content-section">
+                        <h2>لماذا يبكي طفلي؟</h2>
+                        <p>البكاء هو الطريقة الوحيدة التي يعبر بها الرضيع عن احتياجاته في الأشهر الأولى من عمره. سواء
+                            كان جائعاً، متعباً، يحتاج إلى تغيير الحفاض، أو يشعر بعدم الراحة، فإن البكاء هو وسيلته
+                            لإخبارك بذلك.</p>
+
+                        <div class="info-box">
+                            <div class="info-icon">
+                                <i class="fas fa-info-circle"></i>
+                            </div>
+                            <div class="info-content">
+                                <h4>هل تعلم؟</h4>
+                                <p>يبلغ متوسط بكاء الرضيع حوالي ساعتين يومياً في الأسابيع الأولى، ويزداد هذا المعدل ليصل
+                                    إلى ذروته في عمر 6-8 أسابيع.</p>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- أنواع البكاء -->
+                    <article class="content-section">
+                        <h2>أنواع البكاء وكيفية تمييزها</h2>
+                        <p>مع الوقت ستتعلمين تمييز أنواع بكاء طفلك المختلفة. إليك دليل سريع للتعرف على أنواع البكاء
+                            الشائعة:</p>
+
+                        <div class="crying-types">
+                            <!-- نوع 1 -->
+                            <div class="crying-type-card">
+                                <div class="crying-icon" style="background-color: var(--primary-light);">
+                                    <i class="fas fa-utensils"></i>
+                                </div>
+                                <h3>بكاء الجوع</h3>
+                                <ul class="feature-list">
+                                    <li><i class="fas fa-check-circle"></i> قصير ومتقطع</li>
+                                    <li><i class="fas fa-check-circle"></i> يبدأ هادئاً ثم يزداد</li>
+                                    <li><i class="fas fa-check-circle"></i> قد يمص الطفل أصابعه</li>
+                                </ul>
+                                <div class="crying-tip">
+                                    <strong>الحل:</strong> قدمي الرضاعة للطفل
+                                </div>
+                            </div>
+
+                            <!-- نوع 2 -->
+                            <div class="crying-type-card">
+                                <div class="crying-icon" style="background-color: var(--secondary-light);">
+                                    <i class="fas fa-bed"></i>
+                                </div>
+                                <h3>بكاء التعب</h3>
+                                <ul class="feature-list">
+                                    <li><i class="fas fa-check-circle"></i> أنين متواصل</li>
+                                    <li><i class="fas fa-check-circle"></i> يفرك عينيه</li>
+                                    <li><i class="fas fa-check-circle"></i> يتثاءب بشكل متكرر</li>
+                                </ul>
+                                <div class="crying-tip">
+                                    <strong>الحل:</strong> ساعدي الطفل على النوم
+                                </div>
+                            </div>
+
+                            <!-- نوع 3 -->
+                            <div class="crying-type-card">
+                                <div class="crying-icon" style="background-color: var(--accent-light);">
+                                    <i class="fas fa-baby"></i>
+                                </div>
+                                <h3>بكاء المغص</h3>
+                                <ul class="feature-list">
+                                    <li><i class="fas fa-check-circle"></i> حاد ومستمر</li>
+                                    <li><i class="fas fa-check-circle"></i> يقوس ظهره</li>
+                                    <li><i class="fas fa-check-circle"></i> يشد رجليه نحو بطنه</li>
+                                </ul>
+                                <div class="crying-tip">
+                                    <strong>الحل:</strong> حاولي تهدئته بوضعيات خاصة
+                                </div>
+                            </div>
+
+                            <!-- نوع 4 -->
+                            <div class="crying-type-card">
+                                <div class="crying-icon" style="background-color: #FFE8E8;">
+                                    <i class="fas fa-thermometer"></i>
+                                </div>
+                                <h3>بكاء المرض</h3>
+                                <ul class="feature-list">
+                                    <li><i class="fas fa-check-circle"></i> ضعيف وأنين</li>
+                                    <li><i class="fas fa-check-circle"></i> مختلف عن بكائه المعتاد</li>
+                                    <li><i class="fas fa-check-circle"></i> قد يصاحبه حمى</li>
+                                </ul>
+                                <div class="crying-tip">
+                                    <strong>الحل:</strong> استشيري الطبيب فوراً
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- خريطة فحص البكاء -->
+                    <article class="content-section">
+                        <h2>خريطة فحص سريع لسبب البكاء</h2>
+                        <p>عندما يبكي طفلك، اتبعي هذه الخريطة للعثور على السبب المحتمل:</p>
+
+                        <div class="flowchart">
+                            <div class="flow-step">
+                                <div class="flow-number">1</div>
+                                <div class="flow-content">
+                                    <h4>تحقق من الحفاض</h4>
+                                    <p>هل الحفاض مبلل أو متسخ؟ غيريه إذا لزم الأمر.</p>
+                                </div>
+                            </div>
+
+                            <div class="flow-arrow">
+                                <i class="fas fa-arrow-down"></i>
+                            </div>
+
+                            <div class="flow-step">
+                                <div class="flow-number">2</div>
+                                <div class="flow-content">
+                                    <h4>افحص الجوع</h4>
+                                    <p>هل حان وقت الرضاعة؟ حاولي إرضاع الطفل.</p>
+                                </div>
+                            </div>
+
+                            <div class="flow-arrow">
+                                <i class="fas fa-arrow-down"></i>
+                            </div>
+
+                            <div class="flow-step">
+                                <div class="flow-number">3</div>
+                                <div class="flow-content">
+                                    <h4>التعب أو النعاس</h4>
+                                    <p>هل يبدو الطفل متعباً؟ حاولي هزّه أو غنّي له.</p>
+                                </div>
+                            </div>
+
+                            <div class="flow-arrow">
+                                <i class="fas fa-arrow-down"></i>
+                            </div>
+
+                            <div class="flow-step">
+                                <div class="flow-number">4</div>
+                                <div class="flow-content">
+                                    <h4>الغازات أو المغص</h4>
+                                    <p>حاولي تدليك بطنه أو حمله في وضعيات تخفيف الغازات.</p>
+                                </div>
+                            </div>
+
+                            <div class="flow-arrow">
+                                <i class="fas fa-arrow-down"></i>
+                            </div>
+
+                            <div class="flow-step">
+                                <div class="flow-number">5</div>
+                                <div class="flow-content">
+                                    <h4>المرض</h4>
+                                    <p>إذا استمر البكاء مع علامات المرض، استشيري الطبيب.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- تقنيات التهدئة -->
+                    <article class="content-section">
+                        <h2>تقنيات التهدئة الفعالة</h2>
+
+                        <div class="techniques-grid">
+                            <!-- تقنية 1 -->
+                            <div class="technique-card">
+                                <div class="technique-video">
+                                    <!-- يمكن استبدال هذا بمقطع فيديو حقيقي -->
+                                    <div class="video-placeholder">
+                                        <i class="fas fa-play-circle"></i>
+                                    </div>
+                                </div>
+                                <div class="technique-content">
+                                    <h3>التقميط الآمن</h3>
+                                    <p>التقميط يمنح الطفل شعوراً بالأمان يشبه وجوده في الرحم. تأكدي من أن التقميط ليس
+                                        ضيقاً جداً وأن الطفل يستطيع تحريك وركيه وركبتيه.</p>
+                                    <a href="#" class="btn-link">شاهد التفاصيل <i class="fas fa-chevron-left"></i></a>
+                                </div>
+                            </div>
+
+                            <!-- تقنية 2 -->
+                            <div class="technique-card">
+                                <div class="technique-video">
+                                    <div class="video-placeholder">
+                                        <i class="fas fa-play-circle"></i>
+                                    </div>
+                                </div>
+                                <div class="technique-content">
+                                    <h3>الحركات الإيقاعية</h3>
+                                    <p>الهزّ اللطيف أو المشي مع الطفل أو استخدام أرجوحة الأطفال يمكن أن يهدئ بكاءهم.
+                                        الحركات الإيقاعية تشبه الحركات التي كان يعتادها في الرحم.</p>
+                                    <a href="#" class="btn-link">شاهد التفاصيل <i class="fas fa-chevron-left"></i></a>
+                                </div>
+                            </div>
+
+                            <!-- تقنية 3 -->
+                            <div class="technique-card">
+                                <div class="technique-video">
+                                    <div class="video-placeholder">
+                                        <i class="fas fa-play-circle"></i>
+                                    </div>
+                                </div>
+                                <div class="technique-content">
+                                    <h3>الأصوات المهدئة</h3>
+                                    <p>الأصوات الهادئة والمتكررة مثل صوت المكنسة أو مجفف الشعر أو التسجيلات الخاصة
+                                        بالأصوات البيضاء يمكن أن تهدئ الطفل بشكل سحري.</p>
+                                    <div class="sound-player">
+                                        <button class="btn-small" id="playWhiteNoise">
+                                            <i class="fas fa-play"></i> تشغيل صوت أبيض
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- تقنية 4 -->
+                            <div class="technique-card">
+                                <div class="technique-video">
+                                    <div class="video-placeholder">
+                                        <i class="fas fa-play-circle"></i>
+                                    </div>
+                                </div>
+                                <div class="technique-content">
+                                    <h3>المص</h3>
+                                    <p>المص هو رد فعل مهدئ طبيعي للرضع. يمكن أن تساعد المصاصة أو إصبع نظيف (طرف الإصبع)
+                                        في تهدئة الطفل عندما لا يكون جائعاً.</p>
+                                    <a href="#" class="btn-link">نصائح السلامة <i class="fas fa-chevron-left"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <div class="crying-analyzer-container">
+                        <div class="analyzer-header">
+                            <h2><i class="fas fa-baby-cry"></i> محلل بكاء الرضيع الذكي</h2>
+                            <p>قومي بتسجيل بكاء طفلك لتحليله آلياً والحصول على تفسيرات محتملة واقتراحات عملية للتعامل مع
+                                الموقف</p>
+                        </div>
+
+                        <div class="recording-controls">
+                            <button id="record-btn" class="btn-primary">
+                                <i class="fas fa-microphone"></i> بدء تحليل البكاء
+                            </button>
+                            <div id="recording-status" class="status-ready">جاهز للتسجيل</div>
+                        </div>
+
+                        <div id="audio-visualization" class="audio-visualization">
+                            <!-- ستعرض هنا أشرطة التردد الصوتي -->
+                        </div>
+
+                        <div id="analysis-results" class="analysis-results">
+                            <!-- ستظهر هنا نتائج التحليل -->
+                        </div>
+
+                        <div id="alternative-patterns" class="alternative-patterns">
+                            <!-- ستظهر هنا الأنماط البديلة -->
+                        </div>
+
+                        <div id="pattern-library" class="pattern-library">
+                            <!-- سيتم إنشاء مكتبة الأنماط هنا تلقائياً -->
+                        </div>
+
+                        <div class="analysis-history">
+                            <div
+                                style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                                <h3>سجل التحليلات</h3>
+                                <button id="clear-history" class="btn-small">مسح السجل</button>
+                            </div>
+                            <div id="analysis-history">
+                                <!-- سيتم عرض سجل التحليلات هنا -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="message-container" class="message-container">
+                        <!-- ستظهر هنا الرسائل التنبيهية -->
+                    </div>
+
+                    <!-- متى تستشيرين الطبيب -->
+                    <article class="content-section warning-section">
+                        <div class="warning-header">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <h2>متى يجب استشارة الطبيب؟</h2>
+                        </div>
+                        <div class="warning-content">
+                            <p>رغم أن البكاء طبيعي، إلا أن هناك حالات تستدعي الاتصال بالطبيب فوراً:</p>
+                            <ul class="warning-list">
+                                <li><i class="fas fa-thermometer-full"></i> إذا كانت درجة حرارة الطفل أعلى من 38°C
+                                    (للرضع أقل من 3 أشهر)</li>
+                                <li><i class="fas fa-ban"></i> إذا رفض الطفل الرضاعة بشكل كامل</li>
+                                <li><i class="fas fa-tint"></i> إذا لاحظتِ جفافاً في فم الطفل أو عدم تبول لمدة 6 ساعات
+                                </li>
+                                <li><i class="fas fa-exclamation"></i> إذا كان البكاء مختلفاً عن المعتاد (ضعيف أو أنين
+                                    مستمر)</li>
+                                <li><i class="fas fa-procedures"></i> إذا صاحب البكاء قيء متكرر أو إسهال</li>
+                                <li><i class="fas fa-lungs"></i> إذا واجه الطفل صعوبة في التنفس</li>
+                            </ul>
+                            <div class="emergency-contact">
+                                <h4><i class="fas fa-phone-alt"></i> اتصل بالطوارئ إذا:</h4>
+                                <p>أصيب الطفل بنوبة أو فقد الوعي أو توقف عن التنفس أو أصبح لونه أزرق.</p>
+                            </div>
+                        </div>
+                    </article>
+                </main>
+
+                <!-- الشريط الجانبي -->
+                <aside class="sidebar">
+                    <!-- أداة مفسر البكاء -->
+                    <div class="sidebar-widget">
+                        <h3><i class="fas fa-diagnoses"></i> مفسر البكاء</h3>
+                        <div class="cry-analyzer">
+                            <p>اختاري الأعراض التي تلاحظينها على طفلك:</p>
+
+                            <div class="symptom-options">
+                                <div class="checkbox-option">
+                                    <input type="checkbox" id="symptom1" name="symptom" value="مص الأصابع">
+                                    <label for="symptom1">يمص أصابعه</label>
+                                </div>
+
+                                <div class="checkbox-option">
+                                    <input type="checkbox" id="symptom2" name="symptom" value="فرك العينين">
+                                    <label for="symptom2">يفرك عينيه</label>
+                                </div>
+
+                                <div class="checkbox-option">
+                                    <input type="checkbox" id="symptom3" name="symptom" value="تصلب الجسم">
+                                    <label for="symptom3">يقوس ظهره</label>
+                                </div>
+
+                                <div class="checkbox-option">
+                                    <input type="checkbox" id="symptom4" name="symptom" value="شد الساقين">
+                                    <label for="symptom4">يشد ساقيه نحو بطنه</label>
+                                </div>
+                            </div>
+
+                            <button class="btn btn-primary analyze-btn">
+                                <i class="fas fa-search"></i> احصل على التشخيص
+                            </button>
+
+                            <div class="analysis-result" id="analysisResult">
+                                <!-- ستظهر النتيجة هنا -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- مقالات ذات صلة -->
+                    <div class="sidebar-widget">
+                        <h3><i class="fas fa-newspaper"></i> مقالات ذات صلة</h3>
+                        <div class="related-articles">
+                            <a href="../pages/sleep.html" class="related-article">
+                                <div class="related-icon">
+                                    <i class="fas fa-bed"></i>
+                                </div>
+                                <div class="related-content">
+                                    <h4>النوم الآمن للرضع</h4>
+                                    <p>قواعد السلامة الذهبية لنوم آمن</p>
+                                </div>
+                            </a>
+
+                            <a href="../pages/digestive.html" class="related-article">
+                                <div class="related-icon">
+                                    <i class="fas fa-stomach"></i>
+                                </div>
+                                <div class="related-content">
+                                    <h4>صحة الجهاز الهضمي</h4>
+                                    <p>كيف تتعاملين مع المغص والغازات</p>
+                                </div>
+                            </a>
+
+                            <a href="../pages/diapers.html" class="related-article">
+                                <div class="related-icon">
+                                    <i class="fas fa-baby"></i>
+                                </div>
+                                <div class="related-content">
+                                    <h4>العناية بالحفاضات</h4>
+                                    <p>دليل تغيير الحفاض وعلاج الطفح</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- نصائح سريعة -->
+                    <div class="sidebar-widget tips-widget">
+                        <h3><i class="fas fa-lightbulb"></i> نصائح سريعة</h3>
+                        <div class="quick-tips">
+                            <div class="quick-tip">
+                                <i class="fas fa-check-circle"></i>
+                                <p>احتفظي بدفتر صغير لتسجيل أوقات البكاء والأسباب المحتملة</p>
+                            </div>
+
+                            <div class="quick-tip">
+                                <i class="fas fa-check-circle"></i>
+                                <p>لا تترددي في طلب المساعدة من زوجك أو أحد أفراد العائلة</p>
+                            </div>
+
+                            <div class="quick-tip">
+                                <i class="fas fa-check-circle"></i>
+                                <p>تذكري أن البكاء المفرط لا يعني أنكِ أم غير كافية</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- تنزيلات -->
+                    <div class="sidebar-widget">
+                        <h3><i class="fas fa-download"></i> تنزيلات مفيدة</h3>
+                        <div class="downloads">
+                            <a href="../assets/pdf/crying-guide.pdf" class="download-link" download>
+                                <i class="fas fa-file-pdf"></i>
+                                <div>
+                                    <h4>دليل فهم البكاء</h4>
+                                    <p>PDF - 1.2 MB</p>
+                                </div>
+                            </a>
+
+                            <a href="../assets/pdf/daily-log.pdf" class="download-link" download>
+                                <i class="fas fa-clipboard-list"></i>
+                                <div>
+                                    <h4>سجل يومي للطفل</h4>
+                                    <p>PDF - 0.8 MB</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </section>
+
+    <!-- تذييل الصفحة -->
+    <footer class="footer">
+
+    </footer>
+
+    <!-- JavaScript الخاص بالصفحة -->
+    <script src="../js/main.js"></script>
+    <script src="../js/crying-analyzer.js"></script>
+
+</body>
+
+</html>

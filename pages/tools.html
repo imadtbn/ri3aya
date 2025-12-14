@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="أدوات تفاعلية لرعاية الرضع - حاسبات ومتابعة وتقويمات ذكية">
+    <title>الأدوات التفاعلية | رعاية الرضع</title>
+
+    <!-- الخطوط العربية -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&family=Tajawal:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+
+    <!-- الأيقونات -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- الأنماط -->
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="../css/tools.css">
+
+
+    <!-- مكتبة الرسوم البيانية -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+</head>
+
+<body>
+    <!-- شريط التنقل -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <!-- الشعار -->
+            <a href="../index.html" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-baby"></i>
+                </div>
+                <div class="logo-text">
+                    <h1>رعاية الرضع</h1>
+                    <p>دليل الأم الحديثة</p>
+                </div>
+            </a>
+
+            <!-- قائمة الهاتف المحمول -->
+            <button class="mobile-menu-btn" aria-label="فتح القائمة">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <!-- القائمة الرئيسية -->
+            <ul class="nav-menu">
+                <li><a href="../index.html"><i class="fas fa-home"></i> الرئيسية</a></li>
+                <li class="dropdown">
+                    <a href="#"><i class="fas fa-th-large"></i> الأقسام <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="crying.html"><i class="fas fa-baby-cry"></i> فهم بكاء الرضيع</a></li>
+                        <li><a href="sleep.html"><i class="fas fa-bed"></i> النوم الآمن</a></li>
+                        <li><a href="diapers.html"><i class="fas fa-baby"></i> العناية بالحفاضات</a></li>
+                        <li><a href="digestive.html"><i class="fas fa-stomach"></i> صحة الجهاز الهضمي</a></li>
+                        <li><a href="nutrition.html"><i class="fas fa-utensils"></i> التغذية</a></li>
+                        <li><a href="bath.html"><i class="fas fa-bath"></i> وقت الاستحمام</a></li>
+                        <li><a href="vaccine.html"><i class="fas fa-syringe"></i> جدول التلقيح</a></li>
+                        <li><a href="growth.html"><i class="fas fa-chart-line"></i> مخطط النمو</a></li>
+                        <li><a href="diseases.html"><i class="fas fa-heartbeat"></i> الأمراض الشائعة</a></li>
+                        <li><a href="tips.html"><i class="fas fa-lightbulb"></i> نصائح عامة</a></li>
+                    </ul>
+                </li>
+                <li><a href="tools.html" class="active"><i class="fas fa-tools"></i> الأدوات التفاعلية</a></li>
+                <li><a href="blog.html"><i class="fas fa-blog"></i> المدونة</a></li>
+                <li><a href="contact.html"><i class="fas fa-envelope"></i> اتصل بنا</a></li>
+            </ul>
+
+            <!-- بحث -->
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="ابحث عن أدوات...">
+                <button class="search-btn"><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- رأس الصفحة -->
+    <section class="page-header tools-header">
+        <div class="container">
+            <div class="header-content">
+                <h1><i class="fas fa-tools"></i> الأدوات التفاعلية</h1>
+                <p>حاسبات ومتابعات وتقويمات ذكية لمساعدتك في رعاية طفلك بسهولة وثقة</p>
+                <div class="breadcrumb">
+                    <a href="../index.html">الرئيسية</a> / <a href="tools.html">الأدوات التفاعلية</a>
+                </div>
+            </div>
+            <div class="header-image">
+                <img src="../images/tools-header.svg" alt="أدوات تفاعلية لرعاية الرضع" loading="lazy">
+            </div>
+        </div>
+    </section>
+
+    <!-- المحتوى الرئيسي -->
+    <main class="tools-page">
+        <div class="container">
+            <!-- أدوات سريعة -->
+            <section class="quick-tools-section">
+                <h2 class="section-title"><i class="fas fa-bolt"></i> أدوات سريعة</h2>
+                <p>استخدمي هذه الأدوات للحصول على نتائج فورية تساعدك في رعاية طفلك</p>
+
+                <div class="quick-tools-grid">
+                    <div class="quick-tool-card">
+                        <div class="tool-icon">
+                            <i class="fas fa-syringe"></i>
+                        </div>
+                        <h3>آلة حاسبة التطعيمات</h3>
+                        <p>احصلي على جدول تطعيمات مخصص لطفلك حسب تاريخ ميلاده</p>
+                        <button class="btn-tool-quick" data-tool="vaccine">
+                            <i class="fas fa-play-circle"></i> ابدأ الآن
+                        </button>
+                    </div>
+
+                    <div class="quick-tool-card">
+                        <div class="tool-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3>متابعة النمو</h3>
+                        <p>تابعي نمو طفلك ومقارنته بالمعدلات الطبيعية حسب عمره</p>
+                        <button class="btn-tool-quick" data-tool="growth">
+                            <i class="fas fa-play-circle"></i> ابدأ الآن
+                        </button>
+                    </div>
+
+                    <div class="quick-tool-card">
+                        <div class="tool-icon">
+                            <i class="fas fa-baby-cry"></i>
+                        </div>
+                        <h3>مفسر البكاء</h3>
+                        <p>تعرفي على سبب بكاء طفلك من خلال الأعراض والسلوكيات</p>
+                        <button class="btn-tool-quick" data-tool="cry">
+                            <i class="fas fa-play-circle"></i> ابدأ الآن
+                        </button>
+                    </div>
+
+                    <div class="quick-tool-card">
+                        <div class="tool-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <h3>مولد الروتين</h3>
+                        <p>أنشئي روتيناً يومياً مناسباً لعمر طفلك ونمط حياتك</p>
+                        <button class="btn-tool-quick" data-tool="routine">
+                            <i class="fas fa-play-circle"></i> ابدأ الآن
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- أدوات متقدمة -->
+            <section class="advanced-tools">
+                <h2 class="section-title"><i class="fas fa-cogs"></i> أدوات متقدمة</h2>
+                <p>أدوات متكاملة تحتوي على ميزات متقدمة لمتابعة شاملة لطفلك</p>
+
+                <div class="tools-tabs">
+                    <button class="tool-tab active" data-tool="vaccine-calculator">آلة حاسبة التطعيمات</button>
+                    <button class="tool-tab" data-tool="growth-tracker">متابعة النمو</button>
+                    <button class="tool-tab" data-tool="cry-decoder">مفسر البكاء</button>
+                    <button class="tool-tab" data-tool="routine-generator">مولد الروتين</button>
+                    <button class="tool-tab" data-tool="medicine-calculator">حاسبة جرعات الدواء</button>
+                    <button class="tool-tab" data-tool="meal-planner">مخطط وجبات الطعام</button>
+                </div>
+
+                <div class="tools-content">
+                    <!-- آلة حاسبة التطعيمات -->
+                    <div class="tool-content active" id="vaccine-calculator-content">
+                        <div class="tool-header">
+                            <h3><i class="fas fa-syringe"></i> آلة حاسبة التطعيمات</h3>
+                            <p>احصلي على جدول تطعيمات مخصص لطفلك حسب تاريخ ميلاده وتلقي تذكيرات بها</p>
+                        </div>
+
+                        <div class="tool-body">
+                            <div class="vaccine-calculator">
+                                <div class="calculator-form">
+                                    <div class="form-group">
+                                        <label for="baby-name-vaccine"><i class="fas fa-baby"></i> اسم الطفل
+                                            (اختياري)</label>
+                                        <input type="text" id="baby-name-vaccine" placeholder="أدخل اسم طفلك">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="baby-birthdate-vaccine"><i class="fas fa-calendar-alt"></i> تاريخ
+                                            الميلاد</label>
+                                        <input type="date" id="baby-birthdate-vaccine" class="date-input">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="baby-gender-vaccine"><i class="fas fa-venus-mars"></i> جنس
+                                            الطفل</label>
+                                        <select id="baby-gender-vaccine" class="form-select">
+                                            <option value="male">ذكر</option>
+                                            <option value="female">أنثى</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="vaccine-country"><i class="fas fa-globe"></i> الدولة</label>
+                                        <select id="vaccine-country" class="form-select">
+                                            <option value="saudi">المملكة العربية السعودية</option>
+                                            <option value="uae">الإمارات العربية المتحدة</option>
+                                            <option value="kuwait">الكويت</option>
+                                            <option value="qatar">قطر</option>
+                                            <option value="bahrain">البحرين</option>
+                                            <option value="oman">عُمان</option>
+                                        </select>
+                                    </div>
+
+                                    <button class="btn btn-primary" id="calculate-vaccine">
+                                        <i class="fas fa-calculator"></i> احسب جدول التطعيمات
+                                    </button>
+                                </div>
+
+                                <div class="calculator-results" id="vaccine-results">
+                                    <!-- سيتم عرض النتائج هنا -->
+                                </div>
+
+                                <div class="tool-features">
+                                    <h4><i class="fas fa-star"></i> مميزات هذه الأداة:</h4>
+                                    <ul>
+                                        <li>جدول تطعيمات مخصص حسب تاريخ الميلاد</li>
+                                        <li>تذكير بالتطعيمات القادمة</li>
+                                        <li>إمكانية تعديل الجدول حسب حالة الطفل الصحية</li>
+                                        <li>طباعة الجدول أو حفظه كملف PDF</li>
+                                        <li>معلومات عن كل تطعيم وأهميته</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- متابعة النمو -->
+                    <div class="tool-content" id="growth-tracker-content">
+                        <div class="tool-header">
+                            <h3><i class="fas fa-chart-line"></i> متابعة النمو</h3>
+                            <p>تابعي تطور نمو طفلك من خلال تسجيل الوزن والطول ومحيط الرأس ومقارنتها بالمعدلات الطبيعية
+                            </p>
+                        </div>
+
+                        <div class="tool-body">
+                            <div class="growth-tracker">
+                                <div class="tracker-tabs">
+                                    <button class="tracker-tab active" data-tracker="record">تسجيل قياس جديد</button>
+                                    <button class="tracker-tab" data-tracker="charts">الرسوم البيانية</button>
+                                    <button class="tracker-tab" data-tracker="analysis">تحليل النمو</button>
+                                </div>
+
+                                <div class="tracker-content">
+                                    <div class="tracker-pane active" id="record-pane">
+                                        <div class="record-form">
+                                            <div class="form-row">
+                                                <div class="form-group">
+                                                    <label for="measurement-date"><i class="fas fa-calendar"></i> تاريخ
+                                                        القياس</label>
+                                                    <input type="date" id="measurement-date" class="date-input">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="baby-age-months"><i class="fas fa-birthday-cake"></i>
+                                                        العمر (أشهر)</label>
+                                                    <input type="number" id="baby-age-months" min="0" max="60"
+                                                        placeholder="الأشهر">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-row">
+                                                <div class="form-group">
+                                                    <label for="baby-weight"><i class="fas fa-weight"></i> الوزن
+                                                        (كجم)</label>
+                                                    <input type="number" step="0.1" id="baby-weight"
+                                                        placeholder="مثال: 6.5">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="baby-height"><i class="fas fa-ruler-vertical"></i> الطول
+                                                        (سم)</label>
+                                                    <input type="number" id="baby-height" placeholder="مثال: 65">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="baby-head"><i class="fas fa-brain"></i> محيط الرأس
+                                                        (سم)</label>
+                                                    <input type="number" step="0.1" id="baby-head"
+                                                        placeholder="مثال: 42.5">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="measurement-notes"><i class="fas fa-notes-medical"></i>
+                                                    ملاحظات (اختياري)</label>
+                                                <textarea id="measurement-notes" rows="2"
+                                                    placeholder="أي ملاحظات إضافية..."></textarea>
+                                            </div>
+
+                                            <div class="form-buttons">
+                                                <button class="btn btn-primary" id="save-measurement">
+                                                    <i class="fas fa-save"></i> حفظ القياس
+                                                </button>
+                                                <button class="btn btn-secondary" id="load-sample">
+                                                    <i class="fas fa-download"></i> تحميل بيانات نموذجية
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="tracker-pane" id="charts-pane">
+                                        <div class="charts-container">
+                                            <div class="chart-wrapper">
+                                                <canvas id="growth-chart"></canvas>
+                                            </div>
+                                            <div class="chart-controls">
+                                                <h4><i class="fas fa-filter"></i> عرض بيانات:</h4>
+                                                <div class="chart-options">
+                                                    <label class="chart-option">
+                                                        <input type="checkbox" id="show-weight" checked>
+                                                        <span>الوزن</span>
+                                                    </label>
+                                                    <label class="chart-option">
+                                                        <input type="checkbox" id="show-height" checked>
+                                                        <span>الطول</span>
+                                                    </label>
+                                                    <label class="chart-option">
+                                                        <input type="checkbox" id="show-head" checked>
+                                                        <span>محيط الرأس</span>
+                                                    </label>
+                                                </div>
+                                                <button class="btn btn-secondary" id="export-chart">
+                                                    <i class="fas fa-download"></i> تصدير الرسم البياني
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="tracker-pane" id="analysis-pane">
+                                        <div class="analysis-results" id="growth-analysis">
+                                            <!-- سيتم عرض التحليل هنا -->
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="tool-features">
+                                    <h4><i class="fas fa-star"></i> مميزات هذه الأداة:</h4>
+                                    <ul>
+                                        <li>تسجيل قياسات النمو وتخزينها</li>
+                                        <li>رسوم بيانية تفاعلية لتطور النمو</li>
+                                        <li>مقارنة النمو بالمعدلات العالمية</li>
+                                        <li>تحليل النمو وتقديم توصيات مخصصة</li>
+                                        <li>إمكانية تصدير البيانات والرسوم البيانية</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- مفسر البكاء -->
+                    <div class="tool-content" id="cry-decoder-content">
+                        <div class="tool-header">
+                            <h3><i class="fas fa-baby-cry"></i> مفسر البكاء</h3>
+                            <p>تعرفي على سبب بكاء طفلك من خلال وصف الأعراض والسلوكيات وتلقي اقتراحات للحلول</p>
+                        </div>
+
+                        <div class="tool-body">
+                            <div class="cry-decoder">
+                                <div class="decoder-steps">
+                                    <div class="step active" data-step="1">
+                                        <div class="step-number">1</div>
+                                        <div class="step-title">ما هو عمر طفلك؟</div>
+                                    </div>
+                                    <div class="step" data-step="2">
+                                        <div class="step-number">2</div>
+                                        <div class="step-title">متى يبكي الطفل؟</div>
+                                    </div>
+                                    <div class="step" data-step="3">
+                                        <div class="step-number">3</div>
+                                        <div class="step-title">كيف يبدو البكاء؟</div>
+                                    </div>
+                                    <div class="step" data-step="4">
+                                        <div class="step-number">4</div>
+                                        <div class="step-title">أعراض أخرى</div>
+                                    </div>
+                                </div>
+
+                                <div class="decoder-content">
+                                    <!-- الخطوة 1 -->
+                                    <div class="step-content active" id="step-1-content">
+                                        <h4><i class="fas fa-baby"></i> ما هو عمر طفلك؟</h4>
+                                        <p>اختر عمر طفلك لنتعرف على الأسباب الشائعة للبكاء في هذا العمر</p>
+                                        <div class="age-options">
+                                            <button class="age-option" data-age="0-3">0-3 أشهر</button>
+                                            <button class="age-option" data-age="4-6">4-6 أشهر</button>
+                                            <button class="age-option" data-age="7-9">7-9 أشهر</button>
+                                            <button class="age-option" data-age="10-12">10-12 شهر</button>
+                                            <button class="age-option" data-age="13-24">13-24 شهر</button>
+                                        </div>
+                                    </div>
+
+                                    <!-- الخطوة 2 -->
+                                    <div class="step-content" id="step-2-content">
+                                        <h4><i class="fas fa-clock"></i> متى يبكي الطفل؟</h4>
+                                        <p>اختر التوقيت الذي يبكي فيه طفلك عادةً</p>
+                                        <div class="timing-options">
+                                            <button class="timing-option" data-timing="after-feeding">بعد
+                                                الرضاعة</button>
+                                            <button class="timing-option" data-timing="during-feeding">أثناء
+                                                الرضاعة</button>
+                                            <button class="timing-option" data-timing="evening">في المساء</button>
+                                            <button class="timing-option" data-timing="night">في الليل</button>
+                                            <button class="timing-option" data-timing="random">في أي وقت</button>
+                                        </div>
+                                    </div>
+
+                                    <!-- الخطوة 3 -->
+                                    <div class="step-content" id="step-3-content">
+                                        <h4><i class="fas fa-volume-up"></i> كيف يبدو البكاء؟</h4>
+                                        <p>صف صوت بكاء طفلك</p>
+                                        <div class="cry-options">
+                                            <button class="cry-option" data-cry="weak">ضعيف ومتقطع</button>
+                                            <button class="cry-option" data-cry="intense">شديد ومستمر</button>
+                                            <button class="cry-option" data-cry="high-pitched">صوت حاد وعالي</button>
+                                            <button class="cry-option" data-cry="whining">نحيب وتذمر</button>
+                                            <button class="cry-option" data-cry="sudden">مفاجئ وصاخب</button>
+                                        </div>
+                                    </div>
+
+                                    <!-- الخطوة 4 -->
+                                    <div class="step-content" id="step-4-content">
+                                        <h4><i class="fas fa-clipboard-list"></i> أعراض أخرى</h4>
+                                        <p>هل توجد أعراض أخرى مصاحبة للبكاء؟</p>
+                                        <div class="symptoms-options">
+                                            <div class="symptom-option">
+                                                <input type="checkbox" id="symptom-fever" data-symptom="fever">
+                                                <label for="symptom-fever">ارتفاع درجة الحرارة</label>
+                                            </div>
+                                            <div class="symptom-option">
+                                                <input type="checkbox" id="symptom-vomiting" data-symptom="vomiting">
+                                                <label for="symptom-vomiting">تقيؤ</label>
+                                            </div>
+                                            <div class="symptom-option">
+                                                <input type="checkbox" id="symptom-diarrhea" data-symptom="diarrhea">
+                                                <label for="symptom-diarrhea">إسهال</label>
+                                            </div>
+                                            <div class="symptom-option">
+                                                <input type="checkbox" id="symptom-constipation"
+                                                    data-symptom="constipation">
+                                                <label for="symptom-constipation">إمساك</label>
+                                            </div>
+                                            <div class="symptom-option">
+                                                <input type="checkbox" id="symptom-rash" data-symptom="rash">
+                                                <label for="symptom-rash">طفح جلدي</label>
+                                            </div>
+                                            <div class="symptom-option">
+                                                <input type="checkbox" id="symptom-cough" data-symptom="cough">
+                                                <label for="symptom-cough">كحة</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- النتائج -->
+                                    <div class="step-content" id="step-results-content">
+                                        <h4><i class="fas fa-stethoscope"></i> نتائج تحليل البكاء</h4>
+                                        <div id="cry-analysis-results">
+                                            <!-- سيتم عرض النتائج هنا -->
+                                        </div>
+                                        <div class="decoder-buttons">
+                                            <button class="btn btn-secondary" id="restart-decoder">
+                                                <i class="fas fa-redo"></i> بدء تحليل جديد
+                                            </button>
+                                            <button class="btn btn-primary" id="save-analysis">
+                                                <i class="fas fa-save"></i> حفظ النتائج
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="decoder-navigation">
+                                    <button class="btn btn-secondary" id="prev-step" disabled>
+                                        <i class="fas fa-arrow-right"></i> السابق
+                                    </button>
+                                    <button class="btn btn-primary" id="next-step">
+                                        <i class="fas fa-arrow-left"></i> التالي
+                                    </button>
+                                </div>
+
+                                <div class="tool-features">
+                                    <h4><i class="fas fa-star"></i> مميزات هذه الأداة:</h4>
+                                    <ul>
+                                        <li>تحليل متعدد الخطوات للبكاء</li>
+                                        <li>تشخيص مبدئي لأسباب البكاء</li>
+                                        <li>اقتراح حلول عملية لكل حالة</li>
+                                        <li>إرشادات حول متى يجب استشارة الطبيب</li>
+                                        <li>حفظ النتائج للمقارنة في المستقبل</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- مولد الروتين -->
+                    <div class="tool-content" id="routine-generator-content">
+                        <div class="tool-header">
+                            <h3><i class="fas fa-calendar-alt"></i> مولد الروتين اليومي</h3>
+                            <p>أنشئي روتيناً يومياً مناسباً لعمر طفلك ونمط حياتك مع مراعاة احتياجات النمو والتطور</p>
+                        </div>
+
+                        <div class="tool-body">
+                            <div class="routine-generator">
+                                <div class="routine-form">
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="routine-age"><i class="fas fa-baby"></i> عمر الطفل</label>
+                                            <select id="routine-age" class="form-select">
+                                                <option value="0-3">0-3 أشهر</option>
+                                                <option value="4-6">4-6 أشهر</option>
+                                                <option value="7-9">7-9 أشهر</option>
+                                                <option value="10-12">10-12 شهر</option>
+                                                <option value="13-18">13-18 شهر</option>
+                                                <option value="19-24">19-24 شهر</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="routine-wakeup"><i class="fas fa-sun"></i> وقت الاستيقاظ
+                                                الصباحي</label>
+                                            <select id="routine-wakeup" class="form-select">
+                                                <option value="6">6:00 صباحاً</option>
+                                                <option value="6.5">6:30 صباحاً</option>
+                                                <option value="7" selected>7:00 صباحاً</option>
+                                                <option value="7.5">7:30 صباحاً</option>
+                                                <option value="8">8:00 صباحاً</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="routine-naps"><i class="fas fa-bed"></i> عدد فترات
+                                                القيلولة</label>
+                                            <select id="routine-naps" class="form-select">
+                                                <option value="4">4 قيلولات (حديث الولادة)</option>
+                                                <option value="3">3 قيلولات (1-4 أشهر)</option>
+                                                <option value="2">قيلولتان (4-8 أشهر)</option>
+                                                <option value="1">قيلولة واحدة (9-18 شهر)</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="routine-feeding"><i class="fas fa-utensils"></i> نوع
+                                                التغذية</label>
+                                            <select id="routine-feeding" class="form-select">
+                                                <option value="breast">رضاعة طبيعية</option>
+                                                <option value="formula">رضاعة صناعية</option>
+                                                <option value="mixed">مختلط</option>
+                                                <option value="solid">طعام صلب</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="routine-activities"><i class="fas fa-child"></i> الأنشطة
+                                            المفضلة</label>
+                                        <div class="activity-options">
+                                            <div class="activity-option">
+                                                <input type="checkbox" id="activity-outdoor" checked>
+                                                <label for="activity-outdoor">اللعب خارج المنزل</label>
+                                            </div>
+                                            <div class="activity-option">
+                                                <input type="checkbox" id="activity-reading" checked>
+                                                <label for="activity-reading">قراءة القصص</label>
+                                            </div>
+                                            <div class="activity-option">
+                                                <input type="checkbox" id="activity-music" checked>
+                                                <label for="activity-music">الاستماع للموسيقى</label>
+                                            </div>
+                                            <div class="activity-option">
+                                                <input type="checkbox" id="activity-bath" checked>
+                                                <label for="activity-bath">وقت الاستحمام</label>
+                                            </div>
+                                            <div class="activity-option">
+                                                <input type="checkbox" id="activity-massage" checked>
+                                                <label for="activity-massage">التدليك</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <button class="btn btn-primary" id="generate-routine">
+                                        <i class="fas fa-magic"></i> إنشاء الروتين
+                                    </button>
+                                </div>
+
+                                <div class="routine-results" id="routine-results">
+                                    <!-- سيتم عرض الروتين هنا -->
+                                </div>
+
+                                <div class="tool-features">
+                                    <h4><i class="fas fa-star"></i> مميزات هذه الأداة:</h4>
+                                    <ul>
+                                        <li>توليد روتين مخصص حسب العمر والاحتياجات</li>
+                                        <li>مراعاة فترات النوم والرضاعة واللعب</li>
+                                        <li>جدول زمني تفصيلي ليوم كامل</li>
+                                        <li>نصائح لتنفيذ الروтин بنجاح</li>
+                                        <li>إمكانية تعديل الروتين وحفظه</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- أداة حاسبة جرعات الدواء -->
+            <section class="medicine-calculator-section">
+                <div class="section-card">
+                    <h2><i class="fas fa-pills"></i> حاسبة جرعات الدواء</h2>
+                    <p>احسبي الجرعة المناسبة من الدواء لطفلك حسب وزنه وعمره ونوع الدواء</p>
+
+                    <div class="medicine-calculator">
+                        <div class="calculator-container">
+                            <div class="medicine-form">
+                                <div class="form-group">
+                                    <label for="medicine-name"><i class="fas fa-capsules"></i> اسم الدواء</label>
+                                    <select id="medicine-name" class="form-select">
+                                        <option value="paracetamol">باراسيتامول (خافض حرارة/مسكن)</option>
+                                        <option value="ibuprofen">إيبوبروفين (خافض حرارة/مسكن/مضاد التهاب)</option>
+                                        <option value="antihistamine">مضاد الهيستامين (للحساسية)</option>
+                                        <option value="cough">دواء الكحة</option>
+                                        <option value="antibiotic">مضاد حيوي (بوصفة طبية فقط)</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="medicine-concentration"><i class="fas fa-vial"></i> تركيز الدواء</label>
+                                    <select id="medicine-concentration" class="form-select">
+                                        <option value="120">120 مجم/5 مل (شراب)</option>
+                                        <option value="250">250 مجم/5 مل (شراب)</option>
+                                        <option value="500">500 مجم (أقراص)</option>
+                                        <option value="100">100 مجم (تحاميل)</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="baby-weight-medicine"><i class="fas fa-weight"></i> وزن الطفل
+                                            (كجم)</label>
+                                        <input type="number" step="0.1" id="baby-weight-medicine"
+                                            placeholder="مثال: 8.5">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="baby-age-medicine"><i class="fas fa-birthday-cake"></i> عمر
+                                            الطفل</label>
+                                        <select id="baby-age-medicine" class="form-select">
+                                            <option value="0-3">0-3 أشهر</option>
+                                            <option value="3-6">3-6 أشهر</option>
+                                            <option value="6-12">6-12 شهر</option>
+                                            <option value="1-2">1-2 سنة</option>
+                                            <option value="2-3">2-3 سنوات</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <button class="btn btn-primary" id="calculate-medicine">
+                                    <i class="fas fa-calculator"></i> احسب الجرعة
+                                </button>
+                            </div>
+
+                            <div class="medicine-results" id="medicine-results">
+                                <!-- سيتم عرض النتائج هنا -->
+                            </div>
+                        </div>
+
+                        <div class="medicine-warnings">
+                            <h4><i class="fas fa-exclamation-triangle"></i> تحذيرات هامة:</h4>
+                            <ul>
+                                <li>هذه الأداة لأغراض إرشادية فقط وليست بديلاً عن استشارة الطبيب</li>
+                                <li>استخدمي الدواء فقط تحت إشراف الطبيب أو الصيدلي</li>
+                                <li>تأكدي من تاريخ صلاحية الدواء قبل الاستخدام</li>
+                                <li>احفظي الأدوية بعيداً عن متناول الأطفال</li>
+                                <li>لا تكرري الجرعة قبل الوقت المحدد في النشرة الداخلية</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- أداة مخطط وجبات الطعام -->
+            <section class="meal-planner-section">
+                <div class="section-card">
+                    <h2><i class="fas fa-utensils"></i> مخطط وجبات الطعام</h2>
+                    <p>خططي لوجبات طفلك الأسبوعية مع مراعاة التنوع الغذائي والقيمة الغذائية</p>
+
+                    <div class="meal-planner">
+                        <div class="planner-controls">
+                            <div class="form-group">
+                                <label for="planner-age"><i class="fas fa-baby"></i> عمر الطفل</label>
+                                <select id="planner-age" class="form-select">
+                                    <option value="6-8">6-8 أشهر</option>
+                                    <option value="9-11">9-11 شهر</option>
+                                    <option value="12-18">12-18 شهر</option>
+                                    <option value="19-24">19-24 شهر</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="planner-allergies"><i class="fas fa-allergies"></i> الحساسيات
+                                    الغذائية</label>
+                                <select id="planner-allergies" class="form-select">
+                                    <option value="none">لا توجد حساسيات</option>
+                                    <option value="dairy">حساسية الألبان</option>
+                                    <option value="eggs">حساسية البيض</option>
+                                    <option value="nuts">حساسية المكسرات</option>
+                                    <option value="wheat">حساسية القمح</option>
+                                </select>
+                            </div>
+
+                            <button class="btn btn-primary" id="generate-meal-plan">
+                                <i class="fas fa-calendar-plus"></i> إنشاء خطة الوجبات
+                            </button>
+                        </div>
+
+                        <div class="planner-results" id="meal-plan-results">
+                            <!-- سيتم عرض خطة الوجبات هنا -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- قائمة النصائح السريعة -->
+            <section class="quick-tips-tools">
+                <div class="section-card">
+                    <h2><i class="fas fa-lightbulb"></i> نصائح سريعة لاستخدام الأدوات</h2>
+
+                    <div class="tips-grid-tools">
+                        <div class="tip-item-tool">
+                            <div class="tip-icon">
+                                <i class="fas fa-save"></i>
+                            </div>
+                            <div class="tip-content">
+                                <h3>احفظي نتائجك</h3>
+                                <p>احفظي نتائج الأدوات المختلفة لطفلك لمقارنتها لاحقاً ومتابعة التطور.</p>
+                            </div>
+                        </div>
+
+                        <div class="tip-item-tool">
+                            <div class="tip-icon">
+                                <i class="fas fa-print"></i>
+                            </div>
+                            <div class="tip-content">
+                                <h3>اطبعي النتائج</h3>
+                                <p>اطبعي الجداول والخطط لاستخدامها خارج المنزل أو لمشاركتها مع مقدمي الرعاية.</p>
+                            </div>
+                        </div>
+
+                        <div class="tip-item-tool">
+                            <div class="tip-icon">
+                                <i class="fas fa-bell"></i>
+                            </div>
+                            <div class="tip-content">
+                                <h3>اضبطي التذكيرات</h3>
+                                <p>استخدمي خاصية التذكيرات للأدوات المهمة مثل مواعيد التطعيمات وجرعات الدواء.</p>
+                            </div>
+                        </div>
+
+                        <div class="tip-item-tool">
+                            <div class="tip-icon">
+                                <i class="fas fa-share-alt"></i>
+                            </div>
+                            <div class="tip-content">
+                                <h3>شاركي النتائج</h3>
+                                <p>شاركي نتائج الأدوات مع طبيب الأطفال أو أفراد العائلة لمتابعة أفضل لصحة طفلك.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- تذييل الصفحة -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <!-- معلومات الموقع -->
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <i class="fas fa-baby"></i>
+                        <h3>رعاية الرضع</h3>
+                    </div>
+                    <p class="footer-description">
+                        موقع متخصص في تقديم نصائح موثوقة وبسيطة للأمهات والمربيات في رحلة رعاية الرضع.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" aria-label="فيسبوك"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="تويتر"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="انستجرام"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="يوتيوب"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <!-- روابط سريعة -->
+                <div class="footer-col">
+                    <h4>روابط سريعة</h4>
+                    <ul class="footer-links">
+                        <li><a href="../index.html"><i class="fas fa-chevron-left"></i> الرئيسية</a></li>
+                        <li><a href="sections.html"><i class="fas fa-chevron-left"></i> جميع الأقسام</a></li>
+                        <li><a href="tools.html"><i class="fas fa-chevron-left"></i> الأدوات التفاعلية</a></li>
+                        <li><a href="blog.html"><i class="fas fa-chevron-left"></i> المدونة</a></li>
+                        <li><a href="faq.html"><i class="fas fa-chevron-left"></i> الأسئلة الشائعة</a></li>
+                    </ul>
+                </div>
+
+                <!-- معلومات الاتصال -->
+                <div class="footer-col">
+                    <h4>اتصل بنا</h4>
+                    <ul class="footer-contact">
+                        <li><i class="fas fa-envelope"></i> info@raayatalarada.com</li>
+                        <li><i class="fas fa-phone"></i> +966 12 345 6789</li>
+                        <li><i class="fas fa-map-marker-alt"></i> الرياض، المملكة العربية السعودية</li>
+                    </ul>
+                </div>
+
+                <!-- النشرة البريدية -->
+                <div class="footer-col">
+                    <h4>اشترك في النشرة البريدية</h4>
+                    <p>احصلي على أحدث النصائح والمقالات مباشرة في بريدك الإلكتروني</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="بريدك الإلكتروني" required>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i> اشتراك
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2024 رعاية الرضع. جميع الحقوق محفوظة.</p>
+                <div class="footer-legal">
+                    <a href="privacy.html">سياسة الخصوصية</a>
+                    <a href="terms.html">شروط الاستخدام</a>
+                    <a href="disclaimer.html">إخلاء المسؤولية</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- زر العودة للأعلى -->
+    <button class="back-to-top" aria-label="العودة للأعلى">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- JavaScript -->
+    <script src="../js/main.js"></script>
+    <script src="../js/tools.js"></script>
+
+</body>
+
+</html>

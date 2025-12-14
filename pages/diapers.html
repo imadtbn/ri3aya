@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>العناية بالحفاضات - رعاية الرضع</title>
+
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="../css/diapers.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- شريط التنقل -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <!-- الشعار -->
+            <a href="../index.html" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-baby"></i>
+                </div>
+                <div class="logo-text">
+                    <h1>رعاية الرضع</h1>
+                    <p>دليل الأم الحديثة</p>
+                </div>
+            </a>
+
+            <!-- قائمة الهاتف المحمول -->
+            <button class="mobile-menu-btn" aria-label="فتح القائمة">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <!-- القائمة الرئيسية -->
+            <ul class="nav-menu">
+                <li><a href="../index.html" class="active"><i class="fas fa-home"></i> الرئيسية</a></li>
+                <li class="dropdown">
+                    <a href="#"><i class="fas fa-th-large"></i> الأقسام <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="pages/crying.html"><i class="fas fa-baby-cry"></i> فهم بكاء الرضيع</a></li>
+                        <li><a href="pages/sleep.html"><i class="fas fa-bed"></i> النوم الآمن</a></li>
+                        <li><a href="pages/diapers.html"><i class="fas fa-baby"></i> العناية بالحفاضات</a></li>
+                        <li><a href="pages/digestive.html"><i class="fas fa-stomach"></i> صحة الجهاز الهضمي</a></li>
+                        <li><a href="pages/nutrition.html"><i class="fas fa-utensils"></i> التغذية</a></li>
+                        <li><a href="pages/bath.html"><i class="fas fa-bath"></i> وقت الاستحمام</a></li>
+                        <li><a href="pages/vaccine.html"><i class="fas fa-syringe"></i> جدول التلقيح</a></li>
+                        <li><a href="pages/growth.html"><i class="fas fa-chart-line"></i> مخطط النمو</a></li>
+                        <li><a href="pages/diseases.html"><i class="fas fa-heartbeat"></i> الأمراض الشائعة</a></li>
+                        <li><a href="pages/tips.html"><i class="fas fa-lightbulb"></i> نصائح عامة</a></li>
+                    </ul>
+                </li>
+                <li><a href="pages/tools.html"><i class="fas fa-tools"></i> الأدوات التفاعلية</a></li>
+                <li><a href="pages/blog.html"><i class="fas fa-blog"></i> المدونة</a></li>
+                <li><a href="pages/contact.html"><i class="fas fa-envelope"></i> اتصل بنا</a></li>
+            </ul>
+
+            <!-- بحث -->
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="ابحث عن نصائح...">
+                <button class="search-btn"><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- رأس الصفحة -->
+    <section class="page-header diapers-header">
+        <div class="container">
+            <div class="page-header-content">
+                <h1><i class="fas fa-baby"></i> العناية بالحفاضات</h1>
+                <p>دليل شامل للعناية بحفاضات طفلك، من اختيار النوع المناسب إلى الوقاية من الطفح الجلدي. تعلمي كيفية
+                    تغيير الحفاض بطريقة آمنة وصحية.</p>
+                <div class="breadcrumb">
+                    <a href="../index.html">الرئيسية</a>
+                    <i class="fas fa-chevron-left"></i>
+                    <a href="diapers.html">العناية بالحفاضات</a>
+                </div>
+            </div>
+            <div class="page-header-image">
+                <img src="../images/diapers-header.svg" alt="العناية بالحفاضات" loading="lazy">
+            </div>
+        </div>
+    </section>
+
+    <!-- محتوى الصفحة -->
+    <section class="page-content">
+        <div class="container">
+            <div class="content-wrapper">
+                <!-- المحتوى الرئيسي -->
+                <main class="main-content">
+                    <!-- مقدمة -->
+                    <article class="content-section">
+                        <h2><i class="fas fa-info-circle"></i> لماذا العناية بالحفاضات مهمة؟</h2>
+                        <p>يحتاج الرضيع إلى تغيير الحفاض ما بين 8-12 مرة يومياً في الأشهر الأولى. العناية الصحيحة
+                            بالحفاضات تحمي بشرة طفلك الحساسة من الطفح الجلدي والالتهابات، وتضمن راحة الطفل وصحته.</p>
+
+                        <div class="statistics-grid">
+                            <div class="stat-card">
+                                <div class="stat-number">10-12</div>
+                                <div class="stat-desc">مرة متوسط تغيير الحفاض يومياً للرضع حديثي الولادة</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number">35%</div>
+                                <div class="stat-desc">من الأطفال الرضع يصابون بطفح الحفاض مرة واحدة على الأقل</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-number">2500</div>
+                                <div class="stat-desc">حفاضة تقريباً يستخدمها الطفل حتى يتم تدريبه على الحمام</div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- أنواع الحفاضات -->
+                    <article class="content-section">
+                        <h2><i class="fas fa-th-large"></i> أنواع الحفاضات: مقارنة شاملة</h2>
+                        <p>اختيار النوع المناسب من الحفاضات يعتمد على عدة عوامل مثل الميزانية، الاهتمام بالبيئة، وراحة
+                            الطفل. إليك مقارنة بين الأنواع الرئيسية:</p>
+
+                        <div class="diapers-comparison">
+                            <!-- حفاضات القماش -->
+                            <div class="diaper-type-card cloth">
+                                <div class="diaper-header">
+                                    <i class="fas fa-leaf"></i>
+                                    <h3>حفاضات القماش</h3>
+                                    <span class="diaper-tag">صديقة للبيئة</span>
+                                </div>
+                                <div class="diaper-content">
+                                    <div class="pros-cons">
+                                        <div class="pros">
+                                            <h4><i class="fas fa-check-circle"></i> المزايا</h4>
+                                            <ul>
+                                                <li><i class="fas fa-check"></i> توفير مالي على المدى الطويل</li>
+                                                <li><i class="fas fa-check"></i> صديقة للبيئة</li>
+                                                <li><i class="fas fa-check"></i> أقل مواد كيميائية</li>
+                                                <li><i class="fas fa-check"></i> تناسب جميع الأحجام</li>
+                                                <li><i class="fas fa-check"></i> أقل طفحاً جلديًا</li>
+                                            </ul>
+                                        </div>
+                                        <div class="cons">
+                                            <h4><i class="fas fa-times-circle"></i> العيوب</h4>
+                                            <ul>
+                                                <li><i class="fas fa-times"></i> تحتاج للغسل والتجفيف</li>
+                                                <li><i class="fas fa-times"></i> تغيير متكرر أكثر</li>
+                                                <li><i class="fas fa-times"></i> غير عملية خارج المنزل</li>
+                                                <li><i class="fas fa-times"></i> تكلفة أولية عالية</li>
+                                                <li><i class="fas fa-times"></i> تحتاج لوقت وجهد أكبر</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="diaper-tips">
+                                        <h5><i class="fas fa-lightbulb"></i> نصائح للاستخدام:</h5>
+                                        <p>استخدمي بطانة قابلة للتحلل لتسهيل التخلص من البراز، واحرصي على الغسل بدرجة
+                                            حرارة 60°C لتعقيم الحفاضات.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- حفاضات الاستخدام الواحد -->
+                            <div class="diaper-type-card disposable">
+                                <div class="diaper-header">
+                                    <i class="fas fa-box"></i>
+                                    <h3>حفاضات الاستخدام الواحد</h3>
+                                    <span class="diaper-tag">ملائمة وسهلة</span>
+                                </div>
+                                <div class="diaper-content">
+                                    <div class="pros-cons">
+                                        <div class="pros">
+                                            <h4><i class="fas fa-check-circle"></i> المزايا</h4>
+                                            <ul>
+                                                <li><i class="fas fa-check"></i> مريحة وسهلة الاستخدام</li>
+                                                <li><i class="fas fa-check"></i> مناسبة للسفر والخروج</li>
+                                                <li><i class="fas fa-check"></i> امتصاص عالي</li>
+                                                <li><i class="fas fa-check"></i> تغيير أقل تكراراً</li>
+                                                <li><i class="fas fa-check"></i> خفيفة الوزن</li>
+                                            </ul>
+                                        </div>
+                                        <div class="cons">
+                                            <h4><i class="fas fa-times-circle"></i> العيوب</h4>
+                                            <ul>
+                                                <li><i class="fas fa-times"></i> تكلفة عالية على المدى الطويل</li>
+                                                <li><i class="fas fa-times"></i> تأثير سلبي على البيئة</li>
+                                                <li><i class="fas fa-times"></i> مواد كيميائية أكثر</li>
+                                                <li><i class="fas fa-times"></i> قد تسبب طفحاً جلدياً</li>
+                                                <li><i class="fas fa-times"></i> حاجة مستمرة للتخزين</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="diaper-tips">
+                                        <h5><i class="fas fa-lightbulb"></i> نصائح للاستخدام:</h5>
+                                        <p>اختاري أنواعاً خالية من العطور والكحول، وغيري الحفاض كل 2-3 ساعات، وتأكدي من
+                                            عدم ضيق الحفاض على جسم الطفل.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- حفاضات السباحة -->
+                            <div class="diaper-type-card swim">
+                                <div class="diaper-header">
+                                    <i class="fas fa-swimming-pool"></i>
+                                    <h3>حفاضات السباحة</h3>
+                                    <span class="diaper-tag">خاصة للسباحة</span>
+                                </div>
+                                <div class="diaper-content">
+                                    <div class="pros-cons">
+                                        <div class="pros">
+                                            <h4><i class="fas fa-check-circle"></i> المزايا</h4>
+                                            <ul>
+                                                <li><i class="fas fa-check"></i> لا تنتفخ في الماء</li>
+                                                <li><i class="fas fa-check"></i> تحمي من التسرب</li>
+                                                <li><i class="fas fa-check"></i> مريحة للطفل</li>
+                                                <li><i class="fas fa-check"></i> آمنة للمسابح</li>
+                                            </ul>
+                                        </div>
+                                        <div class="cons">
+                                            <h4><i class="fas fa-times-circle"></i> العيوب</h4>
+                                            <ul>
+                                                <li><i class="fas fa-times"></i> للاستخدام المؤقت فقط</li>
+                                                <li><i class="fas fa-times"></i> تكلفة إضافية</li>
+                                                <li><i class="fas fa-times"></i> امتصاص محدود</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="diaper-tips">
+                                        <h5><i class="fas fa-lightbulb"></i> نصائح للاستخدام:</h5>
+                                        <p>استخدميها فقط في الماء، وغيريها مباشرة بعد الخروج من المسبح، وضعي حفاضة عادية
+                                            تحتها إذا كان الطفل سيخرج من الماء فترة.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- خطوات تغيير الحفاض -->
+                    <article class="content-section">
+                        <h2><i class="fas fa-list-ol"></i> خطوات تغيير الحفاض خطوة بخطوة</h2>
+                        <p>اتبعي هذه الخطوات لضمان تغيير آمن ونظيف لحفاض طفلك:</p>
+
+                        <div class="steps-timeline">
+                            <!-- خطوة 1 -->
+                            <div class="step-card">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h3><i class="fas fa-hand-sparkles"></i> التحضير</h3>
+                                    <p>اغسلي يديك جيداً، ثم اجمعي كل ما تحتاجينه: حفاضة نظيفة، مناديل مبللة، كريم
+                                        الحفاض، كيس للنفايات، ومنشفة نظيفة.</p>
+                                    <div class="step-tip">
+                                        <i class="fas fa-lightbulb"></i>
+                                        <strong>نصيحة:</strong> لا تتركي الطفل دون مراقبة على سطح مرتفع أبداً.
+                                    </div>
+                                </div>
+                                <div class="step-image">
+                                    <img src="../images/step1.svg" alt="التحضير لتغيير الحفاض">
+                                </div>
+                            </div>
+
+                            <!-- خطوة 2 -->
+                            <div class="step-card">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h3><i class="fas fa-baby"></i> فك الحفاضة القديمة</h3>
+                                    <p>ضعي الطفل على ظهره على سطح آمن، افكي اللاصقات برفق، امسكي كاحلي الطفل برفق وارفعي
+                                        مؤخرته، نظفي الجزء الأمامي أولاً.</p>
+                                    <div class="step-tip">
+                                        <i class="fas fa-lightbulb"></i>
+                                        <strong>نصيحة:</strong> للبنات، امسحي من الأمام إلى الخلف لمنع العدوى.
+                                    </div>
+                                </div>
+                                <div class="step-image">
+                                    <img src="../images/step2.svg" alt="فك الحفاضة القديمة">
+                                </div>
+                            </div>
+
+                            <!-- خطوة 3 -->
+                            <div class="step-card">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h3><i class="fas fa-wind"></i> التنظيف</h3>
+                                    <p>استخدمي المناديل المبللة أو قطعة قماش مبللة بماء دافئ لتنظيف منطقة الحفاض تماماً.
+                                        تأكدي من تنظيف جميع الطيات.</p>
+                                    <div class="step-tip">
+                                        <i class="fas fa-lightbulb"></i>
+                                        <strong>نصيحة:</strong> جففي المنطقة جيداً بالتربيت (لا الفرك) لمنع الطفح
+                                        الجلدي.
+                                    </div>
+                                </div>
+                                <div class="step-image">
+                                    <img src="../images/step3.svg" alt="تنظيف منطقة الحفاض">
+                                </div>
+                            </div>
+
+                            <!-- خطوة 4 -->
+                            <div class="step-card">
+                                <div class="step-number">4</div>
+                                <div class="step-content">
+                                    <h3><i class="fas fa-prescription-bottle"></i> وضع الكريم</h3>
+                                    <p>ضعي طبقة رقيقة من كريم الحفاض أو الزنك أوكسيد على المنطقة لمنع الطفح. لا تضعي
+                                        بودرة التلك لأنها قد تضر برئتي الطفل.</p>
+                                    <div class="step-tip">
+                                        <i class="fas fa-lightbulb"></i>
+                                        <strong>نصيحة:</strong> استخدمي الكريم فقط عند وجود احمرار أو للوقاية، ليس في كل
+                                        مرة.
+                                    </div>
+                                </div>
+                                <div class="step-image">
+                                    <img src="../images/step4.svg" alt="وضع كريم الحفاض">
+                                </div>
+                            </div>
+
+                            <!-- خطوة 5 -->
+                            <div class="step-card">
+                                <div class="step-number">5</div>
+                                <div class="step-content">
+                                    <h3><i class="fas fa-cloud"></i> وضع الحفاضة الجديدة</h3>
+                                    <p>أدخلي الحفاضة النظيفة تحت مؤخرة الطفل، اجلبي الجزء الأمامي بين ساقي الطفل إلى
+                                        بطنه، ثبتي اللاصقات بشكل مريح وغير ضاغط.</p>
+                                    <div class="step-tip">
+                                        <i class="fas fa-lightbulb"></i>
+                                        <strong>نصيحة:</strong> تأكدي من أن الحفاضة ليست ضيقة جداً - يجب أن تدخل إصبعين
+                                        بين الحفاضة وبطن الطفل.
+                                    </div>
+                                </div>
+                                <div class="step-image">
+                                    <img src="../images/step5.svg" alt="وضع الحفاضة الجديدة">
+                                </div>
+                            </div>
+
+                            <!-- خطوة 6 -->
+                            <div class="step-card">
+                                <div class="step-number">6</div>
+                                <div class="step-content">
+                                    <h3><i class="fas fa-hands-wash"></i> التنظيف النهائي</h3>
+                                    <p>لفي الحفاضة القديمة وأغلقيها بإحكام وضعيها في كيس النفايات، اغسلي يديك ويدي
+                                        الطفل، نظفي سطح التغيير إذا لزم الأمر.</p>
+                                    <div class="step-tip">
+                                        <i class="fas fa-lightbulb"></i>
+                                        <strong>نصيحة:</strong> غيري الحفاض مباشرة بعد اتساخها لمنع الطفح الجلدي
+                                        والالتهابات.
+                                    </div>
+                                </div>
+                                <div class="step-image">
+                                    <img src="../images/step6.svg" alt="التنظيف النهائي">
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- علاج والوقاية من طفح الحفاض -->
+                    <article class="content-section">
+                        <h2><i class="fas fa-allergies"></i> علاج والوقاية من طفح الحفاض</h2>
+                        <p>طفح الحفاض شائع جداً عند الرضع، ولكن يمكن الوقاية منه وعلاجه بسهولة باتباع النصائح الصحيحة.
+                        </p>
+
+                        <div class="rash-guide">
+                            <!-- أسباب الطفح -->
+                            <div class="rash-section causes">
+                                <h3><i class="fas fa-search"></i> أسباب طفح الحفاض</h3>
+                                <div class="causes-grid">
+                                    <div class="cause-item">
+                                        <div class="cause-icon">
+                                            <i class="fas fa-clock"></i>
+                                        </div>
+                                        <h4>البلل لفترات طويلة</h4>
+                                        <p>بقاء بشرة الطفل مبللة لمدة طويلة يهيج البشرة</p>
+                                    </div>
+
+                                    <div class="cause-item">
+                                        <div class="cause-icon">
+                                            <i class="fas fa-poop"></i>
+                                        </div>
+                                        <h4>التلامس مع البراز</h4>
+                                        <p>الإنزيمات في البراز تهيج بشرة الطفل الحساسة</p>
+                                    </div>
+
+                                    <div class="cause-item">
+                                        <div class="cause-icon">
+                                            <i class="fas fa-ruler-combined"></i>
+                                        </div>
+                                        <h4>احتكاك أو ضيق الحفاض</h4>
+                                        <p>الحفاض الضيق أو الخشن يسبب احتكاكاً يؤدي للطفح</p>
+                                    </div>
+
+                                    <div class="cause-item">
+                                        <div class="cause-icon">
+                                            <i class="fas fa-virus"></i>
+                                        </div>
+                                        <h4>العدوى البكتيرية أو الفطرية</h4>
+                                        <p>المنطقة الرطبة والدافئة مثالية لنمو البكتيريا والفطريات</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- الوقاية -->
+                            <div class="rash-section prevention">
+                                <h3><i class="fas fa-shield-alt"></i> الوقاية من طفح الحفاض</h3>
+                                <div class="prevention-tips">
+                                    <div class="prevention-tip">
+                                        <div class="tip-number">1</div>
+                                        <div class="tip-content">
+                                            <h4>غيّري الحفاض باستمرار</h4>
+                                            <p>غيري الحفاض فور اتساخها أو بللها، ويفضل كل 2-3 ساعات على الأقل</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="prevention-tip">
+                                        <div class="tip-number">2</div>
+                                        <div class="tip-content">
+                                            <h4>تنظيف لطيف وتجفيف</h4>
+                                            <p>نظفي المنطقة برفق وجففيها بالتربيت بمنشفة ناعمة قبل وضع الحفاض الجديدة
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="prevention-tip">
+                                        <div class="tip-number">3</div>
+                                        <div class="tip-content">
+                                            <h4>وقت بدون حفاض</h4>
+                                            <p>اتركي الطفل بدون حفاض لمدة 10-15 دقيقة عدة مرات يومياً لتهوية البشرة</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="prevention-tip">
+                                        <div class="tip-number">4</div>
+                                        <div class="tip-content">
+                                            <h4>استخدام الكريم الواقي</h4>
+                                            <p>ضعي طبقة رقيقة من كريم الزنك أوكسيد أو الفازلين كحاجز وقائي</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- العلاج -->
+                            <div class="rash-section treatment">
+                                <h3><i class="fas fa-heartbeat"></i> علاج طفح الحفاض</h3>
+
+                                <div class="treatment-steps">
+                                    <div class="treatment-step">
+                                        <h4>العلاج المنزلي البسيط</h4>
+                                        <ul>
+                                            <li><i class="fas fa-check-circle"></i> غيري الحفاض باستمرار</li>
+                                            <li><i class="fas fa-check-circle"></i> نظفي المنطقة بماء دافئ فقط (بدون
+                                                صابون)</li>
+                                            <li><i class="fas fa-check-circle"></i> جففي بالتربيت، لا بالفرك</li>
+                                            <li><i class="fas fa-check-circle"></i> ضعي كريم الحفاض بكثافة</li>
+                                            <li><i class="fas fa-check-circle"></i> استخدمي حفاضات أكبر حجماً مؤقتاً
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="treatment-step">
+                                        <h4>متى تزورين الطبيب؟</h4>
+                                        <ul>
+                                            <li><i class="fas fa-exclamation-circle"></i> إذا لم يتحسن الطفح بعد 3 أيام
+                                                من العلاج المنزلي</li>
+                                            <li><i class="fas fa-exclamation-circle"></i> إذا كان الطفح مصحوباً بحمى
+                                            </li>
+                                            <li><i class="fas fa-exclamation-circle"></i> إذا ظهرت بثور أو تقرحات أو
+                                                نزيف</li>
+                                            <li><i class="fas fa-exclamation-circle"></i> إذا انتشر الطفح خارج منطقة
+                                                الحفاض</li>
+                                            <li><i class="fas fa-exclamation-circle"></i> إذا بدا الطفل مريضاً أو
+                                                متألماً</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="treatment-warning">
+                                    <div class="warning-icon">
+                                        <i class="fas fa-exclamation-triangle"></i>
+                                    </div>
+                                    <div class="warning-content">
+                                        <h5>تحذير: لا تستخدمي هذه المنتجات</h5>
+                                        <p>بودرة التلك (قد تضر بالرئتين)، الكورتيزون القوي بدون وصفة طبية، الكريمات
+                                            المعطرة، الصابون القوي، أو المناديل الكحولية.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- اختيار المقاس المناسب -->
+                    <article class="content-section">
+                        <h2><i class="fas fa-ruler"></i> كيفية اختيار المقاس المناسب</h2>
+                        <p>اختيار الحجم الصحيح للحفاضات ضروري لراحة الطفل والوقاية من التسرب والطفح الجلدي.</p>
+
+                        <div class="size-guide">
+                            <!-- جدول الأحجام -->
+                            <div class="size-table-container">
+                                <table class="size-table">
+                                    <thead>
+                                        <tr>
+                                            <th>المقاس</th>
+                                            <th>الوزن التقريبي</th>
+                                            <th>العمر التقريبي</th>
+                                            <th>علامات الحاجة لمقاس أكبر</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><span class="size-badge newborn">مولود جديد</span></td>
+                                            <td>2-5 كجم</td>
+                                            <td>الشهر الأول</td>
+                                            <td>تسرب متكرر، علامات حمراء على البشرة</td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="size-badge size1">المقاس 1</span></td>
+                                            <td>3-6 كجم</td>
+                                            <td>1-5 أشهر</td>
+                                            <td>الحفاض تبدو ضيقة، صعوبة في إغلاق اللاصقات</td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="size-badge size2">المقاس 2</span></td>
+                                            <td>5-8 كجم</td>
+                                            <td>3-9 أشهر</td>
+                                            <td>التسرب من جوانب الحفاض</td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="size-badge size3">المقاس 3</span></td>
+                                            <td>7-12 كجم</td>
+                                            <td>6-18 شهر</td>
+                                            <td>علامات حمراء على الفخذين أو الخصر</td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="size-badge size4">المقاس 4</span></td>
+                                            <td>10-16 كجم</td>
+                                            <td>12-30 شهر</td>
+                                            <td>الحفاض تبدو قصيرة من الأمام أو الخلف</td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="size-badge size5">المقاس 5</span></td>
+                                            <td>13-18 كجم</td>
+                                            <td>24-36 شهر</td>
+                                            <td>تسرب متكرر رغم التغيير المنتظم</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <!-- نصائح لاختيار المقاس -->
+                            <div class="size-tips">
+                                <h3><i class="fas fa-lightbulb"></i> نصائح لاختيار المقاس المناسب</h3>
+                                <div class="tips-grid">
+                                    <div class="size-tip">
+                                        <div class="tip-icon">
+                                            <i class="fas fa-weight"></i>
+                                        </div>
+                                        <div class="tip-content">
+                                            <h4>الاعتماد على الوزن</h4>
+                                            <p>استخدمي دليل الوزن على العبوة كمرجع أولي، لكن ضعي في اعتبارك شكل جسم
+                                                الطفل أيضاً.</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="size-tip">
+                                        <div class="tip-icon">
+                                            <i class="fas fa-hand-point-up"></i>
+                                        </div>
+                                        <div class="tip-content">
+                                            <h4>اختبار الإصبعين</h4>
+                                            <p>يجب أن تدخل إصبعين بين الحفاض وخصر الطفل، ويفضل أن تكون الحركة مريحة.</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="size-tip">
+                                        <div class="tip-icon">
+                                            <i class="fas fa-tint"></i>
+                                        </div>
+                                        <div class="tip-content">
+                                            <h4>مراقبة التسرب</h4>
+                                            <p>إذا حدث تسرب متكرر من الأعلى أو الجوانب، فقد حان الوقت لمقاس أكبر.</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="size-tip">
+                                        <div class="tip-icon">
+                                            <i class="fas fa-redo"></i>
+                                        </div>
+                                        <div class="tip-content">
+                                            <h4>التبديل التدريجي</h4>
+                                            <p>ابدئي باستخدام المقاس الأكبر ليلاً أولاً، ثم انتقلي إليه نهائياً عندما
+                                                يناسب الطفل.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- أداة اختيار المقاس -->
+                            <div class="size-calculator">
+                                <h3><i class="fas fa-calculator"></i> حاسبة مقاس الحفاض</h3>
+                                <div class="calculator-form">
+                                    <div class="form-group">
+                                        <label for="babyWeight">وزن الطفل (كجم):</label>
+                                        <input type="number" id="babyWeight" min="2" max="25" step="0.1"
+                                            placeholder="أدخلي وزن الطفل">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="babyAge">عمر الطفل (أشهر):</label>
+                                        <input type="number" id="babyAge" min="0" max="36"
+                                            placeholder="أدخلي عمر الطفل بالأشهر">
+                                    </div>
+
+                                    <button class="btn btn-primary calculate-btn" id="calculateSize">
+                                        <i class="fas fa-calculator"></i> احسبي المقاس المناسب
+                                    </button>
+
+                                    <div class="calculator-result" id="sizeResult">
+                                        <!-- ستظهر النتيجة هنا -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- نصائح عامة -->
+                    <article class="content-section tips-section">
+                        <h2><i class="fas fa-star"></i> نصائح ذهبية للعناية بالحفاضات</h2>
+
+                        <div class="golden-tips">
+                            <div class="golden-tip">
+                                <div class="tip-icon">
+                                    <i class="fas fa-moon"></i>
+                                </div>
+                                <div class="tip-content">
+                                    <h3>للنوم الليلي</h3>
+                                    <p>استخدمي حفاضات مخصصة للاستخدام الليلي أو مقاس أكبر قليلاً ليلاً، مع كريم وقائي
+                                        سميك قبل النوم.</p>
+                                </div>
+                            </div>
+
+                            <div class="golden-tip">
+                                <div class="tip-icon">
+                                    <i class="fas fa-car"></i>
+                                </div>
+                                <div class="tip-content">
+                                    <h3>للرحلات والسفر</h3>
+                                    <p>احملي ضعف عدد الحفاضات التي تعتقدين أنك تحتاجينها، مع كريم الحفاض، ومناديل مبللة،
+                                        وأكياس للنفايات.</p>
+                                </div>
+                            </div>
+
+                            <div class="golden-tip">
+                                <div class="tip-icon">
+                                    <i class="fas fa-prescription-bottle-alt"></i>
+                                </div>
+                                <div class="tip-content">
+                                    <h3>عند المرض</h3>
+                                    <p>غيري الحفاض أكثر عند الإسهال، واستخدمي كريماً سميكاً جداً لحماية البشرة من
+                                        الحموضة العالية في البراز.</p>
+                                </div>
+                            </div>
+
+                            <div class="golden-tip">
+                                <div class="tip-icon">
+                                    <i class="fas fa-recycle"></i>
+                                </div>
+                                <div class="tip-content">
+                                    <h3>للحفاضات القماشية</h3>
+                                    <p>اغسلي الحفاضات بمنظف معتدل خالٍ من العطور، وجففيها تحت الشمس إن أمكن للتعقيم
+                                        الطبيعي.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- جدول تواتر التغيير -->
+                        <div class="change-frequency">
+                            <h3><i class="fas fa-clock"></i> جدول تواتر تغيير الحفاض</h3>
+                            <div class="frequency-table">
+                                <div class="frequency-row">
+                                    <div class="frequency-age">حديث الولادة</div>
+                                    <div class="frequency-count">كل 1-2 ساعة أو فور اتساخها</div>
+                                    <div class="frequency-desc">10-12 مرة يومياً</div>
+                                </div>
+
+                                <div class="frequency-row">
+                                    <div class="frequency-age">1-5 أشهر</div>
+                                    <div class="frequency-count">كل 2-3 ساعات</div>
+                                    <div class="frequency-desc">8-10 مرات يومياً</div>
+                                </div>
+
+                                <div class="frequency-row">
+                                    <div class="frequency-age">6-12 شهر</div>
+                                    <div class="frequency-count">كل 3-4 ساعات</div>
+                                    <div class="frequency-desc">6-8 مرات يومياً</div>
+                                </div>
+
+                                <div class="frequency-row">
+                                    <div class="frequency-age">فوق السنة</div>
+                                    <div class="frequency-count">كل 4-6 ساعات</div>
+                                    <div class="frequency-desc">4-6 مرات يومياً</div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </main>
+
+                <!-- الشريط الجانبي -->
+                <aside class="sidebar">
+                    <!-- أداة اختيار الحفاض -->
+                    <div class="sidebar-widget">
+                        <h3><i class="fas fa-question-circle"></i> أداة اختيار نوع الحفاض</h3>
+                        <div class="diaper-selector">
+                            <p>أجيبي على الأسئلة التالية لنساعدك في اختيار النوع المناسب:</p>
+
+                            <div class="selector-questions">
+                                <div class="question">
+                                    <label>ميزانيتك:</label>
+                                    <select id="budget">
+                                        <option value="">اختر الإجابة</option>
+                                        <option value="low">منخفضة (توفير فوري)</option>
+                                        <option value="medium">متوسطة</option>
+                                        <option value="high">مرتفعة (استثمار طويل الأجل)</option>
+                                    </select>
+                                </div>
+
+                                <div class="question">
+                                    <label>وقت الفراغ:</label>
+                                    <select id="time">
+                                        <option value="">اختر الإجابة</option>
+                                        <option value="low">محدود</option>
+                                        <option value="medium">متوسط</option>
+                                        <option value="high">واسع</option>
+                                    </select>
+                                </div>
+
+                                <div class="question">
+                                    <label>الاهتمام بالبيئة:</label>
+                                    <select id="environment">
+                                        <option value="">اختر الإجابة</option>
+                                        <option value="low">منخفض</option>
+                                        <option value="medium">متوسط</option>
+                                        <option value="high">مرتفع</option>
+                                    </select>
+                                </div>
+
+                                <div class="question">
+                                    <label>تنقلاتك خارج المنزل:</label>
+                                    <select id="mobility">
+                                        <option value="">اختر الإجابة</option>
+                                        <option value="low">قليلة</option>
+                                        <option value="medium">متوسطة</option>
+                                        <option value="high">كثيرة</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <button class="btn btn-primary selector-btn" id="recommendDiaper">
+                                <i class="fas fa-magic"></i> احصلي على التوصية
+                            </button>
+
+                            <div class="selector-result" id="diaperRecommendation">
+                                <!-- ستظهر التوصية هنا -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- قائمة التحقق اليومي -->
+                    <div class="sidebar-widget">
+                        <h3><i class="fas fa-clipboard-check"></i> قائمة التحقق اليومي</h3>
+                        <div class="checklist-widget">
+                            <p>تأكدي من هذه النقاط يومياً:</p>
+
+                            <div class="daily-checklist">
+                                <div class="checklist-item">
+                                    <input type="checkbox" id="check1">
+                                    <label for="check1">تغيير الحفاض كل 2-3 ساعات</label>
+                                </div>
+
+                                <div class="checklist-item">
+                                    <input type="checkbox" id="check2">
+                                    <label for="check2">فحص بشرة الطفل عند كل تغيير</label>
+                                </div>
+
+                                <div class="checklist-item">
+                                    <input type="checkbox" id="check3">
+                                    <label for="check3">تهوية المنطقة بدون حفاض 10 دقائق يومياً</label>
+                                </div>
+
+                                <div class="checklist-item">
+                                    <input type="checkbox" id="check4">
+                                    <label for="check4">غسل اليدين قبل وبعد التغيير</label>
+                                </div>
+
+                                <div class="checklist-item">
+                                    <input type="checkbox" id="check5">
+                                    <label for="check5">التأكد من عدم ضيق الحفاض</label>
+                                </div>
+                            </div>
+
+                            <div class="checklist-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="checklistProgress"></div>
+                                </div>
+                                <span id="progressText">0/5 مكتمل</span>
+                            </div>
+
+                            <button class="btn btn-secondary reset-btn" id="resetChecklist">
+                                <i class="fas fa-redo"></i> إعادة التعيين
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- منتجات موصى بها -->
+                    <div class="sidebar-widget">
+                        <h3><i class="fas fa-award"></i> منتجات موصى بها</h3>
+                        <div class="products-list">
+                            <div class="product-item">
+                                <div class="product-category">كريمات الحفاض</div>
+                                <h4>سودو كريم (Sudocrem)</h4>
+                                <p>كريم وقائي وعلاجي يحتوي على زنك أوكسيد</p>
+                                <span class="product-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </span>
+                            </div>
+
+                            <div class="product-item">
+                                <div class="product-category">مناديل مبللة</div>
+                                <h4>واتربيبي (WaterWipes)</h4>
+                                <p>مناديل طبيعية 99.9% ماء مع نقطة من خلاصة الفاكهة</p>
+                                <span class="product-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </span>
+                            </div>
+
+                            <div class="product-item">
+                                <div class="product-category">حفاضات قماشية</div>
+                                <h4>بامبينو ميو (Bambino Mio)</h4>
+                                <p>حفاضات قماشية عالية الجودة مع بطانة قابلة للتحلل</p>
+                                <span class="product-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- مقالات ذات صلة -->
+                    <div class="sidebar-widget">
+                        <h3><i class="fas fa-newspaper"></i> مقالات ذات صلة</h3>
+                        <div class="related-articles">
+                            <a href="digestive.html" class="related-article">
+                                <div class="related-icon">
+                                    <i class="fas fa-stomach"></i>
+                                </div>
+                                <div class="related-content">
+                                    <h4>صحة الجهاز الهضمي</h4>
+                                    <p>كيف تؤثر تغذية الطفل على البراز والحفاضات</p>
+                                </div>
+                            </a>
+
+                            <a href="bath.html" class="related-article">
+                                <div class="related-icon">
+                                    <i class="fas fa-bath"></i>
+                                </div>
+                                <div class="related-content">
+                                    <h4>وقت الاستحمام</h4>
+                                    <p>نصائح لتنظيف منطقة الحفاض أثناء الاستحمام</p>
+                                </div>
+                            </a>
+
+                            <a href="diseases.html" class="related-article">
+                                <div class="related-icon">
+                                    <i class="fas fa-heartbeat"></i>
+                                </div>
+                                <div class="related-content">
+                                    <h4>الأمراض الشائعة</h4>
+                                    <p>كيف تتعرفين على الالتهابات الجلدية وعلاجها</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- تنزيلات -->
+                    <div class="sidebar-widget">
+                        <h3><i class="fas fa-download"></i> تنزيلات مفيدة</h3>
+                        <div class="downloads">
+                            <a href="../assets/pdf/diaper-change-guide.pdf" class="download-link" download>
+                                <i class="fas fa-file-pdf"></i>
+                                <div>
+                                    <h4>دليل تغيير الحفاض</h4>
+                                    <p>PDF - 1.2 MB</p>
+                                </div>
+                            </a>
+
+                            <a href="../assets/pdf/diaper-rash-treatment.pdf" class="download-link" download>
+                                <i class="fas fa-file-medical"></i>
+                                <div>
+                                    <h4>علاج طفح الحفاض</h4>
+                                    <p>PDF - 0.8 MB</p>
+                                </div>
+                            </a>
+
+                            <a href="../assets/pdf/diaper-tracker.pdf" class="download-link" download>
+                                <i class="fas fa-clipboard-list"></i>
+                                <div>
+                                    <h4>سجل تغيير الحفاض</h4>
+                                    <p>PDF - 0.5 MB</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </section>
+
+    <!-- تذييل الصفحة -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <!-- معلومات الموقع -->
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <i class="fas fa-baby"></i>
+                        <h3>رعاية الرضع</h3>
+                    </div>
+                    <p class="footer-description">
+                        موقع متخصص في تقديم نصائح موثوقة وبسيطة للأمهات والمربيات في رحلة رعاية الرضع.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" aria-label="فيسبوك"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="تويتر"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="انستجرام"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="يوتيوب"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <!-- روابط سريعة -->
+                <div class="footer-col">
+                    <h4>روابط سريعة</h4>
+                    <ul class="footer-links">
+                        <li><a href="../index.html"><i class="fas fa-chevron-left"></i> الرئيسية</a></li>
+                        <li><a href="sections.html"><i class="fas fa-chevron-left"></i> جميع الأقسام</a></li>
+                        <li><a href="tools.html"><i class="fas fa-chevron-left"></i> الأدوات التفاعلية</a></li>
+                        <li><a href="blog.html"><i class="fas fa-chevron-left"></i> المدونة</a></li>
+                        <li><a href="faq.html"><i class="fas fa-chevron-left"></i> الأسئلة الشائعة</a></li>
+                    </ul>
+                </div>
+
+                <!-- معلومات الاتصال -->
+                <div class="footer-col">
+                    <h4>اتصل بنا</h4>
+                    <ul class="footer-contact">
+                        <li><i class="fas fa-envelope"></i> info@raayatalarada.com</li>
+                        <li><i class="fas fa-phone"></i> +966 12 345 6789</li>
+                        <li><i class="fas fa-map-marker-alt"></i> الرياض، المملكة العربية السعودية</li>
+                    </ul>
+                </div>
+
+                <!-- النشرة البريدية -->
+                <div class="footer-col">
+                    <h4>اشترك في النشرة البريدية</h4>
+                    <p>احصلي على أحدث النصائح والمقالات مباشرة في بريدك الإلكتروني</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="بريدك الإلكتروني" required>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i> اشتراك
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2024 رعاية الرضع. جميع الحقوق محفوظة.</p>
+                <div class="footer-legal">
+                    <a href="privacy.html">سياسة الخصوصية</a>
+                    <a href="terms.html">شروط الاستخدام</a>
+                    <a href="disclaimer.html">إخلاء المسؤولية</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- زر العودة للأعلى -->
+    <button class="back-to-top" aria-label="العودة للأعلى">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- JavaScript -->
+    <script src="../js/main.js"></script>
+    <script src="../js/diapers.js"></script>
+</body>
+
+</html>

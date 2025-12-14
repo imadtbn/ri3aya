@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="جدول التلقيح الكامل للرضع والأطفال - التطعيمات المطلوبة حسب العمر">
+    <title>جدول التلقيح | رعاية الرضع</title>
+
+    <!-- الخطوط العربية -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&family=Tajawal:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+
+    <!-- الأيقونات -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- الأنماط -->
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+        <link rel="stylesheet" href="../css/vaccine.css">
+
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+</head>
+
+<body>
+    <!-- شريط التنقل -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <!-- الشعار -->
+            <a href="../index.html" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-baby"></i>
+                </div>
+                <div class="logo-text">
+                    <h1>رعاية الرضع</h1>
+                    <p>دليل الأم الحديثة</p>
+                </div>
+            </a>
+
+            <!-- قائمة الهاتف المحمول -->
+            <button class="mobile-menu-btn" aria-label="فتح القائمة">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <!-- القائمة الرئيسية -->
+            <ul class="nav-menu">
+                <li><a href="../index.html"><i class="fas fa-home"></i> الرئيسية</a></li>
+                <li class="dropdown">
+                    <a href="#"><i class="fas fa-th-large"></i> الأقسام <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="crying.html"><i class="fas fa-baby-cry"></i> فهم بكاء الرضيع</a></li>
+                        <li><a href="sleep.html"><i class="fas fa-bed"></i> النوم الآمن</a></li>
+                        <li><a href="diapers.html"><i class="fas fa-baby"></i> العناية بالحفاضات</a></li>
+                        <li><a href="digestive.html"><i class="fas fa-stomach"></i> صحة الجهاز الهضمي</a></li>
+                        <li><a href="nutrition.html"><i class="fas fa-utensils"></i> التغذية</a></li>
+                        <li><a href="bath.html"><i class="fas fa-bath"></i> وقت الاستحمام</a></li>
+                        <li><a href="vaccine.html" class="active"><i class="fas fa-syringe"></i> جدول التلقيح</a></li>
+                        <li><a href="growth.html"><i class="fas fa-chart-line"></i> مخطط النمو</a></li>
+                        <li><a href="diseases.html"><i class="fas fa-heartbeat"></i> الأمراض الشائعة</a></li>
+                        <li><a href="tips.html"><i class="fas fa-lightbulb"></i> نصائح عامة</a></li>
+                    </ul>
+                </li>
+                <li><a href="tools.html"><i class="fas fa-tools"></i> الأدوات التفاعلية</a></li>
+                <li><a href="blog.html"><i class="fas fa-blog"></i> المدونة</a></li>
+                <li><a href="contact.html"><i class="fas fa-envelope"></i> اتصل بنا</a></li>
+            </ul>
+
+            <!-- بحث -->
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="ابحث عن نصائح...">
+                <button class="search-btn"><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- رأس الصفحة -->
+    <section class="page-header vaccine-header">
+        <div class="container">
+            <div class="header-content">
+                <h1><i class="fas fa-syringe"></i> جدول التلقيح</h1>
+                <p>دليل شامل للتطعيمات المطلوبة للرضع والأطفال لحمايتهم من الأمراض</p>
+                <div class="breadcrumb">
+                    <a href="../index.html">الرئيسية</a> / <a href="vaccine.html">جدول التلقيح</a>
+                </div>
+            </div>
+            <div class="header-image">
+                <img src="../images/vaccine-header.svg" alt="طفل يتلقى تطعيماً" loading="lazy">
+            </div>
+        </div>
+    </section>
+
+    <!-- المحتوى الرئيسي -->
+    <main class="vaccine-page">
+        <div class="container">
+            <!-- مقدمة عن التطعيمات -->
+            <section class="intro-section">
+                <div class="section-card">
+                    <h2><i class="fas fa-shield-alt"></i> أهمية التطعيمات</h2>
+                    <p>التطعيمات هي واحدة من أهم إنجازات الطب الحديث، حيث تحمي الأطفال من أمراض خطيرة قد تسبب الإعاقة أو الوفاة. تعمل التطعيمات على تحفيز جهاز المناعة لتكوين أجسام مضادة تحمي الطفل من الإصابة بالأمراض المعدية.</p>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-number">95%</div>
+                            <div class="stat-text">فعالية في الوقاية</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">2-3</div>
+                            <div class="stat-text">مليون حياة يتم إنقاذها سنوياً</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">20+</div>
+                            <div class="stat-text">مرض يمكن الوقاية منه</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">100%</div>
+                            <div class="stat-text">أمان للأطفال الأصحاء</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- جدول التطعيمات الرئيسي -->
+            <section class="vaccine-schedule">
+                <h2 class="section-title"><i class="fas fa-calendar-check"></i> جدول التطعيمات الوطني</h2>
+                
+                <div class="schedule-note">
+                    <p><i class="fas fa-info-circle"></i> هذا الجدول يعتمد على برنامج التطعيمات الوطني السعودي. يرجى استشارة طبيب الأطفال للتأكد من جدول طفلك.</p>
+                </div>
+
+                <!-- جدول تفاعلي -->
+                <div class="schedule-tabs">
+                    <button class="tab-btn active" data-tab="birth-6">من الولادة - 6 أشهر</button>
+                    <button class="tab-btn" data-tab="7-12">7 - 12 شهر</button>
+                    <button class="tab-btn" data-tab="1-2">1 - 2 سنة</button>
+                    <button class="tab-btn" data-tab="4-6">4 - 6 سنوات</button>
+                </div>
+
+                <!-- محتوى التبويبات -->
+                <div class="tabs-content">
+                    <!-- تبويب الولادة - 6 أشهر -->
+                    <div class="tab-pane active" id="birth-6">
+                        <div class="vaccine-table-container">
+                            <table class="vaccine-table">
+                                <thead>
+                                    <tr>
+                                        <th>العمر</th>
+                                        <th>التطعيم</th>
+                                        <th>المرض الذي يقي منه</th>
+                                        <th>الأهمية</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>عند الولادة</td>
+                                        <td>السل (BCG) + التهاب الكبد الوبائي ب (الجرعة الأولى)</td>
+                                        <td>السل - التهاب الكبد الوبائي ب</td>
+                                        <td><span class="importance high">عالي</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>شهرين</td>
+                                        <td>الخماسي (الجرعة الأولى) + شلل الأطفال الفموي (الجرعة الأولى) + الروتا (الجرعة الأولى)</td>
+                                        <td>الدفتيريا، السعال الديكي، الكزاز، الإنفلونزا البكتيرية، التهاب الكبد ب + شلل الأطفال + فيروس الروتا</td>
+                                        <td><span class="importance high">عالي</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>4 أشهر</td>
+                                        <td>الخماسي (الجرعة الثانية) + شلل الأطفال الفموي (الجرعة الثانية) + الروتا (الجرعة الثانية)</td>
+                                        <td>الدفتيريا، السعال الديكي، الكزاز، الإنفلونزا البكتيرية، التهاب الكبد ب + شلل الأطفال + فيروس الروتا</td>
+                                        <td><span class="importance high">عالي</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>6 أشهر</td>
+                                        <td>الخماسي (الجرعة الثالثة) + شلل الأطفال الفموي (الجرعة الثالثة) + التهاب الكبد ب (الجرعة الثالثة)</td>
+                                        <td>الدفتيريا، السعال الديكي، الكزاز، الإنفلونزا البكتيرية، التهاب الكبد ب + شلل الأطفال</td>
+                                        <td><span class="importance high">عالي</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- تبويب 7 - 12 شهر -->
+                    <div class="tab-pane" id="7-12">
+                        <div class="vaccine-table-container">
+                            <table class="vaccine-table">
+                                <thead>
+                                    <tr>
+                                        <th>العمر</th>
+                                        <th>التطعيم</th>
+                                        <th>المرض الذي يقي منه</th>
+                                        <th>الأهمية</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>9 أشهر</td>
+                                        <td>الحصبة (الجرعة الأولى) + التهاب الكبد أ (الجرعة الأولى - اختياري)</td>
+                                        <td>الحصبة + التهاب الكبد الوبائي أ</td>
+                                        <td><span class="importance high">عالي</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>12 شهر</td>
+                                        <td>الثلاثي الفيروسي (MMR) + الجديري المائي (الجرعة الأولى)</td>
+                                        <td>الحصبة، النكاف، الحصبة الألمانية + الجديري المائي</td>
+                                        <td><span class="importance high">عالي</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- تبويب 1 - 2 سنة -->
+                    <div class="tab-pane" id="1-2">
+                        <div class="vaccine-table-container">
+                            <table class="vaccine-table">
+                                <thead>
+                                    <tr>
+                                        <th>العمر</th>
+                                        <th>التطعيم</th>
+                                        <th>المرض الذي يقي منه</th>
+                                        <th>الأهمية</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>18 شهر</td>
+                                        <td>الخماسي (الجرعة الرابعة) + شلل الأطفال الفموي (الجرعة الرابعة) + التهاب الكبد أ (الجرعة الثانية)</td>
+                                        <td>الدفتيريا، السعال الديكي، الكزاز، الإنفلونزا البكتيرية، التهاب الكبد ب + شلل الأطفال + التهاب الكبد أ</td>
+                                        <td><span class="importance high">عالي</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>24 شهر</td>
+                                        <td>التهاب الكبد أ (الجرعة الثانية - إذا لم تؤخذ في 18 شهر)</td>
+                                        <td>التهاب الكبد الوبائي أ</td>
+                                        <td><span class="importance medium">متوسط</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- تبويب 4 - 6 سنوات -->
+                    <div class="tab-pane" id="4-6">
+                        <div class="vaccine-table-container">
+                            <table class="vaccine-table">
+                                <thead>
+                                    <tr>
+                                        <th>العمر</th>
+                                        <th>التطعيم</th>
+                                        <th>المرض الذي يقي منه</th>
+                                        <th>الأهمية</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>4-6 سنوات</td>
+                                        <td>الثنائي (DTaP) + شلل الأطفال المعطل (IPV) + الثلاثي الفيروسي (MMR) + الجديري المائي (الجرعة الثانية)</td>
+                                        <td>الدفتيريا، السعال الديكي، الكزاز + شلل الأطفال + الحصبة، النكاف، الحصبة الألمانية + الجديري المائي</td>
+                                        <td><span class="importance high">عالي</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- تنبيهات مهمة -->
+                <div class="vaccine-notes">
+                    <h3><i class="fas fa-exclamation-triangle"></i> ملاحظات مهمة:</h3>
+                    <ul>
+                        <li>يجب الحفاظ على تبريد التطعيمات خلال نقلها من المركز الصحي إلى المنزل</li>
+                        <li>بعض التطعيمات قد تسبب ارتفاعاً طفيفاً في درجة الحرارة أو ألماً في مكان الحقنة</li>
+                        <li>يجب إبلاغ الطبيب بأي حساسية معروفة لدى الطفل قبل التطعيم</li>
+                        <li>التطعيمات الإضافية (اختيارية) تعتمد على حالة الطفل والتوصيات الطبية</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- معلومات عن التطعيمات الشائعة -->
+            <section class="vaccine-info">
+                <h2 class="section-title"><i class="fas fa-vial"></i> معلومات عن التطعيمات الأساسية</h2>
+                
+                <div class="vaccine-cards">
+                    <!-- بطاقة تطعيم الخماسي -->
+                    <div class="vaccine-card">
+                        <div class="vaccine-card-header">
+                            <h3><i class="fas fa-syringe"></i> التطعيم الخماسي</h3>
+                            <span class="vaccine-tag">أساسي</span>
+                        </div>
+                        <div class="vaccine-card-body">
+                            <p>يحمي من 5 أمراض: الدفتيريا، السعال الديكي، الكزاز، الإنفلونزا البكتيرية (Hib)، التهاب الكبد ب</p>
+                            <div class="vaccine-details">
+                                <div class="detail-item">
+                                    <i class="fas fa-calendar"></i>
+                                    <span>الجرعات: 4 جرعات (شهران، 4 أشهر، 6 أشهر، 18 شهر)</span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-temperature-high"></i>
+                                    <span>الآثار الجانبية: حمى خفيفة، احمرار مكان الحقنة</span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-shield-alt"></i>
+                                    <span>الفعالية: 95% بعد الجرعات الكاملة</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- بطاقة تطعيم شلل الأطفال -->
+                    <div class="vaccine-card">
+                        <div class="vaccine-card-header">
+                            <h3><i class="fas fa-virus-slash"></i> شلل الأطفال</h3>
+                            <span class="vaccine-tag">أساسي</span>
+                        </div>
+                        <div class="vaccine-card-body">
+                            <p>يقي من فيروس شلل الأطفال الذي قد يسبب شللاً دائماً أو الوفاة</p>
+                            <div class="vaccine-details">
+                                <div class="detail-item">
+                                    <i class="fas fa-calendar"></i>
+                                    <span>الجرعات: 4 جرعات (شهران، 4 أشهر، 6 أشهر، 18 شهر)</span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-temperature-high"></i>
+                                    <span>الآثار الجانبية: نادرة جداً</span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-shield-alt"></i>
+                                    <span>الفعالية: 99% بعد الجرعات الكاملة</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- بطاقة تطعيم الثلاثي الفيروسي -->
+                    <div class="vaccine-card">
+                        <div class="vaccine-card-header">
+                            <h3><i class="fas fa-virus"></i> الثلاثي الفيروسي (MMR)</h3>
+                            <span class="vaccine-tag">أساسي</span>
+                        </div>
+                        <div class="vaccine-card-body">
+                            <p>يحمي من الحصبة، النكاف، والحصبة الألمانية التي قد تسبب مضاعفات خطيرة</p>
+                            <div class="vaccine-details">
+                                <div class="detail-item">
+                                    <i class="fas fa-calendar"></i>
+                                    <span>الجرعات: جرعتان (12 شهر، 4-6 سنوات)</span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-temperature-high"></i>
+                                    <span>الآثار الجانبية: حمى خفيفة، طفح جلدي</span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-shield-alt"></i>
+                                    <span>الفعالية: 97% ضد الحصبة بعد الجرعتين</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- نصائح قبل وبعد التطعيم -->
+            <div class="tips-before-after">
+                <!-- نصائح قبل التطعيم -->
+                <section class="tips-section">
+                    <div class="section-card card-before">
+                        <h2><i class="fas fa-clipboard-check"></i> قبل التطعيم</h2>
+                        <div class="tips-list">
+                            <div class="tip-item">
+                                <div class="tip-number">1</div>
+                                <div class="tip-content">
+                                    <h3>التجهيز النفسي</h3>
+                                    <p>تهيئة الطفل نفسياً، وعدم تخويفه بكلمات مثل "حقنة" أو "دكتور".</p>
+                                </div>
+                            </div>
+                            <div class="tip-item">
+                                <div class="tip-number">2</div>
+                                <div class="tip-content">
+                                    <h3>الملابس المناسبة</h3>
+                                    <p>ارتداء ملابس سهلة الفك لإظهار الذراع أو الفخذ بسرعة.</p>
+                                </div>
+                            </div>
+                            <div class="tip-item">
+                                <div class="tip-number">3</div>
+                                <div class="tip-content">
+                                    <h3>النوم الكافي</h3>
+                                    <p>تأكدي من حصول الطفل على قسط كافٍ من النوم قبل الموعد.</p>
+                                </div>
+                            </div>
+                            <div class="tip-item">
+                                <div class="tip-number">4</div>
+                                <div class="tip-content">
+                                    <h3>التغذية الجيدة</h3>
+                                    <p>إرضاع الطفل أو إطعامه قبل التطعيم بساعة على الأقل.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- نصائح بعد التطعيم -->
+                <section class="tips-section">
+                    <div class="section-card card-after">
+                        <h2><i class="fas fa-hand-holding-heart"></i> بعد التطعيم</h2>
+                        <div class="tips-list">
+                            <div class="tip-item">
+                                <div class="tip-number">1</div>
+                                <div class="tip-content">
+                                    <h3>المراقبة</h3>
+                                    <p>راقبي الطفل لمدة 15-30 دقيقة في المركز الصحي بعد التطعيم.</p>
+                                </div>
+                            </div>
+                            <div class="tip-item">
+                                <div class="tip-number">2</div>
+                                <div class="tip-content">
+                                    <h3>الرضاعة</h3>
+                                    <p>إرضاع الطفل فوراً بعد التطعيم لتهدئته وتخفيف الألم.</p>
+                                </div>
+                            </div>
+                            <div class="tip-item">
+                                <div class="tip-number">3</div>
+                                <div class="tip-content">
+                                    <h3>خافض الحرارة</h3>
+                                    <p>استخدمي خافض الحرارة إذا ارتفعت درجة حرارة الطفل.</p>
+                                </div>
+                            </div>
+                            <div class="tip-item">
+                                <div class="tip-number">4</div>
+                                <div class="tip-content">
+                                    <h3>الكمدات الباردة</h3>
+                                    <p>ضعي كمدات باردة على مكان الحقنة لتخفيف الاحمرار والتورم.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- الآثار الجانبية -->
+            <section class="side-effects">
+                <div class="section-card">
+                    <h2><i class="fas fa-exclamation-circle"></i> الآثار الجانبية الشائعة</h2>
+                    <div class="effects-grid">
+                        <div class="effect-item common">
+                            <h3><i class="fas fa-check-circle"></i> آثار شائعة (طبيعية)</h3>
+                            <ul>
+                                <li>ارتفاع طفيف في درجة الحرارة (أقل من 38.5°م)</li>
+                                <li>احمرار أو تورم طفيف في مكان الحقنة</li>
+                                <li>البكاء والانزعاج لبضع ساعات</li>
+                                <li>النعاس أو اضطراب في النوم</li>
+                            </ul>
+                        </div>
+                        <div class="effect-item rare">
+                            <h3><i class="fas fa-exclamation-triangle"></i> آثار نادرة (تستدعي استشارة الطبيب)</h3>
+                            <ul>
+                                <li>ارتفاع شديد في الحرارة (أكثر من 39°م)</li>
+                                <li>طفح جلدي شديد أو حكة</li>
+                                <li>صعوبة في التنفس</li>
+                                <li>البكاء المستمر لأكثر من 3 ساعات</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="emergency-note">
+                        <p><i class="fas fa-ambulance"></i> <strong>الحالات الطارئة:</strong> إذا ظهر على الطفل صعوبة في التنفس، تورم في الوجه أو الحلق، أو دوار شديد، يجب التوجه فوراً إلى أقرب مركز طوارئ.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- أسئلة شائعة -->
+            <section class="faq-section">
+                <div class="section-card">
+                    <h2><i class="fas fa-question-circle"></i> أسئلة شائعة حول التطعيمات</h2>
+                    <div class="faq-list">
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <span>ماذا أفعل إذا تأخرت عن موعد تطعيم طفلي؟</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="faq-answer">
+                                <p>لا داعي للقلق، يمكنك حجز موعد في أقرب مركز صحي أو عيادة تطعيمات. معظم التطعيمات يمكن أخذها حتى مع التأخير. سيحدد الطبيب خطة لاستكمال الجرعات المتبقية.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <span>هل يمكن تطعيم الطفل إذا كان مريضاً أو مصاباً بالحمى؟</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="faq-answer">
+                                <p>يجب تأجيل التطعيم إذا كانت حرارة الطفل أكثر من 38.5°م أو إذا كان يعاني من مرض حاد. يمكن تطعيمه مع نزلات البرد البسيطة أو السعال الخفيف بعد استشارة الطبيب.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <span>ما هي التطعيمات الإضافية الموصى بها؟</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="faq-answer">
+                                <p>تشمل التطعيمات الإضافية الموصى بها: تطعيم المكورات الرئوية، تطعيم الأنفلونزا الموسمية (من 6 أشهر)، تطعيم فيروس الروتا (ضد الإسهال الشديد)، وتطعيم الحمى الشوكية (المكورات السحائية).</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <span>هل تسبب التطعيمات التوحد أو أمراض مزمنة؟</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="faq-answer">
+                                <p>لا، جميع الدراسات العلمية الموثوقة تؤكد أن التطعيمات آمنة ولا تسبب التوحد أو أي أمراض مزمنة. هذه الشائعات تم دحضها علمياً من قبل منظمة الصحة العالمية ومراكز السيطرة على الأمراض.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- أداة تذكير بالتطعيمات -->
+            <section class="reminder-tool">
+                <div class="section-card reminder-card">
+                    <h2><i class="fas fa-bell"></i> تذكير بالتطعيمات القادمة</h2>
+                    <p>أدخلي تاريخ ميلاد طفلك للحصول على قائمة بالتطعيمات القادمة وتذكير بها</p>
+                    
+                    <div class="reminder-form">
+                        <div class="form-group">
+                            <label for="birth-date"><i class="fas fa-calendar-alt"></i> تاريخ ميلاد الطفل</label>
+                            <input type="date" id="birth-date" class="date-input">
+                        </div>
+                        <button class="btn btn-primary" id="calculate-vaccines">
+                            <i class="fas fa-calculator"></i> احسب التطعيمات القادمة
+                        </button>
+                    </div>
+                    
+                    <div class="reminder-result" id="vaccine-result">
+                        <!-- سيتم عرض النتائج هنا -->
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- تذييل الصفحة -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <!-- معلومات الموقع -->
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <i class="fas fa-baby"></i>
+                        <h3>رعاية الرضع</h3>
+                    </div>
+                    <p class="footer-description">
+                        موقع متخصص في تقديم نصائح موثوقة وبسيطة للأمهات والمربيات في رحلة رعاية الرضع.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" aria-label="فيسبوك"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="تويتر"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="انستجرام"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="يوتيوب"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <!-- روابط سريعة -->
+                <div class="footer-col">
+                    <h4>روابط سريعة</h4>
+                    <ul class="footer-links">
+                        <li><a href="../index.html"><i class="fas fa-chevron-left"></i> الرئيسية</a></li>
+                        <li><a href="sections.html"><i class="fas fa-chevron-left"></i> جميع الأقسام</a></li>
+                        <li><a href="tools.html"><i class="fas fa-chevron-left"></i> الأدوات التفاعلية</a></li>
+                        <li><a href="blog.html"><i class="fas fa-chevron-left"></i> المدونة</a></li>
+                        <li><a href="faq.html"><i class="fas fa-chevron-left"></i> الأسئلة الشائعة</a></li>
+                    </ul>
+                </div>
+
+                <!-- معلومات الاتصال -->
+                <div class="footer-col">
+                    <h4>اتصل بنا</h4>
+                    <ul class="footer-contact">
+                        <li><i class="fas fa-envelope"></i> info@raayatalarada.com</li>
+                        <li><i class="fas fa-phone"></i> +966 12 345 6789</li>
+                        <li><i class="fas fa-map-marker-alt"></i> الرياض، المملكة العربية السعودية</li>
+                    </ul>
+                </div>
+
+                <!-- النشرة البريدية -->
+                <div class="footer-col">
+                    <h4>اشترك في النشرة البريدية</h4>
+                    <p>احصلي على أحدث النصائح والمقالات مباشرة في بريدك الإلكتروني</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="بريدك الإلكتروني" required>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i> اشتراك
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2024 رعاية الرضع. جميع الحقوق محفوظة.</p>
+                <div class="footer-legal">
+                    <a href="privacy.html">سياسة الخصوصية</a>
+                    <a href="terms.html">شروط الاستخدام</a>
+                    <a href="disclaimer.html">إخلاء المسؤولية</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- زر العودة للأعلى -->
+    <button class="back-to-top" aria-label="العودة للأعلى">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- JavaScript -->
+    <script src="../js/main.js"></script>
+        <script src="../js/vaccine.js"></script>
+
+
+</body>
+
+</html>

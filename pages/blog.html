@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="مدونة رعاية الرضع - مقالات ونصائح شاملة للأمهات والمربيات">
+    <title>المدونة - رعاية الرضع</title>
+
+    <!-- الخطوط العربية -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&family=Tajawal:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+
+    <!-- الأيقونات -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- الأنماط -->
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="../css/blog.css">
+
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+</head>
+
+<body>
+    <!-- شريط التنقل -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <!-- الشعار -->
+            <a href="index.html" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-baby"></i>
+                </div>
+                <div class="logo-text">
+                    <h1>رعاية الرضع</h1>
+                    <p>دليل الأم الحديثة</p>
+                </div>
+            </a>
+
+            <!-- قائمة الهاتف المحمول -->
+            <button class="mobile-menu-btn" aria-label="فتح القائمة">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <!-- القائمة الرئيسية -->
+            <ul class="nav-menu">
+                <li><a href="index.html"><i class="fas fa-home"></i> الرئيسية</a></li>
+                <li class="dropdown">
+                    <a href="#"><i class="fas fa-th-large"></i> الأقسام <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="pages/crying.html"><i class="fas fa-baby-cry"></i> فهم بكاء الرضيع</a></li>
+                        <li><a href="pages/sleep.html"><i class="fas fa-bed"></i> النوم الآمن</a></li>
+                        <li><a href="pages/diapers.html"><i class="fas fa-baby"></i> العناية بالحفاضات</a></li>
+                        <li><a href="pages/digestive.html"><i class="fas fa-stomach"></i> صحة الجهاز الهضمي</a></li>
+                        <li><a href="pages/nutrition.html"><i class="fas fa-utensils"></i> التغذية</a></li>
+                        <li><a href="pages/bath.html"><i class="fas fa-bath"></i> وقت الاستحمام</a></li>
+                        <li><a href="pages/vaccine.html"><i class="fas fa-syringe"></i> جدول التلقيح</a></li>
+                        <li><a href="pages/growth.html"><i class="fas fa-chart-line"></i> مخطط النمو</a></li>
+                        <li><a href="pages/diseases.html"><i class="fas fa-heartbeat"></i> الأمراض الشائعة</a></li>
+                        <li><a href="pages/tips.html"><i class="fas fa-lightbulb"></i> نصائح عامة</a></li>
+                    </ul>
+                </li>
+                <li><a href="pages/tools.html"><i class="fas fa-tools"></i> الأدوات التفاعلية</a></li>
+                <li><a href="blog.html" class="active"><i class="fas fa-blog"></i> المدونة</a></li>
+                <li><a href="pages/contact.html"><i class="fas fa-envelope"></i> اتصل بنا</a></li>
+            </ul>
+
+            <!-- بحث -->
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="ابحث في المدونة...">
+                <button class="search-btn"><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- رأس المدونة -->
+    <section class="blog-header">
+        <div class="container">
+            <div class="blog-header-content">
+                <h1><i class="fas fa-blog"></i> مدونة رعاية الرضع</h1>
+                <p class="blog-subtitle">مكتبة شاملة للمقالات والنصائح الطبية والعملية لرعاية طفلك</p>
+                <div class="blog-stats">
+                    <div class="stat">
+                        <i class="fas fa-newspaper"></i>
+                        <span>٤٥+ مقال متخصص</span>
+                    </div>
+                    <div class="stat">
+                        <i class="fas fa-user-md"></i>
+                        <span>كتابة أطباء متخصصين</span>
+                    </div>
+                    <div class="stat">
+                        <i class="fas fa-calendar-check"></i>
+                        <span>تحديث أسبوعي</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- محتوى المدونة الرئيسي -->
+    <section class="blog-main">
+        <div class="container">
+            <div class="blog-layout">
+                <!-- المقالات الرئيسية -->
+                <div class="blog-articles">
+                    <!-- تصفية المقالات -->
+                    <div class="blog-filter">
+                        <button class="filter-btn active" data-filter="all">جميع المقالات</button>
+                        <button class="filter-btn" data-filter="nutrition">التغذية</button>
+                        <button class="filter-btn" data-filter="health">الصحة</button>
+                        <button class="filter-btn" data-filter="care">العناية اليومية</button>
+                        <button class="filter-btn" data-filter="development">النمو والتطور</button>
+                        <button class="filter-btn" data-filter="safety">السلامة</button>
+                    </div>
+
+                    <!-- قائمة المقالات -->
+                    <div class="articles-grid">
+                        <!-- مقال مميز -->
+                        <article class="article-card featured" data-category="nutrition">
+                            <div class="article-badge">
+                                <i class="fas fa-star"></i> مقال مميز
+                            </div>
+                            <div class="article-image">
+                                <img src="images/blog-featured.jpg" alt="البداية بالطعام الصلب" loading="lazy">
+                            </div>
+                            <div class="article-content">
+                                <div class="article-meta">
+                                    <span class="article-category nutrition">التغذية</span>
+                                    <span class="article-date"><i class="far fa-calendar"></i> 20 مارس 2024</span>
+                                </div>
+                                <h2><a href="article.html">دليل شامل: البداية بالطعام الصلب من 6 أشهر</a></h2>
+                                <p class="article-excerpt">كل ما تحتاجين معرفته عن بداية الطعام الصلب لطفلك: الأطعمة
+                                    المناسبة، الكميات، طريقة التقديم، والأخطاء الشائعة التي يجب تجنبها للحفاظ على صحة
+                                    طفلك.</p>
+                                <div class="article-footer">
+                                    <div class="article-author">
+                                        <img src="images/doctor-avatar.jpg" alt="د. سارة أحمد" class="author-avatar">
+                                        <span>د. سارة أحمد - أخصائية تغذية أطفال</span>
+                                    </div>
+                                    <a href="article.html" class="read-more">اقرأ المقال <i
+                                            class="fas fa-arrow-left"></i></a>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- مقال 1 -->
+                        <article class="article-card" data-category="health">
+                            <div class="article-image">
+                                <img src="images/blog1.jpg" alt="التعامل مع المغص" loading="lazy">
+                            </div>
+                            <div class="article-content">
+                                <div class="article-meta">
+                                    <span class="article-category health">الصحة</span>
+                                    <span class="article-date"><i class="far fa-calendar"></i> 15 مارس 2024</span>
+                                </div>
+                                <h3><a href="article.html">دليلك الشامل للتعامل مع مغص الرضع</a></h3>
+                                <p class="article-excerpt">تعرفي على أسباب المغص وطرق تخفيفه والوضعيات التي تساعد طفلك
+                                    على الشعور بالراحة. نصائح عملية مجربة.</p>
+                                <div class="article-footer">
+                                    <span class="read-time"><i class="far fa-clock"></i> 5 دقائق قراءة</span>
+                                    <a href="article.html" class="read-more">اقرأ المزيد</a>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- مقال 2 -->
+                        <article class="article-card" data-category="care">
+                            <div class="article-image">
+                                <img src="images/blog3.jpg" alt="الاستحمام الآمن" loading="lazy">
+                            </div>
+                            <div class="article-content">
+                                <div class="article-meta">
+                                    <span class="article-category care">العناية اليومية</span>
+                                    <span class="article-date"><i class="far fa-calendar"></i> 10 مارس 2024</span>
+                                </div>
+                                <h3><a href="article.html">دليل الاستحمام الآمن للرضع خطوة بخطوة</a></h3>
+                                <p class="article-excerpt">كل ما تحتاجين معرفته لجعل وقت الاستحمام تجربة آمنة وممتعة
+                                    لطفلك مع قائمة التحقق اليومية.</p>
+                                <div class="article-footer">
+                                    <span class="read-time"><i class="far fa-clock"></i> 4 دقائق قراءة</span>
+                                    <a href="article.html" class="read-more">اقرأ المزيد</a>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- مقال 3 -->
+                        <article class="article-card" data-category="safety">
+                            <div class="article-image">
+                                <img src="images/blog-safety.jpg" alt="السلامة في المنزل" loading="lazy">
+                            </div>
+                            <div class="article-content">
+                                <div class="article-meta">
+                                    <span class="article-category safety">السلامة</span>
+                                    <span class="article-date"><i class="far fa-calendar"></i> 5 مارس 2024</span>
+                                </div>
+                                <h3><a href="article.html">دليل تأمين المنزل للرضع: 10 خطوات ضرورية</a></h3>
+                                <p class="article-excerpt">كيف تحولين منزلك إلى بيئة آمنة لطفلك مع بداية مرحلة الحبو
+                                    والحركة؟</p>
+                                <div class="article-footer">
+                                    <span class="read-time"><i class="far fa-clock"></i> 6 دقائق قراءة</span>
+                                    <a href="article.html" class="read-more">اقرأ المزيد</a>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- مقال 4 -->
+                        <article class="article-card" data-category="development">
+                            <div class="article-image">
+                                <img src="images/blog-development.jpg" alt="مراحل النمو" loading="lazy">
+                            </div>
+                            <div class="article-content">
+                                <div class="article-meta">
+                                    <span class="article-category development">النمو والتطور</span>
+                                    <span class="article-date"><i class="far fa-calendar"></i> 28 فبراير 2024</span>
+                                </div>
+                                <h3><a href="article.html">مراحل تطور الرضيع من 0 إلى 12 شهراً</a></h3>
+                                <p class="article-excerpt">تتبع تطور طفلك شهراً بشهر: المهارات الحركية، المعرفية،
+                                    الاجتماعية، ومتى يجب استشارة الطبيب.</p>
+                                <div class="article-footer">
+                                    <span class="read-time"><i class="far fa-clock"></i> 8 دقائق قراءة</span>
+                                    <a href="article.html" class="read-more">اقرأ المزيد</a>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- مقال 5 -->
+                        <article class="article-card" data-category="nutrition">
+                            <div class="article-image">
+                                <img src="images/blog-nutrition2.jpg" alt="الرضاعة الطبيعية" loading="lazy">
+                            </div>
+                            <div class="article-content">
+                                <div class="article-meta">
+                                    <span class="article-category nutrition">التغذية</span>
+                                    <span class="article-date"><i class="far fa-calendar"></i> 22 فبراير 2024</span>
+                                </div>
+                                <h3><a href="article.html">أسرار الرضاعة الناجحة: حلول للمشاكل الشائعة</a></h3>
+                                <p class="article-excerpt">تغلب على تحديات الرضاعة الطبيعية مع حلول عملية لمشاكل
+                                    الالتصاق، نقص الحليب، والألم.</p>
+                                <div class="article-footer">
+                                    <span class="read-time"><i class="far fa-clock"></i> 7 دقائق قراءة</span>
+                                    <a href="article.html" class="read-more">اقرأ المزيد</a>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- مقال 6 -->
+                        <article class="article-card" data-category="health">
+                            <div class="article-image">
+                                <img src="images/blog-health.jpg" alt="التطعيمات" loading="lazy">
+                            </div>
+                            <div class="article-content">
+                                <div class="article-meta">
+                                    <span class="article-category health">الصحة</span>
+                                    <span class="article-date"><i class="far fa-calendar"></i> 18 فبراير 2024</span>
+                                </div>
+                                <h3><a href="article.html">كل ما تريدين معرفته عن تطعيمات الرضع</a></h3>
+                                <p class="article-excerpt">دليل مفصل عن أنواع التطعيمات، مواعيدها، الآثار الجانبية،
+                                    وكيفية التعامل معها.</p>
+                                <div class="article-footer">
+                                    <span class="read-time"><i class="far fa-clock"></i> 9 دقائق قراءة</span>
+                                    <a href="article.html" class="read-more">اقرأ المزيد</a>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+
+                    <!-- ترقيم الصفحات -->
+                    <div class="pagination">
+                        <a href="#" class="page-btn active">1</a>
+                        <a href="#" class="page-btn">2</a>
+                        <a href="#" class="page-btn">3</a>
+                        <a href="#" class="page-btn">4</a>
+                        <span class="page-dots">...</span>
+                        <a href="#" class="page-btn">التالي <i class="fas fa-arrow-left"></i></a>
+                    </div>
+                </div>
+
+                <!-- الشريط الجانبي -->
+                <aside class="blog-sidebar">
+                    <!-- بحث في المدونة -->
+                    <div class="sidebar-widget">
+                        <h3><i class="fas fa-search"></i> بحث في المدونة</h3>
+                        <div class="blog-search">
+                            <input type="text" placeholder="كلمة البحث...">
+                            <button><i class="fas fa-search"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- التصنيفات -->
+                    <div class="sidebar-widget">
+                        <h3><i class="fas fa-tags"></i> التصنيفات</h3>
+                        <ul class="categories-list">
+                            <li><a href="#" data-category="nutrition">التغذية <span class="category-count">12</span></a>
+                            </li>
+                            <li><a href="#" data-category="health">الصحة <span class="category-count">15</span></a></li>
+                            <li><a href="#" data-category="care">العناية اليومية <span
+                                        class="category-count">8</span></a></li>
+                            <li><a href="#" data-category="development">النمو والتطور <span
+                                        class="category-count">10</span></a></li>
+                            <li><a href="#" data-category="safety">السلامة <span class="category-count">6</span></a>
+                            </li>
+                            <li><a href="#" data-category="tips">نصائح سريعة <span class="category-count">14</span></a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- أشهر المقالات -->
+                    <div class="sidebar-widget">
+                        <h3><i class="fas fa-fire"></i> أشهر المقالات</h3>
+                        <div class="popular-posts">
+                            <div class="popular-post">
+                                <div class="popular-post-image">
+                                    <img src="images/blog-popular1.jpg" alt="النوم الآمن" loading="lazy">
+                                </div>
+                                <div class="popular-post-content">
+                                    <h4><a href="article.html">قواعد النوم الآمن للرضع</a></h4>
+                                    <span class="post-date">10 مارس 2024</span>
+                                </div>
+                            </div>
+                            <div class="popular-post">
+                                <div class="popular-post-image">
+                                    <img src="images/blog-popular2.jpg" alt="التسنين" loading="lazy">
+                                </div>
+                                <div class="popular-post-content">
+                                    <h4><a href="article.html">كيفية تخفيف آلام التسنين</a></h4>
+                                    <span class="post-date">5 مارس 2024</span>
+                                </div>
+                            </div>
+                            <div class="popular-post">
+                                <div class="popular-post-image">
+                                    <img src="images/blog-popular3.jpg" alt="الحفاضات" loading="lazy">
+                                </div>
+                                <div class="popular-post-content">
+                                    <h4><a href="article.html">الوقاية من طفح الحفاضات</a></h4>
+                                    <span class="post-date">28 فبراير 2024</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- النشرة البريدية -->
+                    <div class="sidebar-widget newsletter-widget">
+                        <h3><i class="fas fa-envelope"></i> النشرة البريدية</h3>
+                        <p>اشترك للحصول على أحدث المقالات مباشرة في بريدك</p>
+                        <form class="sidebar-newsletter">
+                            <input type="email" placeholder="بريدك الإلكتروني" required>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-paper-plane"></i> اشتراك
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- الوسوم -->
+                    <div class="sidebar-widget">
+                        <h3><i class="fas fa-hashtag"></i> الوسوم الشائعة</h3>
+                        <div class="tags-cloud">
+                            <a href="#" class="tag">الرضاعة الطبيعية</a>
+                            <a href="#" class="tag">النوم</a>
+                            <a href="#" class="tag">التطعيمات</a>
+                            <a href="#" class="tag">المغص</a>
+                            <a href="#" class="tag">الطعام الصلب</a>
+                            <a href="#" class="tag">الاستحمام</a>
+                            <a href="#" class="tag">التسنين</a>
+                            <a href="#" class="tag">النمو</a>
+                            <a href="#" class="tag">السلامة</a>
+                            <a href="#" class="tag">الصحة</a>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم المقالات الموصى بها -->
+    <section class="recommended-articles">
+        <div class="container">
+            <h2 class="section-title">مقالات قد تعجبك</h2>
+            <div class="recommended-grid">
+                <article class="recommended-card">
+                    <div class="recommended-image">
+                        <img src="images/blog-recommend1.jpg" alt="السفر مع الرضع" loading="lazy">
+                    </div>
+                    <div class="recommended-content">
+                        <h3><a href="article.html">نصائح للسفر مع الرضع: دليل الأم الذكية</a></h3>
+                        <p>كيف تحضرين لحقيبة طفلك؟ وما أفضل أوقات السفر؟</p>
+                    </div>
+                </article>
+
+                <article class="recommended-card">
+                    <div class="recommended-image">
+                        <img src="images/blog-recommend2.jpg" alt="اللعب والتعلم" loading="lazy">
+                    </div>
+                    <div class="recommended-content">
+                        <h3><a href="article.html">ألعاب تنمية مهارات الرضع حسب العمر</a></h3>
+                        <p>أنشطة وألعاب تعزز التطور الحسي والحركي لطفلك</p>
+                    </div>
+                </article>
+
+                <article class="recommended-card">
+                    <div class="recommended-image">
+                        <img src="images/blog-recommend3.jpg" alt="الطقس البارد" loading="lazy">
+                    </div>
+                    <div class="recommended-content">
+                        <h3><a href="article.html">حماية الرضع في الطقس البارد: 7 قواعد ذهبية</a></h3>
+                        <p>كيف تحافظين على دفء طفلك وتحميه من أمراض الشتاء؟</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- تذييل الصفحة -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <!-- معلومات الموقع -->
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <i class="fas fa-baby"></i>
+                        <h3>رعاية الرضع</h3>
+                    </div>
+                    <p class="footer-description">
+                        موقع متخصص في تقديم نصائح موثوقة وبسيطة للأمهات والمربيات في رحلة رعاية الرضع.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" aria-label="فيسبوك"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="تويتر"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="انستجرام"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="يوتيوب"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <!-- روابط سريعة -->
+                <div class="footer-col">
+                    <h4>روابط سريعة</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html"><i class="fas fa-chevron-left"></i> الرئيسية</a></li>
+                        <li><a href="pages/sections.html"><i class="fas fa-chevron-left"></i> جميع الأقسام</a></li>
+                        <li><a href="pages/tools.html"><i class="fas fa-chevron-left"></i> الأدوات التفاعلية</a></li>
+                        <li><a href="blog.html"><i class="fas fa-chevron-left"></i> المدونة</a></li>
+                        <li><a href="pages/faq.html"><i class="fas fa-chevron-left"></i> الأسئلة الشائعة</a></li>
+                    </ul>
+                </div>
+
+                <!-- معلومات الاتصال -->
+                <div class="footer-col">
+                    <h4>اتصل بنا</h4>
+                    <ul class="footer-contact">
+                        <li><i class="fas fa-envelope"></i> info@raayatalarada.com</li>
+                        <li><i class="fas fa-phone"></i> +966 12 345 6789</li>
+                        <li><i class="fas fa-map-marker-alt"></i> الرياض، المملكة العربية السعودية</li>
+                    </ul>
+                </div>
+
+                <!-- النشرة البريدية -->
+                <div class="footer-col">
+                    <h4>اشترك في النشرة البريدية</h4>
+                    <p>احصلي على أحدث النصائح والمقالات مباشرة في بريدك الإلكتروني</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="بريدك الإلكتروني" required>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i> اشتراك
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2024 رعاية الرضع. جميع الحقوق محفوظة.</p>
+                <div class="footer-legal">
+                    <a href="pages/privacy.html">سياسة الخصوصية</a>
+                    <a href="pages/terms.html">شروط الاستخدام</a>
+                    <a href="pages/disclaimer.html">إخلاء المسؤولية</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- زر العودة للأعلى -->
+    <button class="back-to-top" aria-label="العودة للأعلى">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- JavaScript -->
+    <script>
+        // تفعيل تصفية المقالات
+        document.addEventListener('DOMContentLoaded', function () {
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const articleCards = document.querySelectorAll('.article-card');
+
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', function () {
+                    // إزالة النشاط من جميع الأزرار
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    // إضافة النشاط للزر المختار
+                    this.classList.add('active');
+
+                    const filterValue = this.getAttribute('data-filter');
+
+                    // تصفية المقالات
+                    articleCards.forEach(card => {
+                        if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+
+            // تفعيل زر العودة للأعلى
+            const backToTopBtn = document.querySelector('.back-to-top');
+
+            window.addEventListener('scroll', function () {
+                if (window.pageYOffset > 300) {
+                    backToTopBtn.classList.add('visible');
+                } else {
+                    backToTopBtn.classList.remove('visible');
+                }
+            });
+
+            backToTopBtn.addEventListener('click', function () {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            // تفعيل القائمة المتنقلة
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const navMenu = document.querySelector('.nav-menu');
+
+            mobileMenuBtn.addEventListener('click', function () {
+                navMenu.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+
+</html>

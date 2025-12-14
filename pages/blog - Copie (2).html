@@ -1,0 +1,1570 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أقسام موقع رعاية الرضيع</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary-color: #2575fc;
+            --secondary-color: #6a11cb;
+            --accent-color: #ffd166;
+            --light-color: #f8f9fa;
+            --dark-color: #1a2a6c;
+            --text-color: #333;
+            --text-light: #666;
+            --border-color: #e0e0e0;
+            --success-color: #28a745;
+            --info-color: #17a2b8;
+            --warning-color: #ffc107;
+            --danger-color: #dc3545;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: var(--text-color);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* تنسيقات الهيدر */
+        header {
+            background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%);
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo i {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+        }
+        
+        .logo span {
+            color: var(--accent-color);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 10px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+        
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .current-page {
+            background-color: rgba(255, 255, 255, 0.15);
+            border-bottom: 3px solid var(--accent-color);
+        }
+        
+        /* تنسيقات التنقل بين الأقسام */
+        .section-nav {
+            background-color: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            padding: 15px 0;
+            position: sticky;
+            top: 80px;
+            z-index: 999;
+            margin-bottom: 40px;
+        }
+        
+        .section-nav-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .section-nav-btn {
+            padding: 10px 20px;
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .section-nav-btn:hover {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        .section-nav-btn.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        /* تنسيقات الأقسام العامة */
+        .section {
+            padding: 60px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .section:last-child {
+            border-bottom: none;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--dark-color);
+            margin-bottom: 15px;
+        }
+        
+        .section-header p {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .section-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        /* قسم الخدمات */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .service-img {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .service-content {
+            padding: 25px;
+        }
+        
+        .service-content h3 {
+            color: var(--dark-color);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .service-content p {
+            color: var(--text-light);
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+        
+        .service-features {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+        
+        .service-features li {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .service-features i {
+            color: var(--success-color);
+        }
+        
+        .service-btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .service-btn:hover {
+            background-color: var(--dark-color);
+        }
+        
+        /* قسم المقالات */
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .article-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+        
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+        }
+        
+        .article-img {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .article-category {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: var(--accent-color);
+            color: var(--dark-color);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        
+        .article-content {
+            padding: 25px;
+        }
+        
+        .article-content h3 {
+            color: var(--dark-color);
+            margin-bottom: 10px;
+            font-size: 1.4rem;
+            line-height: 1.4;
+        }
+        
+        .article-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        
+        .article-excerpt {
+            color: var(--text-light);
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+        
+        .article-link {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .article-link:hover {
+            text-decoration: underline;
+        }
+        
+        /* قسم فريق العمل */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .team-member {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+        
+        .team-member:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+        }
+        
+        .member-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            background-size: cover;
+            background-position: center;
+            border: 5px solid var(--light-color);
+        }
+        
+        .team-member h3 {
+            color: var(--dark-color);
+            margin-bottom: 5px;
+            font-size: 1.4rem;
+        }
+        
+        .member-role {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .member-bio {
+            color: var(--text-light);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .member-social {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .member-social a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .member-social a:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        /* قسم الإحصائيات */
+        .stats-section {
+            background: linear-gradient(rgba(26, 42, 108, 0.9), rgba(37, 117, 252, 0.9)), url('https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+        
+        .stat-item {
+            padding: 30px;
+        }
+        
+        .stat-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--accent-color);
+        }
+        
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: white;
+        }
+        
+        .stat-text {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        /* قسم الأسعار */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .pricing-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .pricing-card.featured {
+            border: 3px solid var(--accent-color);
+            transform: scale(1.05);
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .pricing-card.featured:hover {
+            transform: translateY(-10px) scale(1.05);
+        }
+        
+        .pricing-badge {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: var(--accent-color);
+            color: var(--dark-color);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        .pricing-header {
+            padding: 30px;
+            text-align: center;
+            background-color: var(--light-color);
+        }
+        
+        .pricing-header h3 {
+            color: var(--dark-color);
+            margin-bottom: 10px;
+            font-size: 1.6rem;
+        }
+        
+        .pricing-price {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+        
+        .pricing-period {
+            color: var(--text-light);
+        }
+        
+        .pricing-features {
+            padding: 30px;
+            list-style: none;
+        }
+        
+        .pricing-features li {
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .pricing-features li:last-child {
+            border-bottom: none;
+        }
+        
+        .pricing-features i {
+            color: var(--success-color);
+        }
+        
+        .pricing-features .disabled {
+            color: var(--text-light);
+        }
+        
+        .pricing-features .disabled i {
+            color: var(--text-light);
+        }
+        
+        .pricing-footer {
+            padding: 0 30px 30px;
+            text-align: center;
+        }
+        
+        .pricing-btn {
+            display: inline-block;
+            width: 100%;
+            padding: 15px;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .pricing-btn:hover {
+            background-color: var(--dark-color);
+        }
+        
+        .featured .pricing-btn {
+            background-color: var(--accent-color);
+            color: var(--dark-color);
+        }
+        
+        .featured .pricing-btn:hover {
+            background-color: var(--dark-color);
+            color: white;
+        }
+        
+        /* قسم الأسئلة الشائعة */
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            background-color: white;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .faq-question {
+            padding: 20px 30px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: var(--dark-color);
+            transition: all 0.3s ease;
+        }
+        
+        .faq-question:hover {
+            background-color: rgba(37, 117, 252, 0.05);
+        }
+        
+        .faq-answer {
+            padding: 0 30px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+        
+        .faq-answer.open {
+            padding: 0 30px 30px;
+            max-height: 500px;
+        }
+        
+        .faq-toggle {
+            transition: transform 0.3s ease;
+        }
+        
+        .faq-toggle.open {
+            transform: rotate(180deg);
+        }
+        
+        /* قسم الاشتراك */
+        .newsletter-section {
+            background: linear-gradient(to right, var(--secondary-color), var(--primary-color));
+            color: white;
+            text-align: center;
+            border-radius: 15px;
+            padding: 60px 40px;
+            margin-top: 40px;
+        }
+        
+        .newsletter-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .newsletter-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .newsletter-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .newsletter-form input {
+            flex-grow: 1;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 5px 0 0 5px;
+            font-size: 1rem;
+        }
+        
+        .newsletter-form button {
+            background-color: var(--accent-color);
+            color: var(--dark-color);
+            border: none;
+            padding: 0 30px;
+            border-radius: 0 5px 5px 0;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .newsletter-form button:hover {
+            background-color: white;
+        }
+        
+        /* الفوتر */
+        footer {
+            background: linear-gradient(to right, #1a2a6c, #2a3b8f, #3a4cb3);
+            color: #fff;
+            padding: 60px 0 20px;
+            margin-top: 80px;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+        
+        .footer-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+            color: #fff;
+        }
+        
+        .footer-section h3:after {
+            content: '';
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background-color: #ffd166;
+        }
+        
+        .footer-section p {
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            color: rgba(255, 255, 255, 0.85);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.85);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+        
+        .footer-links a i {
+            margin-left: 8px;
+            font-size: 0.9rem;
+        }
+        
+        .footer-links a:hover {
+            color: #ffd166;
+            padding-right: 8px;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .contact-item i {
+            margin-left: 10px;
+            font-size: 1.2rem;
+            color: #ffd166;
+            width: 25px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background-color: #ffd166;
+            transform: translateY(-3px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+        
+        /* التجاوب مع الشاشات المختلفة */
+        @media (max-width: 992px) {
+            .section-nav-container {
+                overflow-x: auto;
+                justify-content: flex-start;
+                padding-bottom: 10px;
+            }
+            
+            .pricing-card.featured {
+                transform: scale(1);
+            }
+            
+            .pricing-card.featured:hover {
+                transform: translateY(-10px);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .section-header h2 {
+                font-size: 2rem;
+            }
+            
+            .section-header p {
+                font-size: 1.1rem;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .newsletter-form input,
+            .newsletter-form button {
+                width: 100%;
+                border-radius: 5px;
+                margin-bottom: 10px;
+            }
+        }
+        
+        /* تأثيرات الرسوم المتحركة */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .section {
+            animation: fadeIn 0.6s ease forwards;
+        }
+        
+        /* زر العودة إلى الأعلى */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            z-index: 100;
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background-color: var(--dark-color);
+            transform: translateY(-5px);
+        }
+        
+        /* تخصيص ألوان الخدمات */
+        .service-card:nth-child(1) .service-img {
+            background-color: #6a11cb;
+        }
+        
+        .service-card:nth-child(2) .service-img {
+            background-color: #2575fc;
+        }
+        
+        .service-card:nth-child(3) .service-img {
+            background-color: #2a9d8f;
+        }
+        
+        .service-card:nth-child(4) .service-img {
+            background-color: #e9c46a;
+        }
+        
+        .service-card:nth-child(5) .service-img {
+            background-color: #f4a261;
+        }
+        
+        .service-card:nth-child(6) .service-img {
+            background-color: #e76f51;
+        }
+        
+        /* تخصيص ألوان المقالات */
+        .article-card:nth-child(1) .article-img {
+            background-color: #ff9a9e;
+        }
+        
+        .article-card:nth-child(2) .article-img {
+            background-color: #a1c4fd;
+        }
+        
+        .article-card:nth-child(3) .article-img {
+            background-color: #c2e9fb;
+        }
+        
+        .article-card:nth-child(4) .article-img {
+            background-color: #d4fc79;
+        }
+        
+        /* تخصيص ألوان فريق العمل */
+        .team-member:nth-child(1) .member-img {
+            background-color: #ff9a9e;
+        }
+        
+        .team-member:nth-child(2) .member-img {
+            background-color: #a1c4fd;
+        }
+        
+        .team-member:nth-child(3) .member-img {
+            background-color: #c2e9fb;
+        }
+        
+        .team-member:nth-child(4) .member-img {
+            background-color: #d4fc79;
+        }
+    </style>
+</head>
+<body>
+    <!-- الهيدر -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-baby"></i>
+                <h1>رعاية <span>الرضيع</span></h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="current-page">الرئيسية</a></li>
+                    <li><a href="about.html">من نحن</a></li>
+                    <li><a href="services.html">خدماتنا</a></li>
+                    <li><a href="articles.html">مقالات</a></li>
+                    <li><a href="team.html">فريقنا</a></li>
+                    <li><a href="pricing.html">الأسعار</a></li>
+                    <li><a href="contact.html">اتصل بنا</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- التنقل بين الأقسام -->
+    <div class="section-nav">
+        <div class="container section-nav-container">
+            <button class="section-nav-btn active" data-target="services">
+                <i class="fas fa-hands-helping"></i> خدماتنا
+            </button>
+            <button class="section-nav-btn" data-target="articles">
+                <i class="fas fa-newspaper"></i> المقالات
+            </button>
+            <button class="section-nav-btn" data-target="team">
+                <i class="fas fa-users"></i> فريقنا
+            </button>
+            <button class="section-nav-btn" data-target="stats">
+                <i class="fas fa-chart-line"></i> إحصائيات
+            </button>
+            <button class="section-nav-btn" data-target="pricing">
+                <i class="fas fa-tags"></i> الأسعار
+            </button>
+            <button class="section-nav-btn" data-target="faq">
+                <i class="fas fa-question-circle"></i> الأسئلة الشائعة
+            </button>
+            <button class="section-nav-btn" data-target="newsletter">
+                <i class="fas fa-envelope"></i> الاشتراك
+            </button>
+        </div>
+    </div>
+
+    <!-- الأقسام -->
+    <div class="container">
+        <!-- قسم الخدمات -->
+        <section id="services" class="section active-section">
+            <div class="section-header">
+                <div class="section-icon">
+                    <i class="fas fa-hands-helping"></i>
+                </div>
+                <h2>خدماتنا المتكاملة</h2>
+                <p>نقدم مجموعة شاملة من الخدمات المصممة خصيصاً لتلبية احتياجات رعاية الرضيع والأم معاً</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-img" style="background-color: #6a11cb;"></div>
+                    <div class="service-content">
+                        <h3>استشارات الرضاعة الطبيعية</h3>
+                        <p>استشارات متخصصة مع أخصائيات الرضاعة المعتمدات لتقديم الدعم اللازم وتذليل التحديات التي تواجهها الأمهات الجدد.</p>
+                        <ul class="service-features">
+                            <li><i class="fas fa-check"></i> جلسات استشارية شخصية أو عبر الإنترنت</li>
+                            <li><i class="fas fa-check"></i> مساعدة في حل مشاكل الرضاعة</li>
+                            <li><i class="fas fa-check"></i> نصائح للتغذية السليمة للأم المرضعة</li>
+                        </ul>
+                        <a href="#" class="service-btn">احجز استشارة</a>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-img" style="background-color: #2575fc;"></div>
+                    <div class="service-content">
+                        <h3>رعاية ما بعد الولادة</h3>
+                        <p>رعاية متكاملة للأم والطفل في الأيام الأولى بعد الولادة لتسهيل فترة النفاس وتقديم الدعم النفسي والجسدي.</p>
+                        <ul class="service-features">
+                            <li><i class="fas fa-check"></i> رعاية منزلية متخصصة</li>
+                            <li><i class="fas fa-check"></i> متابعة صحية للأم والطفل</li>
+                            <li><i class="fas fa-check"></i> نصائح للتعافي بعد الولادة</li>
+                        </ul>
+                        <a href="#" class="service-btn">اطلب الخدمة</a>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-img" style="background-color: #2a9d8f;"></div>
+                    <div class="service-content">
+                        <h3>دورات تدريبية للأمهات</h3>
+                        <p>برامج تدريبية شاملة تغطي كافة جوانب رعاية الرضيع، مقدمة من مختصين في طب الأطفال والرعاية الأسرية.</p>
+                        <ul class="service-features">
+                            <li><i class="fas fa-check"></i> دورات في العناية بالمولود</li>
+                            <li><i class="fas fa-check"></i> تدريب على الإسعافات الأولية للأطفال</li>
+                            <li><i class="fas fa-check"></i> ورش عمل تفاعلية</li>
+                        </ul>
+                        <a href="#" class="service-btn">سجل الآن</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- قسم المقالات -->
+        <section id="articles" class="section">
+            <div class="section-header">
+                <div class="section-icon">
+                    <i class="fas fa-newspaper"></i>
+                </div>
+                <h2>أحدث المقالات والنصائح</h2>
+                <p>مكتبة معرفية شاملة تضم أحدث المقالات والنصائح المبنية على أدلة علمية ودراسات حديثة في مجال رعاية الرضيع</p>
+            </div>
+            
+            <div class="articles-grid">
+                <div class="article-card">
+                    <div class="article-img" style="background-color: #ff9a9e;">
+                        <div class="article-category">الرضاعة</div>
+                    </div>
+                    <div class="article-content">
+                        <h3>دليل شامل للرضاعة الطبيعية في الأشهر الأولى</h3>
+                        <div class="article-meta">
+                            <span><i class="far fa-calendar"></i> 15 أكتوبر 2023</span>
+                            <span><i class="far fa-clock"></i> 5 دقائق قراءة</span>
+                        </div>
+                        <p class="article-excerpt">كل ما تحتاجين معرفته عن الرضاعة الطبيعية في الأشهر الأولى من عمر طفلك، من الوضعيات الصحيحة إلى حل المشاكل الشائعة.</p>
+                        <a href="#" class="article-link">اقرأ المزيد <i class="fas fa-arrow-left"></i></a>
+                    </div>
+                </div>
+                
+                <div class="article-card">
+                    <div class="article-img" style="background-color: #a1c4fd;">
+                        <div class="article-category">النوم</div>
+                    </div>
+                    <div class="article-content">
+                        <h3>أسرار نوم الرضيع: خطوة بخطوة نحو ليلة هادئة</h3>
+                        <div class="article-meta">
+                            <span><i class="far fa-calendar"></i> 10 أكتوبر 2023</span>
+                            <span><i class="far fa-clock"></i> 7 دقائق قراءة</span>
+                        </div>
+                        <p class="article-excerpt">استراتيجيات عملية لتعليم طفلك النوم طوال الليل، مع نصائح لإنشاء روتين نوم صحي وآمن.</p>
+                        <a href="#" class="article-link">اقرأ المزيد <i class="fas fa-arrow-left"></i></a>
+                    </div>
+                </div>
+                
+                <div class="article-card">
+                    <div class="article-img" style="background-color: #c2e9fb;">
+                        <div class="article-category">التغذية</div>
+                    </div>
+                    <div class="article-content">
+                        <h3>متى وكيف تبدأين بإدخال الأطعمة الصلبة لطفلك؟</h3>
+                        <div class="article-meta">
+                            <span><i class="far fa-calendar"></i> 5 أكتوبر 2023</span>
+                            <span><i class="far fa-clock"></i> 6 دقائق قراءة</span>
+                        </div>
+                        <p class="article-excerpt">دليل تفصيلي لإدخال الأطعمة الصلبة بأمان، مع قائمة بالأطعمة المناسبة لكل مرحلة عمرية.</p>
+                        <a href="#" class="article-link">اقرأ المزيد <i class="fas fa-arrow-left"></i></a>
+                    </div>
+                </div>
+                
+                <div class="article-card">
+                    <div class="article-img" style="background-color: #d4fc79;">
+                        <div class="article-category">الصحة</div>
+                    </div>
+                    <div class="article-content">
+                        <h3>اللقاحات الأساسية للرضع: جدول مواعيد كامل</h3>
+                        <div class="article-meta">
+                            <span><i class="far fa-calendar"></i> 1 أكتوبر 2023</span>
+                            <span><i class="far fa-clock"></i> 8 دقائق قراءة</span>
+                        </div>
+                        <p class="article-excerpt">كل ما تريدين معرفته عن لقاحات الرضع، من المواعيد إلى الآثار الجانبية وكيفية التعامل معها.</p>
+                        <a href="#" class="article-link">اقرأ المزيد <i class="fas fa-arrow-left"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- قسم فريق العمل -->
+        <section id="team" class="section">
+            <div class="section-header">
+                <div class="section-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h2>فريقنا المتخصص</h2>
+                <p>نخبة من الأخصائيين والخبراء في مجال رعاية الرضع وصحة الأم والطفل، يعملون معاً لتقديم أفضل رعاية ممكنة</p>
+            </div>
+            
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="member-img" style="background-color: #ff9a9e;"></div>
+                    <h3>د. سارة أحمد</h3>
+                    <div class="member-role">استشارية الرضاعة الطبيعية</div>
+                    <p class="member-bio">خبيرة معتمدة في الرضاعة الطبيعية مع أكثر من 10 سنوات خبرة. حاصلة على شهادات دولية في استشارات الرضاعة.</p>
+                    <div class="member-social">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-img" style="background-color: #a1c4fd;"></div>
+                    <h3>د. محمد الخالد</h3>
+                    <div class="member-role">طبيب أطفال</div>
+                    <p class="member-bio">أخصائي طب الأطفال مع خبرة 15 عاماً في مستشفيات الأطفال. متخصص في حديثي الولادة والرضع.</p>
+                    <div class="member-social">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-img" style="background-color: #c2e9fb;"></div>
+                    <h3>أ. فاطمة السعيد</h3>
+                    <div class="member-role">أخصائية تغذية الرضع</div>
+                    <p class="member-bio">خبيرة تغذية معتمدة متخصصة في تغذية الرضع والأطفال. صاحبة مدونة شهيرة عن تغذية الأطفال.</p>
+                    <div class="member-social">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-img" style="background-color: #d4fc79;"></div>
+                    <h3>أ. منى القحطاني</h3>
+                    <div class="member-role">ممرضة رعاية ما بعد الولادة</div>
+                    <p class="member-bio">ممرضة معتمدة في رعاية الأمهات بعد الولادة مع خبرة 8 سنوات في الرعاية المنزلية المتخصصة.</p>
+                    <div class="member-social">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- قسم الإحصائيات -->
+        <section id="stats" class="section stats-section">
+            <div class="section-header">
+                <div class="section-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h2>أرقامنا تتحدث عنا</h2>
+                <p>نفخر بخدمة آلاف العائلات وتقديم الدعم اللازم لهم في رحلة رعاية الرضيع</p>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <i class="fas fa-baby"></i>
+                    </div>
+                    <div class="stat-number">5,000+</div>
+                    <div class="stat-text">رضيع تمت رعايتهم</div>
+                </div>
+                
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                    <div class="stat-number">25+</div>
+                    <div class="stat-text">خبير متخصص</div>
+                </div>
+                
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="stat-number">120+</div>
+                    <div class="stat-text">دورة تدريبية</div>
+                </div>
+                
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <i class="fas fa-smile"></i>
+                    </div>
+                    <div class="stat-number">98%</div>
+                    <div class="stat-text">رضا العملاء</div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- قسم الأسعار -->
+        <section id="pricing" class="section">
+            <div class="section-header">
+                <div class="section-icon">
+                    <i class="fas fa-tags"></i>
+                </div>
+                <h2>باقات خدماتنا</h2>
+                <p>خطط أسعار مرنة تناسب جميع الاحتياجات، مع ضمان جودة الخدمة والرعاية المتكاملة</p>
+            </div>
+            
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>الباقة الأساسية</h3>
+                        <div class="pricing-price">199 <span>ريال</span></div>
+                        <div class="pricing-period">شهرياً</div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> استشارتان شهرياً عبر الإنترنت</li>
+                        <li><i class="fas fa-check"></i> الوصول إلى مكتبة المقالات</li>
+                        <li><i class="fas fa-check"></i> نصائح أسبوعية عبر البريد الإلكتروني</li>
+                        <li><i class="fas fa-check"></i> دورة أساسيات رعاية الرضيع</li>
+                        <li class="disabled"><i class="fas fa-times"></i> استشارات هاتفية عاجلة</li>
+                        <li class="disabled"><i class="fas fa-times"></i> زيارات منزلية</li>
+                    </ul>
+                    <div class="pricing-footer">
+                        <a href="#" class="pricing-btn">اختر الباقة</a>
+                    </div>
+                </div>
+                
+                <div class="pricing-card featured">
+                    <div class="pricing-badge">الأكثر شعبية</div>
+                    <div class="pricing-header">
+                        <h3>الباقة المتكاملة</h3>
+                        <div class="pricing-price">399 <span>ريال</span></div>
+                        <div class="pricing-period">شهرياً</div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> 4 استشارات شهرياً عبر الإنترنت</li>
+                        <li><i class="fas fa-check"></i> استشارتان هاتفيتان عاجلتان</li>
+                        <li><i class="fas fa-check"></i> جميع الدورات التدريبية</li>
+                        <li><i class="fas fa-check"></i> نصائح يومية عبر التطبيق</li>
+                        <li><i class="fas fa-check"></i> زيارة منزلية واحدة شهرياً</li>
+                        <li><i class="fas fa-check"></i> خطة تغذية مخصصة</li>
+                    </ul>
+                    <div class="pricing-footer">
+                        <a href="#" class="pricing-btn">اختر الباقة</a>
+                    </div>
+                </div>
+                
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>الباقة المميزة</h3>
+                        <div class="pricing-price">699 <span>ريال</span></div>
+                        <div class="pricing-period">شهرياً</div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> استشارات غير محدودة</li>
+                        <li><i class="fas fa-check"></i> زيارات منزلية أسبوعية</li>
+                        <li><i class="fas fa-check"></i> مراقبة نمو الطفل وتقييم شهري</li>
+                        <li><i class="fas fa-check"></i> دعم على مدار الساعة</li>
+                        <li><i class="fas fa-check"></i> خطة رعاية شاملة مخصصة</li>
+                        <li><i class="fas fa-check"></i> أولوية في الحجز والرد</li>
+                    </ul>
+                    <div class="pricing-footer">
+                        <a href="#" class="pricing-btn">اختر الباقة</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- قسم الأسئلة الشائعة -->
+        <section id="faq" class="section">
+            <div class="section-header">
+                <div class="section-icon">
+                    <i class="fas fa-question-circle"></i>
+                </div>
+                <h2>الأسئلة الشائعة</h2>
+                <p>إجابات على أكثر الأسئلة التي تردنا من الآباء والأمهات حول رعاية الرضيع وخدماتنا</p>
+            </div>
+            
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>كم من الوقت تستغرق الاستشارة عبر الإنترنت؟</span>
+                        <i class="fas fa-chevron-down faq-toggle"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>تستغرق الاستشارة العادية عبر الإنترنت حوالي 45-60 دقيقة. يمكن تخصيص مدة الجلسة حسب احتياجاتك، مع إمكانية تمديد الجلسة إذا تطلب الأمر.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>هل تقدمون استشارات طارئة خارج أوقات العمل؟</span>
+                        <i class="fas fa-chevron-down faq-toggle"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>نعم، في الباقات المتكاملة والمميزة نقدم خدمة الاستشارات الطارئة على مدار الساعة عبر الهاتف للقضايا العاجلة التي لا تتحمل الانتظار.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>ما هي مؤهلات فريق العمل لديكم؟</span>
+                        <i class="fas fa-chevron-down faq-toggle"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>جميع أعضاء فريقنا من المؤهلين والمعتمدين في تخصصاتهم، مع خبرة لا تقل عن 5 سنوات في مجال رعاية الرضع. نحرص على تدريب فريقنا بشكل مستمر لتقديم أحدث المعلومات والخدمات.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>هل يمكنني تغيير الباقة أو إلغاء الاشتراك في أي وقت؟</span>
+                        <i class="fas fa-chevron-down faq-toggle"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>نعم، يمكنك تغيير الباقة أو إلغاء الاشتراك في أي وقت دون أي رسوم إضافية. نحن نؤمن بضرورة تقديم مرونة كاملة لعملائنا.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>هل تقدمون خدمات في جميع مناطق المملكة؟</span>
+                        <i class="fas fa-chevron-down faq-toggle"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>نقدم خدماتنا عبر الإنترنت في جميع أنحاء المملكة والعالم العربي. أما الخدمات المنزلية فهي متاحة حالياً في الرياض وجدة والدمام، ونعمل على توسيع نطاقها لتشمل المزيد من المدن.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- قسم الاشتراك -->
+        <section id="newsletter" class="section">
+            <div class="newsletter-section">
+                <div class="newsletter-content">
+                    <h2>انضم إلى مجتمع رعاية الرضيع</h2>
+                    <p>اشترك في نشرتنا البريدية لتصلك أحدث المقالات والنصائح والعروض الخاصة. كن أول من يعرف عن دوراتنا الجديدة وورش العمل القادمة.</p>
+                    
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="أدخل بريدك الإلكتروني" required>
+                        <button type="submit">اشتراك</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- الفوتر -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-section">
+                    <h3>عن رعاية الرضيع</h3>
+                    <p>نحن موقع متخصص في تقديم النصائح والخبرات حول رعاية الرضع منذ الولادة حتى سن الثالثة. نهدف إلى دعم الآباء والأمهات بتقديم معلومات موثوقة وعملية.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>روابط سريعة</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html"><i class="fas fa-chevron-left"></i> الصفحة الرئيسية</a></li>
+                        <li><a href="about.html"><i class="fas fa-chevron-left"></i> من نحن</a></li>
+                        <li><a href="services.html"><i class="fas fa-chevron-left"></i> خدماتنا</a></li>
+                        <li><a href="articles.html"><i class="fas fa-chevron-left"></i> المقالات</a></li>
+                        <li><a href="contact.html"><i class="fas fa-chevron-left"></i> اتصل بنا</a></li>
+                        <li><a href="privacy.html"><i class="fas fa-chevron-left"></i> سياسة الخصوصية</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>معلومات الاتصال</h3>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>شارع الأمومة والطفولة، الرياض، المملكة العربية السعودية</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+966 11 123 4567</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>info@babycare.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-clock"></i>
+                            <span>الأحد - الخميس: 8 صباحاً - 8 مساءً</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>النشرة البريدية</h3>
+                    <p>اشترك في نشرتنا البريدية لتصلك أحدث النصائح والمقالات حول رعاية الرضع.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="أدخل بريدك الإلكتروني" required>
+                        <button type="submit" class="btn">اشتراك</button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p class="copyright">© 2023 موقع رعاية الرضيع. جميع الحقوق محفوظة.</p>
+                <p>تم التطوير بروح الأبوة والأمومة ❤️</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- زر العودة إلى الأعلى -->
+    <a href="#" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // التنقل بين الأقسام
+            const sectionNavBtns = document.querySelectorAll('.section-nav-btn');
+            const sections = document.querySelectorAll('.section');
+            
+            sectionNavBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const targetId = this.getAttribute('data-target');
+                    
+                    // إزالة النشاط من جميع الأزرار
+                    sectionNavBtns.forEach(b => b.classList.remove('active'));
+                    
+                    // إضافة النشاط للزر المحدد
+                    this.classList.add('active');
+                    
+                    // إخفاء جميع الأقسام
+                    sections.forEach(section => {
+                        section.classList.remove('active-section');
+                    });
+                    
+                    // إظهار القسم المحدد
+                    const targetSection = document.getElementById(targetId);
+                    if (targetSection) {
+                        targetSection.classList.add('active-section');
+                        
+                        // التمرير إلى القسم المحدد
+                        window.scrollTo({
+                            top: targetSection.offsetTop - 140,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // تفعيل الأسئلة الشائعة
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', function() {
+                    const answer = this.nextElementSibling;
+                    const toggleIcon = this.querySelector('.faq-toggle');
+                    
+                    // إغلاق جميع الإجابات الأخرى
+                    faqQuestions.forEach(q => {
+                        if (q !== this) {
+                            q.nextElementSibling.classList.remove('open');
+                            q.querySelector('.faq-toggle').classList.remove('open');
+                        }
+                    });
+                    
+                    // فتح/إغلاق الإجابة الحالية
+                    answer.classList.toggle('open');
+                    toggleIcon.classList.toggle('open');
+                });
+            });
+            
+            // زر العودة إلى الأعلى
+            const backToTopBtn = document.querySelector('.back-to-top');
+            
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 300) {
+                    backToTopBtn.classList.add('visible');
+                } else {
+                    backToTopBtn.classList.remove('visible');
+                }
+            });
+            
+            backToTopBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // محاكاة إرسال النموذج
+            const newsletterForms = document.querySelectorAll('.newsletter-form');
+            
+            newsletterForms.forEach(form => {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const emailInput = this.querySelector('input[type="email"]');
+                    alert(`شكراً على اشتراكك! سيصلك جديدنا على ${emailInput.value}`);
+                    emailInput.value = '';
+                });
+            });
+            
+            // تعيين القسم النشط الأول
+            document.querySelector('.section-nav-btn.active').click();
+            
+            // تفعيل القسم عند التمرير إليه
+            const observerOptions = {
+                root: null,
+                rootMargin: '-100px 0px -100px 0px',
+                threshold: 0.1
+            };
+            
+            const sectionObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const sectionId = entry.target.id;
+                        sectionNavBtns.forEach(btn => {
+                            btn.classList.remove('active');
+                            if (btn.getAttribute('data-target') === sectionId) {
+                                btn.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }, observerOptions);
+            
+            sections.forEach(section => {
+                sectionObserver.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>

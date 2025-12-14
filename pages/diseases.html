@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="الأمراض الشائعة للرضع والأطفال - الأعراض والعلاج ومتى تزورين الطبيب">
+    <title>الأمراض الشائعة | رعاية الرضع</title>
+
+    <!-- الخطوط العربية -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&family=Tajawal:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+
+    <!-- الأيقونات -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- الأنماط -->
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="../css/diseases.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+</head>
+
+<body>
+    <!-- شريط التنقل -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <!-- الشعار -->
+            <a href="../index.html" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-baby"></i>
+                </div>
+                <div class="logo-text">
+                    <h1>رعاية الرضع</h1>
+                    <p>دليل الأم الحديثة</p>
+                </div>
+            </a>
+
+            <!-- قائمة الهاتف المحمول -->
+            <button class="mobile-menu-btn" aria-label="فتح القائمة">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <!-- القائمة الرئيسية -->
+            <ul class="nav-menu">
+                <li><a href="../index.html"><i class="fas fa-home"></i> الرئيسية</a></li>
+                <li class="dropdown">
+                    <a href="#"><i class="fas fa-th-large"></i> الأقسام <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="crying.html"><i class="fas fa-baby-cry"></i> فهم بكاء الرضيع</a></li>
+                        <li><a href="sleep.html"><i class="fas fa-bed"></i> النوم الآمن</a></li>
+                        <li><a href="diapers.html"><i class="fas fa-baby"></i> العناية بالحفاضات</a></li>
+                        <li><a href="digestive.html"><i class="fas fa-stomach"></i> صحة الجهاز الهضمي</a></li>
+                        <li><a href="nutrition.html"><i class="fas fa-utensils"></i> التغذية</a></li>
+                        <li><a href="bath.html"><i class="fas fa-bath"></i> وقت الاستحمام</a></li>
+                        <li><a href="vaccine.html"><i class="fas fa-syringe"></i> جدول التلقيح</a></li>
+                        <li><a href="growth.html"><i class="fas fa-chart-line"></i> مخطط النمو</a></li>
+                        <li><a href="diseases.html" class="active"><i class="fas fa-heartbeat"></i> الأمراض الشائعة</a>
+                        </li>
+                        <li><a href="tips.html"><i class="fas fa-lightbulb"></i> نصائح عامة</a></li>
+                    </ul>
+                </li>
+                <li><a href="tools.html"><i class="fas fa-tools"></i> الأدوات التفاعلية</a></li>
+                <li><a href="blog.html"><i class="fas fa-blog"></i> المدونة</a></li>
+                <li><a href="contact.html"><i class="fas fa-envelope"></i> اتصل بنا</a></li>
+            </ul>
+
+            <!-- بحث -->
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="ابحث عن نصائح...">
+                <button class="search-btn"><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- رأس الصفحة -->
+    <section class="page-header diseases-header">
+        <div class="container">
+            <div class="header-content">
+                <h1><i class="fas fa-heartbeat"></i> الأمراض الشائعة</h1>
+                <p>دليل شامل للأمراض الشائعة لدى الرضع: الأعراض، العلاج، ومتى تزورين الطبيب</p>
+                <div class="breadcrumb">
+                    <a href="../index.html">الرئيسية</a> / <a href="diseases.html">الأمراض الشائعة</a>
+                </div>
+            </div>
+            <div class="header-image">
+                <img src="../images/diseases-header.svg" alt="طفل مريض يحتاج للعناية" loading="lazy">
+            </div>
+        </div>
+    </section>
+
+    <!-- المحتوى الرئيسي -->
+    <main class="diseases-page">
+        <div class="container">
+            <!-- قسم الاستكشاف السريع -->
+            <section class="quick-explore">
+                <div class="section-card">
+                    <h2><i class="fas fa-search"></i> استكشف الأمراض الشائعة</h2>
+                    <p>اختر مرضاً للتعرف على أعراضه وطرق علاجه</p>
+
+                    <div class="disease-search">
+                        <input type="text" id="disease-search" placeholder="ابحث عن مرض...">
+                        <button class="search-btn"><i class="fas fa-search"></i></button>
+                    </div>
+
+                    <div class="disease-tags">
+                        <button class="disease-tag active" data-disease="fever">الحمى</button>
+                        <button class="disease-tag" data-disease="cold">نزلات البرد</button>
+                        <button class="disease-tag" data-disease="cough">الكحة</button>
+                        <button class="disease-tag" data-disease="diarrhea">الإسهال</button>
+                        <button class="disease-tag" data-disease="constipation">الإمساك</button>
+                        <button class="disease-tag" data-disease="rash">الطفح الجلدي</button>
+                        <button class="disease-tag" data-disease="ear-infection">التهاب الأذن</button>
+                        <button class="disease-tag" data-disease="eye-infection">التهاب العين</button>
+                        <button class="disease-tag" data-disease="vomiting">التقيؤ</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- قسم تفاصيل الأمراض -->
+            <section class="disease-details">
+                <div class="disease-content active" id="fever-content">
+                    <div class="disease-header">
+                        <h2><i class="fas fa-thermometer-half"></i> الحمى عند الرضع</h2>
+                        <span class="disease-prevalence">شائع جداً</span>
+                    </div>
+
+                    <div class="disease-info">
+                        <div class="info-section">
+                            <h3><i class="fas fa-info-circle"></i> ما هي الحمى؟</h3>
+                            <p>الحمى هي ارتفاع درجة حرارة الجسم فوق المعدل الطبيعي (37.5°م فموياً أو 38°م شرجياً). تعتبر
+                                الحمى رد فعل طبيعي للجسم لمكافحة العدوى، وهي ليست مرضاً بحد ذاتها بل عرضاً لمرض ما.</p>
+                        </div>
+
+                        <div class="info-grid">
+                            <div class="info-card symptoms">
+                                <h3><i class="fas fa-exclamation-triangle"></i> الأعراض</h3>
+                                <ul>
+                                    <li>ارتفاع درجة الحرارة فوق 38°م (شرجياً)</li>
+                                    <li>الخمول والنعاس</li>
+                                    <li>البكاء المستمر</li>
+                                    <li>قلة الشهية للرضاعة</li>
+                                    <li>تورد الوجه واحمرار الخدين</li>
+                                    <li>التعرق أو الشعور بالبرد</li>
+                                </ul>
+                            </div>
+
+                            <div class="info-card treatment">
+                                <h3><i class="fas fa-medkit"></i> العلاج المنزلي</h3>
+                                <ul>
+                                    <li>خافضات الحرارة المناسبة للعمر (باراسيتامول أو إيبوبروفين)</li>
+                                    <li>الكمادات الفاترة (ليست الباردة) على الجبهة والإبطين</li>
+                                    <li>الراحة وتقليل النشاط</li>
+                                    <li>الإكثار من السوائل والرضاعة</li>
+                                    <li>الملابس الخفيفة وعدم التغطية الزائدة</li>
+                                    <li>تهوية الغرفة والحفاظ على درجة حرارة معتدلة</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="info-section when-to-see-doctor">
+                            <h3><i class="fas fa-stethoscope"></i> متى تزورين الطبيب؟</h3>
+                            <div class="warning-levels">
+                                <div class="warning-level urgent">
+                                    <h4><i class="fas fa-ambulance"></i> طوارئ (اذهبي للمستشفى فوراً)</h4>
+                                    <ul>
+                                        <li>إذا كان عمر الطفل أقل من 3 أشهر ودرجة حرارته 38°م أو أكثر</li>
+                                        <li>إذا ارتفعت الحرارة فوق 40°م لأي عمر</li>
+                                        <li>إذا كان الطفل يعاني من تصلب في الرقبة</li>
+                                        <li>إذا ظهر طفح جلدي لا يختفي عند الضغط عليه</li>
+                                        <li>إذا كان الطفل يعاني من صعوبة في التنفس</li>
+                                    </ul>
+                                </div>
+
+                                <div class="warning-level soon">
+                                    <h4><i class="fas fa-clock"></i> قريباً (خلال 24 ساعة)</h4>
+                                    <ul>
+                                        <li>إذا استمرت الحمى أكثر من 48 ساعة لدى الرضع أقل من سنتين</li>
+                                        <li>إذا استمرت الحمى أكثر من 72 ساعة لدى الأطفال أكبر من سنتين</li>
+                                        <li>إذا كان الطفل يعاني من أعراض أخرى مثل ألم الأذن أو الحلق</li>
+                                        <li>إذا كان الطفل يعاني من قلة التبول (أقل من 4 حفاضات مبللة في 24 ساعة)</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- محتوى نزلات البرد -->
+                <div class="disease-content" id="cold-content">
+                    <div class="disease-header">
+                        <h2><i class="fas fa-wind"></i> نزلات البرد عند الرضع</h2>
+                        <span class="disease-prevalence">شائع جداً</span>
+                    </div>
+
+                    <div class="disease-info">
+                        <div class="info-section">
+                            <h3><i class="fas fa-info-circle"></i> ما هي نزلة البرد؟</h3>
+                            <p>نزلة البرد هي عدوى فيروسية تصيب الجهاز التنفسي العلوي. يعاني الرضع من 6-8 نزلات برد في
+                                السنة الأولى عادةً. تستمر الأعراض من 7 إلى 14 يوم.</p>
+                        </div>
+
+                        <div class="info-grid">
+                            <div class="info-card symptoms">
+                                <h3><i class="fas fa-exclamation-triangle"></i> الأعراض</h3>
+                                <ul>
+                                    <li>سيلان الأنف (إفرازات شفافة ثم صفراء أو خضراء)</li>
+                                    <li>انسداد الأنف وصعوبة التنفس</li>
+                                    <li>العطس والسعال</li>
+                                    <li>ارتفاع طفيف في درجة الحرارة</li>
+                                    <li>قلة الشهية وصعوبة الرضاعة</li>
+                                    <li>البكاء والانزعاج</li>
+                                    <li>صعوبة النوم بسبب احتقان الأنف</li>
+                                </ul>
+                            </div>
+
+                            <div class="info-card treatment">
+                                <h3><i class="fas fa-medkit"></i> العلاج المنزلي</h3>
+                                <ul>
+                                    <li>استخدام محلول ملحي للأنف لتخفيف الاحتقان</li>
+                                    <li>شفط المخاط بلطف باستخدام شفاط الأنف</li>
+                                    <li>ترطيب الغرفة باستخدام مرطب الهواء</li>
+                                    <li>رفع رأس الطفل قليلاً أثناء النوم</li>
+                                    <li>الإكثار من السوائل والرضاعة</li>
+                                    <li>الراحة والنوم الكافي</li>
+                                    <li>تجنب التدخين بالقرب من الطفل</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="info-section when-to-see-doctor">
+                            <h3><i class="fas fa-stethoscope"></i> متى تزورين الطبيب؟</h3>
+                            <div class="warning-levels">
+                                <div class="warning-level urgent">
+                                    <h4><i class="fas fa-ambulance"></i> طوارئ (اذهبي للمستشفى فوراً)</h4>
+                                    <ul>
+                                        <li>إذا كان عمر الطفل أقل من 3 أشهر ودرجة حرارته 38°م أو أكثر</li>
+                                        <li>إذا كان الطفل يعاني من صعوبة شديدة في التنفس</li>
+                                        <li>إذا تحولت شفتا الطفل أو أظافره إلى اللون الأزرق</li>
+                                        <li>إذا كان الطفل يرفض الرضاعة تماماً</li>
+                                    </ul>
+                                </div>
+
+                                <div class="warning-level soon">
+                                    <h4><i class="fas fa-clock"></i> قريباً (خلال 24 ساعة)</h4>
+                                    <ul>
+                                        <li>إذا استمرت الأعراض أكثر من 10 أيام</li>
+                                        <li>إذا ازداد السعال سوءاً بعد 5 أيام</li>
+                                        <li>إذا كانت حرارة الطفل مرتفعة لأكثر من 3 أيام</li>
+                                        <li>إذا ظهرت إفرازات سميكة صفراء أو خضراء من العين</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- محتوى الكحة -->
+                <div class="disease-content" id="cough-content">
+                    <div class="disease-header">
+                        <h2><i class="fas fa-lungs"></i> الكحة عند الرضع</h2>
+                        <span class="disease-prevalence">شائع جداً</span>
+                    </div>
+
+                    <div class="disease-info">
+                        <div class="info-section">
+                            <h3><i class="fas fa-info-circle"></i> ما هي الكحة؟</h3>
+                            <p>الكحة هي رد فعل طبيعي لتنظيف المجاري التنفسية من المخاط والمواد المهيجة. تختلف أنواع
+                                الكحة حسب السبب، وقد تكون جافة أو رطبة (مصحوبة بالبلغم).</p>
+                        </div>
+
+                        <div class="info-grid">
+                            <div class="info-card symptoms">
+                                <h3><i class="fas fa-exclamation-triangle"></i> أنواع الكحة والأعراض</h3>
+                                <ul>
+                                    <li><strong>الكحة الجافة:</strong> عادةً بسبب التهيج أو بداية نزلة برد</li>
+                                    <li><strong>الكحة الرطبة:</strong> مصحوبة ببلغم، تشير لعدوى فيروسية أو بكتيرية</li>
+                                    <li><strong>كحة النباح:</strong> صوت يشبه النباح، قد تشير للخانوق</li>
+                                    <li><strong>الكحة الديكية:</strong> نوبات سعال متلاحقة تليها شهيق عميق</li>
+                                    <li><strong>الكحة الليلية:</strong> تزداد ليلاً، قد تشير للربو أو ارتجاع المريء</li>
+                                </ul>
+                            </div>
+
+                            <div class="info-card treatment">
+                                <h3><i class="fas fa-medkit"></i> العلاج المنزلي</h3>
+                                <ul>
+                                    <li>العسل (للأطفال فوق سنة واحدة فقط)</li>
+                                    <li>الراحة والنوم مع رفع الرأس قليلاً</li>
+                                    <li>الترطيب الجوي باستخدام مرطب الهواء</li>
+                                    <li>الإكثار من السوائل الدافئة المناسبة للعمر</li>
+                                    <li>التنفس في حمام مليء بالبخار الدافئ</li>
+                                    <li>تدليك صدر الطفل بزيت الزيتون الدافئ (للأطفال فوق 6 أشهر)</li>
+                                    <li>تجنب المهيجات مثل الدخان والعطور</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="info-section when-to-see-doctor">
+                            <h3><i class="fas fa-stethoscope"></i> متى تزورين الطبيب؟</h3>
+                            <div class="warning-levels">
+                                <div class="warning-level urgent">
+                                    <h4><i class="fas fa-ambulance"></i> طوارئ (اذهبي للمستشفى فوراً)</h4>
+                                    <ul>
+                                        <li>إذا كان الطفل يعاني من صعوبة في التنفس</li>
+                                        <li>إذا تحولت شفتا الطفل أو أظافره إلى اللون الأزرق</li>
+                                        <li>إذا كان صوت الكحة يشبه النباح مع صعوبة في التنفس</li>
+                                        <li>إذا توقف الطفل عن التنفس حتى لو لثوانٍ</li>
+                                    </ul>
+                                </div>
+
+                                <div class="warning-level soon">
+                                    <h4><i class="fas fa-clock"></i> قريباً (خلال 24 ساعة)</h4>
+                                    <ul>
+                                        <li>إذا استمرت الكحة أكثر من أسبوع</li>
+                                        <li>إذا ارتفعت حرارة الطفل مع الكحة</li>
+                                        <li>إذا كان الطفل يعاني من ألم في الصدر مع الكحة</li>
+                                        <li>إذا كان الطفل يتقيأ بسبب شدة الكحة</li>
+                                        <li>إذا سمعت صوت صفير أثناء التنفس</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- محتوى الإسهال -->
+                <div class="disease-content" id="diarrhea-content">
+                    <div class="disease-header">
+                        <h2><i class="fas fa-toilet"></i> الإسهال عند الرضع</h2>
+                        <span class="disease-prevalence">شائع</span>
+                    </div>
+
+                    <div class="disease-info">
+                        <div class="info-section">
+                            <h3><i class="fas fa-info-circle"></i> ما هو الإسهال؟</h3>
+                            <p>الإسهال هو براز رخو أو مائي يحدث أكثر من المعتاد. قد يكون حاداً (يستمر أياماً قليلة) أو
+                                مزمناً (يستمر أسابيع). يعد الإسهال خطيراً عند الرضع لأنه قد يسبب الجفاف بسرعة.</p>
+                        </div>
+
+                        <div class="info-grid">
+                            <div class="info-card symptoms">
+                                <h3><i class="fas fa-exclamation-triangle"></i> الأعراض</h3>
+                                <ul>
+                                    <li>براز رخو أو مائي</li>
+                                    <li>زيادة عدد مرات التبرز (أكثر من المعتاد)</li>
+                                    <li>رائحة كريهة غير معتادة</li>
+                                    <li>قد يحتوي البراز على مخاط أو دم</li>
+                                    <li>آلام في البطن وتقلصات</li>
+                                    <li>حمى وقشعريرة</li>
+                                    <li>القيء وفقدان الشهية</li>
+                                </ul>
+                            </div>
+
+                            <div class="info-card treatment">
+                                <h3><i class="fas fa-medkit"></i> العلاج المنزلي</h3>
+                                <ul>
+                                    <li>محاليل معالجة الجفاف الفموية (ORS)</li>
+                                    <li>الاستمرار في الرضاعة الطبيعية أو الصناعية</li>
+                                    <li>للمرضع: تجنب الأطعمة التي تزيد الإسهال</li>
+                                    <li>للأطفال فوق 6 أشهر: تقديم الموز، التفاح، الأرز، الخبز المحمص</li>
+                                    <li>تجنب العصائر والحلويات والأطعمة الدسمة</li>
+                                    <li>العناية بمنطقة الحفاض لتجنب الطفح الجلدي</li>
+                                    <li>الراحة والملابس المريحة</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="info-section when-to-see-doctor">
+                            <h3><i class="fas fa-stethoscope"></i> متى تزورين الطبيب؟</h3>
+                            <div class="warning-levels">
+                                <div class="warning-level urgent">
+                                    <h4><i class="fas fa-ambulance"></i> طوارئ (اذهبي للمستشفى فوراً)</h4>
+                                    <ul>
+                                        <li>إذا كان عمر الطفل أقل من 6 أشهر</li>
+                                        <li>إذا كان الإسهال مصحوباً بدم في البراز</li>
+                                        <li>إذا كان الطفل يعاني من جفاف شديد (عينان غائرتان، جفاف الفم، عدم تبول لمدة 6
+                                            ساعات)</li>
+                                        <li>إذا كان الطفل خاملاً جداً أو يصعب إيقاظه</li>
+                                    </ul>
+                                </div>
+
+                                <div class="warning-level soon">
+                                    <h4><i class="fas fa-clock"></i> قريباً (خلال 24 ساعة)</h4>
+                                    <ul>
+                                        <li>إذا استمر الإسهال أكثر من 48 ساعة</li>
+                                        <li>إذا كان الطفل يتقيأ باستمرار ولا يستطيع الاحتفاظ بالسوائل</li>
+                                        <li>إذا ارتفعت حرارة الطفل فوق 38.5°م</li>
+                                        <li>إذا كان الطفل يعاني من ألم شديد في البطن</li>
+                                        <li>إذا لاحظت أي علامات للجفاف</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- جدول الأمراض السريع -->
+            <section class="disease-table-section">
+                <div class="section-card">
+                    <h2><i class="fas fa-table"></i> دليل سريع للأمراض الشائعة</h2>
+
+                    <div class="table-container">
+                        <table class="disease-table">
+                            <thead>
+                                <tr>
+                                    <th>المرض</th>
+                                    <th>الأعراض الرئيسية</th>
+                                    <th>العلاج المنزلي</th>
+                                    <th>الوقاية</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>المغص</strong></td>
+                                    <td>بكاء مستمر، تقوس الظهر، انتفاخ البطن</td>
+                                    <td>تدليك البطن، وضعيات مريحة، حزام دافئ</td>
+                                    <td>تجنب الأطعمة المسببة للمغص للمرضع</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>التهاب الحفاض</strong></td>
+                                    <td>احمرار، طفح جلدي، بثور في منطقة الحفاض</td>
+                                    <td>كريمات الحفاض، التعريض للهواء، تغيير متكرر</td>
+                                    <td>تغيير الحفاض باستمرار، التنظيف الجيد</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>التسنين</strong></td>
+                                    <td>سيلان اللعاب، تورم اللثة، بكاء، ارتفاع طفيف في الحرارة</td>
+                                    <td>عضاضة باردة، تدليك اللثة، مسكنات الألم</td>
+                                    <td>لا يمكن منعه، جزء طبيعي من النمو</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>الارتجاع المعدي</strong></td>
+                                    <td>قيء بعد الرضاعة، بكاء أثناء الرضاعة، صعوبة في زيادة الوزن</td>
+                                    <td>وضعية رأس مرتفعة بعد الرضاعة، وجبات صغيرة متكررة</td>
+                                    <td>التجشؤ بعد الرضاعة، تجنب الرضاعة عند الاستلقاء</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>التهاب العين</strong></td>
+                                    <td>احمرار، إفرازات صفراء أو خضراء، تورم الجفون</td>
+                                    <td>كمادات دافئة، تنظيف العين بمحلول ملحي</td>
+                                    <td>النظافة الشخصية، غسل اليدين قبل لمس العين</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>الطفح الجلدي</strong></td>
+                                    <td>بقع حمراء، بثور، حكة، تقشر الجلد</td>
+                                    <td>كريمات مرطبة، تجنب المهيجات، مضادات الهيستامين</td>
+                                    <td>استخدام منتجات لطيفة، ترطيب البشرة</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- أداة تقييم الأعراض -->
+            <section class="symptom-checker">
+                <div class="section-card checker-card">
+                    <h2><i class="fas fa-diagnoses"></i> مساعد تقييم الأعراض</h2>
+                    <p>أدخلي أعراض طفلك للحصول على تقييم أولي وتوصيات</p>
+
+                    <div class="checker-form">
+                        <div class="form-group">
+                            <label for="child-age-symptoms"><i class="fas fa-baby"></i> عمر الطفل</label>
+                            <select id="child-age-symptoms" class="form-select">
+                                <option value="0-3">0-3 أشهر</option>
+                                <option value="4-6">4-6 أشهر</option>
+                                <option value="7-12">7-12 شهر</option>
+                                <option value="1-2">1-2 سنة</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label><i class="fas fa-thermometer-half"></i> درجة الحرارة</label>
+                            <div class="temperature-input">
+                                <input type="number" step="0.1" id="temperature" placeholder="مثال: 38.5" value="37.5">
+                                <span>°م</span>
+                                <div class="temp-buttons">
+                                    <button class="temp-btn" data-temp="37.5">طبيعي</button>
+                                    <button class="temp-btn" data-temp="38.5">مرتفع</button>
+                                    <button class="temp-btn" data-temp="39.5">عالٍ</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group symptoms-checkboxes">
+                            <label><i class="fas fa-clipboard-list"></i> الأعراض الأخرى (اختياري)</label>
+                            <div class="checkbox-grid">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="symptoms" value="cough">
+                                    <span>كحة</span>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="symptoms" value="runny-nose">
+                                    <span>سيلان الأنف</span>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="symptoms" value="vomiting">
+                                    <span>تقيؤ</span>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="symptoms" value="diarrhea">
+                                    <span>إسهال</span>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="symptoms" value="rash">
+                                    <span>طفح جلدي</span>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="symptoms" value="lethargy">
+                                    <span>خمول</span>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="symptoms" value="poor-feeding">
+                                    <span>ضعف الرضاعة</span>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="symptoms" value="fussiness">
+                                    <span>بكاء مستمر</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-primary" id="check-symptoms">
+                            <i class="fas fa-stethoscope"></i> احصل على التقييم
+                        </button>
+                    </div>
+
+                    <div class="checker-results" id="symptoms-results">
+                        <!-- سيتم عرض النتائج هنا -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- قسم الإسعافات الأولية -->
+            <section class="first-aid">
+                <div class="section-card">
+                    <h2><i class="fas fa-first-aid"></i> الإسعافات الأولية للرضع</h2>
+
+                    <div class="first-aid-grid">
+                        <div class="aid-card">
+                            <div class="aid-icon">
+                                <i class="fas fa-thermometer"></i>
+                            </div>
+                            <h3>ارتفاع الحرارة</h3>
+                            <ol>
+                                <li>أعطي خافض حرارة مناسب للعمر</li>
+                                <li>استخدمي كمادات فاترة (ليست باردة)</li>
+                                <li>البسي الطفل ملابس خفيفة</li>
+                                <li>أكثري من السوائل والرضاعة</li>
+                                <li>راقبي علامات الخطر واستشيري الطبيب</li>
+                            </ol>
+                        </div>
+
+                        <div class="aid-card">
+                            <div class="aid-icon">
+                                <i class="fas fa-tint"></i>
+                            </div>
+                            <h3>الجفاف</h3>
+                            <ol>
+                                <li>استخدمي محاليل معالجة الجفاف الفموية</li>
+                                <li>استمري في الرضاعة الطبيعية أو الصناعية</li>
+                                <li>راقبي عدد مرات التبول</li>
+                                <li>ابحثي عن علامات الجفاف (جفاف الفم، قلة الدموع)</li>
+                                <li>اذهبي للطوارئ إذا كانت العينان غائرتان</li>
+                            </ol>
+                        </div>
+
+                        <div class="aid-card">
+                            <div class="aid-icon">
+                                <i class="fas fa-ban"></i>
+                            </div>
+                            <h3>الاختناق</h3>
+                            <ol>
+                                <li>ضعي الطفل على ذراعك مع وجهه لأسفل</li>
+                                <li>اضربي برفق بين الكتفين 5 مرات</li>
+                                <li>افحصي الفم وأزيلي أي جسم مرئي</li>
+                                <li>إذا لم يتنفس، ابدئي الإنعاش القلبي الرئوي</li>
+                                <li>اطلبي المساعدة الطبية فوراً (911)</li>
+                            </ol>
+                        </div>
+
+                        <div class="aid-card">
+                            <div class="aid-icon">
+                                <i class="fas fa-allergies"></i>
+                            </div>
+                            <h3>الحساسية</h3>
+                            <ol>
+                                <li>توقفي عن إعطاء الطعام المسبب فوراً</li>
+                                <li>راقبي علامات الحساسية الشديدة</li>
+                                <li>استخدمي مضادات الهيستامين إذا وصفها الطبيب</li>
+                                <li>إذا كان هناك صعوبة في التنفس، اذهبي للطوارئ</li>
+                                <li>سجلي نوع الطعام المسبب لتجنبه مستقبلاً</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="emergency-contacts">
+                        <h3><i class="fas fa-phone-alt"></i> أرقام الطوارئ</h3>
+                        <div class="contacts-grid">
+                            <div class="contact-item">
+                                <i class="fas fa-ambulance"></i>
+                                <div>
+                                    <h4>الطوارئ العامة</h4>
+                                    <p>911</p>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-hospital"></i>
+                                <div>
+                                    <h4>مركز السموم</h4>
+                                    <p>+966 11 477 0000</p>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-user-md"></i>
+                                <div>
+                                    <h4>استشارة طبية هاتفية</h4>
+                                    <p>937</p>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-heartbeat"></i>
+                                <div>
+                                    <h4>طوارئ الأطفال</h4>
+                                    <p>+966 11 442 0000</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- نصائح الوقاية -->
+            <section class="prevention-tips">
+                <div class="section-card">
+                    <h2><i class="fas fa-shield-alt"></i> نصائح الوقاية من الأمراض</h2>
+
+                    <div class="prevention-grid">
+                        <div class="prevention-card">
+                            <div class="prevention-icon">
+                                <i class="fas fa-hands-wash"></i>
+                            </div>
+                            <h3>النظافة الشخصية</h3>
+                            <ul>
+                                <li>غسل اليدين جيداً قبل لمس الطفل</li>
+                                <li>تنظيف أدوات الرضاعة وتعقيمها</li>
+                                <li>استحمام الطفل بانتظام</li>
+                                <li>قص أظافر الطفل بانتظام</li>
+                                <li>تنظيف ألعاب الطفل باستمرار</li>
+                            </ul>
+                        </div>
+
+                        <div class="prevention-card">
+                            <div class="prevention-icon">
+                                <i class="fas fa-syringe"></i>
+                            </div>
+                            <h3>التطعيمات</h3>
+                            <ul>
+                                <li>الالتزام بجدول التطعيمات الكامل</li>
+                                <li>تطعيم الأنفلونزا الموسمية من 6 أشهر</li>
+                                <li>التطعيم ضد فيروس الروتا</li>
+                                <li>متابعة التطعيمات الإضافية الموصى بها</li>
+                                <li>الاحتفاظ بسجل التطعيمات</li>
+                            </ul>
+                        </div>
+
+                        <div class="prevention-card">
+                            <div class="prevention-icon">
+                                <i class="fas fa-utensils"></i>
+                            </div>
+                            <h3>التغذية الصحية</h3>
+                            <ul>
+                                <li>الرضاعة الطبيعية لمدة 6 أشهر على الأقل</li>
+                                <li>إدخال الأطعمة الصحية المناسبة للعمر</li>
+                                <li>تجنب السكريات والأملاح الزائدة</li>
+                                <li>الحرص على شرب كمية كافية من السوائل</li>
+                                <li>تقديم الفواكه والخضروات الطازجة</li>
+                            </ul>
+                        </div>
+
+                        <div class="prevention-card">
+                            <div class="prevention-icon">
+                                <i class="fas fa-home"></i>
+                            </div>
+                            <h3>البيئة الآمنة</h3>
+                            <ul>
+                                <li>تهوية المنزل بانتظام</li>
+                                <li>الحفاظ على درجة حرارة معتدلة</li>
+                                <li>تجنب التدخين بالقرب من الطفل</li>
+                                <li>تجنب الأماكن المزدحمة في مواسم الأمراض</li>
+                                <li>تنظيف الأسطح التي يلمسها الطفل</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- أسئلة شائعة -->
+            <section class="faq-section">
+                <div class="section-card">
+                    <h2><i class="fas fa-question-circle"></i> أسئلة شائعة عن أمراض الرضع</h2>
+                    <div class="faq-list">
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <span>ابني عمره شهران وحرارته 37.8°م، هل يجب أن أقلق؟</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="faq-answer">
+                                <p>درجة حرارة 37.8°م تعتبر ارتفاعاً طفيفاً. للأطفال أقل من 3 أشهر، أي ارتفاع في درجة
+                                    الحرارة (38°م أو أكثر شرجياً) يتطلب استشارة طبية فورية لأن جهازهم المناعي لم يكتمل
+                                    بعد. راقبي طفلك جيداً وافحصي درجة حرارته شرجياً للتأكد. إذا ارتفعت إلى 38°م أو أكثر،
+                                    اتصلي بالطبيب أو اذهبي إلى الطوارئ.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <span>كيف أفرق بين نزلة البرد العادية والإنفلونزا؟</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="faq-answer">
+                                <p>نزلة البرد عادة ما تكون أخف وتشمل سيلان الأنف، العطس، والكحة الخفيفة. الإنفلونزا تكون
+                                    أشد وتشمل ارتفاعاً مفاجئاً في الحرارة، قشعريرة، آلام في الجسم، إرهاق شديد، وسعال
+                                    جاف. الإنفلونزا قد تسبب مضاعفات خطيرة للرضع، لذا إذا اشتبهت بأن طفلك مصاب
+                                    بالإنفلونزا (خصوصاً مع ارتفاع الحرارة الشديد والخمول)، استشيري الطبيب فوراً.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <span>متى يكون الإسهال خطيراً ويحتاج لطبيب؟</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="faq-answer">
+                                <p>الإسهال يكون خطيراً عندما: 1) يكون عمر الطفل أقل من 6 أشهر، 2) يحتوي البراز على دم أو
+                                    مخاط، 3) يستمر أكثر من 48 ساعة، 4) يصاحبه علامات جفاف (قلة التبول، جفاف الفم، عدم
+                                    وجود دموع عند البكاء، عينان غائرتان)، 5) يصاحبه ارتفاع في الحرارة فوق 38.5°م. في أي
+                                    من هذه الحالات، يجب استشارة الطبيب فوراً.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                <span>هل يجب إعطاء المضادات الحيوية لكل مرض؟</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="faq-answer">
+                                <p>لا، معظم أمراض الرضع تكون فيروسية ولا تستجيب للمضادات الحيوية. المضادات الحيوية تعالج
+                                    فقط الأمراض البكتيرية مثل التهاب الحلق البكتيري، التهاب الأذن الوسطى البكتيري،
+                                    والالتهاب الرئوي البكتيري. إعطاء المضادات الحيوية بدون داعٍ قد يسبب مقاومة البكتيريا
+                                    للمضادات ويسبب آثاراً جانبية. دعي الطبيب يقرر إذا كان طفلك يحتاج لمضاد حيوي.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- تذييل الصفحة -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <!-- معلومات الموقع -->
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <i class="fas fa-baby"></i>
+                        <h3>رعاية الرضع</h3>
+                    </div>
+                    <p class="footer-description">
+                        موقع متخصص في تقديم نصائح موثوقة وبسيطة للأمهات والمربيات في رحلة رعاية الرضع.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" aria-label="فيسبوك"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="تويتر"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="انستجرام"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="يوتيوب"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <!-- روابط سريعة -->
+                <div class="footer-col">
+                    <h4>روابط سريعة</h4>
+                    <ul class="footer-links">
+                        <li><a href="../index.html"><i class="fas fa-chevron-left"></i> الرئيسية</a></li>
+                        <li><a href="sections.html"><i class="fas fa-chevron-left"></i> جميع الأقسام</a></li>
+                        <li><a href="tools.html"><i class="fas fa-chevron-left"></i> الأدوات التفاعلية</a></li>
+                        <li><a href="blog.html"><i class="fas fa-chevron-left"></i> المدونة</a></li>
+                        <li><a href="faq.html"><i class="fas fa-chevron-left"></i> الأسئلة الشائعة</a></li>
+                    </ul>
+                </div>
+
+                <!-- معلومات الاتصال -->
+                <div class="footer-col">
+                    <h4>اتصل بنا</h4>
+                    <ul class="footer-contact">
+                        <li><i class="fas fa-envelope"></i> info@raayatalarada.com</li>
+                        <li><i class="fas fa-phone"></i> +966 12 345 6789</li>
+                        <li><i class="fas fa-map-marker-alt"></i> الرياض، المملكة العربية السعودية</li>
+                    </ul>
+                </div>
+
+                <!-- النشرة البريدية -->
+                <div class="footer-col">
+                    <h4>اشترك في النشرة البريدية</h4>
+                    <p>احصلي على أحدث النصائح والمقالات مباشرة في بريدك الإلكتروني</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="بريدك الإلكتروني" required>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i> اشتراك
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2024 رعاية الرضع. جميع الحقوق محفوظة.</p>
+                <div class="footer-legal">
+                    <a href="privacy.html">سياسة الخصوصية</a>
+                    <a href="terms.html">شروط الاستخدام</a>
+                    <a href="disclaimer.html">إخلاء المسؤولية</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- زر العودة للأعلى -->
+    <button class="back-to-top" aria-label="العودة للأعلى">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- JavaScript -->
+    <script src="../js/main.js"></script>
+    <script src="../js/diseases.js"></script>
+
+</body>
+
+</html>
