@@ -1,0 +1,12 @@
+// package.json مقترح
+{
+  "name": "raayatalarada",
+  "version": "1.0.0",
+  "dependencies": {
+    "chart.js": "للمخططات البيانية",
+    "moment.js": "للتعامل مع التواريخ",
+    "swiper.js": "للعروض التقديمية",
+    "localforage": "للتخزين المحلي",
+    "axios": "لطلبات HTTP"
+  }
+}
