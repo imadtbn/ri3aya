@@ -1,0 +1,467 @@
+/* أنماط خاصة بصفحة وقت الاستحمام */
+
+/* رأس الصفحة */
+.page-header {
+    background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+    padding: 3rem 0;
+    margin-bottom: 2rem;
+}
+
+.page-header .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+.bath-header .header-content h1 {
+    color: #1976d2;
+    margin-bottom: 1rem;
+    font-size: 2.5rem;
+}
+
+.bath-header .header-content p {
+    color: #555;
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.breadcrumb {
+    background: rgba(255, 255, 255, 0.8);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    display: inline-block;
+    font-size: 0.9rem;
+}
+
+.breadcrumb a {
+    color: #1976d2;
+    text-decoration: none;
+    margin: 0 0.3rem;
+}
+
+.breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+.header-image img {
+    max-width: 300px;
+    height: auto;
+}
+
+/* المحتوى الرئيسي */
+.bath-page {
+    padding-bottom: 3rem;
+}
+
+.section-card {
+    background: white;
+    border-radius: 15px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border-right: 5px solid #4fc3f7;
+}
+
+.section-card h2 {
+    color: #1976d2;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #e3f2fd;
+    font-size: 1.8rem;
+}
+
+/* شبكة المعلومات */
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.info-item {
+    text-align: center;
+    padding: 1.5rem;
+    background: #f8fdff;
+    border-radius: 10px;
+    border: 1px solid #e1f5fe;
+    transition: transform 0.3s;
+}
+
+.info-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.info-item i {
+    font-size: 2.5rem;
+    color: #4fc3f7;
+    margin-bottom: 1rem;
+}
+
+.info-item h3 {
+    color: #1976d2;
+    margin-bottom: 0.5rem;
+}
+
+/* خطوات الاستحمام */
+.steps-timeline {
+    position: relative;
+    margin: 3rem 0;
+}
+
+.steps-timeline::before {
+    content: '';
+    position: absolute;
+    right: 30px;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: #4fc3f7;
+    border-radius: 3px;
+}
+
+.step-card {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 3rem;
+    position: relative;
+}
+
+.step-number {
+    background: #1976d2;
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-left: 2rem;
+    z-index: 1;
+    flex-shrink: 0;
+}
+
+.step-content {
+    flex: 1;
+    background: #f8fdff;
+    padding: 1.5rem;
+    border-radius: 10px;
+    border: 1px solid #e1f5fe;
+}
+
+.step-content h3 {
+    color: #1976d2;
+    margin-bottom: 1rem;
+}
+
+.step-content ul {
+    list-style: none;
+    padding: 0;
+}
+
+.step-content li {
+    margin-bottom: 0.5rem;
+    padding-right: 1.5rem;
+    position: relative;
+}
+
+.step-content li::before {
+    content: '✓';
+    position: absolute;
+    right: 0;
+    color: #4fc3f7;
+    font-weight: bold;
+}
+
+.step-image {
+    margin-right: 2rem;
+    flex-shrink: 0;
+}
+
+.step-image img {
+    max-width: 200px;
+    height: auto;
+    border-radius: 10px;
+}
+
+/* الجدول */
+.table-container {
+    overflow-x: auto;
+    margin-top: 1.5rem;
+}
+
+.age-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+.age-table th {
+    background: #1976d2;
+    color: white;
+    padding: 1rem;
+    text-align: right;
+    font-weight: 600;
+}
+
+.age-table td {
+    padding: 1rem;
+    border-bottom: 1px solid #e0e0e0;
+    text-align: right;
+}
+
+.age-table tr:nth-child(even) {
+    background: #f8fdff;
+}
+
+.age-table tr:hover {
+    background: #e3f2fd;
+}
+
+/* شبكة النصائح والتحذيرات */
+.tips-warnings-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.card-tips {
+    border-right-color: #4caf50;
+}
+
+.card-warnings {
+    border-right-color: #f44336;
+}
+
+.tips-list, .warnings-list {
+    margin-top: 1.5rem;
+}
+
+.tip-item, .warning-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.tip-item:last-child, .warning-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.tip-item i, .warning-item i {
+    font-size: 1.5rem;
+    margin-left: 1rem;
+    margin-top: 0.3rem;
+}
+
+.tip-item i {
+    color: #4caf50;
+}
+
+.warning-item i {
+    color: #f44336;
+}
+
+.tip-item h3, .warning-item h3 {
+    color: #333;
+    margin-bottom: 0.3rem;
+    font-size: 1.1rem;
+}
+
+/* منتجات الاستحمام */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.product-card {
+    text-align: center;
+    padding: 1.5rem;
+    background: #f8fdff;
+    border-radius: 10px;
+    border: 1px solid #e1f5fe;
+    transition: all 0.3s;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.product-icon i {
+    font-size: 2.5rem;
+    color: #1976d2;
+    margin-bottom: 1rem;
+}
+
+.product-card h3 {
+    color: #1976d2;
+    margin-bottom: 0.5rem;
+}
+
+/* الأسئلة الشائعة */
+.faq-list {
+    margin-top: 1.5rem;
+}
+
+.faq-item {
+    margin-bottom: 1rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.faq-question {
+    width: 100%;
+    padding: 1.2rem;
+    background: #f8fdff;
+    border: none;
+    text-align: right;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #1976d2;
+    transition: background 0.3s;
+}
+
+.faq-question:hover {
+    background: #e3f2fd;
+}
+
+.faq-answer {
+    padding: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    background: white;
+}
+
+.faq-answer.active {
+    padding: 1.2rem;
+    max-height: 300px;
+}
+
+.faq-answer p {
+    line-height: 1.6;
+    color: #555;
+    margin: 0;
+}
+
+/* زر العودة للأعلى */
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    width: 50px;
+    height: 50px;
+    background: #1976d2;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s;
+    z-index: 1000;
+}
+
+.back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.back-to-top:hover {
+    background: #1565c0;
+    transform: translateY(-3px);
+}
+
+/* التجاوبية */
+@media (max-width: 992px) {
+    .page-header .container {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .header-image img {
+        max-width: 250px;
+    }
+    
+    .step-card {
+        flex-direction: column;
+    }
+    
+    .step-image {
+        margin: 1rem 0 0 0;
+        align-self: center;
+    }
+    
+    .steps-timeline::before {
+        right: 15px;
+    }
+    
+    .step-number {
+        margin-left: 1rem;
+        width: 50px;
+        height: 50px;
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .bath-header .header-content h1 {
+        font-size: 2rem;
+    }
+    
+    .info-grid, .products-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .tips-warnings-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .section-card {
+        padding: 1.5rem;
+    }
+    
+    .age-table th, .age-table td {
+        padding: 0.75rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-header {
+        padding: 2rem 0;
+    }
+    
+    .bath-header .header-content h1 {
+        font-size: 1.7rem;
+    }
+    
+    .section-card h2 {
+        font-size: 1.5rem;
+    }
+    
+    .faq-question {
+        font-size: 1rem;
+        padding: 1rem;
+    }
+}

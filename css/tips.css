@@ -1,0 +1,692 @@
+/* أنماط خاصة بصفحة النصائح العامة */
+
+/* رأس الصفحة */
+.tips-header {
+    background: linear-gradient(135deg, #fff8e1 0%, #ffecb3 100%);
+}
+
+.tips-header .header-content h1 {
+    color: #ff8f00;
+}
+
+/* النصائح الذهبية */
+.golden-tips {
+    margin-bottom: 3rem;
+}
+
+.tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.golden-tip {
+    display: flex;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.golden-tip:hover {
+    transform: translateY(-5px);
+}
+
+.tip-number {
+    background: #ff8f00;
+    color: white;
+    width: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: bold;
+    flex-shrink: 0;
+}
+
+.tip-content {
+    padding: 1.5rem;
+    flex: 1;
+}
+
+.tip-content h3 {
+    color: #333;
+    margin-bottom: 0.8rem;
+    font-size: 1.3rem;
+}
+
+.tip-content p {
+    color: #666;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* نصائح حسب الفئة */
+.categories-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 2rem 0 1rem;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 1rem;
+}
+
+.category-tab {
+    padding: 0.8rem 1.5rem;
+    background: #f5f5f5;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 600;
+    color: #555;
+    transition: all 0.3s;
+}
+
+.category-tab:hover {
+    background: #fff8e1;
+    color: #ff8f00;
+}
+
+.category-tab.active {
+    background: #ff8f00;
+    color: white;
+}
+
+.category-content {
+    display: none;
+    animation: fadeIn 0.5s;
+}
+
+.category-content.active {
+    display: block;
+}
+
+.category-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: #fff8e1;
+    border-radius: 10px;
+}
+
+.category-header h3 {
+    color: #ff8f00;
+    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
+}
+
+.category-header p {
+    color: #666;
+    margin: 0;
+}
+
+/* نصائح السلامة */
+.safety-tips {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.safety-tip {
+    background: white;
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-top: 4px solid #f44336;
+}
+
+.safety-icon {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.safety-icon i {
+    font-size: 2.5rem;
+    color: #f44336;
+}
+
+.safety-content h4 {
+    color: #333;
+    margin-bottom: 1rem;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+.safety-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.safety-content li {
+    margin-bottom: 0.8rem;
+    padding-right: 1.5rem;
+    position: relative;
+    color: #666;
+    line-height: 1.5;
+}
+
+.safety-content li::before {
+    content: '•';
+    position: absolute;
+    right: 0;
+    color: #f44336;
+    font-size: 1.5rem;
+}
+
+/* نصائح التغذية */
+.nutrition-tips {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.nutrition-tip {
+    background: white;
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-top: 4px solid #4caf50;
+}
+
+.nutrition-icon {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.nutrition-icon i {
+    font-size: 2.5rem;
+    color: #4caf50;
+}
+
+.nutrition-content h4 {
+    color: #333;
+    margin-bottom: 1rem;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+.nutrition-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nutrition-content li {
+    margin-bottom: 0.8rem;
+    padding-right: 1.5rem;
+    position: relative;
+    color: #666;
+    line-height: 1.5;
+}
+
+.nutrition-content li::before {
+    content: '•';
+    position: absolute;
+    right: 0;
+    color: #4caf50;
+    font-size: 1.5rem;
+}
+
+/* نصائح النوم */
+.sleep-tips {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.sleep-tip {
+    background: white;
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-top: 4px solid #2196f3;
+}
+
+.sleep-icon {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.sleep-icon i {
+    font-size: 2.5rem;
+    color: #2196f3;
+}
+
+.sleep-content h4 {
+    color: #333;
+    margin-bottom: 1rem;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+.sleep-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sleep-content li {
+    margin-bottom: 0.8rem;
+    padding-right: 1.5rem;
+    position: relative;
+    color: #666;
+    line-height: 1.5;
+}
+
+.sleep-content li::before {
+    content: '•';
+    position: absolute;
+    right: 0;
+    color: #2196f3;
+    font-size: 1.5rem;
+}
+
+/* نصائح سريعة للطوارئ */
+.emergency-card {
+    background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
+    border-right-color: #f44336;
+}
+
+.emergency-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.emergency-item {
+    display: flex;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.emergency-number {
+    background: #f44336;
+    color: white;
+    width: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    font-weight: bold;
+    flex-shrink: 0;
+}
+
+.emergency-content {
+    padding: 1.5rem;
+    flex: 1;
+}
+
+.emergency-content h3 {
+    color: #333;
+    margin-bottom: 0.8rem;
+    font-size: 1.2rem;
+}
+
+.emergency-content p {
+    color: #666;
+    line-height: 1.6;
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+/* نصائح توفير الوقت والجهد */
+.time-tips {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.time-tip {
+    background: white;
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-top: 4px solid #9c27b0;
+    transition: transform 0.3s;
+}
+
+.time-tip:hover {
+    transform: translateY(-5px);
+}
+
+.time-icon {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.time-icon i {
+    font-size: 2.5rem;
+    color: #9c27b0;
+}
+
+.time-content h3 {
+    color: #333;
+    margin-bottom: 1rem;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+.time-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.time-content li {
+    margin-bottom: 0.8rem;
+    padding-right: 1.5rem;
+    position: relative;
+    color: #666;
+    line-height: 1.5;
+    font-size: 0.9rem;
+}
+
+.time-content li::before {
+    content: '✓';
+    position: absolute;
+    right: 0;
+    color: #9c27b0;
+    font-weight: bold;
+}
+
+/* نصائح من أمهات خبراء */
+.expert-tips {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.expert-tip {
+    display: flex;
+    background: white;
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-right: 4px solid #ff8f00;
+}
+
+.expert-avatar {
+    margin-left: 1rem;
+    flex-shrink: 0;
+}
+
+.expert-avatar i {
+    font-size: 3rem;
+    color: #ff8f00;
+}
+
+.expert-content {
+    flex: 1;
+}
+
+.expert-content h4 {
+    color: #333;
+    margin-bottom: 0.8rem;
+    font-size: 1.1rem;
+}
+
+.expert-quote {
+    color: #666;
+    line-height: 1.6;
+    font-style: italic;
+    margin-bottom: 1rem;
+    padding-right: 1rem;
+    border-right: 2px solid #ffecb3;
+}
+
+.expert-tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.expert-tag {
+    background: #fff8e1;
+    color: #ff8f00;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+/* مولد النصائح اليومية */
+.tip-generator-card {
+    background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
+    border-right-color: #9c27b0;
+}
+
+.tip-generator {
+    margin-top: 1.5rem;
+}
+
+.generated-tip {
+    background: white;
+    border-radius: 10px;
+    padding: 2rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.tip-category {
+    margin-bottom: 1rem;
+}
+
+.category-badge {
+    background: #9c27b0;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.tip-text {
+    color: #333;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+}
+
+.tip-author {
+    color: #666;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.tip-author i {
+    color: #9c27b0;
+}
+
+.generator-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.generator-buttons .btn {
+    min-width: 150px;
+}
+
+.saved-tips {
+    background: white;
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.saved-tips h4 {
+    color: #333;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+}
+
+.saved-tips h4 i {
+    margin-left: 0.5rem;
+    color: #9c27b0;
+}
+
+.no-saved-tips {
+    text-align: center;
+    color: #999;
+    padding: 2rem;
+    background: #f9f9f9;
+    border-radius: 8px;
+    margin: 0;
+}
+
+.saved-tip-item {
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #eee;
+}
+
+.saved-tip-item:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.saved-tip-content {
+    position: relative;
+    padding-right: 2.5rem;
+}
+
+.saved-tip-category {
+    background: #f3e5f5;
+    color: #9c27b0;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    display: inline-block;
+    margin-bottom: 0.5rem;
+}
+
+.saved-tip-content p {
+    color: #666;
+    line-height: 1.5;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+}
+
+.saved-tip-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.saved-tip-author {
+    color: #999;
+    font-size: 0.8rem;
+}
+
+.delete-tip-btn {
+    background: #ffebee;
+    color: #f44336;
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+}
+
+.delete-tip-btn:hover {
+    background: #f44336;
+    color: white;
+}
+
+/* التجاوبية */
+@media (max-width: 992px) {
+    .tips-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .emergency-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .expert-tips {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .categories-tabs {
+        justify-content: center;
+    }
+    
+    .category-tab {
+        flex: 1;
+        min-width: 120px;
+        text-align: center;
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+    }
+    
+    .time-tips {
+        grid-template-columns: 1fr;
+    }
+    
+    .generator-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .generator-buttons .btn {
+        width: 100%;
+        max-width: 300px;
+    }
+    
+    .expert-tip {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .expert-avatar {
+        margin-left: 0;
+        margin-bottom: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .tip-number, .emergency-number {
+        width: 50px;
+        font-size: 1.5rem;
+    }
+    
+    .safety-tips, .nutrition-tips, .sleep-tips {
+        grid-template-columns: 1fr;
+    }
+    
+    .saved-tip-content {
+        padding-right: 0;
+        padding-bottom: 2.5rem;
+    }
+    
+    .delete-tip-btn {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+    }
+}

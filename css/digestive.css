@@ -1,0 +1,1234 @@
+/* أنماط خاصة بصفحة صحة الجهاز الهضمي */
+
+.digestive-header {
+    background: linear-gradient(135deg, #F0F9F5 0%, #FFF3E0 100%);
+}
+
+/* نظرة عامة على الاضطرابات */
+.disorders-overview {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.disorder-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: var(--white);
+    border-radius: 12px;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.disorder-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+}
+
+.disorder-card.colic {
+    border-right: 4px solid #FF5722;
+}
+
+.disorder-card.reflux {
+    border-right: 4px solid #2196F3;
+}
+
+.disorder-card.gas {
+    border-right: 4px solid #4CAF50;
+}
+
+.disorder-card.constipation {
+    border-right: 4px solid #795548;
+}
+
+.disorder-card.diarrhea {
+    border-right: 4px solid #F44336;
+}
+
+.disorder-icon {
+    flex-shrink: 0;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+.colic .disorder-icon {
+    background-color: rgba(255, 87, 34, 0.1);
+    color: #FF5722;
+}
+
+.reflux .disorder-icon {
+    background-color: rgba(33, 150, 243, 0.1);
+    color: #2196F3;
+}
+
+.gas .disorder-icon {
+    background-color: rgba(76, 175, 80, 0.1);
+    color: #4CAF50;
+}
+
+.constipation .disorder-icon {
+    background-color: rgba(121, 85, 72, 0.1);
+    color: #795548;
+}
+
+.diarrhea .disorder-icon {
+    background-color: rgba(244, 67, 54, 0.1);
+    color: #F44336;
+}
+
+.disorder-content h3 {
+    margin-bottom: 0.5rem;
+    color: var(--gray-800);
+}
+
+.disorder-content p {
+    color: var(--gray-600);
+    font-size: 0.9rem;
+    margin-bottom: 0.75rem;
+    line-height: 1.5;
+}
+
+.disorder-tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.tag-age, .tag-frequency {
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.tag-age {
+    background-color: var(--primary-light);
+    color: var(--primary-color);
+}
+
+.tag-frequency {
+    background-color: var(--gray-100);
+    color: var(--gray-600);
+}
+
+/* تفاصيل الاضطرابات */
+.disorder-detail {
+    margin-bottom: 3rem;
+}
+
+.disorder-detail:last-child {
+    margin-bottom: 0;
+}
+
+.disorder-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem;
+    border-radius: 12px 12px 0 0;
+    margin-bottom: 0;
+}
+
+.disorder-header.colic {
+    background: linear-gradient(135deg, #FF5722, #FF8A65);
+    color: white;
+}
+
+.disorder-header.reflux {
+    background: linear-gradient(135deg, #2196F3, #64B5F6);
+    color: white;
+}
+
+.disorder-header.gas {
+    background: linear-gradient(135deg, #4CAF50, #81C784);
+    color: white;
+}
+
+.disorder-header.double {
+    background: linear-gradient(135deg, #795548, #A1887F);
+    color: white;
+}
+
+.disorder-header i {
+    font-size: 2rem;
+}
+
+.disorder-header h2 {
+    font-size: 1.75rem;
+    margin: 0;
+}
+
+.disorder-content {
+    background: var(--white);
+    border-radius: 0 0 12px 12px;
+    padding: 1.5rem;
+    box-shadow: var(--shadow-md);
+}
+
+/* أعراض المغص */
+.symptoms-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+}
+
+.symptom-item {
+    text-align: center;
+    padding: 1.5rem;
+    background: var(--gray-50);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.symptom-item:hover {
+    background: var(--white);
+    box-shadow: var(--shadow-sm);
+}
+
+.symptom-icon {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 1rem;
+    background: linear-gradient(135deg, #FFE0B2, #FFCCBC);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.symptom-icon i {
+    font-size: 1.5rem;
+    color: #FF5722;
+}
+
+.symptom-item h4 {
+    margin-bottom: 0.5rem;
+    color: var(--gray-800);
+}
+
+.symptom-item p {
+    color: var(--gray-600);
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+/* علاج المغص */
+.treatment-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 1.5rem 0;
+}
+
+.treatment-step {
+    padding: 1.5rem;
+    background: var(--gray-50);
+    border-radius: 12px;
+    border-right: 4px solid #FF9800;
+}
+
+.treatment-step h4 {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    color: var(--gray-800);
+}
+
+.treatment-step h4 i {
+    color: #FF5722;
+}
+
+.treatment-step ul {
+    list-style: none;
+}
+
+.treatment-step li {
+    margin-bottom: 0.75rem;
+    padding-right: 1rem;
+    position: relative;
+    color: var(--gray-700);
+    line-height: 1.5;
+}
+
+.treatment-step li::before {
+    content: '•';
+    position: absolute;
+    right: 0;
+    color: #FF9800;
+    font-size: 1.5rem;
+}
+
+.treatment-warning {
+    background-color: rgba(255, 152, 0, 0.1);
+    border: 1px solid #FF9800;
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.warning-icon {
+    flex-shrink: 0;
+    width: 50px;
+    height: 50px;
+    background-color: #FF9800;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+.warning-content h5 {
+    margin-bottom: 0.5rem;
+    color: #FF9800;
+}
+
+.warning-content p {
+    color: var(--gray-700);
+    line-height: 1.6;
+}
+
+/* مخطط تطور المغص */
+.evolution-chart {
+    margin-top: 2rem;
+}
+
+.chart-container {
+    margin-top: 1rem;
+}
+
+.chart-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    gap: 1rem;
+}
+
+.chart-period {
+    width: 150px;
+    font-weight: 500;
+    color: var(--gray-700);
+}
+
+.chart-bar {
+    flex: 1;
+    height: 30px;
+    border-radius: 15px;
+    position: relative;
+    transition: width 1s ease;
+}
+
+.chart-label {
+    width: 120px;
+    text-align: left;
+    font-size: 0.9rem;
+    color: var(--gray-600);
+}
+
+/* جدول مقارنة الارتجاع */
+.comparison-table {
+    overflow-x: auto;
+    margin: 2rem 0;
+    border-radius: 12px;
+    box-shadow: var(--shadow-sm);
+}
+
+.comparison-table table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 600px;
+}
+
+.comparison-table th {
+    background: linear-gradient(135deg, #2196F3, #64B5F6);
+    color: white;
+    padding: 1rem;
+    text-align: center;
+    font-weight: 600;
+}
+
+.comparison-table td {
+    padding: 1rem;
+    border: 1px solid var(--gray-200);
+    color: var(--gray-700);
+}
+
+.comparison-table tr:nth-child(even) {
+    background-color: var(--gray-50);
+}
+
+/* نصائح إدارة الارتجاع */
+.management-tips {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+}
+
+.management-tip {
+    display: flex;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: var(--white);
+    border-radius: 12px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--gray-200);
+    transition: all 0.3s ease;
+}
+
+.management-tip:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+}
+
+.tip-icon {
+    flex-shrink: 0;
+    width: 50px;
+    height: 50px;
+    background: var(--primary-light);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tip-icon i {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+}
+
+.tip-content h4 {
+    margin-bottom: 0.5rem;
+    color: var(--gray-800);
+}
+
+.tip-content p {
+    color: var(--gray-600);
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* أسباب الغازات */
+.causes-list {
+    margin: 1.5rem 0;
+}
+
+.cause-item {
+    margin-bottom: 1.5rem;
+    padding: 1.5rem;
+    background: var(--gray-50);
+    border-radius: 12px;
+    border-right: 4px solid #4CAF50;
+}
+
+.cause-item:last-child {
+    margin-bottom: 0;
+}
+
+.cause-item h4 {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+    color: var(--gray-800);
+}
+
+.cause-item h4 i {
+    color: #4CAF50;
+}
+
+.cause-item p {
+    color: var(--gray-700);
+    line-height: 1.6;
+}
+
+/* طرق تخفيف الغازات */
+.relief-methods {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 1.5rem 0;
+}
+
+.relief-method {
+    padding: 1.5rem;
+    background: var(--white);
+    border-radius: 12px;
+    box-shadow: var(--shadow-sm);
+}
+
+.relief-method h4 {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+    color: var(--gray-800);
+}
+
+.relief-method h4 i {
+    color: #4CAF50;
+}
+
+.method-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.step {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+}
+
+.step-number {
+    flex-shrink: 0;
+    width: 30px;
+    height: 30px;
+    background: #4CAF50;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.step-content h5 {
+    margin-bottom: 0.25rem;
+    color: var(--gray-800);
+    font-size: 1rem;
+}
+
+.step-content p {
+    color: var(--gray-600);
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.prevention-list {
+    list-style: none;
+}
+
+.prevention-list li {
+    margin-bottom: 0.75rem;
+    padding-right: 1.5rem;
+    position: relative;
+    color: var(--gray-700);
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+}
+
+.prevention-list li i {
+    color: #4CAF50;
+    margin-top: 0.25rem;
+}
+
+/* مقارنة الإمساك والإسهال */
+.comparison-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 1.5rem 0;
+}
+
+.condition-card {
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow-sm);
+}
+
+.condition-card.constipation {
+    border-top: 4px solid #795548;
+}
+
+.condition-card.diarrhea {
+    border-top: 4px solid #F44336;
+}
+
+.condition-card h3 {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+    color: var(--gray-800);
+}
+
+.condition-card.constipation h3 i {
+    color: #795548;
+}
+
+.condition-card.diarrhea h3 i {
+    color: #F44336;
+}
+
+.condition-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.info-item h4 {
+    margin-bottom: 0.75rem;
+    color: var(--gray-700);
+    font-size: 1rem;
+}
+
+.info-item p, .info-item ul {
+    color: var(--gray-600);
+    line-height: 1.6;
+}
+
+.info-item ul {
+    list-style: none;
+    padding-right: 1rem;
+}
+
+.info-item li {
+    margin-bottom: 0.5rem;
+    position: relative;
+}
+
+.info-item li::before {
+    content: '•';
+    position: absolute;
+    right: -1rem;
+    color: var(--primary-color);
+}
+
+/* دليل براز الرضيع */
+.stool-guide {
+    margin: 2rem 0;
+}
+
+.stool-table {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    margin-top: 1rem;
+}
+
+.stool-row {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid var(--gray-200);
+}
+
+.stool-row:last-child {
+    border-bottom: none;
+}
+
+.stool-row.normal {
+    background-color: rgba(76, 175, 80, 0.05);
+}
+
+.stool-row.warning {
+    background-color: rgba(255, 152, 0, 0.05);
+}
+
+.stool-row.danger {
+    background-color: rgba(244, 67, 54, 0.05);
+}
+
+.stool-color {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    margin-left: 1rem;
+    border: 2px solid var(--white);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.stool-desc {
+    flex: 1;
+}
+
+.stool-desc h4 {
+    margin-bottom: 0.25rem;
+    color: var(--gray-800);
+    font-size: 1rem;
+}
+
+.stool-desc p {
+    color: var(--gray-600);
+    font-size: 0.9rem;
+}
+
+/* متى تستشيرين الطبيب */
+.visit-reasons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+}
+
+.reason {
+    padding: 1.5rem;
+    border-radius: 12px;
+    display: flex;
+    gap: 1rem;
+}
+
+.reason.urgent {
+    background-color: rgba(244, 67, 54, 0.1);
+    border: 1px solid #F44336;
+}
+
+.reason.soon {
+    background-color: rgba(255, 152, 0, 0.1);
+    border: 1px solid #FF9800;
+}
+
+.reason-icon {
+    flex-shrink: 0;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+.reason.urgent .reason-icon {
+    background-color: #F44336;
+    color: white;
+}
+
+.reason.soon .reason-icon {
+    background-color: #FF9800;
+    color: white;
+}
+
+.reason-content h4 {
+    margin-bottom: 0.75rem;
+    color: var(--gray-800);
+}
+
+.reason-content ul {
+    list-style: none;
+}
+
+.reason-content li {
+    margin-bottom: 0.5rem;
+    padding-right: 1rem;
+    position: relative;
+    color: var(--gray-700);
+}
+
+.reason-content li::before {
+    content: '•';
+    position: absolute;
+    right: 0;
+}
+
+.reason.urgent .reason-content li::before {
+    color: #F44336;
+}
+
+.reason.soon .reason-content li::before {
+    color: #FF9800;
+}
+
+/* النصائح العامة */
+.general-tips {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.tip-card {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: var(--shadow-sm);
+    border-top: 4px solid var(--accent-color);
+    transition: all 0.3s ease;
+}
+
+.tip-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+}
+
+.tip-icon {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, var(--primary-light), var(--accent-light));
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tip-icon i {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+}
+
+.tip-card h3 {
+    margin-bottom: 1rem;
+    color: var(--gray-800);
+}
+
+.tip-card ul {
+    list-style: none;
+}
+
+.tip-card li {
+    margin-bottom: 0.75rem;
+    padding-right: 1rem;
+    position: relative;
+    color: var(--gray-700);
+    line-height: 1.5;
+}
+
+.tip-card li::before {
+    content: '•';
+    position: absolute;
+    right: 0;
+    color: var(--accent-color);
+}
+
+/* المخطط الزمني لتطور الجهاز الهضمي */
+.development-timeline {
+    margin-top: 2rem;
+}
+
+.timeline {
+    position: relative;
+    padding-right: 2rem;
+    margin-top: 1.5rem;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(to bottom, var(--primary-color), var(--accent-color));
+    border-radius: 3px;
+}
+
+.timeline-item {
+    margin-bottom: 2rem;
+    position: relative;
+    padding-right: 3rem;
+}
+
+.timeline-item:last-child {
+    margin-bottom: 0;
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -2.5rem;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    border: 3px solid var(--white);
+    box-shadow: 0 0 0 3px var(--primary-light);
+}
+
+.timeline-date {
+    background: var(--primary-color);
+    color: var(--white);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    display: inline-block;
+    margin-bottom: 1rem;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.timeline-content {
+    background: var(--white);
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow-sm);
+    border-right: 4px solid var(--accent-color);
+}
+
+.timeline-content h4 {
+    margin-bottom: 0.75rem;
+    color: var(--gray-800);
+}
+
+.timeline-content p {
+    color: var(--gray-600);
+    line-height: 1.6;
+}
+
+/* الشريط الجانبي - أداة التشخيص */
+.diagnosis-tool {
+    background: var(--white);
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow-sm);
+}
+
+.symptoms-checklist {
+    margin: 1rem 0;
+}
+
+.symptom-option {
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+}
+
+.symptom-option input[type="checkbox"] {
+    margin-left: 0.75rem;
+    width: 18px;
+    height: 18px;
+    accent-color: var(--primary-color);
+}
+
+.symptom-option label {
+    cursor: pointer;
+    color: var(--gray-700);
+    font-size: 0.9rem;
+}
+
+.diagnose-btn {
+    width: 100%;
+    margin: 1rem 0;
+}
+
+.diagnosis-result {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    border-radius: 8px;
+    display: none;
+    background-color: rgba(74, 144, 226, 0.05);
+    border: 1px solid var(--primary-light);
+}
+
+.diagnosis-result h4 {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.diagnosis-result p {
+    color: var(--gray-700);
+    margin-bottom: 0.5rem;
+}
+
+/* قائمة الطعام */
+.food-list {
+    margin: 1rem 0;
+}
+
+.food-item {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+}
+
+.food-item:last-child {
+    margin-bottom: 0;
+}
+
+.food-item.safe {
+    background-color: rgba(76, 175, 80, 0.1);
+    border: 1px solid rgba(76, 175, 80, 0.3);
+}
+
+.food-item.avoid {
+    background-color: rgba(244, 67, 54, 0.1);
+    border: 1px solid rgba(244, 67, 54, 0.3);
+}
+
+.food-icon {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+}
+
+.food-item.safe .food-icon {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.food-item.avoid .food-icon {
+    background-color: #F44336;
+    color: white;
+}
+
+.food-content h4 {
+    margin-bottom: 0.25rem;
+    color: var(--gray-800);
+    font-size: 1rem;
+}
+
+.food-content p {
+    color: var(--gray-600);
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.food-tips {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background-color: var(--gray-50);
+    border-radius: 8px;
+}
+
+.food-tips h4 {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+    color: var(--gray-800);
+}
+
+.food-tips h4 i {
+    color: var(--warning);
+}
+
+.food-tips ul {
+    list-style: none;
+}
+
+.food-tips li {
+    margin-bottom: 0.5rem;
+    padding-right: 1rem;
+    position: relative;
+    color: var(--gray-700);
+    font-size: 0.9rem;
+}
+
+.food-tips li::before {
+    content: '•';
+    position: absolute;
+    right: 0;
+    color: var(--primary-color);
+}
+
+/* أدوات وتمارين */
+.tools-list {
+    margin-top: 1rem;
+}
+
+.tool-item {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background: var(--white);
+    border-radius: 8px;
+    box-shadow: var(--shadow-sm);
+    border-right: 3px solid var(--accent-color);
+}
+
+.tool-item:last-child {
+    margin-bottom: 0;
+}
+
+.tool-icon {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    background: var(--primary-light);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tool-icon i {
+    color: var(--primary-color);
+    font-size: 1.25rem;
+}
+
+.tool-content h4 {
+    margin-bottom: 0.25rem;
+    color: var(--gray-800);
+    font-size: 1rem;
+}
+
+.tool-content p {
+    color: var(--gray-600);
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+/* مسجل الأعراض */
+.symptom-tracker {
+    background: var(--white);
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow-sm);
+}
+
+.tracker-options {
+    margin: 1rem 0;
+}
+
+.tracker-item {
+    margin-bottom: 1rem;
+}
+
+.tracker-item:last-child {
+    margin-bottom: 0;
+}
+
+.tracker-item label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--gray-700);
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.tracker-item select,
+.tracker-item input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--gray-300);
+    border-radius: 8px;
+    font-family: var(--font-primary);
+    font-size: 1rem;
+    color: var(--gray-800);
+    background-color: var(--white);
+}
+
+.tracker-item select:focus,
+.tracker-item input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+}
+
+.track-btn {
+    width: 100%;
+    margin: 1rem 0;
+}
+
+.tracker-history {
+    margin-top: 1.5rem;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.tracker-history-item {
+    padding: 0.75rem;
+    margin-bottom: 0.5rem;
+    background-color: var(--gray-50);
+    border-radius: 8px;
+    font-size: 0.9rem;
+    color: var(--gray-700);
+    border-right: 3px solid var(--primary-color);
+}
+
+.tracker-history-item:last-child {
+    margin-bottom: 0;
+}
+
+/* أنماط للهواتف */
+@media (max-width: 768px) {
+    .disorders-overview {
+        grid-template-columns: 1fr;
+    }
+    
+    .symptoms-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .treatment-steps {
+        grid-template-columns: 1fr;
+    }
+    
+    .management-tips {
+        grid-template-columns: 1fr;
+    }
+    
+    .relief-methods {
+        grid-template-columns: 1fr;
+    }
+    
+    .comparison-section {
+        grid-template-columns: 1fr;
+    }
+    
+    .stool-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+    
+    .stool-color {
+        margin-left: 0;
+    }
+    
+    .visit-reasons {
+        grid-template-columns: 1fr;
+    }
+    
+    .general-tips {
+        grid-template-columns: 1fr;
+    }
+    
+    .timeline {
+        padding-right: 1rem;
+    }
+    
+    .timeline-item {
+        padding-right: 2rem;
+    }
+    
+    .timeline-item::before {
+        right: -1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .symptoms-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .chart-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    
+    .chart-period, .chart-label {
+        width: 100%;
+    }
+    
+    .chart-bar {
+        width: 100%;
+    }
+}

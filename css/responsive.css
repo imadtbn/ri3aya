@@ -1,0 +1,42 @@
+/* أزرار */
+.btn {
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-family: var(--font-primary);
+  font-weight: var(--font-medium);
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: var(--white);
+}
+
+.btn-secondary {
+  background-color: var(--secondary-light);
+  color: var(--gray-800);
+  border: 1px solid var(--secondary-color);
+}
+
+/* بطاقات */
+.card {
+  background: var(--white);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  padding: 1.5rem;
+  margin: 1rem 0;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+}
+
+/* تذييلات الصفحات */
+.footer {
+  padding: 3rem 1rem;
+  margin-top: 4rem;
+}

@@ -1,0 +1,1026 @@
+/* أنماط خاصة بصفحة العناية بالحفاضات */
+
+.diapers-header {
+    background: linear-gradient(135deg, #F0F9F5 0%, #E8F4FF 100%);
+}
+
+/* مقارنة أنواع الحفاضات */
+.diapers-comparison {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.diaper-type-card {
+    background: var(--white);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    transition: all 0.3s ease;
+}
+
+.diaper-type-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.diaper-type-card.cloth {
+    border-top: 4px solid #4CAF50;
+}
+
+.diaper-type-card.disposable {
+    border-top: 4px solid #2196F3;
+}
+
+.diaper-type-card.swim {
+    border-top: 4px solid #00BCD4;
+}
+
+.diaper-header {
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border-bottom: 1px solid var(--gray-200);
+}
+
+.diaper-header i {
+    font-size: 2rem;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cloth .diaper-header i {
+    background-color: rgba(76, 175, 80, 0.1);
+    color: #4CAF50;
+}
+
+.disposable .diaper-header i {
+    background-color: rgba(33, 150, 243, 0.1);
+    color: #2196F3;
+}
+
+.swim .diaper-header i {
+    background-color: rgba(0, 188, 212, 0.1);
+    color: #00BCD4;
+}
+
+.diaper-tag {
+    margin-right: auto;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.cloth .diaper-tag {
+    background-color: rgba(76, 175, 80, 0.1);
+    color: #4CAF50;
+}
+
+.disposable .diaper-tag {
+    background-color: rgba(33, 150, 243, 0.1);
+    color: #2196F3;
+}
+
+.swim .diaper-tag {
+    background-color: rgba(0, 188, 212, 0.1);
+    color: #00BCD4;
+}
+
+.diaper-content {
+    padding: 1.5rem;
+}
+
+.pros-cons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.pros h4, .cons h4 {
+    font-size: 1rem;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.pros h4 {
+    color: #4CAF50;
+}
+
+.cons h4 {
+    color: #F44336;
+}
+
+.pros ul, .cons ul {
+    list-style: none;
+}
+
+.pros li, .cons li {
+    margin-bottom: 0.5rem;
+    padding-right: 1.5rem;
+    position: relative;
+    font-size: 0.9rem;
+}
+
+.pros li::before {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #4CAF50;
+}
+
+.cons li::before {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #F44336;
+}
+
+.diaper-tips {
+    background-color: var(--gray-50);
+    padding: 1rem;
+    border-radius: 8px;
+    border-right: 3px solid var(--primary-color);
+}
+
+.diaper-tips h5 {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--gray-800);
+}
+
+.diaper-tips i {
+    color: var(--warning);
+}
+
+/* خطوات تغيير الحفاض */
+.steps-timeline {
+    margin: 2rem 0;
+    position: relative;
+}
+
+.steps-timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 50%;
+    transform: translateX(50%);
+    width: 3px;
+    height: 100%;
+    background: linear-gradient(to bottom, var(--primary-color), var(--accent-color));
+    border-radius: 3px;
+}
+
+.step-card {
+    display: flex;
+    align-items: center;
+    margin-bottom: 3rem;
+    position: relative;
+}
+
+.step-card:nth-child(odd) {
+    flex-direction: row-reverse;
+    text-align: left;
+}
+
+.step-card:nth-child(even) {
+    text-align: right;
+}
+
+.step-card:last-child {
+    margin-bottom: 0;
+}
+
+.step-number {
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    transform: translate(50%, -50%);
+    width: 50px;
+    height: 50px;
+    background: var(--primary-color);
+    color: var(--white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.5rem;
+    z-index: 2;
+    box-shadow: 0 4px 12px rgba(74, 144, 226, 0.3);
+    border: 3px solid var(--white);
+}
+
+.step-content {
+    flex: 1;
+    padding: 1.5rem;
+    background: var(--white);
+    border-radius: 12px;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--gray-200);
+}
+
+.step-card:nth-child(odd) .step-content {
+    margin-left: 2rem;
+}
+
+.step-card:nth-child(even) .step-content {
+    margin-right: 2rem;
+}
+
+.step-content h3 {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+    color: var(--gray-800);
+}
+
+.step-content h3 i {
+    color: var(--primary-color);
+}
+
+.step-tip {
+    margin-top: 1rem;
+    padding: 0.75rem;
+    background-color: var(--primary-light);
+    border-radius: 8px;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    font-size: 0.9rem;
+}
+
+.step-tip i {
+    color: var(--warning);
+    margin-top: 0.25rem;
+}
+
+.step-image {
+    flex: 0 0 150px;
+    text-align: center;
+}
+
+.step-image img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* دليل طفح الحفاض */
+.rash-guide {
+    margin: 2rem 0;
+}
+
+.rash-section {
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--gray-200);
+}
+
+.rash-section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.rash-section h3 {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+    color: var(--gray-800);
+}
+
+.causes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
+
+.cause-item {
+    text-align: center;
+    padding: 1.5rem;
+    background: var(--white);
+    border-radius: 12px;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.3s ease;
+}
+
+.cause-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+}
+
+.cause-icon {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 1rem;
+    background: linear-gradient(135deg, var(--primary-light), var(--accent-light));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cause-icon i {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+}
+
+.cause-item h4 {
+    margin-bottom: 0.5rem;
+    color: var(--gray-800);
+}
+
+.cause-item p {
+    color: var(--gray-600);
+    font-size: 0.9rem;
+}
+
+.prevention-tips {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.prevention-tip {
+    display: flex;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: var(--white);
+    border-radius: 12px;
+    box-shadow: var(--shadow-sm);
+    border-right: 4px solid var(--accent-color);
+}
+
+.tip-number {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    background: var(--primary-color);
+    color: var(--white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.25rem;
+}
+
+.tip-content h4 {
+    margin-bottom: 0.5rem;
+    color: var(--gray-800);
+}
+
+.tip-content p {
+    color: var(--gray-600);
+    font-size: 0.9rem;
+}
+
+.treatment-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.treatment-step h4 {
+    margin-bottom: 1rem;
+    color: var(--gray-800);
+}
+
+.treatment-step ul {
+    list-style: none;
+}
+
+.treatment-step li {
+    margin-bottom: 0.75rem;
+    padding-right: 1.5rem;
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+}
+
+.treatment-step li i {
+    margin-top: 0.25rem;
+}
+
+.treatment-step:first-child li i {
+    color: var(--success);
+}
+
+.treatment-step:last-child li i {
+    color: var(--warning);
+}
+
+.treatment-warning {
+    background-color: rgba(255, 152, 0, 0.1);
+    border: 1px solid var(--warning);
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    gap: 1rem;
+}
+
+.warning-icon {
+    flex-shrink: 0;
+    width: 50px;
+    height: 50px;
+    background-color: var(--warning);
+    color: var(--white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+.warning-content h5 {
+    margin-bottom: 0.5rem;
+    color: var(--warning);
+}
+
+.warning-content p {
+    color: var(--gray-700);
+    font-size: 0.95rem;
+}
+
+/* دليل المقاسات */
+.size-guide {
+    margin: 2rem 0;
+}
+
+.size-table-container {
+    overflow-x: auto;
+    margin-bottom: 2rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow-sm);
+}
+
+.size-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 800px;
+}
+
+.size-table thead {
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    color: var(--white);
+}
+
+.size-table th {
+    padding: 1rem;
+    text-align: right;
+    font-weight: 600;
+    border-bottom: 2px solid var(--white);
+}
+
+.size-table tbody tr {
+    transition: background-color 0.3s ease;
+}
+
+.size-table tbody tr:nth-child(even) {
+    background-color: var(--gray-50);
+}
+
+.size-table tbody tr:hover {
+    background-color: var(--primary-light);
+}
+
+.size-table td {
+    padding: 1rem;
+    border-bottom: 1px solid var(--gray-200);
+    color: var(--gray-700);
+}
+
+.size-badge {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.size-badge.newborn {
+    background-color: #FFE0E0;
+    color: #D32F2F;
+}
+
+.size-badge.size1 {
+    background-color: #E3F2FD;
+    color: #1976D2;
+}
+
+.size-badge.size2 {
+    background-color: #F3E5F5;
+    color: #7B1FA2;
+}
+
+.size-badge.size3 {
+    background-color: #E8F5E8;
+    color: #388E3C;
+}
+
+.size-badge.size4 {
+    background-color: #FFF3E0;
+    color: #F57C00;
+}
+
+.size-badge.size5 {
+    background-color: #FCE4EC;
+    color: #C2185B;
+}
+
+.size-tips {
+    margin-bottom: 2rem;
+}
+
+.tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.size-tip {
+    display: flex;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: var(--white);
+    border-radius: 12px;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.3s ease;
+}
+
+.size-tip:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+}
+
+.tip-icon {
+    flex-shrink: 0;
+    width: 50px;
+    height: 50px;
+    background: var(--primary-light);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tip-icon i {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+}
+
+.tip-content h4 {
+    margin-bottom: 0.5rem;
+    color: var(--gray-800);
+}
+
+.tip-content p {
+    color: var(--gray-600);
+    font-size: 0.9rem;
+}
+
+.size-calculator {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: var(--shadow-md);
+    border: 2px solid var(--primary-light);
+}
+
+.calculator-form {
+    margin-top: 1rem;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--gray-800);
+    font-weight: 500;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--gray-300);
+    border-radius: 8px;
+    font-family: var(--font-primary);
+    font-size: 1rem;
+    color: var(--gray-800);
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+}
+
+.calculate-btn {
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.calculator-result {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    border-radius: 8px;
+    display: none;
+    background-color: rgba(74, 144, 226, 0.05);
+    border: 1px solid var(--primary-light);
+}
+
+.calculator-result h4 {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.calculator-result p {
+    color: var(--gray-700);
+}
+
+/* النصائح الذهبية */
+.golden-tips {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.golden-tip {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: var(--shadow-md);
+    border-top: 4px solid var(--accent-color);
+    transition: all 0.3s ease;
+}
+
+.golden-tip:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.golden-tip .tip-icon {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, var(--primary-light), var(--accent-light));
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.golden-tip .tip-icon i {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+}
+
+.golden-tip h3 {
+    margin-bottom: 0.75rem;
+    color: var(--gray-800);
+}
+
+.golden-tip p {
+    color: var(--gray-600);
+    line-height: 1.6;
+}
+
+/* جدول تواتر التغيير */
+.change-frequency {
+    margin-top: 2rem;
+}
+
+.frequency-table {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+}
+
+.frequency-row {
+    display: flex;
+    border-bottom: 1px solid var(--gray-200);
+    transition: background-color 0.3s ease;
+}
+
+.frequency-row:hover {
+    background-color: var(--gray-50);
+}
+
+.frequency-row:last-child {
+    border-bottom: none;
+}
+
+.frequency-age, .frequency-count, .frequency-desc {
+    padding: 1rem;
+    flex: 1;
+}
+
+.frequency-age {
+    font-weight: 600;
+    color: var(--gray-800);
+    background-color: var(--gray-50);
+}
+
+.frequency-count {
+    color: var(--primary-color);
+    font-weight: 500;
+    text-align: center;
+}
+
+.frequency-desc {
+    color: var(--gray-600);
+    text-align: left;
+}
+
+/* الشريط الجانبي - أداة اختيار الحفاض */
+.diaper-selector {
+    background: var(--white);
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow-sm);
+}
+
+.selector-questions {
+    margin: 1rem 0;
+}
+
+.question {
+    margin-bottom: 1rem;
+}
+
+.question label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--gray-700);
+    font-weight: 500;
+}
+
+.question select {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--gray-300);
+    border-radius: 8px;
+    font-family: var(--font-primary);
+    font-size: 1rem;
+    color: var(--gray-800);
+    background-color: var(--white);
+    cursor: pointer;
+}
+
+.question select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+}
+
+.selector-btn {
+    width: 100%;
+    margin: 1rem 0;
+}
+
+.selector-result {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    border-radius: 8px;
+    display: none;
+    background-color: rgba(74, 144, 226, 0.05);
+    border: 1px solid var(--primary-light);
+}
+
+.selector-result h4 {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.selector-result p {
+    color: var(--gray-700);
+    margin-bottom: 0.5rem;
+}
+
+/* قائمة التحقق اليومي */
+.checklist-widget {
+    background: var(--white);
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow-sm);
+}
+
+.daily-checklist {
+    margin: 1rem 0;
+}
+
+.checklist-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.75rem;
+    padding: 0.75rem;
+    background-color: var(--gray-50);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.checklist-item:hover {
+    background-color: var(--gray-100);
+}
+
+.checklist-item input[type="checkbox"] {
+    margin-left: 0.75rem;
+    width: 20px;
+    height: 20px;
+    accent-color: var(--primary-color);
+}
+
+.checklist-item label {
+    cursor: pointer;
+    color: var(--gray-700);
+    flex: 1;
+}
+
+.checklist-item input[type="checkbox"]:checked + label {
+    text-decoration: line-through;
+    color: var(--gray-500);
+}
+
+.checklist-progress {
+    margin-top: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.progress-bar {
+    flex: 1;
+    height: 8px;
+    background-color: var(--gray-200);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+    border-radius: 4px;
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+#progressText {
+    font-size: 0.9rem;
+    color: var(--gray-600);
+    white-space: nowrap;
+}
+
+.reset-btn {
+    width: 100%;
+    margin-top: 1rem;
+}
+
+/* منتجات موصى بها */
+.products-list {
+    margin-top: 1rem;
+}
+
+.product-item {
+    background: var(--white);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    box-shadow: var(--shadow-sm);
+    border-right: 3px solid var(--accent-color);
+}
+
+.product-item:last-child {
+    margin-bottom: 0;
+}
+
+.product-category {
+    font-size: 0.8rem;
+    color: var(--primary-color);
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+}
+
+.product-item h4 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    color: var(--gray-800);
+}
+
+.product-item p {
+    font-size: 0.9rem;
+    color: var(--gray-600);
+    margin-bottom: 0.5rem;
+}
+
+.product-rating {
+    color: #FF9800;
+    font-size: 0.9rem;
+}
+
+/* أنماط للهواتف */
+@media (max-width: 768px) {
+    .diapers-comparison {
+        grid-template-columns: 1fr;
+    }
+    
+    .pros-cons {
+        grid-template-columns: 1fr;
+    }
+    
+    .steps-timeline::before {
+        right: 30px;
+    }
+    
+    .step-card {
+        flex-direction: column !important;
+        text-align: right !important;
+        align-items: flex-start;
+    }
+    
+    .step-card:nth-child(odd) .step-content,
+    .step-card:nth-child(even) .step-content {
+        margin: 0 0 1rem 0;
+        width: calc(100% - 70px);
+    }
+    
+    .step-number {
+        right: 30px;
+        transform: translateX(50%);
+    }
+    
+    .step-image {
+        width: 100%;
+        text-align: center;
+        margin-top: 1rem;
+    }
+    
+    .causes-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .prevention-tips {
+        grid-template-columns: 1fr;
+    }
+    
+    .treatment-steps {
+        grid-template-columns: 1fr;
+    }
+    
+    .golden-tips {
+        grid-template-columns: 1fr;
+    }
+    
+    .frequency-row {
+        flex-direction: column;
+    }
+    
+    .frequency-age, .frequency-count, .frequency-desc {
+        width: 100%;
+        text-align: right;
+    }
+    
+    .tips-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .causes-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .size-table {
+        font-size: 0.9rem;
+    }
+}

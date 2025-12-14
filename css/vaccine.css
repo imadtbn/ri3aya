@@ -1,0 +1,578 @@
+/* أنماط خاصة بصفحة جدول التلقيح */
+
+/* رأس الصفحة */
+.vaccine-header {
+    background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+}
+
+.vaccine-header .header-content h1 {
+    color: #2e7d32;
+}
+
+/* إحصائيات */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.stat-item {
+    text-align: center;
+    padding: 1.5rem;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-top: 4px solid #4caf50;
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #2e7d32;
+    margin-bottom: 0.5rem;
+}
+
+.stat-text {
+    color: #555;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+/* تبويبات الجدول */
+.schedule-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 2rem 0 1rem;
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 1rem;
+}
+
+.tab-btn {
+    padding: 0.8rem 1.5rem;
+    background: #f5f5f5;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 600;
+    color: #555;
+    transition: all 0.3s;
+}
+
+.tab-btn:hover {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+.tab-btn.active {
+    background: #4caf50;
+    color: white;
+}
+
+.tab-pane {
+    display: none;
+    animation: fadeIn 0.5s;
+}
+
+.tab-pane.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* جداول التطعيمات */
+.vaccine-table-container {
+    overflow-x: auto;
+    margin: 1.5rem 0;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.vaccine-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 800px;
+}
+
+.vaccine-table th {
+    background: #2e7d32;
+    color: white;
+    padding: 1.2rem;
+    text-align: right;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.vaccine-table td {
+    padding: 1.2rem;
+    border-bottom: 1px solid #e0e0e0;
+    text-align: right;
+}
+
+.vaccine-table tr:nth-child(even) {
+    background: #f9f9f9;
+}
+
+.vaccine-table tr:hover {
+    background: #e8f5e9;
+}
+
+.importance {
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.importance.high {
+    background: #ffebee;
+    color: #c62828;
+}
+
+.importance.medium {
+    background: #fff3e0;
+    color: #ef6c00;
+}
+
+.importance.low {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+/* ملاحظات التطعيمات */
+.vaccine-notes {
+    background: #e8f5e9;
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin-top: 2rem;
+    border-right: 4px solid #4caf50;
+}
+
+.vaccine-notes h3 {
+    color: #2e7d32;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+}
+
+.vaccine-notes ul {
+    list-style: none;
+    padding: 0;
+}
+
+.vaccine-notes li {
+    margin-bottom: 0.8rem;
+    padding-right: 1.5rem;
+    position: relative;
+}
+
+.vaccine-notes li::before {
+    content: '•';
+    position: absolute;
+    right: 0;
+    color: #4caf50;
+    font-size: 1.5rem;
+}
+
+/* بطاقات معلومات التطعيمات */
+.vaccine-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.vaccine-card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.vaccine-card:hover {
+    transform: translateY(-5px);
+}
+
+.vaccine-card-header {
+    background: #2e7d32;
+    color: white;
+    padding: 1.2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.vaccine-card-header h3 {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.vaccine-tag {
+    background: white;
+    color: #2e7d32;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.vaccine-card-body {
+    padding: 1.5rem;
+}
+
+.vaccine-card-body p {
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.vaccine-details {
+    border-top: 1px solid #eee;
+    padding-top: 1rem;
+}
+
+.detail-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 0.8rem;
+    color: #666;
+}
+
+.detail-item i {
+    color: #4caf50;
+    margin-left: 0.8rem;
+    margin-top: 0.2rem;
+}
+
+/* نصائح قبل وبعد */
+.tips-before-after {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.card-before {
+    border-right-color: #2196f3;
+}
+
+.card-after {
+    border-right-color: #ff9800;
+}
+
+.tip-item {
+    display: flex;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.tip-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.tip-number {
+    background: #4caf50;
+    color: white;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    margin-left: 1rem;
+    flex-shrink: 0;
+}
+
+.card-before .tip-number {
+    background: #2196f3;
+}
+
+.card-after .tip-number {
+    background: #ff9800;
+}
+
+.tip-content h3 {
+    color: #333;
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.tip-content p {
+    color: #666;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* الآثار الجانبية */
+.effects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 1.5rem;
+}
+
+.effect-item {
+    padding: 1.5rem;
+    border-radius: 10px;
+}
+
+.effect-item.common {
+    background: #e8f5e9;
+    border-right: 4px solid #4caf50;
+}
+
+.effect-item.rare {
+    background: #ffebee;
+    border-right: 4px solid #f44336;
+}
+
+.effect-item h3 {
+    margin-bottom: 1rem;
+    color: #333;
+    font-size: 1.2rem;
+}
+
+.effect-item.common h3 i {
+    color: #4caf50;
+}
+
+.effect-item.rare h3 i {
+    color: #f44336;
+}
+
+.effect-item ul {
+    list-style: none;
+    padding: 0;
+}
+
+.effect-item li {
+    margin-bottom: 0.8rem;
+    padding-right: 1.5rem;
+    position: relative;
+}
+
+.effect-item.common li::before {
+    content: '✓';
+    position: absolute;
+    right: 0;
+    color: #4caf50;
+    font-weight: bold;
+}
+
+.effect-item.rare li::before {
+    content: '!';
+    position: absolute;
+    right: 0;
+    color: #f44336;
+    font-weight: bold;
+}
+
+.emergency-note {
+    background: #fff3e0;
+    padding: 1.2rem;
+    border-radius: 8px;
+    margin-top: 2rem;
+    border-right: 4px solid #ff9800;
+}
+
+.emergency-note p {
+    margin: 0;
+    color: #333;
+}
+
+.emergency-note i {
+    color: #ff9800;
+    margin-left: 0.5rem;
+}
+
+/* أداة التذكير */
+.reminder-card {
+    background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+    border-right-color: #2196f3;
+}
+
+.reminder-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: flex-end;
+    margin: 1.5rem 0;
+}
+
+.form-group {
+    flex: 1;
+    min-width: 250px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #333;
+    font-weight: 600;
+}
+
+.form-group label i {
+    color: #2196f3;
+    margin-left: 0.5rem;
+}
+
+.date-input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 1rem;
+    text-align: right;
+}
+
+#calculate-vaccines {
+    padding: 0.8rem 1.5rem;
+}
+
+.reminder-result {
+    margin-top: 1.5rem;
+}
+
+.alert {
+    padding: 1.2rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.alert-success {
+    background: #e8f5e9;
+    border-right: 4px solid #4caf50;
+    color: #2e7d32;
+}
+
+.alert-warning {
+    background: #fff3e0;
+    border-right: 4px solid #ff9800;
+    color: #ef6c00;
+}
+
+.alert h4 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: inherit;
+}
+
+.vaccine-list {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+}
+
+.vaccine-list > li {
+    margin-bottom: 1.2rem;
+    padding-right: 1.5rem;
+    position: relative;
+}
+
+.vaccine-list > li::before {
+    content: '💉';
+    position: absolute;
+    right: 0;
+}
+
+.vaccine-list ul {
+    list-style: none;
+    padding-right: 1.5rem;
+    margin-top: 0.5rem;
+}
+
+.vaccine-list ul li {
+    margin-bottom: 0.5rem;
+    padding-right: 1.5rem;
+    position: relative;
+}
+
+.vaccine-list ul li::before {
+    content: '•';
+    position: absolute;
+    right: 0;
+    color: #4caf50;
+}
+
+.reminder-note {
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+.reminder-note i {
+    color: #ff9800;
+    margin-left: 0.8rem;
+    font-size: 1.2rem;
+}
+
+/* التجاوبية */
+@media (max-width: 992px) {
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .vaccine-cards {
+        grid-template-columns: 1fr;
+    }
+    
+    .tips-before-after {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .tab-btn {
+        flex: 1;
+        min-width: 120px;
+        text-align: center;
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+    }
+    
+    .effects-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .vaccine-table th, .vaccine-table td {
+        padding: 0.8rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .reminder-form {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .form-group {
+        min-width: auto;
+    }
+    
+    .section-card {
+        padding: 1.2rem;
+    }
+    
+    .vaccine-card-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.8rem;
+    }
+}

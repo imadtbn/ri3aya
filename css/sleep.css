@@ -1,0 +1,659 @@
+/* أنماط خاصة بصفحة النوم */
+
+.sleep-header {
+    background: linear-gradient(135deg, #E8F4FF 0%, #F0F9F5 100%);
+}
+
+/* شبكة القواعد الذهبية */
+.rules-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.rule-card {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: var(--shadow-md);
+    border-top: 4px solid var(--primary-color);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.rule-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.rule-number {
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    background: var(--primary-color);
+    color: var(--white);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.25rem;
+    box-shadow: 0 4px 8px rgba(74, 144, 226, 0.3);
+}
+
+.rule-icon {
+    width: 60px;
+    height: 60px;
+    background: var(--primary-light);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.rule-icon i {
+    font-size: 1.75rem;
+    color: var(--primary-color);
+}
+
+.rule-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+    color: var(--gray-800);
+}
+
+.rule-card p {
+    color: var(--gray-600);
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.rule-tip {
+    background: var(--gray-50);
+    padding: 0.75rem;
+    border-radius: 8px;
+    border-right: 3px solid var(--accent-color);
+    font-size: 0.9rem;
+}
+
+.rule-tip strong {
+    color: var(--primary-color);
+}
+
+/* شبكة المقارنة */
+.comparison-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.comparison-card {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+}
+
+.comparison-card.safe {
+    border: 2px solid var(--success);
+}
+
+.comparison-card.unsafe {
+    border: 2px solid var(--danger);
+}
+
+.comparison-header {
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.comparison-card.safe .comparison-header {
+    background-color: rgba(76, 175, 80, 0.1);
+    color: var(--success);
+}
+
+.comparison-card.unsafe .comparison-header {
+    background-color: rgba(244, 67, 54, 0.1);
+    color: var(--danger);
+}
+
+.comparison-content {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.checklist {
+    list-style: none;
+}
+
+.checklist li {
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+}
+
+.checklist li i {
+    margin-top: 0.25rem;
+}
+
+.comparison-card.safe .checklist li i {
+    color: var(--success);
+}
+
+.comparison-card.unsafe .checklist li i {
+    color: var(--danger);
+}
+
+.comparison-image {
+    text-align: center;
+    padding: 1rem;
+}
+
+.comparison-image img {
+    max-width: 200px;
+    height: auto;
+}
+
+/* جدول ساعات النوم */
+.sleep-table-container {
+    overflow-x: auto;
+    margin: 2rem 0;
+    border-radius: 12px;
+    box-shadow: var(--shadow-sm);
+}
+
+.sleep-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 800px;
+}
+
+.sleep-table thead {
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    color: var(--white);
+}
+
+.sleep-table th {
+    padding: 1rem;
+    text-align: right;
+    font-weight: 600;
+    border-bottom: 2px solid var(--white);
+}
+
+.sleep-table tbody tr {
+    transition: background-color 0.3s ease;
+}
+
+.sleep-table tbody tr:nth-child(even) {
+    background-color: var(--gray-50);
+}
+
+.sleep-table tbody tr:hover {
+    background-color: var(--primary-light);
+}
+
+.sleep-table td {
+    padding: 1rem;
+    border-bottom: 1px solid var(--gray-200);
+    color: var(--gray-700);
+}
+
+/* المخطط الزمني للروتين */
+.routine-timeline {
+    margin: 2rem 0;
+    position: relative;
+    padding-right: 2rem;
+}
+
+.routine-timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(to bottom, var(--primary-color), var(--accent-color));
+    border-radius: 3px;
+}
+
+.timeline-step {
+    margin-bottom: 2rem;
+    position: relative;
+    padding-right: 3rem;
+}
+
+.timeline-step:last-child {
+    margin-bottom: 0;
+}
+
+.timeline-step::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -2.5rem;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    border: 3px solid var(--white);
+    box-shadow: 0 0 0 3px var(--primary-light);
+}
+
+.timeline-time {
+    background: var(--primary-color);
+    color: var(--white);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    display: inline-block;
+    margin-bottom: 1rem;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.timeline-content {
+    background: var(--white);
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow-sm);
+    border-right: 4px solid var(--accent-color);
+}
+
+.timeline-content h4 {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+    color: var(--gray-800);
+}
+
+.timeline-content h4 i {
+    color: var(--primary-color);
+}
+
+/* نصائح المواسم */
+.seasonal-tips {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.season-tip {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+}
+
+.season-tip.summer {
+    border-top: 4px solid #FF9800;
+}
+
+.season-tip.winter {
+    border-top: 4px solid #2196F3;
+}
+
+.season-header {
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.season-tip.summer .season-header {
+    background: linear-gradient(135deg, #FFF3E0, #FFE0B2);
+    color: #E65100;
+}
+
+.season-tip.winter .season-header {
+    background: linear-gradient(135deg, #E3F2FD, #BBDEFB);
+    color: #0D47A1;
+}
+
+.season-header i {
+    font-size: 1.5rem;
+}
+
+.season-content {
+    padding: 1.5rem;
+    background: var(--white);
+}
+
+.season-content ul {
+    list-style: none;
+}
+
+.season-content li {
+    margin-bottom: 0.75rem;
+    padding-right: 1.5rem;
+    position: relative;
+}
+
+.season-content li::before {
+    content: '•';
+    position: absolute;
+    right: 0;
+    color: var(--primary-color);
+    font-size: 1.5rem;
+}
+
+/* الأسئلة الشائعة */
+.faq-container {
+    margin: 2rem 0;
+}
+
+.faq-item {
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+}
+
+.faq-question {
+    width: 100%;
+    padding: 1.25rem 1.5rem;
+    background: var(--white);
+    border: none;
+    text-align: right;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-family: var(--font-primary);
+    font-size: 1rem;
+    color: var(--gray-800);
+}
+
+.faq-question:hover {
+    background-color: var(--gray-50);
+}
+
+.faq-question i {
+    transition: transform 0.3s ease;
+    color: var(--primary-color);
+}
+
+.faq-question.active i {
+    transform: rotate(180deg);
+}
+
+.faq-answer {
+    padding: 0;
+    background: var(--white);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+}
+
+.faq-answer.active {
+    padding: 1.5rem;
+    max-height: 500px;
+}
+
+.faq-answer p {
+    color: var(--gray-700);
+    line-height: 1.6;
+}
+
+/* إحصاءات */
+.statistics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.stat-card {
+    background: var(--white);
+    padding: 1.5rem;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+    border-color: var(--primary-color);
+    transform: translateY(-5px);
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+    line-height: 1;
+}
+
+.stat-desc {
+    color: var(--gray-600);
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+/* الشريط الجانبي - فحص بيئة النوم */
+.sleep-checker {
+    background: var(--white);
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow-sm);
+}
+
+.check-options {
+    margin: 1rem 0;
+}
+
+.checkbox-option {
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+}
+
+.checkbox-option input[type="checkbox"] {
+    margin-left: 0.75rem;
+    width: 18px;
+    height: 18px;
+    accent-color: var(--primary-color);
+}
+
+.checkbox-option label {
+    cursor: pointer;
+    color: var(--gray-700);
+}
+
+.check-btn {
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.check-result {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    border-radius: 8px;
+    display: none;
+}
+
+.check-result.safe {
+    background-color: rgba(76, 175, 80, 0.1);
+    border: 1px solid var(--success);
+    color: var(--success);
+}
+
+.check-result.warning {
+    background-color: rgba(255, 152, 0, 0.1);
+    border: 1px solid var(--warning);
+    color: var(--warning);
+}
+
+.check-result.danger {
+    background-color: rgba(244, 67, 54, 0.1);
+    border: 1px solid var(--danger);
+    color: var(--danger);
+}
+
+/* أدوات ومرفقات */
+.tools-list {
+    margin-top: 1rem;
+}
+
+.tool-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem;
+    margin-bottom: 0.75rem;
+    border-radius: 8px;
+    background: var(--white);
+    box-shadow: var(--shadow-sm);
+}
+
+.tool-item.safe {
+    border-right: 3px solid var(--success);
+}
+
+.tool-item.unsafe {
+    border-right: 3px solid var(--danger);
+}
+
+.tool-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.tool-item.safe .tool-icon {
+    background-color: rgba(76, 175, 80, 0.1);
+    color: var(--success);
+}
+
+.tool-item.unsafe .tool-icon {
+    background-color: rgba(244, 67, 54, 0.1);
+    color: var(--danger);
+}
+
+.tool-content h4 {
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+    color: var(--gray-800);
+}
+
+.tool-content p {
+    font-size: 0.875rem;
+    color: var(--gray-600);
+}
+
+/* مولد روتين النوم */
+.routine-generator {
+    background: var(--white);
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow-sm);
+}
+
+.age-selector {
+    margin: 1rem 0;
+}
+
+.age-selector select {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--gray-300);
+    border-radius: 8px;
+    font-family: var(--font-primary);
+    font-size: 1rem;
+    color: var(--gray-800);
+    background-color: var(--white);
+    cursor: pointer;
+}
+
+.age-selector select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+}
+
+.generate-btn {
+    width: 100%;
+    margin: 1rem 0;
+}
+
+.generated-routine {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    border-radius: 8px;
+    background-color: rgba(74, 144, 226, 0.05);
+    border: 1px solid var(--primary-light);
+    display: none;
+}
+
+.generated-routine h4 {
+    color: var(--primary-color);
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.generated-routine ul {
+    list-style: none;
+    margin-right: 1rem;
+}
+
+.generated-routine li {
+    margin-bottom: 0.5rem;
+    padding-right: 1rem;
+    position: relative;
+}
+
+.generated-routine li::before {
+    content: '✓';
+    position: absolute;
+    right: 0;
+    color: var(--success);
+    font-weight: bold;
+}
+
+/* أنماط للهواتف */
+@media (max-width: 768px) {
+    .rules-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .comparison-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .routine-timeline {
+        padding-right: 1rem;
+    }
+    
+    .timeline-step {
+        padding-right: 2rem;
+    }
+    
+    .timeline-step::before {
+        right: -1.5rem;
+    }
+    
+    .statistics-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .seasonal-tips {
+        grid-template-columns: 1fr;
+    }
+}

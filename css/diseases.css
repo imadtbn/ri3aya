@@ -1,0 +1,768 @@
+/* أنماط خاصة بصفحة الأمراض الشائعة */
+
+/* رأس الصفحة */
+.diseases-header {
+    background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
+}
+
+.diseases-header .header-content h1 {
+    color: #c62828;
+}
+
+/* استكشاف الأمراض */
+.disease-search {
+    display: flex;
+    margin: 1.5rem 0;
+}
+
+.disease-search input {
+    flex: 1;
+    padding: 0.8rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px 0 0 8px;
+    border-left: none;
+    font-size: 1rem;
+    text-align: right;
+}
+
+.disease-search .search-btn {
+    background: #f44336;
+    color: white;
+    border: none;
+    padding: 0 1.5rem;
+    border-radius: 0 8px 8px 0;
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+
+.disease-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.disease-tag {
+    background: #f5f5f5;
+    color: #555;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.disease-tag:hover {
+    background: #ffebee;
+    color: #f44336;
+}
+
+.disease-tag.active {
+    background: #f44336;
+    color: white;
+}
+
+/* تفاصيل الأمراض */
+.disease-content {
+    display: none;
+    animation: fadeIn 0.5s;
+}
+
+.disease-content.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.disease-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #ffcdd2;
+}
+
+.disease-header h2 {
+    color: #c62828;
+    margin: 0;
+    font-size: 1.8rem;
+}
+
+.disease-prevalence {
+    background: #ffebee;
+    color: #c62828;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.disease-info {
+    background: white;
+    border-radius: 10px;
+    padding: 2rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+}
+
+.info-section {
+    margin-bottom: 2rem;
+}
+
+.info-section h3 {
+    color: #333;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #eee;
+}
+
+.info-section h3 i {
+    color: #f44336;
+    margin-left: 0.5rem;
+}
+
+.info-section p {
+    color: #666;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.info-card {
+    background: #fafafa;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border-top: 4px solid #ddd;
+}
+
+.info-card.symptoms {
+    border-top-color: #ff9800;
+}
+
+.info-card.treatment {
+    border-top-color: #4caf50;
+}
+
+.info-card h3 {
+    color: #333;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.info-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.info-card li {
+    margin-bottom: 0.8rem;
+    padding-right: 1.5rem;
+    position: relative;
+    color: #666;
+    line-height: 1.5;
+}
+
+.info-card.symptoms li::before {
+    content: '•';
+    position: absolute;
+    right: 0;
+    color: #ff9800;
+    font-size: 1.5rem;
+}
+
+.info-card.treatment li::before {
+    content: '✓';
+    position: absolute;
+    right: 0;
+    color: #4caf50;
+    font-weight: bold;
+}
+
+/* متى تزورين الطبيب */
+.warning-levels {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.warning-level {
+    padding: 1.5rem;
+    border-radius: 8px;
+}
+
+.warning-level.urgent {
+    background: #ffebee;
+    border-right: 4px solid #f44336;
+}
+
+.warning-level.soon {
+    background: #fff3e0;
+    border-right: 4px solid #ff9800;
+}
+
+.warning-level h4 {
+    color: #333;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+}
+
+.warning-level h4 i {
+    margin-left: 0.5rem;
+}
+
+.warning-level.urgent h4 i {
+    color: #f44336;
+}
+
+.warning-level.soon h4 i {
+    color: #ff9800;
+}
+
+.warning-level ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.warning-level li {
+    margin-bottom: 0.8rem;
+    padding-right: 1.5rem;
+    position: relative;
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.warning-level.urgent li::before {
+    content: '!';
+    position: absolute;
+    right: 0;
+    color: #f44336;
+    font-weight: bold;
+}
+
+.warning-level.soon li::before {
+    content: '•';
+    position: absolute;
+    right: 0;
+    color: #ff9800;
+    font-size: 1.5rem;
+}
+
+/* جدول الأمراض */
+.table-container {
+    overflow-x: auto;
+    margin-top: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.disease-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 800px;
+}
+
+.disease-table th {
+    background: #f44336;
+    color: white;
+    padding: 1rem;
+    text-align: right;
+    font-weight: 600;
+}
+
+.disease-table td {
+    padding: 1rem;
+    border-bottom: 1px solid #eee;
+    text-align: right;
+    color: #666;
+}
+
+.disease-table tr:nth-child(even) {
+    background: #f9f9f9;
+}
+
+.disease-table tr:hover {
+    background: #ffebee;
+}
+
+.disease-table strong {
+    color: #333;
+}
+
+/* مساعد تقييم الأعراض */
+.checker-card {
+    background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+    border-right-color: #2196f3;
+}
+
+.checker-form {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin: 1.5rem 0;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #333;
+    font-weight: 600;
+}
+
+.form-group label i {
+    margin-left: 0.5rem;
+}
+
+.temperature-input {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.temperature-input input {
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    width: 100px;
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+.temperature-input span {
+    font-weight: 600;
+    color: #333;
+}
+
+.temp-buttons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.temp-btn {
+    background: #f5f5f5;
+    border: 1px solid #ddd;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s;
+}
+
+.temp-btn:hover {
+    background: #e3f2fd;
+    border-color: #2196f3;
+}
+
+.symptoms-checkboxes .checkbox-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 0.8rem;
+    margin-top: 0.5rem;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 4px;
+    transition: background 0.3s;
+}
+
+.checkbox-label:hover {
+    background: #f5f5f5;
+}
+
+.checkbox-label input {
+    margin-left: 0.5rem;
+}
+
+#check-symptoms {
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.1rem;
+    margin-top: 1rem;
+}
+
+/* نتائج التقييم */
+.checker-results {
+    margin-top: 1.5rem;
+}
+
+.symptom-result {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.result-high {
+    border-right: 4px solid #f44336;
+}
+
+.result-medium {
+    border-right: 4px solid #ff9800;
+}
+
+.result-low {
+    border-right: 4px solid #4caf50;
+}
+
+.result-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    color: white;
+    font-weight: 600;
+}
+
+.result-high .result-header {
+    background: #f44336;
+}
+
+.result-medium .result-header {
+    background: #ff9800;
+}
+
+.result-low .result-header {
+    background: #4caf50;
+}
+
+.result-header h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+}
+
+.result-header h3 i {
+    margin-left: 0.5rem;
+}
+
+.result-severity {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+}
+
+.result-body {
+    padding: 1.5rem;
+    background: white;
+}
+
+.result-body p {
+    color: #333;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.symptoms-list, .actions-list {
+    margin-bottom: 1.5rem;
+}
+
+.symptoms-list h4, .actions-list h4 {
+    color: #333;
+    margin-bottom: 0.8rem;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+}
+
+.symptoms-list h4 i, .actions-list h4 i {
+    margin-left: 0.5rem;
+}
+
+.symptoms-list ul, .actions-list ol {
+    padding-right: 1.5rem;
+    margin: 0;
+}
+
+.symptoms-list li, .actions-list li {
+    margin-bottom: 0.5rem;
+    color: #666;
+    line-height: 1.5;
+}
+
+.disclaimer {
+    background: #fff3e0;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-top: 1.5rem;
+    border-right: 3px solid #ff9800;
+}
+
+.disclaimer p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.disclaimer i {
+    color: #ff9800;
+    margin-left: 0.5rem;
+}
+
+/* الإسعافات الأولية */
+.first-aid-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.aid-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-top: 4px solid #f44336;
+    transition: transform 0.3s;
+}
+
+.aid-card:hover {
+    transform: translateY(-5px);
+}
+
+.aid-icon {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.aid-icon i {
+    font-size: 2.5rem;
+    color: #f44336;
+}
+
+.aid-card h3 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.aid-card ol {
+    padding-right: 1.5rem;
+    margin: 0;
+}
+
+.aid-card li {
+    margin-bottom: 0.8rem;
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.emergency-contacts {
+    background: #ffebee;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-top: 2rem;
+    border-right: 4px solid #f44336;
+}
+
+.emergency-contacts h3 {
+    color: #333;
+    margin-bottom: 1.5rem;
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+}
+
+.emergency-contacts h3 i {
+    margin-left: 0.5rem;
+    color: #f44336;
+}
+
+.contacts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.contact-item i {
+    font-size: 1.5rem;
+    color: #f44336;
+    margin-left: 1rem;
+}
+
+.contact-item h4 {
+    color: #333;
+    margin-bottom: 0.3rem;
+    font-size: 1rem;
+}
+
+.contact-item p {
+    color: #666;
+    margin: 0;
+    font-weight: 600;
+}
+
+/* نصائح الوقاية */
+.prevention-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.prevention-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-top: 4px solid #4caf50;
+    transition: transform 0.3s;
+}
+
+.prevention-card:hover {
+    transform: translateY(-5px);
+}
+
+.prevention-icon {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.prevention-icon i {
+    font-size: 2.5rem;
+    color: #4caf50;
+}
+
+.prevention-card h3 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.prevention-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.prevention-card li {
+    margin-bottom: 0.8rem;
+    padding-right: 1.5rem;
+    position: relative;
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.prevention-card li::before {
+    content: '✓';
+    position: absolute;
+    right: 0;
+    color: #4caf50;
+    font-weight: bold;
+}
+
+/* التجاوبية */
+@media (max-width: 992px) {
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .warning-levels {
+        grid-template-columns: 1fr;
+    }
+    
+    .first-aid-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .prevention-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .disease-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+    
+    .disease-header h2 {
+        font-size: 1.5rem;
+    }
+    
+    .disease-info {
+        padding: 1.5rem;
+    }
+    
+    .first-aid-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .prevention-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .contacts-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .temperature-input {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .temp-buttons {
+        margin-top: 0.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .disease-tags {
+        justify-content: center;
+    }
+    
+    .disease-tag {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+    
+    .symptoms-checkboxes .checkbox-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .disease-table th, .disease-table td {
+        padding: 0.75rem;
+        font-size: 0.9rem;
+    }
+}

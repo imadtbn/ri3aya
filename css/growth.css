@@ -1,0 +1,728 @@
+/* أنماط خاصة بصفحة مخطط النمو */
+
+/* رأس الصفحة */
+.growth-header {
+    background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+}
+
+.growth-header .header-content h1 {
+    color: #ef6c00;
+}
+
+/* إحصائيات النمو */
+.growth-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-right: 4px solid #ff9800;
+}
+
+.stat-item i {
+    font-size: 2.5rem;
+    color: #ff9800;
+    margin-left: 1rem;
+}
+
+.stat-item h3 {
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.stat-item p {
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* حاسبة النمو */
+.calculator-form {
+    background: #f8f9fa;
+    padding: 2rem;
+    border-radius: 10px;
+    margin: 1.5rem 0;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 0;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #333;
+    font-weight: 600;
+}
+
+.form-group label i {
+    color: #ff9800;
+    margin-left: 0.5rem;
+}
+
+.form-select, .form-input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 1rem;
+    text-align: right;
+}
+
+.age-input {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.age-input input {
+    width: 80px;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.age-input span {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+#calculate-growth {
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.1rem;
+    margin-top: 1rem;
+}
+
+/* نتائج الحاسبة */
+.calculator-results {
+    margin-top: 2rem;
+}
+
+.results-container {
+    background: white;
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.results-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.results-header h3 {
+    color: #333;
+    margin: 0;
+}
+
+.results-age {
+    background: #e8f5e9;
+    color: #2e7d32;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 600;
+}
+
+.results-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.result-card {
+    padding: 1.5rem;
+    border-radius: 10px;
+    text-align: center;
+    border-top: 4px solid #ddd;
+}
+
+.result-card.normal {
+    border-top-color: #4caf50;
+    background: #f1f8e9;
+}
+
+.result-card.monitor {
+    border-top-color: #ff9800;
+    background: #fff3e0;
+}
+
+.result-card.warning {
+    border-top-color: #f44336;
+    background: #ffebee;
+}
+
+.result-card h4 {
+    color: #333;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+.result-value {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.result-status {
+    display: inline-block;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.result-card.normal .result-status {
+    background: #c8e6c9;
+    color: #2e7d32;
+}
+
+.result-card.monitor .result-status {
+    background: #ffe0b2;
+    color: #ef6c00;
+}
+
+.result-card.warning .result-status {
+    background: #ffcdd2;
+    color: #c62828;
+}
+
+.result-card p {
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.results-summary {
+    background: #e3f2fd;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border-right: 4px solid #2196f3;
+}
+
+.results-summary h4 {
+    color: #1976d2;
+    margin-bottom: 1rem;
+}
+
+.results-summary ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.results-summary li {
+    margin-bottom: 0.8rem;
+    padding-right: 1.5rem;
+    position: relative;
+}
+
+.results-summary li::before {
+    content: '•';
+    position: absolute;
+    right: 0;
+    color: #2196f3;
+    font-size: 1.5rem;
+}
+
+/* الرسوم البيانية */
+.chart-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 2rem 0 1rem;
+}
+
+.chart-tab-btn {
+    padding: 0.8rem 1.5rem;
+    background: #f5f5f5;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 600;
+    color: #555;
+    transition: all 0.3s;
+}
+
+.chart-tab-btn:hover {
+    background: #fff3e0;
+    color: #ef6c00;
+}
+
+.chart-tab-btn.active {
+    background: #ff9800;
+    color: white;
+}
+
+.chart-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+    margin-top: 1.5rem;
+}
+
+.chart-wrapper {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    height: 400px;
+}
+
+.chart-legend {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 10px;
+    border-right: 4px solid #ff9800;
+}
+
+.chart-legend h4 {
+    color: #333;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.chart-legend ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.5rem 0;
+}
+
+.chart-legend li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.8rem;
+    color: #666;
+}
+
+.legend-line {
+    width: 30px;
+    height: 3px;
+    margin-left: 1rem;
+}
+
+.percentile-97 { background-color: #ff6b6b; }
+.percentile-85 { background-color: #4ecdc4; }
+.percentile-50 { background-color: #45b7d1; }
+.percentile-15 { background-color: #96ceb4; }
+.percentile-3 { background-color: #feca57; }
+
+.chart-note {
+    background: #fff3e0;
+    padding: 1rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    color: #666;
+    margin: 0;
+}
+
+/* مراحل النمو */
+.milestones-timeline {
+    position: relative;
+    margin-top: 2rem;
+}
+
+.milestones-timeline::before {
+    content: '';
+    position: absolute;
+    right: 30px;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(to bottom, #ff9800, #ff5722);
+    border-radius: 3px;
+}
+
+.milestone-card {
+    display: flex;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.milestone-age {
+    background: #ff9800;
+    color: white;
+    padding: 0.8rem 1.2rem;
+    border-radius: 25px;
+    font-weight: bold;
+    margin-left: 2rem;
+    z-index: 1;
+    min-width: 100px;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.milestone-content {
+    flex: 1;
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-right: 4px solid #ff9800;
+}
+
+.milestone-content h3 {
+    color: #333;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+}
+
+.milestone-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.milestone-content li {
+    margin-bottom: 0.8rem;
+    padding-right: 1.5rem;
+    position: relative;
+    color: #666;
+}
+
+.milestone-content li i {
+    color: #4caf50;
+    position: absolute;
+    right: 0;
+    margin-top: 0.2rem;
+}
+
+/* مؤشرات النمو */
+.indicators-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.indicator-card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.indicator-header {
+    background: #ff9800;
+    color: white;
+    padding: 1.2rem;
+    display: flex;
+    align-items: center;
+}
+
+.indicator-header i {
+    font-size: 1.5rem;
+    margin-left: 1rem;
+}
+
+.indicator-header h3 {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.indicator-body {
+    padding: 1.5rem;
+}
+
+.indicator-status {
+    margin-bottom: 1.5rem;
+}
+
+.indicator-status:last-child {
+    margin-bottom: 0;
+}
+
+.indicator-status h4 {
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+}
+
+.indicator-status.normal h4 {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+.indicator-status.warning h4 {
+    background: #ffebee;
+    color: #c62828;
+}
+
+.indicator-status ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.indicator-status li {
+    margin-bottom: 0.8rem;
+    padding-right: 1.5rem;
+    position: relative;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.indicator-status.normal li::before {
+    content: '✓';
+    position: absolute;
+    right: 0;
+    color: #4caf50;
+    font-weight: bold;
+}
+
+.indicator-status.warning li::before {
+    content: '!';
+    position: absolute;
+    right: 0;
+    color: #f44336;
+    font-weight: bold;
+}
+
+/* نصائح النمو */
+.tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.tip-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-top: 4px solid #4caf50;
+    transition: transform 0.3s;
+}
+
+.tip-card:hover {
+    transform: translateY(-5px);
+}
+
+.tip-icon {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.tip-icon i {
+    font-size: 2.5rem;
+    color: #4caf50;
+}
+
+.tip-card h3 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.tip-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.tip-card li {
+    margin-bottom: 0.8rem;
+    padding-right: 1.5rem;
+    position: relative;
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.tip-card li::before {
+    content: '•';
+    position: absolute;
+    right: 0;
+    color: #4caf50;
+    font-size: 1.2rem;
+}
+
+/* سجل متابعة النمو */
+.tracker-card {
+    background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+    border-right-color: #4caf50;
+}
+
+.tracker-table-container {
+    overflow-x: auto;
+    margin: 1.5rem 0;
+    border-radius: 8px;
+    background: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.tracker-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 800px;
+}
+
+.tracker-table th {
+    background: #4caf50;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+    font-weight: 600;
+}
+
+.tracker-table td {
+    padding: 1rem;
+    border-bottom: 1px solid #eee;
+    text-align: center;
+}
+
+.tracker-table tr:nth-child(even) {
+    background: #f9f9f9;
+}
+
+.empty-tracker {
+    text-align: center;
+    padding: 3rem !important;
+    color: #666;
+}
+
+.empty-tracker i {
+    font-size: 3rem;
+    color: #ddd;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.tracker-form {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-top: 1.5rem;
+}
+
+.tracker-form h4 {
+    color: #333;
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+}
+
+.tracker-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+/* التنبيهات */
+.alert {
+    padding: 1.2rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.alert-warning {
+    background: #fff3e0;
+    border-right: 4px solid #ff9800;
+    color: #ef6c00;
+}
+
+.alert-warning i {
+    margin-left: 0.5rem;
+}
+
+/* التجاوبية */
+@media (max-width: 992px) {
+    .chart-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .growth-stats {
+        grid-template-columns: 1fr;
+    }
+    
+    .milestones-timeline::before {
+        right: 15px;
+    }
+    
+    .milestone-age {
+        margin-left: 1rem;
+        min-width: 80px;
+    }
+}
+
+@media (max-width: 768px) {
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .results-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .chart-wrapper {
+        height: 300px;
+    }
+    
+    .indicators-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .tracker-buttons {
+        flex-direction: column;
+    }
+    
+    .tracker-buttons button {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .calculator-form {
+        padding: 1rem;
+    }
+    
+    .age-input {
+        flex-wrap: wrap;
+    }
+    
+    .milestone-card {
+        flex-direction: column;
+    }
+    
+    .milestone-age {
+        margin: 0 0 1rem 0;
+        align-self: flex-start;
+    }
+    
+    .chart-tab-btn {
+        flex: 1;
+        min-width: 100px;
+        text-align: center;
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+    }
+}
