@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="موقع رعاية الرضع - نصائح موثوقة وبسيطة للأمهات والمربيات">
+    <title>رعاية الرضع - دليل الأم الحديثة</title>
+
+    <!-- الخطوط العربية -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&family=Tajawal:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+
+    <!-- الأيقونات -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- الأنماط -->
+
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/responsive.css">
+
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+
+</head>
+
+<body>
+    <!-- شريط التنقل -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <!-- الشعار -->
+            <a href="./index.html" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-baby"></i>
+                </div>
+                <div class="logo-text">
+                    <h1>رعاية الرضع</h1>
+                    <p>دليل الأم الحديثة</p>
+                </div>
+            </a>
+
+            <!-- قائمة الهاتف المحمول -->
+            <button class="mobile-menu-btn" aria-label="فتح القائمة">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <!-- القائمة الرئيسية -->
+            <ul class="nav-menu">
+                <li><a href="index.html" class="active"><i class="fas fa-home"></i> الرئيسية</a></li>
+                <li class="dropdown">
+                    <a href="#"><i class="fas fa-th-large"></i> الأقسام <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="pages/crying.html"><i class="fas fa-baby-cry"></i> فهم بكاء الرضيع</a></li>
+                        <li><a href="pages/sleep.html"><i class="fas fa-bed"></i> النوم الآمن</a></li>
+                        <li><a href="pages/diapers.html"><i class="fas fa-baby"></i> العناية بالحفاضات</a></li>
+                        <li><a href="pages/digestive.html"><i class="fas fa-stomach"></i> صحة الجهاز الهضمي</a></li>
+                        <li><a href="pages/nutrition.html"><i class="fas fa-utensils"></i> التغذية</a></li>
+                        <li><a href="pages/bath.html"><i class="fas fa-bath"></i> وقت الاستحمام</a></li>
+                        <li><a href="pages/vaccine.html"><i class="fas fa-syringe"></i> جدول التلقيح</a></li>
+                        <li><a href="pages/growth.html"><i class="fas fa-chart-line"></i> مخطط النمو</a></li>
+                        <li><a href="pages/diseases.html"><i class="fas fa-heartbeat"></i> الأمراض الشائعة</a></li>
+                        <li><a href="pages/tips.html"><i class="fas fa-lightbulb"></i> نصائح عامة</a></li>
+                    </ul>
+                </li>
+                <li><a href="pages/tools.html"><i class="fas fa-tools"></i> الأدوات التفاعلية</a></li>
+                <li><a href="pages/blog.html"><i class="fas fa-blog"></i> المدونة</a></li>
+                <li><a href="pages/contact.html"><i class="fas fa-envelope"></i> اتصل بنا</a></li>
+            </ul>
+
+            <!-- بحث -->
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="ابحث عن نصائح...">
+                <button class="search-btn"><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- قسم البطل (Hero Section) -->
+    <section class="hero-section">
+        <div class="container hero-container">
+            <div class="hero-content">
+                <h2>مرحباً بك في عالم رعاية الرضع</h2>
+                <p>نقدم لكِ نصائح موثوقة وبسيطة لرحلة الأمومة المدهشة. كل ما تحتاجينه لرعاية طفلك في مكان واحد.</p>
+                <div class="hero-buttons">
+                    <a href="pages/tools.html" class="btn btn-primary">
+                        <i class="fas fa-calculator"></i> ابدأ باستخدام أدواتنا
+                    </a>
+                    <a href="#sections" class="btn btn-secondary">
+                        <i class="fas fa-book"></i> استعرض الأقسام
+                    </a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="images/hero-baby.webp" alt="طفل رضيع مع أمه" loading="lazy">
+            </div>
+        </div>
+    </section>
+
+    <!-- الأدوات السريعة -->
+    <section class="quick-tools">
+        <div class="container">
+            <h2 class="section-title">أدوات سريعة</h2>
+            <div class="tools-grid">
+                <!-- آلة حاسبة التطعيمات -->
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-syringe"></i>
+                    </div>
+                    <h3>آلة حاسبة التطعيمات</h3>
+                    <p>احصلي على جدول تطعيمات مخصص لطفلك</p>
+                    <button class="btn-tool" data-tool="vaccine">
+                        <i class="fas fa-play-circle"></i> ابدأ الآن
+                    </button>
+                </div>
+
+                <!-- متابعة النمو -->
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>متابعة النمو</h3>
+                    <p>تتبعي نمو طفلك ومقارنته بالمعدلات الطبيعية</p>
+                    <button class="btn-tool" data-tool="growth">
+                        <i class="fas fa-play-circle"></i> ابدأ الآن
+                    </button>
+                </div>
+
+                <!-- مفسر البكاء -->
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-baby-cry"></i>
+                    </div>
+                    <h3>مفسر البكاء</h3>
+                    <p>افهمي سبب بكاء طفلك من خلال الأعراض</p>
+                    <button class="btn-tool" data-tool="cry">
+                        <i class="fas fa-play-circle"></i> ابدأ الآن
+                    </button>
+                </div>
+
+                <!-- روتين يومي -->
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <h3>مولد الروتين</h3>
+                    <p>أنشئي روتيناً يومياً مناسباً لعمر طفلك</p>
+                    <button class="btn-tool" data-tool="routine">
+                        <i class="fas fa-play-circle"></i> ابدأ الآن
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- الأقسام الرئيسية -->
+    <section class="main-sections" id="sections">
+        <div class="container">
+            <h2 class="section-title">استكشفي أقسام الموقع</h2>
+            <div class="sections-grid">
+                <!-- قسم فهم البكاء -->
+                <a href="pages/crying.html" class="section-card">
+                    <div class="section-image">
+                        <img src="images/crying.jpg" alt="فهم بكاء الرضيع" loading="lazy">
+                    </div>
+                    <div class="section-content">
+                        <h3><i class="fas fa-baby-cry"></i> فهم بكاء الرضيع</h3>
+                        <p>تعلمي لغة طفلك الوحيدة وتفهمي احتياجاته من خلال بكائه</p>
+                        <span class="section-tag">مهم للأمهات الجدد</span>
+                    </div>
+                </a>
+
+                <!-- قسم النوم الآمن -->
+                <a href="pages/sleep.html" class="section-card">
+                    <div class="section-image">
+                        <img src="images/sleep.jpg" alt="النوم الآمن" loading="lazy">
+                    </div>
+                    <div class="section-content">
+                        <h3><i class="fas fa-bed"></i> النوم الآمن</h3>
+                        <p>قواعد السلامة الذهبية لنوم آمن وهادئ لطفلك</p>
+                        <span class="section-tag">سلامة الطفل</span>
+                    </div>
+                </a>
+
+                <!-- قسم التغذية -->
+                <a href="pages/nutrition.html" class="section-card">
+                    <div class="section-image">
+                        <img src="images/nutrition.webp" alt="التغذية" loading="lazy">
+                    </div>
+                    <div class="section-content">
+                        <h3><i class="fas fa-utensils"></i> التغذية والطعام</h3>
+                        <p>دليل كامل للبداية بالطعام الصلب وتنويع الغذاء</p>
+                        <span class="section-tag">من 6 أشهر</span>
+                    </div>
+                </a>
+
+                <!-- قسم التطعيمات -->
+                <a href="pages/vaccine.html" class="section-card">
+                    <div class="section-image">
+                        <img src="images/vaccine.webp" alt="التطعيمات" loading="lazy">
+                    </div>
+                    <div class="section-content">
+                        <h3><i class="fas fa-syringe"></i> جدول التلقيح</h3>
+                        <p>جميع التطعيمات المطلوبة ومواعيدها حسب عمر الطفل</p>
+                        <span class="section-tag">مهم جداً</span>
+                    </div>
+                </a>
+            </div>
+
+            <div class="view-all">
+                <a href="pages/sections.html" class="btn btn-secondary">
+                    <i class="fas fa-th-list"></i> عرض جميع الأقسام
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم نصيحة اليوم -->
+    <section class="daily-tip">
+        <div class="container">
+            <div class="tip-card">
+                <div class="tip-header">
+                    <h2><i class="fas fa-lightbulb"></i> نصيحة اليوم</h2>
+                    <span class="tip-date" id="current-date"></span>
+                </div>
+                <div class="tip-content">
+                    <p id="daily-tip-text">تأكدي دائمًا من نوم طفلك على ظهره لتقليل خطر متلازمة موت الرضع المفاجئ. هذه
+                        الوضعية هي الأكثر أمانًا خلال السنة الأولى.</p>
+                    <div class="tip-source">
+                        <span><i class="fas fa-stethoscope"></i> نصائح طبية موثقة</span>
+                    </div>
+                </div>
+                <button class="btn-tip-next" id="next-tip">
+                    <i class="fas fa-random"></i> نصيحة أخرى
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- المدونة الأخيرة -->
+    <section class="latest-blog">
+        <div class="container">
+            <h2 class="section-title">أحدث المقالات</h2>
+            <div class="blog-grid">
+                <!-- مقال 1 -->
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <img src="images/blog1.jpg" alt="كيفية التعامل مع المغص" loading="lazy">
+                        <span class="blog-category">صحة الجهاز الهضمي</span>
+                    </div>
+                    <div class="blog-content">
+                        <h3><a href="#">دليلك الشامل للتعامل مع مغص الرضع</a></h3>
+                        <p class="blog-excerpt">تعرفي على أسباب المغص وطرق تخفيفه والوضعيات التي تساعد طفلك على الشعور
+                            بالراحة...</p>
+                        <div class="blog-meta">
+                            <span><i class="far fa-calendar"></i> 15 مارس 2024</span>
+                            <span><i class="far fa-clock"></i> 5 دقائق قراءة</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- مقال 2 -->
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <img src="images/blog2.jpg" alt="البداية بالطعام الصلب" loading="lazy">
+                        <span class="blog-category">التغذية</span>
+                    </div>
+                    <div class="blog-content">
+                        <h3><a href="#">أفضل الأطعمة للبداية مع طفلك من 6 أشهر</a></h3>
+                        <p class="blog-excerpt">قائمة بالأطعمة المناسبة وخطوات تحضير أول وجبة صحية ولذيذة لطفلك...</p>
+                        <div class="blog-meta">
+                            <span><i class="far fa-calendar"></i> 10 مارس 2024</span>
+                            <span><i class="far fa-clock"></i> 7 دقائق قراءة</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- مقال 3 -->
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <img src="images/blog3.jpeg" alt="الاستحمام الآمن" loading="lazy">
+                        <span class="blog-category">العناية اليومية</span>
+                    </div>
+                    <div class="blog-content">
+                        <h3><a href="#">دليل الاستحمام الآمن للرضع خطوة بخطوة</a></h3>
+                        <p class="blog-excerpt">كل ما تحتاجين معرفته لجعل وقت الاستحمام تجربة آمنة وممتعة لطفلك...</p>
+                        <div class="blog-meta">
+                            <span><i class="far fa-calendar"></i> 5 مارس 2024</span>
+                            <span><i class="far fa-clock"></i> 4 دقائق قراءة</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <div class="view-all">
+                <a href="pages/blog.html" class="btn btn-secondary">
+                    <i class="fas fa-newspaper"></i> عرض جميع المقالات
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- تذييل الصفحة -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <!-- معلومات الموقع -->
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <i class="fas fa-baby"></i>
+                        <h3>رعاية الرضع</h3>
+                    </div>
+                    <p class="footer-description">
+                        موقع متخصص في تقديم نصائح موثوقة وبسيطة للأمهات والمربيات في رحلة رعاية الرضع.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" aria-label="فيسبوك"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="تويتر"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="انستجرام"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="يوتيوب"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <!-- روابط سريعة -->
+                <div class="footer-col">
+                    <h4>روابط سريعة</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html"><i class="fas fa-chevron-left"></i> الرئيسية</a></li>
+                        <li><a href="pages/sections.html"><i class="fas fa-chevron-left"></i> جميع الأقسام</a></li>
+                        <li><a href="pages/tools.html"><i class="fas fa-chevron-left"></i> الأدوات التفاعلية</a></li>
+                        <li><a href="pages/blog.html"><i class="fas fa-chevron-left"></i> المدونة</a></li>
+                        <li><a href="pages/faq.html"><i class="fas fa-chevron-left"></i> الأسئلة الشائعة</a></li>
+                    </ul>
+                </div>
+
+                <!-- معلومات الاتصال -->
+                <div class="footer-col">
+                    <h4>اتصل بنا</h4>
+                    <ul class="footer-contact">
+                        <li><i class="fas fa-envelope"></i> info@raayatalarada.com</li>
+                        <li><i class="fas fa-phone"></i> +966 12 345 6789</li>
+                        <li><i class="fas fa-map-marker-alt"></i> الرياض، المملكة العربية السعودية</li>
+                    </ul>
+                </div>
+
+                <!-- النشرة البريدية -->
+                <div class="footer-col">
+                    <h4>اشترك في النشرة البريدية</h4>
+                    <p>احصلي على أحدث النصائح والمقالات مباشرة في بريدك الإلكتروني</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="بريدك الإلكتروني" required>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i> اشتراك
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© 2024 رعاية الرضع. جميع الحقوق محفوظة.</p>
+                <div class="footer-legal">
+                    <a href="pages/privacy.html">سياسة الخصوصية</a>
+                    <a href="pages/terms.html">شروط الاستخدام</a>
+                    <a href="pages/disclaimer.html">إخلاء المسؤولية</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- زر العودة للأعلى -->
+    <button class="back-to-top" aria-label="العودة للأعلى">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- JavaScript -->
+    <script src="../js/main.js"></script>
+    <script src="../js/tools.js"></script>
+</body>
+
+</html>
