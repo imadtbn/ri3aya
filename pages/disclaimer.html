@@ -1,10 +1,31 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>إخلاء المسؤولية - موقع رعاية الرضيع</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- الأنماط -->
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="../css/digestive.css">
+    <link rel="stylesheet" href="../css/style-diapers.css">
+    <link rel="stylesheet" href="../css/improvements.css">
+    <link rel="stylesheet" href="../css/tools.css">
+    <link rel="stylesheet" href="../css/animations.css">
+    <link rel="stylesheet" href="../css/bath.css">
+    <link rel="stylesheet" href="../css/blog.css">
+    <link rel="stylesheet" href="../css/crying-analyzer.css">
+    <link rel="stylesheet" href="../css/diapers.css">
+    <link rel="stylesheet" href="../css/digestive.css">
+    <link rel="stylesheet" href="../css/growth.css">
+    <link rel="stylesheet" href="../css/nutrition.css">
+    <link rel="stylesheet" href="../css/tips.css">
+    <link rel="stylesheet" href="../css/diseases.css">
+    <link rel="stylesheet" href="../css/vaccine.css">
+
     <style>
         :root {
             --primary-color: #4a90e2;
@@ -17,28 +38,28 @@
             --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
             --transition: all 0.3s ease;
         }
-        
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        
+
         body {
             background-color: #f5f7ff;
             color: var(--text-color);
             line-height: 1.6;
             padding-bottom: 40px;
         }
-        
+
         .container {
             width: 90%;
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 15px;
         }
-        
+
         /* Header Styles */
         header {
             background: linear-gradient(135deg, var(--primary-color) 0%, #8bb9ff 100%);
@@ -47,39 +68,39 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             margin-bottom: 30px;
         }
-        
+
         .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-        
+
         .logo {
             display: flex;
             align-items: center;
             gap: 15px;
         }
-        
+
         .logo i {
             font-size: 2.5rem;
             color: var(--secondary-color);
         }
-        
+
         .logo h1 {
             font-size: 1.8rem;
             font-weight: 700;
         }
-        
+
         .logo span {
             color: var(--secondary-color);
         }
-        
+
         nav ul {
             display: flex;
             list-style: none;
             gap: 25px;
         }
-        
+
         nav a {
             color: white;
             text-decoration: none;
@@ -89,11 +110,11 @@
             padding: 8px 12px;
             border-radius: 6px;
         }
-        
+
         nav a:hover {
             background-color: rgba(255, 255, 255, 0.2);
         }
-        
+
         /* Main Content Styles */
         .disclaimer-container {
             background-color: white;
@@ -102,7 +123,7 @@
             padding: 40px;
             margin-bottom: 30px;
         }
-        
+
         .page-title {
             color: var(--primary-color);
             font-size: 2.2rem;
@@ -113,28 +134,28 @@
             align-items: center;
             gap: 15px;
         }
-        
+
         .page-title i {
             color: var(--accent-color);
         }
-        
+
         .page-subtitle {
             color: var(--dark-color);
             font-size: 1.2rem;
             margin-bottom: 30px;
             line-height: 1.8;
         }
-        
+
         .disclaimer-section {
             margin-bottom: 35px;
             padding-bottom: 25px;
             border-bottom: 1px solid #eee;
         }
-        
+
         .disclaimer-section:last-child {
             border-bottom: none;
         }
-        
+
         .section-title {
             color: var(--primary-color);
             font-size: 1.5rem;
@@ -143,18 +164,18 @@
             align-items: center;
             gap: 10px;
         }
-        
+
         .section-title i {
             color: var(--accent-color);
             font-size: 1.3rem;
         }
-        
+
         .section-content {
             font-size: 1.1rem;
             line-height: 1.8;
             color: #555;
         }
-        
+
         .highlight-box {
             background-color: #f0f7ff;
             border-right: 5px solid var(--primary-color);
@@ -163,7 +184,7 @@
             margin: 25px 0;
             box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
         }
-        
+
         .warning-box {
             background-color: #fff9f0;
             border-right: 5px solid #ffb347;
@@ -172,14 +193,14 @@
             margin: 25px 0;
             box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
         }
-        
+
         .contact-info {
             display: flex;
             flex-wrap: wrap;
             gap: 20px;
             margin-top: 20px;
         }
-        
+
         .contact-item {
             display: flex;
             align-items: center;
@@ -189,11 +210,11 @@
             border-radius: 8px;
             font-weight: 500;
         }
-        
+
         .contact-item i {
             color: var(--primary-color);
         }
-        
+
         /* Footer Styles */
         footer {
             background-color: var(--dark-color);
@@ -201,7 +222,7 @@
             padding: 40px 0 20px;
             margin-top: 50px;
         }
-        
+
         .footer-content {
             display: flex;
             flex-wrap: wrap;
@@ -209,12 +230,12 @@
             gap: 40px;
             margin-bottom: 30px;
         }
-        
+
         .footer-section {
             flex: 1;
             min-width: 250px;
         }
-        
+
         .footer-section h3 {
             font-size: 1.4rem;
             margin-bottom: 20px;
@@ -222,7 +243,7 @@
             position: relative;
             padding-bottom: 10px;
         }
-        
+
         .footer-section h3:after {
             content: '';
             position: absolute;
@@ -232,26 +253,26 @@
             height: 3px;
             background-color: var(--accent-color);
         }
-        
+
         .footer-links {
             list-style: none;
         }
-        
+
         .footer-links li {
             margin-bottom: 12px;
         }
-        
+
         .footer-links a {
             color: #ddd;
             text-decoration: none;
             transition: var(--transition);
         }
-        
+
         .footer-links a:hover {
             color: var(--secondary-color);
             padding-right: 8px;
         }
-        
+
         .copyright {
             text-align: center;
             padding-top: 20px;
@@ -259,61 +280,62 @@
             color: #aaa;
             font-size: 0.9rem;
         }
-        
+
         /* Responsive Styles */
         @media (max-width: 992px) {
             .header-content {
                 flex-direction: column;
                 gap: 20px;
             }
-            
+
             nav ul {
                 flex-wrap: wrap;
                 justify-content: center;
             }
-            
+
             .disclaimer-container {
                 padding: 30px;
             }
         }
-        
+
         @media (max-width: 768px) {
             .page-title {
                 font-size: 1.8rem;
             }
-            
+
             .section-title {
                 font-size: 1.3rem;
             }
-            
+
             .disclaimer-container {
                 padding: 20px;
             }
-            
+
             .contact-info {
                 flex-direction: column;
             }
         }
-        
+
         @media (max-width: 576px) {
             .logo h1 {
                 font-size: 1.5rem;
             }
-            
+
             nav ul {
                 gap: 15px;
             }
-            
+
             nav a {
                 font-size: 1rem;
             }
-            
+
             .page-title {
                 font-size: 1.6rem;
             }
         }
     </style>
 </head>
+
 <body>
     <!-- Header Section -->
     <header>
@@ -324,7 +346,7 @@
             </div>
             <nav>
                 <ul>
-                    <li><a href="index.html"><i class="fas fa-home"></i> الرئيسية</a></li>
+                    <li><a href="../index.html"><i class="fas fa-home"></i> الرئيسية</a></li>
                     <li><a href="about.html"><i class="fas fa-info-circle"></i> عن الموقع</a></li>
                     <li><a href="resources.html"><i class="fas fa-book"></i> المصادر</a></li>
                     <li><a href="contact.html"><i class="fas fa-envelope"></i> اتصل بنا</a></li>
@@ -337,31 +359,36 @@
     <main class="container">
         <div class="disclaimer-container">
             <h1 class="page-title"><i class="fas fa-exclamation-triangle"></i> إخلاء المسؤولية</h1>
-            <p class="page-subtitle">يرجى قراءة بنود إخلاء المسؤولية التالية بعناية قبل استخدام موقع رعاية الرضيع. باستخدامك لهذا الموقع، فإنك توافق على هذه الشروط والأحكام.</p>
-            
+            <p class="page-subtitle">يرجى قراءة بنود إخلاء المسؤولية التالية بعناية قبل استخدام موقع رعاية الرضيع.
+                باستخدامك لهذا الموقع، فإنك توافق على هذه الشروط والأحكام.</p>
+
             <div class="disclaimer-section">
                 <h2 class="section-title"><i class="fas fa-stethoscope"></i> الغرض من المعلومات</h2>
                 <div class="section-content">
-                    <p>يقدم موقع رعاية الرضيع معلومات ونصائح عامة حول رعاية الأطفال الرضع. هذه المعلومات ذات طبيعة تثقيفية وإعلامية فقط، ولا تعتبر بديلاً عن المشورة الطبية المتخصصة.</p>
+                    <p>يقدم موقع رعاية الرضيع معلومات ونصائح عامة حول رعاية الأطفال الرضع. هذه المعلومات ذات طبيعة
+                        تثقيفية وإعلامية فقط، ولا تعتبر بديلاً عن المشورة الطبية المتخصصة.</p>
                     <div class="highlight-box">
-                        <p><strong>ملاحظة هامة:</strong> المعلومات الواردة في هذا الموقع لا تُعد تشخيصاً طبياً أو وصفة علاجية. استشر دائماً طبيب الأطفال المختص فيما يتعلق بصحة طفلك وأي مشاكل طبية.</p>
+                        <p><strong>ملاحظة هامة:</strong> المعلومات الواردة في هذا الموقع لا تُعد تشخيصاً طبياً أو وصفة
+                            علاجية. استشر دائماً طبيب الأطفال المختص فيما يتعلق بصحة طفلك وأي مشاكل طبية.</p>
                     </div>
                 </div>
             </div>
-            
+
             <div class="disclaimer-section">
                 <h2 class="section-title"><i class="fas fa-user-md"></i> عدم المسؤولية الطبية</h2>
                 <div class="section-content">
                     <p>لا يتحمل فريق موقع رعاية الرضيع أي مسؤولية عن:</p>
                     <ul style="padding-right: 20px; margin-top: 10px;">
                         <li style="margin-bottom: 10px;">التشخيص الذاتي أو العلاج بناءً على محتوى الموقع</li>
-                        <li style="margin-bottom: 10px;">أي مضاعفات صحية قد تنتج عن اتباع النصائح الواردة دون استشارة طبية</li>
-                        <li style="margin-bottom: 10px;">الآثار الجانبية المحتملة لأي علاجات أو ممارسات موصوفة في المحتوى</li>
+                        <li style="margin-bottom: 10px;">أي مضاعفات صحية قد تنتج عن اتباع النصائح الواردة دون استشارة
+                            طبية</li>
+                        <li style="margin-bottom: 10px;">الآثار الجانبية المحتملة لأي علاجات أو ممارسات موصوفة في
+                            المحتوى</li>
                         <li>عدم دقة المعلومات الطبية بسبب التحديثات المستمرة في هذا المجال</li>
                     </ul>
                 </div>
             </div>
-            
+
             <div class="disclaimer-section">
                 <h2 class="section-title"><i class="fas fa-shield-alt"></i> مسؤولية المستخدم</h2>
                 <div class="section-content">
@@ -373,11 +400,12 @@
                         <li>مراقبة رضيعك عن كثب بعد تطبيق أي نصائح أو إرشادات</li>
                     </ul>
                     <div class="warning-box">
-                        <p><strong>تحذير:</strong> في حالات الطوارئ الطبية، اتصل فوراً بخدمات الطوارئ أو توجه إلى أقرب مستشفى. لا تعتمد على المعلومات الموجودة في هذا الموقع في الحالات الحرجة.</p>
+                        <p><strong>تحذير:</strong> في حالات الطوارئ الطبية، اتصل فوراً بخدمات الطوارئ أو توجه إلى أقرب
+                            مستشفى. لا تعتمد على المعلومات الموجودة في هذا الموقع في الحالات الحرجة.</p>
                     </div>
                 </div>
             </div>
-            
+
             <div class="disclaimer-section">
                 <h2 class="section-title"><i class="fas fa-external-link-alt"></i> الروابط الخارجية</h2>
                 <div class="section-content">
@@ -390,22 +418,24 @@
                     <p>يجب عليك قراءة سياسات الخصوصية وشروط الاستخدام الخاصة بأي موقع تزوره عبر الروابط الخارجية.</p>
                 </div>
             </div>
-            
+
             <div class="disclaimer-section">
                 <h2 class="section-title"><i class="fas fa-sync-alt"></i> تحديث المعلومات</h2>
                 <div class="section-content">
-                    <p>نسعى جاهدين لتقديم معلومات دقيقة وحديثة، لكننا لا نضمن اكتمال أو دقة جميع المحتويات في جميع الأوقات. قد تتغير المعلومات الطبية مع تقدم الأبحاث والتجارب السريرية.</p>
+                    <p>نسعى جاهدين لتقديم معلومات دقيقة وحديثة، لكننا لا نضمن اكتمال أو دقة جميع المحتويات في جميع
+                        الأوقات. قد تتغير المعلومات الطبية مع تقدم الأبحاث والتجارب السريرية.</p>
                     <p>نحتفظ بالحق في تحديث أو تعديل أو حذف أي محتوى في الموقع دون إشعار مسبق.</p>
                 </div>
             </div>
-            
+
             <div class="disclaimer-section">
                 <h2 class="section-title"><i class="fas fa-balance-scale"></i> حقوق النشر والملكية الفكرية</h2>
                 <div class="section-content">
-                    <p>جميع محتويات موقع رعاية الرضيع (نصوص، صور، رسومات، شعارات) محمية بحقوق النشر والملكية الفكرية ما لم يُذكر خلاف ذلك. يحظر نسخ أو توزيع أو تعديل أي جزء من المحتوى دون إذن كتابي مسبق.</p>
+                    <p>جميع محتويات موقع رعاية الرضيع (نصوص، صور، رسومات، شعارات) محمية بحقوق النشر والملكية الفكرية ما
+                        لم يُذكر خلاف ذلك. يحظر نسخ أو توزيع أو تعديل أي جزء من المحتوى دون إذن كتابي مسبق.</p>
                 </div>
             </div>
-            
+
             <div class="disclaimer-section">
                 <h2 class="section-title"><i class="fas fa-headset"></i> الاتصال بنا</h2>
                 <div class="section-content">
@@ -426,10 +456,11 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="highlight-box">
                 <p>آخر تحديث: 15 أغسطس 2023</p>
-                <p>نحن نحتفظ بالحق في تعديل بنود إخلاء المسؤولية هذه في أي وقت. يرجى مراجعة هذه الصفحة دورياً للاطلاع على أي تحديثات.</p>
+                <p>نحن نحتفظ بالحق في تعديل بنود إخلاء المسؤولية هذه في أي وقت. يرجى مراجعة هذه الصفحة دورياً للاطلاع
+                    على أي تحديثات.</p>
             </div>
         </div>
     </main>
@@ -440,20 +471,21 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>موقع رعاية الرضيع</h3>
-                    <p>منصة شاملة تقدم معلومات ونصائح موثوقة لرعاية الأطفال الرضع، بهدف دعم الوالدين في رحلة الأبوة والأمومة.</p>
+                    <p>منصة شاملة تقدم معلومات ونصائح موثوقة لرعاية الأطفال الرضع، بهدف دعم الوالدين في رحلة الأبوة
+                        والأمومة.</p>
                 </div>
-                
+
                 <div class="footer-section">
                     <h3>روابط سريعة</h3>
                     <ul class="footer-links">
-                        <li><a href="index.html">الرئيسية</a></li>
+                        <li><a href="../index.html">الرئيسية</a></li>
                         <li><a href="about.html">عن الموقع</a></li>
                         <li><a href="resources.html">مصادر موثوقة</a></li>
                         <li><a href="privacy.html">سياسة الخصوصية</a></li>
                         <li><a href="disclaimer.html">إخلاء المسؤولية</a></li>
                     </ul>
                 </div>
-                
+
                 <div class="footer-section">
                     <h3>اتصل بنا</h3>
                     <ul class="footer-links">
@@ -463,7 +495,7 @@
                     </ul>
                 </div>
             </div>
-            
+
             <div class="copyright">
                 <p>&copy; 2023 موقع رعاية الرضيع. جميع الحقوق محفوظة.</p>
             </div>
@@ -472,7 +504,7 @@
 
     <script>
         // Simple script to add current date to the disclaimer
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const updateDateElement = document.querySelector('.highlight-box p:first-child');
             if (updateDateElement) {
                 const today = new Date();
@@ -480,17 +512,17 @@
                 const dateString = today.toLocaleDateString('ar-SA', options);
                 updateDateElement.textContent = `آخر تحديث: ${dateString}`;
             }
-            
+
             // Add smooth scrolling for anchor links
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
+                anchor.addEventListener('click', function (e) {
                     e.preventDefault();
-                    
+
                     const targetId = this.getAttribute('href');
-                    if(targetId === '#') return;
-                    
+                    if (targetId === '#') return;
+
                     const targetElement = document.querySelector(targetId);
-                    if(targetElement) {
+                    if (targetElement) {
                         window.scrollTo({
                             top: targetElement.offsetTop - 100,
                             behavior: 'smooth'
@@ -501,4 +533,5 @@
         });
     </script>
 </body>
+
 </html>
