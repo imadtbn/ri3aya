@@ -1,0 +1,546 @@
+/* meal-planner.css - أنماط خاصة بأداة مخطط وجبات الطعام */
+
+/* تحسينات عامة للقسم */
+.meal-planner-section {
+    margin-top: 30px;
+    animation: fadeInUp 0.6s ease;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.meal-planner-section .section-card {
+    border-radius: 15px;
+    overflow: hidden;
+    border: 1px solid #e9ecef;
+    transition: all 0.3s ease;
+}
+
+.meal-planner-section .section-card:hover {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.meal-planner-section h2 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.8rem;
+}
+
+.meal-planner-section h2 i {
+    color: #e67e22;
+}
+
+.meal-planner-section > p {
+    color: #666;
+    font-size: 1.1rem;
+    margin-bottom: 25px;
+}
+
+/* عناصر التحكم */
+.planner-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: flex-end;
+    margin-bottom: 30px;
+    padding: 25px;
+    background: #f8f9fa;
+    border-radius: 10px;
+}
+
+.planner-controls .form-group {
+    flex: 1;
+    min-width: 200px;
+    margin-bottom: 0;
+}
+
+.planner-controls label {
+    color: #2c3e50;
+    font-weight: 600;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.planner-controls label i {
+    margin-left: 8px;
+    color: #e67e22;
+}
+
+.planner-controls .form-select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    font-size: 1rem;
+    background: white;
+    transition: all 0.3s;
+}
+
+.planner-controls .form-select:focus {
+    border-color: #e67e22;
+    box-shadow: 0 0 0 3px rgba(230, 126, 34, 0.1);
+    outline: none;
+}
+
+#generate-meal-plan {
+    padding: 13px 30px;
+    background: linear-gradient(to left, #e67e22, #d35400);
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    height: fit-content;
+}
+
+#generate-meal-plan:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(230, 126, 34, 0.3);
+}
+
+/* منطقة النتائج */
+.planner-results {
+    min-height: 200px;
+    margin-top: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: all 0.5s ease;
+}
+
+.planner-results.show-plan {
+    animation: slideUp 0.5s ease;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.empty-state {
+    text-align: center;
+    padding: 50px 20px;
+    color: #666;
+}
+
+.empty-state i {
+    font-size: 4rem;
+    color: #e9ecef;
+    margin-bottom: 20px;
+}
+
+.empty-state h3 {
+    color: #2c3e50;
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+}
+
+.empty-state p {
+    font-size: 1.1rem;
+    max-width: 500px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* رأس خطة الوجبات */
+.meal-plan-header {
+    background: linear-gradient(to right, #fef9e7, #fdebd0);
+    padding: 25px;
+    border-radius: 10px 10px 0 0;
+    border-bottom: 3px solid #e67e22;
+}
+
+.meal-plan-header h3 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.6rem;
+}
+
+.meal-plan-header h3 i {
+    color: #e67e22;
+}
+
+.plan-description {
+    color: #666;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.plan-summary {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.summary-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: white;
+    padding: 10px 15px;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+}
+
+.summary-item i {
+    color: #e67e22;
+}
+
+.summary-item span {
+    color: #2c3e50;
+    font-weight: 500;
+}
+
+/* تبويبات الخطة */
+.plan-tabs {
+    display: flex;
+    background: #f8f9fa;
+    padding: 0;
+    border-bottom: 2px solid #e9ecef;
+}
+
+.plan-tab {
+    flex: 1;
+    padding: 15px 20px;
+    background: none;
+    border: none;
+    color: #666;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    position: relative;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.plan-tab:hover {
+    color: #e67e22;
+    background: rgba(230, 126, 34, 0.05);
+}
+
+.plan-tab.active {
+    color: #e67e22;
+    background: white;
+}
+
+.plan-tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    right: 0;
+    left: 0;
+    height: 3px;
+    background: #e67e22;
+}
+
+/* محتوى التبويبات */
+.plan-tab-content {
+    background: white;
+    padding: 0;
+}
+
+.tab-pane {
+    display: none;
+    padding: 25px;
+    animation: fadeIn 0.5s ease;
+}
+
+.tab-pane.active {
+    display: block;
+}
+
+.tab-pane h4 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.3rem;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #f8f9fa;
+}
+
+.tab-pane h4 i {
+    color: #e67e22;
+}
+
+/* الوجبات اليومية */
+.daily-meals {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.meal-item {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    transition: all 0.3s;
+}
+
+.meal-item:hover {
+    background: #fef9e7;
+    transform: translateX(-5px);
+}
+
+.meal-time {
+    flex: 0 0 120px;
+    color: #2c3e50;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.meal-food {
+    flex: 1;
+    color: #555;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+/* الجدول الأسبوعي */
+.weekly-table {
+    overflow-x: auto;
+    margin-top: 20px;
+}
+
+.weekly-table table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 600px;
+}
+
+.weekly-table th {
+    background: #e67e22;
+    color: white;
+    padding: 15px;
+    text-align: right;
+    font-weight: 600;
+}
+
+.weekly-table td {
+    padding: 12px 15px;
+    border: 1px solid #e9ecef;
+    text-align: right;
+}
+
+.weekly-table tr:nth-child(even) {
+    background: #f8f9fa;
+}
+
+.weekly-table tr:hover {
+    background: #fef9e7;
+}
+
+.day-name {
+    font-weight: bold;
+    color: #2c3e50;
+    background: #fdebd0 !important;
+}
+
+/* قائمة النصائح */
+.tips-list {
+    list-style: none;
+    padding-right: 0;
+}
+
+.tips-list li {
+    padding: 12px 0;
+    padding-right: 35px;
+    position: relative;
+    color: #555;
+    line-height: 1.6;
+    border-bottom: 1px solid #f8f9fa;
+}
+
+.tips-list li:last-child {
+    border-bottom: none;
+}
+
+.tips-list li i {
+    position: absolute;
+    right: 0;
+    top: 14px;
+    color: #27ae60;
+}
+
+/* أزرار الإجراءات */
+.plan-actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    padding: 25px;
+    background: #f8f9fa;
+    border-top: 2px solid #e9ecef;
+}
+
+.plan-actions .btn {
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.plan-actions .btn-secondary {
+    background: white;
+    color: #2c3e50;
+    border: 2px solid #e9ecef;
+}
+
+.plan-actions .btn-secondary:hover {
+    background: #e9ecef;
+    color: #e67e22;
+    border-color: #e67e22;
+}
+
+.plan-actions .btn-primary {
+    background: linear-gradient(to left, #e67e22, #d35400);
+    color: white;
+    border: none;
+}
+
+.plan-actions .btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(230, 126, 34, 0.3);
+}
+
+/* رسالة النجاح */
+.success-message {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    z-index: 1000;
+    animation: slideInLeft 0.3s ease;
+}
+
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.success-content {
+    background: #27ae60;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 5px 15px rgba(39, 174, 96, 0.3);
+}
+
+.success-content i {
+    font-size: 1.2rem;
+}
+
+/* تحسينات للاستجابة */
+@media (max-width: 768px) {
+    .planner-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .planner-controls .form-group {
+        min-width: 100%;
+    }
+    
+    .plan-summary {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .plan-tabs {
+        flex-direction: column;
+    }
+    
+    .plan-actions {
+        flex-direction: column;
+    }
+    
+    .meal-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .meal-time {
+        flex: 0 0 auto;
+    }
+    
+    .success-message {
+        left: 10px;
+        right: 10px;
+        bottom: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .meal-plan-header,
+    .tab-pane {
+        padding: 15px;
+    }
+    
+    .weekly-table table {
+        min-width: 100%;
+    }
+    
+    .weekly-table th,
+    .weekly-table td {
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+}
+
+/* تحسينات للطباعة */
+@media print {
+    .planner-controls,
+    .plan-tabs,
+    .plan-actions {
+        display: none !important;
+    }
+    
+    .tab-pane {
+        display: block !important;
+        page-break-inside: avoid;
+    }
+    
+    .meal-plan-header {
+        background: white !important;
+        border: 2px solid #ddd;
+    }
+}

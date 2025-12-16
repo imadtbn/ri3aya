@@ -1,0 +1,274 @@
+    /* تحسينات التباين والعرض */
+
+    /* تحسين تباين النصوص */
+    .page-content h1, 
+    .page-content h2, 
+    .page-content h3, 
+    .page-content h4 {
+        color: #2c3e50 !important;
+        font-weight: 700 !important;
+    }
+
+    .page-content p {
+        color: #34495e !important;
+        line-height: 1.8 !important;
+        font-size: 1.1rem !important;
+    }
+
+    /* تحسين تباين الخلفيات */
+    .content-section {
+        background-color: #ffffff !important;
+        border-radius: 12px !important;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08) !important;
+        margin-bottom: 2rem !important;
+        padding: 2rem !important;
+        border: 1px solid #ecf0f1 !important;
+    }
+
+    /* تحسين عرض المحتوى الرئيسي */
+    .main-content {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    .content-wrapper {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 2rem !important;
+    }
+
+    /* تحسين التباين للبطاقات */
+    .diaper-type-card,
+    .step-content,
+    .cause-item,
+    .prevention-tip,
+    .size-tip,
+    .golden-tip {
+        background-color: #ffffff !important;
+        border: 1px solid #e8e8e8 !important;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05) !important;
+    }
+
+    /* تحسين التباين للجداول */
+    .size-table th {
+        background: linear-gradient(135deg, #3498db, #2c3e50) !important;
+        color: white !important;
+        font-weight: 600 !important;
+    }
+
+    .size-table tbody tr:nth-child(even) {
+        background-color: #f8f9fa !important;
+    }
+
+    .size-table tbody tr:hover {
+        background-color: #e3f2fd !important;
+    }
+
+    /* تحسين تباين الروابط */
+    .related-article,
+    .download-link {
+        color: #2980b9 !important;
+        text-decoration: none !important;
+        transition: color 0.3s ease !important;
+    }
+
+    .related-article:hover,
+    .download-link:hover {
+        color: #1a5276 !important;
+    }
+
+    /* تحسين عرض الشريط الجانبي */
+    .sidebar {
+        background-color: #f8f9fa !important;
+        border-radius: 12px !important;
+        padding: 1.5rem !important;
+        border: 1px solid #dee2e6 !important;
+    }
+
+    .sidebar-widget {
+        margin-bottom: 2rem !important;
+        padding-bottom: 1.5rem !important;
+        border-bottom: 1px dashed #dee2e6 !important;
+    }
+
+    .sidebar-widget:last-child {
+        border-bottom: none !important;
+        margin-bottom: 0 !important;
+    }
+
+    /* تحسين تباين الأزرار */
+    .btn-primary {
+        background: linear-gradient(135deg, #3498db, #2980b9) !important;
+        color: white !important;
+        border: none !important;
+        font-weight: 600 !important;
+        padding: 0.75rem 1.5rem !important;
+    }
+
+    .btn-primary:hover {
+        background: linear-gradient(135deg, #2980b9, #1c5986) !important;
+        transform: translateY(-2px) !important;
+        box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3) !important;
+    }
+
+    /* تحسين تباين العناوين الفرعية */
+    .section-title {
+        position: relative !important;
+        padding-bottom: 1rem !important;
+        margin-bottom: 2rem !important;
+    }
+
+    .section-title::after {
+        content: '' !important;
+        position: absolute !important;
+        bottom: 0 !important;
+        right: 0 !important;
+        width: 80px !important;
+        height: 4px !important;
+        background: linear-gradient(to left, #3498db, #2ecc71) !important;
+        border-radius: 2px !important;
+    }
+
+    /* تحسين تباين القوائم */
+    .pros li, .cons li {
+        position: relative !important;
+        padding-right: 1.5rem !important;
+        margin-bottom: 0.5rem !important;
+    }
+
+    .pros li::before {
+        color: #27ae60 !important;
+        font-weight: bold !important;
+    }
+
+    .cons li::before {
+        color: #e74c3c !important;
+        font-weight: bold !important;
+    }
+
+    /* تحسين عرض التخطيط للهواتف */
+    @media (max-width: 768px) {
+        .page-content {
+            padding: 1rem !important;
+        }
+        
+        .content-section {
+            padding: 1.5rem !important;
+            margin-bottom: 1.5rem !important;
+        }
+        
+        .page-content h2 {
+            font-size: 1.5rem !important;
+        }
+        
+        .page-content p {
+            font-size: 1rem !important;
+        }
+        
+        .sidebar {
+            margin-top: 2rem !important;
+            order: 2 !important;
+        }
+        
+        .main-content {
+            order: 1 !important;
+        }
+    }
+
+    /* تحسين تباين النصائح والتحذيرات */
+    .step-tip,
+    .diaper-tips,
+    .treatment-warning {
+        background-color: #f8f9fa !important;
+        border-right: 4px solid !important;
+        padding: 1rem !important;
+        border-radius: 8px !important;
+        margin: 1rem 0 !important;
+    }
+
+    .step-tip {
+        border-right-color: #f1c40f !important;
+        background-color: #fffde7 !important;
+    }
+
+    .diaper-tips {
+        border-right-color: #3498db !important;
+        background-color: #ebf5fb !important;
+    }
+
+    .treatment-warning {
+        border-right-color: #e74c3c !important;
+        background-color: #fdedec !important;
+    }
+
+    /* تحسين تباين الإحصائيات */
+    .statistics-grid {
+        display: grid !important;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)) !important;
+        gap: 1rem !important;
+        margin: 2rem 0 !important;
+    }
+
+    .stat-card {
+        background: linear-gradient(135deg, #f8f9fa, #e9ecef) !important;
+        border-radius: 10px !important;
+        padding: 1.5rem !important;
+        text-align: center !important;
+        border: 1px solid #dee2e6 !important;
+    }
+
+    .stat-number {
+        font-size: 2rem !important;
+        font-weight: 700 !important;
+        color: #2c3e50 !important;
+        margin-bottom: 0.5rem !important;
+    }
+
+    .stat-desc {
+        color: #5d6d7e !important;
+        font-size: 0.9rem !important;
+        line-height: 1.4 !important;
+    }
+
+    /* تحسين تباين عناصر النماذج */
+    .form-group input,
+    .form-group select,
+    .question select {
+        background-color: #ffffff !important;
+        border: 2px solid #dee2e6 !important;
+        border-radius: 8px !important;
+        transition: all 0.3s ease !important;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .question select:focus {
+        border-color: #3498db !important;
+        box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1) !important;
+        outline: none !important;
+    }
+
+    /* تحسين التباين العام للصفحة */
+    body {
+        background-color: #f5f7fa !important;
+        color: #333 !important;
+    }
+
+    .page-header {
+        background: linear-gradient(135deg, #e3f2fd, #f3e5f5) !important;
+        margin-bottom: 2rem !important;
+    }
+
+    /* تحسين عرض الخط الزمني */
+    .steps-timeline::before {
+        background: linear-gradient(to bottom, #3498db, #2ecc71) !important;
+        width: 4px !important;
+    }
+
+    .step-number {
+        background: linear-gradient(135deg, #3498db, #2980b9) !important;
+        color: white !important;
+        font-weight: 700 !important;
+        box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3) !important;
+        border: 3px solid #ffffff !important;
+    }

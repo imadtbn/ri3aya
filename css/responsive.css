@@ -40,3 +40,275 @@
   padding: 3rem 1rem;
   margin-top: 4rem;
 }
+
+
+/* تحسينات القائمة المنسدلة للهواتف */
+@media (max-width: 768px) {
+    /* تحسين اللمس للقائمة المنسدلة */
+    .touch-device .dropdown > a {
+        padding: 12px 15px;
+        min-height: 48px; /* ارتفاع أدنى للمساحة القابلة للمس */
+    }
+    
+    .dropdown-menu {
+        position: static;
+        background-color: rgba(255, 255, 255, 0.05);
+        box-shadow: none;
+        width: 100%;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        border-radius: 0;
+        margin-top: 5px;
+        padding: 0;
+    }
+    
+    .dropdown.open .dropdown-menu {
+        max-height: 70vh; /* ارتفاع أقصى لجزء كبير من الشاشة */
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch; /* تمرير سلس على iOS */
+        padding: 10px 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .dropdown-menu li {
+        padding: 0;
+        margin: 0;
+        opacity: 0;
+        transform: translateY(-15px);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    
+    .dropdown.open .dropdown-menu li {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
+    /* تأثيرات تأخير للعناصر الفردية */
+    .dropdown.open .dropdown-menu li:nth-child(1) { transition-delay: 0.05s; }
+    .dropdown.open .dropdown-menu li:nth-child(2) { transition-delay: 0.08s; }
+    .dropdown.open .dropdown-menu li:nth-child(3) { transition-delay: 0.11s; }
+    .dropdown.open .dropdown-menu li:nth-child(4) { transition-delay: 0.14s; }
+    .dropdown.open .dropdown-menu li:nth-child(5) { transition-delay: 0.17s; }
+    .dropdown.open .dropdown-menu li:nth-child(6) { transition-delay: 0.20s; }
+    .dropdown.open .dropdown-menu li:nth-child(7) { transition-delay: 0.23s; }
+    .dropdown.open .dropdown-menu li:nth-child(8) { transition-delay: 0.26s; }
+    .dropdown.open .dropdown-menu li:nth-child(9) { transition-delay: 0.29s; }
+    .dropdown.open .dropdown-menu li:nth-child(10) { transition-delay: 0.32s; }
+    
+    /* تحسين روابط القائمة المنسدلة للهواتف */
+    .dropdown-menu a {
+        display: flex;
+        align-items: center;
+        padding: 14px 25px;
+        font-size: 15px;
+        color: #fff;
+        text-decoration: none;
+        transition: background-color 0.2s;
+        border-left: 4px solid transparent;
+        min-height: 50px;
+    }
+    
+    .dropdown-menu a:hover,
+    .dropdown-menu a:active,
+    .dropdown-menu a:focus {
+        background-color: rgba(255, 255, 255, 0.1);
+        border-left-color: #4CAF50;
+    }
+    
+    .dropdown-menu a i {
+        margin-left: 10px;
+        font-size: 16px;
+        width: 24px;
+        text-align: center;
+    }
+    
+    /* تأثير السهم */
+    .dropdown > a .fa-chevron-down {
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        margin-right: 5px;
+        font-size: 12px;
+    }
+    
+    .dropdown.open > a .fa-chevron-down {
+        transform: rotate(180deg);
+    }
+    
+    /* مؤشر اللمس */
+    .dropdown > a {
+        position: relative;
+    }
+    
+    .dropdown > a.long-touch::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 10px;
+        transform: translateY(-50%);
+        width: 30px;
+        height: 30px;
+        background-color: rgba(76, 175, 80, 0.2);
+        border-radius: 50%;
+        animation: pulse 0.5s ease-in-out;
+    }
+    
+    /* شريط التمرير للقائمة المنسدلة */
+    .dropdown-menu::-webkit-scrollbar {
+        width: 4px;
+    }
+    
+    .dropdown-menu::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.1);
+    }
+    
+    .dropdown-menu::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 2px;
+    }
+    
+    .dropdown-menu::-webkit-scrollbar-thumb:hover {
+        background: rgba(255, 255, 255, 0.4);
+    }
+}
+
+
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: rgba(44, 62, 80, 0.98);
+    min-width: 220px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    z-index: 1000;
+    border-radius: 8px;
+    padding: 10px 0;
+    margin-top: 5px;
+}
+
+.dropdown.open .dropdown-menu {
+    display: block;
+}
+
+.dropdown-menu li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.dropdown-menu a {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    color: #fff;
+    text-decoration: none;
+    transition: background-color 0.3s;
+    font-size: 15px;
+}
+
+.dropdown-menu a i {
+    margin-left: 10px;
+    font-size: 16px;
+    width: 20px;
+    text-align: center;
+}
+
+.dropdown-menu a:hover {
+    background-color: rgba(76, 175, 80, 0.3);
+}
+
+/* تحسين رأس الصفحة للهواتف */
+@media (max-width: 992px) {
+    .page-header .container {
+        flex-direction: column;
+        text-align: center;
+        gap: 30px;
+    }
+    
+    .page-header-content {
+        max-width: 100%;
+    }
+    
+    .page-header-content h1 {
+        font-size: 2rem;
+        padding-bottom: 12px;
+    }
+    
+    .page-header-content h1::after {
+        right: 50%;
+        transform: translateX(50%);
+    }
+    
+    .page-header-content p {
+        font-size: 1.1rem;
+    }
+    
+    .breadcrumb {
+        margin: 0 auto;
+    }
+    
+    .page-header-image {
+        max-width: 100%;
+        height: 300px;
+        order: -1;
+    }
+    
+    .page-header-image img {
+        height: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .page-header {
+        padding: 40px 0;
+    }
+    
+    .page-header-content h1 {
+        font-size: 1.8rem;
+    }
+    
+    .page-header-content h1 i {
+        font-size: 1.6rem;
+        margin-left: 10px;
+    }
+    
+    .page-header-content p {
+        font-size: 1rem;
+    }
+    
+    .breadcrumb {
+        font-size: 0.9rem;
+        padding: 10px 15px;
+    }
+    
+    .page-header-image {
+        height: 250px;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-header {
+        padding: 30px 0;
+    }
+    
+    .page-header-content h1 {
+        font-size: 1.6rem;
+    }
+    
+    .page-header-content p {
+        font-size: 0.95rem;
+    }
+    
+    .breadcrumb {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+        padding: 10px;
+    }
+    
+    .page-header-image {
+        height: 200px;
+    }
+}

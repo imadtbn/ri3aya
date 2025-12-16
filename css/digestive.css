@@ -1232,3 +1232,343 @@
         width: 100%;
     }
 }
+
+
+/* تحسينات للقسم الأول */
+.improved-intro .intro-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.improved-intro .intro-subtitle {
+    color: var(--gray-600);
+    font-size: 1.1rem;
+    max-width: 800px;
+    margin: 1rem auto 2rem;
+    line-height: 1.6;
+}
+
+.improved-intro .intro-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.improved-intro .intro-card {
+    background: var(--white);
+    padding: 1.5rem;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-top: 3px solid var(--primary-color);
+}
+
+.improved-intro .intro-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+}
+
+.improved-intro .intro-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--primary-light), var(--accent-light));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+}
+
+.improved-intro .intro-icon i {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+}
+
+.improved-intro .intro-card h3 {
+    color: var(--gray-800);
+    margin-bottom: 0.75rem;
+    font-size: 1.1rem;
+}
+
+.improved-intro .intro-card p {
+    color: var(--gray-600);
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.improved-intro .intro-footer {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background-color: rgba(74, 144, 226, 0.05);
+    border-radius: 12px;
+    border-right: 4px solid var(--primary-color);
+}
+
+.improved-intro .intro-footer p {
+    color: var(--gray-700);
+    text-align: center;
+    margin: 0;
+}
+
+/* تحسينات للقسم الثاني */
+.improved-disorders .disorders-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.improved-disorders .disorders-subtitle {
+    color: var(--gray-600);
+    font-size: 1.1rem;
+    max-width: 800px;
+    margin: 1rem auto 2rem;
+}
+
+.improved-disorders .disorders-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background: var(--gray-50);
+    border-radius: 12px;
+}
+
+.improved-disorders .disorder-nav-btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 25px;
+    background: var(--white);
+    color: var(--gray-700);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.improved-disorders .disorder-nav-btn.active {
+    background: var(--primary-color);
+    color: var(--white);
+    box-shadow: var(--shadow-sm);
+}
+
+.improved-disorders .disorder-nav-btn:hover:not(.active) {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+.disorders-overview.improved {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.disorders-overview.improved .disorder-card {
+    display: none;
+    flex-direction: column;
+    height: 100%;
+    position: relative;
+    padding-top: 0.5rem;
+}
+
+.disorders-overview.improved .disorder-card.active {
+    display: flex;
+}
+
+.disorders-overview.improved .disorder-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 1;
+}
+
+.disorders-overview.improved .badge-text {
+    background: var(--accent-color);
+    color: var(--white);
+    padding: 0.25rem 0.75rem;
+    border-radius: 15px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.disorders-overview.improved .disorder-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+
+.disorders-overview.improved .disorder-title h3 {
+    margin: 0;
+    color: var(--gray-800);
+}
+
+.disorders-overview.improved .disorder-severity {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.disorders-overview.improved .severity-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.disorders-overview.improved .severity-dot.high {
+    background-color: #F44336;
+}
+
+.disorders-overview.improved .severity-dot.medium {
+    background-color: #FF9800;
+}
+
+.disorders-overview.improved .severity-dot.low {
+    background-color: #4CAF50;
+}
+
+.disorders-overview.improved .severity-text {
+    font-size: 0.8rem;
+    color: var(--gray-600);
+}
+
+.disorders-overview.improved .disorder-description {
+    color: var(--gray-700);
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+    flex-grow: 1;
+}
+
+.disorders-overview.improved .disorder-details {
+    background: var(--gray-50);
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+}
+
+.disorders-overview.improved .detail-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.disorders-overview.improved .detail-item:last-child {
+    margin-bottom: 0;
+}
+
+.disorders-overview.improved .detail-label {
+    color: var(--gray-600);
+    font-weight: 500;
+}
+
+.disorders-overview.improved .detail-value {
+    color: var(--gray-800);
+    font-weight: 600;
+}
+
+.disorders-overview.improved .disorder-symptoms h4 {
+    color: var(--gray-700);
+    margin-bottom: 0.75rem;
+    font-size: 1rem;
+}
+
+.disorders-overview.improved .disorder-symptoms ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.disorders-overview.improved .disorder-symptoms li {
+    margin-bottom: 0.5rem;
+    padding-right: 1.5rem;
+    position: relative;
+    color: var(--gray-600);
+    font-size: 0.9rem;
+}
+
+.disorders-overview.improved .disorder-symptoms li::before {
+    content: '•';
+    position: absolute;
+    right: 0;
+    color: var(--primary-color);
+    font-size: 1.2rem;
+}
+
+.improved-disorders .disorders-summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+}
+
+.improved-disorders .summary-card {
+    text-align: center;
+    padding: 1.5rem;
+    background: var(--white);
+    border-radius: 12px;
+    box-shadow: var(--shadow-sm);
+    border-top: 3px solid var(--accent-color);
+}
+
+.improved-disorders .summary-card i {
+    font-size: 2rem;
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+}
+
+.improved-disorders .summary-card h4 {
+    color: var(--gray-800);
+    margin-bottom: 0.75rem;
+}
+
+.improved-disorders .summary-card p {
+    color: var(--gray-600);
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* أنماط للهواتف */
+@media (max-width: 768px) {
+    .improved-intro .intro-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .improved-disorders .disorders-nav {
+        overflow-x: auto;
+        justify-content: flex-start;
+        padding-bottom: 0.5rem;
+    }
+    
+    .improved-disorders .disorder-nav-btn {
+        white-space: nowrap;
+    }
+    
+    .disorders-overview.improved {
+        grid-template-columns: 1fr;
+    }
+    
+    .disorders-overview.improved .disorder-card {
+        display: flex !important; /* إظهار جميع البطاقات في الهاتف */
+        margin-bottom: 1.5rem;
+    }
+    
+    .improved-disorders .disorders-summary {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .improved-disorders .disorder-title {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    
+    .disorders-overview.improved .detail-item {
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+}

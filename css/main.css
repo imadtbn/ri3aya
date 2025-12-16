@@ -1491,3 +1491,201 @@ footer {
 .dropdown.open .dropdown-menu {
     display: block;
 }
+
+/* ===== جعل الهيدر والفوتر بعرض الصفحة بالكامل ===== */
+
+/* منع أي هوامش أفقية */
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* الهيدر (Navbar) بعرض كامل */
+.navbar {
+  width: 100%;
+  left: 0;
+  right: 0;
+}
+
+/* محتوى الهيدر يبقى مركزي */
+.navbar .container,
+.navbar .nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+/* الفوتر بعرض كامل */
+.footer,
+footer {
+  width: 100%;
+  left: 0;
+  right: 0;
+}
+
+/* محتوى الفوتر يبقى مركزي */
+.footer .container,
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+
+/* ===== دعم التحكم بالقائمة في الهاتف ===== */
+@media (max-width: 992px) {
+  .dropdown-menu {
+    position: static;
+    box-shadow: none;
+  }
+
+  .dropdown.open .dropdown-menu {
+    display: block;
+  }
+}
+
+/* تحسين رأس الصفحة مع الصورة */
+.page-header {
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    padding: 60px 0;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.page-header .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    position: relative;
+    z-index: 2;
+}
+
+.page-header-content {
+    flex: 1;
+    max-width: 600px;
+}
+
+.page-header-content h1 {
+    color: #2c3e50;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+    line-height: 1.3;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.page-header-content h1 i {
+    color: #4CAF50;
+    margin-left: 15px;
+    font-size: 2.2rem;
+}
+
+.page-header-content h1::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(to left, #4CAF50, #2196F3);
+    border-radius: 2px;
+}
+
+.page-header-content p {
+    color: #5d6d7e;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 25px;
+    font-weight: 400;
+}
+
+.breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 12px 20px;
+    border-radius: 50px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    max-width: fit-content;
+}
+
+.breadcrumb a {
+    color: #4CAF50;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.breadcrumb a:hover {
+    color: #2c3e50;
+    text-decoration: underline;
+}
+
+.breadcrumb i {
+    color: #95a5a6;
+    font-size: 12px;
+}
+
+.breadcrumb span {
+    color: #2c3e50;
+    font-weight: 600;
+}
+
+.page-header-image {
+    flex: 1;
+    max-width: 500px;
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    transform-style: preserve-3d;
+    transition: transform 0.5s ease;
+}
+
+.page-header-image:hover {
+    transform: translateY(-10px) rotateY(5deg);
+}
+
+.page-header-image img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.page-header-image:hover img {
+    transform: scale(1.05);
+}
+
+/* تأثيرات زخرفية */
+.page-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 300px;
+    height: 300px;
+    background: linear-gradient(45deg, rgba(76, 175, 80, 0.1), rgba(33, 150, 243, 0.1));
+    border-radius: 50%;
+    transform: translate(50%, -50%);
+}
+
+.page-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 200px;
+    height: 200px;
+    background: linear-gradient(45deg, rgba(33, 150, 243, 0.1), rgba(156, 39, 176, 0.1));
+    border-radius: 50%;
+    transform: translate(-50%, 50%);
+}

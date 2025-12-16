@@ -576,3 +576,221 @@
         gap: 0.8rem;
     }
 }
+
+
+/* css/vaccine.css - إضافات مخصصة لقسم الأسئلة الشائعة */
+
+/* تحسينات لقسم الأسئلة الشائعة */
+.faq-section .section-card {
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    border: 2px solid #e3f2fd;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(41, 128, 185, 0.08);
+    overflow: hidden;
+}
+
+.faq-section h2 {
+    color: #1a5fb4;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.faq-section h2:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 50%;
+    transform: translateX(50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(to left, #1a5fb4, #4a90e2);
+    border-radius: 2px;
+}
+
+/* تحسينات لأسئلة وأجوبة الـ FAQ */
+.faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.faq-item {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    border: 1px solid #e0e7ff;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(79, 70, 229, 0.05);
+}
+
+.faq-item:hover {
+    border-color: #4a90e2;
+    box-shadow: 0 6px 12px rgba(41, 128, 185, 0.1);
+    transform: translateY(-2px);
+}
+
+.faq-question {
+    width: 100%;
+    padding: 20px 25px;
+    background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 100%);
+    border: none;
+    text-align: right;
+    font-family: 'Cairo', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #2d3748;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.faq-question:hover {
+    background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%);
+    color: #1a5fb4;
+}
+
+.faq-question:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.3);
+}
+
+.faq-question span {
+    flex: 1;
+    text-align: right;
+    padding-left: 15px;
+}
+
+.faq-question i {
+    color: #4a90e2;
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+}
+
+.faq-question.active i {
+    transform: rotate(180deg);
+    color: #1a5fb4;
+}
+
+.faq-answer {
+    padding: 0 25px;
+    max-height: 0;
+    overflow: hidden;
+    background: #ffffff;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.faq-answer.open {
+    padding: 25px;
+    max-height: 500px;
+    border-top: 1px solid #e0e7ff;
+    background: linear-gradient(to bottom, #fafbff, #ffffff);
+}
+
+.faq-answer p {
+    color: #4a5568;
+    font-size: 1rem;
+    line-height: 1.8;
+    margin: 0;
+    text-align: right;
+    direction: rtl;
+}
+
+.faq-answer p strong {
+    color: #2d3748;
+    font-weight: 600;
+}
+
+/* تأثيرات تفاعلية */
+.faq-item.active {
+    border-color: #4a90e2;
+    box-shadow: 0 8px 16px rgba(41, 128, 185, 0.12);
+}
+
+/* تحسينات للعرض على الأجهزة المحمولة */
+@media (max-width: 768px) {
+    .faq-section h2 {
+        font-size: 1.6rem;
+    }
+    
+    .faq-question {
+        padding: 18px 20px;
+        font-size: 1rem;
+    }
+    
+    .faq-answer.open {
+        padding: 20px;
+    }
+    
+    .faq-question span {
+        padding-left: 10px;
+    }
+}
+
+/* تحسينات للعرض على الأجهزة اللوحية */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .faq-section .section-card {
+        margin: 0 10px;
+    }
+}
+
+/* إضافة مؤشر للأسئلة */
+.faq-item:before {
+    content: 'Q:';
+    position: absolute;
+    right: 25px;
+    top: 20px;
+    color: #4a90e2;
+    font-weight: bold;
+    font-size: 0.9rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.faq-item.active:before {
+    opacity: 1;
+}
+
+.faq-answer:before {
+    content: 'A:';
+    position: absolute;
+    right: 25px;
+    top: 60px;
+    color: #48bb78;
+    font-weight: bold;
+    font-size: 0.9rem;
+    opacity: 0;
+    transition: opacity 0.3s ease 0.2s;
+}
+
+.faq-answer.open:before {
+    opacity: 1;
+}
+
+/* تحسينات إضافية للقراءة */
+.faq-answer p {
+    text-align: justify;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+}
+
+/* تحسين التباين للقراءة المريحة */
+.faq-question {
+    color: #1a237e;
+    background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+}
+
+.faq-answer {
+    color: #374151;
+    background: #f9fafb;
+}
+
+.faq-answer.open {
+    background: #ffffff;
+    border-left: 4px solid #4a90e2;
+}

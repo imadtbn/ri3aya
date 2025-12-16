@@ -1,0 +1,789 @@
+/* improvements.css - تحسينات تباين وعرض محتوى صفحة بكاء الرضيع */
+
+/* تحسينات عامة للصفحة */
+.page-content {
+    background-color: var(--white);
+    padding: 40px 0;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    margin-top: 30px;
+}
+
+.content-wrapper {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+}
+
+.main-content {
+    flex: 2;
+    min-width: 0; /* لمنع تجاوز الحاوية */
+}
+
+.sidebar {
+    flex: 1;
+    min-width: 300px;
+    position: sticky;
+    top: 100px;
+}
+
+/* تحسينات تباين النصوص */
+.content-section h2 {
+    color: var(--gray-800);
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid var(--primary-light);
+    font-weight: var(--font-bold);
+    line-height: 1.3;
+}
+
+.content-section h3 {
+    color: var(--gray-700);
+    font-size: 1.4rem;
+    margin: 1.5rem 0 1rem;
+    font-weight: var(--font-bold);
+}
+
+.content-section p {
+    color: var(--gray-700);
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    text-align: justify;
+}
+
+.content-section ul,
+.content-section ol {
+    margin-right: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.content-section li {
+    color: var(--gray-700);
+    margin-bottom: 0.75rem;
+    line-height: 1.6;
+    font-size: 1.05rem;
+}
+
+/* تحسينات أنماط البكاء */
+.crying-types {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    margin: 30px 0;
+}
+
+.crying-type-card {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    border: 1px solid var(--gray-200);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.crying-type-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+    border-color: var(--primary-color);
+}
+
+.crying-icon {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+    color: var(--white);
+}
+
+.crying-type-card h3 {
+    color: var(--gray-800);
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+    font-weight: var(--font-bold);
+}
+
+.feature-list {
+    list-style: none;
+    margin: 0 0 20px 0;
+    padding: 0;
+    flex-grow: 1;
+}
+
+.feature-list li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    color: var(--gray-700);
+    font-size: 1rem;
+}
+
+.feature-list i {
+    color: var(--success);
+    font-size: 1.1rem;
+}
+
+.crying-tip {
+    background: var(--gray-50);
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: auto;
+    border-right: 4px solid var(--primary-color);
+}
+
+.crying-tip strong {
+    color: var(--primary-color);
+    display: block;
+    margin-bottom: 5px;
+    font-size: 1.1rem;
+}
+
+.crying-tip span {
+    color: var(--gray-700);
+    font-size: 1rem;
+}
+
+/* تحسينات خريطة الفحص */
+.flowchart {
+    background: var(--gray-50);
+    border-radius: 12px;
+    padding: 30px;
+    margin: 30px 0;
+    border: 1px solid var(--gray-200);
+}
+
+.flow-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 25px;
+    background: var(--white);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+}
+
+.flow-number {
+    background: var(--primary-color);
+    color: var(--white);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: var(--font-bold);
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
+.flow-content h4 {
+    color: var(--gray-800);
+    margin-bottom: 8px;
+    font-size: 1.2rem;
+}
+
+.flow-content p {
+    color: var(--gray-700);
+    margin-bottom: 0;
+    font-size: 1.05rem;
+}
+
+.flow-arrow {
+    text-align: center;
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    margin: 10px 0;
+}
+
+/* تحسينات تقنيات التهدئة */
+.techniques-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin: 30px 0;
+}
+
+.technique-card {
+    background: var(--white);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    border: 1px solid var(--gray-200);
+}
+
+.technique-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.technique-video {
+    height: 200px;
+    background: linear-gradient(135deg, var(--primary-light), var(--accent-light));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.video-placeholder {
+    text-align: center;
+    color: var(--primary-color);
+}
+
+.video-placeholder i {
+    font-size: 4rem;
+    opacity: 0.8;
+}
+
+.technique-content {
+    padding: 25px;
+}
+
+.technique-content h3 {
+    color: var(--gray-800);
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+}
+
+.technique-content p {
+    color: var(--gray-700);
+    margin-bottom: 20px;
+    line-height: 1.7;
+}
+
+.btn-link {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: var(--font-bold);
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    transition: all 0.3s ease;
+}
+
+.btn-link:hover {
+    color: var(--accent-color);
+    gap: 10px;
+}
+
+.sound-player {
+    margin-top: 20px;
+}
+
+/* تحسينات قسم التحذير */
+.warning-section {
+    background: linear-gradient(135deg, #fff5f5, #fff);
+    border-radius: 12px;
+    padding: 30px;
+    margin-top: 40px;
+    border-right: 6px solid var(--danger);
+}
+
+.warning-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.warning-header i {
+    color: var(--danger);
+    font-size: 2rem;
+}
+
+.warning-header h2 {
+    color: var(--danger);
+    margin-bottom: 0;
+    border-bottom: none;
+}
+
+.warning-content p {
+    color: var(--gray-800);
+    font-weight: var(--font-medium);
+    margin-bottom: 20px;
+}
+
+.warning-list {
+    list-style: none;
+    margin: 25px 0;
+    padding: 0;
+}
+
+.warning-list li {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(244, 67, 54, 0.1);
+}
+
+.warning-list i {
+    color: var(--danger);
+    font-size: 1.2rem;
+    width: 24px;
+}
+
+.warning-list li:last-child {
+    border-bottom: none;
+}
+
+.emergency-contact {
+    background: var(--danger);
+    color: var(--white);
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 25px;
+}
+
+.emergency-contact h4 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+
+.emergency-contact p {
+    color: var(--white);
+    margin-bottom: 0;
+    opacity: 0.9;
+}
+
+/* تحسينات الشريط الجانبي */
+.sidebar-widget {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    border: 1px solid var(--gray-200);
+}
+
+.sidebar-widget h3 {
+    color: var(--gray-800);
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--primary-light);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.cry-analyzer p {
+    color: var(--gray-700);
+    margin-bottom: 20px;
+    font-size: 1.05rem;
+}
+
+.symptom-options {
+    margin: 20px 0;
+}
+
+.checkbox-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+    padding: 10px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.checkbox-option:hover {
+    background-color: var(--gray-50);
+}
+
+.checkbox-option input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    accent-color: var(--primary-color);
+}
+
+.checkbox-option label {
+    color: var(--gray-700);
+    font-size: 1.05rem;
+    cursor: pointer;
+    flex-grow: 1;
+}
+
+.analyze-btn {
+    width: 100%;
+    margin-top: 20px;
+    padding: 12px;
+    font-size: 1.1rem;
+}
+
+.analysis-result {
+    margin-top: 20px;
+    padding: 20px;
+    background: var(--primary-light);
+    border-radius: 8px;
+    border-right: 4px solid var(--primary-color);
+    display: none;
+}
+
+.analysis-result.active {
+    display: block;
+}
+
+/* تحسينات المقالات ذات الصلة */
+.related-articles {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.related-article {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    background: var(--gray-50);
+    border-radius: 10px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.related-article:hover {
+    background: var(--primary-light);
+    transform: translateX(-5px);
+    border-color: var(--primary-color);
+}
+
+.related-icon {
+    width: 50px;
+    height: 50px;
+    background: var(--primary-color);
+    color: var(--white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    flex-shrink: 0;
+}
+
+.related-content h4 {
+    color: var(--gray-800);
+    margin-bottom: 5px;
+    font-size: 1.1rem;
+}
+
+.related-content p {
+    color: var(--gray-600);
+    font-size: 0.95rem;
+    margin-bottom: 0;
+}
+
+/* تحسينات النصائح السريعة */
+.quick-tips {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.quick-tip {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 15px;
+    background: var(--accent-light);
+    border-radius: 10px;
+    border-right: 4px solid var(--accent-color);
+}
+
+.quick-tip i {
+    color: var(--accent-color);
+    font-size: 1.2rem;
+    margin-top: 2px;
+}
+
+.quick-tip p {
+    color: var(--gray-800);
+    margin-bottom: 0;
+    font-size: 1.05rem;
+    line-height: 1.6;
+}
+
+/* تحسينات التنزيلات */
+.downloads {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.download-link {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 20px;
+    background: var(--gray-50);
+    border-radius: 10px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.download-link:hover {
+    background: var(--white);
+    border-color: var(--primary-color);
+    transform: translateY(-3px);
+}
+
+.download-link i {
+    font-size: 2rem;
+    color: var(--primary-color);
+}
+
+.download-link div h4 {
+    color: var(--gray-800);
+    margin-bottom: 5px;
+    font-size: 1.1rem;
+}
+
+.download-link div p {
+    color: var(--gray-600);
+    font-size: 0.9rem;
+    margin-bottom: 0;
+}
+
+/* تحسينات صندوق المعلومات */
+.info-box {
+    background: var(--primary-light);
+    border-radius: 12px;
+    padding: 25px;
+    margin: 25px 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    border-right: 4px solid var(--primary-color);
+}
+
+.info-icon i {
+    color: var(--primary-color);
+    font-size: 2rem;
+}
+
+.info-content h4 {
+    color: var(--gray-800);
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+
+.info-content p {
+    color: var(--gray-700);
+    margin-bottom: 0;
+    font-size: 1.05rem;
+    line-height: 1.7;
+}
+
+/* تحسينات محلل البكاء */
+.crying-analyzer-container {
+    margin: 40px 0;
+    background: var(--white);
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    border: 1px solid var(--gray-200);
+}
+
+/* تحسينات للعرض على الأجهزة الصغيرة */
+@media (max-width: 992px) {
+    .content-wrapper {
+        flex-direction: column;
+        gap: 30px;
+    }
+    
+    .sidebar {
+        position: static;
+        min-width: 100%;
+    }
+    
+    .crying-types,
+    .techniques-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .main-content,
+    .sidebar {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .page-content {
+        padding: 30px 0;
+    }
+    
+    .content-section h2 {
+        font-size: 1.6rem;
+    }
+    
+    .content-section h3 {
+        font-size: 1.3rem;
+    }
+    
+    .content-section p {
+        font-size: 1.05rem;
+    }
+    
+    .flow-step {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .flow-number {
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-content {
+        padding: 20px 0;
+    }
+    
+    .content-section h2 {
+        font-size: 1.4rem;
+    }
+    
+    .content-section p {
+        font-size: 1rem;
+        text-align: right;
+    }
+    
+    .crying-type-card,
+    .technique-card,
+    .sidebar-widget {
+        padding: 20px;
+    }
+    
+    .warning-section {
+        padding: 20px;
+    }
+    
+    .info-box {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+}
+
+/* تحسينات إضافية للتباين */
+::selection {
+    background-color: rgba(74, 144, 226, 0.3);
+    color: var(--gray-800);
+}
+
+/* تحسين التركيز للعناصر التفاعلية */
+a:focus,
+button:focus,
+input:focus {
+    outline: 3px solid rgba(74, 144, 226, 0.5);
+    outline-offset: 2px;
+}
+
+/* تحسين تباين النصوص على الخلفيات الملونة */
+.pattern-header,
+.emergency-contact,
+.related-icon,
+.crying-icon,
+.flow-number {
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* تحسين عرض الكود إذا كان موجوداً */
+.code-block {
+    background-color: var(--gray-800);
+    color: var(--gray-100);
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px 0;
+    overflow-x: auto;
+    font-family: 'Courier New', monospace;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* تحسين جداول البيانات إذا كانت موجودة */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 25px 0;
+    background: var(--white);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+}
+
+.data-table th {
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 15px;
+    text-align: right;
+    font-weight: var(--font-bold);
+}
+
+.data-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid var(--gray-200);
+    color: var(--gray-700);
+}
+
+.data-table tr:hover {
+    background-color: var(--gray-50);
+}
+
+/* تحسين أزرار الصوت في تقنيات التهدئة */
+.btn-small {
+    background: var(--primary-color);
+    color: var(--white);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: var(--font-primary);
+    font-weight: var(--font-medium);
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.95rem;
+}
+
+.btn-small:hover {
+    background-color: #3a80d2;
+    transform: translateY(-2px);
+}
+
+/* تحسينات للقراءة الليلية (إذا تم تطبيقها لاحقاً) */
+.night-mode .content-section {
+    background-color: #1a1a1a;
+}
+
+.night-mode .content-section h2,
+.night-mode .content-section h3,
+.night-mode .content-section p,
+.night-mode .content-section li {
+    color: #e0e0e0;
+}
+
+.night-mode .crying-type-card,
+.night-mode .technique-card,
+.night-mode .sidebar-widget {
+    background-color: #2a2a2a;
+    border-color: #3a3a3a;
+}

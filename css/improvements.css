@@ -1,0 +1,518 @@
+/* تحسينات عامة للتباين والعرض */
+
+/* ===== 1. تحسين section التحذيرات ===== */
+article.content-section.warning-section {
+    background: linear-gradient(135deg, #fff8e1, #ffecb3) !important;
+    border-right: 6px solid #ff9800 !important;
+    border-radius: 12px !important;
+    box-shadow: 0 6px 20px rgba(255, 152, 0, 0.15) !important;
+    padding: 2rem !important;
+    margin: 2rem 0 !important;
+    transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+article.content-section.warning-section:hover {
+    transform: translateY(-5px) !important;
+    box-shadow: 0 10px 30px rgba(255, 152, 0, 0.2) !important;
+}
+
+.warning-header {
+    display: flex !important;
+    align-items: center !important;
+    gap: 1rem !important;
+    margin-bottom: 1.5rem !important;
+    padding-bottom: 1rem !important;
+    border-bottom: 2px solid rgba(255, 152, 0, 0.3) !important;
+}
+
+.warning-header i {
+    color: #ff9800 !important;
+    font-size: 2rem !important;
+    background: rgba(255, 152, 0, 0.1) !important;
+    width: 60px !important;
+    height: 60px !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.warning-header h2 {
+    color: #e65100 !important;
+    font-size: 1.8rem !important;
+    margin: 0 !important;
+    font-weight: 700 !important;
+}
+
+.warning-content p {
+    color: #5d4037 !important;
+    font-size: 1.1rem !important;
+    margin-bottom: 1.5rem !important;
+    line-height: 1.6 !important;
+}
+
+.warning-list {
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.warning-list li {
+    display: flex !important;
+    align-items: flex-start !important;
+    gap: 1rem !important;
+    padding: 1rem !important;
+    margin-bottom: 0.75rem !important;
+    background: rgba(255, 255, 255, 0.9) !important;
+    border-radius: 8px !important;
+    border-right: 4px solid #ff9800 !important;
+    transition: transform 0.3s ease, background-color 0.3s ease !important;
+}
+
+.warning-list li:hover {
+    transform: translateX(-5px) !important;
+    background: white !important;
+}
+
+.warning-list li i {
+    color: #f44336 !important;
+    margin-top: 0.25rem !important;
+    font-size: 1.2rem !important;
+    flex-shrink: 0 !important;
+}
+
+.warning-list li strong {
+    color: #d84315 !important;
+    font-weight: 600 !important;
+}
+
+/* ===== 2. تحسين أداة فحص بيئة النوم ===== */
+div.sleep-checker {
+    background: #f8f9fa !important;
+    border-radius: 12px !important;
+    padding: 1.5rem !important;
+    border: 2px solid #e3f2fd !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05) !important;
+}
+
+.sleep-checker p {
+    color: #2c3e50 !important;
+    font-size: 1.1rem !important;
+    margin-bottom: 1.5rem !important;
+    font-weight: 500 !important;
+    text-align: center !important;
+}
+
+.check-options {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.75rem !important;
+    margin-bottom: 1.5rem !important;
+}
+
+.checkbox-option {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.75rem !important;
+    padding: 0.75rem !important;
+    background: white !important;
+    border-radius: 8px !important;
+    border: 2px solid #e0e0e0 !important;
+    transition: all 0.3s ease !important;
+    cursor: pointer !important;
+}
+
+.checkbox-option:hover {
+    border-color: #4CAF50 !important;
+    background: #f1f8e9 !important;
+    transform: translateY(-2px) !important;
+}
+
+.checkbox-option input[type="checkbox"] {
+    width: 20px !important;
+    height: 20px !important;
+    accent-color: #4CAF50 !important;
+    cursor: pointer !important;
+}
+
+.checkbox-option label {
+    color: #37474f !important;
+    font-size: 1rem !important;
+    cursor: pointer !important;
+    flex: 1 !important;
+    margin: 0 !important;
+}
+
+.check-btn {
+    width: 100% !important;
+    padding: 1rem !important;
+    font-size: 1.1rem !important;
+    font-weight: 600 !important;
+    background: linear-gradient(135deg, #4CAF50, #2e7d32) !important;
+    border: none !important;
+    border-radius: 8px !important;
+    color: white !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 0.75rem !important;
+}
+
+.check-btn:hover {
+    background: linear-gradient(135deg, #388e3c, #1b5e20) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3) !important;
+}
+
+.check-result {
+    margin-top: 1.5rem !important;
+    padding: 1.25rem !important;
+    border-radius: 8px !important;
+    display: none !important;
+    animation: fadeIn 0.5s ease !important;
+    text-align: center !important;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== 3. تحسين أدوات ومرفقات آمنة ===== */
+div.tools-list {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1rem !important;
+}
+
+.tool-item {
+    display: flex !important;
+    align-items: center !important;
+    gap: 1rem !important;
+    padding: 1rem !important;
+    border-radius: 10px !important;
+    transition: all 0.3s ease !important;
+    border: 2px solid transparent !important;
+}
+
+.tool-item.safe {
+    background: linear-gradient(135deg, #e8f5e9, #c8e6c9) !important;
+    border-color: #4CAF50 !important;
+}
+
+.tool-item.unsafe {
+    background: linear-gradient(135deg, #ffebee, #ffcdd2) !important;
+    border-color: #f44336 !important;
+}
+
+.tool-item:hover {
+    transform: translateX(-5px) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+}
+
+.tool-icon {
+    width: 50px !important;
+    height: 50px !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-shrink: 0 !important;
+    font-size: 1.5rem !important;
+}
+
+.tool-item.safe .tool-icon {
+    background: #4CAF50 !important;
+    color: white !important;
+}
+
+.tool-item.unsafe .tool-icon {
+    background: #f44336 !important;
+    color: white !important;
+}
+
+.tool-content h4 {
+    color: #2c3e50 !important;
+    font-size: 1.1rem !important;
+    margin: 0 0 0.25rem 0 !important;
+    font-weight: 600 !important;
+}
+
+.tool-content p {
+    color: #546e7a !important;
+    font-size: 0.9rem !important;
+    margin: 0 !important;
+    line-height: 1.4 !important;
+}
+
+/* ===== 4. تحسين مقالات ذات صلة ===== */
+div.related-articles {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1rem !important;
+}
+
+.related-article {
+    display: flex !important;
+    align-items: center !important;
+    gap: 1rem !important;
+    padding: 1rem !important;
+    background: white !important;
+    border-radius: 10px !important;
+    text-decoration: none !important;
+    border: 2px solid #e3f2fd !important;
+    transition: all 0.3s ease !important;
+}
+
+.related-article:hover {
+    transform: translateX(-5px) !important;
+    border-color: #2196F3 !important;
+    box-shadow: 0 4px 15px rgba(33, 150, 243, 0.15) !important;
+    background: #f8fdff !important;
+}
+
+.related-icon {
+    width: 50px !important;
+    height: 50px !important;
+    background: linear-gradient(135deg, #bbdefb, #90caf9) !important;
+    border-radius: 10px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-shrink: 0 !important;
+}
+
+.related-icon i {
+    color: #1565c0 !important;
+    font-size: 1.5rem !important;
+}
+
+.related-content h4 {
+    color: #2c3e50 !important;
+    font-size: 1.1rem !important;
+    margin: 0 0 0.25rem 0 !important;
+    font-weight: 600 !important;
+}
+
+.related-content p {
+    color: #546e7a !important;
+    font-size: 0.9rem !important;
+    margin: 0 !important;
+    line-height: 1.4 !important;
+}
+
+/* ===== 5. تحسين تنزيلات مفيدة ===== */
+div.downloads {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.75rem !important;
+}
+
+.download-link {
+    display: flex !important;
+    align-items: center !important;
+    gap: 1rem !important;
+    padding: 1rem !important;
+    background: white !important;
+    border-radius: 10px !important;
+    text-decoration: none !important;
+    border: 2px solid #e8eaf6 !important;
+    transition: all 0.3s ease !important;
+}
+
+.download-link:hover {
+    transform: translateX(-5px) !important;
+    border-color: #5c6bc0 !important;
+    box-shadow: 0 4px 15px rgba(92, 107, 192, 0.15) !important;
+    background: #f5f6ff !important;
+}
+
+.download-link i {
+    width: 50px !important;
+    height: 50px !important;
+    background: linear-gradient(135deg, #e8eaf6, #c5cae9) !important;
+    border-radius: 10px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-shrink: 0 !important;
+    color: #3949ab !important;
+    font-size: 1.5rem !important;
+}
+
+.download-link div {
+    flex: 1 !important;
+}
+
+.download-link h4 {
+    color: #2c3e50 !important;
+    font-size: 1.1rem !important;
+    margin: 0 0 0.25rem 0 !important;
+    font-weight: 600 !important;
+}
+
+.download-link p {
+    color: #546e7a !important;
+    font-size: 0.85rem !important;
+    margin: 0 !important;
+    line-height: 1.4 !important;
+}
+
+/* ===== تحسينات التجاوب ===== */
+@media (max-width: 768px) {
+    article.content-section.warning-section {
+        padding: 1.5rem !important;
+        margin: 1.5rem 0 !important;
+    }
+    
+    .warning-header {
+        flex-direction: column !important;
+        text-align: center !important;
+        gap: 0.75rem !important;
+    }
+    
+    .warning-header h2 {
+        font-size: 1.5rem !important;
+    }
+    
+    .warning-list li {
+        flex-direction: column !important;
+        gap: 0.5rem !important;
+        padding: 0.75rem !important;
+    }
+    
+    .sleep-checker,
+    .tool-item,
+    .related-article,
+    .download-link {
+        padding: 1rem !important;
+    }
+    
+    .related-article,
+    .download-link {
+        flex-direction: column !important;
+        text-align: center !important;
+        gap: 0.75rem !important;
+    }
+    
+    .related-icon,
+    .download-link i {
+        width: 60px !important;
+        height: 60px !important;
+    }
+    
+    .tool-item {
+        flex-direction: column !important;
+        text-align: center !important;
+        gap: 0.75rem !important;
+    }
+    
+    .tool-icon {
+        width: 60px !important;
+        height: 60px !important;
+    }
+}
+
+/* ===== تحسينات إضافية للتباين ===== */
+@media (prefers-contrast: high) {
+    article.content-section.warning-section {
+        border-right: 8px solid #ff6f00 !important;
+        background: #fff3e0 !important;
+    }
+    
+    .warning-list li {
+        border-right: 4px solid #ff6f00 !important;
+        background: white !important;
+    }
+    
+    .checkbox-option {
+        border: 3px solid #424242 !important;
+    }
+    
+    .checkbox-option:hover {
+        border-color: #1b5e20 !important;
+    }
+    
+    .tool-item.safe {
+        border: 3px solid #1b5e20 !important;
+    }
+    
+    .tool-item.unsafe {
+        border: 3px solid #b71c1c !important;
+    }
+    
+    .related-article,
+    .download-link {
+        border: 3px solid #424242 !important;
+    }
+    
+    .related-article:hover,
+    .download-link:hover {
+        border-width: 3px !important;
+    }
+}
+
+/* ===== تحسينات للوضع الداكن ===== */
+@media (prefers-color-scheme: dark) {
+    article.content-section.warning-section {
+        background: linear-gradient(135deg, #33271a, #4e3629) !important;
+        border-right-color: #ffb74d !important;
+    }
+    
+    .warning-header h2 {
+        color: #ffcc80 !important;
+    }
+    
+    .warning-content p {
+        color: #e0e0e0 !important;
+    }
+    
+    .warning-list li {
+        background: rgba(66, 66, 66, 0.8) !important;
+        border-right-color: #ff9800 !important;
+    }
+    
+    div.sleep-checker {
+        background: #37474f !important;
+        border-color: #546e7a !important;
+    }
+    
+    .sleep-checker p {
+        color: #e0e0e0 !important;
+    }
+    
+    .checkbox-option {
+        background: #455a64 !important;
+        border-color: #546e7a !important;
+    }
+    
+    .checkbox-option label {
+        color: #e0e0e0 !important;
+    }
+    
+    .tool-item.safe {
+        background: linear-gradient(135deg, #1b5e20, #2e7d32) !important;
+    }
+    
+    .tool-item.unsafe {
+        background: linear-gradient(135deg, #b71c1c, #c62828) !important;
+    }
+    
+    .related-article,
+    .download-link {
+        background: #37474f !important;
+        border-color: #546e7a !important;
+    }
+    
+    .related-content h4,
+    .download-link h4 {
+        color: #e0e0e0 !important;
+    }
+    
+    .related-content p,
+    .download-link p {
+        color: #b0bec5 !important;
+    }
+}
