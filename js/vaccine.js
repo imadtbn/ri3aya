@@ -150,3 +150,42 @@
                 });
             });
         });
+
+        // js/vaccine.js - إضافة تفاعل الأسئلة الشائعة
+document.addEventListener('DOMContentLoaded', function() {
+    // تفعيل أسئلة وأجوبة الـ FAQ
+    const faqQuestions = document.querySelectorAll('.faq-question');
+    
+    faqQuestions.forEach(question => {
+        question.addEventListener('click', function() {
+            const answer = this.nextElementSibling;
+            const parentItem = this.parentElement;
+            
+            // إغلاق جميع الإجواب الأخرى
+            document.querySelectorAll('.faq-answer').forEach(item => {
+                if (item !== answer) {
+                    item.classList.remove('open');
+                    item.parentElement.classList.remove('active');
+                    item.previousElementSibling.classList.remove('active');
+                }
+            });
+            
+            // تبديل حالة السؤال الحالي
+            this.classList.toggle('active');
+            answer.classList.toggle('open');
+            parentItem.classList.toggle('active');
+            
+            // إضافة تأثير سلس للفتح والإغلاق
+            if (answer.classList.contains('open')) {
+                answer.style.maxHeight = answer.scrollHeight + 'px';
+            } else {
+                answer.style.maxHeight = '0';
+            }
+        });
+    });
+    
+    // فتح أول سؤال بشكل افتراضي لتحسين تجربة المستخدم
+    if (faqQuestions.length > 0) {
+        faqQuestions[0].click();
+    }
+});

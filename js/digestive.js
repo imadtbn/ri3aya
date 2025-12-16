@@ -467,3 +467,54 @@ style.textContent = `
     }
 `;
 document.head.appendChild(style);
+
+// إضافة إلى digestive.js
+document.addEventListener('DOMContentLoaded', function() {
+    // تفعيل التنقل بين الاضطرابات
+    const disorderNavBtns = document.querySelectorAll('.disorder-nav-btn');
+    const disorderCards = document.querySelectorAll('.disorders-overview.improved .disorder-card');
+    
+    if (disorderNavBtns.length > 0) {
+        disorderNavBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                // إزالة النشاط من جميع الأزرار
+                disorderNavBtns.forEach(b => b.classList.remove('active'));
+                // إضافة النشاط للزر المختار
+                this.classList.add('active');
+                
+                // إخفاء جميع البطاقات
+                disorderCards.forEach(card => card.classList.remove('active'));
+                
+                // إظهار البطاقة المحددة
+                const disorderType = this.getAttribute('data-disorder');
+                const targetCard = document.querySelector(`.disorder-card[data-disorder="${disorderType}"]`);
+                if (targetCard) {
+                    targetCard.classList.add('active');
+                }
+            });
+        });
+    }
+    
+    // في حالة الهواتف، إظهار جميع البطاقات وإلغاء التنقل
+    function adjustForMobile() {
+        if (window.innerWidth <= 768) {
+            disorderCards.forEach(card => {
+                card.style.display = 'flex';
+            });
+            if (document.querySelector('.disorders-nav')) {
+                document.querySelector('.disorders-nav').style.display = 'none';
+            }
+        } else {
+            disorderCards.forEach(card => {
+                card.style.display = '';
+            });
+            if (document.querySelector('.disorders-nav')) {
+                document.querySelector('.disorders-nav').style.display = 'flex';
+            }
+        }
+    }
+    
+    // استدعاء الدالة عند التحميل وعند تغيير حجم النافذة
+    adjustForMobile();
+    window.addEventListener('resize', adjustForMobile);
+});

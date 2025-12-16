@@ -1,780 +1,940 @@
-// crying-analyzer.js
-// نظام تحليل بكاء الرضيع - يوفر تفسيرات ذكية لأنواع البكاء المختلفة
+// crying-analyzer.js - كود JavaScript الخاص بصفحة فهم بكاء الرضيع
 
-class CryingAnalyzer {
-    constructor() {
-        this.audioContext = null;
-        this.analyser = null;
-        this.microphone = null;
-        this.isRecording = false;
-        this.recordingStartTime = null;
-        this.audioData = [];
-        this.cryingPatterns = this.initializePatterns();
-        this.initializeEventListeners();
-        this.initUI();
-    }
+// ===== تهيئة الصفحة عند التحميل =====
+document.addEventListener('DOMContentLoaded', function() {
+    // تهيئة محلل البكاء
+    initCryAnalyzer();
+    
+    // تهيئة مفسر البكاء
+    initSymptomAnalyzer();
+    
+    // تهيئة مشغل الصوت الأبيض
+    initWhiteNoisePlayer();
+    
+    // تهيئة القائمة المنسدلة
+    initMobileMenu();
+    
+    // تهيئة تفاعلات البطاقات
+    initInteractiveCards();
+    
+    // تحميل سجل التحليلات
+    loadAnalysisHistory();
+    
+    // إضافة تأثيرات الظهور
+    initScrollAnimations();
+});
 
-    // تهيئة أنماط البكاء المعروفة
-    initializePatterns() {
-        return {
-            'hunger': {
-                name: 'الجوع',
-                description: 'بكاء منتظم ومتكرر مع تحريك الفم وكأنه يبحث عن الثدي',
-                frequency: { low: 250, high: 450 },
-                pattern: 'rythmic',
-                intensity: 'medium',
-                solutions: [
-                    'قدمي للرضيع الرضاعة (طبيعية أو صناعية)',
-                    'تحققي من وقت الرضعة الأخيرة',
-                    'تأكدي من وضعية الرضاعة الصحيحة'
-                ],
-                icon: '🍼'
-            },
-            'tired': {
-                name: 'التعب والحاجة للنوم',
-                description: 'بكاء متقطع مع فرك العينين والتثاؤب',
-                frequency: { low: 300, high: 500 },
-                pattern: 'intermittent',
-                intensity: 'low',
-                solutions: [
-                    'هزي الطفل بلطف أو غنّي له',
-                    'وفرّي بيئة هادئة للنوم',
-                    'استخدمي اللهاية إذا كان معتاداً عليها',
-                    'قومي بتقميط الطفل برفق (إذا كان حديث الولادة)'
-                ],
-                icon: '😴'
-            },
-            'discomfort': {
-                name: 'عدم الراحة (حفاضة، حر، برد)',
-                description: 'بكاء مستمر مع حركات متوترة في الجسم',
-                frequency: { low: 400, high: 600 },
-                pattern: 'continuous',
-                intensity: 'medium',
-                solutions: [
-                    'تحققي من الحفاضة ونظفيها إذا لزم الأمر',
-                    'تأكدي من ملابس الطفل المناسبة للطقس',
-                    'افحصي درجة حرارة الطفل',
-                    'ابحثي عن أي شيء قد يسبب عدم الراحة (ملصقات الملابس، الخ)'
-                ],
-                icon: '🩹'
-            },
-            'pain': {
-                name: 'ألم أو مغص',
-                description: 'بكاء حاد ومفاجئ مع تقوس الظهر وشد الساقين',
-                frequency: { low: 600, high: 900 },
-                pattern: 'sharp',
-                intensity: 'high',
-                solutions: [
-                    'حاولي تهدئة الطفل باحتضانه',
-                    'ضعي الطفل على بطنه على ذراعك مع تدليك ظهره',
-                    'استخدمي قطرات المغص بعد استشارة الطبيب',
-                    'جربي تمرين الدراجة لساقي الطفل لتخفيف الغازات'
-                ],
-                icon: '😫'
-            },
-            'attention': {
-                name: 'الرغبة في الاهتمام',
-                description: 'بكاء يهدأ بمجرد حمل الطفل',
-                frequency: { low: 200, high: 400 },
-                pattern: 'on-and-off',
-                intensity: 'low',
-                solutions: [
-                    'احملي الطفل وقربيه منك',
-                    'تفاعلي معه بالحديث والغناء',
-                    'غيّري وضعه أو المكان',
-                    'قدّمي له لعبة آمنة للتركيز عليها'
-                ],
-                icon: '🤗'
-            },
-            'overstimulation': {
-                name: 'فرط التحفيز',
-                description: 'بكاء مع انزياح النظر وتجنب الاتصال البصري',
-                frequency: { low: 350, high: 550 },
-                pattern: 'escalating',
-                intensity: 'medium',
-                solutions: [
-                    'قللي من المحفزات البيئية (أضواء، أصوات)',
-                    'انتقلي بطفلك إلى مكان هادئ',
-                    'لفّي الطفل ببطانية خفيفة',
-                    'هدهدي الطفل بلطف مع حركات بسيطة'
-                ],
-                icon: '🌙'
-            }
-        };
-    }
-
-    // تهيئة واجهة المستخدم
-    initUI() {
-        this.createAnalysisUI();
-        this.createPatternLibrary();
-        this.createHistoryLog();
-    }
-
-    // إنشاء واجهة التحليل
-    createAnalysisUI() {
-        // سيتم استدعاء هذه الوظيفة من HTML
-        console.log('واجهة تحليل البكاء جاهزة للاستخدام');
-    }
-
-    // بدء تسجيل البكاء وتحليله
-    async startRecording() {
-        if (this.isRecording) return;
-
-        try {
-            // الحصول على إذن الميكروفون
-            const stream = await navigator.mediaDevices.getUserMedia({ 
-                audio: {
-                    echoCancellation: false,
-                    noiseSuppression: false,
-                    autoGainControl: false
-                }
-            });
-
-            // تهيئة سياق الصوت
-            this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
-            this.analyser = this.audioContext.createAnalyser();
-            this.microphone = this.audioContext.createMediaStreamSource(stream);
-            
-            // إعداد المحلل
-            this.analyser.fftSize = 2048;
-            this.analyser.smoothingTimeConstant = 0.8;
-            this.microphone.connect(this.analyser);
-            
-            // بدء التسجيل
-            this.isRecording = true;
-            this.recordingStartTime = Date.now();
-            this.audioData = [];
-            
-            // تحديث الواجهة
-            this.updateRecordingUI(true);
-            
-            // بدء تحليل الصوت
-            this.analyzeAudio();
-            
-            console.log('بدأ تسليل البكاء...');
-            
-        } catch (error) {
-            console.error('خطأ في الوصول إلى الميكروفون:', error);
-            this.showMessage('خطأ: لا يمكن الوصول إلى الميكروفون. تأكد من السماح باستخدام الميكروفون.', 'error');
-            
-            // عرض واجهة محاكاة للاختبار
-            this.showSimulationMode();
+// ===== محلل البكاء الذكي =====
+function initCryAnalyzer() {
+    const recordBtn = document.getElementById('record-btn');
+    const recordingStatus = document.getElementById('recording-status');
+    const audioVisualization = document.getElementById('audio-visualization');
+    const analysisResults = document.getElementById('analysis-results');
+    const patternLibrary = document.getElementById('pattern-library');
+    const clearHistoryBtn = document.getElementById('clear-history');
+    
+    if (!recordBtn) return;
+    
+    let isRecording = false;
+    let recordingTimer = null;
+    let analysisCount = 0;
+    
+    // بيانات أنماط البكاء
+    const cryPatterns = [
+        {
+            id: 1,
+            name: "بكاء الجوع",
+            icon: "fas fa-utensils",
+            color: "#4CAF50",
+            description: "بكاء قصير ومتقطع يزداد تدريجياً، غالباً ما يمص الطفل أصابعه أو يبحث عن الثدي.",
+            confidence: 85,
+            frequency: "منخفض إلى متوسط",
+            duration: "متقطع",
+            pitch: "متوسط",
+            solutions: [
+                "تقديم الرضاعة (حليب الأم أو الصناعي)",
+                "فحص إذا كان الطفل قد أنهى رضعته السابقة",
+                "التحقق من جدول الرضاعة"
+            ]
+        },
+        {
+            id: 2,
+            name: "بكاء التعب والنعاس",
+            icon: "fas fa-bed",
+            color: "#2196F3",
+            description: "أنين متواصل مع فرك العينين والتثاؤب المتكرر، يزداد عندما يحاول الطفل النوم.",
+            confidence: 78,
+            frequency: "منخفض",
+            duration: "طويل ومستمر",
+            pitch: "منخفض",
+            solutions: [
+                "تهيئة بيئة مناسبة للنوم",
+                "التقميط اللطيف (للرضع الصغار)",
+                "الهز الخفيف أو الغناء",
+                "تقليل المحفزات (ضوء، صوت)"
+            ]
+        },
+        {
+            id: 3,
+            name: "بكاء المغص والغازات",
+            icon: "fas fa-wind",
+            color: "#FF9800",
+            description: "بكاء حاد ومستمر مع شد الساقين نحو البطن وتقوس الظهر، يحدث غالباً بعد الرضاعة.",
+            confidence: 92,
+            frequency: "مرتفع",
+            duration: "طويل (قد يستمر ساعات)",
+            pitch: "مرتفع",
+            solutions: [
+                "تدليك البطن بحركات دائرية",
+                "وضعية رفع الساقين لتخفيف الغازات",
+                "التمارين الخفيفة للطفل",
+                "التحقق من وضعية الرضاعة الصحيحة"
+            ]
+        },
+        {
+            id: 4,
+            name: "بكاء الحفاض المبلل",
+            icon: "fas fa-baby",
+            color: "#9C27B0",
+            description: "بكاء متقطع مع حركة مستمرة وعدم راحة واضحة، يهدأ عند تغيير الحفاض.",
+            confidence: 95,
+            frequency: "متوسط",
+            duration: "متقطع",
+            pitch: "متوسط",
+            solutions: [
+                "تغيير الحفاض فوراً",
+                "تنظيف المنطقة بالماء الدافئ",
+                "استخدام كريم الحفاضات عند اللزوم",
+                "التحقق من عدم وجود طفح جلدي"
+            ]
+        },
+        {
+            id: 5,
+            name: "بكاء الاحتياج للحمل",
+            icon: "fas fa-hands",
+            color: "#E91E63",
+            description: "بكاء يتوقف عند حمل الطفل ويهدأ بالاتصال الجسدي، يعود عند وضعه.",
+            confidence: 80,
+            frequency: "متغير",
+            duration: "حتى يتم حمل الطفل",
+            pitch: "متوسط",
+            solutions: [
+                "حمل الطفل وقربه من الجسم",
+                "استخدام حاملة الأطفال",
+                "التحدث مع الطفل أو الغناء له",
+                "المشي به في الغرفة"
+            ]
         }
-    }
-
-    // إيقاف التسجيل
-    stopRecording() {
-        if (!this.isRecording) return;
+    ];
+    
+    // إنشاء مكتبة الأنماط
+    function createPatternLibrary() {
+        if (!patternLibrary) return;
         
-        this.isRecording = false;
-        
-        // فصل مصادر الصوت
-        if (this.microphone) {
-            this.microphone.disconnect();
-        }
-        
-        if (this.audioContext) {
-            this.audioContext.close();
-        }
-        
-        // تحديث الواجهة
-        this.updateRecordingUI(false);
-        
-        // تحليل البيانات المجمعة
-        this.processRecordedData();
-        
-        console.log('تم إيقاف تسجيل البكاء');
-    }
-
-    // تحليل الصوت في الوقت الحقيقي
-    analyzeAudio() {
-        if (!this.isRecording) return;
-
-        const bufferLength = this.analyser.frequencyBinCount;
-        const dataArray = new Uint8Array(bufferLength);
-        
-        // الحصول على بيانات التردد
-        this.analyser.getByteFrequencyData(dataArray);
-        
-        // حساب متوسط التردد
-        let total = 0;
-        for (let i = 0; i < bufferLength; i++) {
-            total += dataArray[i];
-        }
-        const avgFrequency = total / bufferLength;
-        
-        // حساب شدة الصوت
-        let intensity = 0;
-        for (let i = 0; i < bufferLength; i++) {
-            intensity += dataArray[i] * dataArray[i];
-        }
-        intensity = Math.sqrt(intensity / bufferLength);
-        
-        // حفظ البيانات
-        this.audioData.push({
-            timestamp: Date.now() - this.recordingStartTime,
-            frequency: avgFrequency,
-            intensity: intensity
-        });
-        
-        // تحديث الرسم البياني في الوقت الحقيقي
-        this.updateAudioVisualization(dataArray);
-        
-        // الاستمرار في التحليل
-        requestAnimationFrame(() => this.analyzeAudio());
-    }
-
-    // معالجة البيانات المسجلة
-    processRecordedData() {
-        if (this.audioData.length === 0) {
-            this.showMessage('لم يتم تسجيل بيانات كافية للتحليل. حاولي مرة أخرى.', 'warning');
-            return;
-        }
-        
-        // حساب إحصائيات البكاء
-        const stats = this.calculateCryingStats();
-        
-        // تحديد نمط البكاء
-        const pattern = this.identifyCryingPattern(stats);
-        
-        // عرض النتائج
-        this.displayAnalysisResults(stats, pattern);
-        
-        // حفظ في السجل
-        this.addToHistory(stats, pattern);
-    }
-
-    // حساب إحصائيات البكاء
-    calculateCryingStats() {
-        const frequencies = this.audioData.map(d => d.frequency);
-        const intensities = this.audioData.map(d => d.duration);
-        
-        const avgFrequency = frequencies.reduce((a, b) => a + b, 0) / frequencies.length;
-        const maxFrequency = Math.max(...frequencies);
-        const minFrequency = Math.min(...frequencies);
-        
-        const avgIntensity = intensities.reduce((a, b) => a + b, 0) / intensities.length;
-        const maxIntensity = Math.max(...intensities);
-        
-        // حساب نمط التكرار
-        let patternType = 'continuous';
-        const duration = (Date.now() - this.recordingStartTime) / 1000; // بالثواني
-        
-        if (duration < 10) {
-            patternType = 'sharp';
-        } else if (this.audioData.length > 0) {
-            // تحليل التغير في الشدة لتحديد النمط
-            const intensityChanges = [];
-            for (let i = 1; i < this.audioData.length; i++) {
-                intensityChanges.push(Math.abs(this.audioData[i].intensity - this.audioData[i-1].intensity));
-            }
-            
-            const avgChange = intensityChanges.reduce((a, b) => a + b, 0) / intensityChanges.length;
-            
-            if (avgChange > 30) {
-                patternType = 'intermittent';
-            } else if (avgChange > 50) {
-                patternType = 'on-and-off';
-            }
-        }
-        
-        return {
-            avgFrequency,
-            maxFrequency,
-            minFrequency,
-            avgIntensity,
-            maxIntensity,
-            patternType,
-            duration,
-            dataPoints: this.audioData.length
-        };
-    }
-
-    // تحديد نمط البكاء
-    identifyCryingPattern(stats) {
-        let bestMatch = null;
-        let bestScore = 0;
-        
-        // مقارنة الإحصائيات مع كل نمط معروف
-        for (const [key, pattern] of Object.entries(this.cryingPatterns)) {
-            let score = 0;
-            
-            // مطابقة التردد
-            if (stats.avgFrequency >= pattern.frequency.low && 
-                stats.avgFrequency <= pattern.frequency.high) {
-                score += 40;
-            } else {
-                // حساب القرب من نطاق التردد
-                const freqMid = (pattern.frequency.low + pattern.frequency.high) / 2;
-                const freqDiff = Math.abs(stats.avgFrequency - freqMid);
-                const freqRange = pattern.frequency.high - pattern.frequency.low;
-                score += Math.max(0, 40 - (freqDiff / freqRange * 40));
-            }
-            
-            // مطابقة النمط
-            if (stats.patternType === pattern.pattern) {
-                score += 30;
-            }
-            
-            // مطابقة الشدة
-            if (pattern.intensity === 'low' && stats.avgIntensity < 30) {
-                score += 15;
-            } else if (pattern.intensity === 'medium' && stats.avgIntensity >= 30 && stats.avgIntensity < 60) {
-                score += 15;
-            } else if (pattern.intensity === 'high' && stats.avgIntensity >= 60) {
-                score += 15;
-            }
-            
-            // مدة البكاء
-            if (pattern.name === 'الجوع' && stats.duration > 20) {
-                score += 15;
-            } else if (pattern.name === 'الألم' && stats.duration < 15) {
-                score += 15;
-            }
-            
-            if (score > bestScore) {
-                bestScore = score;
-                bestMatch = { ...pattern, id: key, confidence: Math.min(100, score) };
-            }
-        }
-        
-        return bestMatch;
-    }
-
-    // عرض نتائج التحليل
-    displayAnalysisResults(stats, pattern) {
-        // إنشاء عناصر النتائج
-        const resultsContainer = document.getElementById('analysis-results');
-        if (!resultsContainer) return;
-        
-        resultsContainer.innerHTML = '';
-        
-        // عرض نمط البكاء المحدد
-        if (pattern) {
-            const patternHTML = `
-                <div class="result-card">
-                    <div class="pattern-header" style="background-color: ${this.getPatternColor(pattern.id)}">
-                        <span class="pattern-icon">${pattern.icon}</span>
-                        <h3>${pattern.name}</h3>
-                        <div class="confidence">${pattern.confidence.toFixed(0)}% تطابق</div>
-                    </div>
-                    <div class="pattern-body">
-                        <p class="pattern-description">${pattern.description}</p>
-                        
-                        <div class="stats">
-                            <h4>إحصائيات البكاء:</h4>
-                            <div class="stat-row">
-                                <span class="stat-label">مدة البكاء:</span>
-                                <span class="stat-value">${stats.duration.toFixed(1)} ثانية</span>
-                            </div>
-                            <div class="stat-row">
-                                <span class="stat-label">تردد البكاء:</span>
-                                <span class="stat-value">${stats.avgFrequency.toFixed(0)} هرتز</span>
-                            </div>
-                            <div class="stat-row">
-                                <span class="stat-label">شدة البكاء:</span>
-                                <span class="stat-value">${stats.avgIntensity > 60 ? 'عالية' : stats.avgIntensity > 30 ? 'متوسطة' : 'منخفضة'}</span>
-                            </div>
-                            <div class="stat-row">
-                                <span class="stat-label">نمط البكاء:</span>
-                                <span class="stat-value">${this.translatePattern(stats.patternType)}</span>
-                            </div>
+        patternLibrary.innerHTML = `
+            <h3><i class="fas fa-book"></i> مكتبة أنماط البكاء</h3>
+            <div class="patterns-grid">
+                ${cryPatterns.map(pattern => `
+                    <div class="pattern-card">
+                        <div class="pattern-card-header" style="background: ${pattern.color}">
+                            <i class="${pattern.icon} pattern-card-icon"></i>
+                            <h4>${pattern.name}</h4>
                         </div>
-                        
-                        <div class="solutions">
-                            <h4>اقتراحات للحل:</h4>
-                            <ul>
-                                ${pattern.solutions.map(solution => `<li>${solution}</li>`).join('')}
-                            </ul>
-                        </div>
-                        
-                        <div class="note">
-                            <strong>ملاحظة:</strong> هذه النتائج تعتمد على تحليل تقريبي للبكاء وقد لا تكون دقيقة 100%. استشيري طبيب الأطفال إذا استمر البكاء أو إذا كان مصحوباً بأعراض أخرى.
+                        <div class="pattern-card-body">
+                            <p>${pattern.description}</p>
+                            <div class="pattern-card-stats">
+                                <div class="stat">
+                                    <i class="fas fa-chart-line"></i>
+                                    <span>التكرار: ${pattern.frequency}</span>
+                                </div>
+                                <div class="stat">
+                                    <i class="fas fa-music"></i>
+                                    <span>النبرة: ${pattern.pitch}</span>
+                                </div>
+                            </div>
+                            <button class="btn-small" onclick="simulatePattern(${pattern.id})">
+                                <i class="fas fa-play"></i> محاكاة النمط
+                            </button>
                         </div>
                     </div>
-                </div>
-            `;
-            
-            resultsContainer.innerHTML = patternHTML;
-            
-            // عرض الأنماط الأخرى المحتملة
-            this.showAlternativePatterns(pattern.id);
-        } else {
-            resultsContainer.innerHTML = `
-                <div class="no-result">
-                    <h3>⚠️ لم نتمكن من تحديد نمط البكاء بدقة</h3>
-                    <p>جربي التسجيل مرة أخرى في بيئة أكثر هدوءاً، أو اختاري نمط البكاء يدوياً من القائمة أدناه.</p>
-                </div>
-            `;
-        }
+                `).join('')}
+            </div>
+        `;
     }
-
-    // عرض الأنماط البديلة
-    showAlternativePatterns(excludedPatternId) {
-        const alternativesContainer = document.getElementById('alternative-patterns');
-        if (!alternativesContainer) return;
-        
-        alternativesContainer.innerHTML = '<h3>أنماط بكاء أخرى محتملة:</h3>';
-        
-        // عرض 2-3 أنماط أخرى مرتبة حسب الاحتمالية
-        let patternCount = 0;
-        for (const [id, pattern] of Object.entries(this.cryingPatterns)) {
-            if (id !== excludedPatternId && patternCount < 3) {
-                const patternElement = document.createElement('div');
-                patternElement.className = 'alternative-pattern';
-                patternElement.innerHTML = `
-                    <div class="alt-pattern-icon">${pattern.icon}</div>
-                    <div class="alt-pattern-info">
-                        <h4>${pattern.name}</h4>
-                        <p>${pattern.description.substring(0, 80)}...</p>
-                    </div>
-                `;
-                
-                patternElement.addEventListener('click', () => {
-                    this.displayPatternDetails(id);
-                });
-                
-                alternativesContainer.appendChild(patternElement);
-                patternCount++;
-            }
-        }
-    }
-
-    // عرض تفاصيل نمط معين
-    displayPatternDetails(patternId) {
-        const pattern = this.cryingPatterns[patternId];
+    
+    // محاكاة نمط بكاء معين
+    window.simulatePattern = function(patternId) {
+        const pattern = cryPatterns.find(p => p.id === patternId);
         if (!pattern) return;
         
-        const resultsContainer = document.getElementById('analysis-results');
-        if (!resultsContainer) return;
+        showMessage(`تم بدء محاكاة نمط "${pattern.name}"`, 'info');
         
-        resultsContainer.innerHTML = `
+        // تحديث واجهة المحاكاة
+        recordBtn.innerHTML = `<i class="fas fa-microphone"></i> جاري محاكاة البكاء...`;
+        recordBtn.classList.add('recording');
+        recordingStatus.innerHTML = `<span class="pulse"></span> جاري محاكاة: ${pattern.name}`;
+        recordingStatus.className = 'status-recording';
+        
+        // إنشاء تصور صوتي
+        createAudioVisualization('simulation');
+        
+        // عرض نتيجة التحليل بعد محاكاة التسجيل
+        setTimeout(() => {
+            analyzeCryPattern(pattern);
+            analysisCount++;
+            
+            // إضافة للسجل
+            addToHistory(pattern, true);
+            
+            // إعادة تعيين واجهة التسجيل
+            recordBtn.innerHTML = `<i class="fas fa-microphone"></i> بدء تحليل البكاء`;
+            recordBtn.classList.remove('recording');
+            recordingStatus.innerHTML = 'جاهز للتسجيل';
+            recordingStatus.className = 'status-ready';
+            clearAudioVisualization();
+            
+            showMessage(`اكتمل تحليل نمط البكاء: ${pattern.name}`, 'success');
+        }, 3000);
+    };
+    
+    // بدء/إيقاف التسجيل
+    recordBtn.addEventListener('click', function() {
+        if (isRecording) {
+            // إيقاف التسجيل
+            stopRecording();
+        } else {
+            // بدء التسجيل
+            startRecording();
+        }
+    });
+    
+    function startRecording() {
+        isRecording = true;
+        recordBtn.innerHTML = `<i class="fas fa-stop"></i> إيقاف التسجيل والتحليل`;
+        recordBtn.classList.add('recording');
+        recordingStatus.innerHTML = `<span class="pulse"></span> جاري تسجيل البكاء...`;
+        recordingStatus.className = 'status-recording';
+        
+        // إنشاء تصور صوتي
+        createAudioVisualization();
+        
+        // مؤقت لمحاكاة التسجيل
+        recordingTimer = setTimeout(() => {
+            if (isRecording) {
+                stopRecording();
+            }
+        }, 5000);
+        
+        showMessage('بدأ تسجيل البكاء، دع الطفل يبكي بالقرب من الميكروفون', 'info');
+    }
+    
+    function stopRecording() {
+        isRecording = false;
+        clearTimeout(recordingTimer);
+        
+        // محاكاة تحليل البكاء
+        const randomPattern = cryPatterns[Math.floor(Math.random() * cryPatterns.length)];
+        analyzeCryPattern(randomPattern);
+        analysisCount++;
+        
+        // إضافة للسجل
+        addToHistory(randomPattern, false);
+        
+        // إعادة تعيين واجهة التسجيل
+        recordBtn.innerHTML = `<i class="fas fa-microphone"></i> بدء تحليل البكاء`;
+        recordBtn.classList.remove('recording');
+        recordingStatus.innerHTML = 'جاهز للتسجيل';
+        recordingStatus.className = 'status-ready';
+        clearAudioVisualization();
+        
+        showMessage('اكتمل تحليل البكاء بنجاح!', 'success');
+    }
+    
+    // إنشاء تصور بصري للصوت
+    function createAudioVisualization(type = 'recording') {
+        if (!audioVisualization) return;
+        
+        audioVisualization.innerHTML = '';
+        const barsCount = type === 'simulation' ? 40 : 60;
+        
+        for (let i = 0; i < barsCount; i++) {
+            const bar = document.createElement('div');
+            bar.className = 'audio-bar';
+            
+            // ارتفاع عشوائي مع اختلاف حسب النوع
+            const baseHeight = type === 'simulation' ? 10 : 5;
+            const randomHeight = baseHeight + Math.random() * 90;
+            bar.style.height = `${randomHeight}%`;
+            
+            // تأخير لإنشاء تأثير متحرك
+            bar.style.animationDelay = `${i * 0.05}s`;
+            
+            audioVisualization.appendChild(bar);
+        }
+    }
+    
+    // مسح التصور البصري
+    function clearAudioVisualization() {
+        if (!audioVisualization) return;
+        
+        audioVisualization.innerHTML = '<p>سيظهر هنا التصور البصري للصوت عند التسجيل</p>';
+    }
+    
+    // تحليل نمط البكاء وعرض النتائج
+    function analyzeCryPattern(pattern) {
+        if (!analysisResults) return;
+        
+        // إنشاء عناصر النتائج
+        analysisResults.innerHTML = `
+            <h3><i class="fas fa-chart-bar"></i> نتائج تحليل البكاء</h3>
             <div class="result-card">
-                <div class="pattern-header" style="background-color: ${this.getPatternColor(patternId)}">
-                    <span class="pattern-icon">${pattern.icon}</span>
+                <div class="pattern-header" style="background: ${pattern.color}">
+                    <i class="${pattern.icon} pattern-icon"></i>
                     <h3>${pattern.name}</h3>
-                    <div class="confidence">نمط يدوي</div>
+                    <div class="confidence">${pattern.confidence}% تطابق</div>
                 </div>
                 <div class="pattern-body">
                     <p class="pattern-description">${pattern.description}</p>
                     
+                    <div class="stats">
+                        <h4><i class="fas fa-chart-line"></i> تحليل الصوت</h4>
+                        <div class="stat-row">
+                            <span class="stat-label">تردد البكاء:</span>
+                            <span class="stat-value">${pattern.frequency}</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">المدة النموذجية:</span>
+                            <span class="stat-value">${pattern.duration}</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">نبرة الصوت:</span>
+                            <span class="stat-value">${pattern.pitch}</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">مستوى الثقة:</span>
+                            <span class="stat-value">${pattern.confidence}%</span>
+                        </div>
+                    </div>
+                    
                     <div class="solutions">
-                        <h4>اقتراحات للحل:</h4>
+                        <h4><i class="fas fa-lightbulb"></i> اقتراحات للتعامل</h4>
                         <ul>
                             ${pattern.solutions.map(solution => `<li>${solution}</li>`).join('')}
                         </ul>
                     </div>
                     
                     <div class="note">
-                        <strong>ملاحظة:</strong> هذه المعلومات عامة وقد لا تنطبق على جميع الأطفال. راقبي طفلك واستشيري الطبيب إذا لزم الأمر.
+                        <strong>ملاحظة:</strong> هذه النتائج تعتمد على التحليل الآلي وقد تختلف عن الواقع. استخدمي حدسك الأمومي واستشيري الطبيب إذا استمر البكاء.
                     </div>
-                    
-                    <button id="try-analyze-again" class="btn-secondary">جرب التحليل التلقائي مرة أخرى</button>
                 </div>
             </div>
         `;
         
-        document.getElementById('try-analyze-again').addEventListener('click', () => {
-            this.startRecording();
-        });
+        // إنشاء الأنماط البديلة
+        createAlternativePatterns(pattern);
+        
+        // حفظ في التخزين المحلي
+        saveAnalysisToHistory(pattern);
     }
-
-    // إضافة النتيجة إلى السجل
-    addToHistory(stats, pattern) {
-        const history = this.getHistory();
-        const historyEntry = {
-            id: Date.now(),
-            timestamp: new Date().toLocaleString('ar-SA'),
-            pattern: pattern ? pattern.name : 'غير محدد',
-            confidence: pattern ? pattern.confidence : 0,
-            duration: stats.duration,
-            frequency: stats.avgFrequency
-        };
+    
+    // إنشاء الأنماط البديلة
+    function createAlternativePatterns(currentPattern) {
+        const alternativePatterns = document.getElementById('alternative-patterns');
+        if (!alternativePatterns) return;
         
-        history.unshift(historyEntry);
+        // الحصول على أنماط أخرى (غير النمط الحالي)
+        const otherPatterns = cryPatterns.filter(p => p.id !== currentPattern.id)
+                                         .slice(0, 3); // أخذ أول 3 أنماط فقط
         
-        // حفظ فقط آخر 10 تحليلات
-        if (history.length > 10) {
-            history.pop();
+        alternativePatterns.innerHTML = `
+            <h3><i class="fas fa-random"></i> أنماط بديلة محتملة</h3>
+            <div class="alternative-patterns-list">
+                ${otherPatterns.map(pattern => `
+                    <div class="alternative-pattern" onclick="selectAlternativePattern(${pattern.id})">
+                        <i class="${pattern.icon} alt-pattern-icon" style="color: ${pattern.color}"></i>
+                        <div class="alt-pattern-info">
+                            <h4>${pattern.name}</h4>
+                            <p>${pattern.description.substring(0, 80)}...</p>
+                        </div>
+                    </div>
+                `).join('')}
+            </div>
+        `;
+    }
+    
+    // اختيار نمط بديل
+    window.selectAlternativePattern = function(patternId) {
+        const pattern = cryPatterns.find(p => p.id === patternId);
+        if (pattern) {
+            analyzeCryPattern(pattern);
+            showMessage(`تم تحميل نمط "${pattern.name}"`, 'info');
         }
-        
-        localStorage.setItem('cryingAnalysisHistory', JSON.stringify(history));
-        this.updateHistoryDisplay();
-    }
-
-    // الحصول على السجل من localStorage
-    getHistory() {
-        const history = localStorage.getItem('cryingAnalysisHistory');
-        return history ? JSON.parse(history) : [];
-    }
-
-    // تحديث عرض السجل
-    updateHistoryDisplay() {
+    };
+    
+    // إضافة تحليل للسجل
+    function addToHistory(pattern, isSimulation) {
         const historyContainer = document.getElementById('analysis-history');
         if (!historyContainer) return;
         
-        const history = this.getHistory();
+        const time = new Date().toLocaleTimeString('ar-EG', { 
+            hour: '2-digit', 
+            minute: '2-digit',
+            hour12: true 
+        });
         
-        if (history.length === 0) {
-            historyContainer.innerHTML = '<p class="empty-history">لا توجد تحليلات سابقة</p>';
+        const historyItem = document.createElement('div');
+        historyItem.className = 'history-entry';
+        historyItem.innerHTML = `
+            <div class="history-time">
+                <i class="far fa-clock"></i> ${time}
+            </div>
+            <div class="history-pattern">
+                ${isSimulation ? '<i class="fas fa-play-circle"></i>' : '<i class="fas fa-microphone"></i>'} 
+                ${pattern.name}
+            </div>
+            <div class="history-confidence">
+                ${pattern.confidence}%
+            </div>
+            <div class="history-duration">
+                ${isSimulation ? 'محاكاة' : 'تسجيل'}
+            </div>
+        `;
+        
+        historyContainer.prepend(historyItem);
+    }
+    
+    // حفظ التحليل في التخزين المحلي
+    function saveAnalysisToHistory(pattern) {
+        try {
+            let history = JSON.parse(localStorage.getItem('babyCryAnalysisHistory')) || [];
+            
+            const analysis = {
+                id: Date.now(),
+                patternId: pattern.id,
+                patternName: pattern.name,
+                confidence: pattern.confidence,
+                timestamp: new Date().toISOString(),
+                isSimulation: false
+            };
+            
+            history.unshift(analysis);
+            
+            // الاحتفاظ بأخر 20 تحليل فقط
+            if (history.length > 20) {
+                history = history.slice(0, 20);
+            }
+            
+            localStorage.setItem('babyCryAnalysisHistory', JSON.stringify(history));
+        } catch (e) {
+            console.error('فشل حفظ السجل:', e);
+        }
+    }
+    
+    // تحميل سجل التحليلات
+    function loadAnalysisHistory() {
+        const historyContainer = document.getElementById('analysis-history');
+        if (!historyContainer) return;
+        
+        try {
+            const history = JSON.parse(localStorage.getItem('babyCryAnalysisHistory')) || [];
+            
+            if (history.length === 0) {
+                historyContainer.innerHTML = `
+                    <div class="empty-history">
+                        <i class="far fa-clipboard"></i>
+                        <p>لا توجد تحليلات سابقة</p>
+                        <p>قم بتسجيل بكاء طفلك لبدء التحليل</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            historyContainer.innerHTML = history.map(item => {
+                const time = new Date(item.timestamp).toLocaleTimeString('ar-EG', {
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    hour12: true
+                });
+                
+                const pattern = cryPatterns.find(p => p.id === item.patternId) || cryPatterns[0];
+                
+                return `
+                    <div class="history-entry">
+                        <div class="history-time">
+                            <i class="far fa-clock"></i> ${time}
+                        </div>
+                        <div class="history-pattern">
+                            ${item.isSimulation ? '<i class="fas fa-play-circle"></i>' : '<i class="fas fa-microphone"></i>'} 
+                            ${pattern.name}
+                        </div>
+                        <div class="history-confidence">
+                            ${item.confidence}%
+                        </div>
+                        <div class="history-duration">
+                            ${item.isSimulation ? 'محاكاة' : 'تسجيل'}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        } catch (e) {
+            console.error('فشل تحميل السجل:', e);
+            historyContainer.innerHTML = `
+                <div class="empty-history">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <p>حدث خطأ في تحميل السجل</p>
+                </div>
+            `;
+        }
+    }
+    
+    // مسح سجل التحليلات
+    if (clearHistoryBtn) {
+        clearHistoryBtn.addEventListener('click', function() {
+            if (confirm('هل أنت متأكد من رغبتك في مسح سجل التحليلات؟')) {
+                localStorage.removeItem('babyCryAnalysisHistory');
+                loadAnalysisHistory();
+                showMessage('تم مسح سجل التحليلات بنجاح', 'success');
+            }
+        });
+    }
+    
+    // إنشاء مكتبة الأنماط عند التحميل
+    createPatternLibrary();
+    
+    // عرض رسالة ترحيبية
+    setTimeout(() => {
+        showMessage('مرحباً! يمكنك الآن تسجيل بكاء طفلك للتحليل أو تجربة المحاكاة', 'info');
+    }, 1000);
+}
+
+// ===== مفسر البكاء بناء على الأعراض =====
+function initSymptomAnalyzer() {
+    const analyzeBtn = document.querySelector('.analyze-btn');
+    const analysisResult = document.getElementById('analysisResult');
+    
+    if (!analyzeBtn) return;
+    
+    // قاعدة بيانات التشخيص بناء على الأعراض
+    const symptomDiagnoses = [
+        {
+            symptoms: ['مص الأصابع', 'حركة الفم بحثاً عن الثدي'],
+            diagnosis: 'الجوع',
+            icon: 'fas fa-utensils',
+            color: '#4CAF50',
+            description: 'طفلك جائع ويحتاج إلى الرضاعة.',
+            actions: [
+                'قدمي الرضاعة له',
+                'تحققي من آخر مرة أرضعته',
+                'إذا كان يرضع حليباً صناعياً، تأكدي من كمية الرضعة'
+            ]
+        },
+        {
+            symptoms: ['فرك العينين', 'التثاؤب المتكرر'],
+            diagnosis: 'التعب والنعاس',
+            icon: 'fas fa-bed',
+            color: '#2196F3',
+            description: 'طفلك متعب ويحتاج إلى النوم.',
+            actions: [
+                'هيئي له بيئة مناسبة للنوم',
+                'حاولي هزّه أو الغناء له',
+                'خففي الإضاءة والأصوات في الغرفة'
+            ]
+        },
+        {
+            symptoms: ['شد الساقين', 'تصلب الجسم'],
+            diagnosis: 'المغص والغازات',
+            icon: 'fas fa-wind',
+            color: '#FF9800',
+            description: 'طفلك يعاني من مغص أو غازات.',
+            actions: [
+                'قومي بتدليك بطنه بحركات دائرية',
+                'حاولي تمارين رفع الساقين',
+                'ضعيه على ظهره وحركي ساقيه كركوب الدراجة'
+            ]
+        },
+        {
+            symptoms: ['البكاء عند الوضع', 'الهدوء عند الحمل'],
+            diagnosis: 'الحاجة إلى الحمل',
+            icon: 'fas fa-hands',
+            color: '#E91E63',
+            description: 'طفلك يحتاج إلى الاحتضان والشعور بالأمان.',
+            actions: [
+                'احمليه وقربيه منك',
+                'استخدمي حاملة الأطفال',
+                'تحدثي معه أو غني له وهو بين ذراعيك'
+            ]
+        },
+        {
+            symptoms: ['البكاء المختلف عن المعتاد', 'رفض الرضاعة'],
+            diagnosis: 'عدم الراحة أو المرض',
+            icon: 'fas fa-thermometer',
+            color: '#F44336',
+            description: 'طفلك قد يكون مريضاً أو يشعر بعدم الراحة.',
+            actions: [
+                'تحققي من درجة حرارته',
+                'ابحثي عن أي علامات مرض أخرى',
+                'استشيري الطبيب إذا استمر البكاء'
+            ]
+        }
+    ];
+    
+    analyzeBtn.addEventListener('click', function() {
+        const selectedSymptoms = [];
+        const checkboxes = document.querySelectorAll('input[name="symptom"]:checked');
+        
+        checkboxes.forEach(checkbox => {
+            selectedSymptoms.push(checkbox.value);
+        });
+        
+        if (selectedSymptoms.length === 0) {
+            analysisResult.innerHTML = `
+                <div class="warning-note">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <p>الرجاء اختيار عرض واحد على الأقل للحصول على تشخيص.</p>
+                </div>
+            `;
+            analysisResult.classList.add('active');
             return;
         }
         
-        let historyHTML = '<h3>سجل التحليلات السابقة:</h3>';
+        // البحث عن التشخيص الأنسب بناء على الأعراض المختارة
+        let bestMatch = null;
+        let highestScore = 0;
         
-        history.forEach(entry => {
-            historyHTML += `
-                <div class="history-entry">
-                    <div class="history-time">${entry.timestamp}</div>
-                    <div class="history-pattern">${entry.pattern}</div>
-                    <div class="history-confidence">${entry.confidence.toFixed(0)}%</div>
-                    <div class="history-duration">${entry.duration.toFixed(1)} ث</div>
-                </div>
-            `;
+        symptomDiagnoses.forEach(diagnosis => {
+            let score = 0;
+            selectedSymptoms.forEach(symptom => {
+                if (diagnosis.symptoms.includes(symptom)) {
+                    score++;
+                }
+            });
+            
+            // حساب نسبة التطابق
+            const matchPercentage = (score / selectedSymptoms.length) * 100;
+            
+            if (matchPercentage > highestScore) {
+                highestScore = matchPercentage;
+                bestMatch = { ...diagnosis, matchPercentage };
+            }
         });
         
-        historyContainer.innerHTML = historyHTML;
-    }
-
-    // تحديث واجهة التسجيل
-    updateRecordingUI(isRecording) {
-        const recordBtn = document.getElementById('record-btn');
-        const statusIndicator = document.getElementById('recording-status');
-        
-        if (recordBtn) {
-            if (isRecording) {
-                recordBtn.innerHTML = '<i class="fas fa-stop-circle"></i> إيقاف التسجيل';
-                recordBtn.classList.add('recording');
-            } else {
-                recordBtn.innerHTML = '<i class="fas fa-microphone"></i> بدء تحليل البكاء';
-                recordBtn.classList.remove('recording');
-            }
+        // عرض النتيجة
+        if (bestMatch) {
+            analysisResult.innerHTML = `
+                <div class="diagnosis-result" style="border-right-color: ${bestMatch.color}">
+                    <div class="diagnosis-header">
+                        <i class="${bestMatch.icon}"></i>
+                        <h4>التشخيص: ${bestMatch.diagnosis}</h4>
+                        <span class="match-score">${Math.round(bestMatch.matchPercentage)}% تطابق</span>
+                    </div>
+                    <div class="diagnosis-body">
+                        <p><strong>الوصف:</strong> ${bestMatch.description}</p>
+                        <div class="recommended-actions">
+                            <h5><i class="fas fa-list-check"></i> الإجراءات المقترحة:</h5>
+                            <ul>
+                                ${bestMatch.actions.map(action => `<li>${action}</li>`).join('')}
+                            </ul>
+                        </div>
+                        <div class="disclaimer">
+                            <small><i class="fas fa-info-circle"></i> هذا التشخيص استرشادي ويعتمد على الأعراض المختارة فقط.</small>
+                        </div>
+                    </div>
+                </div>
+            `;
+        } else {
+            analysisResult.innerHTML = `
+                <div class="warning-note">
+                    <i class="fas fa-question-circle"></i>
+                    <p>لم نتمكن من تحديد تشخيص دقيق. حاولي مراقبة طفلك وملاحظة أعراض أخرى.</p>
+                    <p>إذا استمر البكاء، استشيري طبيب الأطفال.</p>
+                </div>
+            `;
         }
         
-        if (statusIndicator) {
-            if (isRecording) {
-                statusIndicator.innerHTML = '<span class="pulse"></span> جاري تحليل البكاء...';
-                statusIndicator.className = 'status-recording';
-            } else {
-                statusIndicator.innerHTML = 'جاهز للتسجيل';
-                statusIndicator.className = 'status-ready';
+        analysisResult.classList.add('active');
+        showMessage('تم تحليل الأعراض بنجاح', 'success');
+    });
+}
+
+// ===== مشغل الصوت الأبيض =====
+function initWhiteNoisePlayer() {
+    const playButton = document.getElementById('playWhiteNoise');
+    if (!playButton) return;
+    
+    let isPlaying = false;
+    let audioContext = null;
+    let noiseNode = null;
+    
+    // إنشاء صوت أبيض
+    function createWhiteNoise() {
+        try {
+            if (!audioContext) {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
             }
+            
+            if (noiseNode) {
+                noiseNode.disconnect();
+            }
+            
+            const bufferSize = 4096;
+            const noiseBuffer = audioContext.createBuffer(1, bufferSize, audioContext.sampleRate);
+            const output = noiseBuffer.getChannelData(0);
+            
+            // ملء العازف بضوضاء عشوائية
+            for (let i = 0; i < bufferSize; i++) {
+                output[i] = Math.random() * 2 - 1;
+            }
+            
+            noiseNode = audioContext.createBufferSource();
+            noiseNode.buffer = noiseBuffer;
+            noiseNode.loop = true;
+            
+            // إنشاء مرشح لتخفيف الحدة
+            const filter = audioContext.createBiquadFilter();
+            filter.type = 'lowpass';
+            filter.frequency.value = 1000;
+            
+            // التحكم بالصوت
+            const gainNode = audioContext.createGain();
+            gainNode.gain.value = 0.1;
+            
+            noiseNode.connect(filter);
+            filter.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            return { noiseNode, gainNode };
+        } catch (error) {
+            console.error('خطأ في إنشاء الصوت:', error);
+            return null;
         }
     }
+    
+    playButton.addEventListener('click', function() {
+        if (!isPlaying) {
+            // بدء التشغيل
+            const audioSetup = createWhiteNoise();
+            if (audioSetup) {
+                audioSetup.noiseNode.start();
+                isPlaying = true;
+                playButton.innerHTML = '<i class="fas fa-stop"></i> إيقاف الصوت الأبيض';
+                playButton.classList.add('playing');
+                
+                showMessage('تم تشغيل الصوت الأبيض المهدئ', 'info');
+            } else {
+                showMessage('تعذر تشغيل الصوت. قد يكون المتصفح لا يدعم هذه الميزة.', 'error');
+            }
+        } else {
+            // إيقاف التشغيل
+            if (noiseNode) {
+                noiseNode.stop();
+                noiseNode = null;
+            }
+            isPlaying = false;
+            playButton.innerHTML = '<i class="fas fa-play"></i> تشغيل صوت أبيض';
+            playButton.classList.remove('playing');
+            
+            showMessage('تم إيقاف الصوت الأبيض', 'info');
+        }
+    });
+}
 
-    // عرض الرسائل
-    showMessage(message, type = 'info') {
-        const messageContainer = document.getElementById('message-container');
-        if (!messageContainer) return;
+// ===== إدارة القائمة المنسدلة للهواتف =====
+function initMobileMenu() {
+    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+    const navMenu = document.querySelector('.nav-menu');
+    const dropdowns = document.querySelectorAll('.dropdown');
+    
+    if (mobileMenuBtn && navMenu) {
+        mobileMenuBtn.addEventListener('click', function() {
+            navMenu.classList.toggle('active');
+            mobileMenuBtn.innerHTML = navMenu.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+    }
+    
+    // إدارة القوائم المنسدلة على الهواتف
+    dropdowns.forEach(dropdown => {
+        const dropdownLink = dropdown.querySelector('a');
         
-        const messageElement = document.createElement('div');
-        messageElement.className = `message message-${type}`;
-        messageElement.innerHTML = `
-            <div class="message-icon">
-                ${type === 'error' ? '❌' : type === 'warning' ? '⚠️' : 'ℹ️'}
-            </div>
-            <div class="message-text">${message}</div>
-        `;
+        if (dropdownLink) {
+            dropdownLink.addEventListener('click', function(e) {
+                if (window.innerWidth <= 992) {
+                    e.preventDefault();
+                    dropdown.classList.toggle('open');
+                    
+                    // إغلاق القوائم المنسدلة الأخرى
+                    dropdowns.forEach(otherDropdown => {
+                        if (otherDropdown !== dropdown) {
+                            otherDropdown.classList.remove('open');
+                        }
+                    });
+                }
+            });
+        }
+    });
+    
+    // إغلاق القوائم عند النقر خارجها
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('.nav-menu') && !e.target.closest('.mobile-menu-btn')) {
+            if (navMenu) navMenu.classList.remove('active');
+            if (mobileMenuBtn) mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            
+            dropdowns.forEach(dropdown => {
+                dropdown.classList.remove('open');
+            });
+        }
+    });
+}
+
+// ===== تفاعلات البطاقات =====
+function initInteractiveCards() {
+    // تفعيل تأثير hover للبطاقات
+    const cards = document.querySelectorAll('.crying-type-card, .technique-card, .pattern-card, .sidebar-widget');
+    
+    cards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-5px)';
+            this.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.15)';
+        });
         
-        messageContainer.appendChild(messageElement);
-        
-        // إزالة الرسالة بعد 5 ثوانٍ
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+            this.style.boxShadow = '';
+        });
+    });
+    
+    // تفعيل النقر على خطوات الفحص
+    const flowSteps = document.querySelectorAll('.flow-step');
+    flowSteps.forEach(step => {
+        step.addEventListener('click', function() {
+            const stepNumber = this.querySelector('.flow-number').textContent;
+            showMessage(`خطوة ${stepNumber}: ${this.querySelector('h4').textContent}`, 'info');
+        });
+    });
+}
+
+// ===== تأثيرات التمرير =====
+function initScrollAnimations() {
+    // تأثير الظهور عند التمرير
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate-fade-up');
+            }
+        });
+    }, observerOptions);
+    
+    // مراقبة العناصر المراد تحريكها
+    const elementsToAnimate = document.querySelectorAll('.content-section, .crying-type-card, .technique-card');
+    elementsToAnimate.forEach(element => {
+        observer.observe(element);
+    });
+}
+
+// ===== نظام الرسائل =====
+function showMessage(text, type = 'info') {
+    const messageContainer = document.getElementById('message-container');
+    if (!messageContainer) {
+        // إنشاء حاوية الرسائل إذا لم تكن موجودة
+        const container = document.createElement('div');
+        container.id = 'message-container';
+        container.className = 'message-container';
+        document.body.appendChild(container);
+    }
+    
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `message message-${type}`;
+    
+    const icons = {
+        success: 'fas fa-check-circle',
+        error: 'fas fa-exclamation-circle',
+        warning: 'fas fa-exclamation-triangle',
+        info: 'fas fa-info-circle'
+    };
+    
+    messageDiv.innerHTML = `
+        <i class="${icons[type] || icons.info} message-icon"></i>
+        <div class="message-text">${text}</div>
+        <i class="fas fa-times close-message"></i>
+    `;
+    
+    const container = document.getElementById('message-container');
+    container.appendChild(messageDiv);
+    
+    // إضافة حدث الإغلاق
+    messageDiv.querySelector('.close-message').addEventListener('click', function() {
+        messageDiv.classList.add('fade-out');
         setTimeout(() => {
-            messageElement.classList.add('fade-out');
+            if (messageDiv.parentNode) {
+                messageDiv.parentNode.removeChild(messageDiv);
+            }
+        }, 500);
+    });
+    
+    // إزالة الرسالة تلقائياً بعد 5 ثوان
+    setTimeout(() => {
+        if (messageDiv.parentNode) {
+            messageDiv.classList.add('fade-out');
             setTimeout(() => {
-                if (messageElement.parentNode) {
-                    messageElement.parentNode.removeChild(messageElement);
+                if (messageDiv.parentNode) {
+                    messageDiv.parentNode.removeChild(messageDiv);
                 }
             }, 500);
-        }, 5000);
-    }
-
-    // وضع المحاكاة (عند فشل الوصول إلى الميكروفون)
-    showSimulationMode() {
-        const resultsContainer = document.getElementById('analysis-results');
-        if (!resultsContainer) return;
-        
-        resultsContainer.innerHTML = `
-            <div class="simulation-mode">
-                <h3>وضع المحاكاة (التجريبي)</h3>
-                <p>نظراً لعدم تمكننا من الوصول إلى الميكروفون، يمكنك اختيار نمط البكاء يدوياً لمشاهدة كيف يعمل النظام.</p>
-                
-                <div class="simulation-options">
-                    ${Object.entries(this.cryingPatterns).map(([id, pattern]) => `
-                        <div class="simulation-option" data-pattern="${id}">
-                            <div class="simulation-icon">${pattern.icon}</div>
-                            <div class="simulation-info">
-                                <h4>${pattern.name}</h4>
-                                <p>${pattern.description.substring(0, 60)}...</p>
-                            </div>
-                        </div>
-                    `).join('')}
-                </div>
-                
-                <p class="simulation-note">في النسخة الكاملة من التطبيق، يمكنك استخدام الميكروفون لتحليل بكاء طفلك فعلياً.</p>
-            </div>
-        `;
-        
-        // إضافة مستمعي الأحداث لخيارات المحاكاة
-        document.querySelectorAll('.simulation-option').forEach(option => {
-            option.addEventListener('click', () => {
-                const patternId = option.getAttribute('data-pattern');
-                this.displayPatternDetails(patternId);
-            });
-        });
-    }
-
-    // إنشاء مكتبة أنماط البكاء
-    createPatternLibrary() {
-        const libraryContainer = document.getElementById('pattern-library');
-        if (!libraryContainer) return;
-        
-        let libraryHTML = '<h3>مكتبة أنماط بكاء الأطفال:</h3><div class="patterns-grid">';
-        
-        for (const [id, pattern] of Object.entries(this.cryingPatterns)) {
-            libraryHTML += `
-                <div class="pattern-card" data-pattern="${id}">
-                    <div class="pattern-card-header" style="background-color: ${this.getPatternColor(id)}">
-                        <span class="pattern-card-icon">${pattern.icon}</span>
-                        <h4>${pattern.name}</h4>
-                    </div>
-                    <div class="pattern-card-body">
-                        <p>${pattern.description}</p>
-                        <div class="pattern-card-stats">
-                            <span class="stat"><i class="fas fa-wave-square"></i> ${pattern.frequency.low}-${pattern.frequency.high} هرتز</span>
-                            <span class="stat"><i class="fas fa-volume-up"></i> ${pattern.intensity === 'high' ? 'عالية' : pattern.intensity === 'medium' ? 'متوسطة' : 'منخفضة'}</span>
-                        </div>
-                        <button class="btn-small" data-pattern="${id}">عرض التفاصيل</button>
-                    </div>
-                </div>
-            `;
         }
-        
-        libraryHTML += '</div>';
-        libraryContainer.innerHTML = libraryHTML;
-        
-        // إضافة مستمعي الأحداث
-        document.querySelectorAll('.pattern-card button').forEach(button => {
-            button.addEventListener('click', (e) => {
-                e.stopPropagation();
-                const patternId = button.getAttribute('data-pattern');
-                this.displayPatternDetails(patternId);
-            });
-        });
-    }
-
-    // إنشاء سجل التحليلات
-    createHistoryLog() {
-        this.updateHistoryDisplay();
-    }
-
-    // تهيئة مستمعي الأحداث
-    initializeEventListeners() {
-        // مستمع الأحداث لزر التسجيل
-        document.addEventListener('DOMContentLoaded', () => {
-            const recordBtn = document.getElementById('record-btn');
-            if (recordBtn) {
-                recordBtn.addEventListener('click', () => {
-                    if (this.isRecording) {
-                        this.stopRecording();
-                    } else {
-                        this.startRecording();
-                    }
-                });
-            }
-            
-            // زر مسح السجل
-            const clearHistoryBtn = document.getElementById('clear-history');
-            if (clearHistoryBtn) {
-                clearHistoryBtn.addEventListener('click', () => {
-                    localStorage.removeItem('cryingAnalysisHistory');
-                    this.updateHistoryDisplay();
-                    this.showMessage('تم مسح سجل التحليلات السابقة', 'info');
-                });
-            }
-            
-            // تحديث السجل عند تحميل الصفحة
-            this.updateHistoryDisplay();
-        });
-    }
-
-    // وظائف مساعدة
-    getPatternColor(patternId) {
-        const colors = {
-            'hunger': '#FFB6C1',
-            'tired': '#87CEEB',
-            'discomfort': '#98FB98',
-            'pain': '#FFA07A',
-            'attention': '#DDA0DD',
-            'overstimulation': '#F0E68C'
-        };
-        
-        return colors[patternId] || '#E0E0E0';
-    }
-
-    translatePattern(patternType) {
-        const translations = {
-            'continuous': 'مستمر',
-            'intermittent': 'متقطع',
-            'sharp': 'حاد',
-            'on-and-off': 'متناوب',
-            'rythmic': 'إيقاعي',
-            'escalating': 'متزايد'
-        };
-        
-        return translations[patternType] || patternType;
-    }
-
-    // تحديث التصور البصري للصوت
-    updateAudioVisualization(dataArray) {
-        const visualization = document.getElementById('audio-visualization');
-        if (!visualization) return;
-        
-        // تنظيف المحتوى السابق
-        visualization.innerHTML = '';
-        
-        // إنشاء رسم بياني مبسط
-        const barCount = 40;
-        const maxBarHeight = 80;
-        
-        for (let i = 0; i < barCount; i++) {
-            const bar = document.createElement('div');
-            bar.className = 'audio-bar';
-            
-            // أخذ عينة من بيانات التردد
-            const dataIndex = Math.floor(i * dataArray.length / barCount);
-            const height = Math.min(maxBarHeight, dataArray[dataIndex] / 2);
-            
-            bar.style.height = `${height}px`;
-            bar.style.backgroundColor = this.getBarColor(height, maxBarHeight);
-            
-            visualization.appendChild(bar);
-        }
-    }
-
-    // الحصول على لون الشريط بناءً على الارتفاع
-    getBarColor(height, maxHeight) {
-        const ratio = height / maxHeight;
-        
-        if (ratio > 0.7) return '#FF6B6B'; // أحمر للشدة العالية
-        if (ratio > 0.4) return '#FFD166'; // أصفر للشدة المتوسطة
-        return '#06D6A0'; // أخضر للشدة المنخفضة
-    }
+    }, 5000);
 }
 
-// تهيئة محلل البكاء عند تحميل الصفحة
-document.addEventListener('DOMContentLoaded', () => {
-    window.cryingAnalyzer = new CryingAnalyzer();
+// ===== وظائف مساعدة =====
+// تحديد إذا كان الجهاز هاتفاً
+function isMobileDevice() {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+}
+
+// تنسيق الوقت
+function formatTime(date) {
+    return date.toLocaleTimeString('ar-EG', {
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: true
+    });
+}
+
+// تحميل الصفحة مع تأثيرات
+window.addEventListener('load', function() {
+    document.body.classList.add('loaded');
     
-    // عرض رسالة ترحيب
-    setTimeout(() => {
-        if (window.cryingAnalyzer) {
-            window.cryingAnalyzer.showMessage('مرحباً! يمكنك الآن تحليل بكاء طفلك باستخدام الميكروفون أو تجربة وضع المحاكاة.', 'info');
-        }
-    }, 1000);
+    // إضافة تأثيرات تأخير للعناصر
+    const animatedElements = document.querySelectorAll('.animate-fade-up, .animate-slide-up');
+    animatedElements.forEach((element, index) => {
+        element.style.animationDelay = `${index * 0.1}s`;
+    });
 });
 
-// تصدير الكلاس للاستخدام في ملفات أخرى
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = CryingAnalyzer;
-}
+// ===== إدارة حالة الصفحة =====
+// حفظ حالة الصفحة عند الخروج
+window.addEventListener('beforeunload', function() {
+    // حفظ التحليلات الأخيرة
+    try {
+        const recentAnalyses = document.querySelectorAll('.history-entry');
+        if (recentAnalyses.length > 0) {
+            localStorage.setItem('lastVisit', new Date().toISOString());
+        }
+    } catch (e) {
+        console.error('فشل حفظ حالة الصفحة:', e);
+    }
+});
+
+// استعادة حالة الصفحة عند العودة
+window.addEventListener('pageshow', function(event) {
+    if (event.persisted) {
+        // الصفحة تم تحميلها من ذاكرة التخزين المؤقت
+        showMessage('تم استعادة الصفحة من الذاكرة المؤقتة', 'info');
+    }
+});

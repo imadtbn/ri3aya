@@ -644,3 +644,196 @@
             `);
             printWindow.document.close();
         }
+
+
+
+        // إضافة إلى digestive.js
+document.addEventListener('DOMContentLoaded', function() {
+    // تفعيل التنقل بين الاضطرابات
+    const disorderNavBtns = document.querySelectorAll('.disorder-nav-btn');
+    const disorderCards = document.querySelectorAll('.disorders-overview.improved .disorder-card');
+    
+    if (disorderNavBtns.length > 0) {
+        disorderNavBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                // إزالة النشاط من جميع الأزرار
+                disorderNavBtns.forEach(b => b.classList.remove('active'));
+                // إضافة النشاط للزر المختار
+                this.classList.add('active');
+                
+                // إخفاء جميع البطاقات
+                disorderCards.forEach(card => card.classList.remove('active'));
+                
+                // إظهار البطاقة المحددة
+                const disorderType = this.getAttribute('data-disorder');
+                const targetCard = document.querySelector(`.disorder-card[data-disorder="${disorderType}"]`);
+                if (targetCard) {
+                    targetCard.classList.add('active');
+                }
+            });
+        });
+    }
+    
+    // في حالة الهواتف، إظهار جميع البطاقات وإلغاء التنقل
+    function adjustForMobile() {
+        if (window.innerWidth <= 768) {
+            disorderCards.forEach(card => {
+                card.style.display = 'flex';
+            });
+            if (document.querySelector('.disorders-nav')) {
+                document.querySelector('.disorders-nav').style.display = 'none';
+            }
+        } else {
+            disorderCards.forEach(card => {
+                card.style.display = '';
+            });
+            if (document.querySelector('.disorders-nav')) {
+                document.querySelector('.disorders-nav').style.display = 'flex';
+            }
+        }
+    }
+    
+    // استدعاء الدالة عند التحميل وعند تغيير حجم النافذة
+    adjustForMobile();
+    window.addEventListener('resize', adjustForMobile);
+});
+
+// إضافة إلى الملف JavaScript الخاص بالصفحة
+document.addEventListener('DOMContentLoaded', function() {
+    // تفعيل الأسئلة الشائعة
+    const faqQuestions = document.querySelectorAll('.faq-question');
+    
+    faqQuestions.forEach(question => {
+        question.addEventListener('click', function() {
+            const faqItem = this.parentElement;
+            const isActive = faqItem.classList.contains('active');
+            
+            // إغلاق جميع الأسئلة الأخرى
+            document.querySelectorAll('.faq-item.active').forEach(item => {
+                if (item !== faqItem) {
+                    item.classList.remove('active');
+                }
+            });
+            
+            // تبديل حالة السؤال الحالي
+            faqItem.classList.toggle('active', !isActive);
+            
+            // إضافة تأثير صوتي خفيف (اختياري)
+            if (!isActive) {
+                const clickSound = new Audio('data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEAQB8AAEAfAAABAAgAZGF0YQ');
+                clickSound.volume = 0.1;
+                clickSound.play().catch(() => {});
+            }
+        });
+    });
+    
+    // زر عرض/إخفاء جميع الأسئلة
+    const toggleAllBtn = document.createElement('button');
+    toggleAllBtn.className = 'faq-toggle-all';
+    toggleAllBtn.innerHTML = '<span>عرض جميع الأسئلة</span><i class="fas fa-chevron-down"></i>';
+    
+    const faqActions = document.createElement('div');
+    faqActions.className = 'faq-actions';
+    faqActions.appendChild(toggleAllBtn);
+    
+    const faqList = document.querySelector('.faq-list');
+    if (faqList) {
+        faqList.parentNode.insertBefore(faqActions, faqList.nextSibling);
+        
+        toggleAllBtn.addEventListener('click', function() {
+            const allFaqItems = document.querySelectorAll('.faq-item');
+            const isAllOpen = Array.from(allFaqItems).every(item => item.classList.contains('active'));
+            
+            if (isAllOpen) {
+                // إغلاق جميع الأسئلة
+                allFaqItems.forEach(item => item.classList.remove('active'));
+                toggleAllBtn.innerHTML = '<span>عرض جميع الأسئلة</span><i class="fas fa-chevron-down"></i>';
+                toggleAllBtn.classList.remove('active');
+            } else {
+                // فتح جميع الأسئلة
+                allFaqItems.forEach(item => item.classList.add('active'));
+                toggleAllBtn.innerHTML = '<span>إخفاء جميع الأسئلة</span><i class="fas fa-chevron-up"></i>';
+                toggleAllBtn.classList.add('active');
+            }
+        });
+    }
+    
+    // إضافة خاصية البحث في الأسئلة الشائعة
+    const faqSection = document.querySelector('.faq-section .section-card');
+    if (faqSection) {
+        const searchContainer = document.createElement('div');
+        searchContainer.className = 'faq-search';
+        searchContainer.innerHTML = `
+            <input type="text" placeholder="ابحث في الأسئلة الشائعة..." id="faqSearch">
+            <i class="fas fa-search"></i>
+        `;
+        
+        const noResults = document.createElement('div');
+        noResults.className = 'faq-no-results';
+        noResults.innerHTML = `
+            <i class="fas fa-search"></i>
+            <h3>لم يتم العثور على نتائج</h3>
+            <p>جرب استخدام كلمات بحث أخرى</p>
+        `;
+        
+        faqSection.insertBefore(searchContainer, faqSection.querySelector('h2').nextSibling);
+        faqList.parentNode.insertBefore(noResults, faqList.nextSibling);
+        
+        const searchInput = document.getElementById('faqSearch');
+        const faqItems = document.querySelectorAll('.faq-item');
+        
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.trim().toLowerCase();
+            let hasResults = false;
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question span').textContent.toLowerCase();
+                const answer = item.querySelector('.faq-answer p').textContent.toLowerCase();
+                
+                if (question.includes(searchTerm) || answer.includes(searchTerm)) {
+                    item.style.display = 'block';
+                    hasResults = true;
+                    
+                    // تمييز النص المطابق للبحث
+                    if (searchTerm.length > 2) {
+                        const regex = new RegExp(searchTerm, 'gi');
+                        const highlightedQuestion = question.replace(regex, match => `<span class="highlight">${match}</span>`);
+                        const highlightedAnswer = answer.replace(regex, match => `<span class="highlight">${match}</span>`);
+                        
+                        item.querySelector('.faq-question span').innerHTML = question.replace(regex, match => `<span class="highlight">${match}</span>`);
+                        item.querySelector('.faq-answer p').innerHTML = answer.replace(regex, match => `<span class="highlight">${match}</span>`);
+                    }
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+            
+            // عرض/إخفاء رسالة عدم وجود نتائج
+            noResults.style.display = hasResults || searchTerm.length === 0 ? 'none' : 'block';
+            
+            // إغلاق جميع الأسئلة أثناء البحث
+            if (searchTerm.length > 0) {
+                faqItems.forEach(item => {
+                    if (item.style.display !== 'none') {
+                        item.classList.add('active');
+                    }
+                });
+                toggleAllBtn.innerHTML = '<span>إخفاء جميع الأسئلة</span><i class="fas fa-chevron-up"></i>';
+                toggleAllBtn.classList.add('active');
+            }
+        });
+    }
+});
+
+// إضافة أنماط تمييز النص في البحث
+const style = document.createElement('style');
+style.textContent = `
+    .highlight {
+        background-color: #FFF9C4;
+        padding: 2px 4px;
+        border-radius: 3px;
+        color: #333;
+        font-weight: bold;
+    }
+`;
+document.head.appendChild(style);

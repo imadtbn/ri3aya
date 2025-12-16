@@ -1297,113 +1297,9 @@
             
             return names[allergy] || allergy;
         }
-// دعم وضع التباين العالي والوضع الداكن
-function initAccessibilityModes() {
-    const htmlElement = document.documentElement;
-    
-    // التحقق من تفضيلات المستخدم
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const prefersContrast = window.matchMedia('(prefers-contrast: high)').matches;
-    
-    // إضافة وضع التباين العالي إذا طلب المستخدم
-    if (prefersContrast) {
-        htmlElement.classList.add('high-contrast-mode');
-    }
-    
-    // إضافة الوضع الداكن إذا طلب المستخدم
-    if (prefersDark) {
-        htmlElement.classList.add('dark-mode');
-    }
-    
-    // إضافة تحسينات القراءة
-    const readingModeBtn = document.createElement('button');
-    readingModeBtn.id = 'reading-mode-toggle';
-    readingModeBtn.innerHTML = '<i class="fas fa-book-reader"></i> وضع القراءة';
-    readingModeBtn.className = 'btn btn-secondary';
-    readingModeBtn.style.position = 'fixed';
-    readingModeBtn.style.bottom = '80px';
-    readingModeBtn.style.left = '20px';
-    readingModeBtn.style.zIndex = '1000';
-    
-    document.body.appendChild(readingModeBtn);
-    
-    readingModeBtn.addEventListener('click', function() {
-        htmlElement.classList.toggle('enhanced-reading');
-        this.innerHTML = htmlElement.classList.contains('enhanced-reading') 
-            ? '<i class="fas fa-book"></i> الخروج من وضع القراءة' 
-            : '<i class="fas fa-book-reader"></i> وضع القراءة';
-    });
-    
-    // إضافة أزرار التحكم بالأوضاع
-    const modeControls = document.createElement('div');
-    modeControls.id = 'mode-controls';
-    modeControls.style.position = 'fixed';
-    modeControls.style.bottom = '20px';
-    modeControls.style.left = '20px';
-    modeControls.style.zIndex = '1000';
-    modeControls.style.display = 'flex';
-    modeControls.style.gap = '10px';
-    
-    const highContrastBtn = document.createElement('button');
-    highContrastBtn.innerHTML = '<i class="fas fa-adjust"></i>';
-    highContrastBtn.title = 'التباين العالي';
-    highContrastBtn.className = 'btn btn-secondary';
-    highContrastBtn.style.width = '50px';
-    highContrastBtn.style.height = '50px';
-    highContrastBtn.style.borderRadius = '50%';
-    highContrastBtn.style.padding = '0';
-    highContrastBtn.style.display = 'flex';
-    highContrastBtn.style.alignItems = 'center';
-    highContrastBtn.style.justifyContent = 'center';
-    
-    const darkModeBtn = document.createElement('button');
-    darkModeBtn.innerHTML = '<i class="fas fa-moon"></i>';
-    darkModeBtn.title = 'الوضع الداكن';
-    darkModeBtn.className = 'btn btn-secondary';
-    darkModeBtn.style.width = '50px';
-    darkModeBtn.style.height = '50px';
-    darkModeBtn.style.borderRadius = '50%';
-    darkModeBtn.style.padding = '0';
-    darkModeBtn.style.display = 'flex';
-    darkModeBtn.style.alignItems = 'center';
-    darkModeBtn.style.justifyContent = 'center';
-    
-    highContrastBtn.addEventListener('click', function() {
-        htmlElement.classList.toggle('high-contrast-mode');
-        htmlElement.classList.remove('dark-mode');
-        highContrastBtn.innerHTML = htmlElement.classList.contains('high-contrast-mode') 
-            ? '<i class="fas fa-sun"></i>' 
-            : '<i class="fas fa-adjust"></i>';
-    });
-    
-    darkModeBtn.addEventListener('click', function() {
-        htmlElement.classList.toggle('dark-mode');
-        htmlElement.classList.remove('high-contrast-mode');
-        darkModeBtn.innerHTML = htmlElement.classList.contains('dark-mode') 
-            ? '<i class="fas fa-sun"></i>' 
-            : '<i class="fas fa-moon"></i>';
-    });
-    
-    modeControls.appendChild(highContrastBtn);
-    modeControls.appendChild(darkModeBtn);
-    document.body.appendChild(modeControls);
-    
-    // تحسين التركيز للوحة المفاتيح
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Tab') {
-            document.documentElement.classList.add('focus-visible');
-        }
-    });
-    
-    document.addEventListener('click', function(e) {
-        if (e.detail === 0) {
-            // تم الضغط باستخدام لوحة المفاتيح
-            document.documentElement.classList.add('focus-visible');
-        } else {
-            document.documentElement.classList.remove('focus-visible');
-        }
-    });
-}
+
+
+        
 
 // تهيئة الأوضاع عند تحميل الصفحة
 document.addEventListener('DOMContentLoaded', function() {
@@ -1435,3 +1331,4 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
