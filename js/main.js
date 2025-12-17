@@ -224,25 +224,28 @@ function initQuickTools() {
     });
 }
 
+
+
+
 function openTool(toolName) {
     let toolUrl = '';
     let toolTitle = '';
     
     switch(toolName) {
         case 'vaccine':
-            toolUrl = 'pages/vaccine-calculator.html';
+            toolUrl = 'pages/vaccine.html';
             toolTitle = 'آلة حاسبة التطعيمات';
             break;
         case 'growth':
-            toolUrl = 'pages/growth-tracker.html';
+            toolUrl = 'pages/growth.html';
             toolTitle = 'متابعة النمو';
             break;
         case 'cry':
-            toolUrl = 'pages/cry-analyzer.html';
+            toolUrl = 'pages/crying.html';
             toolTitle = 'مفسر البكاء';
             break;
         case 'routine':
-            toolUrl = 'pages/routine-generator.html';
+            toolUrl = 'pages/sleep.html';
             toolTitle = 'مولد الروتين اليومي';
             break;
     }

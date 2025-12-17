@@ -1,382 +1,382 @@
-        // تهيئة متغيرات الصفحة
-        let currentStep = 1;
-        let cryAnalysisData = {};
-        let growthChart = null;
-        
-        document.addEventListener('DOMContentLoaded', function() {
-            // تفعيل تبويبات الأدوات المتقدمة
-            const toolTabs = document.querySelectorAll('.tool-tab');
-            const toolContents = document.querySelectorAll('.tool-content');
-            
-            toolTabs.forEach(tab => {
-                tab.addEventListener('click', () => {
-                    // إزالة النشاط من جميع التبويبات
-                    toolTabs.forEach(t => t.classList.remove('active'));
-                    // إضافة النشاط للتبويب الحالي
-                    tab.classList.add('active');
-                    
-                    const toolId = tab.getAttribute('data-tool');
-                    
-                    // إخفاء جميع المحتويات
-                    toolContents.forEach(content => content.classList.remove('active'));
-                    // إظهار المحتوى المطلوب
-                    document.getElementById(`${toolId}-content`).classList.add('active');
-                    
-                    // التمرير إلى بداية المحتوى
-                    document.getElementById(`${toolId}-content`).scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                });
+// تهيئة متغيرات الصفحة
+let currentStep = 1;
+let cryAnalysisData = {};
+let growthChart = null;
+
+document.addEventListener('DOMContentLoaded', function () {
+    // تفعيل تبويبات الأدوات المتقدمة
+    const toolTabs = document.querySelectorAll('.tool-tab');
+    const toolContents = document.querySelectorAll('.tool-content');
+
+    toolTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            // إزالة النشاط من جميع التبويبات
+            toolTabs.forEach(t => t.classList.remove('active'));
+            // إضافة النشاط للتبويب الحالي
+            tab.classList.add('active');
+
+            const toolId = tab.getAttribute('data-tool');
+
+            // إخفاء جميع المحتويات
+            toolContents.forEach(content => content.classList.remove('active'));
+            // إظهار المحتوى المطلوب
+            document.getElementById(`${toolId}-content`).classList.add('active');
+
+            // التمرير إلى بداية المحتوى
+            document.getElementById(`${toolId}-content`).scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
             });
-            
-            // تفعيل تبويبات متابعة النمو
-            const trackerTabs = document.querySelectorAll('.tracker-tab');
-            const trackerPanes = document.querySelectorAll('.tracker-pane');
-            
-            trackerTabs.forEach(tab => {
-                tab.addEventListener('click', () => {
-                    // إزالة النشاط من جميع التبويبات
-                    trackerTabs.forEach(t => t.classList.remove('active'));
-                    // إضافة النشاط للتبويب الحالي
-                    tab.classList.add('active');
-                    
-                    const paneId = tab.getAttribute('data-tracker');
-                    
-                    // إخفاء جميع المحتويات
-                    trackerPanes.forEach(pane => pane.classList.remove('active'));
-                    // إظهار المحتوى المطلوب
-                    document.getElementById(`${paneId}-pane`).classList.add('active');
-                });
-            });
-            
-            // تفعيل مفسر البكاء
-            initCryDecoder();
-            
-            // تفعيل آلة حاسبة التطعيمات
-            initVaccineCalculator();
-            
-            // تفعيل متابعة النمو
-            initGrowthTracker();
-            
-            // تفعيل مولد الروتين
-            initRoutineGenerator();
-            
-            // تفعيل حاسبة جرعات الدواء
-            initMedicineCalculator();
-            
-            // تفعيل مخطط وجبات الطعام
-            initMealPlanner();
-            
-            // تفعيل زر العودة للأعلى
-            const backToTopButton = document.querySelector('.back-to-top');
-            
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 300) {
-                    backToTopButton.classList.add('visible');
-                } else {
-                    backToTopButton.classList.remove('visible');
-                }
-            });
-            
-            backToTopButton.addEventListener('click', () => {
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-            });
-            
-            // تفعيل الأزرار السريعة
-            const quickToolButtons = document.querySelectorAll('.btn-tool-quick');
-            
-            quickToolButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const toolId = this.getAttribute('data-tool');
-                    
-                    // البحث عن التبويب المناسب وتفعيله
-                    const targetTab = document.querySelector(`.tool-tab[data-tool="${toolId}"]`);
-                    if (targetTab) {
-                        targetTab.click();
-                    }
-                });
-            });
-            
-            // تعيين تاريخ افتراضي لحقول التاريخ
-            const today = new Date();
-            const formattedDate = today.toISOString().split('T')[0];
-            document.getElementById('measurement-date').value = formattedDate;
-            
-            // تعيين تاريخ ميلاد افتراضي للطفل (3 أشهر مضت)
-            const birthDate = new Date();
-            birthDate.setMonth(birthDate.getMonth() - 3);
-            document.getElementById('baby-birthdate-vaccine').valueAsDate = birthDate;
         });
-        
-        // تهيئة مفسر البكاء
-        function initCryDecoder() {
-            const nextStepBtn = document.getElementById('next-step');
-            const prevStepBtn = document.getElementById('prev-step');
-            const restartBtn = document.getElementById('restart-decoder');
-            const saveBtn = document.getElementById('save-analysis');
-            
-            // تفعيل الخطوة الأولى
+    });
+
+    // تفعيل تبويبات متابعة النمو
+    const trackerTabs = document.querySelectorAll('.tracker-tab');
+    const trackerPanes = document.querySelectorAll('.tracker-pane');
+
+    trackerTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            // إزالة النشاط من جميع التبويبات
+            trackerTabs.forEach(t => t.classList.remove('active'));
+            // إضافة النشاط للتبويب الحالي
+            tab.classList.add('active');
+
+            const paneId = tab.getAttribute('data-tracker');
+
+            // إخفاء جميع المحتويات
+            trackerPanes.forEach(pane => pane.classList.remove('active'));
+            // إظهار المحتوى المطلوب
+            document.getElementById(`${paneId}-pane`).classList.add('active');
+        });
+    });
+
+    // تفعيل مفسر البكاء
+    initCryDecoder();
+
+    // تفعيل آلة حاسبة التطعيمات
+    initVaccineCalculator();
+
+    // تفعيل متابعة النمو
+    initGrowthTracker();
+
+    // تفعيل مولد الروتين
+    initRoutineGenerator();
+
+    // تفعيل حاسبة جرعات الدواء
+    initMedicineCalculator();
+
+    // تفعيل مخطط وجبات الطعام
+    initMealPlanner();
+
+    // تفعيل زر العودة للأعلى
+    const backToTopButton = document.querySelector('.back-to-top');
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            backToTopButton.classList.add('visible');
+        } else {
+            backToTopButton.classList.remove('visible');
+        }
+    });
+
+    backToTopButton.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+
+    // تفعيل الأزرار السريعة
+    const quickToolButtons = document.querySelectorAll('.btn-tool-quick');
+
+    quickToolButtons.forEach(button => {
+        button.addEventListener('click', function () {
+            const toolId = this.getAttribute('data-tool');
+
+            // البحث عن التبويب المناسب وتفعيله
+            const targetTab = document.querySelector(`.tool-tab[data-tool="${toolId}"]`);
+            if (targetTab) {
+                targetTab.click();
+            }
+        });
+    });
+
+    // تعيين تاريخ افتراضي لحقول التاريخ
+    const today = new Date();
+    const formattedDate = today.toISOString().split('T')[0];
+    document.getElementById('measurement-date').value = formattedDate;
+
+    // تعيين تاريخ ميلاد افتراضي للطفل (3 أشهر مضت)
+    const birthDate = new Date();
+    birthDate.setMonth(birthDate.getMonth() - 3);
+    document.getElementById('baby-birthdate-vaccine').valueAsDate = birthDate;
+});
+
+// تهيئة مفسر البكاء
+function initCryDecoder() {
+    const nextStepBtn = document.getElementById('next-step');
+    const prevStepBtn = document.getElementById('prev-step');
+    const restartBtn = document.getElementById('restart-decoder');
+    const saveBtn = document.getElementById('save-analysis');
+
+    // تفعيل الخطوة الأولى
+    updateDecoderSteps();
+
+    // تفعيل زر التالي
+    nextStepBtn.addEventListener('click', function () {
+        if (currentStep < 4) {
+            currentStep++;
             updateDecoderSteps();
-            
-            // تفعيل زر التالي
-            nextStepBtn.addEventListener('click', function() {
-                if (currentStep < 4) {
-                    currentStep++;
-                    updateDecoderSteps();
-                } else if (currentStep === 4) {
-                    // عند الوصول للخطوة الرابعة، عرض النتائج
-                    analyzeCry();
-                    currentStep = 5; // الانتقال لصفحة النتائج
-                    updateDecoderSteps();
-                }
-            });
-            
-            // تفعيل زر السابق
-            prevStepBtn.addEventListener('click', function() {
-                if (currentStep > 1) {
-                    currentStep--;
-                    updateDecoderSteps();
-                }
-            });
-            
-            // تفعيل زر إعادة البدء
-            restartBtn.addEventListener('click', function() {
-                currentStep = 1;
-                cryAnalysisData = {};
-                updateDecoderSteps();
-            });
-            
-            // تفعيل زر حفظ النتائج
-            saveBtn.addEventListener('click', function() {
-                saveCryAnalysis();
-            });
-            
-            // تفعيل خيارات العمر
-            document.querySelectorAll('.age-option').forEach(option => {
-                option.addEventListener('click', function() {
-                    cryAnalysisData.age = this.getAttribute('data-age');
-                    document.querySelectorAll('.age-option').forEach(opt => opt.classList.remove('selected'));
-                    this.classList.add('selected');
-                });
-            });
-            
-            // تفعيل خيارات التوقيت
-            document.querySelectorAll('.timing-option').forEach(option => {
-                option.addEventListener('click', function() {
-                    cryAnalysisData.timing = this.getAttribute('data-timing');
-                    document.querySelectorAll('.timing-option').forEach(opt => opt.classList.remove('selected'));
-                    this.classList.add('selected');
-                });
-            });
-            
-            // تفعيل خيارات البكاء
-            document.querySelectorAll('.cry-option').forEach(option => {
-                option.addEventListener('click', function() {
-                    cryAnalysisData.cryType = this.getAttribute('data-cry');
-                    document.querySelectorAll('.cry-option').forEach(opt => opt.classList.remove('selected'));
-                    this.classList.add('selected');
-                });
-            });
-            
-            // تفعيل خيارات الأعراض
-            document.querySelectorAll('.symptom-option input').forEach(checkbox => {
-                checkbox.addEventListener('change', function() {
-                    if (!cryAnalysisData.symptoms) {
-                        cryAnalysisData.symptoms = [];
-                    }
-                    
-                    const symptom = this.getAttribute('data-symptom');
-                    if (this.checked) {
-                        if (!cryAnalysisData.symptoms.includes(symptom)) {
-                            cryAnalysisData.symptoms.push(symptom);
-                        }
-                    } else {
-                        const index = cryAnalysisData.symptoms.indexOf(symptom);
-                        if (index > -1) {
-                            cryAnalysisData.symptoms.splice(index, 1);
-                        }
-                    }
-                });
-            });
+        } else if (currentStep === 4) {
+            // عند الوصول للخطوة الرابعة، عرض النتائج
+            analyzeCry();
+            currentStep = 5; // الانتقال لصفحة النتائج
+            updateDecoderSteps();
         }
-        
-        // تحديث خطوات مفسر البكاء
-        function updateDecoderSteps() {
-            const steps = document.querySelectorAll('.step');
-            const stepContents = document.querySelectorAll('.step-content');
-            const nextStepBtn = document.getElementById('next-step');
-            const prevStepBtn = document.getElementById('prev-step');
-            
-            // تحديث الخطوات النشطة
-            steps.forEach(step => {
-                const stepNum = parseInt(step.getAttribute('data-step'));
-                if (stepNum === currentStep) {
-                    step.classList.add('active');
-                } else {
-                    step.classList.remove('active');
+    });
+
+    // تفعيل زر السابق
+    prevStepBtn.addEventListener('click', function () {
+        if (currentStep > 1) {
+            currentStep--;
+            updateDecoderSteps();
+        }
+    });
+
+    // تفعيل زر إعادة البدء
+    restartBtn.addEventListener('click', function () {
+        currentStep = 1;
+        cryAnalysisData = {};
+        updateDecoderSteps();
+    });
+
+    // تفعيل زر حفظ النتائج
+    saveBtn.addEventListener('click', function () {
+        saveCryAnalysis();
+    });
+
+    // تفعيل خيارات العمر
+    document.querySelectorAll('.age-option').forEach(option => {
+        option.addEventListener('click', function () {
+            cryAnalysisData.age = this.getAttribute('data-age');
+            document.querySelectorAll('.age-option').forEach(opt => opt.classList.remove('selected'));
+            this.classList.add('selected');
+        });
+    });
+
+    // تفعيل خيارات التوقيت
+    document.querySelectorAll('.timing-option').forEach(option => {
+        option.addEventListener('click', function () {
+            cryAnalysisData.timing = this.getAttribute('data-timing');
+            document.querySelectorAll('.timing-option').forEach(opt => opt.classList.remove('selected'));
+            this.classList.add('selected');
+        });
+    });
+
+    // تفعيل خيارات البكاء
+    document.querySelectorAll('.cry-option').forEach(option => {
+        option.addEventListener('click', function () {
+            cryAnalysisData.cryType = this.getAttribute('data-cry');
+            document.querySelectorAll('.cry-option').forEach(opt => opt.classList.remove('selected'));
+            this.classList.add('selected');
+        });
+    });
+
+    // تفعيل خيارات الأعراض
+    document.querySelectorAll('.symptom-option input').forEach(checkbox => {
+        checkbox.addEventListener('change', function () {
+            if (!cryAnalysisData.symptoms) {
+                cryAnalysisData.symptoms = [];
+            }
+
+            const symptom = this.getAttribute('data-symptom');
+            if (this.checked) {
+                if (!cryAnalysisData.symptoms.includes(symptom)) {
+                    cryAnalysisData.symptoms.push(symptom);
                 }
-            });
-            
-            // تحديث محتوى الخطوات
-            stepContents.forEach(content => {
-                const contentId = content.id;
-                if (contentId === `step-${currentStep}-content` || (currentStep === 5 && contentId === 'step-results-content')) {
-                    content.classList.add('active');
-                } else {
-                    content.classList.remove('active');
-                }
-            });
-            
-            // تحديث حالة الأزرار
-            prevStepBtn.disabled = currentStep === 1;
-            
-            if (currentStep < 4) {
-                nextStepBtn.textContent = 'التالي';
-                nextStepBtn.innerHTML = '<i class="fas fa-arrow-left"></i> التالي';
-            } else if (currentStep === 4) {
-                nextStepBtn.textContent = 'عرض النتائج';
-                nextStepBtn.innerHTML = '<i class="fas fa-stethoscope"></i> عرض النتائج';
             } else {
-                nextStepBtn.style.display = 'none';
-                prevStepBtn.style.display = 'none';
+                const index = cryAnalysisData.symptoms.indexOf(symptom);
+                if (index > -1) {
+                    cryAnalysisData.symptoms.splice(index, 1);
+                }
             }
-            
-            // التحقق من اكتمال البيانات قبل الانتقال
-            if (currentStep === 1 && !cryAnalysisData.age) {
-                nextStepBtn.disabled = true;
-            } else if (currentStep === 2 && !cryAnalysisData.timing) {
-                nextStepBtn.disabled = true;
-            } else if (currentStep === 3 && !cryAnalysisData.cryType) {
-                nextStepBtn.disabled = true;
-            } else {
-                nextStepBtn.disabled = false;
-            }
+        });
+    });
+}
+
+// تحديث خطوات مفسر البكاء
+function updateDecoderSteps() {
+    const steps = document.querySelectorAll('.step');
+    const stepContents = document.querySelectorAll('.step-content');
+    const nextStepBtn = document.getElementById('next-step');
+    const prevStepBtn = document.getElementById('prev-step');
+
+    // تحديث الخطوات النشطة
+    steps.forEach(step => {
+        const stepNum = parseInt(step.getAttribute('data-step'));
+        if (stepNum === currentStep) {
+            step.classList.add('active');
+        } else {
+            step.classList.remove('active');
         }
-        
-        // تحليل البكاء
-        function analyzeCry() {
-            const resultsDiv = document.getElementById('cry-analysis-results');
-            let analysis = '';
-            
-            // تحليل حسب العمر
-            if (cryAnalysisData.age === '0-3') {
-                analysis += '<div class="analysis-section"><h5>بكاء حديثي الولادة (0-3 أشهر):</h5><p>في هذا العمر، البكاء غالباً يكون بسبب: الجوع، التعب، المغص، الحاجة للتجشؤ، أو الحفاض المتسخ.</p></div>';
-            } else if (cryAnalysisData.age === '4-6') {
-                analysis += '<div class="analysis-section"><h5>بكاء الرضع (4-6 أشهر):</h5><p>بالإضافة للأسباب السابقة، قد يكون البكاء بسبب: التسنين، الملل، الرغبة في اللعب، أو تغيير الروتين.</p></div>';
-            } else {
-                analysis += '<div class="analysis-section"><h5>بكاء الرضع الأكبر سناً:</h5><p>قد يكون البكاء بسبب: الخوف، القلق من الغرباء، الإحباط من عدم القدرة على فعل شيء، أو المرض.</p></div>';
-            }
-            
-            // تحليل حسب التوقيت
-            if (cryAnalysisData.timing === 'evening') {
-                analysis += '<div class="analysis-section"><h5>بكاء المساء:</h5><p>شائع جداً عند الرضع. غالباً يكون بسبب: التعب المتراكم خلال اليوم، المغص المسائي، أو الحاجة للراحة قبل النوم.</p></div>';
-            } else if (cryAnalysisData.timing === 'after-feeding') {
-                analysis += '<div class="analysis-section"><h5>بكاء بعد الرضاعة:</h5><p>قد يكون بسبب: المغص، الغازات، الارتجاع المعدي، أو الحاجة للتجشؤ.</p></div>';
-            }
-            
-            // تحليل حسب نوع البكاء
-            if (cryAnalysisData.cryType === 'weak') {
-                analysis += '<div class="analysis-section"><h5>بكاء ضعيف ومتقطع:</h5><p>قد يشير إلى: التعب، المرض، أو ضعف التغذية. راقبي علامات أخرى للجفاف أو المرض.</p></div>';
-            } else if (cryAnalysisData.cryType === 'high-pitched') {
-                analysis += '<div class="analysis-section"><h5>بكاء عالي النبرة:</h5><p>قد يشير إلى: الألم الشديد، المغص الحاد، أو حالة طبية تحتاج استشارة طبية.</p></div>';
-            }
-            
-            // تحليل حسب الأعراض
-            if (cryAnalysisData.symptoms && cryAnalysisData.symptoms.length > 0) {
-                analysis += '<div class="analysis-section"><h5>الأعراض المصاحبة:</h5><ul>';
-                
-                cryAnalysisData.symptoms.forEach(symptom => {
-                    if (symptom === 'fever') {
-                        analysis += '<li><strong>ارتفاع الحرارة:</strong> قد يشير إلى عدوى أو مرض. استشيري الطبيب إذا كانت الحرارة فوق 38°م للرضع أقل من 3 أشهر.</li>';
-                    } else if (symptom === 'vomiting') {
-                        analysis += '<li><strong>التقيؤ:</strong> قد يكون علامة على عدوى أو ارتجاع. راقبي علامات الجفاف.</li>';
-                    } else if (symptom === 'diarrhea') {
-                        analysis += '<li><strong>الإسهال:</strong> قد يكون بسبب عدوى أو حساسية غذائية. قدمي سوائل كافية.</li>';
-                    }
-                });
-                
-                analysis += '</ul></div>';
-            }
-            
-            // إضافة اقتراحات الحلول
-            analysis += '<div class="analysis-section solutions"><h5><i class="fas fa-lightbulb"></i> اقتراحات للحلول:</h5><ol>';
-            analysis += '<li>تأكدي من أن الطفل ليس جائعاً أو بحاجة لتغيير الحفاض</li>';
-            analysis += '<li>حاولي تهدئة الطفل بالهز الخفيف أو الغناء</li>';
-            analysis += '<li>افحصي درجة حرارة الطفل واستخدمي كمادات فاترة إذا كانت مرتفعة</li>';
-            analysis += '<li>قدمي للطفل لهاية إذا كان عمره مناسباً</li>';
-            analysis += '<li>جربي تغيير الوضعية أو المشي بالطفل</li>';
-            analysis += '</ol></div>';
-            
-            // إضافة متى تزورين الطبيب
-            analysis += '<div class="analysis-section warning"><h5><i class="fas fa-exclamation-triangle"></i> متى تزورين الطبيب:</h5><ul>';
-            analysis += '<li>إذا استمر البكاء لأكثر من 3 ساعات متواصلة</li>';
-            analysis += '<li>إذا رفض الطفل الرضاعة لأكثر من 6 ساعات</li>';
-            analysis += '<li>إذا كان عمر الطفل أقل من 3 أشهر ودرجة حرارته 38°م أو أكثر</li>';
-            analysis += '<li>إذا لاحظت أي علامات للجفاف (قلة التبول، جفاف الفم، عدم وجود دموع)</li>';
-            analysis += '<li>إذا كان البكاء مصحوباً بطفح جلدي أو صعوبة في التنفس</li>';
-            analysis += '</ul></div>';
-            
-            resultsDiv.innerHTML = analysis;
+    });
+
+    // تحديث محتوى الخطوات
+    stepContents.forEach(content => {
+        const contentId = content.id;
+        if (contentId === `step-${currentStep}-content` || (currentStep === 5 && contentId === 'step-results-content')) {
+            content.classList.add('active');
+        } else {
+            content.classList.remove('active');
         }
-        
-        // حفظ تحليل البكاء
-        function saveCryAnalysis() {
-            const savedAnalyses = JSON.parse(localStorage.getItem('cryAnalyses')) || [];
-            
-            const analysisToSave = {
-                ...cryAnalysisData,
-                date: new Date().toISOString().split('T')[0],
-                time: new Date().toLocaleTimeString('ar-SA')
-            };
-            
-            savedAnalyses.push(analysisToSave);
-            localStorage.setItem('cryAnalyses', JSON.stringify(savedAnalyses));
-            
-            alert('تم حفظ تحليل البكاء بنجاح! يمكنك العودة إليه في أي وقت.');
-        }
-        
-        // تهيئة آلة حاسبة التطعيمات
-        function initVaccineCalculator() {
-            const calculateBtn = document.getElementById('calculate-vaccine');
-            
-            calculateBtn.addEventListener('click', function() {
-                calculateVaccineSchedule();
-            });
-            
-            // حساب تلقائي عند تحميل الصفحة
-            calculateVaccineSchedule();
-        }
-        
-        // حساب جدول التطعيمات
-        function calculateVaccineSchedule() {
-            const birthdateInput = document.getElementById('baby-birthdate-vaccine');
-            const babyName = document.getElementById('baby-name-vaccine').value || 'طفلك';
-            const gender = document.getElementById('baby-gender-vaccine').value;
-            const country = document.getElementById('vaccine-country').value;
-            
-            if (!birthdateInput.value) {
-                alert('الرجاء إدخال تاريخ ميلاد الطفل');
-                return;
+    });
+
+    // تحديث حالة الأزرار
+    prevStepBtn.disabled = currentStep === 1;
+
+    if (currentStep < 4) {
+        nextStepBtn.textContent = 'التالي';
+        nextStepBtn.innerHTML = '<i class="fas fa-arrow-left"></i> التالي';
+    } else if (currentStep === 4) {
+        nextStepBtn.textContent = 'عرض النتائج';
+        nextStepBtn.innerHTML = '<i class="fas fa-stethoscope"></i> عرض النتائج';
+    } else {
+        nextStepBtn.style.display = 'none';
+        prevStepBtn.style.display = 'none';
+    }
+
+    // التحقق من اكتمال البيانات قبل الانتقال
+    if (currentStep === 1 && !cryAnalysisData.age) {
+        nextStepBtn.disabled = true;
+    } else if (currentStep === 2 && !cryAnalysisData.timing) {
+        nextStepBtn.disabled = true;
+    } else if (currentStep === 3 && !cryAnalysisData.cryType) {
+        nextStepBtn.disabled = true;
+    } else {
+        nextStepBtn.disabled = false;
+    }
+}
+
+// تحليل البكاء
+function analyzeCry() {
+    const resultsDiv = document.getElementById('cry-analysis-results');
+    let analysis = '';
+
+    // تحليل حسب العمر
+    if (cryAnalysisData.age === '0-3') {
+        analysis += '<div class="analysis-section"><h5>بكاء حديثي الولادة (0-3 أشهر):</h5><p>في هذا العمر، البكاء غالباً يكون بسبب: الجوع، التعب، المغص، الحاجة للتجشؤ، أو الحفاض المتسخ.</p></div>';
+    } else if (cryAnalysisData.age === '4-6') {
+        analysis += '<div class="analysis-section"><h5>بكاء الرضع (4-6 أشهر):</h5><p>بالإضافة للأسباب السابقة، قد يكون البكاء بسبب: التسنين، الملل، الرغبة في اللعب، أو تغيير الروتين.</p></div>';
+    } else {
+        analysis += '<div class="analysis-section"><h5>بكاء الرضع الأكبر سناً:</h5><p>قد يكون البكاء بسبب: الخوف، القلق من الغرباء، الإحباط من عدم القدرة على فعل شيء، أو المرض.</p></div>';
+    }
+
+    // تحليل حسب التوقيت
+    if (cryAnalysisData.timing === 'evening') {
+        analysis += '<div class="analysis-section"><h5>بكاء المساء:</h5><p>شائع جداً عند الرضع. غالباً يكون بسبب: التعب المتراكم خلال اليوم، المغص المسائي، أو الحاجة للراحة قبل النوم.</p></div>';
+    } else if (cryAnalysisData.timing === 'after-feeding') {
+        analysis += '<div class="analysis-section"><h5>بكاء بعد الرضاعة:</h5><p>قد يكون بسبب: المغص، الغازات، الارتجاع المعدي، أو الحاجة للتجشؤ.</p></div>';
+    }
+
+    // تحليل حسب نوع البكاء
+    if (cryAnalysisData.cryType === 'weak') {
+        analysis += '<div class="analysis-section"><h5>بكاء ضعيف ومتقطع:</h5><p>قد يشير إلى: التعب، المرض، أو ضعف التغذية. راقبي علامات أخرى للجفاف أو المرض.</p></div>';
+    } else if (cryAnalysisData.cryType === 'high-pitched') {
+        analysis += '<div class="analysis-section"><h5>بكاء عالي النبرة:</h5><p>قد يشير إلى: الألم الشديد، المغص الحاد، أو حالة طبية تحتاج استشارة طبية.</p></div>';
+    }
+
+    // تحليل حسب الأعراض
+    if (cryAnalysisData.symptoms && cryAnalysisData.symptoms.length > 0) {
+        analysis += '<div class="analysis-section"><h5>الأعراض المصاحبة:</h5><ul>';
+
+        cryAnalysisData.symptoms.forEach(symptom => {
+            if (symptom === 'fever') {
+                analysis += '<li><strong>ارتفاع الحرارة:</strong> قد يشير إلى عدوى أو مرض. استشيري الطبيب إذا كانت الحرارة فوق 38°م للرضع أقل من 3 أشهر.</li>';
+            } else if (symptom === 'vomiting') {
+                analysis += '<li><strong>التقيؤ:</strong> قد يكون علامة على عدوى أو ارتجاع. راقبي علامات الجفاف.</li>';
+            } else if (symptom === 'diarrhea') {
+                analysis += '<li><strong>الإسهال:</strong> قد يكون بسبب عدوى أو حساسية غذائية. قدمي سوائل كافية.</li>';
             }
-            
-            const birthdate = new Date(birthdateInput.value);
-            const today = new Date();
-            
-            // حساب العمر بالأشهر
-            let months = (today.getFullYear() - birthdate.getFullYear()) * 12;
-            months -= birthdate.getMonth();
-            months += today.getMonth();
-            
-            // تحديد التطعيمات حسب العمر
-            const vaccineSchedule = getVaccineSchedule(months, country);
-            
-            // عرض النتائج
-            const resultsDiv = document.getElementById('vaccine-results');
-            resultsDiv.innerHTML = `
+        });
+
+        analysis += '</ul></div>';
+    }
+
+    // إضافة اقتراحات الحلول
+    analysis += '<div class="analysis-section solutions"><h5><i class="fas fa-lightbulb"></i> اقتراحات للحلول:</h5><ol>';
+    analysis += '<li>تأكدي من أن الطفل ليس جائعاً أو بحاجة لتغيير الحفاض</li>';
+    analysis += '<li>حاولي تهدئة الطفل بالهز الخفيف أو الغناء</li>';
+    analysis += '<li>افحصي درجة حرارة الطفل واستخدمي كمادات فاترة إذا كانت مرتفعة</li>';
+    analysis += '<li>قدمي للطفل لهاية إذا كان عمره مناسباً</li>';
+    analysis += '<li>جربي تغيير الوضعية أو المشي بالطفل</li>';
+    analysis += '</ol></div>';
+
+    // إضافة متى تزورين الطبيب
+    analysis += '<div class="analysis-section warning"><h5><i class="fas fa-exclamation-triangle"></i> متى تزورين الطبيب:</h5><ul>';
+    analysis += '<li>إذا استمر البكاء لأكثر من 3 ساعات متواصلة</li>';
+    analysis += '<li>إذا رفض الطفل الرضاعة لأكثر من 6 ساعات</li>';
+    analysis += '<li>إذا كان عمر الطفل أقل من 3 أشهر ودرجة حرارته 38°م أو أكثر</li>';
+    analysis += '<li>إذا لاحظت أي علامات للجفاف (قلة التبول، جفاف الفم، عدم وجود دموع)</li>';
+    analysis += '<li>إذا كان البكاء مصحوباً بطفح جلدي أو صعوبة في التنفس</li>';
+    analysis += '</ul></div>';
+
+    resultsDiv.innerHTML = analysis;
+}
+
+// حفظ تحليل البكاء
+function saveCryAnalysis() {
+    const savedAnalyses = JSON.parse(localStorage.getItem('cryAnalyses')) || [];
+
+    const analysisToSave = {
+        ...cryAnalysisData,
+        date: new Date().toISOString().split('T')[0],
+        time: new Date().toLocaleTimeString('ar-SA')
+    };
+
+    savedAnalyses.push(analysisToSave);
+    localStorage.setItem('cryAnalyses', JSON.stringify(savedAnalyses));
+
+    alert('تم حفظ تحليل البكاء بنجاح! يمكنك العودة إليه في أي وقت.');
+}
+
+// تهيئة آلة حاسبة التطعيمات
+function initVaccineCalculator() {
+    const calculateBtn = document.getElementById('calculate-vaccine');
+
+    calculateBtn.addEventListener('click', function () {
+        calculateVaccineSchedule();
+    });
+
+    // حساب تلقائي عند تحميل الصفحة
+    calculateVaccineSchedule();
+}
+
+// حساب جدول التطعيمات
+function calculateVaccineSchedule() {
+    const birthdateInput = document.getElementById('baby-birthdate-vaccine');
+    const babyName = document.getElementById('baby-name-vaccine').value || 'طفلك';
+    const gender = document.getElementById('baby-gender-vaccine').value;
+    const country = document.getElementById('vaccine-country').value;
+
+    if (!birthdateInput.value) {
+        alert('الرجاء إدخال تاريخ ميلاد الطفل');
+        return;
+    }
+
+    const birthdate = new Date(birthdateInput.value);
+    const today = new Date();
+
+    // حساب العمر بالأشهر
+    let months = (today.getFullYear() - birthdate.getFullYear()) * 12;
+    months -= birthdate.getMonth();
+    months += today.getMonth();
+
+    // تحديد التطعيمات حسب العمر
+    const vaccineSchedule = getVaccineSchedule(months, country);
+
+    // عرض النتائج
+    const resultsDiv = document.getElementById('vaccine-results');
+    resultsDiv.innerHTML = `
                 <div class="vaccine-schedule">
                     <div class="schedule-header">
                         <h4><i class="fas fa-calendar-check"></i> جدول التطعيمات ل${babyName}</h4>
@@ -411,38 +411,39 @@
                     </div>
                 </div>
             `;
+
+}
+
+// الحصول على جدول التطعيمات
+function getVaccineSchedule(ageMonths, country) {
+    const schedules = {
+        'birth': { age: 'عند الولادة', name: 'السل (BCG) + التهاب الكبد ب (الجرعة الأولى)', status: 'completed' },
+        '2months': { age: 'شهران', name: 'الخماسي (الجرعة الأولى) + شلل الأطفال الفموي + الروتا', status: ageMonths >= 2 ? 'completed' : 'upcoming' },
+        '4months': { age: '4 أشهر', name: 'الخماسي (الجرعة الثانية) + شلل الأطفال الفموي + الروتا', status: ageMonths >= 4 ? 'completed' : 'upcoming' },
+        '6months': { age: '6 أشهر', name: 'الخماسي (الجرعة الثالثة) + شلل الأطفال الفموي + التهاب الكبد ب', status: ageMonths >= 6 ? 'completed' : 'upcoming' },
+        '9months': { age: '9 أشهر', name: 'الحصبة (الجرعة الأولى) + التهاب الكبد أ (اختياري)', status: ageMonths >= 9 ? 'completed' : 'upcoming' },
+        '12months': { age: '12 شهر', name: 'الثلاثي الفيروسي (MMR) + الجديري المائي (الجرعة الأولى)', status: ageMonths >= 12 ? 'completed' : 'upcoming' },
+        '18months': { age: '18 شهر', name: 'الخماسي (الجرعة الرابعة) + شلل الأطفال الفموي + التهاب الكبد أ', status: ageMonths >= 18 ? 'completed' : 'upcoming' }
+    };
+
+    // تعديل الحالة حسب العمر الفعلي
+    Object.keys(schedules).forEach(key => {
+        const schedule = schedules[key];
+        const scheduleAge = parseInt(schedule.age.match(/\d+/)?.[0]) || 0;
+
+        if (ageMonths > scheduleAge + 2) {
+            schedule.status = 'overdue';
         }
-        
-        // الحصول على جدول التطعيمات
-        function getVaccineSchedule(ageMonths, country) {
-            const schedules = {
-                'birth': { age: 'عند الولادة', name: 'السل (BCG) + التهاب الكبد ب (الجرعة الأولى)', status: 'completed' },
-                '2months': { age: 'شهران', name: 'الخماسي (الجرعة الأولى) + شلل الأطفال الفموي + الروتا', status: ageMonths >= 2 ? 'completed' : 'upcoming' },
-                '4months': { age: '4 أشهر', name: 'الخماسي (الجرعة الثانية) + شلل الأطفال الفموي + الروتا', status: ageMonths >= 4 ? 'completed' : 'upcoming' },
-                '6months': { age: '6 أشهر', name: 'الخماسي (الجرعة الثالثة) + شلل الأطفال الفموي + التهاب الكبد ب', status: ageMonths >= 6 ? 'completed' : 'upcoming' },
-                '9months': { age: '9 أشهر', name: 'الحصبة (الجرعة الأولى) + التهاب الكبد أ (اختياري)', status: ageMonths >= 9 ? 'completed' : 'upcoming' },
-                '12months': { age: '12 شهر', name: 'الثلاثي الفيروسي (MMR) + الجديري المائي (الجرعة الأولى)', status: ageMonths >= 12 ? 'completed' : 'upcoming' },
-                '18months': { age: '18 شهر', name: 'الخماسي (الجرعة الرابعة) + شلل الأطفال الفموي + التهاب الكبد أ', status: ageMonths >= 18 ? 'completed' : 'upcoming' }
-            };
-            
-            // تعديل الحالة حسب العمر الفعلي
-            Object.keys(schedules).forEach(key => {
-                const schedule = schedules[key];
-                const scheduleAge = parseInt(schedule.age.match(/\d+/)?.[0]) || 0;
-                
-                if (ageMonths > scheduleAge + 2) {
-                    schedule.status = 'overdue';
-                }
-            });
-            
-            return Object.values(schedules);
-        }
-        
-        // طباعة جدول التطعيمات
-        function printVaccineSchedule() {
-            const printContent = document.querySelector('.vaccine-schedule').outerHTML;
-            const printWindow = window.open('', '_blank');
-            printWindow.document.write(`
+    });
+
+    return Object.values(schedules);
+}
+
+// طباعة جدول التطعيمات
+function printVaccineSchedule() {
+    const printContent = document.querySelector('.vaccine-schedule').outerHTML;
+    const printWindow = window.open('', '_blank');
+    printWindow.document.write(`
                 <!DOCTYPE html>
                 <html dir="rtl">
                 <head>
@@ -468,302 +469,302 @@
                 </body>
                 </html>
             `);
-            printWindow.document.close();
-            printWindow.print();
-        }
-        
-        // حفظ جدول التطعيمات
-        function saveVaccineSchedule() {
-            const birthdate = document.getElementById('baby-birthdate-vaccine').value;
-            const babyName = document.getElementById('baby-name-vaccine').value || 'طفلي';
-            
-            const schedule = {
-                babyName,
-                birthdate,
-                created: new Date().toISOString(),
-                vaccines: getVaccineSchedule(
-                    Math.floor((new Date() - new Date(birthdate)) / (1000 * 60 * 60 * 24 * 30.44)),
-                    document.getElementById('vaccine-country').value
-                )
-            };
-            
-            localStorage.setItem('vaccineSchedule', JSON.stringify(schedule));
-            alert('تم حفظ جدول التطعيمات وتفعيل التذكيرات بنجاح!');
-        }
-        
-        // تهيئة متابعة النمو
-        function initGrowthTracker() {
-            const saveBtn = document.getElementById('save-measurement');
-            const loadBtn = document.getElementById('load-sample');
-            const exportBtn = document.getElementById('export-chart');
-            
-            // تحميل البيانات المخزنة
-            loadGrowthData();
-            
-            // تفعيل زر حفظ القياس
-            saveBtn.addEventListener('click', function() {
-                saveMeasurement();
-            });
-            
-            // تفعيل زر تحميل بيانات نموذجية
-            loadBtn.addEventListener('click', function() {
-                loadSampleData();
-            });
-            
-            // تفعيل زر تصدير الرسم البياني
-            exportBtn.addEventListener('click', function() {
-                exportGrowthChart();
-            });
-            
-            // تفعيل خيارات عرض الرسم البياني
-            document.getElementById('show-weight').addEventListener('change', updateGrowthChart);
-            document.getElementById('show-height').addEventListener('change', updateGrowthChart);
-            document.getElementById('show-head').addEventListener('change', updateGrowthChart);
-            
-            // إنشاء الرسم البياني
-            createGrowthChart();
-        }
-        
-        // إنشاء الرسم البياني للنمو
-        function createGrowthChart() {
-            const ctx = document.getElementById('growth-chart').getContext('2d');
-            
-            // بيانات نموذجية
-            const sampleData = [
-                { age: 1, weight: 4.2, height: 52, head: 36 },
-                { age: 2, weight: 5.5, height: 58, head: 39 },
-                { age: 3, weight: 6.3, height: 61, head: 41 },
-                { age: 4, weight: 7.1, height: 64, head: 42.5 },
-                { age: 5, weight: 7.8, height: 66, head: 43.5 },
-                { age: 6, weight: 8.4, height: 68, head: 44.5 }
-            ];
-            
-            growthChart = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: sampleData.map(d => `${d.age} شهر`),
-                    datasets: [
-                        {
-                            label: 'الوزن (كجم)',
-                            data: sampleData.map(d => d.weight),
-                            borderColor: '#4caf50',
-                            backgroundColor: 'rgba(76, 175, 80, 0.1)',
-                            fill: true,
-                            tension: 0.4
-                        },
-                        {
-                            label: 'الطول (سم)',
-                            data: sampleData.map(d => d.height),
-                            borderColor: '#2196f3',
-                            backgroundColor: 'rgba(33, 150, 243, 0.1)',
-                            fill: true,
-                            tension: 0.4
-                        },
-                        {
-                            label: 'محيط الرأس (سم)',
-                            data: sampleData.map(d => d.head),
-                            borderColor: '#ff9800',
-                            backgroundColor: 'rgba(255, 152, 0, 0.1)',
-                            fill: true,
-                            tension: 0.4
-                        }
-                    ]
+    printWindow.document.close();
+    printWindow.print();
+}
+
+// حفظ جدول التطعيمات
+function saveVaccineSchedule() {
+    const birthdate = document.getElementById('baby-birthdate-vaccine').value;
+    const babyName = document.getElementById('baby-name-vaccine').value || 'طفلي';
+
+    const schedule = {
+        babyName,
+        birthdate,
+        created: new Date().toISOString(),
+        vaccines: getVaccineSchedule(
+            Math.floor((new Date() - new Date(birthdate)) / (1000 * 60 * 60 * 24 * 30.44)),
+            document.getElementById('vaccine-country').value
+        )
+    };
+
+    localStorage.setItem('vaccineSchedule', JSON.stringify(schedule));
+    alert('تم حفظ جدول التطعيمات وتفعيل التذكيرات بنجاح!');
+}
+
+// تهيئة متابعة النمو
+function initGrowthTracker() {
+    const saveBtn = document.getElementById('save-measurement');
+    const loadBtn = document.getElementById('load-sample');
+    const exportBtn = document.getElementById('export-chart');
+
+    // تحميل البيانات المخزنة
+    loadGrowthData();
+
+    // تفعيل زر حفظ القياس
+    saveBtn.addEventListener('click', function () {
+        saveMeasurement();
+    });
+
+    // تفعيل زر تحميل بيانات نموذجية
+    loadBtn.addEventListener('click', function () {
+        loadSampleData();
+    });
+
+    // تفعيل زر تصدير الرسم البياني
+    exportBtn.addEventListener('click', function () {
+        exportGrowthChart();
+    });
+
+    // تفعيل خيارات عرض الرسم البياني
+    document.getElementById('show-weight').addEventListener('change', updateGrowthChart);
+    document.getElementById('show-height').addEventListener('change', updateGrowthChart);
+    document.getElementById('show-head').addEventListener('change', updateGrowthChart);
+
+    // إنشاء الرسم البياني
+    createGrowthChart();
+}
+
+// إنشاء الرسم البياني للنمو
+function createGrowthChart() {
+    const ctx = document.getElementById('growth-chart').getContext('2d');
+
+    // بيانات نموذجية
+    const sampleData = [
+        { age: 1, weight: 4.2, height: 52, head: 36 },
+        { age: 2, weight: 5.5, height: 58, head: 39 },
+        { age: 3, weight: 6.3, height: 61, head: 41 },
+        { age: 4, weight: 7.1, height: 64, head: 42.5 },
+        { age: 5, weight: 7.8, height: 66, head: 43.5 },
+        { age: 6, weight: 8.4, height: 68, head: 44.5 }
+    ];
+
+    growthChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: sampleData.map(d => `${d.age} شهر`),
+            datasets: [
+                {
+                    label: 'الوزن (كجم)',
+                    data: sampleData.map(d => d.weight),
+                    borderColor: '#4caf50',
+                    backgroundColor: 'rgba(76, 175, 80, 0.1)',
+                    fill: true,
+                    tension: 0.4
                 },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        title: {
-                            display: true,
-                            text: 'مخطط نمو الطفل',
-                            font: {
-                                size: 16,
-                                family: "'Cairo', sans-serif"
-                            }
-                        },
-                        legend: {
-                            position: 'top',
-                            labels: {
-                                font: {
-                                    family: "'Cairo', sans-serif"
-                                }
-                            }
-                        }
-                    },
-                    scales: {
-                        x: {
-                            title: {
-                                display: true,
-                                text: 'العمر (أشهر)',
-                                font: {
-                                    family: "'Cairo', sans-serif"
-                                }
-                            }
-                        },
-                        y: {
-                            title: {
-                                display: true,
-                                text: 'القياسات',
-                                font: {
-                                    family: "'Cairo', sans-serif"
-                                }
-                            }
+                {
+                    label: 'الطول (سم)',
+                    data: sampleData.map(d => d.height),
+                    borderColor: '#2196f3',
+                    backgroundColor: 'rgba(33, 150, 243, 0.1)',
+                    fill: true,
+                    tension: 0.4
+                },
+                {
+                    label: 'محيط الرأس (سم)',
+                    data: sampleData.map(d => d.head),
+                    borderColor: '#ff9800',
+                    backgroundColor: 'rgba(255, 152, 0, 0.1)',
+                    fill: true,
+                    tension: 0.4
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'مخطط نمو الطفل',
+                    font: {
+                        size: 16,
+                        family: "'Cairo', sans-serif"
+                    }
+                },
+                legend: {
+                    position: 'top',
+                    labels: {
+                        font: {
+                            family: "'Cairo', sans-serif"
                         }
                     }
                 }
-            });
-        }
-        
-        // تحديث الرسم البياني للنمو
-        function updateGrowthChart() {
-            if (!growthChart) return;
-            
-            const showWeight = document.getElementById('show-weight').checked;
-            const showHeight = document.getElementById('show-height').checked;
-            const showHead = document.getElementById('show-head').checked;
-            
-            growthChart.data.datasets[0].hidden = !showWeight;
-            growthChart.data.datasets[1].hidden = !showHeight;
-            growthChart.data.datasets[2].hidden = !showHead;
-            
-            growthChart.update();
-        }
-        
-        // حفظ القياس
-        function saveMeasurement() {
-            const date = document.getElementById('measurement-date').value;
-            const age = parseInt(document.getElementById('baby-age-months').value) || 0;
-            const weight = parseFloat(document.getElementById('baby-weight').value) || 0;
-            const height = parseInt(document.getElementById('baby-height').value) || 0;
-            const head = parseFloat(document.getElementById('baby-head').value) || 0;
-            const notes = document.getElementById('measurement-notes').value;
-            
-            if (!date || !age || !weight || !height || !head) {
-                alert('الرجاء ملء جميع الحقول المطلوبة');
-                return;
-            }
-            
-            const measurement = {
-                date,
-                age,
-                weight,
-                height,
-                head,
-                notes,
-                timestamp: new Date().toISOString()
-            };
-            
-            // تحميل القياسات الحالية
-            const measurements = JSON.parse(localStorage.getItem('growthMeasurements')) || [];
-            measurements.push(measurement);
-            
-            // حفظ القياسات
-            localStorage.setItem('growthMeasurements', JSON.stringify(measurements));
-            
-            // تحديث الرسم البياني
-            updateChartWithMeasurements(measurements);
-            
-            // تحديث تحليل النمو
-            updateGrowthAnalysis(measurements);
-            
-            // إعادة تعيين النموذج
-            document.getElementById('baby-weight').value = '';
-            document.getElementById('baby-height').value = '';
-            document.getElementById('baby-head').value = '';
-            document.getElementById('measurement-notes').value = '';
-            
-            alert('تم حفظ القياس بنجاح!');
-        }
-        
-        // تحميل بيانات النمو
-        function loadGrowthData() {
-            const measurements = JSON.parse(localStorage.getItem('growthMeasurements')) || [];
-            
-            if (measurements.length > 0) {
-                updateChartWithMeasurements(measurements);
-                updateGrowthAnalysis(measurements);
+            },
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: 'العمر (أشهر)',
+                        font: {
+                            family: "'Cairo', sans-serif"
+                        }
+                    }
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: 'القياسات',
+                        font: {
+                            family: "'Cairo', sans-serif"
+                        }
+                    }
+                }
             }
         }
-        
-        // تحميل بيانات نموذجية
-        function loadSampleData() {
-            const sampleMeasurements = [
-                { date: '2024-01-15', age: 1, weight: 4.2, height: 52, head: 36, notes: 'القياس الأول' },
-                { date: '2024-02-15', age: 2, weight: 5.5, height: 58, head: 39, notes: 'نمو جيد' },
-                { date: '2024-03-15', age: 3, weight: 6.3, height: 61, head: 41, notes: 'مستمر في النمو' },
-                { date: '2024-04-15', age: 4, weight: 7.1, height: 64, head: 42.5, notes: 'بداية الطعام الصلب' },
-                { date: '2024-05-15', age: 5, weight: 7.8, height: 66, head: 43.5, notes: '' },
-                { date: '2024-06-15', age: 6, weight: 8.4, height: 68, head: 44.5, notes: 'فحص الـ6 أشهر' }
-            ];
-            
-            localStorage.setItem('growthMeasurements', JSON.stringify(sampleMeasurements));
-            updateChartWithMeasurements(sampleMeasurements);
-            updateGrowthAnalysis(sampleMeasurements);
-            
-            alert('تم تحميل بيانات نموذجية بنجاح!');
-        }
-        
-        // تحديث الرسم البياني بالقياسات
-        function updateChartWithMeasurements(measurements) {
-            if (!growthChart) return;
-            
-            // ترتيب القياسات حسب العمر
-            measurements.sort((a, b) => a.age - b.age);
-            
-            growthChart.data.labels = measurements.map(m => `${m.age} شهر`);
-            growthChart.data.datasets[0].data = measurements.map(m => m.weight);
-            growthChart.data.datasets[1].data = measurements.map(m => m.height);
-            growthChart.data.datasets[2].data = measurements.map(m => m.head);
-            
-            growthChart.update();
-        }
-        
-        // تحديث تحليل النمو
-        function updateGrowthAnalysis(measurements) {
-            if (measurements.length === 0) return;
-            
-            // ترتيب القياسات حسب العمر
-            measurements.sort((a, b) => a.age - b.age);
-            
-            const latest = measurements[measurements.length - 1];
-            const first = measurements[0];
-            
-            // حساب معدل النمو
-            const weightGain = latest.weight - first.weight;
-            const heightGain = latest.height - first.height;
-            const headGain = latest.head - first.head;
-            const months = latest.age - first.age;
-            
-            const weightPerMonth = months > 0 ? (weightGain / months).toFixed(2) : 0;
-            const heightPerMonth = months > 0 ? (heightGain / months).toFixed(1) : 0;
-            const headPerMonth = months > 0 ? (headGain / months).toFixed(1) : 0;
-            
-            // تقييم النمو
-            let weightStatus = 'طبيعي';
-            let weightClass = 'normal';
-            
-            if (weightPerMonth < 0.5) {
-                weightStatus = 'بطيء';
-                weightClass = 'warning';
-            } else if (weightPerMonth > 0.9) {
-                weightStatus = 'سريع';
-                weightClass = 'good';
-            }
-            
-            let heightStatus = 'طبيعي';
-            let heightClass = 'normal';
-            
-            if (heightPerMonth < 2) {
-                heightStatus = 'بطيء';
-                heightClass = 'warning';
-            } else if (heightPerMonth > 3) {
-                heightStatus = 'سريع';
-                heightClass = 'good';
-            }
-            
-            // عرض النتائج
-            const analysisDiv = document.getElementById('growth-analysis');
-            analysisDiv.innerHTML = `
+    });
+}
+
+// تحديث الرسم البياني للنمو
+function updateGrowthChart() {
+    if (!growthChart) return;
+
+    const showWeight = document.getElementById('show-weight').checked;
+    const showHeight = document.getElementById('show-height').checked;
+    const showHead = document.getElementById('show-head').checked;
+
+    growthChart.data.datasets[0].hidden = !showWeight;
+    growthChart.data.datasets[1].hidden = !showHeight;
+    growthChart.data.datasets[2].hidden = !showHead;
+
+    growthChart.update();
+}
+
+// حفظ القياس
+function saveMeasurement() {
+    const date = document.getElementById('measurement-date').value;
+    const age = parseInt(document.getElementById('baby-age-months').value) || 0;
+    const weight = parseFloat(document.getElementById('baby-weight').value) || 0;
+    const height = parseInt(document.getElementById('baby-height').value) || 0;
+    const head = parseFloat(document.getElementById('baby-head').value) || 0;
+    const notes = document.getElementById('measurement-notes').value;
+
+    if (!date || !age || !weight || !height || !head) {
+        alert('الرجاء ملء جميع الحقول المطلوبة');
+        return;
+    }
+
+    const measurement = {
+        date,
+        age,
+        weight,
+        height,
+        head,
+        notes,
+        timestamp: new Date().toISOString()
+    };
+
+    // تحميل القياسات الحالية
+    const measurements = JSON.parse(localStorage.getItem('growthMeasurements')) || [];
+    measurements.push(measurement);
+
+    // حفظ القياسات
+    localStorage.setItem('growthMeasurements', JSON.stringify(measurements));
+
+    // تحديث الرسم البياني
+    updateChartWithMeasurements(measurements);
+
+    // تحديث تحليل النمو
+    updateGrowthAnalysis(measurements);
+
+    // إعادة تعيين النموذج
+    document.getElementById('baby-weight').value = '';
+    document.getElementById('baby-height').value = '';
+    document.getElementById('baby-head').value = '';
+    document.getElementById('measurement-notes').value = '';
+
+    alert('تم حفظ القياس بنجاح!');
+}
+
+// تحميل بيانات النمو
+function loadGrowthData() {
+    const measurements = JSON.parse(localStorage.getItem('growthMeasurements')) || [];
+
+    if (measurements.length > 0) {
+        updateChartWithMeasurements(measurements);
+        updateGrowthAnalysis(measurements);
+    }
+}
+
+// تحميل بيانات نموذجية
+function loadSampleData() {
+    const sampleMeasurements = [
+        { date: '2024-01-15', age: 1, weight: 4.2, height: 52, head: 36, notes: 'القياس الأول' },
+        { date: '2024-02-15', age: 2, weight: 5.5, height: 58, head: 39, notes: 'نمو جيد' },
+        { date: '2024-03-15', age: 3, weight: 6.3, height: 61, head: 41, notes: 'مستمر في النمو' },
+        { date: '2024-04-15', age: 4, weight: 7.1, height: 64, head: 42.5, notes: 'بداية الطعام الصلب' },
+        { date: '2024-05-15', age: 5, weight: 7.8, height: 66, head: 43.5, notes: '' },
+        { date: '2024-06-15', age: 6, weight: 8.4, height: 68, head: 44.5, notes: 'فحص الـ6 أشهر' }
+    ];
+
+    localStorage.setItem('growthMeasurements', JSON.stringify(sampleMeasurements));
+    updateChartWithMeasurements(sampleMeasurements);
+    updateGrowthAnalysis(sampleMeasurements);
+
+    alert('تم تحميل بيانات نموذجية بنجاح!');
+}
+
+// تحديث الرسم البياني بالقياسات
+function updateChartWithMeasurements(measurements) {
+    if (!growthChart) return;
+
+    // ترتيب القياسات حسب العمر
+    measurements.sort((a, b) => a.age - b.age);
+
+    growthChart.data.labels = measurements.map(m => `${m.age} شهر`);
+    growthChart.data.datasets[0].data = measurements.map(m => m.weight);
+    growthChart.data.datasets[1].data = measurements.map(m => m.height);
+    growthChart.data.datasets[2].data = measurements.map(m => m.head);
+
+    growthChart.update();
+}
+
+// تحديث تحليل النمو
+function updateGrowthAnalysis(measurements) {
+    if (measurements.length === 0) return;
+
+    // ترتيب القياسات حسب العمر
+    measurements.sort((a, b) => a.age - b.age);
+
+    const latest = measurements[measurements.length - 1];
+    const first = measurements[0];
+
+    // حساب معدل النمو
+    const weightGain = latest.weight - first.weight;
+    const heightGain = latest.height - first.height;
+    const headGain = latest.head - first.head;
+    const months = latest.age - first.age;
+
+    const weightPerMonth = months > 0 ? (weightGain / months).toFixed(2) : 0;
+    const heightPerMonth = months > 0 ? (heightGain / months).toFixed(1) : 0;
+    const headPerMonth = months > 0 ? (headGain / months).toFixed(1) : 0;
+
+    // تقييم النمو
+    let weightStatus = 'طبيعي';
+    let weightClass = 'normal';
+
+    if (weightPerMonth < 0.5) {
+        weightStatus = 'بطيء';
+        weightClass = 'warning';
+    } else if (weightPerMonth > 0.9) {
+        weightStatus = 'سريع';
+        weightClass = 'good';
+    }
+
+    let heightStatus = 'طبيعي';
+    let heightClass = 'normal';
+
+    if (heightPerMonth < 2) {
+        heightStatus = 'بطيء';
+        heightClass = 'warning';
+    } else if (heightPerMonth > 3) {
+        heightStatus = 'سريع';
+        heightClass = 'good';
+    }
+
+    // عرض النتائج
+    const analysisDiv = document.getElementById('growth-analysis');
+    analysisDiv.innerHTML = `
                 <div class="analysis-summary">
                     <h4><i class="fas fa-chart-bar"></i> ملخص النمو</h4>
                     <div class="summary-grid">
@@ -830,60 +831,60 @@
                     </ul>
                 </div>
             `;
-        }
-        
-        // تصدير الرسم البياني للنمو
-        function exportGrowthChart() {
-            if (!growthChart) return;
-            
-            const link = document.createElement('a');
-            link.download = 'مخطط-نمو-الطفل.png';
-            link.href = growthChart.toBase64Image();
-            link.click();
-        }
-        
-        // تهيئة مولد الروتين
-        function initRoutineGenerator() {
-            const generateBtn = document.getElementById('generate-routine');
-            
-            generateBtn.addEventListener('click', function() {
-                generateRoutine();
-            });
-            
-            // توليد روتين تلقائي عند تحميل الصفحة
-            generateRoutine();
-        }
-        
-        // توليد الروتين اليومي
-        function generateRoutine() {
-            const age = document.getElementById('routine-age').value;
-            const wakeup = parseFloat(document.getElementById('routine-wakeup').value);
-            const naps = parseInt(document.getElementById('routine-naps').value);
-            const feeding = document.getElementById('routine-feeding').value;
-            
-            // بناء الروتين حسب العمر
-            let routine = '';
-            
-            if (age === '0-3') {
-                routine = generateNewbornRoutine(wakeup, feeding);
-            } else if (age === '4-6') {
-                routine = generate46MonthsRoutine(wakeup, naps, feeding);
-            } else if (age === '7-9') {
-                routine = generate79MonthsRoutine(wakeup, naps, feeding);
-            } else {
-                routine = generateOlderBabyRoutine(wakeup, naps, feeding);
-            }
-            
-            // عرض الروتين
-            const resultsDiv = document.getElementById('routine-results');
-            resultsDiv.innerHTML = routine;
-        }
-        
-        // توليد روتين حديثي الولادة
-        function generateNewbornRoutine(wakeup, feeding) {
-            const wakeupTime = formatTime(wakeup);
-            
-            return `
+}
+
+// تصدير الرسم البياني للنمو
+function exportGrowthChart() {
+    if (!growthChart) return;
+
+    const link = document.createElement('a');
+    link.download = 'مخطط-نمو-الطفل.png';
+    link.href = growthChart.toBase64Image();
+    link.click();
+}
+
+// تهيئة مولد الروتين
+function initRoutineGenerator() {
+    const generateBtn = document.getElementById('generate-routine');
+
+    generateBtn.addEventListener('click', function () {
+        generateRoutine();
+    });
+
+    // توليد روتين تلقائي عند تحميل الصفحة
+    generateRoutine();
+}
+
+// توليد الروتين اليومي
+function generateRoutine() {
+    const age = document.getElementById('routine-age').value;
+    const wakeup = parseFloat(document.getElementById('routine-wakeup').value);
+    const naps = parseInt(document.getElementById('routine-naps').value);
+    const feeding = document.getElementById('routine-feeding').value;
+
+    // بناء الروتين حسب العمر
+    let routine = '';
+
+    if (age === '0-3') {
+        routine = generateNewbornRoutine(wakeup, feeding);
+    } else if (age === '4-6') {
+        routine = generate46MonthsRoutine(wakeup, naps, feeding);
+    } else if (age === '7-9') {
+        routine = generate79MonthsRoutine(wakeup, naps, feeding);
+    } else {
+        routine = generateOlderBabyRoutine(wakeup, naps, feeding);
+    }
+
+    // عرض الروتين
+    const resultsDiv = document.getElementById('routine-results');
+    resultsDiv.innerHTML = routine;
+}
+
+// توليد روتين حديثي الولادة
+function generateNewbornRoutine(wakeup, feeding) {
+    const wakeupTime = formatTime(wakeup);
+
+    return `
                 <div class="routine-schedule">
                     <div class="routine-header">
                         <h4><i class="fas fa-baby"></i> روتين حديثي الولادة (0-3 أشهر)</h4>
@@ -959,13 +960,13 @@
                     </div>
                 </div>
             `;
-        }
-        
-        // توليد روتين 4-6 أشهر
-        function generate46MonthsRoutine(wakeup, naps, feeding) {
-            const wakeupTime = formatTime(wakeup);
-            
-            return `
+}
+
+// توليد روتين 4-6 أشهر
+function generate46MonthsRoutine(wakeup, naps, feeding) {
+    const wakeupTime = formatTime(wakeup);
+
+    return `
                 <div class="routine-schedule">
                     <div class="routine-header">
                         <h4><i class="fas fa-baby"></i> روتين الرضيع (4-6 أشهر)</h4>
@@ -1041,88 +1042,88 @@
                     </div>
                 </div>
             `;
-        }
-        
-        // تنسيق الوقت
-        function formatTime(time) {
-            const hours = Math.floor(time);
-            const minutes = Math.round((time - hours) * 60);
-            const ampm = hours >= 12 ? 'مساءً' : 'صباحاً';
-            const displayHours = hours > 12 ? hours - 12 : hours;
-            
-            return `${displayHours}:${minutes.toString().padStart(2, '0')} ${ampm}`;
-        }
-        
-        // تهيئة حاسبة جرعات الدواء
-        function initMedicineCalculator() {
-            const calculateBtn = document.getElementById('calculate-medicine');
-            
-            calculateBtn.addEventListener('click', function() {
-                calculateMedicineDose();
-            });
-            
-            // حساب تلقائي عند تغيير القيم
-            document.getElementById('medicine-name').addEventListener('change', calculateMedicineDose);
-            document.getElementById('medicine-concentration').addEventListener('change', calculateMedicineDose);
-            document.getElementById('baby-weight-medicine').addEventListener('input', calculateMedicineDose);
-            document.getElementById('baby-age-medicine').addEventListener('change', calculateMedicineDose);
-        }
-        
-        // حساب جرعة الدواء
-        function calculateMedicineDose() {
-            const medicine = document.getElementById('medicine-name').value;
-            const concentration = parseInt(document.getElementById('medicine-concentration').value);
-            const weight = parseFloat(document.getElementById('baby-weight-medicine').value) || 0;
-            const age = document.getElementById('baby-age-medicine').value;
-            
-            if (!weight || weight <= 0) {
-                document.getElementById('medicine-results').innerHTML = `
+}
+
+// تنسيق الوقت
+function formatTime(time) {
+    const hours = Math.floor(time);
+    const minutes = Math.round((time - hours) * 60);
+    const ampm = hours >= 12 ? 'مساءً' : 'صباحاً';
+    const displayHours = hours > 12 ? hours - 12 : hours;
+
+    return `${displayHours}:${minutes.toString().padStart(2, '0')} ${ampm}`;
+}
+
+// تهيئة حاسبة جرعات الدواء
+function initMedicineCalculator() {
+    const calculateBtn = document.getElementById('calculate-medicine');
+
+    calculateBtn.addEventListener('click', function () {
+        calculateMedicineDose();
+    });
+
+    // حساب تلقائي عند تغيير القيم
+    document.getElementById('medicine-name').addEventListener('change', calculateMedicineDose);
+    document.getElementById('medicine-concentration').addEventListener('change', calculateMedicineDose);
+    document.getElementById('baby-weight-medicine').addEventListener('input', calculateMedicineDose);
+    document.getElementById('baby-age-medicine').addEventListener('change', calculateMedicineDose);
+}
+
+// حساب جرعة الدواء
+function calculateMedicineDose() {
+    const medicine = document.getElementById('medicine-name').value;
+    const concentration = parseInt(document.getElementById('medicine-concentration').value);
+    const weight = parseFloat(document.getElementById('baby-weight-medicine').value) || 0;
+    const age = document.getElementById('baby-age-medicine').value;
+
+    if (!weight || weight <= 0) {
+        document.getElementById('medicine-results').innerHTML = `
                     <div class="medicine-result warning">
                         <p><i class="fas fa-exclamation-triangle"></i> الرجاء إدخال وزن الطفل أولاً</p>
                     </div>
                 `;
-                return;
-            }
-            
-            let doseMg = 0;
-            let doseMl = 0;
-            let frequency = '';
-            let maxDaily = 0;
-            
-            // حساب الجرعة حسب نوع الدواء
-            if (medicine === 'paracetamol') {
-                // جرعة الباراسيتامول: 10-15 مجم/كجم كل 4-6 ساعات
-                doseMg = weight * 15; // نستخدم الجرعة القصوى
-                doseMl = (doseMg / concentration) * 5; // تحويل إلى مل
-                frequency = 'كل 4-6 ساعات (حسب الحاجة)';
-                maxDaily = weight * 60; // أقصى جرعة يومية: 60 مجم/كجم/يوم
-            } else if (medicine === 'ibuprofen') {
-                // جرعة الإيبوبروفين: 5-10 مجم/كجم كل 6-8 ساعات
-                doseMg = weight * 10; // نستخدم الجرعة القصوى
-                doseMl = (doseMg / concentration) * 5; // تحويل إلى مل
-                frequency = 'كل 6-8 ساعات';
-                maxDaily = weight * 40; // أقصى جرعة يومية: 40 مجم/كجم/يوم
-            } else {
-                // أدوية أخرى - جرعات عامة
-                doseMg = weight * 5; // جرعة تقديرية
-                doseMl = (doseMg / concentration) * 5;
-                frequency = 'حسب إرشادات الطبيب';
-                maxDaily = doseMg * 4;
-            }
-            
-            // تقييد الجرعة حسب العمر
-            let ageWarning = '';
-            if (age === '0-3' && medicine !== 'paracetamol') {
-                ageWarning = '<div class="warning-note"><i class="fas fa-exclamation-triangle"></i> <strong>تحذير:</strong> لا تعطي إيبوبروفين للأطفال أقل من 3 أشهر إلا تحت إشراف الطبيب.</div>';
-            }
-            
-            if (age === '0-3' && medicine === 'antibiotic') {
-                ageWarning = '<div class="warning-note"><i class="fas fa-exclamation-triangle"></i> <strong>تحذير:</strong> المضادات الحيوية تحتاج وصفة طبية دقيقة من الطبيب.</div>';
-            }
-            
-            // عرض النتائج
-            const resultsDiv = document.getElementById('medicine-results');
-            resultsDiv.innerHTML = `
+        return;
+    }
+
+    let doseMg = 0;
+    let doseMl = 0;
+    let frequency = '';
+    let maxDaily = 0;
+
+    // حساب الجرعة حسب نوع الدواء
+    if (medicine === 'paracetamol') {
+        // جرعة الباراسيتامول: 10-15 مجم/كجم كل 4-6 ساعات
+        doseMg = weight * 15; // نستخدم الجرعة القصوى
+        doseMl = (doseMg / concentration) * 5; // تحويل إلى مل
+        frequency = 'كل 4-6 ساعات (حسب الحاجة)';
+        maxDaily = weight * 60; // أقصى جرعة يومية: 60 مجم/كجم/يوم
+    } else if (medicine === 'ibuprofen') {
+        // جرعة الإيبوبروفين: 5-10 مجم/كجم كل 6-8 ساعات
+        doseMg = weight * 10; // نستخدم الجرعة القصوى
+        doseMl = (doseMg / concentration) * 5; // تحويل إلى مل
+        frequency = 'كل 6-8 ساعات';
+        maxDaily = weight * 40; // أقصى جرعة يومية: 40 مجم/كجم/يوم
+    } else {
+        // أدوية أخرى - جرعات عامة
+        doseMg = weight * 5; // جرعة تقديرية
+        doseMl = (doseMg / concentration) * 5;
+        frequency = 'حسب إرشادات الطبيب';
+        maxDaily = doseMg * 4;
+    }
+
+    // تقييد الجرعة حسب العمر
+    let ageWarning = '';
+    if (age === '0-3' && medicine !== 'paracetamol') {
+        ageWarning = '<div class="warning-note"><i class="fas fa-exclamation-triangle"></i> <strong>تحذير:</strong> لا تعطي إيبوبروفين للأطفال أقل من 3 أشهر إلا تحت إشراف الطبيب.</div>';
+    }
+
+    if (age === '0-3' && medicine === 'antibiotic') {
+        ageWarning = '<div class="warning-note"><i class="fas fa-exclamation-triangle"></i> <strong>تحذير:</strong> المضادات الحيوية تحتاج وصفة طبية دقيقة من الطبيب.</div>';
+    }
+
+    // عرض النتائج
+    const resultsDiv = document.getElementById('medicine-results');
+    resultsDiv.innerHTML = `
                 <div class="medicine-result">
                     <div class="result-header">
                         <h4><i class="fas fa-pills"></i> نتيجة حساب الجرعة</h4>
@@ -1158,56 +1159,56 @@
                     </div>
                 </div>
             `;
-        }
-        
-        // الحصول على اسم الدواء
-        function getMedicineName(medicine) {
-            const names = {
-                'paracetamol': 'باراسيتامول',
-                'ibuprofen': 'إيبوبروفين',
-                'antihistamine': 'مضاد الهيستامين',
-                'cough': 'دواء الكحة',
-                'antibiotic': 'مضاد حيوي'
-            };
-            
-            return names[medicine] || medicine;
-        }
-        
-        // تهيئة مخطط وجبات الطعام
-        function initMealPlanner() {
-            const generateBtn = document.getElementById('generate-meal-plan');
-            
-            generateBtn.addEventListener('click', function() {
-                generateMealPlan();
-            });
-            
-            // توليد تلقائي عند تحميل الصفحة
-            generateMealPlan();
-        }
-        
-        // توليد خطة وجبات الطعام
-        function generateMealPlan() {
-            const age = document.getElementById('planner-age').value;
-            const allergies = document.getElementById('planner-allergies').value;
-            
-            let mealPlan = '';
-            
-            if (age === '6-8') {
-                mealPlan = generate68MonthsMealPlan(allergies);
-            } else if (age === '9-11') {
-                mealPlan = generate911MonthsMealPlan(allergies);
-            } else {
-                mealPlan = generate12PlusMonthsMealPlan(allergies);
-            }
-            
-            // عرض خطة الوجبات
-            const resultsDiv = document.getElementById('meal-plan-results');
-            resultsDiv.innerHTML = mealPlan;
-        }
-        
-        // توليد خطة وجبات 6-8 أشهر
-        function generate68MonthsMealPlan(allergies) {
-            return `
+}
+
+// الحصول على اسم الدواء
+function getMedicineName(medicine) {
+    const names = {
+        'paracetamol': 'باراسيتامول',
+        'ibuprofen': 'إيبوبروفين',
+        'antihistamine': 'مضاد الهيستامين',
+        'cough': 'دواء الكحة',
+        'antibiotic': 'مضاد حيوي'
+    };
+
+    return names[medicine] || medicine;
+}
+
+// تهيئة مخطط وجبات الطعام
+function initMealPlanner() {
+    const generateBtn = document.getElementById('generate-meal-plan');
+
+    generateBtn.addEventListener('click', function () {
+        generateMealPlan();
+    });
+
+    // توليد تلقائي عند تحميل الصفحة
+    generateMealPlan();
+}
+
+// توليد خطة وجبات الطعام
+function generateMealPlan() {
+    const age = document.getElementById('planner-age').value;
+    const allergies = document.getElementById('planner-allergies').value;
+
+    let mealPlan = '';
+
+    if (age === '6-8') {
+        mealPlan = generate68MonthsMealPlan(allergies);
+    } else if (age === '9-11') {
+        mealPlan = generate911MonthsMealPlan(allergies);
+    } else {
+        mealPlan = generate12PlusMonthsMealPlan(allergies);
+    }
+
+    // عرض خطة الوجبات
+    const resultsDiv = document.getElementById('meal-plan-results');
+    resultsDiv.innerHTML = mealPlan;
+}
+
+// توليد خطة وجبات 6-8 أشهر
+function generate68MonthsMealPlan(allergies) {
+    return `
                 <div class="meal-plan">
                     <div class="plan-header">
                         <h4><i class="fas fa-utensils"></i> خطة وجبات الأسبوع (6-8 أشهر)</h4>
@@ -1284,51 +1285,598 @@
                     </div>
                 </div>
             `;
-        }
-        
-        // الحصول على اسم الحساسية
-        function getAllergyName(allergy) {
-            const names = {
-                'dairy': 'الحليب ومنتجات الألبان',
-                'eggs': 'البيض',
-                'nuts': 'المكسرات',
-                'wheat': 'القمح'
-            };
-            
-            return names[allergy] || allergy;
-        }
+}
+
+// الحصول على اسم الحساسية
+function getAllergyName(allergy) {
+    const names = {
+        'dairy': 'الحليب ومنتجات الألبان',
+        'eggs': 'البيض',
+        'nuts': 'المكسرات',
+        'wheat': 'القمح'
+    };
+
+    return names[allergy] || allergy;
+}
 
 
-        
+
 
 // تهيئة الأوضاع عند تحميل الصفحة
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     initAccessibilityModes();
-    
+
     // تحسينات تفاعلية إضافية
     const toolCards = document.querySelectorAll('.quick-tool-card, .tip-item-tool');
     toolCards.forEach(card => {
-        card.addEventListener('mouseenter', function() {
-            this.style.transform = this.classList.contains('quick-tool-card') 
-                ? 'translateY(-8px)' 
+        card.addEventListener('mouseenter', function () {
+            this.style.transform = this.classList.contains('quick-tool-card')
+                ? 'translateY(-8px)'
                 : 'translateY(-5px)';
         });
-        
-        card.addEventListener('mouseleave', function() {
+
+        card.addEventListener('mouseleave', function () {
             this.style.transform = 'translateY(0)';
         });
     });
-    
+
     // تحسينات للأزرار
     const buttons = document.querySelectorAll('.btn, .tool-tab, .age-option, .timing-option, .cry-option');
     buttons.forEach(button => {
-        button.addEventListener('focus', function() {
+        button.addEventListener('focus', function () {
             this.classList.add('focus-visible');
         });
-        
-        button.addEventListener('blur', function() {
+
+        button.addEventListener('blur', function () {
             this.classList.remove('focus-visible');
         });
     });
 });
 
+// تحسين أدوات سريعة مع عرض نتائج فوري
+function enhanceQuickTools() {
+    const quickToolCards = document.querySelectorAll('.quick-tool-card');
+
+    quickToolCards.forEach(card => {
+        // إضافة مؤشر تحميل
+        const button = card.querySelector('.btn-tool-quick');
+        const originalText = button.innerHTML;
+
+        button.addEventListener('click', async function (e) {
+            e.preventDefault();
+            const toolId = this.getAttribute('data-tool');
+
+            // إظهار مؤشر التحميل
+            this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري التحميل...';
+            this.disabled = true;
+
+            try {
+                // تنفيذ الأداة السريعة
+                await executeQuickTool(toolId, card);
+
+                // إعادة تعيين الزر بعد ثانية
+                setTimeout(() => {
+                    this.innerHTML = originalText;
+                    this.disabled = false;
+                }, 1000);
+
+            } catch (error) {
+                this.innerHTML = '<i class="fas fa-exclamation-triangle"></i> خطأ';
+                setTimeout(() => {
+                    this.innerHTML = originalText;
+                    this.disabled = false;
+                }, 2000);
+            }
+        });
+    });
+}
+
+// تنفيذ الأداة السريعة وعرض النتائج
+async function executeQuickTool(toolId, card) {
+    switch (toolId) {
+        case 'vaccine':
+            await quickVaccineCalculator(card);
+            break;
+        case 'growth':
+            await quickGrowthTracker(card);
+            break;
+        case 'cry':
+            await quickCryDecoder(card);
+            break;
+        case 'routine':
+            await quickRoutineGenerator(card);
+            break;
+        case 'medicine':
+            await quickMedicineCalculator(card);
+            break;
+        case 'meal':
+            await quickMealPlanner(card);
+            break;
+    }
+}
+
+// آلة حاسبة التطعيمات السريعة
+async function quickVaccineCalculator(card) {
+    // بيانات افتراضية
+    const defaultBirthdate = new Date();
+    defaultBirthdate.setMonth(defaultBirthdate.getMonth() - 3);
+
+    // إنشاء نافذة نتائج عائمة
+    const resultCard = createQuickResultCard(card, 'vaccine');
+
+    resultCard.innerHTML = `
+        <div class="quick-result-content">
+            <h4><i class="fas fa-syringe"></i> نتائج التطعيمات السريعة</h4>
+            <div class="quick-result-body">
+                <p><strong>العمر التقديري:</strong> 3 أشهر</p>
+                <div class="quick-vaccine-status">
+                    <span class="status-badge completed">مكتمل: 2 تطعيم</span>
+                    <span class="status-badge upcoming">قادم: 5 تطعيمات</span>
+                </div>
+                <div class="quick-next-vaccine">
+                    <p><strong>التطعيم القادم:</strong> الخماسي (الجرعة الأولى)</p>
+                    <p><strong>موعده:</strong> بعد شهر واحد</p>
+                </div>
+                <button class="btn btn-sm btn-primary view-details" data-tool="vaccine">
+                    <i class="fas fa-external-link-alt"></i> عرض التفاصيل
+                </button>
+            </div>
+        </div>
+    `;
+
+    // تفعيل زر التفاصيل
+    resultCard.querySelector('.view-details').addEventListener('click', function () {
+        document.querySelector(`.tool-tab[data-tool="vaccine-calculator"]`).click();
+    });
+}
+
+// متابعة النمو السريعة
+async function quickGrowthTracker(card) {
+    const resultCard = createQuickResultCard(card, 'growth');
+
+    // بيانات النمو من localStorage أو افتراضية
+    const measurements = JSON.parse(localStorage.getItem('growthMeasurements')) || [];
+    const latest = measurements[measurements.length - 1] || { weight: 6.5, height: 65, head: 42 };
+
+    resultCard.innerHTML = `
+        <div class="quick-result-content">
+            <h4><i class="fas fa-chart-line"></i> متابعة النمو</h4>
+            <div class="quick-result-body">
+                <div class="growth-quick-stats">
+                    <div class="growth-stat">
+                        <span class="stat-label">الوزن</span>
+                        <span class="stat-value">${latest.weight} كجم</span>
+                    </div>
+                    <div class="growth-stat">
+                        <span class="stat-label">الطول</span>
+                        <span class="stat-value">${latest.height} سم</span>
+                    </div>
+                    <div class="growth-stat">
+                        <span class="stat-label">محيط الرأس</span>
+                        <span class="stat-value">${latest.head} سم</span>
+                    </div>
+                </div>
+                <div class="growth-trend">
+                    <p><i class="fas fa-arrow-up ${latest.weight > 6 ? 'text-success' : 'text-warning'}"></i> 
+                    معدل النمو: ${latest.weight > 6 ? 'طبيعي' : 'يحتاج متابعة'}</p>
+                </div>
+                <button class="btn btn-sm btn-primary view-details" data-tool="growth">
+                    <i class="fas fa-plus-circle"></i> إضافة قياس جديد
+                </button>
+            </div>
+        </div>
+    `;
+}
+
+// مفسر البكاء السريع
+async function quickCryDecoder(card) {
+    const resultCard = createQuickResultCard(card, 'cry');
+
+    resultCard.innerHTML = `
+        <div class="quick-result-content">
+            <h4><i class="fas fa-baby-cry"></i> تحليل سريع للبكاء</h4>
+            <div class="quick-result-body">
+                <div class="common-causes">
+                    <h5>الأسباب الشائعة:</h5>
+                    <ul class="causes-list">
+                        <li><i class="fas fa-utensils"></i> الجوع</li>
+                        <li><i class="fas fa-bed"></i> التعب</li>
+                        <li><i class="fas fa-wind"></i> الغازات</li>
+                        <li><i class="fas fa-thermometer"></i> الحرارة</li>
+                    </ul>
+                </div>
+                <div class="quick-solutions">
+                    <h5>حلول سريعة:</h5>
+                    <ul>
+                        <li>تأكدي من نظافة الحفاض</li>
+                        <li>قدمي لهية نظيفة</li>
+                        <li>حاولي تهدئته بالهز اللطيف</li>
+                    </ul>
+                </div>
+                <button class="btn btn-sm btn-primary view-details" data-tool="cry">
+                    <i class="fas fa-stethoscope"></i> تحليل مفصل
+                </button>
+            </div>
+        </div>
+    `;
+}
+
+// إنشاء بطاقة نتائج سريعة
+function createQuickResultCard(parentCard, toolType) {
+    // إزالة أي بطاقة نتائج موجودة
+    const existingResult = parentCard.querySelector('.quick-result-card');
+    if (existingResult) {
+        existingResult.remove();
+    }
+
+    // إنشاء بطاقة نتائج جديدة
+    const resultCard = document.createElement('div');
+    resultCard.className = `quick-result-card ${toolType}-result`;
+    resultCard.style.cssText = `
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: white;
+        border-radius: 10px;
+        padding: 15px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        z-index: 1000;
+        margin-top: 10px;
+        animation: slideDown 0.3s ease;
+        border: 1px solid #e0e0e0;
+    `;
+
+    parentCard.style.position = 'relative';
+    parentCard.appendChild(resultCard);
+
+    // إغلاق البطاقة عند النقر خارجها
+    setTimeout(() => {
+        const closeHandler = (e) => {
+            if (!parentCard.contains(e.target)) {
+                resultCard.remove();
+                document.removeEventListener('click', closeHandler);
+            }
+        };
+        document.addEventListener('click', closeHandler);
+    }, 100);
+
+    return resultCard;
+}
+
+// تحسين الأداء العام
+function optimizePagePerformance() {
+    // Lazy loading للصور
+    const images = document.querySelectorAll('img[loading="lazy"]');
+    images.forEach(img => {
+        if ('loading' in HTMLImageElement.prototype) {
+            img.loading = 'lazy';
+        }
+    });
+
+    // Debounce للأحداث
+    const debounce = (func, wait) => {
+        let timeout;
+        return function executedFunction(...args) {
+            const later = () => {
+                clearTimeout(timeout);
+                func(...args);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+        };
+    };
+
+    // تحسين أداء النماذج
+    const inputs = document.querySelectorAll('input, select, textarea');
+    inputs.forEach(input => {
+        input.addEventListener('input', debounce(() => {
+            // حفظ البيانات تلقائياً
+            if (input.id.includes('vaccine') || input.id.includes('growth')) {
+                autoSaveFormData();
+            }
+        }, 500));
+    });
+
+    // تحسين الرسوم البيانية
+    if (window.Chart) {
+        Chart.defaults.font.family = "'Cairo', sans-serif";
+        Chart.defaults.responsive = true;
+        Chart.defaults.maintainAspectRatio = false;
+        Chart.defaults.plugins.tooltip.enabled = true;
+        Chart.defaults.plugins.legend.position = 'top';
+    }
+}
+
+// الحفظ التلقائي للبيانات
+function autoSaveFormData() {
+    const forms = ['vaccine-calculator', 'growth-tracker'];
+    forms.forEach(formId => {
+        const form = document.querySelector(`#${formId}-content`);
+        if (form) {
+            const formData = new FormData(form.querySelector('form') || form);
+            const data = {};
+            formData.forEach((value, key) => {
+                data[key] = value;
+            });
+            localStorage.setItem(`form_${formId}`, JSON.stringify(data));
+        }
+    });
+}
+
+// تحميل البيانات المحفوظة
+function loadSavedFormData() {
+    const forms = ['vaccine-calculator', 'growth-tracker'];
+    forms.forEach(formId => {
+        const savedData = localStorage.getItem(`form_${formId}`);
+        if (savedData) {
+            const data = JSON.parse(savedData);
+            const form = document.querySelector(`#${formId}-content`);
+            if (form) {
+                Object.keys(data).forEach(key => {
+                    const input = form.querySelector(`[name="${key}"]`);
+                    if (input) {
+                        input.value = data[key];
+                    }
+                });
+            }
+        }
+    });
+}
+
+// تحسين تفاعلية الأدوات
+function enhanceToolInteractivity() {
+    // إضافة تأثيرات hover للأدوات
+    const toolElements = document.querySelectorAll('.tool-content, .quick-tool-card, .tracker-tab');
+    toolElements.forEach(el => {
+        el.addEventListener('mouseenter', () => {
+            el.style.transform = 'translateY(-2px)';
+            el.style.transition = 'transform 0.2s ease';
+        });
+
+        el.addEventListener('mouseleave', () => {
+            el.style.transform = 'translateY(0)';
+        });
+    });
+
+    // تحسين التنقل بين الأدوات
+    const toolTabs = document.querySelectorAll('.tool-tab');
+    toolTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            // إضافة مؤشر نشاط
+            toolTabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+
+            // تحريك المؤشر
+            const indicator = document.querySelector('.tool-tab-indicator') ||
+                createTabIndicator();
+            indicator.style.width = `${tab.offsetWidth}px`;
+            indicator.style.transform = `translateX(${tab.offsetLeft}px)`;
+        });
+    });
+
+    // إنشاء مؤشر التبويبات
+    function createTabIndicator() {
+        const indicator = document.createElement('div');
+        indicator.className = 'tool-tab-indicator';
+        indicator.style.cssText = `
+            position: absolute;
+            bottom: 0;
+            height: 3px;
+            background: linear-gradient(to right, #3498db, #2ecc71);
+            transition: all 0.3s ease;
+            border-radius: 3px 3px 0 0;
+        `;
+        document.querySelector('.tools-tabs').style.position = 'relative';
+        document.querySelector('.tools-tabs').appendChild(indicator);
+        return indicator;
+    }
+}
+
+// تحميل أولي للبيانات
+function preloadEssentialData() {
+    // بيانات التطعيمات
+    const vaccineData = {
+        'birth': 'السل + التهاب الكبد ب',
+        '2months': 'الخماسي + شلل الأطفال',
+        '4months': 'الخماسي + شلل الأطفال',
+        '6months': 'الخماسي + شلل الأطفال',
+        '9months': 'الحصبة',
+        '12months': 'MMR + الجديري',
+        '18months': 'الخماسي + شلل الأطفال'
+    };
+
+    // بيانات نموذجية للنمو
+    const sampleGrowthData = [
+        { age: 1, weight: 4.2, height: 52, head: 36 },
+        { age: 2, weight: 5.5, height: 58, head: 39 },
+        { age: 3, weight: 6.3, height: 61, head: 41 }
+    ];
+
+    // تخزين البيانات المؤقتة
+    sessionStorage.setItem('vaccineData', JSON.stringify(vaccineData));
+    sessionStorage.setItem('sampleGrowthData', JSON.stringify(sampleGrowthData));
+}
+
+// تحسين استجابة الصفحة
+function enhancePageResponsiveness() {
+    // التحكم في تحميل المكونات حسب الحاجة
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const element = entry.target;
+
+                // تحميل المكونات عند ظهورها
+                if (element.id === 'growth-chart') {
+                    initGrowthChart();
+                }
+
+                // إضافة تأثيرات ظهور
+                element.style.opacity = '1';
+                element.style.transform = 'translateY(0)';
+            }
+        });
+    }, { threshold: 0.1 });
+
+    // مراقبة العناصر المهمة
+    const importantElements = document.querySelectorAll('.tool-content, .quick-tools-grid, .section-card');
+    importantElements.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        observer.observe(el);
+    });
+}
+
+// تهيئة محسنة عند تحميل الصفحة
+document.addEventListener('DOMContentLoaded', function () {
+    // تحسينات سابقة...
+
+    // تحسينات جديدة
+    enhanceQuickTools();
+    optimizePagePerformance();
+    loadSavedFormData();
+    enhanceToolInteractivity();
+    preloadEssentialData();
+    enhancePageResponsiveness();
+
+    // تحسين خاصية البحث
+    const searchInput = document.querySelector('.search-input');
+    if (searchInput) {
+        searchInput.addEventListener('input', debounceSearch);
+    }
+
+    function debounceSearch(e) {
+        clearTimeout(this.timer);
+        this.timer = setTimeout(() => {
+            searchTools(e.target.value);
+        }, 300);
+    }
+
+    function searchTools(query) {
+        if (!query.trim()) return;
+
+        // البحث في الأدوات
+        const tools = document.querySelectorAll('.tool-tab, .quick-tool-card h3');
+        tools.forEach(tool => {
+            const text = tool.textContent.toLowerCase();
+            if (text.includes(query.toLowerCase())) {
+                tool.parentElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                tool.style.backgroundColor = '#fff3cd';
+                setTimeout(() => {
+                    tool.style.backgroundColor = '';
+                }, 2000);
+            }
+        });
+    }
+});
+
+// إضافة أنماط CSS ديناميكية للتحسينات
+const performanceStyles = `
+    @keyframes slideDown {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    .quick-result-card {
+        animation: slideDown 0.3s ease;
+    }
+    
+    .status-badge {
+        display: inline-block;
+        padding: 3px 8px;
+        border-radius: 12px;
+        font-size: 0.8rem;
+        margin: 2px;
+    }
+    
+    .status-badge.completed {
+        background-color: #d4edda;
+        color: #155724;
+    }
+    
+    .status-badge.upcoming {
+        background-color: #fff3cd;
+        color: #856404;
+    }
+    
+    .growth-quick-stats {
+        display: flex;
+        justify-content: space-between;
+        margin: 10px 0;
+    }
+    
+    .growth-stat {
+        text-align: center;
+        padding: 5px;
+    }
+    
+    .stat-label {
+        display: block;
+        font-size: 0.8rem;
+        color: #666;
+    }
+    
+    .stat-value {
+        display: block;
+        font-weight: bold;
+        color: #2c3e50;
+    }
+    
+    .text-success {
+        color: #28a745;
+    }
+    
+    .text-warning {
+        color: #ffc107;
+    }
+    
+    .causes-list li {
+        display: flex;
+        align-items: center;
+        margin-bottom: 5px;
+    }
+    
+    .causes-list i {
+        margin-left: 8px;
+        width: 16px;
+    }
+    
+    /* تحسينات للأجهزة المحمولة */
+    @media (max-width: 768px) {
+        .quick-result-card {
+            position: fixed;
+            top: 50%;
+            left: 5%;
+            right: 5%;
+            transform: translateY(-50%);
+            z-index: 2000;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        
+        .quick-tools-grid {
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        }
+    }
+    
+    /* تحسينات الطباعة */
+    @media print {
+        .quick-result-card,
+        .back-to-top,
+        .search-container {
+            display: none !important;
+        }
+    }
+`;
+
+// إضافة الأنماط إلى الصفحة
+const styleSheet = document.createElement('style');
+styleSheet.textContent = performanceStyles;
+document.head.appendChild(styleSheet);
