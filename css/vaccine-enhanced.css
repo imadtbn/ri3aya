@@ -1,0 +1,569 @@
+/* vaccine-enhanced.css - تحسينات متقدمة لجدول تطعيمات الطفل */
+
+/* ======= إعدادات التباين المحسنة ======= */
+:root {
+    /* ألوان عالية التباين */
+    --contrast-primary: #0056b3;
+    --contrast-secondary: #004494;
+    --contrast-success: #0a5c0a;
+    --contrast-warning: #856404;
+    --contrast-danger: #721c24;
+    --contrast-info: #004085;
+    
+    /* خلفيات عالية التباين */
+    --bg-high-contrast: #ffffff;
+    --bg-light-contrast: #f8f9fa;
+    --bg-medium-contrast: #e9ecef;
+    
+    /* نصوص عالية التباين */
+    --text-high-contrast: #000000;
+    --text-medium-contrast: #212529;
+    --text-light-contrast: #495057;
+    
+    /* حدود عالية التباين */
+    --border-high-contrast: #000000;
+    --border-medium-contrast: #495057;
+    --border-light-contrast: #6c757d;
+    
+    /* ظلال عالية الوضوح */
+    --shadow-high-contrast: 0 2px 8px rgba(0, 0, 0, 0.3);
+    --shadow-medium-contrast: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* ======= جدول التطعيمات المحسن ======= */
+.vaccine-schedule {
+    background: var(--bg-high-contrast);
+    border: 2px solid var(--border-high-contrast);
+    border-radius: 12px;
+    overflow: hidden;
+    margin: 25px 0;
+    box-shadow: var(--shadow-high-contrast);
+    font-family: 'Cairo', sans-serif;
+}
+
+.schedule-header {
+    background: linear-gradient(135deg, var(--contrast-primary), var(--contrast-secondary));
+    color: white;
+    padding: 20px;
+    text-align: center;
+    border-bottom: 3px solid var(--border-high-contrast);
+}
+
+.schedule-header h4 {
+    margin: 0 0 10px 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.schedule-header h4 i {
+    font-size: 1.3rem;
+    color: white;
+}
+
+.baby-age {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 6px 15px;
+    border-radius: 20px;
+    font-weight: 600;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* ======= هيكل الجدول المحسن ======= */
+.schedule-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.schedule-row.header {
+    background: var(--bg-medium-contrast);
+    border-bottom: 3px solid var(--border-high-contrast);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.schedule-row {
+    transition: all 0.2s ease;
+    border-bottom: 1px solid var(--border-light-contrast);
+}
+
+.schedule-row:hover {
+    background: rgba(0, 86, 179, 0.05);
+    transform: translateY(-1px);
+}
+
+.schedule-cell {
+    padding: 15px 20px;
+    text-align: center;
+    font-size: 1rem;
+    color: var(--text-medium-contrast);
+    vertical-align: middle;
+}
+
+.schedule-row.header .schedule-cell {
+    color: var(--text-high-contrast);
+    font-size: 1.1rem;
+    padding: 18px 20px;
+}
+
+/* ======= خلايا خاصة ======= */
+.schedule-cell.age {
+    font-weight: 600;
+    color: var(--text-high-contrast);
+    border-right: 2px solid var(--border-medium-contrast);
+    background: var(--bg-light-contrast);
+    width: 20%;
+}
+
+.schedule-cell.vaccine {
+    text-align: right;
+    font-weight: 500;
+    width: 50%;
+    padding-right: 25px;
+}
+
+.schedule-cell.status {
+    width: 30%;
+    font-weight: 600;
+}
+
+/* ======= حالات التطعيم المحسنة ======= */
+.status.completed {
+    background-color: #d4edda;
+    color: var(--contrast-success);
+    border: 2px solid #28a745;
+    border-radius: 6px;
+    padding: 8px 15px;
+    display: inline-block;
+    min-width: 100px;
+    position: relative;
+    overflow: hidden;
+}
+
+.status.completed::before {
+    content: '✓';
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.status.upcoming {
+    background-color: #fff3cd;
+    color: var(--contrast-warning);
+    border: 2px solid #ffc107;
+    border-radius: 6px;
+    padding: 8px 15px;
+    display: inline-block;
+    min-width: 100px;
+    position: relative;
+    overflow: hidden;
+}
+
+.status.upcoming::before {
+    content: '→';
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.status.overdue {
+    background-color: #f8d7da;
+    color: var(--contrast-danger);
+    border: 2px solid #dc3545;
+    border-radius: 6px;
+    padding: 8px 15px;
+    display: inline-block;
+    min-width: 100px;
+    position: relative;
+    overflow: hidden;
+}
+
+.status.overdue::before {
+    content: '⚠';
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+/* ======= شارات توضيحية ======= */
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin: 0 5px;
+}
+
+.status-badge.completed {
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #155724;
+}
+
+.status-badge.upcoming {
+    background: #fff3cd;
+    color: #856404;
+    border: 1px solid #856404;
+}
+
+.status-badge.overdue {
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #721c24;
+}
+
+/* ======= مخطط زمني للتطعيمات ======= */
+.vaccine-timeline {
+    margin: 30px 0;
+    position: relative;
+    padding: 20px 0;
+}
+
+.timeline-track {
+    position: relative;
+    height: 4px;
+    background: var(--bg-medium-contrast);
+    border-radius: 2px;
+    margin: 40px 20px;
+}
+
+.timeline-marker {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 3px solid white;
+    cursor: pointer;
+}
+
+.timeline-marker.completed {
+    background: var(--contrast-success);
+    box-shadow: 0 0 0 4px rgba(40, 167, 69, 0.2);
+}
+
+.timeline-marker.upcoming {
+    background: var(--contrast-warning);
+    box-shadow: 0 0 0 4px rgba(255, 193, 7, 0.2);
+}
+
+.timeline-marker.overdue {
+    background: var(--contrast-danger);
+    box-shadow: 0 0 0 4px rgba(220, 53, 69, 0.2);
+}
+
+.timeline-label {
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.9rem;
+    font-weight: 600;
+    white-space: nowrap;
+    color: var(--text-high-contrast);
+}
+
+/* ======= كتيب التطعيمات التفاعلي ======= */
+.vaccine-booklet {
+    margin: 30px 0;
+    border: 2px solid var(--border-high-contrast);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.vaccine-details {
+    padding: 20px;
+    background: var(--bg-light-contrast);
+    border-bottom: 1px solid var(--border-light-contrast);
+}
+
+.vaccine-details:last-child {
+    border-bottom: none;
+}
+
+.vaccine-details h5 {
+    color: var(--text-high-contrast);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.1rem;
+}
+
+.vaccine-info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.vaccine-info-item {
+    background: white;
+    padding: 12px;
+    border-radius: 6px;
+    border-left: 4px solid var(--contrast-primary);
+}
+
+.vaccine-info-label {
+    font-weight: 600;
+    color: var(--text-medium-contrast);
+    display: block;
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+}
+
+.vaccine-info-value {
+    color: var(--text-high-contrast);
+    font-weight: 500;
+}
+
+/* ======= تحسينات الطباعة ======= */
+@media print {
+    .vaccine-schedule {
+        border: 2px solid black;
+        box-shadow: none;
+        page-break-inside: avoid;
+    }
+    
+    .schedule-row.header {
+        background: #e9ecef !important;
+        -webkit-print-color-adjust: exact;
+        color-adjust: exact;
+    }
+    
+    .status.completed {
+        background: #d4edda !important;
+        border: 2px solid #155724 !important;
+        -webkit-print-color-adjust: exact;
+        color-adjust: exact;
+    }
+    
+    .status.upcoming {
+        background: #fff3cd !important;
+        border: 2px solid #856404 !important;
+        -webkit-print-color-adjust: exact;
+        color-adjust: exact;
+    }
+    
+    .status.overdue {
+        background: #f8d7da !important;
+        border: 2px solid #721c24 !important;
+        -webkit-print-color-adjust: exact;
+        color-adjust: exact;
+    }
+}
+
+/* ======= تحسينات للأجهزة المحمولة ======= */
+@media (max-width: 768px) {
+    .vaccine-schedule {
+        border-width: 1px;
+        margin: 15px 0;
+    }
+    
+    .schedule-header {
+        padding: 15px;
+    }
+    
+    .schedule-header h4 {
+        font-size: 1.2rem;
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .schedule-cell {
+        padding: 12px 10px;
+        font-size: 0.9rem;
+    }
+    
+    .schedule-row.header .schedule-cell {
+        font-size: 0.95rem;
+        padding: 12px 10px;
+    }
+    
+    .schedule-cell.age {
+        width: 25%;
+        font-size: 0.85rem;
+    }
+    
+    .schedule-cell.vaccine {
+        width: 45%;
+        padding-right: 10px;
+    }
+    
+    .schedule-cell.status {
+        width: 30%;
+        font-size: 0.85rem;
+    }
+    
+    .status.completed,
+    .status.upcoming,
+    .status.overdue {
+        min-width: 80px;
+        padding: 6px 10px;
+        font-size: 0.85rem;
+    }
+}
+
+/* ======= وضع عالي التباين ======= */
+.high-contrast-mode .vaccine-schedule {
+    border: 3px solid black;
+    background: white;
+}
+
+.high-contrast-mode .schedule-header {
+    background: black !important;
+    color: white !important;
+}
+
+.high-contrast-mode .schedule-row.header {
+    background: #333 !important;
+    color: white !important;
+}
+
+.high-contrast-mode .status.completed {
+    background: #00ff00 !important;
+    color: black !important;
+    border: 2px solid black !important;
+}
+
+.high-contrast-mode .status.upcoming {
+    background: #ffff00 !important;
+    color: black !important;
+    border: 2px solid black !important;
+}
+
+.high-contrast-mode .status.overdue {
+    background: #ff0000 !important;
+    color: white !important;
+    border: 2px solid black !important;
+}
+
+/* ======= تحسينات الوصول ======= */
+/* تلميحات للقراءة الشاشية */
+.schedule-cell:focus,
+.status:focus {
+    outline: 3px solid var(--contrast-primary);
+    outline-offset: 2px;
+}
+
+/* زيادة تباعد النصوص للقراءة السهلة */
+.reading-mode .schedule-cell {
+    line-height: 1.8;
+    font-size: 1.1rem;
+}
+
+/* دعم قارئات الشاشة */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* ======= تحسينات تفاعلية ======= */
+.vaccine-progress {
+    margin: 20px 0;
+    background: var(--bg-light-contrast);
+    border-radius: 10px;
+    padding: 15px;
+    border: 1px solid var(--border-light-contrast);
+}
+
+.progress-summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.progress-stats {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.progress-stat {
+    text-align: center;
+    padding: 10px;
+    border-radius: 6px;
+    min-width: 80px;
+}
+
+.progress-stat.completed {
+    background: #d4edda;
+    border: 1px solid #28a745;
+}
+
+.progress-stat.upcoming {
+    background: #fff3cd;
+    border: 1px solid #ffc107;
+}
+
+.progress-stat.overdue {
+    background: #f8d7da;
+    border: 1px solid #dc3545;
+}
+
+.stat-count {
+    font-size: 1.5rem;
+    font-weight: 700;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+/* ======= تنبيهات مهمة ======= */
+.vaccine-alerts {
+    background: #fff3cd;
+    border: 2px solid #ffc107;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 20px 0;
+}
+
+.vaccine-alerts h5 {
+    color: #856404;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.vaccine-alerts ul {
+    margin: 0;
+    padding-right: 20px;
+    color: #856404;
+}
+
+.vaccine-alerts li {
+    margin-bottom: 8px;
+    line-height: 1.5;
+}

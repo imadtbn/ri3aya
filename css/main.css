@@ -143,6 +143,13 @@ body {
 .logo-icon i {
     font-size: 1.5rem;
 }
+/* الأيقونة نفسها */
+.logo-icon img {
+    height: 40px;        /* تحكم بالحجم */
+    width: auto;         /* حافظ على التناسب */
+    max-width: 100%;
+    object-fit: contain; /* لا تشويه */
+}
 
 .logo-text h1 {
     font-size: 1.5rem;
@@ -1688,4 +1695,214 @@ footer {
     background: linear-gradient(45deg, rgba(33, 150, 243, 0.1), rgba(156, 39, 176, 0.1));
     border-radius: 50%;
     transform: translate(-50%, 50%);
+}
+
+.phone-number {
+    direction: ltr;
+    unicode-bidi: bidi-override;
+    display: inline-block;
+    color: inherit;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.phone-number:hover {
+    text-decoration: underline;
+}
+
+.website-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 6px;
+    padding: 6px 14px;
+    background: #3498db;
+    color: #fff;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    text-decoration: none;
+    transition: background 0.3s ease;
+}
+
+.website-btn:hover {
+    background: #2980b9;
+}
+
+/* أنماط الأدوات الجديدة */
+.tool-section {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.tool-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 1.5rem;
+}
+
+.input-section, .output-section {
+    padding: 1.5rem;
+    background: #f9f9f9;
+    border-radius: 8px;
+}
+
+.hidden {
+    display: none;
+}
+
+.result-card {
+    background: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.result-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.result-summary {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin: 1.5rem 0;
+}
+
+.result-item {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+.result-item i {
+    font-size: 1.5rem;
+    margin-left: 1rem;
+    color: var(--primary-color);
+}
+
+.percentile-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    text-align: center;
+}
+
+.percentile-circle {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: #4CAF50;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 0 auto 0.5rem;
+}
+
+.diagnosis-card {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    background: #fff8e1;
+    border-radius: 8px;
+    border-right: 4px solid #ff9800;
+    margin: 1rem 0;
+}
+
+.diagnosis-severity {
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: bold;
+}
+
+.timeline {
+    position: relative;
+    padding-right: 2rem;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    right: 7px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--primary-color);
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 1.5rem;
+    padding-right: 2rem;
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 5px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    border: 3px solid white;
+    box-shadow: 0 0 0 2px var(--primary-color);
+}
+
+.routine-overview {
+    margin: 1.5rem 0;
+}
+
+.overview-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+.overview-item {
+    text-align: center;
+    padding: 1rem;
+    background: #f0f7ff;
+    border-radius: 8px;
+}
+
+.overview-item i {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.result-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #eee;
+}
+
+/* استجابة للشاشات الصغيرة */
+@media (max-width: 768px) {
+    .tool-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .result-summary,
+    .percentile-grid,
+    .overview-grid {
+        grid-template-columns: 1fr;
+    }
 }

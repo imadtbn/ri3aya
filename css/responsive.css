@@ -312,3 +312,41 @@
         height: 200px;
     }
 }
+/* contrast-controls.css */
+.contrast-controls {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 1000;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    padding: 10px;
+    border: 2px solid #0056b3;
+}
+
+.contrast-controls button {
+    margin: 5px;
+    padding: 8px 12px;
+    border: 2px solid #495057;
+    background: white;
+    color: #212529;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s;
+}
+
+.contrast-controls button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.contrast-controls button.active {
+    background: #0056b3;
+    color: white;
+    border-color: #0056b3;
+}

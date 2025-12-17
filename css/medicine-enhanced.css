@@ -1,0 +1,756 @@
+
+/* medicine-enhanced.css - تحسينات متقدمة لعرض نتيجة حساب الجرعة */
+
+/* ======= متغيرات الألوان عالية التباين ======= */
+:root {
+    /* ألوان رئيسية عالية التباين */
+    --medicine-primary: #0056b3;
+    --medicine-secondary: #004494;
+    --medicine-success: #0a5c0a;
+    --medicine-warning: #b35c00;
+    --medicine-danger: #b30000;
+    --medicine-info: #005b5b;
+    
+    /* خلفيات عالية التباين */
+    --medicine-bg-primary: #ffffff;
+    --medicine-bg-secondary: #f8f9fa;
+    --medicine-bg-warning: #fff8e1;
+    --medicine-bg-danger: #ffebee;
+    --medicine-bg-success: #e8f5e8;
+    --medicine-bg-info: #e1f5fe;
+    
+    /* نصوص عالية التباين */
+    --medicine-text-primary: #000000;
+    --medicine-text-secondary: #212529;
+    --medicine-text-light: #495057;
+    --medicine-text-on-dark: #ffffff;
+    
+    /* حدود عالية التباين */
+    --medicine-border-primary: #000000;
+    --medicine-border-secondary: #495057;
+    --medicine-border-light: #6c757d;
+}
+
+/* ======= هيكل نتيجة الجرعة المحسنة ======= */
+.medicine-result-enhanced {
+    background: var(--medicine-bg-primary);
+    border: 3px solid var(--medicine-border-primary);
+    border-radius: 15px;
+    margin: 25px 0;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+    font-family: 'Cairo', sans-serif;
+}
+
+/* ======= رأس النتيجة ======= */
+.result-header-enhanced {
+    background: linear-gradient(135deg, var(--medicine-primary), var(--medicine-secondary));
+    color: var(--medicine-text-on-dark);
+    padding: 20px;
+    border-bottom: 3px solid var(--medicine-border-primary);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.result-header-enhanced h4 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.result-header-enhanced h4 i {
+    font-size: 1.3rem;
+    color: white;
+}
+
+.medicine-name-enhanced {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 8px 18px;
+    border-radius: 25px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* ======= تفاصيل الجرعة المحسنة ======= */
+.result-details-enhanced {
+    padding: 25px;
+    background: var(--medicine-bg-secondary);
+}
+
+.detail-row-enhanced {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    margin: 12px 0;
+    background: white;
+    border-radius: 10px;
+    border: 2px solid var(--medicine-border-light);
+    transition: all 0.3s ease;
+}
+
+.detail-row-enhanced:hover {
+    border-color: var(--medicine-primary);
+    transform: translateX(-5px);
+    box-shadow: 0 3px 10px rgba(0, 86, 179, 0.1);
+}
+
+.detail-row-enhanced.highlight {
+    background: var(--medicine-bg-info);
+    border-left: 5px solid var(--medicine-info);
+    font-weight: 700;
+}
+
+.detail-label-enhanced {
+    font-weight: 600;
+    color: var(--medicine-text-primary);
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+}
+
+.detail-label-enhanced i {
+    color: var(--medicine-primary);
+    font-size: 1rem;
+}
+
+.detail-value-enhanced {
+    font-weight: 700;
+    color: var(--medicine-text-secondary);
+    font-size: 1.2rem;
+    text-align: left;
+    flex: 1;
+}
+
+.detail-value-enhanced .dosage {
+    color: var(--medicine-success);
+    font-size: 1.3rem;
+}
+
+.detail-value-enhanced .warning {
+    color: var(--medicine-danger);
+    font-size: 1.1rem;
+}
+
+/* ======= بطاقة الجرعة الرئيسية ======= */
+.dosage-card {
+    background: white;
+    border: 4px solid var(--medicine-primary);
+    border-radius: 15px;
+    padding: 25px;
+    margin: 20px 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.dosage-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(to left, var(--medicine-primary), var(--medicine-secondary));
+}
+
+.dosage-title {
+    color: var(--medicine-text-primary);
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.dosage-amount {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--medicine-primary);
+    margin: 10px 0;
+    line-height: 1.2;
+}
+
+.dosage-unit {
+    font-size: 1.3rem;
+    color: var(--medicine-text-secondary);
+    font-weight: 600;
+    margin-right: 10px;
+}
+
+.dosage-equivalent {
+    font-size: 1.1rem;
+    color: var(--medicine-text-light);
+    margin-top: 10px;
+    font-weight: 500;
+}
+
+/* ======= تنبيهات وتحذيرات محسنة ======= */
+.warning-note-enhanced {
+    background: var(--medicine-bg-warning);
+    border: 3px solid var(--medicine-warning);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.warning-note-enhanced::before {
+    content: '⚠';
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2.5rem;
+    color: var(--medicine-warning);
+    opacity: 0.3;
+}
+
+.warning-content {
+    padding-right: 60px;
+}
+
+.warning-title {
+    color: var(--medicine-warning);
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.warning-text {
+    color: var(--medicine-text-secondary);
+    line-height: 1.6;
+    font-size: 1.05rem;
+}
+
+.danger-note {
+    background: var(--medicine-bg-danger);
+    border: 3px solid var(--medicine-danger);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px 0;
+}
+
+.danger-title {
+    color: var(--medicine-danger);
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* ======= مخطط الجرعات ======= */
+.dosage-chart {
+    background: white;
+    border: 2px solid var(--medicine-border-secondary);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px 0;
+}
+
+.chart-header {
+    color: var(--medicine-text-primary);
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.chart-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.chart-item {
+    background: var(--medicine-bg-secondary);
+    border: 2px solid var(--medicine-border-light);
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+}
+
+.chart-time {
+    font-weight: 700;
+    color: var(--medicine-primary);
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+.chart-dose {
+    font-weight: 600;
+    color: var(--medicine-text-secondary);
+    font-size: 1rem;
+}
+
+/* ======= الإرشادات ======= */
+.instructions-enhanced {
+    background: var(--medicine-bg-info);
+    border: 2px solid var(--medicine-info);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px 0;
+}
+
+.instructions-title {
+    color: var(--medicine-info);
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.instructions-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.instructions-list li {
+    padding: 10px 0;
+    padding-right: 30px;
+    position: relative;
+    color: var(--medicine-text-secondary);
+    line-height: 1.6;
+    border-bottom: 1px solid rgba(0, 91, 91, 0.1);
+}
+
+.instructions-list li:last-child {
+    border-bottom: none;
+}
+
+.instructions-list li::before {
+    content: '✓';
+    position: absolute;
+    right: 0;
+    color: var(--medicine-info);
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+/* ======= تحذيرات هامة ======= */
+.critical-warnings {
+    background: #ffebee;
+    border: 3px solid #d32f2f;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px 0;
+    position: relative;
+}
+
+.critical-warnings::before {
+    content: '❗';
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2rem;
+    color: #d32f2f;
+}
+
+.critical-title {
+    color: #d32f2f;
+    font-weight: 700;
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-right: 40px;
+}
+
+.critical-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    padding-right: 40px;
+}
+
+.critical-list li {
+    padding: 8px 0;
+    color: #b71c1c;
+    font-weight: 500;
+    position: relative;
+    padding-right: 20px;
+}
+
+.critical-list li::before {
+    content: '•';
+    position: absolute;
+    right: 0;
+    color: #d32f2f;
+    font-size: 1.5rem;
+    line-height: 1;
+}
+
+/* ======= شريط الإجراءات ======= */
+.result-actions-enhanced {
+    background: var(--medicine-bg-secondary);
+    padding: 20px;
+    border-top: 2px solid var(--medicine-border-light);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+}
+
+.action-btn {
+    padding: 12px 25px;
+    border: 2px solid;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s;
+    font-family: 'Cairo', sans-serif;
+    font-size: 1rem;
+}
+
+.action-btn.print {
+    background: white;
+    color: var(--medicine-primary);
+    border-color: var(--medicine-primary);
+}
+
+.action-btn.print:hover {
+    background: var(--medicine-primary);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 86, 179, 0.3);
+}
+
+.action-btn.save {
+    background: white;
+    color: var(--medicine-success);
+    border-color: var(--medicine-success);
+}
+
+.action-btn.save:hover {
+    background: var(--medicine-success);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(10, 92, 10, 0.3);
+}
+
+.action-btn.share {
+    background: white;
+    color: var(--medicine-info);
+    border-color: var(--medicine-info);
+}
+
+.action-btn.share:hover {
+    background: var(--medicine-info);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 91, 91, 0.3);
+}
+
+/* ======= مؤشر الجرعة الآمنة ======= */
+.safety-indicator {
+    margin: 20px 0;
+    padding: 15px;
+    background: white;
+    border: 2px solid var(--medicine-border-light);
+    border-radius: 10px;
+}
+
+.safety-title {
+    font-weight: 600;
+    color: var(--medicine-text-primary);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.safety-meter {
+    height: 20px;
+    background: #e9ecef;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 15px 0;
+    position: relative;
+}
+
+.safety-fill {
+    height: 100%;
+    background: linear-gradient(to right, #4caf50, #8bc34a);
+    border-radius: 10px;
+    transition: width 1s ease;
+}
+
+.safety-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    color: var(--medicine-text-light);
+    font-weight: 500;
+}
+
+/* ======= تحسينات للطباعة ======= */
+@media print {
+    .medicine-result-enhanced {
+        border: 2px solid black;
+        box-shadow: none;
+        page-break-inside: avoid;
+    }
+    
+    .result-actions-enhanced {
+        display: none;
+    }
+    
+    .dosage-card {
+        border: 3px solid black;
+        -webkit-print-color-adjust: exact;
+        color-adjust: exact;
+    }
+    
+    .warning-note-enhanced {
+        border: 2px solid #b35c00;
+        -webkit-print-color-adjust: exact;
+        color-adjust: exact;
+    }
+}
+
+/* ======= تحسينات للأجهزة المحمولة ======= */
+@media (max-width: 768px) {
+    .medicine-result-enhanced {
+        border-width: 2px;
+        margin: 15px 0;
+    }
+    
+    .result-header-enhanced {
+        padding: 15px;
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+    
+    .result-header-enhanced h4 {
+        font-size: 1.3rem;
+    }
+    
+    .medicine-name-enhanced {
+        font-size: 1rem;
+        padding: 6px 15px;
+    }
+    
+    .result-details-enhanced {
+        padding: 15px;
+    }
+    
+    .detail-row-enhanced {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        padding: 12px 15px;
+    }
+    
+    .detail-value-enhanced {
+        text-align: right;
+        width: 100%;
+    }
+    
+    .dosage-amount {
+        font-size: 2rem;
+    }
+    
+    .result-actions-enhanced {
+        flex-direction: column;
+    }
+    
+    .action-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* ======= وضع عالي التباين ======= */
+.high-contrast-mode .medicine-result-enhanced {
+    border: 4px solid black;
+    background: white;
+}
+
+.high-contrast-mode .result-header-enhanced {
+    background: black !important;
+    color: white !important;
+}
+
+.high-contrast-mode .dosage-card {
+    border: 4px solid black;
+    background: white;
+}
+
+.high-contrast-mode .warning-note-enhanced {
+    border: 3px solid #ff9800;
+    background: #fff3e0;
+}
+
+.high-contrast-mode .danger-note {
+    border: 3px solid #f44336;
+    background: #ffebee;
+}
+
+/* ======= تحسينات الوصول ======= */
+/* زيادة حجم النقر */
+.action-btn,
+.detail-row-enhanced {
+    min-height: 44px;
+    min-width: 44px;
+}
+
+/* تلميحات التركيز */
+.action-btn:focus,
+.detail-row-enhanced:focus {
+    outline: 3px solid var(--medicine-primary);
+    outline-offset: 2px;
+}
+
+/* زيادة تباعد النصوص */
+.reading-mode .detail-label-enhanced,
+.reading-mode .detail-value-enhanced {
+    line-height: 1.8;
+    font-size: 1.1rem;
+}
+
+/* دعم قارئات الشاشة */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* ======= تحسينات تفاعلية ======= */
+.medicine-comparison {
+    background: white;
+    border: 2px solid var(--medicine-border-light);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px 0;
+}
+
+.comparison-title {
+    color: var(--medicine-text-primary);
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.comparison-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+}
+
+.comparison-item {
+    text-align: center;
+    padding: 15px;
+    border-radius: 8px;
+    border: 2px solid var(--medicine-border-light);
+}
+
+.comparison-label {
+    font-weight: 600;
+    color: var(--medicine-text-light);
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+}
+
+.comparison-value {
+    font-weight: 700;
+    color: var(--medicine-text-primary);
+    font-size: 1.1rem;
+}
+
+/* ======= مؤشرات التقدم ======= */
+.dosage-progress {
+    background: white;
+    border: 2px solid var(--medicine-border-light);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px 0;
+}
+
+.progress-steps {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    margin: 30px 0;
+}
+
+.progress-steps::before {
+    content: '';
+    position: absolute;
+    top: 15px;
+    right: 0;
+    left: 0;
+    height: 3px;
+    background: var(--medicine-bg-secondary);
+    z-index: 1;
+}
+
+.progress-step {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    flex: 1;
+}
+
+.step-indicator {
+    width: 30px;
+    height: 30px;
+    background: white;
+    border: 3px solid var(--medicine-border-light);
+    border-radius: 50%;
+    margin: 0 auto 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    color: var(--medicine-text-light);
+}
+
+.step-indicator.active {
+    border-color: var(--medicine-primary);
+    background: var(--medicine-primary);
+    color: white;
+}
+
+.step-label {
+    font-size: 0.9rem;
+    color: var(--medicine-text-light);
+    font-weight: 500;
+}
+
+.step-label.active {
+    color: var(--medicine-primary);
+    font-weight: 600;
+}
