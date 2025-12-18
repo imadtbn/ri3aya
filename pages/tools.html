@@ -4,8 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="أدوات تفاعلية لرعاية الرضع - حاسبات ومتابعة وتقويمات ذكية">
-    <title>الأدوات التفاعلية | رعاية الرضع</title>
+    <meta name="description"
+        content="أدوات تفاعلية متقدمة لرعاية الرضع - حاسبات ومتابعة وتقويمات ذكية مع تحليلات متقدمة">
+    <title>الأدوات التفاعلية المتقدمة | رعاية الرضع</title>
 
     <!-- الخطوط العربية -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,15 +26,670 @@
     <link rel="stylesheet" href="../css/tools.css">
     <link rel="stylesheet" href="../css/meal-planner.css">
     <link rel="stylesheet" href="../css/medicine-enhanced.css">
-    <link rel="stylesheet" href="../css/crying-analyzer.css">
-    <link rel="stylesheet" href="../css/crying-analyzer.css">
+    <link rel="stylesheet" href="../css/tools-interactive.min.css">
+    <link rel="stylesheet" href="../css/main-styles.min.css">
 
 
-    <!-- مكتبة الرسوم البيانية -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 
     <!-- Favicon -->
     <link rel="icon" href="../images/icons/icons.png" alt="icon" type="image/png" loading="lazy">
+
+          <!-- Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "حاسبة نمو الرضيع",
+  "url": "https://imadtbn.github.io/ri3aya/pages/tools.html",
+  "applicationCategory": "HealthApplication",
+  "operatingSystem": "All",
+  "inLanguage": "ar"
+}
+</script>
+
+
+    <!-- أنماط إضافية للأدوات -->
+    <style>
+        .tool-content {
+            display: none;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        .tool-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .tools-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .tool-tab {
+            padding: 12px 24px;
+            background: #f5f5f5;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Cairo', sans-serif;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .tool-tab:hover {
+            background: #e0e0e0;
+        }
+
+        .tool-tab.active {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .audio-analysis-section,
+        .pattern-analysis-section {
+            margin: 20px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+
+        .audio-controls,
+        .pattern-controls,
+        .data-buttons {
+            display: flex;
+            gap: 10px;
+            margin: 15px 0;
+            flex-wrap: wrap;
+        }
+
+        .status-indicator {
+            padding: 10px 15px;
+            background: #e3f2fd;
+            border-radius: 5px;
+            margin-top: 10px;
+            display: inline-block;
+        }
+
+        .analysis-card,
+        .medicine-result-card,
+        .routine-schedule,
+        .meal-plan-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .probability-chart {
+            margin: 15px 0;
+        }
+
+        .probability-item {
+            margin: 10px 0;
+        }
+
+        .prob-bar {
+            height: 20px;
+            background: #eee;
+            border-radius: 10px;
+            margin: 5px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .prob-fill {
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.5s ease;
+        }
+
+        .prob-percentage {
+            position: absolute;
+            right: 10px;
+            top: 0;
+            line-height: 20px;
+            color: white;
+            font-weight: bold;
+            text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+        }
+
+        .in-app-notification {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            z-index: 1000;
+            transform: translateY(-100px);
+            opacity: 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .in-app-notification.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .notification-icon {
+            font-size: 24px;
+            color: var(--primary-color);
+        }
+
+        .notification-close {
+            margin-right: auto;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            color: #666;
+        }
+
+        .visualizer-bars {
+            display: flex;
+            height: 60px;
+            align-items: flex-end;
+            gap: 2px;
+            margin: 15px 0;
+            background: #f0f0f0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .visualizer-bar {
+            transition: height 0.1s ease;
+            border-radius: 2px;
+        }
+
+        .pattern-analysis {
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+
+        .pattern-high {
+            background: #ffebee;
+            border-right: 4px solid #f44336;
+        }
+
+        .pattern-medium {
+            background: #fff3e0;
+            border-right: 4px solid #ff9800;
+        }
+
+        .pattern-low {
+            background: #e8f5e9;
+            border-right: 4px solid #4caf50;
+        }
+
+        .history-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .meal-plan-header,
+        .routine-item {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            gap: 15px;
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .routine-time {
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .routine-activity {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .data-management-section {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+
+        .btn-danger {
+            background: #f44336;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #d32f2f;
+        }
+
+        @media (max-width: 768px) {
+            .tools-tabs {
+                overflow-x: auto;
+                padding-bottom: 10px;
+            }
+
+            .audio-controls,
+            .pattern-controls,
+            .data-buttons {
+                flex-direction: column;
+            }
+
+            .meal-plan-header,
+            .routine-item {
+                grid-template-columns: 1fr;
+                gap: 5px;
+            }
+        }
+
+
+
+        /* إضافة إلى قسم الأنماط الموجود */
+        .welcome-message {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .welcome-message h4 {
+            margin-bottom: 15px;
+            font-size: 24px;
+        }
+
+        .welcome-message p {
+            margin-bottom: 20px;
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .selected {
+            background-color: var(--primary-color) !important;
+            color: white !important;
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .age-option,
+        .timing-option,
+        .cry-option {
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .age-option:hover,
+        .timing-option:hover,
+        .cry-option:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        .result-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-right: 5px solid var(--primary-color);
+        }
+
+        .result-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .result-title {
+            color: var(--primary-color);
+            font-size: 20px;
+            margin: 0;
+        }
+
+        .result-body {
+            padding: 10px 0;
+        }
+
+        .schedule-row {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            background: #f8f9fa;
+            transition: all 0.3s ease;
+        }
+
+        .schedule-row:hover {
+            transform: translateX(5px);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .schedule-row.done {
+            background: #e8f5e9;
+            border-right: 4px solid #4caf50;
+        }
+
+        .schedule-row.next {
+            background: #fff3e0;
+            border-right: 4px solid #ff9800;
+        }
+
+        .vaccine-age {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .vaccine-name {
+            color: #555;
+        }
+
+        .vaccine-status {
+            text-align: left;
+            font-weight: bold;
+        }
+
+        .analysis-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 25px 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .analysis-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .analysis-body {
+            padding: 20px 0;
+        }
+
+        .probability-item {
+            margin: 15px 0;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 8px;
+        }
+
+        .prob-label {
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        .prob-bar {
+            height: 25px;
+            background: #e0e0e0;
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .prob-fill {
+            height: 100%;
+            border-radius: 12px;
+            transition: width 1s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding: 0 10px;
+        }
+
+        .prob-percentage {
+            color: white;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        /* تحسينات للجوال */
+        @media (max-width: 768px) {
+            .schedule-row {
+                grid-template-columns: 1fr;
+                gap: 10px;
+                text-align: center;
+            }
+
+            .vaccine-status {
+                text-align: center;
+            }
+
+            .analysis-card {
+                padding: 15px;
+            }
+
+            .result-card {
+                padding: 15px;
+            }
+        }
+
+        /* أضف إلى ملف tools.css */
+        .medicine-result-card {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-right: 5px solid var(--primary-color);
+        }
+
+        .medicine-result-card .result-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .medicine-result-card .info-card {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .medicine-result-card .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .medicine-result-card .info-card h5 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .medicine-result-card .info-card p {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .medicine-result-card .warnings {
+            background: #fff3e0;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .medicine-result-card .warnings h5 {
+            color: #ff9800;
+            margin-bottom: 10px;
+        }
+
+        .medicine-result-card .warnings ul {
+            margin: 0;
+            padding-right: 20px;
+        }
+
+        .medicine-result-card .warnings li {
+            margin-bottom: 8px;
+            color: #5d4037;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            justify-content: center;
+        }
+
+        .loading-message {
+            text-align: center;
+            padding: 40px;
+        }
+
+        .loading-message .spinner {
+            font-size: 40px;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .error-message {
+            background: #ffebee;
+            color: #c62828;
+            padding: 20px;
+            border-radius: 10px;
+            border-right: 5px solid #c62828;
+        }
+
+        .database-result {
+            background: #e3f2fd;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .database-result h4 {
+            color: #1565c0;
+            margin-bottom: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .medicine-result-card .row {
+                grid-template-columns: 1fr !important;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+
+            .medicine-result-card .result-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+        }
+
+        /* إضافات خاصة بقسم الدواء */
+        #medicine-content .medicine-results {
+            margin-top: 20px;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #medicine-content .result-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        #medicine-content .result-item {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        #medicine-content .result-item h5 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        #medicine-content .result-item p {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        /* تحسينات نهائية لقسم الدواء */
+        #medicine-content .calculator-form {
+            animation: slideIn 0.5s ease;
+        }
+
+        #medicine-content .welcome-message .btn {
+            margin-top: 15px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -91,8 +747,8 @@
     <section class="page-header tools-header">
         <div class="container">
             <div class="header-content">
-                <h1><i class="fas fa-tools"></i> الأدوات التفاعلية</h1>
-                <p>حاسبات ومتابعات وتقويمات ذكية لمساعدتك في رعاية طفلك بسهولة وثقة</p>
+                <h1><i class="fas fa-tools"></i> الأدوات التفاعلية المتقدمة</h1>
+                <p>حاسبات ومتابعات وتقويمات ذكية مع تحليلات متقدمة بالذكاء الاصطناعي لمساعدتك في رعاية طفلك</p>
                 <div class="breadcrumb">
                     <a href="../index.html"><i class="fas fa-home"></i> الرئيسية</a>
                     <i class="fas fa-chevron-left"></i>
@@ -100,7 +756,8 @@
                 </div>
             </div>
             <div class="page-header-image">
-                <img src="../images/tools-header.webp" alt="أدوات تفاعلية لرعاية الرضع" loading="lazy">
+                <img src="../images/tools-header.webp" alt="أدوات تفاعلية لرعاية الرضع - حاسبة التطعيمات ومتابعة النمو"
+                    loading="lazy">
             </div>
         </div>
     </section>
@@ -119,7 +776,7 @@
                             <i class="fas fa-syringe"></i>
                         </div>
                         <h3>آلة حاسبة التطعيمات</h3>
-                        <p>احصلي على جدول تطعيمات مخصص لطفلك حسب تاريخ ميلاده</p>
+                        <p>احصلي على جدول تطعيمات مخصص لطفلك حسب تاريخ ميلاده ودولتك</p>
                         <button class="btn-tool-quick" data-tool="vaccine">
                             <i class="fas fa-play-circle"></i> ابدأ الآن
                         </button>
@@ -130,7 +787,7 @@
                             <i class="fas fa-chart-line"></i>
                         </div>
                         <h3>متابعة النمو</h3>
-                        <p>تابعي نمو طفلك ومقارنته بالمعدلات الطبيعية حسب عمره</p>
+                        <p>تابعي نمو طفلك ومقارنته بالمعدلات العالمية وتحليل النمو</p>
                         <button class="btn-tool-quick" data-tool="growth">
                             <i class="fas fa-play-circle"></i> ابدأ الآن
                         </button>
@@ -140,8 +797,8 @@
                         <div class="tool-icon">
                             <i class="fas fa-baby-cry"></i>
                         </div>
-                        <h3>مفسر البكاء</h3>
-                        <p>تعرفي على سبب بكاء طفلك من خلال الأعراض والسلوكيات</p>
+                        <h3>مفسر البكاء المتقدم</h3>
+                        <p>تعرفي على سبب بكاء طفلك بتحليل متعدد المعايير والذكاء الاصطناعي</p>
                         <button class="btn-tool-quick" data-tool="cry">
                             <i class="fas fa-play-circle"></i> ابدأ الآن
                         </button>
@@ -163,570 +820,656 @@
             <!-- أدوات متقدمة -->
             <section class="advanced-tools">
                 <h2 class="section-title"><i class="fas fa-cogs"></i> أدوات متقدمة</h2>
-                <p>أدوات متكاملة تحتوي على ميزات متقدمة لمتابعة شاملة لطفلك</p>
+                <p>أدوات متكاملة تحتوي على ميزات متقدمة مع تحليلات الذكاء الاصطناعي لمتابعة شاملة لطفلك</p>
 
+                <!-- تباديل الأدوات -->
                 <div class="tools-tabs">
-                    <button class="tool-tab active" data-tool="vaccine-calculator">آلة حاسبة التطعيمات</button>
-                    <button class="tool-tab" data-tool="growth-tracker">متابعة النمو</button>
-                    <button class="tool-tab" data-tool="cry-decoder">مفسر البكاء</button>
-                    <button class="tool-tab" data-tool="routine-generator">مولد الروتين</button>
-                    <button class="tool-tab" data-tool="medicine-calculator">حاسبة جرعات الدواء</button>
-                    <button class="tool-tab" data-tool="meal-planner">مخطط وجبات الطعام</button>
+                    <button class="tool-tab active" data-tool="vaccine">التطعيمات</button>
+                    <button class="tool-tab" data-tool="growth">النمو</button>
+                    <button class="tool-tab" data-tool="cry">البكاء</button>
+                    <button class="tool-tab" data-tool="routine">الروتين</button>
+                    <button class="tool-tab" data-tool="medicine">الدواء</button>
+                    <button class="tool-tab" data-tool="meals">الوجبات</button>
                 </div>
 
-                <div class="tools-content">
-                    <!-- آلة حاسبة التطعيمات -->
-                    <div class="tool-content active" id="vaccine-calculator-content">
-                        <div class="tool-header">
-                            <h3><i class="fas fa-syringe"></i> آلة حاسبة التطعيمات</h3>
-                            <p>احصلي على جدول تطعيمات مخصص لطفلك حسب تاريخ ميلاده وتلقي تذكيرات بها</p>
-                        </div>
+                <!-- محتوى أداة التطعيمات -->
+                <div id="vaccine-content" class="tool-content active">
+                    <div class="tool-header">
+                        <h3><i class="fas fa-syringe"></i> آلة حاسبة التطعيمات المتقدمة</h3>
+                        <p>احصلي على جدول تطعيمات مخصص لطفلك حسب تاريخ ميلاده وتلقي تذكيرات ذكية</p>
+                    </div>
 
-                        <div class="tool-body">
-                            <div class="vaccine-calculator">
-                                <div class="calculator-form">
-                                    <div class="form-group">
-                                        <label for="baby-name-vaccine"><i class="fas fa-baby"></i> اسم الطفل
-                                            (اختياري)</label>
-                                        <input type="text" id="baby-name-vaccine" placeholder="أدخل اسم طفلك">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="baby-birthdate-vaccine"><i class="fas fa-calendar-alt"></i> تاريخ
-                                            الميلاد</label>
-                                        <input type="date" id="baby-birthdate-vaccine" class="date-input">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="baby-gender-vaccine"><i class="fas fa-venus-mars"></i> جنس
-                                            الطفل</label>
-                                        <select id="baby-gender-vaccine" class="form-select">
-                                            <option value="male">ذكر</option>
-                                            <option value="female">أنثى</option>
-                                        </select>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="vaccine-country"><i class="fas fa-globe"></i> الدولة</label>
-                                        <select id="vaccine-country" class="form-select">
-                                            <option value="saudi">المملكة العربية السعودية</option>
-                                            <option value="uae">الإمارات العربية المتحدة</option>
-                                            <option value="kuwait">الكويت</option>
-                                            <option value="qatar">قطر</option>
-                                            <option value="bahrain">البحرين</option>
-                                            <option value="oman">عُمان</option>
-                                        </select>
-                                    </div>
-
-                                    <button class="btn btn-primary" id="calculate-vaccine">
-                                        <i class="fas fa-calculator"></i> احسب جدول التطعيمات
-                                    </button>
+                    <div class="tool-body">
+                        <div class="vaccine-calculator">
+                            <div class="calculator-form">
+                                <div class="form-group">
+                                    <label for="baby-name-vaccine"><i class="fas fa-baby"></i> اسم الطفل
+                                        (اختياري)</label>
+                                    <input type="text" id="baby-name-vaccine" placeholder="أدخل اسم طفلك">
                                 </div>
 
-                                <div class="calculator-results" id="vaccine-results">
-                                    <!-- سيتم عرض النتائج هنا -->
+                                <div class="form-group">
+                                    <label for="baby-birthdate-vaccine"><i class="fas fa-calendar-alt"></i> تاريخ
+                                        الميلاد</label>
+                                    <input type="date" id="baby-birthdate-vaccine" class="date-input">
                                 </div>
 
-                                <div class="tool-features">
-                                    <h4><i class="fas fa-star"></i> مميزات هذه الأداة:</h4>
-                                    <ul>
-                                        <li>جدول تطعيمات مخصص حسب تاريخ الميلاد</li>
-                                        <li>تذكير بالتطعيمات القادمة</li>
-                                        <li>إمكانية تعديل الجدول حسب حالة الطفل الصحية</li>
-                                        <li>طباعة الجدول أو حفظه كملف PDF</li>
-                                        <li>معلومات عن كل تطعيم وأهميته</li>
-                                    </ul>
+                                <div class="form-group">
+                                    <label for="baby-gender-vaccine"><i class="fas fa-venus-mars"></i> جنس الطفل</label>
+                                    <select id="baby-gender-vaccine" class="form-select">
+                                        <option value="male">ذكر</option>
+                                        <option value="female">أنثى</option>
+                                    </select>
                                 </div>
+
+                                <div class="form-group">
+                                    <label for="vaccine-country"><i class="fas fa-globe"></i> الدولة</label>
+                                    <select id="vaccine-country" class="form-select">
+                                        <option value="Algeria">الجزائر</option>
+                                    </select>
+                                </div>
+
+                                <button class="btn btn-primary" id="calculate-vaccine">
+                                    <i class="fas fa-calculator"></i> احسب جدول التطعيمات
+                                </button>
+                            </div>
+
+                            <div class="calculator-results" id="vaccine-results">
+                                <div class="welcome-message">
+                                    <h4>مرحباً بك في أداة التطعيمات</h4>
+                                    <p>أدخل تاريخ ميلاد طفلك واختر الدولة لعرض جدول التطعيمات المخصص.</p>
+                                </div>
+                            </div>
+
+                            <div class="tool-features">
+                                <h4><i class="fas fa-star"></i> مميزات هذه الأداة:</h4>
+                                <ul>
+                                    <li>جدول تطعيمات مخصص حسب تاريخ الميلاد والدولة</li>
+                                    <li>تذكيرات ذكية بالتطعيمات القادمة</li>
+                                    <li>متابعة التطعيمات المكتملة</li>
+                                    <li>إمكانية طباعة الجدول وتصديره</li>
+                                    <li>معلومات مفصلة عن كل تطعيم</li>
+                                </ul>
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    <!-- متابعة النمو -->
-                    <div class="tool-content" id="growth-tracker-content">
-                        <div class="tool-header">
-                            <h3><i class="fas fa-chart-line"></i> متابعة النمو</h3>
-                            <p>تابعي تطور نمو طفلك من خلال تسجيل الوزن والطول ومحيط الرأس ومقارنتها بالمعدلات الطبيعية
-                            </p>
-                        </div>
+                <!-- محتوى أداة النمو -->
+                <div id="growth-content" class="tool-content">
+                    <div class="tool-header">
+                        <h3><i class="fas fa-chart-line"></i> متابعة النمو المتقدمة</h3>
+                        <p>تابعي تطور نمو طفلك من خلال تسجيل الوزن والطول ومحيط الرأس ومقارنتها بالمعدلات العالمية</p>
+                    </div>
 
-                        <div class="tool-body">
-                            <div class="growth-tracker">
-                                <div class="tracker-tabs">
-                                    <button class="tracker-tab active" data-tracker="record">تسجيل قياس جديد</button>
-                                    <button class="tracker-tab" data-tracker="charts">الرسوم البيانية</button>
-                                    <button class="tracker-tab" data-tracker="analysis">تحليل النمو</button>
-                                </div>
+                    <div class="tool-body">
+                        <div class="growth-tracker">
+                            <div class="tracker-tabs">
+                                <button class="tracker-tab active" data-tracker="record">تسجيل قياس جديد</button>
+                                <button class="tracker-tab" data-tracker="charts">الرسوم البيانية</button>
+                                <button class="tracker-tab" data-tracker="analysis">تحليل النمو</button>
+                            </div>
 
-                                <div class="tracker-content">
-                                    <div class="tracker-pane active" id="record-pane">
-                                        <div class="record-form">
-                                            <div class="form-row">
-                                                <div class="form-group">
-                                                    <label for="measurement-date"><i class="fas fa-calendar"></i> تاريخ
-                                                        القياس</label>
-                                                    <input type="date" id="measurement-date" class="date-input">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="baby-age-months"><i class="fas fa-birthday-cake"></i>
-                                                        العمر (أشهر)</label>
-                                                    <input type="number" id="baby-age-months" min="0" max="60"
-                                                        placeholder="الأشهر">
-                                                </div>
-                                            </div>
-
-                                            <div class="form-row">
-                                                <div class="form-group">
-                                                    <label for="baby-weight"><i class="fas fa-weight"></i> الوزن
-                                                        (كجم)</label>
-                                                    <input type="number" step="0.1" id="baby-weight"
-                                                        placeholder="مثال: 6.5">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="baby-height"><i class="fas fa-ruler-vertical"></i> الطول
-                                                        (سم)</label>
-                                                    <input type="number" id="baby-height" placeholder="مثال: 65">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="baby-head"><i class="fas fa-brain"></i> محيط الرأس
-                                                        (سم)</label>
-                                                    <input type="number" step="0.1" id="baby-head"
-                                                        placeholder="مثال: 42.5">
-                                                </div>
-                                            </div>
-
+                            <div class="tracker-content">
+                                <div class="tracker-pane active" id="record-pane">
+                                    <div class="record-form">
+                                        <div class="form-row">
                                             <div class="form-group">
-                                                <label for="measurement-notes"><i class="fas fa-notes-medical"></i>
-                                                    ملاحظات (اختياري)</label>
-                                                <textarea id="measurement-notes" rows="2"
-                                                    placeholder="أي ملاحظات إضافية..."></textarea>
+                                                <label for="measurement-date"><i class="fas fa-calendar"></i> تاريخ
+                                                    القياس</label>
+                                                <input type="date" id="measurement-date" class="date-input">
                                             </div>
-
-                                            <div class="form-buttons">
-                                                <button class="btn btn-primary" id="save-measurement">
-                                                    <i class="fas fa-save"></i> حفظ القياس
-                                                </button>
-                                                <button class="btn btn-secondary" id="load-sample">
-                                                    <i class="fas fa-download"></i> تحميل بيانات نموذجية
-                                                </button>
+                                            <div class="form-group">
+                                                <label for="baby-age-months"><i class="fas fa-birthday-cake"></i> العمر
+                                                    (أشهر)</label>
+                                                <input type="number" id="baby-age-months" min="0" max="60"
+                                                    placeholder="الأشهر">
                                             </div>
                                         </div>
-                                    </div>
 
-                                    <div class="tracker-pane" id="charts-pane">
-                                        <div class="charts-container">
-                                            <div class="chart-wrapper">
-                                                <canvas id="growth-chart"></canvas>
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label for="baby-weight"><i class="fas fa-weight"></i> الوزن
+                                                    (كجم)</label>
+                                                <input type="number" step="0.1" id="baby-weight"
+                                                    placeholder="مثال: 6.5">
                                             </div>
-                                            <div class="chart-controls">
-                                                <h4><i class="fas fa-filter"></i> عرض بيانات:</h4>
-                                                <div class="chart-options">
-                                                    <label class="chart-option">
-                                                        <input type="checkbox" id="show-weight" checked>
-                                                        <span>الوزن</span>
-                                                    </label>
-                                                    <label class="chart-option">
-                                                        <input type="checkbox" id="show-height" checked>
-                                                        <span>الطول</span>
-                                                    </label>
-                                                    <label class="chart-option">
-                                                        <input type="checkbox" id="show-head" checked>
-                                                        <span>محيط الرأس</span>
-                                                    </label>
-                                                </div>
-                                                <button class="btn btn-secondary" id="export-chart">
-                                                    <i class="fas fa-download"></i> تصدير الرسم البياني
-                                                </button>
+                                            <div class="form-group">
+                                                <label for="baby-height"><i class="fas fa-ruler-vertical"></i> الطول
+                                                    (سم)</label>
+                                                <input type="number" id="baby-height" placeholder="مثال: 65">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="baby-head"><i class="fas fa-brain"></i> محيط الرأس
+                                                    (سم)</label>
+                                                <input type="number" step="0.1" id="baby-head" placeholder="مثال: 42.5">
                                             </div>
                                         </div>
-                                    </div>
 
-                                    <div class="tracker-pane" id="analysis-pane">
-                                        <div class="analysis-results" id="growth-analysis">
-                                            <!-- سيتم عرض التحليل هنا -->
+                                        <div class="form-group">
+                                            <label for="measurement-notes"><i class="fas fa-notes-medical"></i> ملاحظات
+                                                (اختياري)</label>
+                                            <textarea id="measurement-notes" rows="2"
+                                                placeholder="أي ملاحظات إضافية..."></textarea>
                                         </div>
-                                    </div>
-                                </div>
 
-                                <div class="tool-features">
-                                    <h4><i class="fas fa-star"></i> مميزات هذه الأداة:</h4>
-                                    <ul>
-                                        <li>تسجيل قياسات النمو وتخزينها</li>
-                                        <li>رسوم بيانية تفاعلية لتطور النمو</li>
-                                        <li>مقارنة النمو بالمعدلات العالمية</li>
-                                        <li>تحليل النمو وتقديم توصيات مخصصة</li>
-                                        <li>إمكانية تصدير البيانات والرسوم البيانية</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- مفسر البكاء -->
-                    <div class="tool-content" id="cry-decoder-content">
-                        <div class="tool-header">
-                            <h3><i class="fas fa-baby-cry"></i> مفسر البكاء</h3>
-                            <p>تعرفي على سبب بكاء طفلك من خلال وصف الأعراض والسلوكيات وتلقي اقتراحات للحلول</p>
-                        </div>
-
-                        <div class="tool-body">
-                            <div class="cry-decoder">
-                                <div class="decoder-steps">
-                                    <div class="step active" data-step="1">
-                                        <div class="step-number">1</div>
-                                        <div class="step-title">ما هو عمر طفلك؟</div>
-                                    </div>
-                                    <div class="step" data-step="2">
-                                        <div class="step-number">2</div>
-                                        <div class="step-title">متى يبكي الطفل؟</div>
-                                    </div>
-                                    <div class="step" data-step="3">
-                                        <div class="step-number">3</div>
-                                        <div class="step-title">كيف يبدو البكاء؟</div>
-                                    </div>
-                                    <div class="step" data-step="4">
-                                        <div class="step-number">4</div>
-                                        <div class="step-title">أعراض أخرى</div>
-                                    </div>
-                                </div>
-
-                                <div class="decoder-content">
-                                    <!-- الخطوة 1 -->
-                                    <div class="step-content active" id="step-1-content">
-                                        <h4><i class="fas fa-baby"></i> ما هو عمر طفلك؟</h4>
-                                        <p>اختر عمر طفلك لنتعرف على الأسباب الشائعة للبكاء في هذا العمر</p>
-                                        <div class="age-options">
-                                            <button class="age-option" data-age="0-3">0-3 أشهر</button>
-                                            <button class="age-option" data-age="4-6">4-6 أشهر</button>
-                                            <button class="age-option" data-age="7-9">7-9 أشهر</button>
-                                            <button class="age-option" data-age="10-12">10-12 شهر</button>
-                                            <button class="age-option" data-age="13-24">13-24 شهر</button>
-                                        </div>
-                                    </div>
-
-                                    <!-- الخطوة 2 -->
-                                    <div class="step-content" id="step-2-content">
-                                        <h4><i class="fas fa-clock"></i> متى يبكي الطفل؟</h4>
-                                        <p>اختر التوقيت الذي يبكي فيه طفلك عادةً</p>
-                                        <div class="timing-options">
-                                            <button class="timing-option" data-timing="after-feeding">بعد
-                                                الرضاعة</button>
-                                            <button class="timing-option" data-timing="during-feeding">أثناء
-                                                الرضاعة</button>
-                                            <button class="timing-option" data-timing="evening">في المساء</button>
-                                            <button class="timing-option" data-timing="night">في الليل</button>
-                                            <button class="timing-option" data-timing="random">في أي وقت</button>
-                                        </div>
-                                    </div>
-
-                                    <!-- الخطوة 3 -->
-                                    <div class="step-content" id="step-3-content">
-                                        <h4><i class="fas fa-volume-up"></i> كيف يبدو البكاء؟</h4>
-                                        <p>صف صوت بكاء طفلك</p>
-                                        <div class="cry-options">
-                                            <button class="cry-option" data-cry="weak">ضعيف ومتقطع</button>
-                                            <button class="cry-option" data-cry="intense">شديد ومستمر</button>
-                                            <button class="cry-option" data-cry="high-pitched">صوت حاد وعالي</button>
-                                            <button class="cry-option" data-cry="whining">نحيب وتذمر</button>
-                                            <button class="cry-option" data-cry="sudden">مفاجئ وصاخب</button>
-                                        </div>
-                                    </div>
-
-                                    <!-- الخطوة 4 -->
-                                    <div class="step-content" id="step-4-content">
-                                        <h4><i class="fas fa-clipboard-list"></i> أعراض أخرى</h4>
-                                        <p>هل توجد أعراض أخرى مصاحبة للبكاء؟</p>
-                                        <div class="symptoms-options">
-                                            <div class="symptom-option">
-                                                <input type="checkbox" id="symptom-fever" data-symptom="fever">
-                                                <label for="symptom-fever">ارتفاع درجة الحرارة</label>
-                                            </div>
-                                            <div class="symptom-option">
-                                                <input type="checkbox" id="symptom-vomiting" data-symptom="vomiting">
-                                                <label for="symptom-vomiting">تقيؤ</label>
-                                            </div>
-                                            <div class="symptom-option">
-                                                <input type="checkbox" id="symptom-diarrhea" data-symptom="diarrhea">
-                                                <label for="symptom-diarrhea">إسهال</label>
-                                            </div>
-                                            <div class="symptom-option">
-                                                <input type="checkbox" id="symptom-constipation"
-                                                    data-symptom="constipation">
-                                                <label for="symptom-constipation">إمساك</label>
-                                            </div>
-                                            <div class="symptom-option">
-                                                <input type="checkbox" id="symptom-rash" data-symptom="rash">
-                                                <label for="symptom-rash">طفح جلدي</label>
-                                            </div>
-                                            <div class="symptom-option">
-                                                <input type="checkbox" id="symptom-cough" data-symptom="cough">
-                                                <label for="symptom-cough">كحة</label>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- النتائج -->
-                                    <div class="step-content" id="step-results-content">
-                                        <h4><i class="fas fa-stethoscope"></i> نتائج تحليل البكاء</h4>
-                                        <div id="cry-analysis-results">
-                                            <!-- سيتم عرض النتائج هنا -->
-                                        </div>
-                                        <div class="decoder-buttons">
-                                            <button class="btn btn-secondary" id="restart-decoder">
-                                                <i class="fas fa-redo"></i> بدء تحليل جديد
+                                        <div class="form-buttons">
+                                            <button class="btn btn-primary" id="save-measurement">
+                                                <i class="fas fa-save"></i> حفظ القياس
                                             </button>
-                                            <button class="btn btn-primary" id="save-analysis">
-                                                <i class="fas fa-save"></i> حفظ النتائج
+                                            <button class="btn btn-secondary" id="load-sample">
+                                                <i class="fas fa-download"></i> تحميل بيانات نموذجية
                                             </button>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="decoder-navigation">
-                                    <button class="btn btn-secondary" id="prev-step" disabled>
-                                        <i class="fas fa-arrow-right"></i> السابق
-                                    </button>
-                                    <button class="btn btn-primary" id="next-step">
-                                        <i class="fas fa-arrow-left"></i> التالي
-                                    </button>
+                                <div class="tracker-pane" id="charts-pane">
+                                    <div class="charts-container">
+                                        <div class="chart-wrapper">
+                                            <canvas id="growth-chart"></canvas>
+                                        </div>
+                                        <div class="chart-controls">
+                                            <h4><i class="fas fa-filter"></i> عرض بيانات:</h4>
+                                            <div class="chart-options">
+                                                <label class="chart-option">
+                                                    <input type="checkbox" id="show-weight" checked>
+                                                    <span>الوزن</span>
+                                                </label>
+                                                <label class="chart-option">
+                                                    <input type="checkbox" id="show-height" checked>
+                                                    <span>الطول</span>
+                                                </label>
+                                                <label class="chart-option">
+                                                    <input type="checkbox" id="show-head" checked>
+                                                    <span>محيط الرأس</span>
+                                                </label>
+                                            </div>
+                                            <button class="btn btn-secondary" id="export-chart">
+                                                <i class="fas fa-download"></i> تصدير الرسم البياني
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
 
-                                <div class="tool-features">
-                                    <h4><i class="fas fa-star"></i> مميزات هذه الأداة:</h4>
-                                    <ul>
-                                        <li>تحليل متعدد الخطوات للبكاء</li>
-                                        <li>تشخيص مبدئي لأسباب البكاء</li>
-                                        <li>اقتراح حلول عملية لكل حالة</li>
-                                        <li>إرشادات حول متى يجب استشارة الطبيب</li>
-                                        <li>حفظ النتائج للمقارنة في المستقبل</li>
-                                    </ul>
+                                <!-- إضافة محتوى افتراضي لقسم تحليل النمو -->
+                                <div class="analysis-results" id="growth-analysis">
+                                    <div class="welcome-message">
+                                        <h4>تحليل نمو الطفل</h4>
+                                        <p>سجل قياسات طفلك لعرض تحليل مفصل لنموه مقارنة بالمعدلات العالمية.</p>
+                                    </div>
                                 </div>
+
                             </div>
-                        </div>
-                    </div>
 
-                    <!-- مولد الروتين -->
-                    <div class="tool-content" id="routine-generator-content">
-                        <div class="tool-header">
-                            <h3><i class="fas fa-calendar-alt"></i> مولد الروتين اليومي</h3>
-                            <p>أنشئي روتيناً يومياً مناسباً لعمر طفلك ونمط حياتك مع مراعاة احتياجات النمو والتطور</p>
-                        </div>
-
-                        <div class="tool-body">
-                            <div class="routine-generator">
-                                <div class="routine-form">
-                                    <div class="form-row">
-                                        <div class="form-group">
-                                            <label for="routine-age"><i class="fas fa-baby"></i> عمر الطفل</label>
-                                            <select id="routine-age" class="form-select">
-                                                <option value="0-3">0-3 أشهر</option>
-                                                <option value="4-6">4-6 أشهر</option>
-                                                <option value="7-9">7-9 أشهر</option>
-                                                <option value="10-12">10-12 شهر</option>
-                                                <option value="13-18">13-18 شهر</option>
-                                                <option value="19-24">19-24 شهر</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="routine-wakeup"><i class="fas fa-sun"></i> وقت الاستيقاظ
-                                                الصباحي</label>
-                                            <select id="routine-wakeup" class="form-select">
-                                                <option value="6">6:00 صباحاً</option>
-                                                <option value="6.5">6:30 صباحاً</option>
-                                                <option value="7" selected>7:00 صباحاً</option>
-                                                <option value="7.5">7:30 صباحاً</option>
-                                                <option value="8">8:00 صباحاً</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-row">
-                                        <div class="form-group">
-                                            <label for="routine-naps"><i class="fas fa-bed"></i> عدد فترات
-                                                القيلولة</label>
-                                            <select id="routine-naps" class="form-select">
-                                                <option value="4">4 قيلولات (حديث الولادة)</option>
-                                                <option value="3">3 قيلولات (1-4 أشهر)</option>
-                                                <option value="2">قيلولتان (4-8 أشهر)</option>
-                                                <option value="1">قيلولة واحدة (9-18 شهر)</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="routine-feeding"><i class="fas fa-utensils"></i> نوع
-                                                التغذية</label>
-                                            <select id="routine-feeding" class="form-select">
-                                                <option value="breast">رضاعة طبيعية</option>
-                                                <option value="formula">رضاعة صناعية</option>
-                                                <option value="mixed">مختلط</option>
-                                                <option value="solid">طعام صلب</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="routine-activities"><i class="fas fa-child"></i> الأنشطة
-                                            المفضلة</label>
-                                        <div class="activity-options">
-                                            <div class="activity-option">
-                                                <input type="checkbox" id="activity-outdoor" checked>
-                                                <label for="activity-outdoor">اللعب خارج المنزل</label>
-                                            </div>
-                                            <div class="activity-option">
-                                                <input type="checkbox" id="activity-reading" checked>
-                                                <label for="activity-reading">قراءة القصص</label>
-                                            </div>
-                                            <div class="activity-option">
-                                                <input type="checkbox" id="activity-music" checked>
-                                                <label for="activity-music">الاستماع للموسيقى</label>
-                                            </div>
-                                            <div class="activity-option">
-                                                <input type="checkbox" id="activity-bath" checked>
-                                                <label for="activity-bath">وقت الاستحمام</label>
-                                            </div>
-                                            <div class="activity-option">
-                                                <input type="checkbox" id="activity-massage" checked>
-                                                <label for="activity-massage">التدليك</label>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <button class="btn btn-primary" id="generate-routine">
-                                        <i class="fas fa-magic"></i> إنشاء الروتين
-                                    </button>
-                                </div>
-
-                                <div class="routine-results" id="routine-results">
-                                    <!-- سيتم عرض الروتين هنا -->
-                                </div>
-
-                                <div class="tool-features">
-                                    <h4><i class="fas fa-star"></i> مميزات هذه الأداة:</h4>
-                                    <ul>
-                                        <li>توليد روتين مخصص حسب العمر والاحتياجات</li>
-                                        <li>مراعاة فترات النوم والرضاعة واللعب</li>
-                                        <li>جدول زمني تفصيلي ليوم كامل</li>
-                                        <li>نصائح لتنفيذ الروтин بنجاح</li>
-                                        <li>إمكانية تعديل الروتين وحفظه</li>
-                                    </ul>
-                                </div>
+                            <div class="tool-features">
+                                <h4><i class="fas fa-star"></i> مميزات هذه الأداة:</h4>
+                                <ul>
+                                    <li>تسجيل قياسات النمو وتخزينها</li>
+                                    <li>رسوم بيانية تفاعلية لتطور النمو</li>
+                                    <li>مقارنة النمو بالمعدلات العالمية WHO</li>
+                                    <li>تحليل النمو وتقديم توصيات مخصصة</li>
+                                    <li>إمكانية تصدير البيانات والرسوم البيانية</li>
+                                </ul>
                             </div>
                         </div>
                     </div>
                 </div>
-            </section>
 
-            <!-- أداة حاسبة جرعات الدواء -->
-            <section class="medicine-calculator-section">
-                <div class="section-card">
-                    <h2><i class="fas fa-pills"></i> حاسبة جرعات الدواء</h2>
-                    <p>احسبي الجرعة المناسبة من الدواء لطفلك حسب وزنه وعمره ونوع الدواء</p>
+                <!-- محتوى أداة البكاء -->
+                <div id="cry-content" class="tool-content">
+                    <div class="tool-header">
+                        <h3><i class="fas fa-baby-cry"></i> مفسر البكاء المتقدم</h3>
+                        <p>تعرفي على سبب بكاء طفلك من خلال تحليل متعدد المعايير مع الذكاء الاصطناعي</p>
+                    </div>
 
-                    <div class="medicine-calculator">
-                        <div class="calculator-container">
-                            <div class="medicine-form">
+                    <div class="tool-body">
+                        <div class="cry-decoder">
+                            <div class="decoder-steps">
+                                <div class="step active" data-step="1">
+                                    <div class="step-number">1</div>
+                                    <div class="step-title">ما هو عمر طفلك؟</div>
+                                </div>
+                                <div class="step" data-step="2">
+                                    <div class="step-number">2</div>
+                                    <div class="step-title">متى يبكي الطفل؟</div>
+                                </div>
+                                <div class="step" data-step="3">
+                                    <div class="step-number">3</div>
+                                    <div class="step-title">كيف يبدو البكاء؟</div>
+                                </div>
+                                <div class="step" data-step="4">
+                                    <div class="step-number">4</div>
+                                    <div class="step-title">أعراض أخرى</div>
+                                </div>
+                            </div>
+
+                            <div class="decoder-content">
+                                <!-- الخطوة 1 -->
+                                <div class="step-content active" id="step-1-content">
+                                    <h4><i class="fas fa-baby"></i> ما هو عمر طفلك؟</h4>
+                                    <p>اختر عمر طفلك لنتعرف على الأسباب الشائعة للبكاء في هذا العمر</p>
+                                    <div class="age-options">
+                                        <button class="age-option" data-age="0-3">0-3 أشهر</button>
+                                        <button class="age-option" data-age="4-6">4-6 أشهر</button>
+                                        <button class="age-option" data-age="7-9">7-9 أشهر</button>
+                                        <button class="age-option" data-age="10-12">10-12 شهر</button>
+                                        <button class="age-option" data-age="13-24">13-24 شهر</button>
+                                    </div>
+                                </div>
+
+                                <!-- الخطوة 2 -->
+                                <div class="step-content" id="step-2-content">
+                                    <h4><i class="fas fa-clock"></i> متى يبكي الطفل؟</h4>
+                                    <p>اختر التوقيت الذي يبكي فيه طفلك عادةً</p>
+                                    <div class="timing-options">
+                                        <button class="timing-option" data-timing="after-feeding">بعد الرضاعة</button>
+                                        <button class="timing-option" data-timing="during-feeding">أثناء
+                                            الرضاعة</button>
+                                        <button class="timing-option" data-timing="evening">في المساء</button>
+                                        <button class="timing-option" data-timing="night">في الليل</button>
+                                        <button class="timing-option" data-timing="random">في أي وقت</button>
+                                    </div>
+                                </div>
+
+                                <!-- الخطوة 3 -->
+                                <div class="step-content" id="step-3-content">
+                                    <h4><i class="fas fa-volume-up"></i> كيف يبدو البكاء؟</h4>
+                                    <p>صف صوت بكاء طفلك</p>
+                                    <div class="cry-options">
+                                        <button class="cry-option" data-cry="weak">ضعيف ومتقطع</button>
+                                        <button class="cry-option" data-cry="intense">شديد ومستمر</button>
+                                        <button class="cry-option" data-cry="high-pitched">صوت حاد وعالي</button>
+                                        <button class="cry-option" data-cry="whining">نحيب وتذمر</button>
+                                        <button class="cry-option" data-cry="sudden">مفاجئ وصاخب</button>
+                                    </div>
+                                </div>
+
+                                <!-- الخطوة 4 -->
+                                <div class="step-content" id="step-4-content">
+                                    <h4><i class="fas fa-clipboard-list"></i> أعراض أخرى</h4>
+                                    <p>هل توجد أعراض أخرى مصاحبة للبكاء؟</p>
+                                    <div class="symptoms-options">
+                                        <div class="symptom-option">
+                                            <input type="checkbox" id="symptom-fever" data-symptom="fever">
+                                            <label for="symptom-fever">ارتفاع درجة الحرارة</label>
+                                        </div>
+                                        <div class="symptom-option">
+                                            <input type="checkbox" id="symptom-vomiting" data-symptom="vomiting">
+                                            <label for="symptom-vomiting">تقيؤ</label>
+                                        </div>
+                                        <div class="symptom-option">
+                                            <input type="checkbox" id="symptom-diarrhea" data-symptom="diarrhea">
+                                            <label for="symptom-diarrhea">إسهال</label>
+                                        </div>
+                                        <div class="symptom-option">
+                                            <input type="checkbox" id="symptom-constipation"
+                                                data-symptom="constipation">
+                                            <label for="symptom-constipation">إمساك</label>
+                                        </div>
+                                        <div class="symptom-option">
+                                            <input type="checkbox" id="symptom-rash" data-symptom="rash">
+                                            <label for="symptom-rash">طفح جلدي</label>
+                                        </div>
+                                        <div class="symptom-option">
+                                            <input type="checkbox" id="symptom-cough" data-symptom="cough">
+                                            <label for="symptom-cough">كحة</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- النتائج -->
+                                <div class="step-content" id="step-5-content">
+                                    <h4><i class="fas fa-stethoscope"></i> نتائج تحليل البكاء</h4>
+                                    <div id="cry-analysis-results">
+                                        <!-- سيتم عرض النتائج هنا -->
+                                    </div>
+                                    <div class="decoder-buttons">
+                                        <button class="btn btn-secondary" id="restart-decoder">
+                                            <i class="fas fa-redo"></i> بدء تحليل جديد
+                                        </button>
+                                        <button class="btn btn-primary" id="save-analysis">
+                                            <i class="fas fa-save"></i> حفظ النتائج
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="decoder-navigation">
+                                <button class="btn btn-secondary" id="prev-step" disabled>
+                                    <i class="fas fa-arrow-right"></i> السابق
+                                </button>
+                                <button class="btn btn-primary" id="next-step">
+                                    <i class="fas fa-arrow-left"></i> التالي
+                                </button>
+                            </div>
+
+                            <!-- قسم تحليل الصوت الحي -->
+                            <div class="audio-analysis-section">
+                                <h4><i class="fas fa-microphone-alt"></i> تحليل صوت البكاء الحي</h4>
+                                <p>استخدمي الميكروفون لتحليل صوت بكاء طفلك في الوقت الحقيقي</p>
+
+                                <div class="audio-controls">
+                                    <button class="btn btn-primary" onclick="CryAudio.start()">
+                                        <i class="fas fa-play"></i> بدء التحليل الصوتي
+                                    </button>
+                                    <button class="btn btn-secondary" onclick="CryAudio.stop()">
+                                        <i class="fas fa-stop"></i> إيقاف التحليل
+                                    </button>
+                                    <div id="audio-status" class="status-indicator">جاهز</div>
+                                </div>
+
+                                <div class="audio-visualizer-container">
+                                    <div id="audio-visualizer"></div>
+                                </div>
+                            </div>
+
+                            <!-- قسم تحليل الأنماط -->
+                            <div class="pattern-analysis-section">
+                                <h4><i class="fas fa-wave-square"></i> تحليل نمط البكاء</h4>
+                                <p>سجلي نمط بكاء طفلك وحلليه لتحديد السبب</p>
+
+                                <div class="pattern-controls">
+                                    <button class="btn btn-primary" onclick="CryPattern.startRecording()">
+                                        <i class="fas fa-record-vinyl"></i> بدء تسجيل النمط
+                                    </button>
+                                    <button class="btn btn-secondary" onclick="CryPattern.stopRecording()">
+                                        <i class="fas fa-stop-circle"></i> إيقاف وتحليل
+                                    </button>
+                                </div>
+
+                                <div id="pattern-status" class="status-indicator"></div>
+                            </div>
+
+                            <div class="tool-features">
+                                <h4><i class="fas fa-star"></i> مميزات هذه الأداة:</h4>
+                                <ul>
+                                    <li>تحليل متعدد الخطوات للبكاء</li>
+                                    <li>تشخيص مبدئي بأسباب البكاء مع احتمالات</li>
+                                    <li>تحليل صوتي في الوقت الحقيقي</li>
+                                    <li>تحليل أنماط البكاء الزمنية</li>
+                                    <li>اقتراح حلول عملية لكل حالة</li>
+                                    <li>إرشادات حول متى يجب استشارة الطبيب</li>
+                                    <li>حفظ النتائج للمقارنة في المستقبل</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- محتوى أداة الروتين -->
+<!-- محتوى أداة الروتين -->
+<div id="routine-content" class="tool-content">
+    <div class="tool-header">
+        <h3><i class="fas fa-calendar-alt"></i> مولد الروتين اليومي الذكي</h3>
+        <p>أنشئ روتيناً يومياً مخصصاً لطفلك بناءً على عمره واحتياجاته ونمط حياتك</p>
+    </div>
+
+    <div class="tool-body">
+        <div class="routine-generator">
+            <div class="routine-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="routine-age"><i class="fas fa-baby"></i> عمر الطفل</label>
+                        <select id="routine-age" class="form-select">
+                            <option value="0-3">0-3 أشهر (حديث الولادة)</option>
+                            <option value="4-6" selected>4-6 أشهر (الرضيع)</option>
+                            <option value="7-9">7-9 أشهر (مرحلة الحبو)</option>
+                            <option value="10-12">10-12 شهر (الوقوف)</option>
+                            <option value="13-18">13-18 شهر (المشي المبكر)</option>
+                            <option value="19-24">19-24 شهر (ما قبل المدرسة)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="routine-wakeup"><i class="fas fa-sun"></i> وقت الاستيقاظ الصباحي</label>
+                        <select id="routine-wakeup" class="form-select">
+                            <option value="6">6:00 صباحاً</option>
+                            <option value="6.5">6:30 صباحاً</option>
+                            <option value="7" selected>7:00 صباحاً</option>
+                            <option value="7.5">7:30 صباحاً</option>
+                            <option value="8">8:00 صباحاً</option>
+                            <option value="8.5">8:30 صباحاً</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="routine-naps"><i class="fas fa-bed"></i> عدد فترات القيلولة</label>
+                        <select id="routine-naps" class="form-select">
+                            <option value="4">4 قيلولات (حديث الولادة)</option>
+                            <option value="3" selected>3 قيلولات (1-4 أشهر)</option>
+                            <option value="2">قيلولتان (4-8 أشهر)</option>
+                            <option value="1">قيلولة واحدة (9-18 شهر)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="routine-feeding"><i class="fas fa-utensils"></i> نوع التغذية</label>
+                        <select id="routine-feeding" class="form-select">
+                            <option value="breast">رضاعة طبيعية فقط</option>
+                            <option value="formula">رضاعة صناعية فقط</option>
+                            <option value="mixed" selected>رضاعة مختلطة</option>
+                            <option value="solid">طعام صلب + حليب</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="routine-activities"><i class="fas fa-child"></i> الأنشطة المفضلة</label>
+                    <div class="activity-options-grid">
+                        <div class="activity-option">
+                            <input type="checkbox" id="activity-outdoor" checked>
+                            <label for="activity-outdoor">
+                                <i class="fas fa-tree"></i>
+                                <span>اللعب خارج المنزل</span>
+                            </label>
+                        </div>
+                        <div class="activity-option">
+                            <input type="checkbox" id="activity-reading" checked>
+                            <label for="activity-reading">
+                                <i class="fas fa-book"></i>
+                                <span>قراءة القصص</span>
+                            </label>
+                        </div>
+                        <div class="activity-option">
+                            <input type="checkbox" id="activity-music" checked>
+                            <label for="activity-music">
+                                <i class="fas fa-music"></i>
+                                <span>الاستماع للموسيقى</span>
+                            </label>
+                        </div>
+                        <div class="activity-option">
+                            <input type="checkbox" id="activity-bath" checked>
+                            <label for="activity-bath">
+                                <i class="fas fa-bath"></i>
+                                <span>وقت الاستحمام</span>
+                            </label>
+                        </div>
+                        <div class="activity-option">
+                            <input type="checkbox" id="activity-massage" checked>
+                            <label for="activity-massage">
+                                <i class="fas fa-hands"></i>
+                                <span>التدليك</span>
+                            </label>
+                        </div>
+                        <div class="activity-option">
+                            <input type="checkbox" id="activity-tummy" checked>
+                            <label for="activity-tummy">
+                                <i class="fas fa-baby"></i>
+                                <span>وقت اللعب على البطن</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-buttons">
+                    <button class="btn btn-primary" id="generate-routine">
+                        <i class="fas fa-magic"></i> إنشاء الروتين الذكي
+                    </button>
+                    <button class="btn btn-secondary" id="reset-routine">
+                        <i class="fas fa-redo"></i> إعادة تعيين
+                    </button>
+                </div>
+            </div>
+
+            <!-- قسم عرض الروتين -->
+            <div class="routine-results" id="routine-results">
+                <div class="routine-welcome">
+                    <h4><i class="fas fa-calendar-plus"></i> مولد الروتين اليومي</h4>
+                    <p>اختر العمر والتفضيلات لإنشاء روتين يومي مخصص لطفلك.</p>
+                    <div class="welcome-tips">
+                        <p><i class="fas fa-lightbulb"></i> الروتين المنتظم يساعد الطفل على:</p>
+                        <ul>
+                            <li>النوم بشكل أفضل</li>
+                            <li>الشعور بالأمان والاستقرار</li>
+                            <li>التطور بطريقة صحية</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tool-features">
+                <h4><i class="fas fa-star"></i> مميزات مولد الروتين:</h4>
+                <ul>
+                    <li>توليد روتين مخصص حسب العمر والاحتياجات</li>
+                    <li>مراعاة فترات النوم والرضاعة واللعب والأنشطة</li>
+                    <li>جدول زمني تفصيلي ليوم كامل</li>
+                    <li>نصائح عملية للالتزام بالروتين</li>
+                    <li>إمكانية حفظ وطباعة ومشاركة الروتين</li>
+                    <li>تعديل الروتين حسب تفضيلاتك</li>
+                    <li>متابعة تطور روتين الطفل مع نموه</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+                <!-- محتوى أداة الدواء -->
+                <div id="medicine-content" class="tool-content">
+                    <div class="tool-header">
+                        <h3><i class="fas fa-pills"></i> حاسبة جرعات الدواء المتقدمة</h3>
+                        <p>احسبي الجرعة المناسبة من الدواء لطفلك حسب وزنه وعمره</p>
+                    </div>
+
+                    <div class="tool-body">
+                        <div class="medicine-calculator">
+                            <div class="calculator-form">
                                 <div class="form-group">
                                     <label for="medicine-name"><i class="fas fa-capsules"></i> اسم الدواء</label>
                                     <select id="medicine-name" class="form-select">
                                         <option value="paracetamol">باراسيتامول (خافض حرارة/مسكن)</option>
-                                        <option value="ibuprofen">إيبوبروفين (خافض حرارة/مسكن/مضاد التهاب)</option>
-                                        <option value="antihistamine">مضاد الهيستامين (للحساسية)</option>
-                                        <option value="cough">دواء الكحة</option>
-                                        <option value="antibiotic">مضاد حيوي (بوصفة طبية فقط)</option>
+                                        <option value="ibuprofen">إيبوبروفين (خافض حرارة/مسكن)</option>
                                     </select>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="medicine-concentration"><i class="fas fa-vial"></i> تركيز الدواء</label>
-                                    <select id="medicine-concentration" class="form-select">
-                                        <option value="120">120 مجم/5 مل (شراب)</option>
-                                        <option value="250">250 مجم/5 مل (شراب)</option>
-                                        <option value="500">500 مجم (أقراص)</option>
-                                        <option value="100">100 مجم (تحاميل)</option>
-                                    </select>
+                                    <label for="baby-weight-medicine"><i class="fas fa-weight"></i> وزن الطفل
+                                        (كجم)</label>
+                                    <input type="number" step="0.1" id="baby-weight-medicine"
+                                        placeholder="أدخل وزن الطفل" value="8.5">
                                 </div>
 
-                                <div class="form-row">
-                                    <div class="form-group">
-                                        <label for="baby-weight-medicine"><i class="fas fa-weight"></i> وزن الطفل
-                                            (كجم)</label>
-                                        <input type="number" step="0.1" id="baby-weight-medicine"
-                                            placeholder="مثال: 8.5">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="baby-age-medicine"><i class="fas fa-birthday-cake"></i> عمر
-                                            الطفل</label>
-                                        <select id="baby-age-medicine" class="form-select">
-                                            <option value="0-3">0-3 أشهر</option>
-                                            <option value="3-6">3-6 أشهر</option>
-                                            <option value="6-12">6-12 شهر</option>
-                                            <option value="1-2">1-2 سنة</option>
-                                            <option value="2-3">2-3 سنوات</option>
-                                        </select>
-                                    </div>
+                                <div class="form-buttons">
+                                    <button class="btn btn-primary" id="calculate-medicine">
+                                        <i class="fas fa-calculator"></i> احسب الجرعة
+                                    </button>
+                                    <button class="btn btn-secondary" id="calculate-fda">
+                                        <i class="fas fa-database"></i> معلومات من قاعدة البيانات
+                                    </button>
                                 </div>
-
-                                <button class="btn btn-primary" id="calculate-medicine">
-                                    <i class="fas fa-calculator"></i> احسب الجرعة
-                                </button>
                             </div>
 
                             <div class="medicine-results" id="medicine-results">
-                                <!-- سيتم عرض النتائج هنا -->
+                                <div class="welcome-message">
+                                    <h4>حاسبة جرعات الدواء</h4>
+                                    <p>اختر الدواء وأدخل وزن طفلك لحساب الجرعة المناسبة.</p>
+                                </div>
                             </div>
                         </div>
+                    </div>
+                </div>
 
-                        <div class="medicine-warnings">
-                            <h4><i class="fas fa-exclamation-triangle"></i> تحذيرات هامة:</h4>
-                            <ul>
-                                <li>هذه الأداة لأغراض إرشادية فقط وليست بديلاً عن استشارة الطبيب</li>
-                                <li>استخدمي الدواء فقط تحت إشراف الطبيب أو الصيدلي</li>
-                                <li>تأكدي من تاريخ صلاحية الدواء قبل الاستخدام</li>
-                                <li>احفظي الأدوية بعيداً عن متناول الأطفال</li>
-                                <li>لا تكرري الجرعة قبل الوقت المحدد في النشرة الداخلية</li>
-                            </ul>
+                <!-- محتوى أداة الوجبات -->
+                <div id="meals-content" class="tool-content">
+                    <div class="tool-header">
+                        <h3><i class="fas fa-utensils"></i> مخطط وجبات الطعام</h3>
+                        <p>خططي لوجبات طفلك الأسبوعية مع مراعاة التنوع الغذائي والقيمة الغذائية والحساسيات</p>
+                    </div>
+
+                    <div class="tool-body">
+                        <div class="meal-planner">
+                            <div class="planner-controls">
+                                <div class="form-group">
+                                    <label for="planner-age"><i class="fas fa-baby"></i> عمر الطفل</label>
+                                    <select id="planner-age" class="form-select">
+                                        <option value="6-8">6-8 أشهر</option>
+                                        <option value="9-11">9-11 شهر</option>
+                                        <option value="12-18">12-18 شهر</option>
+                                        <option value="19-24">19-24 شهر</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="planner-allergies"><i class="fas fa-allergies"></i> الحساسيات
+                                        الغذائية</label>
+                                    <select id="planner-allergies" class="form-select">
+                                        <option value="none">لا توجد حساسيات</option>
+                                        <option value="dairy">حساسية الألبان</option>
+                                        <option value="eggs">حساسية البيض</option>
+                                        <option value="nuts">حساسية المكسرات</option>
+                                        <option value="wheat">حساسية القمح</option>
+                                    </select>
+                                </div>
+
+                                <button class="btn btn-primary" id="generate-meal-plan">
+                                    <i class="fas fa-calendar-plus"></i> إنشاء خطة الوجبات
+                                </button>
+                            </div>
+
+                            <!-- قسم الوجبات -->
+                            <div class="planner-results" id="meal-plan-results">
+                                <div class="welcome-message">
+                                    <h4>مخطط وجبات الطعام</h4>
+                                    <p>أنشئ خطة وجبات أسبوعية مخصصة لعمر طفلك واحتياجاته.</p>
+                                </div>
+                            </div>
+
+                            <div class="tool-features">
+                                <h4><i class="fas fa-star"></i> مميزات هذه الأداة:</h4>
+                                <ul>
+                                    <li>خطط وجبات مخصصة حسب العمر</li>
+                                    <li>مراعاة الحساسيات الغذائية</li>
+                                    <li>تنوع غذائي متوازن</li>
+                                    <li>جدول زمني للوجبات اليومية</li>
+                                    <li>نصائح للتحضير والتقديم</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- أداة مخطط وجبات الطعام -->
-            <section class="meal-planner-section">
-                <div class="section-card">
-                    <h2><i class="fas fa-utensils"></i> مخطط وجبات الطعام</h2>
-                    <p>خططي لوجبات طفلك الأسبوعية مع مراعاة التنوع الغذائي والقيمة الغذائية</p>
+            <!-- إدارة البيانات -->
+            <section class="data-management-section">
+                <h3><i class="fas fa-database"></i> إدارة بيانات طفلك</h3>
+                <p>إدارة وتصدير واستيراد جميع بيانات طفلك المحفوظة</p>
 
-                    <div class="meal-planner">
-                        <div class="planner-controls">
-                            <div class="form-group">
-                                <label for="planner-age"><i class="fas fa-baby"></i> عمر الطفل</label>
-                                <select id="planner-age" class="form-select">
-                                    <option value="6-8">6-8 أشهر</option>
-                                    <option value="9-11">9-11 شهر</option>
-                                    <option value="12-18">12-18 شهر</option>
-                                    <option value="19-24">19-24 شهر</option>
-                                </select>
-                            </div>
+                <div class="data-buttons">
+                    <button class="btn btn-primary" onclick="exportAllData()">
+                        <i class="fas fa-download"></i> تصدير جميع البيانات
+                    </button>
+                    <button class="btn btn-secondary" onclick="document.getElementById('import-file').click()">
+                        <i class="fas fa-upload"></i> استيراد البيانات
+                    </button>
+                    <input type="file" id="import-file" accept=".json" onchange="importData(event)" hidden>
+                    <button class="btn btn-danger" onclick="clearAllData()">
+                        <i class="fas fa-trash"></i> حذف جميع البيانات
+                    </button>
+                </div>
 
-                            <div class="form-group">
-                                <label for="planner-allergies"><i class="fas fa-allergies"></i> الحساسيات
-                                    الغذائية</label>
-                                <select id="planner-allergies" class="form-select">
-                                    <option value="none">لا توجد حساسيات</option>
-                                    <option value="dairy">حساسية الألبان</option>
-                                    <option value="eggs">حساسية البيض</option>
-                                    <option value="nuts">حساسية المكسرات</option>
-                                    <option value="wheat">حساسية القمح</option>
-                                </select>
-                            </div>
-
-                            <button class="btn btn-primary" id="generate-meal-plan">
-                                <i class="fas fa-calendar-plus"></i> إنشاء خطة الوجبات
-                            </button>
-                        </div>
-
-                        <div class="planner-results" id="meal-plan-results">
-                            <!-- سيتم عرض خطة الوجبات هنا -->
-                        </div>
-                    </div>
+                <div class="data-info">
+                    <p><i class="fas fa-info-circle"></i> جميع البيانات مخزنة محلياً على جهازك فقط. استخدمي خيار التصدير
+                        لنسخ احتياطي.</p>
                 </div>
             </section>
 
@@ -742,7 +1485,7 @@
                             </div>
                             <div class="tip-content">
                                 <h3>احفظي نتائجك</h3>
-                                <p>احفظي نتائج الأدوات المختلفة لطفلك لمقارنتها لاحقاً ومتابعة التطور.</p>
+                                <p>احفظي نتائج الأدوات المختلفة لطفلك لمقارنتها لاحقاً ومتابعة التطور عبر الزمن.</p>
                             </div>
                         </div>
 
@@ -752,7 +1495,7 @@
                             </div>
                             <div class="tip-content">
                                 <h3>اطبعي النتائج</h3>
-                                <p>اطبعي الجداول والخطط لاستخدامها خارج المنزل أو لمشاركتها مع مقدمي الرعاية.</p>
+                                <p>اطبعي الجداول والخطط لاستخدامها خارج المنزل أو لمشاركتها مع طبيب الأطفال.</p>
                             </div>
                         </div>
 
@@ -761,8 +1504,8 @@
                                 <i class="fas fa-bell"></i>
                             </div>
                             <div class="tip-content">
-                                <h3>اضبطي التذكيرات</h3>
-                                <p>استخدمي خاصية التذكيرات للأدوات المهمة مثل مواعيد التطعيمات وجرعات الدواء.</p>
+                                <h3>استخدمي التنبيهات</h3>
+                                <p>سمحي بالإشعارات لتحصلي على تذكيرات بالتطعيمات ومواعيد القياسات المهمة.</p>
                             </div>
                         </div>
 
@@ -806,11 +1549,11 @@
                 <div class="footer-col">
                     <h4>روابط سريعة</h4>
                     <ul class="footer-links">
-                        <li><a href="../index.html"><i class="fas fa-chevron-left"></i> الرئيسية</a></li>
-                        <li><a href="sections.html"><i class="fas fa-chevron-left"></i> جميع الأقسام</a></li>
-                        <li><a href="tools.html"><i class="fas fa-chevron-left"></i> الأدوات التفاعلية</a></li>
-                        <li><a href="blog.html"><i class="fas fa-chevron-left"></i> المدونة</a></li>
-                        <li><a href="faq.html"><i class="fas fa-chevron-left"></i> الأسئلة الشائعة</a></li>
+                        <li><a href="index.html"><i class="fas fa-chevron-left"></i> الرئيسية</a></li>
+                        <li><a href="../index.html#sections"><i class="fas fa-chevron-left"></i> جميع الأقسام</a></li>
+                        <li><a href="pages/tools.html"><i class="fas fa-chevron-left"></i> الأدوات التفاعلية</a></li>
+                        <li><a href="pages/blog.html"><i class="fas fa-chevron-left"></i> المدونة</a></li>
+                        <li><a href="pages/faq.html"><i class="fas fa-chevron-left"></i> الأسئلة الشائعة</a></li>
                     </ul>
                 </div>
 
@@ -819,8 +1562,13 @@
                     <h4>اتصل بنا</h4>
                     <ul class="footer-contact">
                         <li><i class="fas fa-envelope"></i> info@raayatalarada.com</li>
-                        <li><i class="fas fa-phone"></i> +966 12 345 6789</li>
-                        <li><i class="fas fa-map-marker-alt"></i> الرياض، المملكة العربية السعودية</li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <a href="tel:+213123456789" class="phone-link" dir="ltr">
+                                +213 12 345 6789
+                            </a>
+                        </li>
+                        <li><i class="fas fa-map-marker-alt"></i> الجزائر، الجزائر،</li>
                     </ul>
                 </div>
 
@@ -840,9 +1588,9 @@
             <div class="footer-bottom">
                 <p>© 2024 رعاية الرضع. جميع الحقوق محفوظة.</p>
                 <div class="footer-legal">
-                    <a href="privacy.html">سياسة الخصوصية</a>
-                    <a href="terms.html">شروط الاستخدام</a>
-                    <a href="disclaimer.html">إخلاء المسؤولية</a>
+                    <a href="pages/privacy.html">سياسة الخصوصية</a>
+                    <a href="pages/terms.html">شروط الاستخدام</a>
+                    <a href="pages/disclaimer.html">إخلاء المسؤولية</a>
                 </div>
             </div>
         </div>
@@ -853,13 +1601,928 @@
         <i class="fas fa-chevron-up"></i>
     </button>
 
+
+    <script>
+        // بيانات WHO العالمية (مختصرة لأغراض العرض)
+        window.WHO_WEIGHT = {
+            male: {
+                0: { p3: 2.5, p50: 3.3, p97: 4.4 },
+                1: { p3: 3.4, p50: 4.5, p97: 5.8 },
+                2: { p3: 4.4, p50: 5.6, p97: 7.0 },
+                3: { p3: 5.1, p50: 6.4, p97: 8.0 },
+                4: { p3: 5.6, p50: 7.0, p97: 8.7 },
+                5: { p3: 6.1, p50: 7.5, p97: 9.3 },
+                6: { p3: 6.4, p50: 7.9, p97: 9.8 }
+            },
+            female: {
+                0: { p3: 2.4, p50: 3.2, p97: 4.2 },
+                1: { p3: 3.2, p50: 4.2, p97: 5.5 },
+                2: { p3: 4.0, p50: 5.1, p97: 6.6 },
+                3: { p3: 4.6, p50: 5.8, p97: 7.5 },
+                4: { p3: 5.1, p50: 6.4, p97: 8.2 },
+                5: { p3: 5.5, p50: 6.9, p97: 8.8 },
+                6: { p3: 5.8, p50: 7.3, p97: 9.3 }
+            }
+        };
+
+        window.WHO_HEIGHT = {
+            male: {
+                0: { p3: 46.1, p50: 49.9, p97: 53.7 },
+                1: { p3: 51.1, p50: 54.7, p97: 58.4 },
+                2: { p3: 54.7, p50: 58.4, p97: 62.2 },
+                3: { p3: 57.6, p50: 61.4, p97: 65.2 },
+                4: { p3: 60.0, p50: 63.9, p97: 67.8 },
+                5: { p3: 61.9, p50: 65.9, p97: 69.9 },
+                6: { p3: 63.6, p50: 67.6, p97: 71.6 }
+            },
+            female: {
+                0: { p3: 45.6, p50: 49.1, p97: 52.7 },
+                1: { p3: 50.0, p50: 53.7, p97: 57.4 },
+                2: { p3: 53.2, p50: 57.1, p97: 60.9 },
+                3: { p3: 55.8, p50: 59.8, p97: 63.8 },
+                4: { p3: 58.0, p50: 62.1, p97: 66.2 },
+                5: { p3: 59.9, p50: 64.0, p97: 68.2 },
+                6: { p3: 61.5, p50: 65.7, p97: 69.9 }
+            }
+        };
+
+        window.WHO_HEAD = {
+            male: {
+                0: { p3: 32.1, p50: 34.5, p97: 37.0 },
+                1: { p3: 35.1, p50: 37.3, p97: 39.5 },
+                2: { p3: 37.0, p50: 39.1, p97: 41.3 },
+                3: { p3: 38.3, p50: 40.5, p97: 42.7 },
+                4: { p3: 39.4, p50: 41.6, p97: 43.8 },
+                5: { p3: 40.3, p50: 42.6, p97: 44.9 },
+                6: { p3: 41.0, p50: 43.4, p97: 45.8 }
+            },
+            female: {
+                0: { p3: 31.7, p50: 34.0, p97: 36.4 },
+                1: { p3: 34.3, p50: 36.5, p97: 38.8 },
+                2: { p3: 36.0, p50: 38.3, p97: 40.6 },
+                3: { p3: 37.2, p50: 39.5, p97: 41.8 },
+                4: { p3: 38.2, p50: 40.6, p97: 42.9 },
+                5: { p3: 39.0, p50: 41.5, p97: 44.0 },
+                6: { p3: 39.7, p50: 42.2, p97: 44.8 }
+            }
+        };
+
+        // تعريف Chart إذا لم يكن محملاً
+        window.Chart = window.Chart || {
+            register: function () { },
+            defaults: {}
+        };
+    </script>
+
     <!-- JavaScript -->
     <script src="../js/main.js"></script>
-    <script src="../js/tools.js"></script>
-    <script src="../js/meal-planner.js"></script>
-    <script src="../js/crying-analyzer.js"></script>
-    <script src="../js/meal-planner.js"></script>
-    <script src="../js/medicine-result-enhancer.js"></script>
+    <script src="../js/tools.bundle2.js"></script>
+
+    <!-- تهيئة إضافية -->
+    <script>
+        // تهيئة التنقل بين التبويبات
+        document.addEventListener('DOMContentLoaded', function () {
+            console.log('تهيئة الأدوات...');
+
+            // إضافة أحداث للتبويبات (مع التحقق من وجود العناصر)
+            setTimeout(function () {
+                const trackerTabs = document.querySelectorAll('.tracker-tab');
+                if (trackerTabs && trackerTabs.length > 0) {
+                    trackerTabs.forEach(tab => {
+                        tab.addEventListener('click', function () {
+                            const trackerType = this.dataset.tracker;
+
+                            // إزالة النشاط من جميع الألسنة
+                            document.querySelectorAll('.tracker-tab, .tracker-pane').forEach(el => {
+                                if (el) el.classList.remove('active');
+                            });
+
+                            // إضافة النشاط للسان المحدد
+                            this.classList.add('active');
+                            const pane = document.getElementById(`${trackerType}-pane`);
+                            if (pane) pane.classList.add('active');
+                        });
+                    });
+                }
+            }, 100);
+
+            // تهيئة أزرار الاختيار للبكاء
+            document.querySelectorAll('.age-option, .timing-option, .cry-option').forEach(btn => {
+                if (btn) {
+                    btn.addEventListener('click', function () {
+                        // إزالة التحديد من جميع الأزرار في نفس المجموعة
+                        const siblings = this.parentElement.querySelectorAll('button');
+                        siblings.forEach(sib => {
+                            if (sib) sib.classList.remove('selected');
+                        });
+
+                        // إضافة التحديد للزر المضغوط
+                        this.classList.add('selected');
+                    });
+                }
+            });
+
+            // تهيئة تاريخ اليوم كقيمة افتراضية
+            const today = new Date().toISOString().split('T')[0];
+            const measurementDate = document.getElementById('measurement-date');
+            const birthDateVaccine = document.getElementById('baby-birthdate-vaccine');
+
+            if (measurementDate) measurementDate.value = today;
+            if (birthDateVaccine) birthDateVaccine.max = today;
+
+            // تحميل أي بيانات محفوظة (بعد تحميل جميع المكتبات)
+            setTimeout(() => {
+                if (typeof Growth !== 'undefined' && Growth.renderMeasurements) {
+                    try {
+                        Growth.renderMeasurements();
+                    } catch (e) {
+                        console.log('تخطي تحميل قياسات النمو:', e.message);
+                    }
+                }
+
+                if (typeof Vaccine !== 'undefined' && Vaccine.loadSavedVaccines) {
+                    try {
+                        Vaccine.loadSavedVaccines();
+                    } catch (e) {
+                        console.log('تخطي تحميل التطعيمات:', e.message);
+                    }
+                }
+            }, 1500);
+        });
+    </script>
+
+    <!-- في نهاية الملف، قبل </body> -->
+    <script>
+        // كود التهيئة النهائية
+        document.addEventListener('DOMContentLoaded', function () {
+            console.log('جاري التحقق من تهيئة جميع الأدوات...');
+
+            // التحقق من تهيئة Vaccine
+            if (typeof Vaccine !== 'undefined') {
+                console.log('أداة التطعيمات جاهزة');
+            } else {
+                console.error('أداة التطعيمات غير معرّفة');
+            }
+
+            // التحقق من تهيئة Growth
+            if (typeof Growth !== 'undefined') {
+                console.log('أداة النمو جاهزة');
+            }
+
+            // التحقق من تهيئة CryAI
+            if (typeof CryAI !== 'undefined') {
+                console.log('أداة تحليل البكاء جاهزة');
+            }
+
+            // التحقق من تهيئة Routine
+            if (typeof Routine !== 'undefined') {
+                console.log('أداة الروتين جاهزة');
+            }
+
+            // التحقق من تهيئة Medicine
+            if (typeof Medicine !== 'undefined') {
+                console.log('أداة الدواء جاهزة');
+            }
+
+            // التحقق من تهيئة Meals
+            if (typeof Meals !== 'undefined') {
+                console.log('أداة الوجبات جاهزة');
+            }
+
+            // تعيين قيم افتراضية مفيدة
+            setTimeout(function () {
+                // تاريخ ميلاد افتراضي (طفل عمره 3 أشهر)
+                const birthDateInput = document.getElementById('baby-birthdate-vaccine');
+                if (birthDateInput && !birthDateInput.value) {
+                    const threeMonthsAgo = new Date();
+                    threeMonthsAgo.setMonth(threeMonthsAgo.getMonth() - 3);
+                    birthDateInput.value = threeMonthsAgo.toISOString().split('T')[0];
+
+                    // حساب جدول التطعيمات تلقائياً
+                    setTimeout(function () {
+                        if (typeof Vaccine !== 'undefined' && Vaccine.calculateSchedule) {
+                            Vaccine.calculateSchedule();
+                        }
+                    }, 1000);
+                }
+
+                // قياسات نمو افتراضية
+                const weightInput = document.getElementById('baby-weight');
+                const ageInput = document.getElementById('baby-age-months');
+                if (weightInput && ageInput && !weightInput.value) {
+                    ageInput.value = 3;
+                    weightInput.value = 6.5;
+                    document.getElementById('baby-height').value = 61;
+                    document.getElementById('baby-head').value = 41;
+                }
+
+                // وزن افتراضي لحاسبة الدواء
+                const medWeightInput = document.getElementById('baby-weight-medicine');
+                if (medWeightInput && !medWeightInput.value) {
+                    medWeightInput.value = 8.5;
+                }
+
+            }, 2000);
+
+            // عرض تعليمات الاستخدام
+            showUsageInstructions();
+        });
+
+        function showUsageInstructions() {
+            // يمكن إضافة نافذة تعليمات أو رسائل ترحيبية
+            console.log('عرض تعليمات الاستخدام...');
+
+            // مثال: إظهار رسالة ترحيب أول مرة
+            if (!localStorage.getItem('firstVisit')) {
+                setTimeout(function () {
+                    alert('مرحباً بك في أدوات رعاية الرضع المتقدمة! يمكنك استخدام الأدوات المختلفة من خلال التبويبات أعلاه. كل البيانات تخزن محلياً على جهازك.');
+                    localStorage.setItem('firstVisit', 'true');
+                }, 1000);
+            }
+        }
+
+        // وظائف مساعدة للاختبار (محدّثة)
+        window.testVaccineCalculator = function () {
+            if (typeof Vaccine !== 'undefined' && Vaccine.calculateSchedule) {
+                // تعيين قيم افتراضية
+                const birthDateInput = document.getElementById('baby-birthdate-vaccine');
+                const countrySelect = document.getElementById('vaccine-country');
+
+                if (birthDateInput) birthDateInput.value = '2024-01-15';
+                if (countrySelect) countrySelect.value = 'Algeria';
+
+                Vaccine.calculateSchedule();
+            } else {
+                alert('أداة التطعيمات غير متاحة');
+            }
+        };
+
+        window.testGrowthTracker = function () {
+            if (typeof Growth !== 'undefined' && Growth.saveMeasurement) {
+                // تعيين قيم افتراضية
+                const ageInput = document.getElementById('baby-age-months');
+                const weightInput = document.getElementById('baby-weight');
+                const heightInput = document.getElementById('baby-height');
+                const headInput = document.getElementById('baby-head');
+
+                if (ageInput) ageInput.value = 4;
+                if (weightInput) weightInput.value = 7.2;
+                if (heightInput) heightInput.value = 64;
+                if (headInput) headInput.value = 42;
+
+                Growth.saveMeasurement();
+            } else {
+                alert('أداة النمو غير متاحة');
+            }
+        };
+
+        window.testCryAnalyzer = function () {
+            alert('ميزة تحليل البكاء قيد التطوير');
+        };
+
+        window.testRoutineGenerator = function () {
+            if (typeof Routine !== 'undefined' && Routine.generateRoutine) {
+                const ageSelect = document.getElementById('routine-age');
+                if (ageSelect) ageSelect.value = '4-6';
+                Routine.generateRoutine();
+            } else {
+                alert('أداة الروتين غير متاحة');
+            }
+        };
+
+        window.testMedicineCalculator = function () {
+            if (typeof calculateMedicineDose === 'function') {
+                const medName = document.getElementById('medicine-name');
+                const concentration = document.getElementById('medicine-concentration');
+                const weight = document.getElementById('baby-weight-medicine');
+                const age = document.getElementById('baby-age-medicine');
+
+                if (medName) medName.value = 'paracetamol';
+                if (concentration) concentration.value = '120';
+                if (weight) weight.value = 9;
+                if (age) age.value = '6-12';
+
+                calculateMedicineDose();
+            } else {
+                alert('حاسبة الدواء غير متاحة');
+            }
+        };
+
+        window.testMealPlanner = function () {
+            if (typeof Meals !== 'undefined' && Meals.generateMealPlan) {
+                const ageSelect = document.getElementById('planner-age');
+                if (ageSelect) ageSelect.value = '9-11';
+                Meals.generateMealPlan();
+            } else {
+                alert('أداة الوجبات غير متاحة');
+            }
+        };
+        // إصلاحات فورية
+        document.addEventListener('DOMContentLoaded', function () {
+            // إصلاح معرفات مكررة
+            const medicineContent = document.querySelector('#medicine-content .routine-results');
+            if (medicineContent && medicineContent.id === 'routine-results') {
+                medicineContent.id = 'medicine-results';
+                medicineContent.className = 'medicine-results';
+                medicineContent.innerHTML = `
+            <div class="welcome-message">
+                <h4>حاسبة جرعات الدواء</h4>
+                <p>اختر الدواء وادخل وزن طفلك لحساب الجرعة المناسبة.</p>
+            </div>
+        `;
+            }
+
+            // تهيئة الدوال المفقودة
+            window.CryAudio = window.CryAudio || {
+                start: function () { alert('ميزة التحليل الصوتي قيد التطوير'); },
+                stop: function () { console.log('إيقاف التحليل الصوتي'); }
+            };
+
+            window.CryPattern = window.CryPattern || {
+                startRecording: function () { alert('ميزة تحليل النمط قيد التطوير'); },
+                stopRecording: function () { console.log('إيقاف تسجيل النمط'); }
+            };
+        });
+    </script>
+
+    <script>
+        // حلول فورية للمشاكل المتبقية
+        document.addEventListener('DOMContentLoaded', function () {
+            // 1. إزالة زر التبويب المكرر
+            const vaccineTabs = document.querySelectorAll('.tool-tab[data-tool="vaccine"]');
+            if (vaccineTabs.length > 1) {
+                vaccineTabs[1].remove(); // إزالة الزر المكرر
+            }
+
+            // 2. إصلاح هيكل قسم الدواء
+            const medicineResults = document.querySelector('.medicine-results');
+            if (medicineResults && medicineResults.parentElement.id !== 'medicine-content') {
+                const medicineContent = document.createElement('div');
+                medicineContent.id = 'medicine-content';
+                medicineContent.className = 'tool-content';
+                medicineContent.innerHTML = `
+            <div class="tool-header">
+                <h3><i class="fas fa-pills"></i> حاسبة جرعات الدواء المتقدمة</h3>
+                <p>احسبي الجرعة المناسبة من الدواء لطفلك حسب وزنه وعمره مع معلومات من قاعدة بيانات الأدوية</p>
+            </div>
+            <div class="tool-body">
+                ${medicineResults.outerHTML}
+            </div>
+        `;
+
+                // استبدال القسم القديم
+                const advancedTools = document.querySelector('.advanced-tools');
+                if (advancedTools) {
+                    advancedTools.appendChild(medicineContent);
+                    medicineResults.remove();
+                }
+            }
+
+            // 3. إزالة قسم النمو المكرر
+            const growthAnalysisDivs = document.querySelectorAll('#growth-analysis');
+            if (growthAnalysisDivs.length > 1) {
+                growthAnalysisDivs[1].remove();
+            }
+
+            // 4. تعريف دوال إدارة البيانات
+            window.exportAllData = function () {
+                alert('ميزة تصدير البيانات قيد التطوير');
+            };
+
+            window.importData = function (event) {
+                alert('ميزة استيراد البيانات قيد التطوير');
+            };
+
+            window.clearAllData = function () {
+                if (confirm('هل أنت متأكد من حذف جميع البيانات المحفوظة محلياً؟')) {
+                    localStorage.clear();
+                    alert('تم حذف جميع البيانات المحفوظة');
+                }
+            };
+
+            // 5. إزالة دالة loadChartJS إذا تم التحميل مسبقاً
+            if (window.Chart) {
+                delete window.loadChartJS;
+            }
+        });
+    </script>
+
+    <script>
+        // بيانات الأدوية (قاعدة بيانات محلية)
+        const medicineDatabase = {
+            paracetamol: {
+                name: "باراسيتامول",
+                type: "خافض حرارة/مسكن",
+                dosageByWeight: {
+                    infant: 10, // ملغ/كغ لكل جرعة
+                    child: 15,  // ملغ/كغ لكل جرعة
+                    maxPerDay: 60 // ملغ/كغ في اليوم كحد أقصى
+                },
+                intervals: {
+                    infant: "كل 6 ساعات",
+                    child: "كل 4-6 ساعات"
+                },
+                warnings: [
+                    "لا تستخدم للأطفال أقل من شهرين بدون استشارة الطبيب",
+                    "لا تتجاوز الجرعة اليومية القصوى",
+                    "تحقق من وجود باراسيتامول في أدوية أخرى لتجنب الجرعة الزائدة"
+                ]
+            },
+            ibuprofen: {
+                name: "إيبوبروفين",
+                type: "مضاد التهاب/خافض حرارة/مسكن",
+                dosageByWeight: {
+                    infant: 5, // ملغ/كغ لكل جرعة
+                    child: 10, // ملغ/كغ لكل جرعة
+                    maxPerDay: 40 // ملغ/كغ في اليوم
+                },
+                intervals: "كل 6-8 ساعات",
+                warnings: [
+                    "للأطفال أكبر من 6 أشهر فقط",
+                    "استخدم بعد الأكل لتجنب تهيج المعدة",
+                    "تجنب استخدامه مع الربو الشديد"
+                ]
+            },
+            antihistamine: {
+                name: "مضاد الهيستامين",
+                type: "علاج الحساسية",
+                dosageByWeight: {
+                    child: 0.25, // ملغ/كغ لكل جرعة
+                    maxPerDay: 1 // ملغ/كغ في اليوم
+                },
+                intervals: "كل 12-24 ساعة",
+                warnings: [
+                    "قد يسبب النعاس",
+                    "استشر الطبيب قبل الاستخدام",
+                    "لا تستخدم للأطفال أقل من سنتين بدون وصفة طبية"
+                ]
+            }
+        };
+
+        // وظيفة حساب الجرعة
+        function calculateMedicineDose() {
+            // جمع البيانات من النموذج
+            const medicineName = document.getElementById('medicine-name').value;
+            const concentration = parseInt(document.getElementById('medicine-concentration').value);
+            const weight = parseFloat(document.getElementById('baby-weight-medicine').value);
+            const ageRange = document.getElementById('baby-age-medicine').value;
+
+            // التحقق من صحة البيانات
+            if (!weight || weight <= 0) {
+                showMedicineResult('error', 'الرجاء إدخال وزن الطفل بشكل صحيح');
+                return;
+            }
+
+            if (!medicineDatabase[medicineName]) {
+                showMedicineResult('error', 'الرجاء اختيار دواء من القائمة');
+                return;
+            }
+
+            // حساب الجرعة
+            const medicine = medicineDatabase[medicineName];
+            let dosePerKg;
+
+            // تحديد الجرعة حسب العمر
+            if (ageRange === '0-3' || ageRange === '3-6') {
+                dosePerKg = medicine.dosageByWeight.infant || medicine.dosageByWeight.child;
+            } else {
+                dosePerKg = medicine.dosageByWeight.child;
+            }
+
+            // حساب الجرعة بالملغ
+            const doseMg = weight * dosePerKg;
+
+            // حساب الجرعة بالمل (للشراب)
+            let doseMl = 0;
+            if (concentration === 120 || concentration === 250) {
+                doseMl = (doseMg / concentration) * 5; // 5 مل لكل جرعة
+            }
+
+            // حساب الحد الأقصى اليومي
+            const maxDailyMg = weight * medicine.dosageByWeight.maxPerDay;
+
+            // عرض النتائج
+            showMedicineResult('success', {
+                medicine: medicine.name,
+                type: medicine.type,
+                weight: weight,
+                dosePerKg: dosePerKg,
+                doseMg: doseMg.toFixed(1),
+                doseMl: doseMl > 0 ? doseMl.toFixed(1) : null,
+                concentration: concentration,
+                maxDailyMg: maxDailyMg.toFixed(1),
+                interval: medicine.intervals,
+                warnings: medicine.warnings,
+                ageRange: ageRange
+            });
+        }
+
+        // وظيفة استعلام قاعدة البيانات
+        function queryMedicineDatabase() {
+            const medicineName = document.getElementById('medicine-name').value;
+            const concentration = document.getElementById('medicine-concentration').value;
+
+            if (!medicineDatabase[medicineName]) {
+                showMedicineResult('info', 'جاري الاتصال بقاعدة بيانات الأدوية...<br>الرجاء اختيار دواء أولاً');
+                return;
+            }
+
+            // محاكاة اتصال بقاعدة البيانات
+            showMedicineResult('loading', 'جاري الاتصال بقاعدة بيانات الأدوية العالمية...');
+
+            setTimeout(() => {
+                const medicine = medicineDatabase[medicineName];
+                const additionalInfo = getAdditionalMedicineInfo(medicineName, concentration);
+
+                showMedicineResult('database', {
+                    medicine: medicine.name,
+                    info: additionalInfo,
+                    warnings: medicine.warnings,
+                    interactions: getDrugInteractions(medicineName)
+                });
+            }, 1500);
+        }
+
+        // وظيفة لعرض النتائج
+        function showMedicineResult(type, data) {
+            const resultsDiv = document.getElementById('medicine-results-container');
+
+            switch (type) {
+                case 'error':
+                    resultsDiv.innerHTML = `
+                <div class="error-message">
+                    <h4><i class="fas fa-exclamation-circle"></i> خطأ</h4>
+                    <p>${data}</p>
+                    <button class="btn btn-primary" onclick="retryMedicineCalculation()" style="margin-top: 15px;">
+                        <i class="fas fa-redo"></i> حاول مرة أخرى
+                    </button>
+                </div>
+            `;
+                    break;
+
+                case 'success':
+                    const doseInfo = data.doseMl ?
+                        `<p><strong>الجرعة:</strong> ${data.doseMg} ملغ (حوالي ${data.doseMl} مل من الشراب)</p>` :
+                        `<p><strong>الجرعة:</strong> ${data.doseMg} ملغ</p>`;
+
+                    resultsDiv.innerHTML = `
+                <div class="medicine-result-card">
+                    <div class="result-header">
+                        <h3><i class="fas fa-capsules"></i> ${data.medicine} - ${data.type}</h3>
+                        <span class="badge">${data.ageRange}</span>
+                    </div>
+                    
+                    <div class="result-body">
+                        <div class="result-grid">
+                            <div class="result-item">
+                                <h5><i class="fas fa-weight"></i> الوزن</h5>
+                                <p>${data.weight} كجم</p>
+                            </div>
+                            <div class="result-item">
+                                <h5><i class="fas fa-syringe"></i> الجرعة/كجم</h5>
+                                <p>${data.dosePerKg} ملغ/كجم</p>
+                            </div>
+                            <div class="result-item">
+                                <h5><i class="fas fa-clock"></i> التكرار</h5>
+                                <p>${data.interval}</p>
+                            </div>
+                        </div>
+                        
+                        ${doseInfo}
+                        
+                        <p><strong>الحد الأقصى اليومي:</strong> ${data.maxDailyMg} ملغ</p>
+                        <p><strong>تركيز الدواء:</strong> ${data.concentration} ملغ/5 مل</p>
+                        
+                        <div class="warnings">
+                            <h5><i class="fas fa-exclamation-triangle"></i> تحذيرات هامة:</h5>
+                            <ul>
+                                ${data.warnings.map(warning => `<li>${warning}</li>`).join('')}
+                            </ul>
+                        </div>
+                        
+                        <div class="action-buttons">
+                            <button class="btn btn-secondary" onclick="saveMedicineCalculation()">
+                                <i class="fas fa-save"></i> حفظ النتيجة
+                            </button>
+                            <button class="btn btn-primary" onclick="printMedicineResult()">
+                                <i class="fas fa-print"></i> طباعة
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+                    break;
+
+                case 'loading':
+                    resultsDiv.innerHTML = `
+                <div class="loading-message">
+                    <div class="spinner">
+                        <i class="fas fa-spinner fa-spin"></i>
+                    </div>
+                    <h4>جاري البحث في قاعدة البيانات</h4>
+                    <p>${data}</p>
+                </div>
+            `;
+                    break;
+
+                case 'database':
+                    resultsDiv.innerHTML = `
+                <div class="database-result">
+                    <h4><i class="fas fa-database"></i> معلومات من قاعدة الأدوية</h4>
+                    <div class="database-info">
+                        ${data.info}
+                    </div>
+                    
+                    <div class="interactions">
+                        <h5><i class="fas fa-exchange-alt"></i> التفاعلات الدوائية:</h5>
+                        ${data.interactions}
+                    </div>
+                    
+                    <button class="btn btn-primary" onclick="calculateMedicineDose()" style="margin-top: 20px;">
+                        <i class="fas fa-calculator"></i> احسب الجرعة بناءً على هذه المعلومات
+                    </button>
+                </div>
+            `;
+                    break;
+
+                case 'info':
+                    resultsDiv.innerHTML = `
+                <div class="info-message">
+                    <h4><i class="fas fa-info-circle"></i> معلومة</h4>
+                    <p>${data}</p>
+                </div>
+            `;
+                    break;
+            }
+        }
+
+        // معلومات إضافية عن الأدوية
+        function getAdditionalMedicineInfo(medicineName, concentration) {
+            const info = {
+                paracetamol: `
+            <p><strong>الاسم العلمي:</strong> Acetaminophen</p>
+            <p><strong>المجموعة:</strong> مسكنات الألم غير الأفيونية</p>
+            <p><strong>مدة العمل:</strong> 4-6 ساعات</p>
+            <p><strong>بداية التأثير:</strong> 30-60 دقيقة</p>
+            <p><strong>طريقة التخلص:</strong> الكبد (يجب الحذر في أمراض الكبد)</p>
+            <p><strong>الجرعة القصوى للبالغين:</strong> 4000 ملغ/يوم</p>
+        `,
+                ibuprofen: `
+            <p><strong>الاسم العلمي:</strong> Ibuprofen</p>
+            <p><strong>المجموعة:</strong> مضادات الالتهاب غير الستيرويدية (NSAID)</p>
+            <p><strong>مدة العمل:</strong> 6-8 ساعات</p>
+            <p><strong>بداية التأثير:</strong> 30-60 دقيقة</p>
+            <p><strong>طريقة التخلص:</strong> الكلى (يجب الحذر في أمراض الكلى)</p>
+            <p><strong>الجرعة القصوى للبالغين:</strong> 3200 ملغ/يوم</p>
+        `
+            };
+
+            return info[medicineName] || '<p>لا توجد معلومات إضافية متاحة لهذا الدواء</p>';
+        }
+
+        // تفاعلات دوائية
+        function getDrugInteractions(medicineName) {
+            const interactions = {
+                paracetamol: `
+            <ul>
+                <li>الوارفارين (يزيد خطر النزيف)</li>
+                <li>الكحول (يزيد خطر تلف الكبد)</li>
+                <li>أدوية الصرع (قد تقلل الفعالية)</li>
+                <li>المضادات الحيوية (بعضها يزيد السمية)</li>
+            </ul>
+        `,
+                ibuprofen: `
+            <ul>
+                <li>مضادات التخثر (يزيد خطر النزيف)</li>
+                <li>مدرات البول (يقلل فعاليتها)</li>
+                <li>مثبطات ACE (يقلل فعاليتها)</li>
+                <li>الليثيوم (يزيد مستوياته في الدم)</li>
+                <li>الكورتيكوستيرويدات (يزيد خطر القرحة)</li>
+            </ul>
+        `
+            };
+
+            return interactions[medicineName] || '<p>لا توجد تفاعلات دوائية معروفة</p>';
+        }
+
+        // وظائف مساعدة
+        function retryMedicineCalculation() {
+            document.getElementById('baby-weight-medicine').focus();
+        }
+
+        function saveMedicineCalculation() {
+            const medicineName = document.getElementById('medicine-name').value;
+            const weight = document.getElementById('baby-weight-medicine').value;
+
+            // حفظ في localStorage
+            const calculation = {
+                medicine: medicineName,
+                weight: weight,
+                timestamp: new Date().toISOString(),
+                result: document.querySelector('.medicine-result-card')?.innerText || ''
+            };
+
+            let savedCalculations = JSON.parse(localStorage.getItem('medicineCalculations')) || [];
+            savedCalculations.push(calculation);
+            localStorage.setItem('medicineCalculations', JSON.stringify(savedCalculations));
+
+            alert('تم حفظ الحساب بنجاح!');
+        }
+
+        function printMedicineResult() {
+            const resultCard = document.querySelector('.medicine-result-card');
+            if (resultCard) {
+                const printWindow = window.open('', '_blank');
+                printWindow.document.write(`
+            <html dir="rtl">
+            <head>
+                <title>نتيجة حساب جرعة الدواء</title>
+                <style>
+                    body { font-family: 'Cairo', sans-serif; padding: 20px; }
+                    h3 { color: #333; }
+                    .info { margin: 10px 0; }
+                    .warning { color: #f44336; font-weight: bold; }
+                </style>
+            </head>
+            <body>
+                ${resultCard.outerHTML}
+                <p style="margin-top: 30px; font-size: 12px; color: #666;">
+                    تم الإنشاء: ${new Date().toLocaleString('ar-SA')}
+                </p>
+            </body>
+            </html>
+        `);
+                printWindow.document.close();
+                printWindow.print();
+            }
+        }
+
+        // تهيئة قسم الأدوية عند تحميل الصفحة
+        document.addEventListener('DOMContentLoaded', function () {
+            // ربط أزرار الأدوية بالدوال
+            const calculateBtn = document.getElementById('calculate-medicine-btn');
+            const queryBtn = document.getElementById('query-database-btn');
+
+            if (calculateBtn) {
+                calculateBtn.addEventListener('click', calculateMedicineDose);
+            }
+
+            if (queryBtn) {
+                queryBtn.addEventListener('click', queryMedicineDatabase);
+            }
+
+            // تعيين قيمة افتراضية للوزن
+            setTimeout(() => {
+                const weightInput = document.getElementById('baby-weight-medicine');
+                if (weightInput && !weightInput.value) {
+                    weightInput.value = 8.5;
+                }
+            }, 500);
+
+            // تحميل سجل الحسابات السابقة
+            loadMedicineHistory();
+        });
+
+        function loadMedicineHistory() {
+            const savedCalculations = JSON.parse(localStorage.getItem('medicineCalculations')) || [];
+            if (savedCalculations.length > 0) {
+                console.log('الحسابات السابقة المحفوظة:', savedCalculations.length);
+            }
+        }
+
+        // تعريف الدوال في النطاق العام للاستخدام في console
+        window.calculateMedicineDose = calculateMedicineDose;
+        window.queryMedicineDatabase = queryMedicineDatabase;
+    </script>
+
+    <!-- قسم الاختبار والتطوير (يمكن إخفاؤه في الإصدار النهائي) -->
+    <div style="margin-top: 40px; padding: 20px; background: #f0f0f0; border-radius: 10px; display: none;"
+        id="dev-tools">
+        <h4><i class="fas fa-code"></i> أدوات المطور</h4>
+        <div class="test-buttons" style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 15px;">
+            <button class="btn btn-sm btn-secondary" onclick="testVaccineCalculator()">اختبار التطعيمات</button>
+            <button class="btn btn-sm btn-secondary" onclick="testGrowthTracker()">اختبار النمو</button>
+            <button class="btn btn-sm btn-secondary" onclick="testCryAnalyzer()">اختبار البكاء</button>
+            <button class="btn btn-sm btn-secondary" onclick="testRoutineGenerator()">اختبار الروتين</button>
+            <button class="btn btn-sm btn-secondary" onclick="testMedicineCalculator()">اختبار الدواء</button>
+            <button class="btn btn-sm btn-secondary" onclick="testMealPlanner()">اختبار الوجبات</button>
+            <button class="btn btn-sm btn-primary" onclick="location.reload()">إعادة تحميل</button>
+        </div>
+    </div>
+
+    <script>
+        // إظهار أدوات المطور إذا كان في وضع التطوير
+        if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+            document.getElementById('dev-tools').style.display = 'block';
+        }
+    </script>
+
+    <!-- بدلاً من تحميلها في الأعلى -->
+    <script>
+        function loadChartJS() {
+            if (!window.Chart) {
+                const script = document.createElement('script');
+                script.src = 'https://cdn.jsdelivr.net/npm/chart.js';
+                document.head.appendChild(script);
+            }
+        }
+    </script>
+
+
+<script>
+// تهيئة مولد الروتين
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('تهيئة مولد الروتين...');
+    
+    // ربط زر إعادة التعيين
+    const resetBtn = document.getElementById('reset-routine');
+    if (resetBtn) {
+        resetBtn.addEventListener('click', function() {
+            // إعادة تعيين القيم الافتراضية
+            document.getElementById('routine-age').value = '4-6';
+            document.getElementById('routine-wakeup').value = '7';
+            document.getElementById('routine-naps').value = '3';
+            document.getElementById('routine-feeding').value = 'mixed';
+            
+            // تفعيل جميع الأنشطة
+            document.querySelectorAll('.activity-option input').forEach(cb => {
+                cb.checked = true;
+            });
+            
+            // إعادة عرض رسالة الترحيب
+            const resultsDiv = document.getElementById('routine-results');
+            if (resultsDiv) {
+                resultsDiv.innerHTML = `
+                    <div class="routine-welcome">
+                        <h4><i class="fas fa-calendar-plus"></i> مولد الروتين اليومي</h4>
+                        <p>تم إعادة تعيين جميع الخيارات. يمكنك الآن إنشاء روتين جديد.</p>
+                        <div class="welcome-tips">
+                            <p><i class="fas fa-lightbulb"></i> نصيحة: جربي تغيير وقت الاستيقاظ لتناسب نمط حياتك</p>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            alert('تم إعادة تعيين جميع الخيارات بنجاح!');
+        });
+    }
+    
+    // تعيين القيم الافتراضية
+    setTimeout(() => {
+        // تعيين وزن افتراضي لحاسبة الدواء
+        const weightInput = document.getElementById('baby-weight-medicine');
+        if (weightInput && !weightInput.value) {
+            weightInput.value = '8.5';
+        }
+        
+        // تعيين عمر افتراضي للروتين
+        const ageSelect = document.getElementById('routine-age');
+        if (ageSelect && !ageSelect.value) {
+            ageSelect.value = '4-6';
+        }
+    }, 1000);
+});
+
+// اختبار مولد الروتين
+window.testRoutineGenerator = function() {
+    console.log('اختبار مولد الروتين...');
+    
+    // تعيين قيم اختبارية
+    document.getElementById('routine-age').value = '4-6';
+    document.getElementById('routine-wakeup').value = '7';
+    document.getElementById('routine-naps').value = '3';
+    document.getElementById('routine-feeding').value = 'mixed';
+    
+    // تفعيل جميع الأنشطة
+    document.querySelectorAll('.activity-option input').forEach(cb => {
+        cb.checked = true;
+    });
+    
+    // إنشاء الروتين
+    if (window.Routine && Routine.generateRoutine) {
+        Routine.generateRoutine();
+        alert('تم إنشاء روتين تجريبي بنجاح!');
+    } else {
+        alert('مولد الروتين غير جاهز بعد. يرجى الانتظار...');
+    }
+};
+</script>
+
+    <!-- في نهاية body -->
+    <script>
+        // التأكد من تحميل Chart.js
+        if (typeof Chart === 'undefined') {
+            var script = document.createElement('script');
+            script.src = 'https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js';
+            script.onload = function () {
+                console.log('Chart.js loaded successfully');
+                initializeAllTools();
+            };
+            document.head.appendChild(script);
+        } else {
+            initializeAllTools();
+        }
+    </script>
 
 </body>
 

@@ -188,69 +188,74 @@
         </div>
     </div>
 
-    <!-- الفوتر -->
-    <footer>
+    <!-- تذييل الصفحة -->
+    <footer class="footer">
         <div class="container">
-            <div class="footer-container">
-                <div class="footer-section">
-                    <h3>عن رعاية الرضيع</h3>
-                    <p>نحن موقع متخصص في تقديم النصائح والخبرات حول رعاية الرضع منذ الولادة حتى سن الثالثة. نهدف إلى دعم
-                        الآباء والأمهات بتقديم معلومات موثوقة وعملية.</p>
+            <div class="footer-grid">
+                <!-- معلومات الموقع -->
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <i class="fas fa-baby"></i>
+                        <h3>رعاية الرضع</h3>
+                    </div>
+                    <p class="footer-description">
+                        موقع متخصص في تقديم نصائح موثوقة وبسيطة للأمهات والمربيات في رحلة رعاية الرضع.
+                    </p>
                     <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                        <a href="#" aria-label="فيسبوك"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="تويتر"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="انستجرام"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="يوتيوب"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
 
-                <div class="footer-section">
-                    <h3>روابط سريعة</h3>
+                <!-- روابط سريعة -->
+                <div class="footer-col">
+                    <h4>روابط سريعة</h4>
                     <ul class="footer-links">
-                        <li><a href="../index.html"><i class="fas fa-chevron-left"></i> الصفحة الرئيسية</a></li>
-                        <li><a href="about.html"><i class="fas fa-chevron-left"></i> من نحن</a></li>
-                        <li><a href="services.html"><i class="fas fa-chevron-left"></i> خدماتنا</a></li>
-                        <li><a href="articles.html"><i class="fas fa-chevron-left"></i> المقالات</a></li>
-                        <li><a href="contact.html"><i class="fas fa-chevron-left"></i> اتصل بنا</a></li>
+                        <li><a href="index.html"><i class="fas fa-chevron-left"></i> الرئيسية</a></li>
+                        <li><a href="../index.html#sections"><i class="fas fa-chevron-left"></i> جميع الأقسام</a></li>
+                        <li><a href="pages/tools.html"><i class="fas fa-chevron-left"></i> الأدوات التفاعلية</a></li>
+                        <li><a href="pages/blog.html"><i class="fas fa-chevron-left"></i> المدونة</a></li>
+                        <li><a href="pages/faq.html"><i class="fas fa-chevron-left"></i> الأسئلة الشائعة</a></li>
                     </ul>
                 </div>
 
-                <div class="footer-section">
-                    <h3>معلومات الاتصال</h3>
-                    <div class="contact-info">
-                        <div class="contact-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>شارع الأمومة والطفولة، الرياض، المملكة العربية السعودية</span>
-                        </div>
-                        <div class="contact-item">
+                <!-- معلومات الاتصال -->
+                <div class="footer-col">
+                    <h4>اتصل بنا</h4>
+                    <ul class="footer-contact">
+                        <li><i class="fas fa-envelope"></i> info@raayatalarada.com</li>
+                        <li>
                             <i class="fas fa-phone"></i>
-                            <span>+966 11 123 4567</span>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-envelope"></i>
-                            <span>info@babycare.com</span>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-clock"></i>
-                            <span>الأحد - الخميس: 8 صباحاً - 5 مساءً</span>
-                        </div>
-                    </div>
+                            <a href="tel:+213123456789" class="phone-link" dir="ltr">
+                                +213 12 345 6789
+                            </a>
+                        </li>
+                        <li><i class="fas fa-map-marker-alt"></i> الجزائر، الجزائر،</li>
+                    </ul>
                 </div>
 
-                <div class="footer-section">
-                    <h3>النشرة البريدية</h3>
-                    <p>اشترك في نشرتنا البريدية لتصلك أحدث النصائح والمقالات حول رعاية الرضع.</p>
+                <!-- النشرة البريدية -->
+                <div class="footer-col">
+                    <h4>اشترك في النشرة البريدية</h4>
+                    <p>احصلي على أحدث النصائح والمقالات مباشرة في بريدك الإلكتروني</p>
                     <form class="newsletter-form">
-                        <input type="email" placeholder="أدخل بريدك الإلكتروني" required>
-                        <button type="submit" class="btn">اشتراك</button>
+                        <input type="email" placeholder="بريدك الإلكتروني" required>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i> اشتراك
+                        </button>
                     </form>
                 </div>
             </div>
 
             <div class="footer-bottom">
-                <p class="copyright">© 2023 موقع رعاية الرضيع. جميع الحقوق محفوظة.</p>
-                <p>تم التطوير بروح الأبوة والأمومة ❤️</p>
+                <p>© 2024 رعاية الرضع. جميع الحقوق محفوظة.</p>
+                <div class="footer-legal">
+                    <a href="pages/privacy.html">سياسة الخصوصية</a>
+                    <a href="pages/terms.html">شروط الاستخدام</a>
+                    <a href="pages/disclaimer.html">إخلاء المسؤولية</a>
+                </div>
             </div>
         </div>
     </footer>

@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الأسئلة الشائعة - موقع رعاية الرضع</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary-color: #ff7eb9;
+            --secondary-color: #7afcff;
+            --accent-color: #ff65a3;
+            --light-color: #fff9fc;
+            --dark-color: #333;
+            --text-color: #444;
+            --border-radius: 12px;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            background-color: #f9f5f8;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            padding: 1.5rem 0;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .logo i {
+            font-size: 2.2rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        nav a:hover,
+        nav a.active {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Main Content */
+        main {
+            padding: 3rem 0;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .page-header h1 {
+            color: var(--accent-color);
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .page-header h1::after {
+            content: '';
+            position: absolute;
+            width: 70%;
+            height: 4px;
+            background-color: var(--secondary-color);
+            bottom: -10px;
+            left: 15%;
+            border-radius: 2px;
+        }
+
+        .page-header p {
+            color: var(--text-color);
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 20px auto 0;
+        }
+
+        /* FAQ Section */
+        .faq-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-category {
+            margin-bottom: 2.5rem;
+        }
+
+        .faq-category h2 {
+            background-color: white;
+            padding: 15px 20px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            color: var(--accent-color);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .faq-category h2 i {
+            font-size: 1.5rem;
+        }
+
+        .faq-item {
+            background-color: white;
+            margin-bottom: 15px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question {
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--dark-color);
+        }
+
+        .faq-question i {
+            color: var(--primary-color);
+            transition: transform 0.3s ease;
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            color: var(--text-color);
+            border-top: 1px solid #f0f0f0;
+        }
+
+        .faq-answer p {
+            padding: 20px 0;
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(45deg);
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+        }
+
+        /* Search Box */
+        .search-container {
+            max-width: 700px;
+            margin: 0 auto 3rem;
+        }
+
+        .search-box {
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 18px 20px;
+            padding-left: 60px;
+            border: none;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            font-size: 1.1rem;
+            outline: none;
+        }
+
+        .search-box i {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--accent-color);
+            font-size: 1.3rem;
+        }
+
+        /* Contact CTA */
+        .contact-cta {
+            background: linear-gradient(135deg, var(--secondary-color), #a2f7ff);
+            border-radius: var(--border-radius);
+            padding: 2.5rem;
+            text-align: center;
+            margin-top: 4rem;
+            box-shadow: var(--shadow);
+        }
+
+        .contact-cta h2 {
+            color: var(--dark-color);
+            margin-bottom: 15px;
+        }
+
+        .contact-cta p {
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 14px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 101, 163, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 2rem;
+        }
+
+        .footer-column h3 {
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .footer-column p,
+        .footer-column a {
+            color: #ddd;
+            margin-bottom: 10px;
+            display: block;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-column a:hover {
+            color: var(--secondary-color);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            font-size: 1.2rem;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+                position: absolute;
+                top: 1.5rem;
+                left: 1.5rem;
+            }
+
+            nav {
+                width: 100%;
+                display: none;
+            }
+
+            nav.active {
+                display: block;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 10px;
+                margin-top: 20px;
+            }
+
+            .page-header h1 {
+                font-size: 2.2rem;
+            }
+
+            .contact-cta {
+                padding: 2rem 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 1.5rem;
+            }
+
+            .page-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .faq-question {
+                font-size: 1rem;
+                padding: 15px;
+            }
+        }
+
+        /* قائمة معلومات الاتصال */
+.contact-list {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 0;
+}
+
+.contact-list li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    font-size: 15px;
+}
+
+/* الأيقونات */
+.contact-list i,
+.footer-column p i {
+    color: #4CAF50;
+    font-size: 16px;
+    min-width: 20px;
+    text-align: center;
+}
+
+/* رابط الهاتف */
+.phone-link {
+    color: #222;
+    text-decoration: none;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.phone-link:hover {
+    color: #4CAF50;
+    text-decoration: underline;
+}
+
+/* رابط الإيميل */
+.contact-list a {
+    color: #faf5f5;
+    text-decoration: none;
+}
+
+.contact-list a:hover {
+    color: #4CAF50;
+}
+
+/* تحسين العرض في الفوتر */
+.footer-column p,
+.footer-column li {
+    line-height: 1.6;
+}
+
+/* موبايل */
+@media (max-width: 768px) {
+    .contact-list li {
+        font-size: 14px;
+    }
+}
+
+    </style>
+
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/animations.css">
+
+    <!-- Favicon -->
+    <link rel="icon" href="../images/icons/icons.png" alt="icon" type="image/png" loading="lazy">
+
+</head>
+
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="logo">
+                    <i class="fas fa-baby"></i>
+                    <span>رعاية الرضع</span>
+                </div>
+                <nav id="mainNav">
+                    <ul>
+                        <li><a href="../index.html">الرئيسية</a></li>
+                        <li><a href="about.html">من نحن</a></li>
+                        <li><a href="services.html">خدماتنا</a></li>
+                        <li><a href="faq.html" class="active">الأسئلة الشائعة</a></li>
+                        <li><a href="contact.html">اتصل بنا</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <!-- Page Header -->
+            <div class="page-header">
+                <h1>الأسئلة الشائعة</h1>
+                <p>نجيب هنا على أكثر الأسئلة شيوعًا حول رعاية الرضع، التغذية، النوم، الصحة، والنمو. إذا كان لديك سؤال
+                    آخر، لا تتردد في التواصل معنا.</p>
+            </div>
+
+            <!-- Search Box -->
+            <div class="search-container">
+                <div class="search-box">
+                    <input type="text" id="faqSearch" placeholder="ابحث عن سؤال معين...">
+                    <i class="fas fa-search"></i>
+                </div>
+            </div>
+
+            <!-- FAQ Content -->
+            <div class="faq-container">
+                <!-- Category 1: التغذية -->
+                <div class="faq-category">
+                    <h2><i class="fas fa-utensils"></i> التغذية والرضاعة</h2>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>كم مرة يجب أن أرضع طفلي حديث الولادة؟</span>
+                            <i class="fas fa-plus"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>يجب إرضاع الطفل حديث الولادة عند الطلب، عادة كل 2-3 ساعات، أي حوالي 8-12 رضعة في اليوم
+                                خلال الأسابيع الأولى. لاحظي علامات الجوع مثل تحريك الرضيع لشفتيه أو وضع يده في فمه أو
+                                البكاء (وهي علامة متأخرة).</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>كيف أعرف أن طفلي يحصل على كفايته من الحليب؟</span>
+                            <i class="fas fa-plus"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>هناك عدة علامات تدل على أن الطفل يحصل على كفايته من الحليب: زيادة الوزن المناسبة، بلل 6-8
+                                حفاضات يوميًا، وتبرز منتظم، ورضاعة فعالة مع صوت بلع، وهدوء الطفل بعد الرضاعة، وامتلاء
+                                ثديك قبل الرضاعة وطراوته بعدها.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>متى يمكنني بدء تقديم الأطعمة الصلبة لطفلي؟</span>
+                            <i class="fas fa-plus"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>ينصح معظم أطباء الأطفال ببدء تقديم الأطعمة الصلبة عندما يبلغ الطفل 6 أشهر من العمر. من
+                                العلامات التي تدل على استعداد الطفل: القدرة على الجلوس مع دعم بسيط، التحكم الجيد في
+                                الرأس والرقبة، اختفاء رد فعل دفع اللسان، واهتمام الطفل بالطعام.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category 2: النوم -->
+                <div class="faq-category">
+                    <h2><i class="fas fa-bed"></i> نوم الرضيع</h2>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>كم ساعة يحتاج الرضيع للنوم يوميًا؟</span>
+                            <i class="fas fa-plus"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>يختلف نوم الرضع حسب العمر:
+                                <br>• حديثو الولادة (0-3 أشهر): 14-17 ساعة يوميًا
+                                <br>• الرضع (4-11 شهرًا): 12-15 ساعة يوميًا
+                                <br>• عادة ما يأخذ الرضع قيلولات متعددة خلال النهار تتراوح بين 30 دقيقة إلى ساعتين.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>كيف يمكنني تعليم طفلي على النوم بمفرده؟</span>
+                            <i class="fas fa-plus"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>يمكنك البدء بتعليم طفلك النوم بمفرده من عمر 4-6 أشهر عن طريق إنشاء روتين نوم ثابت (حمام،
+                                قصة، رضعة)، ووضعه في السرير وهو نعس لكن مستيقظ، وتهدئته بصوت منخفض أو لمسة خفيفة عند
+                                البكاء مع زيادة الفترات بين التدخلات تدريجيًا. تجنبي هز الطفل للنوم أو إرضاعه حتى ينام
+                                تمامًا.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>ما هو وضع النوم الأكثر أمانًا للرضيع؟</span>
+                            <i class="fas fa-plus"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>ينصح بوضع الرضع على ظهورهم للنوم لتقليل خطر متلازمة موت الرضع المفاجئ (SIDS). تأكدي من أن
+                                سطح النوم صلب ومستوٍ، وخالي من الوسائد، البطانيات، الألعاب المحشوة أو أي أشياء أخرى قد
+                                تعيق التنفس. كما يجب تجنب النوم المشترك في نفس السرير مع الوالدين.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category 3: الصحة والعناية -->
+                <div class="faq-category">
+                    <h2><i class="fas fa-heartbeat"></i> الصحة والعناية</h2>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>ما هي درجة حرارة الحمام المناسبة للرضيع؟</span>
+                            <i class="fas fa-plus"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>درجة الحرارة المثالية لماء استحمام الرضيع هي حوالي 37-38 درجة مئوية (ما يعادل درجة حرارة
+                                الجسم). يمكنك استخدام ميزان حرارة خاص أو اختبار الماء بجزء داخلي من معصمك أو مرفقك - يجب
+                                أن يكون دافئًا وليس ساخنًا. احرصي على أن تكون غرفة الاستحمام دافئة وخالية من التيارات
+                                الهوائية.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>كيف أعتني بسرة الرضيع؟</span>
+                            <i class="fas fa-plus"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>اتركي بقية الحبل السري تسقط من تلقاء نفسها (عادة خلال 1-3 أسابيع). نظفي المنطقة حول السرة
+                                بقطعة قطن مبللة بكحول 70% مرة أو مرتين يوميًا. احرصي على طي حفاضة الطفل أسفل السرة لتجنب
+                                التلوث والاحتكاك. استشيري الطبيب إذا لاحظت احمرارًا، تورمًا، إفرازات كريهة الرائحة، أو
+                                نزيفًا غزيرًا.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>متى يجب عليَّ الاتصال بالطبيب بشأن حمى الرضيع؟</span>
+                            <i class="fas fa-plus"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>اتصلي بالطبيب فورًا إذا كان عمر طفلك أقل من 3 أشهر ودرجة حرارته 38 درجة مئوية أو أعلى.
+                                بالنسبة للأطفال الأكبر سنًا (3-6 أشهر)، اتصلي إذا كانت الحرارة 38.3 درجة أو أعلى، أو إذا
+                                استمرت الحرارة أكثر من 24 ساعة. راقبي الأعراض الأخرى مثل الخمول، صعوبة التنفس، عدم تبليل
+                                الحفاضات، أو ظهور طفح جلدي.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category 4: النمو والتطور -->
+                <div class="faq-category">
+                    <h2><i class="fas fa-baby-carriage"></i> النمو والتطور</h2>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>متى يجب أن يبدأ طفلي بالجلوس؟</span>
+                            <i class="fas fa-plus"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>معظم الأطفال يبدأون بالجلوس مع بعض الدعم بين 4-7 أشهر، والجلوس دون دعم بين 6-8 أشهر.
+                                يمكنك مساعدة طفلك بتشجيعه على اللعب وهو على بطنه ليقوي عضلات الرقبة والظهر. استخدمي
+                                الوسائد لدعمه في البداية، ولا تتركيه دون مراقبة حتى يتقن الجلوس بمفرده.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>ما هي مراحل تطور النطق عند الرضيع؟</span>
+                            <i class="fas fa-plus"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>يتطور النطق لدى الرضع على مراحل:
+                                <br>• 0-3 أشهر: بكاء وأصوات هديل
+                                <br>• 4-6 أشهر: ثرثرة، ضحك، وأصوات مثل "با-با"، "دا-دا"
+                                <br>• 7-12 شهر: ثرثرة أكثر تعقيدًا، قد يقول كلمة أو كلمتين بمعنى (مثل "ماما"، "بابا")
+                                <br>• تكلمي مع طفلك كثيرًا، واقرئي له، وغنّي له لتحفيز تطور اللغة.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact CTA -->
+            <div class="contact-cta">
+                <h2>لم تجد إجابة سؤالك؟</h2>
+                <p>فريقنا من المتخصصين في رعاية الرضع مستعد للإجابة على جميع استفساراتك وتقديم الدعم اللازم. لا تتردد في
+                    التواصل معنا للحصول على استشارة مخصصة.</p>
+                <a href="contact.html" class="btn">اتصل بنا الآن</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>رعاية الرضع</h3>
+                    <p>نحن نقدم الدعم والمشورة للعائلات لضمان الرعاية المثلى للأطفال الرضع منذ الولادة وحتى السنة
+                        الأولى.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-column">
+                    <h3>روابط سريعة</h3>
+                    <a href="index.html">الرئيسية</a>
+                    <a href="about.html">من نحن</a>
+                    <a href="services.html">خدماتنا</a>
+                    <a href="faq.html">الأسئلة الشائعة</a>
+                    <a href="contact.html">اتصل بنا</a>
+                </div>
+
+                <div class="footer-column">
+                    <h3>خدماتنا</h3>
+                    <a href="#">استشارات الرضاعة</a>
+                    <a href="#">نصائح النوم الآمن</a>
+                    <a href="#">تطور الرضيع</a>
+                    <a href="#">التغذية السليمة</a>
+                    <a href="#">العناية بالبشرة</a>
+                </div>
+
+<div class="footer-column">
+    <h3>معلومات الاتصال</h3>
+
+    <p>
+        <i class="fas fa-map-marker-alt"></i>
+        الجزائر، الجزائر
+    </p>
+
+    <ul class="contact-list">
+        <li>
+            <i class="fas fa-phone"></i>
+            <a href="tel:+213123456789" class="phone-link" dir="ltr">
+                +213 12 345 6789
+            </a>
+        </li>
+
+        <li>
+            <i class="fas fa-envelope"></i>
+            <a href="mailto:info@babycare.com">
+                info@babycare.com
+            </a>
+        </li>
+    </ul>
+</div>
+
+            </div>
+
+            <div class="copyright">
+                <p>جميع الحقوق محفوظة &copy; 2023 موقع رعاية الرضع</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Toggle FAQ items
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                item.classList.toggle('active');
+
+                // Close other items in the same category
+                const category = item.parentElement;
+                category.querySelectorAll('.faq-item').forEach(otherItem => {
+                    if (otherItem !== item && otherItem.classList.contains('active')) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+            });
+        });
+
+        // Search functionality
+        document.getElementById('faqSearch').addEventListener('input', function () {
+            const searchTerm = this.value.toLowerCase();
+            const allFAQItems = document.querySelectorAll('.faq-item');
+
+            allFAQItems.forEach(item => {
+                const question = item.querySelector('.faq-question span').textContent.toLowerCase();
+                const answer = item.querySelector('.faq-answer p').textContent.toLowerCase();
+
+                if (question.includes(searchTerm) || answer.includes(searchTerm)) {
+                    item.style.display = 'block';
+
+                    // Highlight matching text
+                    if (searchTerm.length > 0) {
+                        highlightText(item, searchTerm);
+                    } else {
+                        removeHighlight(item);
+                    }
+
+                    // Expand to show answer if searching
+                    if (searchTerm.length > 0) {
+                        item.classList.add('active');
+                    }
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            // Show/hide categories based on visible items
+            document.querySelectorAll('.faq-category').forEach(category => {
+                const visibleItems = category.querySelectorAll('.faq-item[style="display: block"]');
+                if (visibleItems.length === 0 && searchTerm.length > 0) {
+                    category.style.display = 'none';
+                } else {
+                    category.style.display = 'block';
+                }
+            });
+        });
+
+        // Mobile menu toggle
+        document.getElementById('mobileMenuBtn').addEventListener('click', function () {
+            document.getElementById('mainNav').classList.toggle('active');
+        });
+
+        // Highlight search term in text
+        function highlightText(element, searchTerm) {
+            const questionSpan = element.querySelector('.faq-question span');
+            const answerParagraph = element.querySelector('.faq-answer p');
+
+            // Remove existing highlights
+            removeHighlight(element);
+
+            // Highlight in question
+            if (questionSpan.textContent.toLowerCase().includes(searchTerm)) {
+                const regex = new RegExp(`(${searchTerm})`, 'gi');
+                questionSpan.innerHTML = questionSpan.textContent.replace(regex, '<mark>$1</mark>');
+            }
+
+            // Highlight in answer
+            if (answerParagraph.textContent.toLowerCase().includes(searchTerm)) {
+                const regex = new RegExp(`(${searchTerm})`, 'gi');
+                answerParagraph.innerHTML = answerParagraph.textContent.replace(regex, '<mark>$1</mark>');
+            }
+        }
+
+        // Remove highlights
+        function removeHighlight(element) {
+            const questionSpan = element.querySelector('.faq-question span');
+            const answerParagraph = element.querySelector('.faq-answer p');
+
+            if (questionSpan) {
+                questionSpan.innerHTML = questionSpan.textContent;
+            }
+
+            if (answerParagraph) {
+                answerParagraph.innerHTML = answerParagraph.textContent;
+            }
+        }
+
+        // Open first FAQ item by default
+        document.querySelector('.faq-item').classList.add('active');
+    </script>
+</body>
+
+</html>
