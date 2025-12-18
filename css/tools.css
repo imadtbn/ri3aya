@@ -849,3 +849,501 @@ textarea:focus {
     }
 }
 
+.tool-content { display:none; }
+.tool-content.active { display:block; }
+
+
+/* تنسيقات الأنشطة */
+.activity-options-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.activity-option {
+    background: white;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 15px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.activity-option:hover {
+    border-color: #4CAF50;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.activity-option input[type="checkbox"] {
+    display: none;
+}
+
+.activity-option label {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    cursor: pointer;
+    font-weight: 600;
+    color: #333;
+    margin: 0;
+}
+
+.activity-option label i {
+    font-size: 20px;
+    color: #4CAF50;
+    width: 30px;
+    text-align: center;
+}
+
+.activity-option input[type="checkbox"]:checked + label {
+    color: #2E7D32;
+}
+
+.activity-option input[type="checkbox"]:checked + label i {
+    color: #2E7D32;
+}
+
+.activity-option input[type="checkbox"]:checked ~ .activity-option {
+    background: #e8f5e9;
+    border-color: #4CAF50;
+}
+
+/* رسالة ترحيب الأنشطة */
+.welcome-tips {
+    background: #e3f2fd;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 20px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.welcome-tips p {
+    color: #1565c0;
+    font-weight: 600;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.welcome-tips ul {
+    margin: 0;
+    padding-right: 20px;
+    color: #37474f;
+}
+
+.welcome-tips li {
+    margin-bottom: 8px;
+    padding-right: 10px;
+}
+
+/* أزرار النموذج */
+.form-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 25px;
+    justify-content: center;
+}
+
+.form-buttons .btn {
+    padding: 12px 30px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+}
+
+.form-buttons .btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+
+
+/* =============================
+   routine.css - تنسيقات الروتين
+   ============================= */
+
+/* بطاقة الروتين */
+.routine-card {
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    border-radius: 15px;
+    padding: 25px;
+    margin: 25px 0;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e0e0e0;
+    transition: transform 0.3s ease;
+}
+
+.routine-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+}
+
+.routine-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #4CAF50;
+}
+
+.routine-header h4 {
+    color: #2c3e50;
+    margin: 0;
+    font-family: 'Cairo', sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+}
+
+.routine-header h4 i {
+    color: #4CAF50;
+    margin-left: 10px;
+}
+
+.routine-stats {
+    display: flex;
+    gap: 20px;
+}
+
+.stat {
+    background: #e8f5e9;
+    padding: 8px 15px;
+    border-radius: 25px;
+    color: #2E7D32;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+}
+
+.stat i {
+    font-size: 16px;
+}
+
+/* الجدول الزمني */
+.routine-timeline {
+    position: relative;
+    padding: 20px 0;
+}
+
+.routine-timeline:before {
+    content: '';
+    position: absolute;
+    right: 50%;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(to bottom, #4CAF50, #2196F3);
+    border-radius: 3px;
+}
+
+.routine-item {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px 0;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr 1.5fr;
+    gap: 20px;
+    align-items: center;
+    transition: all 0.3s ease;
+    animation: fadeInRight 0.5s ease forwards;
+    opacity: 0;
+    position: relative;
+}
+
+.routine-item:hover {
+    transform: translateX(10px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.routine-item:before {
+    content: '';
+    position: absolute;
+    right: -15px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 15px;
+    height: 15px;
+    background: #4CAF50;
+    border-radius: 50%;
+    border: 3px solid white;
+    box-shadow: 0 0 0 3px #4CAF50;
+}
+
+.routine-time {
+    color: #2196F3;
+    font-weight: 700;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #e3f2fd;
+    padding: 10px;
+    border-radius: 8px;
+    border-right: 4px solid #2196F3;
+}
+
+.routine-time i {
+    font-size: 20px;
+}
+
+.routine-activity {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.routine-duration {
+    color: #FF9800;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #fff3e0;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.routine-notes {
+    color: #666;
+    font-size: 14px;
+    padding: 10px;
+    background: #f5f5f5;
+    border-radius: 6px;
+    border-right: 3px solid #9E9E9E;
+}
+
+/* نصائح الروتين */
+.routine-tips {
+    background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 25px;
+    border-right: 5px solid #2196F3;
+}
+
+.routine-tips h5 {
+    color: #1565c0;
+    margin-bottom: 15px;
+    font-family: 'Cairo', sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.routine-tips ul {
+    margin: 0;
+    padding-right: 20px;
+    list-style-type: none;
+}
+
+.routine-tips li {
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px dashed #90caf9;
+    position: relative;
+    padding-right: 30px;
+    color: #37474f;
+    line-height: 1.6;
+}
+
+.routine-tips li:before {
+    content: "💡";
+    position: absolute;
+    right: 0;
+    font-size: 18px;
+}
+
+.routine-tips li:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+/* أزرار الروتين */
+.routine-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 25px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.routine-actions .btn {
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+}
+
+.routine-actions .btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* رسالة الترحيب */
+.routine-welcome {
+    text-align: center;
+    padding: 40px;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    border-radius: 15px;
+    margin: 20px 0;
+}
+
+.routine-welcome h4 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+    font-size: 24px;
+}
+
+.routine-welcome p {
+    color: #546e7a;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+/* الأنيميشن */
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(76, 175, 80, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(76, 175, 80, 0);
+    }
+}
+
+/* تصميم متجاوب */
+@media (max-width: 992px) {
+    .routine-timeline:before {
+        right: 30px;
+    }
+    
+    .routine-item:before {
+        right: -38px;
+    }
+}
+
+@media (max-width: 768px) {
+    .routine-header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+    
+    .routine-stats {
+        justify-content: center;
+    }
+    
+    .routine-item {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        text-align: right;
+        padding: 15px;
+    }
+    
+    .routine-timeline:before {
+        display: none;
+    }
+    
+    .routine-item:before {
+        display: none;
+    }
+    
+    .routine-time, .routine-activity, .routine-duration, .routine-notes {
+        justify-content: flex-end;
+    }
+    
+    .routine-actions {
+        flex-direction: column;
+    }
+    
+    .routine-actions .btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .routine-card {
+        padding: 15px;
+    }
+    
+    .routine-header h4 {
+        font-size: 18px;
+    }
+    
+    .stat {
+        font-size: 12px;
+        padding: 6px 10px;
+    }
+    
+    .routine-activity {
+        font-size: 16px;
+    }
+}
+
+/* تأثيرات خاصة بالأنشطة */
+.routine-item:nth-child(odd) {
+    background: linear-gradient(90deg, #ffffff, #f9f9f9);
+}
+
+.routine-item:nth-child(even) {
+    background: linear-gradient(90deg, #ffffff, #f5f5f5);
+}
+
+/* ألوان حسب نوع النشاط */
+.activity-feeding .routine-activity {
+    color: #E91E63;
+}
+
+.activity-sleep .routine-activity {
+    color: #2196F3;
+}
+
+.activity-play .routine-activity {
+    color: #4CAF50;
+}
+
+.activity-learning .routine-activity {
+    color: #FF9800;
+}
+
+.activity-outdoor .routine-activity {
+    color: #009688;
+}
