@@ -1880,3 +1880,282 @@ const performanceStyles = `
 const styleSheet = document.createElement('style');
 styleSheet.textContent = performanceStyles;
 document.head.appendChild(styleSheet);
+
+
+// تحديث دالة calculateVaccineSchedule() لتتناسب مع التصميم الجديد
+function calculateVaccineSchedule() {
+    // ... الكود الحالي ...
+    
+    // تحديث كود عرض النتائج ليصبح:
+    resultsDiv.innerHTML = `
+        <div class="vaccine-schedule">
+            <div class="schedule-header">
+                <h4><i class="fas fa-calendar-check"></i> جدول تطعيمات ${babyName}</h4>
+                <span class="baby-age">العمر: ${months} شهراً</span>
+            </div>
+            
+            <div class="schedule-table">
+                <div class="schedule-row header">
+                    <div class="schedule-cell">العمر</div>
+                    <div class="schedule-cell">التطعيم</div>
+                    <div class="schedule-cell">الحالة</div>
+                </div>
+                
+                ${vaccineSchedule.map(vaccine => `
+                    <div class="schedule-row">
+                        <div class="schedule-cell age">
+                            <span>${vaccine.age}</span>
+                        </div>
+                        <div class="schedule-cell vaccine">
+                            <span>${vaccine.name}</span>
+                        </div>
+                        <div class="schedule-cell status ${vaccine.status}">
+                            <span>
+                                ${vaccine.status === 'completed' ? 
+                                    '<i class="fas fa-check-circle"></i> مكتمل' : 
+                                  vaccine.status === 'upcoming' ? 
+                                    '<i class="fas fa-clock"></i> قادم' : 
+                                    '<i class="fas fa-exclamation-triangle"></i> متأخر'}
+                            </span>
+                        </div>
+                    </div>
+                `).join('')}
+            </div>
+            
+            <div class="schedule-actions">
+                <button class="btn btn-primary" onclick="printVaccineSchedule()">
+                    <i class="fas fa-print"></i> طباعة الجدول
+                </button>
+                <button class="btn btn-secondary" onclick="saveVaccineSchedule()">
+                    <i class="fas fa-bell"></i> تفعيل التذكيرات
+                </button>
+                <button class="btn btn-outline" onclick="downloadVaccinePDF()">
+                    <i class="fas fa-download"></i> تحميل PDF
+                </button>
+            </div>
+        </div>
+        
+        <div class="vaccine-summary">
+            <div class="summary-card">
+                <i class="fas fa-check-circle"></i>
+                <h5>المكتملة</h5>
+                <p>${vaccineSchedule.filter(v => v.status === 'completed').length}</p>
+            </div>
+            <div class="summary-card">
+                <i class="fas fa-clock"></i>
+                <h5>القادمة</h5>
+                <p>${vaccineSchedule.filter(v => v.status === 'upcoming').length}</p>
+            </div>
+            <div class="summary-card">
+                <i class="fas fa-exclamation-triangle"></i>
+                <h5>المتأخرة</h5>
+                <p>${vaccineSchedule.filter(v => v.status === 'overdue').length}</p>
+            </div>
+        </div>
+        
+        <div class="vaccine-notes">
+            <h5><i class="fas fa-info-circle"></i> ملاحظات هامة:</h5>
+            <ul>
+                <li>استشيري طبيب الأطفال قبل أي تطعيم</li>
+                <li>تأكدي من عدم وجود موانع للتطعيم (حرارة، مرض حاد)</li>
+                <li>احتفظي بسجل التطعيمات في مكان آمن</li>
+                <li>تابعي أي أعراض جانبية بعد التطعيم</li>
+            </ul>
+        </div>
+    `;
+    
+    // إضافة مؤثرات ظهور
+    setTimeout(() => {
+        const schedule = document.querySelector('.vaccine-schedule');
+        if (schedule) {
+            schedule.style.opacity = '1';
+            schedule.style.transform = 'translateY(0)';
+        }
+    }, 100);
+}
+
+// دالة طباعة محسنة
+function printVaccineSchedule() {
+    const printContent = document.querySelector('.vaccine-schedule').outerHTML;
+    const printWindow = window.open('', '_blank');
+    
+    const today = new Date().toLocaleDateString('ar-SA', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    });
+    
+    printWindow.document.write(`
+        <!DOCTYPE html>
+        <html dir="rtl" lang="ar">
+        <head>
+            <title>جدول تطعيمات الطفل</title>
+            <meta charset="UTF-8">
+            <style>
+                @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap');
+                
+                * {
+                    margin: 0;
+                    padding: 0;
+                    box-sizing: border-box;
+                }
+                
+                body {
+                    font-family: 'Cairo', sans-serif;
+                    padding: 20px;
+                    line-height: 1.6;
+                    color: #333;
+                    background: #fff;
+                }
+                
+                .print-header {
+                    text-align: center;
+                    margin-bottom: 30px;
+                    padding-bottom: 20px;
+                    border-bottom: 2px solid #3498db;
+                }
+                
+                .print-header h2 {
+                    color: #2c3e50;
+                    margin-bottom: 10px;
+                }
+                
+                .print-date {
+                    color: #7f8c8d;
+                    font-size: 0.9rem;
+                }
+                
+                .vaccine-schedule {
+                    width: 100%;
+                    margin: 20px 0;
+                }
+                
+                .schedule-header {
+                    background: #f8f9fa;
+                    padding: 15px;
+                    border-radius: 8px;
+                    margin-bottom: 20px;
+                    border: 1px solid #e9ecef;
+                }
+                
+                .schedule-table {
+                    width: 100%;
+                    border-collapse: collapse;
+                    margin: 20px 0;
+                }
+                
+                .schedule-row {
+                    display: flex;
+                    border-bottom: 1px solid #eee;
+                }
+                
+                .schedule-row.header {
+                    background: #f0f0f0;
+                    font-weight: bold;
+                    border-bottom: 2px solid #3498db;
+                }
+                
+                .schedule-cell {
+                    flex: 1;
+                    padding: 12px 15px;
+                    text-align: right;
+                }
+                
+                .schedule-cell:first-child {
+                    flex: 0.5;
+                }
+                
+                .schedule-cell:last-child {
+                    flex: 0.7;
+                }
+                
+                .status.completed {
+                    background: #d4edda;
+                    color: #155724;
+                    padding: 5px 10px;
+                    border-radius: 4px;
+                    text-align: center;
+                }
+                
+                .status.upcoming {
+                    background: #fff3cd;
+                    color: #856404;
+                    padding: 5px 10px;
+                    border-radius: 4px;
+                    text-align: center;
+                }
+                
+                .status.overdue {
+                    background: #f8d7da;
+                    color: #721c24;
+                    padding: 5px 10px;
+                    border-radius: 4px;
+                    text-align: center;
+                }
+                
+                .print-footer {
+                    margin-top: 30px;
+                    padding-top: 20px;
+                    border-top: 1px solid #eee;
+                    text-align: center;
+                    font-size: 0.9rem;
+                    color: #7f8c8d;
+                }
+                
+                @page {
+                    margin: 1cm;
+                }
+                
+                @media print {
+                    .schedule-actions {
+                        display: none !important;
+                    }
+                    
+                    body {
+                        padding: 0;
+                    }
+                }
+            </style>
+        </head>
+        <body>
+            <div class="print-header">
+                <h2>جدول تطعيمات الطفل</h2>
+                <div class="print-date">${today}</div>
+            </div>
+            
+            ${printContent}
+            
+            <div class="print-footer">
+                <p>© ${new Date().getFullYear()} رعاية الرضع - جميع الحقوق محفوظة</p>
+                <p>هذا الجدول لأغراض إرشادية فقط. استشيري طبيب الأطفال للتأكد من الجدول المناسب لطفلك.</p>
+            </div>
+            
+            <script>
+                window.onload = function() {
+                    window.print();
+                }
+            <\/script>
+        </body>
+        </html>
+    `);
+    
+    printWindow.document.close();
+}
+
+// أضف هذا بعد schedule-actions في النتائج
+const completedCount = vaccineSchedule.filter(v => v.status === 'completed').length;
+const totalCount = vaccineSchedule.length;
+const progressPercent = (completedCount / totalCount) * 100;
+
+resultsDiv.innerHTML += `
+    <div class="vaccine-progress">
+        <h5><i class="fas fa-chart-line"></i> تقدم التطعيمات</h5>
+        <div class="progress-bar">
+            <div class="progress-fill" style="width: ${progressPercent}%"></div>
+        </div>
+        <div class="progress-stats">
+            <span>${completedCount} من ${totalCount}</span>
+            <span>${Math.round(progressPercent)}%</span>
+        </div>
+    </div>
+`;
