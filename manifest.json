@@ -1,0 +1,11 @@
+{
+  "name": "عالم رعاية الرضع",
+  "short_name": "رعاية الرضع",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2e8b57",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" }
+  ]
+}
