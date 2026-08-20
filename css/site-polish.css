@@ -12,7 +12,7 @@
 }
 
 html { scroll-behavior: smooth; text-rendering: optimizeLegibility; }
-body { color: var(--site-ink); background: #fbfdfe; overflow-x: hidden; }
+body { color: var(--site-ink); background: #fbfdfe; overflow-x: hidden; margin: 0; padding: 0; }
 img, svg, video, canvas { max-width: 100%; }
 img { height: auto; }
 button, input, select, textarea { font: inherit; }
@@ -66,4 +66,197 @@ th { color: var(--site-primary-dark); background: var(--site-surface-soft); }
 @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+}
+
+/* Footer موحد: يمنع التباعد المكرر والارتفاع الزائد بين الصفحات */
+.footer {
+    width: 100%;
+    margin-top: clamp(1.5rem, 4vw, 3rem) !important;
+    padding: clamp(2rem, 5vw, 3rem) 0 1.25rem !important;
+}
+
+.footer .container {
+    min-width: 0;
+}
+
+.footer-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: clamp(1rem, 2.5vw, 2rem);
+    margin-bottom: clamp(1.25rem, 3vw, 2rem);
+}
+
+.footer-col {
+    min-width: 0;
+}
+
+.footer-col h3,
+.footer-col h4 {
+    margin-bottom: .85rem;
+    font-size: clamp(1rem, 1.5vw, 1.15rem);
+}
+
+.footer-logo {
+    gap: .7rem;
+    margin-bottom: .85rem;
+}
+
+.footer-logo h2,
+.footer-logo h3 {
+    margin: 0;
+    font-size: 1.35rem;
+}
+
+.footer-description,
+.footer-col > p {
+    max-width: 32ch;
+    margin-bottom: .9rem;
+    line-height: 1.75;
+    overflow-wrap: anywhere;
+}
+
+.footer .social-links {
+    gap: .55rem;
+}
+
+.footer .social-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 50%;
+    background: rgba(255,255,255,.1);
+    color: var(--white, #fff);
+}
+
+.footer-links li,
+.footer-contact li {
+    margin-bottom: .55rem;
+}
+
+.footer-contact li {
+    align-items: flex-start;
+    gap: .6rem;
+    line-height: 1.6;
+}
+
+.footer-contact a,
+.footer-contact span,
+.footer-links a {
+    overflow-wrap: anywhere;
+}
+
+.footer .newsletter-form {
+    gap: .6rem;
+}
+
+.footer .newsletter-form input {
+    min-height: 2.75rem;
+    width: 100%;
+}
+
+.footer .newsletter-form .btn {
+    min-height: 2.75rem;
+}
+
+.footer-bottom {
+    margin-top: .75rem;
+    padding-top: 1rem;
+    gap: .75rem 1rem;
+}
+
+.footer-bottom p {
+    margin: 0;
+    line-height: 1.6;
+}
+
+.footer-legal {
+    gap: .75rem 1.25rem;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 800px) {
+    .footer-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 520px) {
+    .footer {
+        margin-top: 1.5rem !important;
+        padding: 1.75rem 0 1rem !important;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+    }
+
+    .footer-col > p,
+    .footer-description {
+        max-width: none;
+    }
+
+    .footer-bottom {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .footer-legal {
+        gap: .5rem .9rem;
+    }
+}
+
+/* تنقل محمول موحد لجميع الصفحات */
+@media (max-width: 992px) {
+    .navbar {
+        padding: .6rem 0;
+    }
+
+    .nav-container {
+        position: relative;
+        gap: .6rem;
+    }
+
+    .mobile-menu-btn {
+        display: inline-flex !important;
+        align-items: center;
+        justify-content: center;
+        flex: 0 0 2.75rem;
+        width: 2.75rem;
+        height: 2.75rem;
+        border-radius: .65rem;
+        background: rgba(20, 108, 148, .08);
+        color: var(--site-primary-dark);
+    }
+
+    .nav-menu {
+        display: none !important;
+        position: absolute;
+        top: calc(100% + .5rem);
+        right: .75rem;
+        left: .75rem;
+        z-index: 1001;
+        max-height: calc(100vh - 5.5rem);
+        overflow-y: auto;
+        padding: .5rem;
+        gap: .25rem;
+        border: 1px solid var(--site-border);
+        border-radius: .85rem;
+        background: var(--site-surface);
+        box-shadow: 0 12px 28px rgba(15, 76, 92, .16);
+    }
+
+    .nav-menu.active {
+        display: flex !important;
+    }
+
+    .nav-menu a {
+        min-height: 2.75rem;
+        padding: .65rem .75rem;
+    }
+
+    .search-container {
+        display: none !important;
+    }
 }

@@ -1,86 +1,49 @@
+document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('contactForm');
+    const successMessage = document.getElementById('successMessage');
+    const errorMessage = document.getElementById('errorMessage');
+    const phone = document.getElementById('phone');
 
-        // معالجة إرسال نموذج الاتصال
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // الحصول على قيم الحقول
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const subject = document.getElementById('subject').value;
-            const message = document.getElementById('message').value;
-            
-            // هنا عادةً نرسل البيانات إلى الخادم
-            // لكن لأغراض العرض، سنقوم بمحاكاة الإرسال الناجح
-            
-            // إظهار رسالة النجاح
-            document.getElementById('successMessage').style.display = 'block';
-            document.getElementById('errorMessage').style.display = 'none';
-            
-            // إعادة تعيين النموذج
-            setTimeout(() => {
-                document.getElementById('contactForm').reset();
-                document.getElementById('successMessage').style.display = 'none';
-            }, 5000);
-            
-            // تسجيل البيانات في الكونسول (لأغراض التصحيح)
-            console.log('تم إرسال النموذج بنجاح:');
-            console.log('الاسم:', name);
-            console.log('البريد الإلكتروني:', email);
-            console.log('الموضوع:', subject);
-            console.log('الرسالة:', message);
+    if (form && successMessage && errorMessage) {
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+            if (!form.reportValidity()) return;
+
+            successMessage.style.display = 'block';
+            errorMessage.style.display = 'none';
+            successMessage.focus?.();
+            form.reset();
+
+            window.setTimeout(() => {
+                successMessage.style.display = 'none';
+            }, 7000);
         });
-        
-        // إضافة تأثيرات الرسوم المتحركة عند التمرير
-        document.addEventListener('DOMContentLoaded', function() {
-            // إضافة تأثيرات للعناصر عند التمرير
-            const animatedElements = document.querySelectorAll('.animate');
-            
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.1
-            };
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            }, observerOptions);
-            
-            animatedElements.forEach(el => {
-                observer.observe(el);
-            });
-            
-            // تأثيرات تفاعلية للأسئلة الشائعة
-            const faqItems = document.querySelectorAll('.faq-item');
-            faqItems.forEach(item => {
-                item.addEventListener('mouseenter', function() {
-                    this.style.transform = 'translateY(-5px)';
-                });
-                
-                item.addEventListener('mouseleave', function() {
-                    this.style.transform = 'translateY(0)';
-                });
-            });
-            
-            // محاكاة إرسال النشرة البريدية
-            document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
-                e.preventDefault();
-                const emailInput = this.querySelector('input[type="email"]');
-                alert(`شكراً على اشتراكك! سيصلك جديدنا على ${emailInput.value}`);
-                emailInput.value = '';
-            });
+    }
+
+    if (phone) {
+        phone.addEventListener('input', () => {
+            const value = phone.value.trim();
+            const valid = !value || /^(0[5-7]\d{8}|\+213[5-7]\d{8})$/.test(value);
+            phone.setCustomValidity(valid ? '' : 'أدخلي رقمًا جزائريًا بصيغة 05xxxxxxxx أو +213xxxxxxxxx.');
         });
-        
-        // التحقق من صحة رقم الهاتف (اختياري)
-        document.getElementById('phone').addEventListener('input', function() {
-            const phonePattern = /^05\d{8}$/;
-            if (this.value && !phonePattern.test(this.value)) {
-                this.style.borderColor = '#ff4757';
-            } else {
-                this.style.borderColor = this.value ? '#28a745' : '#e0e0e0';
-            }
+    }
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const animatedElements = document.querySelectorAll('.animate');
+    if (reduceMotion || !('IntersectionObserver' in window)) {
+        animatedElements.forEach((element) => {
+            element.style.opacity = '1';
+            element.style.transform = 'none';
         });
+    } else {
+        const observer = new IntersectionObserver((entries, instance) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+                instance.unobserve(entry.target);
+            });
+        }, { threshold: 0.1 });
+        animatedElements.forEach((element) => observer.observe(element));
+    }
+});

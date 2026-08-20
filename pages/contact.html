@@ -23,49 +23,80 @@
     <link rel="manifest" href="../manifest.json">
     <link rel="stylesheet" href="../css/accessibility.css">
     <link rel="stylesheet" href="../css/site-polish.css">
+    <link rel="stylesheet" href="../css/contact-polish.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&amp;family=Tajawal:wght@400;600;700&amp;display=swap">
 </head>
 
-<body>
+<body class="contact-page">
     <a class="skip-link" href="#main-content">تجاوز إلى المحتوى الرئيسي</a>
-    <!-- الهيدر -->
-    <header>
-        <div class="container header-container">
-            <div class="logo">
-                <i class="fas fa-baby"></i>
-                <span class="logo-title">رعاية <span>الرضيع</span></span>
+    <!-- شريط التنقل -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <!-- الشعار -->
+            <a href="../index.html" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-baby"></i>
+                </div>
+                <div class="logo-text">
+                    <span class="logo-title">رعاية الرضع</span>
+                    <p>دليل الأم الحديثة</p>
+                </div>
+            </a>
+
+            <!-- قائمة الهاتف المحمول -->
+            <button class="mobile-menu-btn" aria-label="فتح القائمة">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <!-- القائمة الرئيسية -->
+            <ul class="nav-menu">
+                <li><a href="../index.html"><i class="fas fa-home"></i> الرئيسية</a></li>
+                <li class="dropdown">
+                    <a href="sections.html"><i class="fas fa-th-large"></i> الأقسام <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="crying.html"><i class="fas fa-baby-cry"></i> فهم بكاء الرضيع</a></li>
+                        <li><a href="sleep.html"><i class="fas fa-bed"></i> النوم الآمن</a></li>
+                        <li><a href="diapers.html"><i class="fas fa-baby"></i> العناية بالحفاضات</a></li>
+                        <li><a href="digestive.html"><i class="fas fa-stomach"></i> صحة الجهاز الهضمي</a></li>
+                        <li><a href="nutrition.html"><i class="fas fa-utensils"></i> التغذية</a></li>
+                        <li><a href="bath.html"><i class="fas fa-bath"></i> وقت الاستحمام</a></li>
+                        <li><a href="vaccine.html"><i class="fas fa-syringe"></i> جدول التلقيح</a></li>
+                        <li><a href="growth.html"><i class="fas fa-chart-line"></i> مخطط النمو</a></li>
+                        <li><a href="diseases.html"><i class="fas fa-heartbeat"></i> الأمراض الشائعة</a></li>
+                        <li><a href="tips.html"><i class="fas fa-lightbulb"></i> نصائح عامة</a></li>
+                    </ul>
+                </li>
+                <li><a href="tools.html"><i class="fas fa-tools"></i> الأدوات التفاعلية</a></li>
+                <li><a href="blog.html"><i class="fas fa-blog"></i> المدونة</a></li>
+                <li><a href="contact.html" class="active"><i class="fas fa-envelope"></i> اتصل بنا</a></li>
+            </ul>
+
+            <!-- بحث -->
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="ابحث عن نصائح...">
+                <button class="search-btn"><i class="fas fa-search"></i></button>
             </div>
-            <nav>
-                <ul>
-                    <li><a href="../index.html">الرئيسية</a></li>
-                    <li><a href="../index.html#sections">من نحن</a></li>
-                    <li><a href="../index.html#sections">خدماتنا</a></li>
-                    <li><a href="blog.html#articles">مقالات</a></li>
-                    <li><a href="contact.html" class="current-page">اتصل بنا</a></li>
-                </ul>
-            </nav>
         </div>
-    </header>
+    </nav>
 
     <!-- قسم البطل -->
     <section class="contact-hero">
         <div class="container">
             <h1 class="animate">تواصل معنا</h1>
-            <p class="animate delay-1">نحن هنا للإجابة على جميع استفساراتكم حول رعاية الرضيع. فريقنا من الخبراء مستعد
-                لتقديم الدعم والنصائح التي تحتاجونها.</p>
+            <p class="animate delay-1">نستقبل الملاحظات التقنية والتحريرية العامة حول الموقع. لا تُستخدم هذه الصفحة لطلب تشخيص أو وصفة أو استشارة طبية عاجلة.</p>
         </div>
     </section>
 
     <!-- محتوى صفحة الاتصال الرئيسي -->
     <main id="main-content" class="container">
         <!-- رسائل التوجيه -->
-        <div id="successMessage" class="message success-message">
-            <i class="fas fa-check-circle"></i> تم إرسال رسالتك بنجاح! سنرد عليك في أقرب وقت ممكن.
+        <div id="successMessage" class="message success-message" role="status" aria-live="polite">
+            <i class="fas fa-check-circle"></i> تم تجهيز رسالتك محليًا. هذه النسخة الثابتة لا ترسل الرسائل إلى خادم؛ استخدمي البريد الإلكتروني المباشر عند الحاجة.
         </div>
 
-        <div id="errorMessage" class="message error-message">
+        <div id="errorMessage" class="message error-message" role="alert" aria-live="assertive">
             <i class="fas fa-exclamation-circle"></i> حدث خطأ أثناء إرسال الرسالة. يرجى المحاولة مرة أخرى.
         </div>
 
@@ -93,7 +124,7 @@
                         <label for="subject">موضوع الرسالة *</label>
                         <select id="subject" class="form-control" required>
                             <option value="" disabled selected>اختر موضوع الرسالة</option>
-                            <option value="استشارة طبية">استشارة طبية</option>
+                            <option value="سؤال عام">سؤال عام</option>
                             <option value="استفسار عن الخدمات">استفسار عن الخدمات</option>
                             <option value="مقترحات">مقترحات</option>
                             <option value="مشكلة فنية">مشكلة فنية</option>
@@ -123,7 +154,7 @@
                     </div>
                     <div class="contact-info-content">
                         <h3>عنواننا</h3>
-                        <p>شارع الأمومة والطفولة، حي النسيم، الرياض 12345، المملكة العربية السعودية</p>
+                        <p>الجزائر العاصمة، الجزائر</p>
                     </div>
                 </div>
 
@@ -133,7 +164,7 @@
                     </div>
                     <div class="contact-info-content">
                         <h3>هاتفنا</h3>
-                        <p>+966 11 123 4567<br>+966 55 123 4567 (واتساب)</p>
+                        <p>+213 12 345 6789</p>
                     </div>
                 </div>
 
@@ -143,7 +174,7 @@
                     </div>
                     <div class="contact-info-content">
                         <h3>البريد الإلكتروني</h3>
-                        <p>info@babycare.com<br>support@babycare.com</p>
+                        <p>info@raayatalarada.com</p>
                     </div>
                 </div>
 
@@ -154,10 +185,9 @@
                     <div class="contact-info-content">
                         <h3>ساعات العمل</h3>
                         <ul class="hours-list">
-                            <li><span class="day">الأحد - الخميس:</span> <span>8:00 ص - 8:00 م</span></li>
-                            <li><span class="day">الجمعة:</span> <span>2:00 م - 8:00 م</span></li>
-                            <li><span class="day">السبت:</span> <span>10:00 ص - 6:00 م</span></li>
-                            <li><span class="day">خدمة الطوارئ:</span> <span>متاحة 24/7</span></li>
+<li><span class="day">الأحد - الخميس:</span> <span>09:00 ص - 05:00 م</span></li>
+                            <li><span class="day">الجمعة والسبت:</span> <span>الرد في أول يوم عمل</span></li>
+                            <li><span class="day">الرسائل العاجلة:</span> <span>راجعي الطوارئ المحلية</span></li>
                         </ul>
                     </div>
                 </div>
@@ -167,7 +197,7 @@
                     <div class="map-placeholder">
                         <i class="fas fa-map-marked-alt"></i>
                         <h3>خريطة موقعنا</h3>
-                        <p>الرياض، المملكة العربية السعودية</p>
+                        <p>الجزائر العاصمة، الجزائر</p>
                     </div>
                 </div>
             </div>
@@ -179,26 +209,22 @@
             <div class="faq-container">
                 <div class="faq-item">
                     <h3><i class="fas fa-question-circle"></i> ما هي سرعة الرد على الاستفسارات؟</h3>
-                    <p>نحن نرد على جميع الاستفسارات خلال 24 ساعة عمل. بالنسبة للاستفسارات الطبية العاجلة، يتوفر فريقنا
-                        للرد خلال ساعتين.</p>
+                    <p>نراجع الرسائل العامة خلال أيام العمل بحسب طبيعتها. لا تُستخدم الصفحة للحالات الطبية العاجلة.</p>
                 </div>
 
                 <div class="faq-item">
                     <h3><i class="fas fa-question-circle"></i> هل تقدمون استشارات طبية عبر الهاتف؟</h3>
-                    <p>نعم، نوفر استشارات أولية عبر الهاتف مجاناً. للاستشارات المتخصصة، يمكننا توجيهكم إلى أطباء الأطفال
-                        المتعاونين معنا.</p>
+                    <p>لا يقدم الموقع تشخيصًا أو استشارات طبية عبر الهاتف. تعرض صفحات الموقع معلومات عامة ومصادر يمكن مناقشتها مع طبيب الأطفال.</p>
                 </div>
 
                 <div class="faq-item">
-                    <h3><i class="fas fa-question-circle"></i> كيف يمكنني الحصول على استشارة منزلية؟</h3>
-                    <p>نقدم خدمة الاستشارات المنزلية في مدينة الرياض. يمكنكم حجز موعد عبر الهاتف أو من خلال تعبئة
-                        النموذج أعلاه.</p>
+                    <h3><i class="fas fa-question-circle"></i> هل يوفر الموقع زيارات منزلية؟</h3>
+                    <p>لا يوفر الموقع حجز زيارات منزلية. يمكن إرسال ملاحظة تقنية أو تحريرية عامة عبر النموذج.</p>
                 </div>
 
                 <div class="faq-item">
                     <h3><i class="fas fa-question-circle"></i> هل تقدمون دورات تدريبية للأمهات الجدد؟</h3>
-                    <p>نعم، ننظم دورات أسبوعية للأمهات والآباء الجدد تغطي مواضيع الرضاعة، العناية بالمولود، والتغذية.
-                        يمكنكم التسجيل عبر موقعنا.</p>
+                    <p>يمكن اقتراح موضوعات تعليمية جديدة عبر النموذج، وتُنشر المواد بعد مراجعة تحريرية مناسبة.</p>
                 </div>
             </div>
         </div>
@@ -206,73 +232,57 @@
 
     </main>
     <!-- تذييل الصفحة -->
-    <footer class="footer">
+        <footer class="footer" aria-labelledby="footer-title">
         <div class="container">
             <div class="footer-grid">
-                <!-- معلومات الموقع -->
                 <div class="footer-col">
                     <div class="footer-logo">
-                        <i class="fas fa-baby"></i>
-                        <h3>رعاية الرضع</h3>
+                        <i class="fas fa-baby" aria-hidden="true"></i>
+                        <h2 id="footer-title">رعاية الرضع</h2>
                     </div>
-                    <p class="footer-description">
-                        موقع متخصص في تقديم نصائح موثوقة وبسيطة للأمهات والمربيات في رحلة رعاية الرضع.
-                    </p>
-                    <div class="social-links">
-                        <span class="social-link" role="img" aria-label="فيسبوك"><i class="fab fa-facebook"></i></span>
-                        <span class="social-link" role="img" aria-label="تويتر"><i class="fab fa-twitter"></i></span>
-                        <span class="social-link" role="img" aria-label="انستجرام"><i class="fab fa-instagram"></i></span>
-                        <span class="social-link" role="img" aria-label="يوتيوب"><i class="fab fa-youtube"></i></span>
+                    <p class="footer-description">محتوى عربي تثقيفي عام لرعاية الرضع، مع إحالة واضحة إلى المختصين عند الحاجة.</p>
+                    <div class="social-links" aria-label="روابط التواصل الاجتماعي">
+                        <span class="social-link" role="img" aria-label="فيسبوك"><i class="fab fa-facebook" aria-hidden="true"></i></span>
+                        <span class="social-link" role="img" aria-label="تويتر"><i class="fab fa-twitter" aria-hidden="true"></i></span>
+                        <span class="social-link" role="img" aria-label="إنستغرام"><i class="fab fa-instagram" aria-hidden="true"></i></span>
+                        <span class="social-link" role="img" aria-label="يوتيوب"><i class="fab fa-youtube" aria-hidden="true"></i></span>
                     </div>
                 </div>
-
-                <!-- روابط سريعة -->
                 <div class="footer-col">
-                    <h4>روابط سريعة</h4>
+                    <h3>روابط سريعة</h3>
                     <ul class="footer-links">
-                        <li><a href="../index.html"><i class="fas fa-chevron-left"></i> الرئيسية</a></li>
-                        <li><a href="../index.html#sections"><i class="fas fa-chevron-left"></i> جميع الأقسام</a></li>
-                        <li><a href="tools.html"><i class="fas fa-chevron-left"></i> الأدوات التفاعلية</a></li>
-                        <li><a href="blog.html"><i class="fas fa-chevron-left"></i> المدونة</a></li>
-                        <li><a href="faq.html"><i class="fas fa-chevron-left"></i> الأسئلة الشائعة</a></li>
+                        <li><a href="../index.html"><i class="fas fa-chevron-left" aria-hidden="true"></i> الرئيسية</a></li>
+                        <li><a href="sections.html"><i class="fas fa-chevron-left" aria-hidden="true"></i> جميع الأقسام</a></li>
+                        <li><a href="tools.html"><i class="fas fa-chevron-left" aria-hidden="true"></i> الأدوات التفاعلية</a></li>
+                        <li><a href="blog.html"><i class="fas fa-chevron-left" aria-hidden="true"></i> المدونة</a></li>
+                        <li><a href="faq.html"><i class="fas fa-chevron-left" aria-hidden="true"></i> الأسئلة الشائعة</a></li>
                     </ul>
                 </div>
-
-                <!-- معلومات الاتصال -->
                 <div class="footer-col">
-                    <h4>اتصل بنا</h4>
+                    <h3>اتصل بنا</h3>
                     <ul class="footer-contact">
-                        <li><i class="fas fa-envelope"></i> info@raayatalarada.com</li>
-                        <li>
-                            <i class="fas fa-phone"></i>
-                            <a href="tel:+213123456789" class="phone-link" dir="ltr">
-                                +213 12 345 6789
-                            </a>
-                        </li>
-                        <li><i class="fas fa-map-marker-alt"></i> الجزائر، الجزائر،</li>
+                        <li><i class="fas fa-envelope" aria-hidden="true"></i><a href="mailto:info@raayatalarada.com">info@raayatalarada.com</a></li>
+                        <li><i class="fas fa-phone" aria-hidden="true"></i><a href="tel:+213123456789" dir="ltr">+213 12 345 6789</a></li>
+                        <li><i class="fas fa-map-marker-alt" aria-hidden="true"></i><span>الجزائر العاصمة، الجزائر</span></li>
                     </ul>
                 </div>
-
-                <!-- النشرة البريدية -->
                 <div class="footer-col">
-                    <h4>اشترك في النشرة البريدية</h4>
-                    <p>احصلي على أحدث النصائح والمقالات مباشرة في بريدك الإلكتروني</p>
-                    <form class="newsletter-form">
-                        <input type="email" placeholder="بريدك الإلكتروني" required>
-                        <button type="submit" class="btn btn-primary">
-                            <i class="fas fa-paper-plane"></i> اشتراك
-                        </button>
+                    <h3>النشرة البريدية</h3>
+                    <p>احصلي على تنبيهات عامة حول المقالات والتحديثات.</p>
+                    <form class="newsletter-form" action="#" novalidate>
+                        <label class="sr-only" for="footer-email">البريد الإلكتروني</label>
+                        <input id="footer-email" name="email" type="email" placeholder="بريدك الإلكتروني" autocomplete="email" required>
+                        <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane" aria-hidden="true"></i> اشتراك</button>
                     </form>
                 </div>
             </div>
-
             <div class="footer-bottom">
-                <p>© 2024 رعاية الرضع. جميع الحقوق محفوظة.</p>
-                <div class="footer-legal">
+                <p>© 2026 رعاية الرضع. جميع الحقوق محفوظة.</p>
+                <nav class="footer-legal" aria-label="روابط قانونية">
                     <a href="privacy.html">سياسة الخصوصية</a>
                     <a href="terms.html">شروط الاستخدام</a>
                     <a href="disclaimer.html">إخلاء المسؤولية</a>
-                </div>
+                </nav>
             </div>
         </div>
     </footer>

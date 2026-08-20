@@ -1,0 +1,175 @@
+/* تحسين صفحة التواصل بعد القالب العام */
+.contact-page {
+    background: #f7fbfd;
+}
+
+.contact-page .navbar {
+    position: relative;
+    z-index: 30;
+    background: var(--white, #fff);
+    color: var(--gray-800, #17343e);
+    box-shadow: 0 2px 16px rgba(15, 76, 92, .08);
+}
+
+.contact-page .navbar .logo,
+.contact-page .navbar .logo-text,
+.contact-page .navbar .logo-title,
+.contact-page .navbar .nav-menu a {
+    color: var(--gray-800, #17343e);
+}
+
+.contact-page .navbar .logo i,
+.contact-page .navbar .nav-menu a i {
+    color: var(--primary-color, #146c94);
+}
+
+.contact-page .navbar .nav-menu a:hover,
+.contact-page .navbar .nav-menu a.active {
+    color: var(--primary-color, #146c94);
+}
+
+.contact-page .contact-hero {
+    margin: 0 auto clamp(1.5rem, 4vw, 3rem);
+    padding: clamp(2.5rem, 7vw, 5rem) 1rem;
+    border-radius: 0 0 1.25rem 1.25rem;
+}
+
+.contact-page .contact-hero h1 {
+    margin-bottom: .75rem;
+    font-size: clamp(2rem, 5vw, 3rem);
+    line-height: 1.2;
+}
+
+.contact-page .contact-hero p {
+    max-width: 58ch;
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    line-height: 1.9;
+}
+
+.contact-page #main-content {
+    padding-bottom: 1rem;
+}
+
+.contact-page .contact-container {
+    align-items: stretch;
+    gap: clamp(1rem, 3vw, 2rem);
+    margin-bottom: clamp(1.5rem, 4vw, 3rem);
+}
+
+.contact-page .contact-form-container,
+.contact-page .contact-info-container,
+.contact-page .faq-section {
+    border: 1px solid rgba(20, 108, 148, .12);
+    border-radius: 1rem;
+    box-shadow: 0 10px 28px rgba(15, 76, 92, .08);
+}
+
+.contact-page .contact-form-container,
+.contact-page .contact-info-container {
+    height: 100%;
+    padding: clamp(1.1rem, 3vw, 2rem);
+}
+
+.contact-page .contact-form-container h2,
+.contact-page .contact-info-container h2,
+.contact-page .faq-section h2 {
+    color: #0f4c5c;
+    line-height: 1.35;
+}
+
+.contact-page .form-group {
+    margin-bottom: 1rem;
+}
+
+.contact-page .form-control {
+    min-height: 2.75rem;
+    padding: .7rem .8rem;
+    font-family: inherit;
+}
+
+.contact-page textarea.form-control {
+    min-height: 8rem;
+}
+
+.contact-page .contact-info-item {
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+}
+
+.contact-page .contact-info-icon {
+    width: 2.75rem;
+    height: 2.75rem;
+    margin-left: 1rem;
+}
+
+.contact-page .contact-info-content p,
+.contact-page .hours-list {
+    overflow-wrap: anywhere;
+}
+
+.contact-page .map-container {
+    margin-top: 1rem;
+}
+
+.contact-page .map-placeholder {
+    height: clamp(10rem, 24vw, 16rem);
+    padding: 1rem;
+    text-align: center;
+}
+
+.contact-page .faq-section {
+    margin-bottom: 1.5rem;
+    padding: clamp(1.1rem, 3vw, 2rem);
+}
+
+.contact-page .faq-section h2 {
+    margin-bottom: 1.5rem;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+}
+
+.contact-page .faq-container {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+    gap: 1rem;
+}
+
+.contact-page .faq-item {
+    padding: 1rem;
+}
+
+@media (max-width: 700px) {
+    .contact-page .contact-hero {
+        border-radius: 0 0 .9rem .9rem;
+    }
+
+    .contact-page .contact-form-container,
+    .contact-page .contact-info-container,
+    .contact-page .faq-section {
+        padding: 1rem;
+    }
+
+    .contact-page .contact-info-item {
+        margin-bottom: .75rem;
+        padding-bottom: .75rem;
+    }
+
+    .contact-page .contact-info-icon {
+        width: 2.5rem;
+        height: 2.5rem;
+        margin-left: .7rem;
+    }
+
+    .contact-page .btn-wide {
+        width: 100%;
+    }
+}
+
+/* لا نخفي محتوى التواصل أثناء انتظار JavaScript؛ الوصولية أولًا */
+.contact-page .animate,
+.contact-page .delay-1,
+.contact-page .delay-2,
+.contact-page .delay-3,
+.contact-page .delay-4 {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+}

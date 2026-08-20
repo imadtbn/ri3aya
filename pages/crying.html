@@ -602,73 +602,57 @@
     </section>
 
     <!-- تذييل الصفحة -->
-    <footer class="footer">
+        <footer class="footer" aria-labelledby="footer-title">
         <div class="container">
             <div class="footer-grid">
-                <!-- معلومات الموقع -->
                 <div class="footer-col">
                     <div class="footer-logo">
-                        <i class="fas fa-baby"></i>
-                        <h3>رعاية الرضع</h3>
+                        <i class="fas fa-baby" aria-hidden="true"></i>
+                        <h2 id="footer-title">رعاية الرضع</h2>
                     </div>
-                    <p class="footer-description">
-                        موقع متخصص في تقديم نصائح موثوقة وبسيطة للأمهات والمربيات في رحلة رعاية الرضع.
-                    </p>
-                    <div class="social-links">
-                        <span class="social-link" role="img" aria-label="فيسبوك"><i class="fab fa-facebook"></i></span>
-                        <span class="social-link" role="img" aria-label="تويتر"><i class="fab fa-twitter"></i></span>
-                        <span class="social-link" role="img" aria-label="انستجرام"><i class="fab fa-instagram"></i></span>
-                        <span class="social-link" role="img" aria-label="يوتيوب"><i class="fab fa-youtube"></i></span>
+                    <p class="footer-description">محتوى عربي تثقيفي عام لرعاية الرضع، مع إحالة واضحة إلى المختصين عند الحاجة.</p>
+                    <div class="social-links" aria-label="روابط التواصل الاجتماعي">
+                        <span class="social-link" role="img" aria-label="فيسبوك"><i class="fab fa-facebook" aria-hidden="true"></i></span>
+                        <span class="social-link" role="img" aria-label="تويتر"><i class="fab fa-twitter" aria-hidden="true"></i></span>
+                        <span class="social-link" role="img" aria-label="إنستغرام"><i class="fab fa-instagram" aria-hidden="true"></i></span>
+                        <span class="social-link" role="img" aria-label="يوتيوب"><i class="fab fa-youtube" aria-hidden="true"></i></span>
                     </div>
                 </div>
-
-                <!-- روابط سريعة -->
                 <div class="footer-col">
-                    <h4>روابط سريعة</h4>
+                    <h3>روابط سريعة</h3>
                     <ul class="footer-links">
-                        <li><a href="../index.html"><i class="fas fa-chevron-left"></i> الرئيسية</a></li>
-                        <li><a href="../index.html#sections"><i class="fas fa-chevron-left"></i> جميع الأقسام</a></li>
-                        <li><a href="tools.html"><i class="fas fa-chevron-left"></i> الأدوات التفاعلية</a></li>
-                        <li><a href="blog.html"><i class="fas fa-chevron-left"></i> المدونة</a></li>
-                        <li><a href="faq.html"><i class="fas fa-chevron-left"></i> الأسئلة الشائعة</a></li>
+                        <li><a href="../index.html"><i class="fas fa-chevron-left" aria-hidden="true"></i> الرئيسية</a></li>
+                        <li><a href="sections.html"><i class="fas fa-chevron-left" aria-hidden="true"></i> جميع الأقسام</a></li>
+                        <li><a href="tools.html"><i class="fas fa-chevron-left" aria-hidden="true"></i> الأدوات التفاعلية</a></li>
+                        <li><a href="blog.html"><i class="fas fa-chevron-left" aria-hidden="true"></i> المدونة</a></li>
+                        <li><a href="faq.html"><i class="fas fa-chevron-left" aria-hidden="true"></i> الأسئلة الشائعة</a></li>
                     </ul>
                 </div>
-
-                <!-- معلومات الاتصال -->
                 <div class="footer-col">
-                    <h4>اتصل بنا</h4>
+                    <h3>اتصل بنا</h3>
                     <ul class="footer-contact">
-                        <li><i class="fas fa-envelope"></i> info@raayatalarada.com</li>
-                        <li>
-                            <i class="fas fa-phone"></i>
-                            <a href="tel:+213123456789" class="phone-link" dir="ltr">
-                                +213 12 345 6789
-                            </a>
-                        </li>
-                        <li><i class="fas fa-map-marker-alt"></i> الجزائر، الجزائر،</li>
+                        <li><i class="fas fa-envelope" aria-hidden="true"></i><a href="mailto:info@raayatalarada.com">info@raayatalarada.com</a></li>
+                        <li><i class="fas fa-phone" aria-hidden="true"></i><a href="tel:+213123456789" dir="ltr">+213 12 345 6789</a></li>
+                        <li><i class="fas fa-map-marker-alt" aria-hidden="true"></i><span>الجزائر العاصمة، الجزائر</span></li>
                     </ul>
                 </div>
-
-                <!-- النشرة البريدية -->
                 <div class="footer-col">
-                    <h4>اشترك في النشرة البريدية</h4>
-                    <p>احصلي على أحدث النصائح والمقالات مباشرة في بريدك الإلكتروني</p>
-                    <form class="newsletter-form">
-                        <input type="email" placeholder="بريدك الإلكتروني" required>
-                        <button type="submit" class="btn btn-primary">
-                            <i class="fas fa-paper-plane"></i> اشتراك
-                        </button>
+                    <h3>النشرة البريدية</h3>
+                    <p>احصلي على تنبيهات عامة حول المقالات والتحديثات.</p>
+                    <form class="newsletter-form" action="#" novalidate>
+                        <label class="sr-only" for="footer-email">البريد الإلكتروني</label>
+                        <input id="footer-email" name="email" type="email" placeholder="بريدك الإلكتروني" autocomplete="email" required>
+                        <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane" aria-hidden="true"></i> اشتراك</button>
                     </form>
                 </div>
             </div>
-
             <div class="footer-bottom">
-                <p>© 2024 رعاية الرضع. جميع الحقوق محفوظة.</p>
-                <div class="footer-legal">
+                <p>© 2026 رعاية الرضع. جميع الحقوق محفوظة.</p>
+                <nav class="footer-legal" aria-label="روابط قانونية">
                     <a href="privacy.html">سياسة الخصوصية</a>
                     <a href="terms.html">شروط الاستخدام</a>
                     <a href="disclaimer.html">إخلاء المسؤولية</a>
-                </div>
+                </nav>
             </div>
         </div>
     </footer>
