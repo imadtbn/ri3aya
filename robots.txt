@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /content/medical/
+Disallow: /search/index.json
+Sitemap: https://imadtbn.github.io/ri3aya/sitemap.xml

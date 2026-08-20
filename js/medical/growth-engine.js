@@ -77,24 +77,26 @@
     }
 
     async function load() {
-        if (cache.has('ready')) return cache.get('ready');
-        const ready = fetch(manifestUrl).then((response) => {
+        if (cache.has('manifest')) return cache.get('manifest');
+        const manifestPromise = fetch(manifestUrl).then((response) => {
             if (!response.ok) throw new Error('تعذر تحميل manifest بيانات النمو');
             return response.json();
-        }).then(async (manifest) => {
-            const datasets = {};
-            for (const [indicator, definition] of Object.entries(manifest.indicators)) {
-                datasets[indicator] = {};
-                for (const sex of manifest.sexValues) {
-                    const response = await fetch(DATA_ROOT + definition.files[sex]);
-                    if (!response.ok) throw new Error(`تعذر تحميل بيانات ${indicator}`);
-                    datasets[indicator][sex] = parseCsv(await response.text());
-                }
-            }
-            return { manifest, datasets };
         });
-        cache.set('ready', ready);
-        return ready;
+        cache.set('manifest', manifestPromise);
+        return manifestPromise;
+    }
+
+    async function loadDataset(manifest, indicator, sex) {
+        const cacheKey = `dataset:${indicator}:${sex}`;
+        if (cache.has(cacheKey)) return cache.get(cacheKey);
+        const definition = manifest.indicators[indicator];
+        if (!definition || !definition.files?.[sex]) throw new Error(`بيانات المؤشر غير متاحة: ${indicator}`);
+        const datasetPromise = fetch(DATA_ROOT + definition.files[sex]).then(async (response) => {
+            if (!response.ok) throw new Error(`تعذر تحميل بيانات ${indicator}`);
+            return parseCsv(await response.text());
+        });
+        cache.set(cacheKey, datasetPromise);
+        return datasetPromise;
     }
 
     function readIndicator(datasets, indicator, sex, axisValue) {
@@ -105,23 +107,25 @@
     }
 
     async function assess({ sex, ageMonths, weight, length, head }) {
-        const { manifest, datasets } = await load();
+        const manifest = await load();
         if (!['male', 'female'].includes(sex)) throw new Error('اختيار الجنس غير صالح');
         if (!Number.isFinite(ageMonths) || ageMonths < 0 || ageMonths > manifest.ageRangeMonths[1]) {
             throw new Error(`يدعم المرجع الحالي الأعمار من 0 إلى ${manifest.ageRangeMonths[1]} شهرًا فقط`);
         }
         const results = [];
-        const add = (key, value, label, unit) => {
+        const add = async (key, value, label, unit, axisValue = ageMonths) => {
             if (!(value > 0)) return;
-            const row = readIndicator(datasets, key, sex, ageMonths);
+            const rows = await loadDataset(manifest, key, sex);
+            const row = readIndicator({ [key]: { [sex]: rows } }, key, sex, axisValue);
             const z = zScore(value, row);
             results.push({ key, label, value, unit, z, percentile: percentile(z), interpretation: interpretation(z) });
         };
-        add('weightForAge', weight, 'الوزن بالنسبة للعمر', 'كجم');
-        add('lengthForAge', length, 'الطول بالنسبة للعمر', 'سم');
-        add('headCircumferenceForAge', head, 'محيط الرأس بالنسبة للعمر', 'سم');
+        await add('weightForAge', weight, 'الوزن بالنسبة للعمر', 'كجم');
+        await add('lengthForAge', length, 'الطول بالنسبة للعمر', 'سم');
+        await add('headCircumferenceForAge', head, 'محيط الرأس بالنسبة للعمر', 'سم');
         if (weight > 0 && length > 0) {
-            const row = readIndicator(datasets, 'weightForLength', sex, length);
+            const rows = await loadDataset(manifest, 'weightForLength', sex);
+            const row = readIndicator({ weightForLength: { [sex]: rows } }, 'weightForLength', sex, length);
             const z = zScore(weight, row);
             results.push({ key: 'weightForLength', label: 'الوزن بالنسبة للطول', value: weight, unit: 'كجم', z, percentile: percentile(z), interpretation: interpretation(z) });
         }
@@ -129,14 +133,18 @@
     }
 
     async function chartData(indicator, sex) {
-        const { datasets } = await load();
-        const rows = datasets[indicator]?.[sex] || [];
+        const manifest = await load();
+        const rows = await loadDataset(manifest, indicator, sex);
         const axisKey = Object.keys(rows[0] || {})[0];
-        const percentileKeys = Object.keys(rows[0] || {}).filter((key) => /^(2nd|5th|50th|95th|98th)/i.test(key));
+        const percentileKeys = Object.keys(rows[0] || {}).filter((key) => /^(2nd|5th|25th|50th|75th|95th|98th)/i.test(key));
+        const labelFor = (key) => {
+            const match = key.match(/^(2nd|5th|25th|50th|75th|95th|98th)/i);
+            return ({ '2nd': '2.3%', '5th': '5%', '25th': '25%', '50th': '50%', '75th': '75%', '95th': '95%', '98th': '97.7%' }[match?.[1]] || key);
+        };
         return {
             labels: rows.map((row) => row[axisKey]),
             datasets: percentileKeys.map((key) => ({
-                label: key,
+                label: labelFor(key),
                 data: rows.map((row) => row[key]),
                 borderColor: key.startsWith('50') ? '#146c94' : '#86b9cc',
                 borderWidth: key.startsWith('50') ? 3 : 1.5,

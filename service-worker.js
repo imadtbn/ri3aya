@@ -1,7 +1,8 @@
-const CACHE_VERSION = 'ri3aya-v3-20260820';
+const CACHE_VERSION = 'ri3aya-v4-20260820';
 const APP_SHELL = [
     './',
     './index.html',
+    './offline.html',
     './manifest.json',
     './css/main.css',
     './css/responsive.css',
@@ -35,7 +36,7 @@ async function networkFirst(request) {
         }
         return response;
     } catch (_) {
-        return caches.match(request).then((cached) => cached || caches.match('./index.html'));
+        return caches.match(request).then((cached) => cached || caches.match('./offline.html') || caches.match('./index.html'));
     }
 }
 

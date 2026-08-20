@@ -14,7 +14,13 @@
     };
 
     function announce(message, type = 'info') {
-        if (window.Ri3aya?.announce) window.Ri3aya.announce(message, type);
+        window.Ri3aya?.announce?.(message, type);
+    }
+
+    function escapeHtml(value) {
+        return String(value ?? '').replace(/[&<>'"]/g, (character) => ({
+            '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'
+        }[character]));
     }
 
     function renderLoading() {
@@ -24,7 +30,7 @@
 
     function renderError(error) {
         const result = byId('growth-results');
-        if (result) result.innerHTML = `<div class="alert alert-warning" role="alert">تعذر حساب المؤشرات الآن. تحققي من الاتصال ثم حاولي مجددًا. (${error.message})</div>`;
+        if (result) result.innerHTML = `<div class="alert alert-warning" role="alert">تعذر حساب المؤشرات الآن. تحققي من الاتصال ثم حاولي مجددًا. (${escapeHtml(error.message)})</div>`;
     }
 
     function renderResults(assessment) {
@@ -33,18 +39,18 @@
         const cards = assessment.results.map((item) => {
             const z = item.z === null ? 'غير متاح' : item.z.toFixed(2);
             const p = item.percentile === null ? 'غير متاح' : `${item.percentile.toFixed(1)}%`;
-            return `<article class="result-card ${item.interpretation.tone}">
-                <h3>${item.label}</h3>
-                <p class="result-value">${item.value} ${item.unit}</p>
+            return `<article class="result-card ${escapeHtml(item.interpretation.tone)}">
+                <h3>${escapeHtml(item.label)}</h3>
+                <p class="result-value">${escapeHtml(item.value)} ${escapeHtml(item.unit)}</p>
                 <p><strong>درجة Z:</strong> ${z} · <strong>النسبة المئوية:</strong> ${p}</p>
-                <p class="result-status">${item.interpretation.label}</p>
-                <p>${item.interpretation.note}</p>
+                <p class="result-status">${escapeHtml(item.interpretation.label)}</p>
+                <p>${escapeHtml(item.interpretation.note)}</p>
             </article>`;
         }).join('');
         result.innerHTML = `<div class="results-container" role="region" aria-live="polite">
             <div class="results-header"><h3><i class="fas fa-chart-pie"></i> مؤشر تثقيفي للنمو</h3><span>العمر: ${assessment.ageMonths.toFixed(1)} شهر</span></div>
             <div class="results-grid">${cards || '<p>أدخلي قياسًا واحدًا على الأقل.</p>'}</div>
-            <div class="results-summary"><h4><i class="fas fa-circle-info"></i> مهم</h4><p>هذه النتائج مبنية على مرجع WHO LMS ولا تشخّص حالة صحية. قارني القياسات عبر الزمن وراجعي طبيب الأطفال عند القلق أو وجود تغير سريع.</p><p class="source-note">المصدر: WHO Child Growth Standards / CDC WHO LMS data files — الإصدار ${assessment.manifest.version}.</p></div>
+            <div class="results-summary"><h4><i class="fas fa-circle-info"></i> مهم</h4><p>هذه النتائج مبنية على مرجع WHO LMS ولا تشخّص حالة صحية. قارني القياسات عبر الزمن وراجعي طبيب الأطفال عند القلق أو وجود تغير سريع.</p><p class="source-note">المصدر: WHO Child Growth Standards / CDC WHO LMS data files — الإصدار ${escapeHtml(assessment.manifest.version)}.</p></div>
         </div>`;
     }
 
@@ -94,50 +100,91 @@
         });
     }
 
+    function summarizeResults(results) {
+        return results.map((item) => ({
+            key: item.key,
+            label: item.label,
+            z: item.z,
+            percentile: item.percentile,
+            value: item.value,
+            unit: item.unit,
+            interpretation: item.interpretation?.label || ''
+        }));
+    }
+
+    function resultSummary(item) {
+        if (!Array.isArray(item.results) || !item.results.length) return { indicator: 'قديم/غير محسوب', z: '—', percentile: '—' };
+        const labels = item.results.map((result) => result.label).join('، ');
+        const z = item.results.map((result) => `${result.label}: ${result.z === null ? '—' : Number(result.z).toFixed(2)}`).join(' · ');
+        const percentile = item.results.map((result) => `${result.label}: ${result.percentile === null ? '—' : `${Number(result.percentile).toFixed(1)}%`}`).join(' · ');
+        return { indicator: labels, z, percentile };
+    }
+
     function renderTracker() {
         const body = byId('tracker-body');
         if (!body) return;
         const data = JSON.parse(localStorage.getItem('ri3aya-growth-tracker') || '[]').sort((a, b) => new Date(b.date) - new Date(a.date));
-        body.innerHTML = data.length ? data.map((item) => `<tr><td>${item.date}</td><td>${item.age} شهر</td><td>${item.weight || '—'}</td><td>${item.height || '—'}</td><td>${item.head || '—'}</td><td>${item.notes || '—'}</td></tr>`).join('') : '<tr><td colspan="6" class="empty-tracker">لا توجد قياسات مسجلة بعد.</td></tr>';
+        body.innerHTML = data.length ? data.map((item) => {
+            const summary = resultSummary(item);
+            return `<tr>
+                <td>${escapeHtml(item.date)}</td>
+                <td>${escapeHtml(item.age)} شهر</td>
+                <td>${escapeHtml(item.weight || '—')}</td>
+                <td>${escapeHtml(item.height || '—')}</td>
+                <td>${escapeHtml(item.head || '—')}</td>
+                <td>${escapeHtml(summary.indicator)}</td>
+                <td>${escapeHtml(summary.z)}</td>
+                <td>${escapeHtml(summary.percentile)}</td>
+                <td>${escapeHtml(item.notes || '—')}</td>
+            </tr>`;
+        }).join('') : '<tr><td colspan="9" class="empty-tracker">لا توجد قياسات مسجلة بعد.</td></tr>';
     }
 
-    function initTracker() {
-        renderTracker();
-        const add = byId('add-measurement');
-        const clear = byId('clear-tracker');
-        const print = byId('print-tracker');
-        add?.addEventListener('click', () => {
-            const item = {
-                date: byId('track-date')?.value || new Date().toISOString().slice(0, 10),
-                age: Number(byId('track-age')?.value || 0),
-                weight: Number(byId('track-weight')?.value || 0) || '',
-                height: Number(byId('track-height')?.value || 0) || '',
-                head: Number(byId('track-head')?.value || 0) || '',
-                notes: byId('track-notes')?.value.trim() || ''
-            };
-            if (item.age < 0 || item.age > 24 || ![item.weight, item.height, item.head].some(Boolean)) {
-                announce('أدخلي عمرًا بين 0 و24 شهرًا وقياسًا واحدًا على الأقل.', 'error');
-                return;
-            }
+    async function saveMeasurement() {
+        const item = {
+            date: byId('track-date')?.value || new Date().toISOString().slice(0, 10),
+            age: Number(byId('track-age')?.value || 0),
+            sex: byId('track-sex')?.value || byId('child-gender')?.value || 'male',
+            weight: Number(byId('track-weight')?.value || 0) || '',
+            height: Number(byId('track-height')?.value || 0) || '',
+            head: Number(byId('track-head')?.value || 0) || '',
+            notes: byId('track-notes')?.value.trim() || ''
+        };
+        if (item.age < 0 || item.age > 24 || ![item.weight, item.height, item.head].some(Boolean)) {
+            announce('أدخلي عمرًا بين 0 و24 شهرًا وقياسًا واحدًا على الأقل.', 'error');
+            return;
+        }
+        try {
+            const assessment = await window.Ri3ayaGrowth.assess({ sex: item.sex, ageMonths: item.age, weight: item.weight, length: item.height, head: item.head });
+            item.results = summarizeResults(assessment.results);
+            item.reference = { source: assessment.manifest.source, version: assessment.manifest.version, reviewed: assessment.manifest.lastReviewed };
             const data = JSON.parse(localStorage.getItem('ri3aya-growth-tracker') || '[]');
             data.push(item);
             localStorage.setItem('ri3aya-growth-tracker', JSON.stringify(data));
             renderTracker();
-            announce('تم حفظ القياس محليًا على هذا الجهاز.', 'success');
-        });
-        clear?.addEventListener('click', () => {
+            announce('تم حساب المؤشرات المرجعية وحفظ القياس محليًا على هذا الجهاز.', 'success');
+        } catch (error) {
+            announce(`تعذر حساب القياس: ${error.message}`, 'error');
+        }
+    }
+
+    function initTracker() {
+        renderTracker();
+        byId('add-measurement')?.addEventListener('click', saveMeasurement);
+        byId('clear-tracker')?.addEventListener('click', () => {
             if (!confirm('هل تريدين حذف سجل القياسات المحفوظ على هذا الجهاز؟')) return;
             localStorage.removeItem('ri3aya-growth-tracker');
             renderTracker();
             announce('تم حذف السجل المحلي.', 'info');
         });
-        print?.addEventListener('click', () => window.print());
+        byId('print-tracker')?.addEventListener('click', () => window.print());
     }
 
     function initFaq() {
         document.querySelectorAll('.faq-question').forEach((question) => {
             const answer = question.nextElementSibling;
             if (!answer) return;
+            question.setAttribute('aria-expanded', 'false');
             question.addEventListener('click', () => {
                 const open = answer.classList.toggle('active');
                 question.setAttribute('aria-expanded', String(open));
@@ -153,8 +200,12 @@
         const calculateButton = byId('calculate-growth');
         calculateButton?.addEventListener('click', calculate);
         document.querySelectorAll('.chart-tab-btn').forEach((button) => button.addEventListener('click', async () => {
-            document.querySelectorAll('.chart-tab-btn').forEach((item) => item.classList.remove('active'));
+            document.querySelectorAll('.chart-tab-btn').forEach((item) => {
+                item.classList.remove('active');
+                item.setAttribute('aria-selected', 'false');
+            });
             button.classList.add('active');
+            button.setAttribute('aria-selected', 'true');
             activeIndicator = indicators[button.dataset.chart]?.key || 'weightForAge';
             await updateChart();
         }));
