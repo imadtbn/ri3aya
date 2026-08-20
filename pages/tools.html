@@ -4,8 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description"
-        content="أدوات تفاعلية متقدمة لرعاية الرضع - حاسبات ومتابعة وتقويمات ذكية مع تحليلات متقدمة">
     <title>الأدوات التفاعلية المتقدمة | رعاية الرضع</title>
 
     <!-- الخطوط العربية -->
@@ -696,9 +694,21 @@
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5656416032906373" crossorigin="anonymous"></script>
     <meta name="google-adsense-account" content="ca-pub-5656416032906373">
     <link rel="stylesheet" href="../css/ads.css">
+
+    <meta name="description" content="أدوات متابعة عامة للنمو والوجبات والتذكيرات، مع منع الحسابات الدوائية الشخصية وإحالة القرارات الطبية للمختصين.">
+    <link rel="canonical" href="https://imadtbn.github.io/ri3aya/pages/tools.html">
+    <meta property="og:title" content="الأدوات التفاعلية لرعاية الرضع | رعاية الرضع">
+    <meta property="og:description" content="أدوات متابعة عامة للنمو والوجبات والتذكيرات، مع منع الحسابات الدوائية الشخصية وإحالة القرارات الطبية للمختصين.">
+    <meta property="og:url" content="https://imadtbn.github.io/ri3aya/pages/tools.html">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="theme-color" content="#146c94">
+    <link rel="manifest" href="../manifest.json">
+    <link rel="stylesheet" href="../css/accessibility.css">
 </head>
 
 <body>
+    <a class="skip-link" href="#main-content">تجاوز إلى المحتوى الرئيسي</a>
     <!-- شريط التنقل -->
     <nav class="navbar">
         <div class="container nav-container">
@@ -708,7 +718,7 @@
                     <i class="fas fa-baby"></i>
                 </div>
                 <div class="logo-text">
-                    <h1>رعاية الرضع</h1>
+                    <span class="logo-title">رعاية الرضع</span>
                     <p>دليل الأم الحديثة</p>
                 </div>
             </a>
@@ -722,7 +732,7 @@
             <ul class="nav-menu">
                 <li><a href="../index.html"><i class="fas fa-home"></i> الرئيسية</a></li>
                 <li class="dropdown">
-                    <a href="#"><i class="fas fa-th-large"></i> الأقسام <i class="fas fa-chevron-down"></i></a>
+                    <a href="sections.html"><i class="fas fa-th-large"></i> الأقسام <i class="fas fa-chevron-down"></i></a>
                     <ul class="dropdown-menu">
                         <li><a href="crying.html"><i class="fas fa-baby-cry"></i> فهم بكاء الرضيع</a></li>
                         <li><a href="sleep.html"><i class="fas fa-bed"></i> النوم الآمن</a></li>
@@ -769,7 +779,7 @@
     </section>
 
     <!-- المحتوى الرئيسي -->
-    <main class="tools-page">
+    <main id="main-content" class="tools-page">
         <div class="container">
             <!-- أدوات سريعة -->
             <section class="quick-tools-section">
@@ -1350,46 +1360,24 @@
     </div>
 </div>
 
-                <!-- محتوى أداة الدواء -->
+                <!-- محتوى أداة الدواء: وضع السلامة الطبية -->
                 <div id="medicine-content" class="tool-content">
                     <div class="tool-header">
-                        <h3><i class="fas fa-pills"></i> حاسبة جرعات الدواء المتقدمة</h3>
-                        <p>احسبي الجرعة المناسبة من الدواء لطفلك حسب وزنه وعمره</p>
+                        <h3><i class="fas fa-shield-alt"></i> سلامة أدوية الأطفال</h3>
+                        <p>لا يحسب الموقع جرعات شخصية؛ لأن الجرعة تعتمد على العمر الدقيق والوزن وتركيز المستحضر والحالة الصحية.</p>
                     </div>
-
                     <div class="tool-body">
-                        <div class="medicine-calculator">
-                            <div class="calculator-form">
-                                <div class="form-group">
-                                    <label for="medicine-name"><i class="fas fa-capsules"></i> اسم الدواء</label>
-                                    <select id="medicine-name" class="form-select">
-                                        <option value="paracetamol">باراسيتامول (خافض حرارة/مسكن)</option>
-                                        <option value="ibuprofen">إيبوبروفين (خافض حرارة/مسكن)</option>
-                                    </select>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="baby-weight-medicine"><i class="fas fa-weight"></i> وزن الطفل
-                                        (كجم)</label>
-                                    <input type="number" step="0.1" id="baby-weight-medicine"
-                                        placeholder="أدخل وزن الطفل" value="8.5">
-                                </div>
-
-                                <div class="form-buttons">
-                                    <button class="btn btn-primary" id="calculate-medicine">
-                                        <i class="fas fa-calculator"></i> احسب الجرعة
-                                    </button>
-                                    <button class="btn btn-secondary" id="calculate-fda">
-                                        <i class="fas fa-database"></i> معلومات من قاعدة البيانات
-                                    </button>
-                                </div>
-                            </div>
-
-                            <div class="medicine-results" id="medicine-results">
-                                <div class="welcome-message">
-                                    <h4>حاسبة جرعات الدواء</h4>
-                                    <p>اختر الدواء وأدخل وزن طفلك لحساب الجرعة المناسبة.</p>
-                                </div>
+                        <div class="medicine-safety-card" role="note">
+                            <div class="medicine-safety-icon" aria-hidden="true"><i class="fas fa-user-md"></i></div>
+                            <div>
+                                <h4>لا تعتمدي على حاسبة عامة لإعطاء الدواء</h4>
+                                <p>تحققي من اسم المادة الفعالة وتركيزها في العبوة، واستخدمي أداة القياس المرفقة، واسألي طبيب الأطفال أو الصيدلي قبل إعطاء أي دواء، خصوصًا للرضيع أو عند وجود مرض مزمن أو أدوية أخرى.</p>
+                                <ul>
+                                    <li>لا تعطي دواءً موصوفًا لطفل آخر ولا تخلطي مستحضرين لهما المادة الفعالة نفسها.</li>
+                                    <li>لا تعطي الإيبوبروفين لطفل أصغر من 6 أشهر إلا بتوجيه طبي، وراجعي الطبيب عند عدم التأكد من الجرعة.</li>
+                                    <li>إذا حدث ابتلاع زائد أو ظهرت صعوبة تنفس أو نعاس شديد أو تدهور سريع، اتصلي بالطوارئ أو مركز السموم المحلي فورًا.</li>
+                                </ul>
+                                <p class="medical-source-note"><strong>مرجع:</strong> <a href="https://medlineplus.gov/ency/patientinstructions/000772.htm" target="_blank" rel="noopener noreferrer">MedlinePlus — Ibuprofen dosing for children</a>.</p>
                             </div>
                         </div>
                     </div>
@@ -1544,10 +1532,10 @@
                         موقع متخصص في تقديم نصائح موثوقة وبسيطة للأمهات والمربيات في رحلة رعاية الرضع.
                     </p>
                     <div class="social-links">
-                        <a href="#" aria-label="فيسبوك"><i class="fab fa-facebook"></i></a>
-                        <a href="#" aria-label="تويتر"><i class="fab fa-twitter"></i></a>
-                        <a href="#" aria-label="انستجرام"><i class="fab fa-instagram"></i></a>
-                        <a href="#" aria-label="يوتيوب"><i class="fab fa-youtube"></i></a>
+                        <span class="social-link" role="img" aria-label="فيسبوك"><i class="fab fa-facebook"></i></span>
+                        <span class="social-link" role="img" aria-label="تويتر"><i class="fab fa-twitter"></i></span>
+                        <span class="social-link" role="img" aria-label="انستجرام"><i class="fab fa-instagram"></i></span>
+                        <span class="social-link" role="img" aria-label="يوتيوب"><i class="fab fa-youtube"></i></span>
                     </div>
                 </div>
 
@@ -1555,11 +1543,11 @@
                 <div class="footer-col">
                     <h4>روابط سريعة</h4>
                     <ul class="footer-links">
-                        <li><a href="index.html"><i class="fas fa-chevron-left"></i> الرئيسية</a></li>
+                        <li><a href="../index.html"><i class="fas fa-chevron-left"></i> الرئيسية</a></li>
                         <li><a href="../index.html#sections"><i class="fas fa-chevron-left"></i> جميع الأقسام</a></li>
-                        <li><a href="pages/tools.html"><i class="fas fa-chevron-left"></i> الأدوات التفاعلية</a></li>
-                        <li><a href="pages/blog.html"><i class="fas fa-chevron-left"></i> المدونة</a></li>
-                        <li><a href="pages/faq.html"><i class="fas fa-chevron-left"></i> الأسئلة الشائعة</a></li>
+                        <li><a href="tools.html"><i class="fas fa-chevron-left"></i> الأدوات التفاعلية</a></li>
+                        <li><a href="blog.html"><i class="fas fa-chevron-left"></i> المدونة</a></li>
+                        <li><a href="faq.html"><i class="fas fa-chevron-left"></i> الأسئلة الشائعة</a></li>
                     </ul>
                 </div>
 
@@ -1594,9 +1582,9 @@
             <div class="footer-bottom">
                 <p>© 2024 رعاية الرضع. جميع الحقوق محفوظة.</p>
                 <div class="footer-legal">
-                    <a href="pages/privacy.html">سياسة الخصوصية</a>
-                    <a href="pages/terms.html">شروط الاستخدام</a>
-                    <a href="pages/disclaimer.html">إخلاء المسؤولية</a>
+                    <a href="privacy.html">سياسة الخصوصية</a>
+                    <a href="terms.html">شروط الاستخدام</a>
+                    <a href="disclaimer.html">إخلاء المسؤولية</a>
                 </div>
             </div>
         </div>
@@ -1896,24 +1884,6 @@
             }
         };
 
-        window.testMedicineCalculator = function () {
-            if (typeof calculateMedicineDose === 'function') {
-                const medName = document.getElementById('medicine-name');
-                const concentration = document.getElementById('medicine-concentration');
-                const weight = document.getElementById('baby-weight-medicine');
-                const age = document.getElementById('baby-age-medicine');
-
-                if (medName) medName.value = 'paracetamol';
-                if (concentration) concentration.value = '120';
-                if (weight) weight.value = 9;
-                if (age) age.value = '6-12';
-
-                calculateMedicineDose();
-            } else {
-                alert('حاسبة الدواء غير متاحة');
-            }
-        };
-
         window.testMealPlanner = function () {
             if (typeof Meals !== 'undefined' && Meals.generateMealPlan) {
                 const ageSelect = document.getElementById('planner-age');
@@ -1925,19 +1895,6 @@
         };
         // إصلاحات فورية
         document.addEventListener('DOMContentLoaded', function () {
-            // إصلاح معرفات مكررة
-            const medicineContent = document.querySelector('#medicine-content .routine-results');
-            if (medicineContent && medicineContent.id === 'routine-results') {
-                medicineContent.id = 'medicine-results';
-                medicineContent.className = 'medicine-results';
-                medicineContent.innerHTML = `
-            <div class="welcome-message">
-                <h4>حاسبة جرعات الدواء</h4>
-                <p>اختر الدواء وادخل وزن طفلك لحساب الجرعة المناسبة.</p>
-            </div>
-        `;
-            }
-
             // تهيئة الدوال المفقودة
             window.CryAudio = window.CryAudio || {
                 start: function () { alert('ميزة التحليل الصوتي قيد التطوير'); },
@@ -1959,31 +1916,6 @@
             if (vaccineTabs.length > 1) {
                 vaccineTabs[1].remove(); // إزالة الزر المكرر
             }
-
-            // 2. إصلاح هيكل قسم الدواء
-            const medicineResults = document.querySelector('.medicine-results');
-            if (medicineResults && medicineResults.parentElement.id !== 'medicine-content') {
-                const medicineContent = document.createElement('div');
-                medicineContent.id = 'medicine-content';
-                medicineContent.className = 'tool-content';
-                medicineContent.innerHTML = `
-            <div class="tool-header">
-                <h3><i class="fas fa-pills"></i> حاسبة جرعات الدواء المتقدمة</h3>
-                <p>احسبي الجرعة المناسبة من الدواء لطفلك حسب وزنه وعمره مع معلومات من قاعدة بيانات الأدوية</p>
-            </div>
-            <div class="tool-body">
-                ${medicineResults.outerHTML}
-            </div>
-        `;
-
-                // استبدال القسم القديم
-                const advancedTools = document.querySelector('.advanced-tools');
-                if (advancedTools) {
-                    advancedTools.appendChild(medicineContent);
-                    medicineResults.remove();
-                }
-            }
-
             // 3. إزالة قسم النمو المكرر
             const growthAnalysisDivs = document.querySelectorAll('#growth-analysis');
             if (growthAnalysisDivs.length > 1) {
@@ -2013,394 +1945,6 @@
         });
     </script>
 
-    <script>
-        // بيانات الأدوية (قاعدة بيانات محلية)
-        const medicineDatabase = {
-            paracetamol: {
-                name: "باراسيتامول",
-                type: "خافض حرارة/مسكن",
-                dosageByWeight: {
-                    infant: 10, // ملغ/كغ لكل جرعة
-                    child: 15,  // ملغ/كغ لكل جرعة
-                    maxPerDay: 60 // ملغ/كغ في اليوم كحد أقصى
-                },
-                intervals: {
-                    infant: "كل 6 ساعات",
-                    child: "كل 4-6 ساعات"
-                },
-                warnings: [
-                    "لا تستخدم للأطفال أقل من شهرين بدون استشارة الطبيب",
-                    "لا تتجاوز الجرعة اليومية القصوى",
-                    "تحقق من وجود باراسيتامول في أدوية أخرى لتجنب الجرعة الزائدة"
-                ]
-            },
-            ibuprofen: {
-                name: "إيبوبروفين",
-                type: "مضاد التهاب/خافض حرارة/مسكن",
-                dosageByWeight: {
-                    infant: 5, // ملغ/كغ لكل جرعة
-                    child: 10, // ملغ/كغ لكل جرعة
-                    maxPerDay: 40 // ملغ/كغ في اليوم
-                },
-                intervals: "كل 6-8 ساعات",
-                warnings: [
-                    "للأطفال أكبر من 6 أشهر فقط",
-                    "استخدم بعد الأكل لتجنب تهيج المعدة",
-                    "تجنب استخدامه مع الربو الشديد"
-                ]
-            },
-            antihistamine: {
-                name: "مضاد الهيستامين",
-                type: "علاج الحساسية",
-                dosageByWeight: {
-                    child: 0.25, // ملغ/كغ لكل جرعة
-                    maxPerDay: 1 // ملغ/كغ في اليوم
-                },
-                intervals: "كل 12-24 ساعة",
-                warnings: [
-                    "قد يسبب النعاس",
-                    "استشر الطبيب قبل الاستخدام",
-                    "لا تستخدم للأطفال أقل من سنتين بدون وصفة طبية"
-                ]
-            }
-        };
-
-        // وظيفة حساب الجرعة
-        function calculateMedicineDose() {
-            // جمع البيانات من النموذج
-            const medicineName = document.getElementById('medicine-name').value;
-            const concentration = parseInt(document.getElementById('medicine-concentration').value);
-            const weight = parseFloat(document.getElementById('baby-weight-medicine').value);
-            const ageRange = document.getElementById('baby-age-medicine').value;
-
-            // التحقق من صحة البيانات
-            if (!weight || weight <= 0) {
-                showMedicineResult('error', 'الرجاء إدخال وزن الطفل بشكل صحيح');
-                return;
-            }
-
-            if (!medicineDatabase[medicineName]) {
-                showMedicineResult('error', 'الرجاء اختيار دواء من القائمة');
-                return;
-            }
-
-            // حساب الجرعة
-            const medicine = medicineDatabase[medicineName];
-            let dosePerKg;
-
-            // تحديد الجرعة حسب العمر
-            if (ageRange === '0-3' || ageRange === '3-6') {
-                dosePerKg = medicine.dosageByWeight.infant || medicine.dosageByWeight.child;
-            } else {
-                dosePerKg = medicine.dosageByWeight.child;
-            }
-
-            // حساب الجرعة بالملغ
-            const doseMg = weight * dosePerKg;
-
-            // حساب الجرعة بالمل (للشراب)
-            let doseMl = 0;
-            if (concentration === 120 || concentration === 250) {
-                doseMl = (doseMg / concentration) * 5; // 5 مل لكل جرعة
-            }
-
-            // حساب الحد الأقصى اليومي
-            const maxDailyMg = weight * medicine.dosageByWeight.maxPerDay;
-
-            // عرض النتائج
-            showMedicineResult('success', {
-                medicine: medicine.name,
-                type: medicine.type,
-                weight: weight,
-                dosePerKg: dosePerKg,
-                doseMg: doseMg.toFixed(1),
-                doseMl: doseMl > 0 ? doseMl.toFixed(1) : null,
-                concentration: concentration,
-                maxDailyMg: maxDailyMg.toFixed(1),
-                interval: medicine.intervals,
-                warnings: medicine.warnings,
-                ageRange: ageRange
-            });
-        }
-
-        // وظيفة استعلام قاعدة البيانات
-        function queryMedicineDatabase() {
-            const medicineName = document.getElementById('medicine-name').value;
-            const concentration = document.getElementById('medicine-concentration').value;
-
-            if (!medicineDatabase[medicineName]) {
-                showMedicineResult('info', 'جاري الاتصال بقاعدة بيانات الأدوية...<br>الرجاء اختيار دواء أولاً');
-                return;
-            }
-
-            // محاكاة اتصال بقاعدة البيانات
-            showMedicineResult('loading', 'جاري الاتصال بقاعدة بيانات الأدوية العالمية...');
-
-            setTimeout(() => {
-                const medicine = medicineDatabase[medicineName];
-                const additionalInfo = getAdditionalMedicineInfo(medicineName, concentration);
-
-                showMedicineResult('database', {
-                    medicine: medicine.name,
-                    info: additionalInfo,
-                    warnings: medicine.warnings,
-                    interactions: getDrugInteractions(medicineName)
-                });
-            }, 1500);
-        }
-
-        // وظيفة لعرض النتائج
-        function showMedicineResult(type, data) {
-            const resultsDiv = document.getElementById('medicine-results-container');
-
-            switch (type) {
-                case 'error':
-                    resultsDiv.innerHTML = `
-                <div class="error-message">
-                    <h4><i class="fas fa-exclamation-circle"></i> خطأ</h4>
-                    <p>${data}</p>
-                    <button class="btn btn-primary" onclick="retryMedicineCalculation()" style="margin-top: 15px;">
-                        <i class="fas fa-redo"></i> حاول مرة أخرى
-                    </button>
-                </div>
-            `;
-                    break;
-
-                case 'success':
-                    const doseInfo = data.doseMl ?
-                        `<p><strong>الجرعة:</strong> ${data.doseMg} ملغ (حوالي ${data.doseMl} مل من الشراب)</p>` :
-                        `<p><strong>الجرعة:</strong> ${data.doseMg} ملغ</p>`;
-
-                    resultsDiv.innerHTML = `
-                <div class="medicine-result-card">
-                    <div class="result-header">
-                        <h3><i class="fas fa-capsules"></i> ${data.medicine} - ${data.type}</h3>
-                        <span class="badge">${data.ageRange}</span>
-                    </div>
-                    
-                    <div class="result-body">
-                        <div class="result-grid">
-                            <div class="result-item">
-                                <h5><i class="fas fa-weight"></i> الوزن</h5>
-                                <p>${data.weight} كجم</p>
-                            </div>
-                            <div class="result-item">
-                                <h5><i class="fas fa-syringe"></i> الجرعة/كجم</h5>
-                                <p>${data.dosePerKg} ملغ/كجم</p>
-                            </div>
-                            <div class="result-item">
-                                <h5><i class="fas fa-clock"></i> التكرار</h5>
-                                <p>${data.interval}</p>
-                            </div>
-                        </div>
-                        
-                        ${doseInfo}
-                        
-                        <p><strong>الحد الأقصى اليومي:</strong> ${data.maxDailyMg} ملغ</p>
-                        <p><strong>تركيز الدواء:</strong> ${data.concentration} ملغ/5 مل</p>
-                        
-                        <div class="warnings">
-                            <h5><i class="fas fa-exclamation-triangle"></i> تحذيرات هامة:</h5>
-                            <ul>
-                                ${data.warnings.map(warning => `<li>${warning}</li>`).join('')}
-                            </ul>
-                        </div>
-                        
-                        <div class="action-buttons">
-                            <button class="btn btn-secondary" onclick="saveMedicineCalculation()">
-                                <i class="fas fa-save"></i> حفظ النتيجة
-                            </button>
-                            <button class="btn btn-primary" onclick="printMedicineResult()">
-                                <i class="fas fa-print"></i> طباعة
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            `;
-                    break;
-
-                case 'loading':
-                    resultsDiv.innerHTML = `
-                <div class="loading-message">
-                    <div class="spinner">
-                        <i class="fas fa-spinner fa-spin"></i>
-                    </div>
-                    <h4>جاري البحث في قاعدة البيانات</h4>
-                    <p>${data}</p>
-                </div>
-            `;
-                    break;
-
-                case 'database':
-                    resultsDiv.innerHTML = `
-                <div class="database-result">
-                    <h4><i class="fas fa-database"></i> معلومات من قاعدة الأدوية</h4>
-                    <div class="database-info">
-                        ${data.info}
-                    </div>
-                    
-                    <div class="interactions">
-                        <h5><i class="fas fa-exchange-alt"></i> التفاعلات الدوائية:</h5>
-                        ${data.interactions}
-                    </div>
-                    
-                    <button class="btn btn-primary" onclick="calculateMedicineDose()" style="margin-top: 20px;">
-                        <i class="fas fa-calculator"></i> احسب الجرعة بناءً على هذه المعلومات
-                    </button>
-                </div>
-            `;
-                    break;
-
-                case 'info':
-                    resultsDiv.innerHTML = `
-                <div class="info-message">
-                    <h4><i class="fas fa-info-circle"></i> معلومة</h4>
-                    <p>${data}</p>
-                </div>
-            `;
-                    break;
-            }
-        }
-
-        // معلومات إضافية عن الأدوية
-        function getAdditionalMedicineInfo(medicineName, concentration) {
-            const info = {
-                paracetamol: `
-            <p><strong>الاسم العلمي:</strong> Acetaminophen</p>
-            <p><strong>المجموعة:</strong> مسكنات الألم غير الأفيونية</p>
-            <p><strong>مدة العمل:</strong> 4-6 ساعات</p>
-            <p><strong>بداية التأثير:</strong> 30-60 دقيقة</p>
-            <p><strong>طريقة التخلص:</strong> الكبد (يجب الحذر في أمراض الكبد)</p>
-            <p><strong>الجرعة القصوى للبالغين:</strong> 4000 ملغ/يوم</p>
-        `,
-                ibuprofen: `
-            <p><strong>الاسم العلمي:</strong> Ibuprofen</p>
-            <p><strong>المجموعة:</strong> مضادات الالتهاب غير الستيرويدية (NSAID)</p>
-            <p><strong>مدة العمل:</strong> 6-8 ساعات</p>
-            <p><strong>بداية التأثير:</strong> 30-60 دقيقة</p>
-            <p><strong>طريقة التخلص:</strong> الكلى (يجب الحذر في أمراض الكلى)</p>
-            <p><strong>الجرعة القصوى للبالغين:</strong> 3200 ملغ/يوم</p>
-        `
-            };
-
-            return info[medicineName] || '<p>لا توجد معلومات إضافية متاحة لهذا الدواء</p>';
-        }
-
-        // تفاعلات دوائية
-        function getDrugInteractions(medicineName) {
-            const interactions = {
-                paracetamol: `
-            <ul>
-                <li>الوارفارين (يزيد خطر النزيف)</li>
-                <li>الكحول (يزيد خطر تلف الكبد)</li>
-                <li>أدوية الصرع (قد تقلل الفعالية)</li>
-                <li>المضادات الحيوية (بعضها يزيد السمية)</li>
-            </ul>
-        `,
-                ibuprofen: `
-            <ul>
-                <li>مضادات التخثر (يزيد خطر النزيف)</li>
-                <li>مدرات البول (يقلل فعاليتها)</li>
-                <li>مثبطات ACE (يقلل فعاليتها)</li>
-                <li>الليثيوم (يزيد مستوياته في الدم)</li>
-                <li>الكورتيكوستيرويدات (يزيد خطر القرحة)</li>
-            </ul>
-        `
-            };
-
-            return interactions[medicineName] || '<p>لا توجد تفاعلات دوائية معروفة</p>';
-        }
-
-        // وظائف مساعدة
-        function retryMedicineCalculation() {
-            document.getElementById('baby-weight-medicine').focus();
-        }
-
-        function saveMedicineCalculation() {
-            const medicineName = document.getElementById('medicine-name').value;
-            const weight = document.getElementById('baby-weight-medicine').value;
-
-            // حفظ في localStorage
-            const calculation = {
-                medicine: medicineName,
-                weight: weight,
-                timestamp: new Date().toISOString(),
-                result: document.querySelector('.medicine-result-card')?.innerText || ''
-            };
-
-            let savedCalculations = JSON.parse(localStorage.getItem('medicineCalculations')) || [];
-            savedCalculations.push(calculation);
-            localStorage.setItem('medicineCalculations', JSON.stringify(savedCalculations));
-
-            alert('تم حفظ الحساب بنجاح!');
-        }
-
-        function printMedicineResult() {
-            const resultCard = document.querySelector('.medicine-result-card');
-            if (resultCard) {
-                const printWindow = window.open('', '_blank');
-                printWindow.document.write(`
-            <html dir="rtl">
-            <head>
-                <title>نتيجة حساب جرعة الدواء</title>
-                <style>
-                    body { font-family: 'Cairo', sans-serif; padding: 20px; }
-                    h3 { color: #333; }
-                    .info { margin: 10px 0; }
-                    .warning { color: #f44336; font-weight: bold; }
-                </style>
-            </head>
-            <body>
-                ${resultCard.outerHTML}
-                <p style="margin-top: 30px; font-size: 12px; color: #666;">
-                    تم الإنشاء: ${new Date().toLocaleString('ar-SA')}
-                </p>
-            </body>
-            </html>
-        `);
-                printWindow.document.close();
-                printWindow.print();
-            }
-        }
-
-        // تهيئة قسم الأدوية عند تحميل الصفحة
-        document.addEventListener('DOMContentLoaded', function () {
-            // ربط أزرار الأدوية بالدوال
-            const calculateBtn = document.getElementById('calculate-medicine-btn');
-            const queryBtn = document.getElementById('query-database-btn');
-
-            if (calculateBtn) {
-                calculateBtn.addEventListener('click', calculateMedicineDose);
-            }
-
-            if (queryBtn) {
-                queryBtn.addEventListener('click', queryMedicineDatabase);
-            }
-
-            // تعيين قيمة افتراضية للوزن
-            setTimeout(() => {
-                const weightInput = document.getElementById('baby-weight-medicine');
-                if (weightInput && !weightInput.value) {
-                    weightInput.value = 8.5;
-                }
-            }, 500);
-
-            // تحميل سجل الحسابات السابقة
-            loadMedicineHistory();
-        });
-
-        function loadMedicineHistory() {
-            const savedCalculations = JSON.parse(localStorage.getItem('medicineCalculations')) || [];
-            if (savedCalculations.length > 0) {
-                console.log('الحسابات السابقة المحفوظة:', savedCalculations.length);
-            }
-        }
-
-        // تعريف الدوال في النطاق العام للاستخدام في console
-        window.calculateMedicineDose = calculateMedicineDose;
-        window.queryMedicineDatabase = queryMedicineDatabase;
-    </script>
-
     <!-- قسم الاختبار والتطوير (يمكن إخفاؤه في الإصدار النهائي) -->
     <div style="margin-top: 40px; padding: 20px; background: #f0f0f0; border-radius: 10px; display: none;"
         id="dev-tools">
@@ -2410,7 +1954,6 @@
             <button class="btn btn-sm btn-secondary" onclick="testGrowthTracker()">اختبار النمو</button>
             <button class="btn btn-sm btn-secondary" onclick="testCryAnalyzer()">اختبار البكاء</button>
             <button class="btn btn-sm btn-secondary" onclick="testRoutineGenerator()">اختبار الروتين</button>
-            <button class="btn btn-sm btn-secondary" onclick="testMedicineCalculator()">اختبار الدواء</button>
             <button class="btn btn-sm btn-secondary" onclick="testMealPlanner()">اختبار الوجبات</button>
             <button class="btn btn-sm btn-primary" onclick="location.reload()">إعادة تحميل</button>
         </div>

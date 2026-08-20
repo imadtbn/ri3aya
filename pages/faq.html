@@ -459,16 +459,28 @@
 
     </style>
 
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/responsive.css">
-    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="../css/animations.css">
 
     <!-- Favicon -->
     <link rel="icon" href="../images/icons/icons.png" alt="icon" type="image/png" loading="lazy">
 
+
+    <meta name="description" content="إجابات عامة عن رعاية الرضع مع التنبيه إلى مراجعة طبيب الأطفال في الحالات الخاصة أو العاجلة.">
+    <link rel="canonical" href="https://imadtbn.github.io/ri3aya/pages/faq.html">
+    <meta property="og:title" content="الأسئلة الشائعة | رعاية الرضع">
+    <meta property="og:description" content="إجابات عامة عن رعاية الرضع مع التنبيه إلى مراجعة طبيب الأطفال في الحالات الخاصة أو العاجلة.">
+    <meta property="og:url" content="https://imadtbn.github.io/ri3aya/pages/faq.html">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="theme-color" content="#146c94">
+    <link rel="manifest" href="../manifest.json">
+    <link rel="stylesheet" href="../css/accessibility.css">
 </head>
 
 <body>
+    <a class="skip-link" href="#main-content">تجاوز إلى المحتوى الرئيسي</a>
     <!-- Header Section -->
     <header>
         <div class="container">
@@ -483,8 +495,8 @@
                 <nav id="mainNav">
                     <ul>
                         <li><a href="../index.html">الرئيسية</a></li>
-                        <li><a href="about.html">من نحن</a></li>
-                        <li><a href="services.html">خدماتنا</a></li>
+                        <li><a href="../index.html#sections">من نحن</a></li>
+                        <li><a href="../index.html#sections">خدماتنا</a></li>
                         <li><a href="faq.html" class="active">الأسئلة الشائعة</a></li>
                         <li><a href="contact.html">اتصل بنا</a></li>
                     </ul>
@@ -494,7 +506,7 @@
     </header>
 
     <!-- Main Content -->
-    <main>
+    <main id="main-content">
         <div class="container">
             <!-- Page Header -->
             <div class="page-header">
@@ -694,29 +706,29 @@
                     <p>نحن نقدم الدعم والمشورة للعائلات لضمان الرعاية المثلى للأطفال الرضع منذ الولادة وحتى السنة
                         الأولى.</p>
                     <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <span class="social-link" role="img" aria-label="حساب اجتماعي غير مفعّل"><i class="fab fa-facebook-f"></i></span>
+                        <span class="social-link" role="img" aria-label="حساب اجتماعي غير مفعّل"><i class="fab fa-twitter"></i></span>
+                        <span class="social-link" role="img" aria-label="حساب اجتماعي غير مفعّل"><i class="fab fa-instagram"></i></span>
+                        <span class="social-link" role="img" aria-label="حساب اجتماعي غير مفعّل"><i class="fab fa-youtube"></i></span>
                     </div>
                 </div>
 
                 <div class="footer-column">
                     <h3>روابط سريعة</h3>
-                    <a href="index.html">الرئيسية</a>
-                    <a href="about.html">من نحن</a>
-                    <a href="services.html">خدماتنا</a>
+                    <a href="../index.html">الرئيسية</a>
+                    <a href="../index.html#sections">من نحن</a>
+                    <a href="../index.html#sections">خدماتنا</a>
                     <a href="faq.html">الأسئلة الشائعة</a>
                     <a href="contact.html">اتصل بنا</a>
                 </div>
 
                 <div class="footer-column">
                     <h3>خدماتنا</h3>
-                    <a href="#">استشارات الرضاعة</a>
-                    <a href="#">نصائح النوم الآمن</a>
-                    <a href="#">تطور الرضيع</a>
-                    <a href="#">التغذية السليمة</a>
-                    <a href="#">العناية بالبشرة</a>
+                    <a href="sections.html">استشارات الرضاعة</a>
+                    <a href="sections.html">نصائح النوم الآمن</a>
+                    <a href="sections.html">تطور الرضيع</a>
+                    <a href="sections.html">التغذية السليمة</a>
+                    <a href="sections.html">العناية بالبشرة</a>
                 </div>
 
 <div class="footer-column">
@@ -851,6 +863,8 @@
         // Open first FAQ item by default
         document.querySelector('.faq-item').classList.add('active');
     </script>
+
+    <script defer src="../js/main.js"></script>
 </body>
 
 </html>

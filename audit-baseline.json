@@ -1,0 +1,4546 @@
+{
+  "project": "/home/ubuntu/ri3aya-audit",
+  "html_pages": 20,
+  "pages": {
+    "index.html": {
+      "title": "رعاية الرضع - دليل الأم الحديثة",
+      "description": "دليل عربي موثوق لرعاية الرضع: النوم الآمن، التغذية التكميلية، النمو، التلقيح، والعناية اليومية مع أدوات متابعة عامة.",
+      "canonical": "https://imadtbn.github.io/ri3aya/",
+      "lang": "ar",
+      "dir": "rtl",
+      "has_main": true,
+      "headings": {
+        "h1": 1,
+        "h2": 4,
+        "h3": 12
+      },
+      "images": 8,
+      "missing_alt": [],
+      "links": 37,
+      "empty_links": [],
+      "scripts": 4,
+      "external_scripts": 1,
+      "inline_scripts": 1,
+      "stylesheets": 7,
+      "local_hrefs": [
+        "index.html",
+        "index.html",
+        "sections.html",
+        "pages/crying.html",
+        "pages/sleep.html",
+        "pages/diapers.html",
+        "pages/digestive.html",
+        "pages/nutrition.html",
+        "pages/bath.html",
+        "pages/vaccine.html",
+        "pages/growth.html",
+        "pages/diseases.html",
+        "pages/tips.html",
+        "pages/tools.html",
+        "pages/blog.html",
+        "pages/contact.html",
+        "pages/tools.html",
+        "pages/crying.html",
+        "pages/sleep.html",
+        "pages/nutrition.html",
+        "pages/vaccine.html",
+        "pages/sections.html",
+        "pages/digestive.html",
+        "pages/nutrition.html",
+        "pages/bath.html",
+        "pages/blog.html",
+        "index.html",
+        "index.html",
+        "pages/tools.html",
+        "pages/blog.html",
+        "pages/faq.html",
+        "pages/privacy.html",
+        "pages/terms.html",
+        "pages/disclaimer.html"
+      ],
+      "local_srcs": [
+        "css/main.css",
+        "css/responsive.css",
+        "css/animations.css",
+        "images/icons/icons.png",
+        "css/ads.css",
+        "manifest.json",
+        "css/accessibility.css",
+        "images/hero-baby.webp",
+        "images/crying.jpg",
+        "images/sleep.jpg",
+        "images/nutrition.webp",
+        "images/vaccine.webp",
+        "images/blog1.jpg",
+        "images/blog2.jpg",
+        "images/blog3.jpeg",
+        "js/main.js",
+        "js/ads-manager.js"
+      ],
+      "text_chars": 2301,
+      "medical_term_hits": [
+        "تطعيم",
+        "تلقيح"
+      ]
+    },
+    "pages/bath.html": {
+      "title": "وقت الاستحمام | رعاية الرضع",
+      "description": "إرشادات عامة للاستحمام الآمن للرضع وتجهيز الماء والأدوات والوقاية من السقوط والحروق.",
+      "canonical": "https://imadtbn.github.io/ri3aya/pages/bath.html",
+      "lang": "ar",
+      "dir": "rtl",
+      "has_main": true,
+      "headings": {
+        "h1": 1,
+        "h2": 7,
+        "h3": 19
+      },
+      "images": 4,
+      "missing_alt": [],
+      "links": 28,
+      "empty_links": [],
+      "scripts": 4,
+      "external_scripts": 1,
+      "inline_scripts": 0,
+      "stylesheets": 9,
+      "local_hrefs": [
+        "../index.html",
+        "../index.html",
+        "sections.html",
+        "crying.html",
+        "sleep.html",
+        "diapers.html",
+        "digestive.html",
+        "nutrition.html",
+        "bath.html",
+        "vaccine.html",
+        "growth.html",
+        "diseases.html",
+        "tips.html",
+        "tools.html",
+        "blog.html",
+        "contact.html",
+        "../index.html",
+        "../index.html",
+        "../index.html",
+        "../index.html",
+        "tools.html",
+        "blog.html",
+        "faq.html",
+        "privacy.html",
+        "terms.html",
+        "disclaimer.html"
+      ],
+      "local_srcs": [
+        "../css/main.css",
+        "../css/responsive.css",
+        "../css/improvements.css",
+        "../css/animations.css",
+        "../css/bath.css",
+        "../images/icons/icons.png",
+        "../css/ads.css",
+        "../manifest.json",
+        "../css/accessibility.css",
+        "../images/bath-header.jpg",
+        "../images/bath-header.jpg",
+        "../images/bath-header.jpg",
+        "../images/bath-header.jpg",
+        "../js/main.js",
+        "../js/bath.js",
+        "../js/ads-manager.js"
+      ],
+      "text_chars": 4553,
+      "medical_term_hits": [
+        "تلقيح",
+        "حرارة"
+      ]
+    },
+    "pages/blog.html": {
+      "title": "المدونة - رعاية الرضع",
+      "description": "مقالات عربية مبسطة حول تغذية الرضع، النوم الآمن، النمو، السلامة، والعناية اليومية مع روابط للمصادر.",
+      "canonical": "https://imadtbn.github.io/ri3aya/pages/blog.html",
+      "lang": "ar",
+      "dir": "rtl",
+      "has_main": true,
+      "headings": {
+        "h1": 1,
+        "h2": 2,
+        "h3": 15
+      },
+      "images": 14,
+      "missing_alt": [],
+      "links": 62,
+      "empty_links": [],
+      "scripts": 5,
+      "external_scripts": 1,
+      "inline_scripts": 2,
+      "stylesheets": 9,
+      "local_hrefs": [
+        "../index.html",
+        "../index.html",
+        "sections.html",
+        "crying.html",
+        "sleep.html",
+        "diapers.html",
+        "digestive.html",
+        "nutrition.html",
+        "bath.html",
+        "vaccine.html",
+        "growth.html",
+        "diseases.html",
+        "tips.html",
+        "tools.html",
+        "blog.html",
+        "contact.html",
+        "../index.html",
+        "../index.html",
+        "tools.html",
+        "blog.html",
+        "faq.html",
+        "privacy.html",
+        "terms.html",
+        "disclaimer.html"
+      ],
+      "local_srcs": [
+        "../images/icons/icons.png",
+        "../css/main.css",
+        "../css/responsive.css",
+        "../css/improvements.css",
+        "../css/animations.css",
+        "../css/blog.css",
+        "../images/icons/icons.png",
+        "../css/ads.css",
+        "../manifest.json",
+        "../css/accessibility.css",
+        "../images/blog-featured.jpg",
+        "../images/icons/icons.png",
+        "../images/blog1.jpg",
+        "../images/blog33.jpg",
+        "../images/blog-safety.jpg",
+        "../images/blog-development.jpg",
+        "../images/blog-nutrition2.webp",
+        "../images/blog-health.jpg",
+        "../images/blog-popular1.webp",
+        "../images/blog-popular2.jpg",
+        "../images/blog-popular3.avif",
+        "../images/blog-recommend1.jpg",
+        "../images/blog-recommend2.jpg",
+        "../images/blog-recommend3.jpg",
+        "../js/ads-manager.js",
+        "../js/main.js"
+      ],
+      "text_chars": 3158,
+      "medical_term_hits": [
+        "تطعيم",
+        "تلقيح",
+        "طبيب"
+      ]
+    },
+    "pages/contact.html": {
+      "title": "اتصل بنا - موقع رعاية الرضيع",
+      "description": "تواصل مع فريق موقع رعاية الرضع للاقتراحات والملاحظات التقنية والتحريرية العامة.",
+      "canonical": "https://imadtbn.github.io/ri3aya/pages/contact.html",
+      "lang": "ar",
+      "dir": "rtl",
+      "has_main": true,
+      "headings": {
+        "h1": 1,
+        "h2": 3,
+        "h3": 10
+      },
+      "images": 0,
+      "missing_alt": [],
+      "links": 15,
+      "empty_links": [],
+      "scripts": 2,
+      "external_scripts": 0,
+      "inline_scripts": 0,
+      "stylesheets": 4,
+      "local_hrefs": [
+        "../index.html",
+        "../index.html",
+        "../index.html",
+        "blog.html",
+        "contact.html",
+        "../index.html",
+        "../index.html",
+        "tools.html",
+        "blog.html",
+        "faq.html",
+        "privacy.html",
+        "terms.html",
+        "disclaimer.html"
+      ],
+      "local_srcs": [
+        "../images/icons/icons.png",
+        "../css/main.css",
+        "../css/contact.css",
+        "../manifest.json",
+        "../css/accessibility.css",
+        "../js/contact.js",
+        "../js/main.js"
+      ],
+      "text_chars": 2027,
+      "medical_term_hits": []
+    },
+    "pages/crying.html": {
+      "title": "فهم بكاء الرضيع - رعاية الرضع",
+      "description": "دليل عام لفهم أسباب بكاء الرضيع ومتى ينبغي طلب المساعدة الطبية، دون تشخيص عن بُعد.",
+      "canonical": "https://imadtbn.github.io/ri3aya/pages/crying.html",
+      "lang": "ar",
+      "dir": "rtl",
+      "has_main": true,
+      "headings": {
+        "h1": 1,
+        "h2": 6,
+        "h3": 14
+      },
+      "images": 1,
+      "missing_alt": [],
+      "links": 36,
+      "empty_links": [],
+      "scripts": 4,
+      "external_scripts": 1,
+      "inline_scripts": 0,
+      "stylesheets": 9,
+      "local_hrefs": [
+        "../index.html",
+        "../index.html",
+        "sections.html",
+        "crying.html",
+        "sleep.html",
+        "diapers.html",
+        "digestive.html",
+        "nutrition.html",
+        "bath.html",
+        "vaccine.html",
+        "growth.html",
+        "diseases.html",
+        "tips.html",
+        "tools.html",
+        "blog.html",
+        "contact.html",
+        "../index.html",
+        "../index.html",
+        "tips.html",
+        "tips.html",
+        "tips.html",
+        "../pages/sleep.html",
+        "../pages/digestive.html",
+        "../pages/diapers.html",
+        "resources.html",
+        "resources.html",
+        "../index.html",
+        "../index.html",
+        "tools.html",
+        "blog.html",
+        "faq.html",
+        "privacy.html",
+        "terms.html",
+        "disclaimer.html"
+      ],
+      "local_srcs": [
+        "../images/icons/icons.png",
+        "../css/main.css",
+        "../css/responsive.css",
+        "../css/animations.css",
+        "../css/crying-analyzer.css",
+        "../css/improvements-crying.css",
+        "../css/ads.css",
+        "../manifest.json",
+        "../css/accessibility.css",
+        "../images/crying.jpg",
+        "../js/main.js",
+        "../js/crying-analyzer.js",
+        "../js/ads-manager.js"
+      ],
+      "text_chars": 4193,
+      "medical_term_hits": [
+        "تلقيح",
+        "حرارة",
+        "حمى",
+        "طبيب",
+        "مرض"
+      ]
+    },
+    "pages/diapers.html": {
+      "title": "العناية بالحفاضات - رعاية الرضع",
+      "description": "إرشادات عامة لتغيير حفاض الرضيع والعناية بالجلد والوقاية من التهيج مع علامات تستدعي الاستشارة.",
+      "canonical": "https://imadtbn.github.io/ri3aya/pages/diapers.html",
+      "lang": "ar",
+      "dir": "rtl",
+      "has_main": true,
+      "headings": {
+        "h1": 1,
+        "h2": 6,
+        "h3": 25
+      },
+      "images": 7,
+      "missing_alt": [],
+      "links": 34,
+      "empty_links": [],
+      "scripts": 4,
+      "external_scripts": 1,
+      "inline_scripts": 0,
+      "stylesheets": 21,
+      "local_hrefs": [
+        "../index.html",
+        "../index.html",
+        "sections.html",
+        "crying.html",
+        "sleep.html",
+        "diapers.html",
+        "digestive.html",
+        "nutrition.html",
+        "bath.html",
+        "vaccine.html",
+        "growth.html",
+        "diseases.html",
+        "tips.html",
+        "tools.html",
+        "blog.html",
+        "contact.html",
+        "../index.html",
+        "../index.html",
+        "digestive.html",
+        "bath.html",
+        "diseases.html",
+        "resources.html",
+        "resources.html",
+        "resources.html",
+        "../index.html",
+        "../index.html",
+        "tools.html",
+        "blog.html",
+        "faq.html",
+        "privacy.html",
+        "terms.html",
+        "disclaimer.html"
+      ],
+      "local_srcs": [
+        "../images/icons/icons.png",
+        "../css/main.css",
+        "../css/responsive.css",
+        "../css/digestive.css",
+        "../css/style-diapers.css",
+        "../css/improvements.css",
+        "../css/tools.css",
+        "../css/animations.css",
+        "../css/bath.css",
+        "../css/blog.css",
+        "../css/crying-analyzer.css",
+        "../css/diapers.css",
+        "../css/digestive.css",
+        "../css/growth.css",
+        "../css/nutrition.css",
+        "../css/tips.css",
+        "../css/diseases.css",
+        "../css/vaccine.css",
+        "../css/ads.css",
+        "../manifest.json",
+        "../css/accessibility.css",
+        "../images/diapers.webp",
+        "../images/step1.jpg",
+        "../images/step2.jpg",
+        "../images/step3.jpg",
+        "../images/step4.jpg",
+        "../images/step5.jpg",
+        "../images/step6.jpg",
+        "../js/main.js",
+        "../js/diapers.js",
+        "../js/ads-manager.js"
+      ],
+      "text_chars": 8915,
+      "medical_term_hits": [
+        "تلقيح",
+        "حرارة",
+        "حمى",
+        "طبيب",
+        "مرض"
+      ]
+    },
+    "pages/digestive.html": {
+      "title": "صحة الجهاز الهضمي للرضع - رعاية الرضع",
+      "description": "معلومات عامة عن المغص والارتجاع والغازات وعلامات الخطر التي تستدعي تقييم طبيب الأطفال.",
+      "canonical": "https://imadtbn.github.io/ri3aya/pages/digestive.html",
+      "lang": "ar",
+      "dir": "rtl",
+      "has_main": true,
+      "headings": {
+        "h1": 1,
+        "h2": 7,
+        "h3": 31
+      },
+      "images": 1,
+      "missing_alt": [],
+      "links": 34,
+      "empty_links": [],
+      "scripts": 4,
+      "external_scripts": 1,
+      "inline_scripts": 0,
+      "stylesheets": 9,
+      "local_hrefs": [
+        "../index.html",
+        "../index.html",
+        "sections.html",
+        "crying.html",
+        "sleep.html",
+        "diapers.html",
+        "digestive.html",
+        "nutrition.html",
+        "bath.html",
+        "vaccine.html",
+        "growth.html",
+        "diseases.html",
+        "tips.html",
+        "tools.html",
+        "blog.html",
+        "contact.html",
+        "../index.html",
+        "../index.html",
+        "crying.html",
+        "nutrition.html",
+        "diseases.html",
+        "resources.html",
+        "resources.html",
+        "resources.html",
+        "../index.html",
+        "../index.html",
+        "tools.html",
+        "blog.html",
+        "faq.html",
+        "privacy.html",
+        "terms.html",
+        "disclaimer.html"
+      ],
+      "local_srcs": [
+        "../images/icons/icons.png",
+        "../css/main.css",
+        "../css/responsive.css",
+        "../css/digestive.css",
+        "../css/improvements.css",
+        "../css/animations.css",
+        "../css/ads.css",
+        "../manifest.json",
+        "../css/accessibility.css",
+        "../images/digestive.jpg",
+        "../js/main.js",
+        "../js/digestive.js",
+        "../js/ads-manager.js"
+      ],
+      "text_chars": 10219,
+      "medical_term_hits": [
+        "تسمم",
+        "تلقيح",
+        "حرارة",
+        "حساسية",
+        "حمى",
+        "طبيب",
+        "مرض",
+        "مضاد"
+      ]
+    },
+    "pages/disclaimer.html": {
+      "title": "إخلاء المسؤولية - موقع رعاية الرضيع",
+      "description": "إخلاء مسؤولية يوضح حدود المحتوى الصحي العام وعدم اعتباره تشخيصًا أو وصفة علاجية.",
+      "canonical": "https://imadtbn.github.io/ri3aya/pages/disclaimer.html",
+      "lang": "ar",
+      "dir": "rtl",
+      "has_main": true,
+      "headings": {
+        "h1": 1,
+        "h2": 7,
+        "h3": 1
+      },
+      "images": 0,
+      "missing_alt": [],
+      "links": 14,
+      "empty_links": [],
+      "scripts": 1,
+      "external_scripts": 0,
+      "inline_scripts": 1,
+      "stylesheets": 19,
+      "local_hrefs": [
+        "../index.html",
+        "../index.html",
+        "resources.html",
+        "contact.html",
+        "../index.html",
+        "../index.html",
+        "tools.html",
+        "blog.html",
+        "faq.html",
+        "privacy.html",
+        "terms.html",
+        "disclaimer.html"
+      ],
+      "local_srcs": [
+        "../images/icons/icons.png",
+        "../css/main.css",
+        "../css/responsive.css",
+        "../css/digestive.css",
+        "../css/style-diapers.css",
+        "../css/improvements.css",
+        "../css/tools.css",
+        "../css/animations.css",
+        "../css/bath.css",
+        "../css/blog.css",
+        "../css/crying-analyzer.css",
+        "../css/diapers.css",
+        "../css/digestive.css",
+        "../css/growth.css",
+        "../css/nutrition.css",
+        "../css/tips.css",
+        "../css/diseases.css",
+        "../css/vaccine.css",
+        "../manifest.json",
+        "../css/accessibility.css"
+      ],
+      "text_chars": 3044,
+      "medical_term_hits": [
+        "طبيب"
+      ]
+    },
+    "pages/diseases.html": {
+      "title": "الأمراض الشائعة | رعاية الرضع",
+      "description": "معلومات توعوية عامة عن أعراض شائعة عند الرضع ومتى يجب طلب رعاية طبية عاجلة.",
+      "canonical": "https://imadtbn.github.io/ri3aya/pages/diseases.html",
+      "lang": "ar",
+      "dir": "rtl",
+      "has_main": true,
+      "headings": {
+        "h1": 1,
+        "h2": 10,
+        "h3": 26
+      },
+      "images": 1,
+      "missing_alt": [],
+      "links": 32,
+      "empty_links": [],
+      "scripts": 6,
+      "external_scripts": 1,
+      "inline_scripts": 0,
+      "stylesheets": 12,
+      "local_hrefs": [
+        "../index.html",
+        "../index.html",
+        "sections.html",
+        "crying.html",
+        "sleep.html",
+        "diapers.html",
+        "digestive.html",
+        "nutrition.html",
+        "bath.html",
+        "vaccine.html",
+        "growth.html",
+        "diseases.html",
+        "tips.html",
+        "tools.html",
+        "blog.html",
+        "contact.html",
+        "../index.html",
+        "../index.html",
+        "../index.html",
+        "../index.html",
+        "tools.html",
+        "blog.html",
+        "faq.html",
+        "privacy.html",
+        "terms.html",
+        "disclaimer.html"
+      ],
+      "local_srcs": [
+        "../css/main.css",
+        "../css/responsive.css",
+        "../css/digestive.css",
+        "../css/style-diapers.css",
+        "../css/improvements.css",
+        "../css/animations.css",
+        "../css/diseases.css",
+        "../css/growth.css",
+        "../images/icons/icons.png",
+        "../css/ads.css",
+        "../manifest.json",
+        "../css/accessibility.css",
+        "../images/diseases-header.webp",
+        "../js/main.js",
+        "../js/diseases.js",
+        "../js/faq.js",
+        "../js/growth.js",
+        "../js/ads-manager.js"
+      ],
+      "text_chars": 10370,
+      "medical_term_hits": [
+        "إيبوبروفين",
+        "اختناق",
+        "باراسيتامول",
+        "تطعيم",
+        "تلقيح",
+        "حرارة",
+        "حساسية",
+        "حمى",
+        "دواء",
+        "طبيب",
+        "مرض",
+        "مضاد"
+      ]
+    },
+    "pages/faq.html": {
+      "title": "الأسئلة الشائعة - موقع رعاية الرضع",
+      "description": "إجابات عامة عن رعاية الرضع مع التنبيه إلى مراجعة طبيب الأطفال في الحالات الخاصة أو العاجلة.",
+      "canonical": "https://imadtbn.github.io/ri3aya/pages/faq.html",
+      "lang": "ar",
+      "dir": "rtl",
+      "has_main": true,
+      "headings": {
+        "h1": 1,
+        "h2": 5,
+        "h3": 4
+      },
+      "images": 0,
+      "missing_alt": [],
+      "links": 19,
+      "empty_links": [],
+      "scripts": 2,
+      "external_scripts": 0,
+      "inline_scripts": 1,
+      "stylesheets": 5,
+      "local_hrefs": [
+        "../index.html",
+        "../index.html",
+        "../index.html",
+        "faq.html",
+        "contact.html",
+        "contact.html",
+        "../index.html",
+        "../index.html",
+        "../index.html",
+        "faq.html",
+        "contact.html",
+        "sections.html",
+        "sections.html",
+        "sections.html",
+        "sections.html",
+        "sections.html"
+      ],
+      "local_srcs": [
+        "../css/main.css",
+        "../css/responsive.css",
+        "../css/animations.css",
+        "../images/icons/icons.png",
+        "../manifest.json",
+        "../css/accessibility.css",
+        "../js/main.js"
+      ],
+      "text_chars": 4748,
+      "medical_term_hits": [
+        "حرارة",
+        "حمى",
+        "طبيب"
+      ]
+    },
+    "pages/growth.html": {
+      "title": "مخطط النمو | رعاية الرضع",
+      "description": "متابعة عامة لمؤشرات نمو الرضيع مع التأكيد على أن التقييم السريري لا يستبدل زيارة الطبيب.",
+      "canonical": "https://imadtbn.github.io/ri3aya/pages/growth.html",
+      "lang": "ar",
+      "dir": "rtl",
+      "has_main": true,
+      "headings": {
+        "h1": 1,
+        "h2": 8,
+        "h3": 16
+      },
+      "images": 1,
+      "missing_alt": [],
+      "links": 28,
+      "empty_links": [],
+      "scripts": 6,
+      "external_scripts": 2,
+      "inline_scripts": 0,
+      "stylesheets": 9,
+      "local_hrefs": [
+        "../index.html",
+        "../index.html",
+        "sections.html",
+        "crying.html",
+        "sleep.html",
+        "diapers.html",
+        "digestive.html",
+        "nutrition.html",
+        "bath.html",
+        "vaccine.html",
+        "growth.html",
+        "diseases.html",
+        "tips.html",
+        "tools.html",
+        "blog.html",
+        "contact.html",
+        "../index.html",
+        "../index.html",
+        "../index.html",
+        "../index.html",
+        "tools.html",
+        "blog.html",
+        "faq.html",
+        "privacy.html",
+        "terms.html",
+        "disclaimer.html"
+      ],
+      "local_srcs": [
+        "../css/main.css",
+        "../css/responsive.css",
+        "../css/improvements.css",
+        "../css/animations.css",
+        "../css/growth.css",
+        "../images/icons/icons.png",
+        "../css/ads.css",
+        "../manifest.json",
+        "../css/accessibility.css",
+        "../images/growth-header.jpg",
+        "../js/main.js",
+        "../js/growth.js",
+        "../js/faq.js",
+        "../js/ads-manager.js"
+      ],
+      "text_chars": 6334,
+      "medical_term_hits": [
+        "تطعيم",
+        "تلقيح",
+        "طبيب"
+      ]
+    },
+    "pages/nutrition.html": {
+      "title": "التغذية والطعام للرضع - رعاية الرضع",
+      "description": "إرشادات عامة لبدء التغذية التكميلية حول عمر 6 أشهر مع الاستمرار في الحليب ومراعاة الحساسية والنمو.",
+      "canonical": "https://imadtbn.github.io/ri3aya/pages/nutrition.html",
+      "lang": "ar",
+      "dir": "rtl",
+      "has_main": true,
+      "headings": {
+        "h1": 1,
+        "h2": 6,
+        "h3": 30
+      },
+      "images": 7,
+      "missing_alt": [],
+      "links": 35,
+      "empty_links": [],
+      "scripts": 4,
+      "external_scripts": 1,
+      "inline_scripts": 0,
+      "stylesheets": 9,
+      "local_hrefs": [
+        "../index.html",
+        "../index.html",
+        "sections.html",
+        "crying.html",
+        "sleep.html",
+        "diapers.html",
+        "digestive.html",
+        "nutrition.html",
+        "bath.html",
+        "vaccine.html",
+        "growth.html",
+        "diseases.html",
+        "tips.html",
+        "tools.html",
+        "blog.html",
+        "contact.html",
+        "../index.html",
+        "../index.html",
+        "resources.html",
+        "digestive.html",
+        "growth.html",
+        "diseases.html",
+        "resources.html",
+        "resources.html",
+        "resources.html",
+        "../index.html",
+        "../index.html",
+        "tools.html",
+        "blog.html",
+        "faq.html",
+        "privacy.html",
+        "terms.html",
+        "disclaimer.html"
+      ],
+      "local_srcs": [
+        "../images/icons/icons.png",
+        "../css/main.css",
+        "../css/responsive.css",
+        "../css/improvements.css",
+        "../css/animations.css",
+        "../css/nutrition.css",
+        "../css/ads.css",
+        "../manifest.json",
+        "../css/accessibility.css",
+        "../images/nutrition-header.jpg",
+        "../images/step1-food.jpg",
+        "../images/step2-food.jpg",
+        "../images/step3-food.jpg",
+        "../images/step4-food.jpg",
+        "../images/step5-food.jpg",
+        "../images/step6-food.jpg",
+        "../js/main.js",
+        "../js/nutrition.js",
+        "../js/ads-manager.js"
+      ],
+      "text_chars": 9437,
+      "medical_term_hits": [
+        "اختناق",
+        "تسمم",
+        "تلقيح",
+        "حساسية"
+      ]
+    },
+    "pages/privacy.html": {
+      "title": "سياسة الخصوصية - موقع رعاية الرضيع",
+      "description": "سياسة الخصوصية لموقع رعاية الرضع وبيان عام حول البيانات المحلية والنماذج والخدمات الخارجية.",
+      "canonical": "https://imadtbn.github.io/ri3aya/pages/privacy.html",
+      "lang": "ar",
+      "dir": "rtl",
+      "has_main": true,
+      "headings": {
+        "h1": 1,
+        "h2": 10,
+        "h3": 8
+      },
+      "images": 0,
+      "missing_alt": [],
+      "links": 28,
+      "empty_links": [],
+      "scripts": 1,
+      "external_scripts": 0,
+      "inline_scripts": 1,
+      "stylesheets": 2,
+      "local_hrefs": [
+        "../index.html",
+        "../index.html",
+        "../index.html",
+        "blog.html",
+        "contact.html",
+        "privacy.html",
+        "terms.html",
+        "contact.html",
+        "../index.html",
+        "../index.html",
+        "tools.html",
+        "blog.html",
+        "faq.html",
+        "privacy.html",
+        "terms.html",
+        "disclaimer.html"
+      ],
+      "local_srcs": [
+        "../images/icons/icons.png",
+        "../manifest.json",
+        "../css/accessibility.css"
+      ],
+      "text_chars": 6348,
+      "medical_term_hits": []
+    },
+    "pages/resources.html": {
+      "title": "الموارد الموثوقة | رعاية الرضع",
+      "description": "مصادر رسمية وموثوقة حول التغذية التكميلية والنوم الآمن وسلامة أدوية الأطفال والتلقيح.",
+      "canonical": "https://imadtbn.github.io/ri3aya/pages/resources.html",
+      "lang": "ar",
+      "dir": "rtl",
+      "has_main": true,
+      "headings": {
+        "h1": 1,
+        "h2": 1,
+        "h3": 0
+      },
+      "images": 0,
+      "missing_alt": [],
+      "links": 5,
+      "empty_links": [],
+      "scripts": 1,
+      "external_scripts": 0,
+      "inline_scripts": 0,
+      "stylesheets": 4,
+      "local_hrefs": [],
+      "local_srcs": [
+        "../manifest.json",
+        "../css/main.css",
+        "../css/responsive.css",
+        "../css/accessibility.css",
+        "../js/main.js"
+      ],
+      "text_chars": 465,
+      "medical_term_hits": [
+        "إيبوبروفين",
+        "تلقيح",
+        "جرع"
+      ]
+    },
+    "pages/sections.html": {
+      "title": "أقسام رعاية الرضع | رعاية الرضع",
+      "description": "استعرض أقسام موقع رعاية الرضع حول النوم والتغذية والنمو والتلقيح والعناية اليومية.",
+      "canonical": "https://imadtbn.github.io/ri3aya/pages/sections.html",
+      "lang": "ar",
+      "dir": "rtl",
+      "has_main": true,
+      "headings": {
+        "h1": 1,
+        "h2": 6,
+        "h3": 0
+      },
+      "images": 0,
+      "missing_alt": [],
+      "links": 7,
+      "empty_links": [],
+      "scripts": 1,
+      "external_scripts": 0,
+      "inline_scripts": 0,
+      "stylesheets": 4,
+      "local_hrefs": [
+        "crying.html",
+        "sleep.html",
+        "nutrition.html",
+        "vaccine.html",
+        "growth.html",
+        "resources.html"
+      ],
+      "local_srcs": [
+        "../manifest.json",
+        "../css/main.css",
+        "../css/responsive.css",
+        "../css/accessibility.css",
+        "../js/main.js"
+      ],
+      "text_chars": 489,
+      "medical_term_hits": [
+        "تلقيح"
+      ]
+    },
+    "pages/sleep.html": {
+      "title": "النوم الآمن للرضع - رعاية الرضع",
+      "description": "قواعد النوم الآمن للرضع: الظهر، سطح ثابت ومستوٍ، مساحة خالية من الأشياء اللينة، ومشاركة الغرفة دون مشاركة السرير.",
+      "canonical": "https://imadtbn.github.io/ri3aya/pages/sleep.html",
+      "lang": "ar",
+      "dir": "rtl",
+      "has_main": true,
+      "headings": {
+        "h1": 1,
+        "h2": 8,
+        "h3": 16
+      },
+      "images": 3,
+      "missing_alt": [],
+      "links": 34,
+      "empty_links": [],
+      "scripts": 4,
+      "external_scripts": 1,
+      "inline_scripts": 0,
+      "stylesheets": 8,
+      "local_hrefs": [
+        "../index.html",
+        "../index.html",
+        "sections.html",
+        "crying.html",
+        "sleep.html",
+        "diapers.html",
+        "digestive.html",
+        "nutrition.html",
+        "bath.html",
+        "vaccine.html",
+        "growth.html",
+        "diseases.html",
+        "tips.html",
+        "tools.html",
+        "blog.html",
+        "contact.html",
+        "../index.html",
+        "../index.html",
+        "crying.html",
+        "digestive.html",
+        "growth.html",
+        "resources.html",
+        "resources.html",
+        "resources.html",
+        "../index.html",
+        "../index.html",
+        "tools.html",
+        "blog.html",
+        "faq.html",
+        "privacy.html",
+        "terms.html",
+        "disclaimer.html"
+      ],
+      "local_srcs": [
+        "../images/icons/icons.png",
+        "../css/main.css",
+        "../css/responsive.css",
+        "../css/sleep.css",
+        "../css/improvements.css",
+        "../css/ads.css",
+        "../manifest.json",
+        "../css/accessibility.css",
+        "../images/sleep.jpg",
+        "../images/safe-crib.webp",
+        "../images/unsafe-crib.jpg",
+        "../js/main.js",
+        "../js/sleep.js",
+        "../js/ads-manager.js"
+      ],
+      "text_chars": 8314,
+      "medical_term_hits": [
+        "اختناق",
+        "تلقيح",
+        "حرارة"
+      ]
+    },
+    "pages/terms.html": {
+      "title": "شروط الاستخدام | رعاية الرضع",
+      "description": "شروط استخدام موقع رعاية الرضع وحدود الاستفادة من المحتوى الصحي العام والأدوات التفاعلية.",
+      "canonical": "https://imadtbn.github.io/ri3aya/pages/terms.html",
+      "lang": "ar",
+      "dir": "rtl",
+      "has_main": true,
+      "headings": {
+        "h1": 1,
+        "h2": 4,
+        "h3": 0
+      },
+      "images": 0,
+      "missing_alt": [],
+      "links": 4,
+      "empty_links": [],
+      "scripts": 1,
+      "external_scripts": 0,
+      "inline_scripts": 0,
+      "stylesheets": 4,
+      "local_hrefs": [
+        "../index.html",
+        "privacy.html",
+        "disclaimer.html"
+      ],
+      "local_srcs": [
+        "../manifest.json",
+        "../css/main.css",
+        "../css/responsive.css",
+        "../css/accessibility.css",
+        "../js/main.js"
+      ],
+      "text_chars": 805,
+      "medical_term_hits": [
+        "تلقيح",
+        "طبيب"
+      ]
+    },
+    "pages/tips.html": {
+      "title": "نصائح عامة | رعاية الرضع",
+      "description": "نصائح عامة للسلامة والعناية اليومية والتغذية والنوم مع علامات تستدعي طلب المساعدة الطبية.",
+      "canonical": "https://imadtbn.github.io/ri3aya/pages/tips.html",
+      "lang": "ar",
+      "dir": "rtl",
+      "has_main": true,
+      "headings": {
+        "h1": 1,
+        "h2": 7,
+        "h3": 16
+      },
+      "images": 1,
+      "missing_alt": [],
+      "links": 28,
+      "empty_links": [],
+      "scripts": 6,
+      "external_scripts": 1,
+      "inline_scripts": 0,
+      "stylesheets": 8,
+      "local_hrefs": [
+        "../index.html",
+        "../index.html",
+        "sections.html",
+        "crying.html",
+        "sleep.html",
+        "diapers.html",
+        "digestive.html",
+        "nutrition.html",
+        "bath.html",
+        "vaccine.html",
+        "growth.html",
+        "diseases.html",
+        "tips.html",
+        "tools.html",
+        "blog.html",
+        "contact.html",
+        "../index.html",
+        "../index.html",
+        "../index.html",
+        "../index.html",
+        "tools.html",
+        "blog.html",
+        "faq.html",
+        "privacy.html",
+        "terms.html",
+        "disclaimer.html"
+      ],
+      "local_srcs": [
+        "../css/main.css",
+        "../css/responsive.css",
+        "../css/tips.css",
+        "../css/growth.css",
+        "../images/icons/icons.png",
+        "../images/icons/icons.png",
+        "../css/ads.css",
+        "../manifest.json",
+        "../css/accessibility.css",
+        "../images/tips-header.webp",
+        "../js/main.js",
+        "../js/tips.js",
+        "../js/faq.js",
+        "../js/growth.js",
+        "../js/ads-manager.js"
+      ],
+      "text_chars": 8296,
+      "medical_term_hits": [
+        "تلقيح",
+        "حرارة",
+        "حساسية",
+        "دواء",
+        "طبيب",
+        "مرض"
+      ]
+    },
+    "pages/tools.html": {
+      "title": "الأدوات التفاعلية المتقدمة | رعاية الرضع",
+      "description": "أدوات متابعة عامة للنمو والوجبات والتذكيرات، مع منع الحسابات الدوائية الشخصية وإحالة القرارات الطبية للمختصين.",
+      "canonical": "https://imadtbn.github.io/ri3aya/pages/tools.html",
+      "lang": "ar",
+      "dir": "rtl",
+      "has_main": true,
+      "headings": {
+        "h1": 1,
+        "h2": 3,
+        "h3": 16
+      },
+      "images": 1,
+      "missing_alt": [],
+      "links": 28,
+      "empty_links": [],
+      "scripts": 14,
+      "external_scripts": 2,
+      "inline_scripts": 9,
+      "stylesheets": 13,
+      "local_hrefs": [
+        "../index.html",
+        "../index.html",
+        "sections.html",
+        "crying.html",
+        "sleep.html",
+        "diapers.html",
+        "digestive.html",
+        "nutrition.html",
+        "bath.html",
+        "vaccine.html",
+        "growth.html",
+        "diseases.html",
+        "tips.html",
+        "tools.html",
+        "blog.html",
+        "contact.html",
+        "../index.html",
+        "../index.html",
+        "../index.html",
+        "tools.html",
+        "blog.html",
+        "faq.html",
+        "privacy.html",
+        "terms.html",
+        "disclaimer.html"
+      ],
+      "local_srcs": [
+        "../css/main.css",
+        "../css/responsive.css",
+        "../css/improvements.css",
+        "../css/animations.css",
+        "../css/tools.css",
+        "../css/meal-planner.css",
+        "../css/medicine-enhanced.css",
+        "../css/tools-interactive.min.css",
+        "../css/main-styles.min.css",
+        "../images/icons/icons.png",
+        "../css/ads.css",
+        "../manifest.json",
+        "../css/accessibility.css",
+        "../images/tools-header.webp",
+        "../js/main.js",
+        "../js/tools.bundle2.js",
+        "../js/ads-manager.js"
+      ],
+      "text_chars": 6918,
+      "medical_term_hits": [
+        "إيبوبروفين",
+        "تطعيم",
+        "تلقيح",
+        "جرع",
+        "حرارة",
+        "حساسية",
+        "دواء",
+        "طبيب",
+        "مرض"
+      ]
+    },
+    "pages/vaccine.html": {
+      "title": "جدول التلقيح | رعاية الرضع",
+      "description": "معلومات إرشادية عن أهمية التلقيح ومتابعة رزنامة الطفل مع ضرورة التحقق من آخر تعليمات وزارة الصحة الجزائرية.",
+      "canonical": "https://imadtbn.github.io/ri3aya/pages/vaccine.html",
+      "lang": "ar",
+      "dir": "rtl",
+      "has_main": true,
+      "headings": {
+        "h1": 1,
+        "h2": 8,
+        "h3": 17
+      },
+      "images": 1,
+      "missing_alt": [],
+      "links": 29,
+      "empty_links": [],
+      "scripts": 4,
+      "external_scripts": 1,
+      "inline_scripts": 0,
+      "stylesheets": 8,
+      "local_hrefs": [
+        "../index.html",
+        "../index.html",
+        "sections.html",
+        "crying.html",
+        "sleep.html",
+        "diapers.html",
+        "digestive.html",
+        "nutrition.html",
+        "bath.html",
+        "vaccine.html",
+        "growth.html",
+        "diseases.html",
+        "tips.html",
+        "tools.html",
+        "blog.html",
+        "contact.html",
+        "../index.html",
+        "../index.html",
+        "../index.html",
+        "../index.html",
+        "tools.html",
+        "blog.html",
+        "faq.html",
+        "privacy.html",
+        "terms.html",
+        "disclaimer.html"
+      ],
+      "local_srcs": [
+        "../css/main.css",
+        "../css/responsive.css",
+        "../css/improvements.css",
+        "../css/vaccine.css",
+        "../images/icons/icons.png",
+        "../css/ads.css",
+        "../manifest.json",
+        "../css/accessibility.css",
+        "../images/vaccine.webp",
+        "../js/main.js",
+        "../js/vaccine.js",
+        "../js/ads-manager.js"
+      ],
+      "text_chars": 4221,
+      "medical_term_hits": [
+        "تطعيم",
+        "تلقيح",
+        "جرع",
+        "حرارة",
+        "حمى",
+        "دواء",
+        "طبيب",
+        "لقاح",
+        "مرض",
+        "مضاد"
+      ]
+    }
+  },
+  "global": {
+    "css_files": 26,
+    "css_total_bytes": 381890,
+    "largest_css": [
+      [
+        "css/main.css",
+        49303
+      ],
+      [
+        "css/digestive.css",
+        30733
+      ],
+      [
+        "css/nutrition.css",
+        30326
+      ],
+      [
+        "css/growth.css",
+        29393
+      ],
+      [
+        "css/tools.css",
+        26089
+      ],
+      [
+        "css/diapers.css",
+        19604
+      ],
+      [
+        "css/medicine-enhanced.css",
+        16754
+      ],
+      [
+        "css/improvements-crying.css",
+        16052
+      ],
+      [
+        "css/vaccine.css",
+        14768
+      ],
+      [
+        "css/contact.css",
+        14013
+      ]
+    ],
+    "js_files": 21,
+    "js_total_bytes": 568461,
+    "largest_js": [
+      [
+        "js/tools.bundle2.js",
+        102026
+      ],
+      [
+        "js/tools.js",
+        92701
+      ],
+      [
+        "js/tools.bundle.js",
+        87983
+      ],
+      [
+        "js/growth.js",
+        42886
+      ],
+      [
+        "js/crying-analyzer.js",
+        39303
+      ],
+      [
+        "js/nutrition.js",
+        30550
+      ],
+      [
+        "js/meal-planner.js",
+        23019
+      ],
+      [
+        "js/medicine-result-enhancer.js",
+        22782
+      ],
+      [
+        "js/digestive.js",
+        21299
+      ],
+      [
+        "js/vaccine-table-enhancer.js",
+        19928
+      ]
+    ],
+    "manifest": {
+      "name": "رعاية الرضع — دليل الأم الحديثة",
+      "short_name": "رعاية الرضع",
+      "lang": "ar",
+      "dir": "rtl",
+      "description": "دليل عربي موثوق لرعاية الرضع مع إرشادات عامة وأدوات متابعة آمنة.",
+      "start_url": "./index.html",
+      "scope": "./",
+      "display": "standalone",
+      "background_color": "#ffffff",
+      "theme_color": "#146c94",
+      "orientation": "portrait-primary",
+      "icons": [
+        {
+          "src": "images/icons/icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png",
+          "purpose": "any maskable"
+        },
+        {
+          "src": "images/icons/icon-512.png",
+          "sizes": "512x512",
+          "type": "image/png",
+          "purpose": "any maskable"
+        }
+      ]
+    },
+    "service_worker_candidates": [
+      "service-worker.js"
+    ],
+    "duplicate_titles": [],
+    "duplicate_descriptions": [],
+    "pages_without_description": [],
+    "pages_without_canonical": [],
+    "pages_without_main": [],
+    "pages_with_multiple_h1": {},
+    "pages_with_missing_alt": {},
+    "pages_with_empty_links": {},
+    "all_local_hrefs": [
+      [
+        "index.html",
+        "index.html"
+      ],
+      [
+        "index.html",
+        "index.html"
+      ],
+      [
+        "index.html",
+        "sections.html"
+      ],
+      [
+        "index.html",
+        "pages/crying.html"
+      ],
+      [
+        "index.html",
+        "pages/sleep.html"
+      ],
+      [
+        "index.html",
+        "pages/diapers.html"
+      ],
+      [
+        "index.html",
+        "pages/digestive.html"
+      ],
+      [
+        "index.html",
+        "pages/nutrition.html"
+      ],
+      [
+        "index.html",
+        "pages/bath.html"
+      ],
+      [
+        "index.html",
+        "pages/vaccine.html"
+      ],
+      [
+        "index.html",
+        "pages/growth.html"
+      ],
+      [
+        "index.html",
+        "pages/diseases.html"
+      ],
+      [
+        "index.html",
+        "pages/tips.html"
+      ],
+      [
+        "index.html",
+        "pages/tools.html"
+      ],
+      [
+        "index.html",
+        "pages/blog.html"
+      ],
+      [
+        "index.html",
+        "pages/contact.html"
+      ],
+      [
+        "index.html",
+        "pages/tools.html"
+      ],
+      [
+        "index.html",
+        "pages/crying.html"
+      ],
+      [
+        "index.html",
+        "pages/sleep.html"
+      ],
+      [
+        "index.html",
+        "pages/nutrition.html"
+      ],
+      [
+        "index.html",
+        "pages/vaccine.html"
+      ],
+      [
+        "index.html",
+        "pages/sections.html"
+      ],
+      [
+        "index.html",
+        "pages/digestive.html"
+      ],
+      [
+        "index.html",
+        "pages/nutrition.html"
+      ],
+      [
+        "index.html",
+        "pages/bath.html"
+      ],
+      [
+        "index.html",
+        "pages/blog.html"
+      ],
+      [
+        "index.html",
+        "index.html"
+      ],
+      [
+        "index.html",
+        "index.html#sections"
+      ],
+      [
+        "index.html",
+        "pages/tools.html"
+      ],
+      [
+        "index.html",
+        "pages/blog.html"
+      ],
+      [
+        "index.html",
+        "pages/faq.html"
+      ],
+      [
+        "index.html",
+        "pages/privacy.html"
+      ],
+      [
+        "index.html",
+        "pages/terms.html"
+      ],
+      [
+        "index.html",
+        "pages/disclaimer.html"
+      ],
+      [
+        "pages/bath.html",
+        "../index.html"
+      ],
+      [
+        "pages/bath.html",
+        "../index.html"
+      ],
+      [
+        "pages/bath.html",
+        "sections.html"
+      ],
+      [
+        "pages/bath.html",
+        "crying.html"
+      ],
+      [
+        "pages/bath.html",
+        "sleep.html"
+      ],
+      [
+        "pages/bath.html",
+        "diapers.html"
+      ],
+      [
+        "pages/bath.html",
+        "digestive.html"
+      ],
+      [
+        "pages/bath.html",
+        "nutrition.html"
+      ],
+      [
+        "pages/bath.html",
+        "bath.html"
+      ],
+      [
+        "pages/bath.html",
+        "vaccine.html"
+      ],
+      [
+        "pages/bath.html",
+        "growth.html"
+      ],
+      [
+        "pages/bath.html",
+        "diseases.html"
+      ],
+      [
+        "pages/bath.html",
+        "tips.html"
+      ],
+      [
+        "pages/bath.html",
+        "tools.html"
+      ],
+      [
+        "pages/bath.html",
+        "blog.html"
+      ],
+      [
+        "pages/bath.html",
+        "contact.html"
+      ],
+      [
+        "pages/bath.html",
+        "../index.html"
+      ],
+      [
+        "pages/bath.html",
+        "../index.html#sections"
+      ],
+      [
+        "pages/bath.html",
+        "../index.html"
+      ],
+      [
+        "pages/bath.html",
+        "../index.html#sections"
+      ],
+      [
+        "pages/bath.html",
+        "tools.html"
+      ],
+      [
+        "pages/bath.html",
+        "blog.html"
+      ],
+      [
+        "pages/bath.html",
+        "faq.html"
+      ],
+      [
+        "pages/bath.html",
+        "privacy.html"
+      ],
+      [
+        "pages/bath.html",
+        "terms.html"
+      ],
+      [
+        "pages/bath.html",
+        "disclaimer.html"
+      ],
+      [
+        "pages/blog.html",
+        "../index.html"
+      ],
+      [
+        "pages/blog.html",
+        "../index.html"
+      ],
+      [
+        "pages/blog.html",
+        "sections.html"
+      ],
+      [
+        "pages/blog.html",
+        "crying.html"
+      ],
+      [
+        "pages/blog.html",
+        "sleep.html"
+      ],
+      [
+        "pages/blog.html",
+        "diapers.html"
+      ],
+      [
+        "pages/blog.html",
+        "digestive.html"
+      ],
+      [
+        "pages/blog.html",
+        "nutrition.html"
+      ],
+      [
+        "pages/blog.html",
+        "bath.html"
+      ],
+      [
+        "pages/blog.html",
+        "vaccine.html"
+      ],
+      [
+        "pages/blog.html",
+        "growth.html"
+      ],
+      [
+        "pages/blog.html",
+        "diseases.html"
+      ],
+      [
+        "pages/blog.html",
+        "tips.html"
+      ],
+      [
+        "pages/blog.html",
+        "tools.html"
+      ],
+      [
+        "pages/blog.html",
+        "blog.html"
+      ],
+      [
+        "pages/blog.html",
+        "contact.html"
+      ],
+      [
+        "pages/blog.html",
+        "../index.html"
+      ],
+      [
+        "pages/blog.html",
+        "../index.html#sections"
+      ],
+      [
+        "pages/blog.html",
+        "tools.html"
+      ],
+      [
+        "pages/blog.html",
+        "blog.html"
+      ],
+      [
+        "pages/blog.html",
+        "faq.html"
+      ],
+      [
+        "pages/blog.html",
+        "privacy.html"
+      ],
+      [
+        "pages/blog.html",
+        "terms.html"
+      ],
+      [
+        "pages/blog.html",
+        "disclaimer.html"
+      ],
+      [
+        "pages/contact.html",
+        "../index.html"
+      ],
+      [
+        "pages/contact.html",
+        "../index.html#sections"
+      ],
+      [
+        "pages/contact.html",
+        "../index.html#sections"
+      ],
+      [
+        "pages/contact.html",
+        "blog.html#articles"
+      ],
+      [
+        "pages/contact.html",
+        "contact.html"
+      ],
+      [
+        "pages/contact.html",
+        "../index.html"
+      ],
+      [
+        "pages/contact.html",
+        "../index.html#sections"
+      ],
+      [
+        "pages/contact.html",
+        "tools.html"
+      ],
+      [
+        "pages/contact.html",
+        "blog.html"
+      ],
+      [
+        "pages/contact.html",
+        "faq.html"
+      ],
+      [
+        "pages/contact.html",
+        "privacy.html"
+      ],
+      [
+        "pages/contact.html",
+        "terms.html"
+      ],
+      [
+        "pages/contact.html",
+        "disclaimer.html"
+      ],
+      [
+        "pages/crying.html",
+        "../index.html"
+      ],
+      [
+        "pages/crying.html",
+        "../index.html"
+      ],
+      [
+        "pages/crying.html",
+        "sections.html"
+      ],
+      [
+        "pages/crying.html",
+        "crying.html"
+      ],
+      [
+        "pages/crying.html",
+        "sleep.html"
+      ],
+      [
+        "pages/crying.html",
+        "diapers.html"
+      ],
+      [
+        "pages/crying.html",
+        "digestive.html"
+      ],
+      [
+        "pages/crying.html",
+        "nutrition.html"
+      ],
+      [
+        "pages/crying.html",
+        "bath.html"
+      ],
+      [
+        "pages/crying.html",
+        "vaccine.html"
+      ],
+      [
+        "pages/crying.html",
+        "growth.html"
+      ],
+      [
+        "pages/crying.html",
+        "diseases.html"
+      ],
+      [
+        "pages/crying.html",
+        "tips.html"
+      ],
+      [
+        "pages/crying.html",
+        "tools.html"
+      ],
+      [
+        "pages/crying.html",
+        "blog.html"
+      ],
+      [
+        "pages/crying.html",
+        "contact.html"
+      ],
+      [
+        "pages/crying.html",
+        "../index.html"
+      ],
+      [
+        "pages/crying.html",
+        "../index.html#sections"
+      ],
+      [
+        "pages/crying.html",
+        "tips.html"
+      ],
+      [
+        "pages/crying.html",
+        "tips.html"
+      ],
+      [
+        "pages/crying.html",
+        "tips.html"
+      ],
+      [
+        "pages/crying.html",
+        "../pages/sleep.html"
+      ],
+      [
+        "pages/crying.html",
+        "../pages/digestive.html"
+      ],
+      [
+        "pages/crying.html",
+        "../pages/diapers.html"
+      ],
+      [
+        "pages/crying.html",
+        "resources.html#resources"
+      ],
+      [
+        "pages/crying.html",
+        "resources.html#resources"
+      ],
+      [
+        "pages/crying.html",
+        "../index.html"
+      ],
+      [
+        "pages/crying.html",
+        "../index.html#sections"
+      ],
+      [
+        "pages/crying.html",
+        "tools.html"
+      ],
+      [
+        "pages/crying.html",
+        "blog.html"
+      ],
+      [
+        "pages/crying.html",
+        "faq.html"
+      ],
+      [
+        "pages/crying.html",
+        "privacy.html"
+      ],
+      [
+        "pages/crying.html",
+        "terms.html"
+      ],
+      [
+        "pages/crying.html",
+        "disclaimer.html"
+      ],
+      [
+        "pages/diapers.html",
+        "../index.html"
+      ],
+      [
+        "pages/diapers.html",
+        "../index.html"
+      ],
+      [
+        "pages/diapers.html",
+        "sections.html"
+      ],
+      [
+        "pages/diapers.html",
+        "crying.html"
+      ],
+      [
+        "pages/diapers.html",
+        "sleep.html"
+      ],
+      [
+        "pages/diapers.html",
+        "diapers.html"
+      ],
+      [
+        "pages/diapers.html",
+        "digestive.html"
+      ],
+      [
+        "pages/diapers.html",
+        "nutrition.html"
+      ],
+      [
+        "pages/diapers.html",
+        "bath.html"
+      ],
+      [
+        "pages/diapers.html",
+        "vaccine.html"
+      ],
+      [
+        "pages/diapers.html",
+        "growth.html"
+      ],
+      [
+        "pages/diapers.html",
+        "diseases.html"
+      ],
+      [
+        "pages/diapers.html",
+        "tips.html"
+      ],
+      [
+        "pages/diapers.html",
+        "tools.html"
+      ],
+      [
+        "pages/diapers.html",
+        "blog.html"
+      ],
+      [
+        "pages/diapers.html",
+        "contact.html"
+      ],
+      [
+        "pages/diapers.html",
+        "../index.html"
+      ],
+      [
+        "pages/diapers.html",
+        "../index.html#sections"
+      ],
+      [
+        "pages/diapers.html",
+        "digestive.html"
+      ],
+      [
+        "pages/diapers.html",
+        "bath.html"
+      ],
+      [
+        "pages/diapers.html",
+        "diseases.html"
+      ],
+      [
+        "pages/diapers.html",
+        "resources.html#resources"
+      ],
+      [
+        "pages/diapers.html",
+        "resources.html#resources"
+      ],
+      [
+        "pages/diapers.html",
+        "resources.html#resources"
+      ],
+      [
+        "pages/diapers.html",
+        "../index.html"
+      ],
+      [
+        "pages/diapers.html",
+        "../index.html#sections"
+      ],
+      [
+        "pages/diapers.html",
+        "tools.html"
+      ],
+      [
+        "pages/diapers.html",
+        "blog.html"
+      ],
+      [
+        "pages/diapers.html",
+        "faq.html"
+      ],
+      [
+        "pages/diapers.html",
+        "privacy.html"
+      ],
+      [
+        "pages/diapers.html",
+        "terms.html"
+      ],
+      [
+        "pages/diapers.html",
+        "disclaimer.html"
+      ],
+      [
+        "pages/digestive.html",
+        "../index.html"
+      ],
+      [
+        "pages/digestive.html",
+        "../index.html"
+      ],
+      [
+        "pages/digestive.html",
+        "sections.html"
+      ],
+      [
+        "pages/digestive.html",
+        "crying.html"
+      ],
+      [
+        "pages/digestive.html",
+        "sleep.html"
+      ],
+      [
+        "pages/digestive.html",
+        "diapers.html"
+      ],
+      [
+        "pages/digestive.html",
+        "digestive.html"
+      ],
+      [
+        "pages/digestive.html",
+        "nutrition.html"
+      ],
+      [
+        "pages/digestive.html",
+        "bath.html"
+      ],
+      [
+        "pages/digestive.html",
+        "vaccine.html"
+      ],
+      [
+        "pages/digestive.html",
+        "growth.html"
+      ],
+      [
+        "pages/digestive.html",
+        "diseases.html"
+      ],
+      [
+        "pages/digestive.html",
+        "tips.html"
+      ],
+      [
+        "pages/digestive.html",
+        "tools.html"
+      ],
+      [
+        "pages/digestive.html",
+        "blog.html"
+      ],
+      [
+        "pages/digestive.html",
+        "contact.html"
+      ],
+      [
+        "pages/digestive.html",
+        "../index.html"
+      ],
+      [
+        "pages/digestive.html",
+        "../index.html#sections"
+      ],
+      [
+        "pages/digestive.html",
+        "crying.html"
+      ],
+      [
+        "pages/digestive.html",
+        "nutrition.html"
+      ],
+      [
+        "pages/digestive.html",
+        "diseases.html"
+      ],
+      [
+        "pages/digestive.html",
+        "resources.html#resources"
+      ],
+      [
+        "pages/digestive.html",
+        "resources.html#resources"
+      ],
+      [
+        "pages/digestive.html",
+        "resources.html#resources"
+      ],
+      [
+        "pages/digestive.html",
+        "../index.html"
+      ],
+      [
+        "pages/digestive.html",
+        "../index.html#sections"
+      ],
+      [
+        "pages/digestive.html",
+        "tools.html"
+      ],
+      [
+        "pages/digestive.html",
+        "blog.html"
+      ],
+      [
+        "pages/digestive.html",
+        "faq.html"
+      ],
+      [
+        "pages/digestive.html",
+        "privacy.html"
+      ],
+      [
+        "pages/digestive.html",
+        "terms.html"
+      ],
+      [
+        "pages/digestive.html",
+        "disclaimer.html"
+      ],
+      [
+        "pages/disclaimer.html",
+        "../index.html"
+      ],
+      [
+        "pages/disclaimer.html",
+        "../index.html#sections"
+      ],
+      [
+        "pages/disclaimer.html",
+        "resources.html#resources"
+      ],
+      [
+        "pages/disclaimer.html",
+        "contact.html"
+      ],
+      [
+        "pages/disclaimer.html",
+        "../index.html"
+      ],
+      [
+        "pages/disclaimer.html",
+        "../index.html#sections"
+      ],
+      [
+        "pages/disclaimer.html",
+        "tools.html"
+      ],
+      [
+        "pages/disclaimer.html",
+        "blog.html"
+      ],
+      [
+        "pages/disclaimer.html",
+        "faq.html"
+      ],
+      [
+        "pages/disclaimer.html",
+        "privacy.html"
+      ],
+      [
+        "pages/disclaimer.html",
+        "terms.html"
+      ],
+      [
+        "pages/disclaimer.html",
+        "disclaimer.html"
+      ],
+      [
+        "pages/diseases.html",
+        "../index.html"
+      ],
+      [
+        "pages/diseases.html",
+        "../index.html"
+      ],
+      [
+        "pages/diseases.html",
+        "sections.html"
+      ],
+      [
+        "pages/diseases.html",
+        "crying.html"
+      ],
+      [
+        "pages/diseases.html",
+        "sleep.html"
+      ],
+      [
+        "pages/diseases.html",
+        "diapers.html"
+      ],
+      [
+        "pages/diseases.html",
+        "digestive.html"
+      ],
+      [
+        "pages/diseases.html",
+        "nutrition.html"
+      ],
+      [
+        "pages/diseases.html",
+        "bath.html"
+      ],
+      [
+        "pages/diseases.html",
+        "vaccine.html"
+      ],
+      [
+        "pages/diseases.html",
+        "growth.html"
+      ],
+      [
+        "pages/diseases.html",
+        "diseases.html"
+      ],
+      [
+        "pages/diseases.html",
+        "tips.html"
+      ],
+      [
+        "pages/diseases.html",
+        "tools.html"
+      ],
+      [
+        "pages/diseases.html",
+        "blog.html"
+      ],
+      [
+        "pages/diseases.html",
+        "contact.html"
+      ],
+      [
+        "pages/diseases.html",
+        "../index.html"
+      ],
+      [
+        "pages/diseases.html",
+        "../index.html#sections"
+      ],
+      [
+        "pages/diseases.html",
+        "../index.html"
+      ],
+      [
+        "pages/diseases.html",
+        "../index.html#sections"
+      ],
+      [
+        "pages/diseases.html",
+        "tools.html"
+      ],
+      [
+        "pages/diseases.html",
+        "blog.html"
+      ],
+      [
+        "pages/diseases.html",
+        "faq.html"
+      ],
+      [
+        "pages/diseases.html",
+        "privacy.html"
+      ],
+      [
+        "pages/diseases.html",
+        "terms.html"
+      ],
+      [
+        "pages/diseases.html",
+        "disclaimer.html"
+      ],
+      [
+        "pages/faq.html",
+        "../index.html"
+      ],
+      [
+        "pages/faq.html",
+        "../index.html#sections"
+      ],
+      [
+        "pages/faq.html",
+        "../index.html#sections"
+      ],
+      [
+        "pages/faq.html",
+        "faq.html"
+      ],
+      [
+        "pages/faq.html",
+        "contact.html"
+      ],
+      [
+        "pages/faq.html",
+        "contact.html"
+      ],
+      [
+        "pages/faq.html",
+        "../index.html"
+      ],
+      [
+        "pages/faq.html",
+        "../index.html#sections"
+      ],
+      [
+        "pages/faq.html",
+        "../index.html#sections"
+      ],
+      [
+        "pages/faq.html",
+        "faq.html"
+      ],
+      [
+        "pages/faq.html",
+        "contact.html"
+      ],
+      [
+        "pages/faq.html",
+        "sections.html"
+      ],
+      [
+        "pages/faq.html",
+        "sections.html"
+      ],
+      [
+        "pages/faq.html",
+        "sections.html"
+      ],
+      [
+        "pages/faq.html",
+        "sections.html"
+      ],
+      [
+        "pages/faq.html",
+        "sections.html"
+      ],
+      [
+        "pages/growth.html",
+        "../index.html"
+      ],
+      [
+        "pages/growth.html",
+        "../index.html"
+      ],
+      [
+        "pages/growth.html",
+        "sections.html"
+      ],
+      [
+        "pages/growth.html",
+        "crying.html"
+      ],
+      [
+        "pages/growth.html",
+        "sleep.html"
+      ],
+      [
+        "pages/growth.html",
+        "diapers.html"
+      ],
+      [
+        "pages/growth.html",
+        "digestive.html"
+      ],
+      [
+        "pages/growth.html",
+        "nutrition.html"
+      ],
+      [
+        "pages/growth.html",
+        "bath.html"
+      ],
+      [
+        "pages/growth.html",
+        "vaccine.html"
+      ],
+      [
+        "pages/growth.html",
+        "growth.html"
+      ],
+      [
+        "pages/growth.html",
+        "diseases.html"
+      ],
+      [
+        "pages/growth.html",
+        "tips.html"
+      ],
+      [
+        "pages/growth.html",
+        "tools.html"
+      ],
+      [
+        "pages/growth.html",
+        "blog.html"
+      ],
+      [
+        "pages/growth.html",
+        "contact.html"
+      ],
+      [
+        "pages/growth.html",
+        "../index.html"
+      ],
+      [
+        "pages/growth.html",
+        "../index.html#sections"
+      ],
+      [
+        "pages/growth.html",
+        "../index.html"
+      ],
+      [
+        "pages/growth.html",
+        "../index.html#sections"
+      ],
+      [
+        "pages/growth.html",
+        "tools.html"
+      ],
+      [
+        "pages/growth.html",
+        "blog.html"
+      ],
+      [
+        "pages/growth.html",
+        "faq.html"
+      ],
+      [
+        "pages/growth.html",
+        "privacy.html"
+      ],
+      [
+        "pages/growth.html",
+        "terms.html"
+      ],
+      [
+        "pages/growth.html",
+        "disclaimer.html"
+      ],
+      [
+        "pages/nutrition.html",
+        "../index.html"
+      ],
+      [
+        "pages/nutrition.html",
+        "../index.html"
+      ],
+      [
+        "pages/nutrition.html",
+        "sections.html"
+      ],
+      [
+        "pages/nutrition.html",
+        "crying.html"
+      ],
+      [
+        "pages/nutrition.html",
+        "sleep.html"
+      ],
+      [
+        "pages/nutrition.html",
+        "diapers.html"
+      ],
+      [
+        "pages/nutrition.html",
+        "digestive.html"
+      ],
+      [
+        "pages/nutrition.html",
+        "nutrition.html"
+      ],
+      [
+        "pages/nutrition.html",
+        "bath.html"
+      ],
+      [
+        "pages/nutrition.html",
+        "vaccine.html"
+      ],
+      [
+        "pages/nutrition.html",
+        "growth.html"
+      ],
+      [
+        "pages/nutrition.html",
+        "diseases.html"
+      ],
+      [
+        "pages/nutrition.html",
+        "tips.html"
+      ],
+      [
+        "pages/nutrition.html",
+        "tools.html"
+      ],
+      [
+        "pages/nutrition.html",
+        "blog.html"
+      ],
+      [
+        "pages/nutrition.html",
+        "contact.html"
+      ],
+      [
+        "pages/nutrition.html",
+        "../index.html"
+      ],
+      [
+        "pages/nutrition.html",
+        "../index.html#sections"
+      ],
+      [
+        "pages/nutrition.html",
+        "resources.html#resources"
+      ],
+      [
+        "pages/nutrition.html",
+        "digestive.html"
+      ],
+      [
+        "pages/nutrition.html",
+        "growth.html"
+      ],
+      [
+        "pages/nutrition.html",
+        "diseases.html"
+      ],
+      [
+        "pages/nutrition.html",
+        "resources.html#resources"
+      ],
+      [
+        "pages/nutrition.html",
+        "resources.html#resources"
+      ],
+      [
+        "pages/nutrition.html",
+        "resources.html#resources"
+      ],
+      [
+        "pages/nutrition.html",
+        "../index.html"
+      ],
+      [
+        "pages/nutrition.html",
+        "../index.html#sections"
+      ],
+      [
+        "pages/nutrition.html",
+        "tools.html"
+      ],
+      [
+        "pages/nutrition.html",
+        "blog.html"
+      ],
+      [
+        "pages/nutrition.html",
+        "faq.html"
+      ],
+      [
+        "pages/nutrition.html",
+        "privacy.html"
+      ],
+      [
+        "pages/nutrition.html",
+        "terms.html"
+      ],
+      [
+        "pages/nutrition.html",
+        "disclaimer.html"
+      ],
+      [
+        "pages/privacy.html",
+        "../index.html"
+      ],
+      [
+        "pages/privacy.html",
+        "../index.html#sections"
+      ],
+      [
+        "pages/privacy.html",
+        "../index.html#sections"
+      ],
+      [
+        "pages/privacy.html",
+        "blog.html#articles"
+      ],
+      [
+        "pages/privacy.html",
+        "contact.html"
+      ],
+      [
+        "pages/privacy.html",
+        "privacy.html"
+      ],
+      [
+        "pages/privacy.html",
+        "terms.html"
+      ],
+      [
+        "pages/privacy.html",
+        "contact.html"
+      ],
+      [
+        "pages/privacy.html",
+        "../index.html"
+      ],
+      [
+        "pages/privacy.html",
+        "../index.html#sections"
+      ],
+      [
+        "pages/privacy.html",
+        "tools.html"
+      ],
+      [
+        "pages/privacy.html",
+        "blog.html"
+      ],
+      [
+        "pages/privacy.html",
+        "faq.html"
+      ],
+      [
+        "pages/privacy.html",
+        "privacy.html"
+      ],
+      [
+        "pages/privacy.html",
+        "terms.html"
+      ],
+      [
+        "pages/privacy.html",
+        "disclaimer.html"
+      ],
+      [
+        "pages/sections.html",
+        "crying.html"
+      ],
+      [
+        "pages/sections.html",
+        "sleep.html"
+      ],
+      [
+        "pages/sections.html",
+        "nutrition.html"
+      ],
+      [
+        "pages/sections.html",
+        "vaccine.html"
+      ],
+      [
+        "pages/sections.html",
+        "growth.html"
+      ],
+      [
+        "pages/sections.html",
+        "resources.html"
+      ],
+      [
+        "pages/sleep.html",
+        "../index.html"
+      ],
+      [
+        "pages/sleep.html",
+        "../index.html"
+      ],
+      [
+        "pages/sleep.html",
+        "sections.html"
+      ],
+      [
+        "pages/sleep.html",
+        "crying.html"
+      ],
+      [
+        "pages/sleep.html",
+        "sleep.html"
+      ],
+      [
+        "pages/sleep.html",
+        "diapers.html"
+      ],
+      [
+        "pages/sleep.html",
+        "digestive.html"
+      ],
+      [
+        "pages/sleep.html",
+        "nutrition.html"
+      ],
+      [
+        "pages/sleep.html",
+        "bath.html"
+      ],
+      [
+        "pages/sleep.html",
+        "vaccine.html"
+      ],
+      [
+        "pages/sleep.html",
+        "growth.html"
+      ],
+      [
+        "pages/sleep.html",
+        "diseases.html"
+      ],
+      [
+        "pages/sleep.html",
+        "tips.html"
+      ],
+      [
+        "pages/sleep.html",
+        "tools.html"
+      ],
+      [
+        "pages/sleep.html",
+        "blog.html"
+      ],
+      [
+        "pages/sleep.html",
+        "contact.html"
+      ],
+      [
+        "pages/sleep.html",
+        "../index.html"
+      ],
+      [
+        "pages/sleep.html",
+        "../index.html#sections"
+      ],
+      [
+        "pages/sleep.html",
+        "crying.html"
+      ],
+      [
+        "pages/sleep.html",
+        "digestive.html"
+      ],
+      [
+        "pages/sleep.html",
+        "growth.html"
+      ],
+      [
+        "pages/sleep.html",
+        "resources.html#resources"
+      ],
+      [
+        "pages/sleep.html",
+        "resources.html#resources"
+      ],
+      [
+        "pages/sleep.html",
+        "resources.html#resources"
+      ],
+      [
+        "pages/sleep.html",
+        "../index.html"
+      ],
+      [
+        "pages/sleep.html",
+        "../index.html#sections"
+      ],
+      [
+        "pages/sleep.html",
+        "tools.html"
+      ],
+      [
+        "pages/sleep.html",
+        "blog.html"
+      ],
+      [
+        "pages/sleep.html",
+        "faq.html"
+      ],
+      [
+        "pages/sleep.html",
+        "privacy.html"
+      ],
+      [
+        "pages/sleep.html",
+        "terms.html"
+      ],
+      [
+        "pages/sleep.html",
+        "disclaimer.html"
+      ],
+      [
+        "pages/terms.html",
+        "../index.html"
+      ],
+      [
+        "pages/terms.html",
+        "privacy.html"
+      ],
+      [
+        "pages/terms.html",
+        "disclaimer.html"
+      ],
+      [
+        "pages/tips.html",
+        "../index.html"
+      ],
+      [
+        "pages/tips.html",
+        "../index.html"
+      ],
+      [
+        "pages/tips.html",
+        "sections.html"
+      ],
+      [
+        "pages/tips.html",
+        "crying.html"
+      ],
+      [
+        "pages/tips.html",
+        "sleep.html"
+      ],
+      [
+        "pages/tips.html",
+        "diapers.html"
+      ],
+      [
+        "pages/tips.html",
+        "digestive.html"
+      ],
+      [
+        "pages/tips.html",
+        "nutrition.html"
+      ],
+      [
+        "pages/tips.html",
+        "bath.html"
+      ],
+      [
+        "pages/tips.html",
+        "vaccine.html"
+      ],
+      [
+        "pages/tips.html",
+        "growth.html"
+      ],
+      [
+        "pages/tips.html",
+        "diseases.html"
+      ],
+      [
+        "pages/tips.html",
+        "tips.html"
+      ],
+      [
+        "pages/tips.html",
+        "tools.html"
+      ],
+      [
+        "pages/tips.html",
+        "blog.html"
+      ],
+      [
+        "pages/tips.html",
+        "contact.html"
+      ],
+      [
+        "pages/tips.html",
+        "../index.html"
+      ],
+      [
+        "pages/tips.html",
+        "../index.html#sections"
+      ],
+      [
+        "pages/tips.html",
+        "../index.html"
+      ],
+      [
+        "pages/tips.html",
+        "../index.html#sections"
+      ],
+      [
+        "pages/tips.html",
+        "tools.html"
+      ],
+      [
+        "pages/tips.html",
+        "blog.html"
+      ],
+      [
+        "pages/tips.html",
+        "faq.html"
+      ],
+      [
+        "pages/tips.html",
+        "privacy.html"
+      ],
+      [
+        "pages/tips.html",
+        "terms.html"
+      ],
+      [
+        "pages/tips.html",
+        "disclaimer.html"
+      ],
+      [
+        "pages/tools.html",
+        "../index.html"
+      ],
+      [
+        "pages/tools.html",
+        "../index.html"
+      ],
+      [
+        "pages/tools.html",
+        "sections.html"
+      ],
+      [
+        "pages/tools.html",
+        "crying.html"
+      ],
+      [
+        "pages/tools.html",
+        "sleep.html"
+      ],
+      [
+        "pages/tools.html",
+        "diapers.html"
+      ],
+      [
+        "pages/tools.html",
+        "digestive.html"
+      ],
+      [
+        "pages/tools.html",
+        "nutrition.html"
+      ],
+      [
+        "pages/tools.html",
+        "bath.html"
+      ],
+      [
+        "pages/tools.html",
+        "vaccine.html"
+      ],
+      [
+        "pages/tools.html",
+        "growth.html"
+      ],
+      [
+        "pages/tools.html",
+        "diseases.html"
+      ],
+      [
+        "pages/tools.html",
+        "tips.html"
+      ],
+      [
+        "pages/tools.html",
+        "tools.html"
+      ],
+      [
+        "pages/tools.html",
+        "blog.html"
+      ],
+      [
+        "pages/tools.html",
+        "contact.html"
+      ],
+      [
+        "pages/tools.html",
+        "../index.html"
+      ],
+      [
+        "pages/tools.html",
+        "../index.html"
+      ],
+      [
+        "pages/tools.html",
+        "../index.html#sections"
+      ],
+      [
+        "pages/tools.html",
+        "tools.html"
+      ],
+      [
+        "pages/tools.html",
+        "blog.html"
+      ],
+      [
+        "pages/tools.html",
+        "faq.html"
+      ],
+      [
+        "pages/tools.html",
+        "privacy.html"
+      ],
+      [
+        "pages/tools.html",
+        "terms.html"
+      ],
+      [
+        "pages/tools.html",
+        "disclaimer.html"
+      ],
+      [
+        "pages/vaccine.html",
+        "../index.html"
+      ],
+      [
+        "pages/vaccine.html",
+        "../index.html"
+      ],
+      [
+        "pages/vaccine.html",
+        "sections.html"
+      ],
+      [
+        "pages/vaccine.html",
+        "crying.html"
+      ],
+      [
+        "pages/vaccine.html",
+        "sleep.html"
+      ],
+      [
+        "pages/vaccine.html",
+        "diapers.html"
+      ],
+      [
+        "pages/vaccine.html",
+        "digestive.html"
+      ],
+      [
+        "pages/vaccine.html",
+        "nutrition.html"
+      ],
+      [
+        "pages/vaccine.html",
+        "bath.html"
+      ],
+      [
+        "pages/vaccine.html",
+        "vaccine.html"
+      ],
+      [
+        "pages/vaccine.html",
+        "growth.html"
+      ],
+      [
+        "pages/vaccine.html",
+        "diseases.html"
+      ],
+      [
+        "pages/vaccine.html",
+        "tips.html"
+      ],
+      [
+        "pages/vaccine.html",
+        "tools.html"
+      ],
+      [
+        "pages/vaccine.html",
+        "blog.html"
+      ],
+      [
+        "pages/vaccine.html",
+        "contact.html"
+      ],
+      [
+        "pages/vaccine.html",
+        "../index.html"
+      ],
+      [
+        "pages/vaccine.html",
+        "../index.html#sections"
+      ],
+      [
+        "pages/vaccine.html",
+        "../index.html"
+      ],
+      [
+        "pages/vaccine.html",
+        "../index.html#sections"
+      ],
+      [
+        "pages/vaccine.html",
+        "tools.html"
+      ],
+      [
+        "pages/vaccine.html",
+        "blog.html"
+      ],
+      [
+        "pages/vaccine.html",
+        "faq.html"
+      ],
+      [
+        "pages/vaccine.html",
+        "privacy.html"
+      ],
+      [
+        "pages/vaccine.html",
+        "terms.html"
+      ],
+      [
+        "pages/vaccine.html",
+        "disclaimer.html"
+      ]
+    ],
+    "all_local_srcs": [
+      [
+        "index.html",
+        "css/main.css"
+      ],
+      [
+        "index.html",
+        "css/responsive.css"
+      ],
+      [
+        "index.html",
+        "css/animations.css"
+      ],
+      [
+        "index.html",
+        "images/icons/icons.png"
+      ],
+      [
+        "index.html",
+        "css/ads.css"
+      ],
+      [
+        "index.html",
+        "manifest.json"
+      ],
+      [
+        "index.html",
+        "css/accessibility.css"
+      ],
+      [
+        "index.html",
+        "images/hero-baby.webp"
+      ],
+      [
+        "index.html",
+        "images/crying.jpg"
+      ],
+      [
+        "index.html",
+        "images/sleep.jpg"
+      ],
+      [
+        "index.html",
+        "images/nutrition.webp"
+      ],
+      [
+        "index.html",
+        "images/vaccine.webp"
+      ],
+      [
+        "index.html",
+        "images/blog1.jpg"
+      ],
+      [
+        "index.html",
+        "images/blog2.jpg"
+      ],
+      [
+        "index.html",
+        "images/blog3.jpeg"
+      ],
+      [
+        "index.html",
+        "js/main.js"
+      ],
+      [
+        "index.html",
+        "js/ads-manager.js"
+      ],
+      [
+        "pages/bath.html",
+        "../css/main.css"
+      ],
+      [
+        "pages/bath.html",
+        "../css/responsive.css"
+      ],
+      [
+        "pages/bath.html",
+        "../css/improvements.css"
+      ],
+      [
+        "pages/bath.html",
+        "../css/animations.css"
+      ],
+      [
+        "pages/bath.html",
+        "../css/bath.css"
+      ],
+      [
+        "pages/bath.html",
+        "../images/icons/icons.png"
+      ],
+      [
+        "pages/bath.html",
+        "../css/ads.css"
+      ],
+      [
+        "pages/bath.html",
+        "../manifest.json"
+      ],
+      [
+        "pages/bath.html",
+        "../css/accessibility.css"
+      ],
+      [
+        "pages/bath.html",
+        "../images/bath-header.jpg"
+      ],
+      [
+        "pages/bath.html",
+        "../images/bath-header.jpg"
+      ],
+      [
+        "pages/bath.html",
+        "../images/bath-header.jpg"
+      ],
+      [
+        "pages/bath.html",
+        "../images/bath-header.jpg"
+      ],
+      [
+        "pages/bath.html",
+        "../js/main.js"
+      ],
+      [
+        "pages/bath.html",
+        "../js/bath.js"
+      ],
+      [
+        "pages/bath.html",
+        "../js/ads-manager.js"
+      ],
+      [
+        "pages/blog.html",
+        "../images/icons/icons.png"
+      ],
+      [
+        "pages/blog.html",
+        "../css/main.css"
+      ],
+      [
+        "pages/blog.html",
+        "../css/responsive.css"
+      ],
+      [
+        "pages/blog.html",
+        "../css/improvements.css"
+      ],
+      [
+        "pages/blog.html",
+        "../css/animations.css"
+      ],
+      [
+        "pages/blog.html",
+        "../css/blog.css"
+      ],
+      [
+        "pages/blog.html",
+        "../images/icons/icons.png"
+      ],
+      [
+        "pages/blog.html",
+        "../css/ads.css"
+      ],
+      [
+        "pages/blog.html",
+        "../manifest.json"
+      ],
+      [
+        "pages/blog.html",
+        "../css/accessibility.css"
+      ],
+      [
+        "pages/blog.html",
+        "../images/blog-featured.jpg"
+      ],
+      [
+        "pages/blog.html",
+        "../images/icons/icons.png"
+      ],
+      [
+        "pages/blog.html",
+        "../images/blog1.jpg"
+      ],
+      [
+        "pages/blog.html",
+        "../images/blog33.jpg"
+      ],
+      [
+        "pages/blog.html",
+        "../images/blog-safety.jpg"
+      ],
+      [
+        "pages/blog.html",
+        "../images/blog-development.jpg"
+      ],
+      [
+        "pages/blog.html",
+        "../images/blog-nutrition2.webp"
+      ],
+      [
+        "pages/blog.html",
+        "../images/blog-health.jpg"
+      ],
+      [
+        "pages/blog.html",
+        "../images/blog-popular1.webp"
+      ],
+      [
+        "pages/blog.html",
+        "../images/blog-popular2.jpg"
+      ],
+      [
+        "pages/blog.html",
+        "../images/blog-popular3.avif"
+      ],
+      [
+        "pages/blog.html",
+        "../images/blog-recommend1.jpg"
+      ],
+      [
+        "pages/blog.html",
+        "../images/blog-recommend2.jpg"
+      ],
+      [
+        "pages/blog.html",
+        "../images/blog-recommend3.jpg"
+      ],
+      [
+        "pages/blog.html",
+        "../js/ads-manager.js"
+      ],
+      [
+        "pages/blog.html",
+        "../js/main.js"
+      ],
+      [
+        "pages/contact.html",
+        "../images/icons/icons.png"
+      ],
+      [
+        "pages/contact.html",
+        "../css/main.css"
+      ],
+      [
+        "pages/contact.html",
+        "../css/contact.css"
+      ],
+      [
+        "pages/contact.html",
+        "../manifest.json"
+      ],
+      [
+        "pages/contact.html",
+        "../css/accessibility.css"
+      ],
+      [
+        "pages/contact.html",
+        "../js/contact.js"
+      ],
+      [
+        "pages/contact.html",
+        "../js/main.js"
+      ],
+      [
+        "pages/crying.html",
+        "../images/icons/icons.png"
+      ],
+      [
+        "pages/crying.html",
+        "../css/main.css"
+      ],
+      [
+        "pages/crying.html",
+        "../css/responsive.css"
+      ],
+      [
+        "pages/crying.html",
+        "../css/animations.css"
+      ],
+      [
+        "pages/crying.html",
+        "../css/crying-analyzer.css"
+      ],
+      [
+        "pages/crying.html",
+        "../css/improvements-crying.css"
+      ],
+      [
+        "pages/crying.html",
+        "../css/ads.css"
+      ],
+      [
+        "pages/crying.html",
+        "../manifest.json"
+      ],
+      [
+        "pages/crying.html",
+        "../css/accessibility.css"
+      ],
+      [
+        "pages/crying.html",
+        "../images/crying.jpg"
+      ],
+      [
+        "pages/crying.html",
+        "../js/main.js"
+      ],
+      [
+        "pages/crying.html",
+        "../js/crying-analyzer.js"
+      ],
+      [
+        "pages/crying.html",
+        "../js/ads-manager.js"
+      ],
+      [
+        "pages/diapers.html",
+        "../images/icons/icons.png"
+      ],
+      [
+        "pages/diapers.html",
+        "../css/main.css"
+      ],
+      [
+        "pages/diapers.html",
+        "../css/responsive.css"
+      ],
+      [
+        "pages/diapers.html",
+        "../css/digestive.css"
+      ],
+      [
+        "pages/diapers.html",
+        "../css/style-diapers.css"
+      ],
+      [
+        "pages/diapers.html",
+        "../css/improvements.css"
+      ],
+      [
+        "pages/diapers.html",
+        "../css/tools.css"
+      ],
+      [
+        "pages/diapers.html",
+        "../css/animations.css"
+      ],
+      [
+        "pages/diapers.html",
+        "../css/bath.css"
+      ],
+      [
+        "pages/diapers.html",
+        "../css/blog.css"
+      ],
+      [
+        "pages/diapers.html",
+        "../css/crying-analyzer.css"
+      ],
+      [
+        "pages/diapers.html",
+        "../css/diapers.css"
+      ],
+      [
+        "pages/diapers.html",
+        "../css/digestive.css"
+      ],
+      [
+        "pages/diapers.html",
+        "../css/growth.css"
+      ],
+      [
+        "pages/diapers.html",
+        "../css/nutrition.css"
+      ],
+      [
+        "pages/diapers.html",
+        "../css/tips.css"
+      ],
+      [
+        "pages/diapers.html",
+        "../css/diseases.css"
+      ],
+      [
+        "pages/diapers.html",
+        "../css/vaccine.css"
+      ],
+      [
+        "pages/diapers.html",
+        "../css/ads.css"
+      ],
+      [
+        "pages/diapers.html",
+        "../manifest.json"
+      ],
+      [
+        "pages/diapers.html",
+        "../css/accessibility.css"
+      ],
+      [
+        "pages/diapers.html",
+        "../images/diapers.webp"
+      ],
+      [
+        "pages/diapers.html",
+        "../images/step1.jpg"
+      ],
+      [
+        "pages/diapers.html",
+        "../images/step2.jpg"
+      ],
+      [
+        "pages/diapers.html",
+        "../images/step3.jpg"
+      ],
+      [
+        "pages/diapers.html",
+        "../images/step4.jpg"
+      ],
+      [
+        "pages/diapers.html",
+        "../images/step5.jpg"
+      ],
+      [
+        "pages/diapers.html",
+        "../images/step6.jpg"
+      ],
+      [
+        "pages/diapers.html",
+        "../js/main.js"
+      ],
+      [
+        "pages/diapers.html",
+        "../js/diapers.js"
+      ],
+      [
+        "pages/diapers.html",
+        "../js/ads-manager.js"
+      ],
+      [
+        "pages/digestive.html",
+        "../images/icons/icons.png"
+      ],
+      [
+        "pages/digestive.html",
+        "../css/main.css"
+      ],
+      [
+        "pages/digestive.html",
+        "../css/responsive.css"
+      ],
+      [
+        "pages/digestive.html",
+        "../css/digestive.css"
+      ],
+      [
+        "pages/digestive.html",
+        "../css/improvements.css"
+      ],
+      [
+        "pages/digestive.html",
+        "../css/animations.css"
+      ],
+      [
+        "pages/digestive.html",
+        "../css/ads.css"
+      ],
+      [
+        "pages/digestive.html",
+        "../manifest.json"
+      ],
+      [
+        "pages/digestive.html",
+        "../css/accessibility.css"
+      ],
+      [
+        "pages/digestive.html",
+        "../images/digestive.jpg"
+      ],
+      [
+        "pages/digestive.html",
+        "../js/main.js"
+      ],
+      [
+        "pages/digestive.html",
+        "../js/digestive.js"
+      ],
+      [
+        "pages/digestive.html",
+        "../js/ads-manager.js"
+      ],
+      [
+        "pages/disclaimer.html",
+        "../images/icons/icons.png"
+      ],
+      [
+        "pages/disclaimer.html",
+        "../css/main.css"
+      ],
+      [
+        "pages/disclaimer.html",
+        "../css/responsive.css"
+      ],
+      [
+        "pages/disclaimer.html",
+        "../css/digestive.css"
+      ],
+      [
+        "pages/disclaimer.html",
+        "../css/style-diapers.css"
+      ],
+      [
+        "pages/disclaimer.html",
+        "../css/improvements.css"
+      ],
+      [
+        "pages/disclaimer.html",
+        "../css/tools.css"
+      ],
+      [
+        "pages/disclaimer.html",
+        "../css/animations.css"
+      ],
+      [
+        "pages/disclaimer.html",
+        "../css/bath.css"
+      ],
+      [
+        "pages/disclaimer.html",
+        "../css/blog.css"
+      ],
+      [
+        "pages/disclaimer.html",
+        "../css/crying-analyzer.css"
+      ],
+      [
+        "pages/disclaimer.html",
+        "../css/diapers.css"
+      ],
+      [
+        "pages/disclaimer.html",
+        "../css/digestive.css"
+      ],
+      [
+        "pages/disclaimer.html",
+        "../css/growth.css"
+      ],
+      [
+        "pages/disclaimer.html",
+        "../css/nutrition.css"
+      ],
+      [
+        "pages/disclaimer.html",
+        "../css/tips.css"
+      ],
+      [
+        "pages/disclaimer.html",
+        "../css/diseases.css"
+      ],
+      [
+        "pages/disclaimer.html",
+        "../css/vaccine.css"
+      ],
+      [
+        "pages/disclaimer.html",
+        "../manifest.json"
+      ],
+      [
+        "pages/disclaimer.html",
+        "../css/accessibility.css"
+      ],
+      [
+        "pages/diseases.html",
+        "../css/main.css"
+      ],
+      [
+        "pages/diseases.html",
+        "../css/responsive.css"
+      ],
+      [
+        "pages/diseases.html",
+        "../css/digestive.css"
+      ],
+      [
+        "pages/diseases.html",
+        "../css/style-diapers.css"
+      ],
+      [
+        "pages/diseases.html",
+        "../css/improvements.css"
+      ],
+      [
+        "pages/diseases.html",
+        "../css/animations.css"
+      ],
+      [
+        "pages/diseases.html",
+        "../css/diseases.css"
+      ],
+      [
+        "pages/diseases.html",
+        "../css/growth.css"
+      ],
+      [
+        "pages/diseases.html",
+        "../images/icons/icons.png"
+      ],
+      [
+        "pages/diseases.html",
+        "../css/ads.css"
+      ],
+      [
+        "pages/diseases.html",
+        "../manifest.json"
+      ],
+      [
+        "pages/diseases.html",
+        "../css/accessibility.css"
+      ],
+      [
+        "pages/diseases.html",
+        "../images/diseases-header.webp"
+      ],
+      [
+        "pages/diseases.html",
+        "../js/main.js"
+      ],
+      [
+        "pages/diseases.html",
+        "../js/diseases.js"
+      ],
+      [
+        "pages/diseases.html",
+        "../js/faq.js"
+      ],
+      [
+        "pages/diseases.html",
+        "../js/growth.js"
+      ],
+      [
+        "pages/diseases.html",
+        "../js/ads-manager.js"
+      ],
+      [
+        "pages/faq.html",
+        "../css/main.css"
+      ],
+      [
+        "pages/faq.html",
+        "../css/responsive.css"
+      ],
+      [
+        "pages/faq.html",
+        "../css/animations.css"
+      ],
+      [
+        "pages/faq.html",
+        "../images/icons/icons.png"
+      ],
+      [
+        "pages/faq.html",
+        "../manifest.json"
+      ],
+      [
+        "pages/faq.html",
+        "../css/accessibility.css"
+      ],
+      [
+        "pages/faq.html",
+        "../js/main.js"
+      ],
+      [
+        "pages/growth.html",
+        "../css/main.css"
+      ],
+      [
+        "pages/growth.html",
+        "../css/responsive.css"
+      ],
+      [
+        "pages/growth.html",
+        "../css/improvements.css"
+      ],
+      [
+        "pages/growth.html",
+        "../css/animations.css"
+      ],
+      [
+        "pages/growth.html",
+        "../css/growth.css"
+      ],
+      [
+        "pages/growth.html",
+        "../images/icons/icons.png"
+      ],
+      [
+        "pages/growth.html",
+        "../css/ads.css"
+      ],
+      [
+        "pages/growth.html",
+        "../manifest.json"
+      ],
+      [
+        "pages/growth.html",
+        "../css/accessibility.css"
+      ],
+      [
+        "pages/growth.html",
+        "../images/growth-header.jpg"
+      ],
+      [
+        "pages/growth.html",
+        "../js/main.js"
+      ],
+      [
+        "pages/growth.html",
+        "../js/growth.js"
+      ],
+      [
+        "pages/growth.html",
+        "../js/faq.js"
+      ],
+      [
+        "pages/growth.html",
+        "../js/ads-manager.js"
+      ],
+      [
+        "pages/nutrition.html",
+        "../images/icons/icons.png"
+      ],
+      [
+        "pages/nutrition.html",
+        "../css/main.css"
+      ],
+      [
+        "pages/nutrition.html",
+        "../css/responsive.css"
+      ],
+      [
+        "pages/nutrition.html",
+        "../css/improvements.css"
+      ],
+      [
+        "pages/nutrition.html",
+        "../css/animations.css"
+      ],
+      [
+        "pages/nutrition.html",
+        "../css/nutrition.css"
+      ],
+      [
+        "pages/nutrition.html",
+        "../css/ads.css"
+      ],
+      [
+        "pages/nutrition.html",
+        "../manifest.json"
+      ],
+      [
+        "pages/nutrition.html",
+        "../css/accessibility.css"
+      ],
+      [
+        "pages/nutrition.html",
+        "../images/nutrition-header.jpg"
+      ],
+      [
+        "pages/nutrition.html",
+        "../images/step1-food.jpg"
+      ],
+      [
+        "pages/nutrition.html",
+        "../images/step2-food.jpg"
+      ],
+      [
+        "pages/nutrition.html",
+        "../images/step3-food.jpg"
+      ],
+      [
+        "pages/nutrition.html",
+        "../images/step4-food.jpg"
+      ],
+      [
+        "pages/nutrition.html",
+        "../images/step5-food.jpg"
+      ],
+      [
+        "pages/nutrition.html",
+        "../images/step6-food.jpg"
+      ],
+      [
+        "pages/nutrition.html",
+        "../js/main.js"
+      ],
+      [
+        "pages/nutrition.html",
+        "../js/nutrition.js"
+      ],
+      [
+        "pages/nutrition.html",
+        "../js/ads-manager.js"
+      ],
+      [
+        "pages/privacy.html",
+        "../images/icons/icons.png"
+      ],
+      [
+        "pages/privacy.html",
+        "../manifest.json"
+      ],
+      [
+        "pages/privacy.html",
+        "../css/accessibility.css"
+      ],
+      [
+        "pages/resources.html",
+        "../manifest.json"
+      ],
+      [
+        "pages/resources.html",
+        "../css/main.css"
+      ],
+      [
+        "pages/resources.html",
+        "../css/responsive.css"
+      ],
+      [
+        "pages/resources.html",
+        "../css/accessibility.css"
+      ],
+      [
+        "pages/resources.html",
+        "../js/main.js"
+      ],
+      [
+        "pages/sections.html",
+        "../manifest.json"
+      ],
+      [
+        "pages/sections.html",
+        "../css/main.css"
+      ],
+      [
+        "pages/sections.html",
+        "../css/responsive.css"
+      ],
+      [
+        "pages/sections.html",
+        "../css/accessibility.css"
+      ],
+      [
+        "pages/sections.html",
+        "../js/main.js"
+      ],
+      [
+        "pages/sleep.html",
+        "../images/icons/icons.png"
+      ],
+      [
+        "pages/sleep.html",
+        "../css/main.css"
+      ],
+      [
+        "pages/sleep.html",
+        "../css/responsive.css"
+      ],
+      [
+        "pages/sleep.html",
+        "../css/sleep.css"
+      ],
+      [
+        "pages/sleep.html",
+        "../css/improvements.css"
+      ],
+      [
+        "pages/sleep.html",
+        "../css/ads.css"
+      ],
+      [
+        "pages/sleep.html",
+        "../manifest.json"
+      ],
+      [
+        "pages/sleep.html",
+        "../css/accessibility.css"
+      ],
+      [
+        "pages/sleep.html",
+        "../images/sleep.jpg"
+      ],
+      [
+        "pages/sleep.html",
+        "../images/safe-crib.webp"
+      ],
+      [
+        "pages/sleep.html",
+        "../images/unsafe-crib.jpg"
+      ],
+      [
+        "pages/sleep.html",
+        "../js/main.js"
+      ],
+      [
+        "pages/sleep.html",
+        "../js/sleep.js"
+      ],
+      [
+        "pages/sleep.html",
+        "../js/ads-manager.js"
+      ],
+      [
+        "pages/terms.html",
+        "../manifest.json"
+      ],
+      [
+        "pages/terms.html",
+        "../css/main.css"
+      ],
+      [
+        "pages/terms.html",
+        "../css/responsive.css"
+      ],
+      [
+        "pages/terms.html",
+        "../css/accessibility.css"
+      ],
+      [
+        "pages/terms.html",
+        "../js/main.js"
+      ],
+      [
+        "pages/tips.html",
+        "../css/main.css"
+      ],
+      [
+        "pages/tips.html",
+        "../css/responsive.css"
+      ],
+      [
+        "pages/tips.html",
+        "../css/tips.css"
+      ],
+      [
+        "pages/tips.html",
+        "../css/growth.css"
+      ],
+      [
+        "pages/tips.html",
+        "../images/icons/icons.png"
+      ],
+      [
+        "pages/tips.html",
+        "../images/icons/icons.png"
+      ],
+      [
+        "pages/tips.html",
+        "../css/ads.css"
+      ],
+      [
+        "pages/tips.html",
+        "../manifest.json"
+      ],
+      [
+        "pages/tips.html",
+        "../css/accessibility.css"
+      ],
+      [
+        "pages/tips.html",
+        "../images/tips-header.webp"
+      ],
+      [
+        "pages/tips.html",
+        "../js/main.js"
+      ],
+      [
+        "pages/tips.html",
+        "../js/tips.js"
+      ],
+      [
+        "pages/tips.html",
+        "../js/faq.js"
+      ],
+      [
+        "pages/tips.html",
+        "../js/growth.js"
+      ],
+      [
+        "pages/tips.html",
+        "../js/ads-manager.js"
+      ],
+      [
+        "pages/tools.html",
+        "../css/main.css"
+      ],
+      [
+        "pages/tools.html",
+        "../css/responsive.css"
+      ],
+      [
+        "pages/tools.html",
+        "../css/improvements.css"
+      ],
+      [
+        "pages/tools.html",
+        "../css/animations.css"
+      ],
+      [
+        "pages/tools.html",
+        "../css/tools.css"
+      ],
+      [
+        "pages/tools.html",
+        "../css/meal-planner.css"
+      ],
+      [
+        "pages/tools.html",
+        "../css/medicine-enhanced.css"
+      ],
+      [
+        "pages/tools.html",
+        "../css/tools-interactive.min.css"
+      ],
+      [
+        "pages/tools.html",
+        "../css/main-styles.min.css"
+      ],
+      [
+        "pages/tools.html",
+        "../images/icons/icons.png"
+      ],
+      [
+        "pages/tools.html",
+        "../css/ads.css"
+      ],
+      [
+        "pages/tools.html",
+        "../manifest.json"
+      ],
+      [
+        "pages/tools.html",
+        "../css/accessibility.css"
+      ],
+      [
+        "pages/tools.html",
+        "../images/tools-header.webp"
+      ],
+      [
+        "pages/tools.html",
+        "../js/main.js"
+      ],
+      [
+        "pages/tools.html",
+        "../js/tools.bundle2.js"
+      ],
+      [
+        "pages/tools.html",
+        "../js/ads-manager.js"
+      ],
+      [
+        "pages/vaccine.html",
+        "../css/main.css"
+      ],
+      [
+        "pages/vaccine.html",
+        "../css/responsive.css"
+      ],
+      [
+        "pages/vaccine.html",
+        "../css/improvements.css"
+      ],
+      [
+        "pages/vaccine.html",
+        "../css/vaccine.css"
+      ],
+      [
+        "pages/vaccine.html",
+        "../images/icons/icons.png"
+      ],
+      [
+        "pages/vaccine.html",
+        "../css/ads.css"
+      ],
+      [
+        "pages/vaccine.html",
+        "../manifest.json"
+      ],
+      [
+        "pages/vaccine.html",
+        "../css/accessibility.css"
+      ],
+      [
+        "pages/vaccine.html",
+        "../images/vaccine.webp"
+      ],
+      [
+        "pages/vaccine.html",
+        "../js/main.js"
+      ],
+      [
+        "pages/vaccine.html",
+        "../js/vaccine.js"
+      ],
+      [
+        "pages/vaccine.html",
+        "../js/ads-manager.js"
+      ]
+    ]
+  },
+  "medical_findings": [
+    {
+      "page": "index.html",
+      "terms": [
+        "تطعيم",
+        "تلقيح"
+      ]
+    },
+    {
+      "page": "pages/bath.html",
+      "terms": [
+        "تلقيح",
+        "حرارة"
+      ]
+    },
+    {
+      "page": "pages/blog.html",
+      "terms": [
+        "تطعيم",
+        "تلقيح",
+        "طبيب"
+      ]
+    },
+    {
+      "page": "pages/crying.html",
+      "terms": [
+        "تلقيح",
+        "حرارة",
+        "حمى",
+        "طبيب",
+        "مرض"
+      ]
+    },
+    {
+      "page": "pages/diapers.html",
+      "terms": [
+        "تلقيح",
+        "حرارة",
+        "حمى",
+        "طبيب",
+        "مرض"
+      ]
+    },
+    {
+      "page": "pages/digestive.html",
+      "terms": [
+        "تسمم",
+        "تلقيح",
+        "حرارة",
+        "حساسية",
+        "حمى",
+        "طبيب",
+        "مرض",
+        "مضاد"
+      ]
+    },
+    {
+      "page": "pages/disclaimer.html",
+      "terms": [
+        "طبيب"
+      ]
+    },
+    {
+      "page": "pages/diseases.html",
+      "terms": [
+        "إيبوبروفين",
+        "اختناق",
+        "باراسيتامول",
+        "تطعيم",
+        "تلقيح",
+        "حرارة",
+        "حساسية",
+        "حمى",
+        "دواء",
+        "طبيب",
+        "مرض",
+        "مضاد"
+      ]
+    },
+    {
+      "page": "pages/faq.html",
+      "terms": [
+        "حرارة",
+        "حمى",
+        "طبيب"
+      ]
+    },
+    {
+      "page": "pages/growth.html",
+      "terms": [
+        "تطعيم",
+        "تلقيح",
+        "طبيب"
+      ]
+    },
+    {
+      "page": "pages/nutrition.html",
+      "terms": [
+        "اختناق",
+        "تسمم",
+        "تلقيح",
+        "حساسية"
+      ]
+    },
+    {
+      "page": "pages/resources.html",
+      "terms": [
+        "إيبوبروفين",
+        "تلقيح",
+        "جرع"
+      ]
+    },
+    {
+      "page": "pages/sections.html",
+      "terms": [
+        "تلقيح"
+      ]
+    },
+    {
+      "page": "pages/sleep.html",
+      "terms": [
+        "اختناق",
+        "تلقيح",
+        "حرارة"
+      ]
+    },
+    {
+      "page": "pages/terms.html",
+      "terms": [
+        "تلقيح",
+        "طبيب"
+      ]
+    },
+    {
+      "page": "pages/tips.html",
+      "terms": [
+        "تلقيح",
+        "حرارة",
+        "حساسية",
+        "دواء",
+        "طبيب",
+        "مرض"
+      ]
+    },
+    {
+      "page": "pages/tools.html",
+      "terms": [
+        "إيبوبروفين",
+        "تطعيم",
+        "تلقيح",
+        "جرع",
+        "حرارة",
+        "حساسية",
+        "دواء",
+        "طبيب",
+        "مرض"
+      ]
+    },
+    {
+      "page": "pages/vaccine.html",
+      "terms": [
+        "تطعيم",
+        "تلقيح",
+        "جرع",
+        "حرارة",
+        "حمى",
+        "دواء",
+        "طبيب",
+        "لقاح",
+        "مرض",
+        "مضاد"
+      ]
+    }
+  ]
+}
