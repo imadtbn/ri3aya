@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'ri3aya-v4-20260820';
+const CACHE_VERSION = 'ri3aya-v5-footer-20260820';
 const APP_SHELL = [
     './',
     './index.html',
@@ -7,6 +7,7 @@ const APP_SHELL = [
     './css/main.css',
     './css/responsive.css',
     './css/accessibility.css',
+    './css/site-polish.css',
     './js/main.js',
     './js/search.js'
 ];

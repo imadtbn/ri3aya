@@ -260,3 +260,160 @@ th { color: var(--site-primary-dark); background: var(--site-surface-soft); }
         display: none !important;
     }
 }
+
+/* نسخة compact للـfooter: عرض أكبر للمحتوى وفراغات أقل */
+.footer {
+    margin-top: 1.25rem !important;
+    padding: 1.25rem 0 .75rem !important;
+}
+
+.footer-grid {
+    gap: 1.25rem;
+    margin-bottom: .75rem;
+}
+
+.footer-col h3,
+.footer-col h4 {
+    margin-bottom: .5rem;
+    padding-bottom: .4rem;
+    font-size: 1rem;
+}
+
+.footer-logo {
+    gap: .5rem;
+    margin-bottom: .5rem;
+}
+
+.footer-logo i {
+    font-size: 1.5rem;
+}
+
+.footer-logo h2,
+.footer-logo h3 {
+    font-size: 1.15rem;
+}
+
+.footer-description,
+.footer-col > p {
+    margin-bottom: .5rem;
+    line-height: 1.5;
+}
+
+.footer-links li,
+.footer-contact li {
+    margin-bottom: .3rem;
+}
+
+.footer-contact li {
+    line-height: 1.4;
+}
+
+.footer .social-link {
+    width: 2rem;
+    height: 2rem;
+}
+
+.footer .newsletter-form {
+    gap: .4rem;
+}
+
+.footer-bottom {
+    margin-top: .25rem;
+    padding-top: .6rem;
+}
+
+@media (max-width: 800px) {
+    .footer-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: .75rem 1rem;
+    }
+}
+
+@media (max-width: 520px) {
+    .footer {
+        margin-top: 1rem !important;
+        padding: 1rem 0 .65rem !important;
+    }
+
+    .footer-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: .75rem .85rem;
+    }
+
+    .footer-col:first-child,
+    .footer-col:last-child {
+        grid-column: 1 / -1;
+    }
+
+    .footer-col > p,
+    .footer-description {
+        max-width: none;
+    }
+
+    .footer-bottom {
+        gap: .5rem;
+    }
+
+    .footer-legal {
+        gap: .35rem .75rem;
+    }
+}
+
+/* ضغط النشرة البريدية لتقليل ارتفاع العمود والفوتر */
+.footer .newsletter-form {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: stretch;
+    gap: .4rem;
+}
+
+.footer .newsletter-form input {
+    min-width: 0;
+}
+
+.footer .newsletter-form .btn {
+    width: auto;
+    padding-inline: .8rem;
+    white-space: nowrap;
+}
+
+@media (max-width: 360px) {
+    .footer .newsletter-form {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* أساس مستقل للـfooter حتى لا يعتمد على تحميل main.css في الصفحات القانونية */
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+}
+
+.footer-links,
+.footer-contact {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.footer-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.footer a {
+    color: inherit;
+}
+
+@media (max-width: 800px) {
+    .footer-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
