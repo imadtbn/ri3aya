@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مولد روتين الطفل | رعاية الرضع</title>
+    <meta name="description" content="مولد روتين تثقيفي مرن للطفل حسب العمر، مع التأكيد على أن احتياجات النوم والتغذية تختلف وأن التقييم الطبي منفصل.">
+    <link rel="canonical" href="https://imadtbn.github.io/ri3aya/pages/tools/routine.html">
+    <meta property="og:title" content="مولد روتين الطفل | رعاية الرضع">
+    <meta property="og:description" content="أنشئي روتينًا يوميًا تثقيفيًا ومرنًا لطفلك.">
+    <meta property="og:url" content="https://imadtbn.github.io/ri3aya/pages/tools/routine.html">
+    <meta property="og:type" content="website">
+    <meta name="theme-color" content="#146c94">
+    <link rel="manifest" href="../../manifest.json">
+    <link rel="icon" href="../../images/icons/icons.png" type="image/png">
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/responsive.css">
+    <link rel="stylesheet" href="../../css/tools.css">
+    <link rel="stylesheet" href="../../css/accessibility.css">
+    <link rel="stylesheet" href="../../css/ads.css">
+</head>
+<body>
+    <a class="skip-link" href="#main-content">تجاوز إلى المحتوى الرئيسي</a>
+    <nav class="navbar" aria-label="التنقل الرئيسي">
+        <div class="container nav-container">
+            <a href="../../index.html" class="logo"><div class="logo-icon"><i class="fas fa-baby"></i></div><div class="logo-text"><span class="logo-title">رعاية الرضع</span><p>دليل الأم الحديثة</p></div></a>
+            <button class="mobile-menu-btn" aria-label="فتح القائمة"><i class="fas fa-bars"></i></button>
+            <ul class="nav-menu">
+                <li><a href="../../index.html"><i class="fas fa-home"></i> الرئيسية</a></li>
+                <li><a href="../sections.html"><i class="fas fa-th-large"></i> الأقسام</a></li>
+                <li><a href="../tools.html"><i class="fas fa-tools"></i> كل الأدوات</a></li>
+                <li><a href="../sleep.html"><i class="fas fa-bed"></i> النوم الآمن</a></li>
+                <li><a href="../contact.html"><i class="fas fa-envelope"></i> اتصل بنا</a></li>
+            </ul>
+            <div class="search-container"><input type="search" class="search-input" placeholder="ابحث في الموقع" aria-label="ابحث في الموقع"><button class="search-btn" type="button" aria-label="تنفيذ البحث"><i class="fas fa-search"></i></button></div>
+        </div>
+    </nav>
+    <main id="main-content" class="container page-content">
+        <header class="page-header-content">
+            <h1><i class="fas fa-calendar-alt"></i> مولد روتين الطفل</h1>
+            <p>أداة تثقيفية تساعدك على ترتيب اليوم بمرونة. لا تفرض مواعيد ثابتة ولا تستبدل إرشادات طبيب الأطفال.</p>
+        </header>
+        <section class="section-card routine-generator" aria-labelledby="routine-form-title">
+            <h2 id="routine-form-title">إعداد الروتين</h2>
+            <div class="form-row">
+                <div class="form-group"><label for="routine-age">عمر الطفل</label><select id="routine-age" class="form-select"><option value="0-3">0–3 أشهر</option><option value="4-6" selected>4–6 أشهر</option><option value="7-9">7–9 أشهر</option><option value="10-12">10–12 شهرًا</option><option value="13-18">13–18 شهرًا</option><option value="19-24">19–24 شهرًا</option></select></div>
+                <div class="form-group"><label for="routine-wakeup">وقت الاستيقاظ التقريبي</label><select id="routine-wakeup" class="form-select"><option value="6">06:00</option><option value="6.5">06:30</option><option value="7" selected>07:00</option><option value="7.5">07:30</option><option value="8">08:00</option></select></div>
+                <div class="form-group"><label for="routine-naps">عدد القيلولات التقريبي</label><select id="routine-naps" class="form-select"><option value="1">1</option><option value="2">2</option><option value="3" selected>3</option><option value="4">4</option></select></div>
+            </div>
+            <div class="form-row"><div class="form-group"><label for="routine-feeding">نمط التغذية</label><select id="routine-feeding" class="form-select"><option value="breast">حليب/رضاعة</option><option value="solid">حليب مع طعام تكميلي مناسب للعمر</option></select></div></div>
+            <fieldset class="form-group"><legend>أنشطة اختيارية</legend><label><input type="checkbox" id="activity-outdoor"> وقت خارج المنزل مناسب للعمر</label><label><input type="checkbox" id="activity-reading"> قراءة وتواصل</label><label><input type="checkbox" id="activity-music"> موسيقى هادئة</label><label><input type="checkbox" id="activity-bath"> استحمام آمن مع مراقبة مستمرة</label><label><input type="checkbox" id="activity-massage"> تواصل لمسي لطيف</label></fieldset>
+            <button class="btn btn-primary" id="generate-routine" type="button"><i class="fas fa-wand-magic-sparkles"></i> إنشاء روتين تثقيفي</button>
+        </section>
+        <section id="routine-results" class="routine-results" aria-live="polite"><div class="routine-welcome"><h2>سيظهر الروتين هنا</h2><p>اختاري الإعدادات ثم أنشئي روتينًا مرنًا.</p></div></section>
+        <aside class="medical-safety-note" role="note"><strong>ملاحظة سلامة:</strong><span>لا ينبغي استخدام الروتين لتأجيل الرضاعة عند الحاجة أو لتجاهل علامات المرض. تختلف احتياجات الأطفال، واستشيري مختصًا عند القلق.</span></aside>
+    </main>
+    <script src="../../js/main.js"></script>
+    <script src="../../js/tools/routine.js"></script>
+    <script defer src="../../js/search.js"></script>
+    <script defer src="../../js/ads-manager.js"></script>
+</body>
+</html>

@@ -26,7 +26,7 @@
 
 
     <!-- مكتبة الرسوم البيانية -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <!-- Favicon -->
     <link rel="icon" href="../images/icons/icons.png" alt="icon" type="image/png" loading="lazy">
@@ -168,7 +168,7 @@
             <section class="growth-calculator">
                 <div class="section-card">
                     <h2><i class="fas fa-calculator"></i> حاسبة النمو والتطور</h2>
-                    <p>أدخلي بيانات طفلك لمعرفة مكانه على مخطط النمو وتلقي التوصيات المناسبة</p>
+                            <p>أدخلي قياسًا واحدًا على الأقل لطفلك حتى 24 شهرًا لعرض مؤشر WHO تثقيفي، وليس تشخيصًا طبيًا.</p>
 
                     <div class="calculator-form">
                         <div class="form-row">
@@ -182,7 +182,7 @@
                             <div class="form-group">
                                 <label for="child-age"><i class="fas fa-calendar-alt"></i> العمر</label>
                                 <div class="age-input">
-                                    <input type="number" id="child-years" min="0" max="5" value="0" placeholder="سنوات">
+                                    <input type="number" id="child-years" min="0" max="2" value="0" placeholder="سنوات">
                                     <span>سنة</span>
                                     <input type="number" id="child-months" min="0" max="11" value="3"
                                         placeholder="أشهر">
@@ -211,8 +211,8 @@
                         </button>
                     </div>
 
-                    <div class="calculator-results" id="growth-results">
-                        <!-- سيتم عرض النتائج هنا -->
+                    <div class="calculator-results" id="growth-results" aria-live="polite">
+                        <div class="alert alert-info">سيتم عرض مؤشر تثقيفي بعد تحميل بيانات WHO الرسمية.</div>
                     </div>
                 </div>
             </section>
@@ -234,11 +234,11 @@
                     <div class="chart-legend">
                         <h4><i class="fas fa-info-circle"></i> فهم المخططات</h4>
                         <ul>
-                            <li><span class="legend-line percentile-97"></span> النسبة 97%: أعلى من 97% من الأطفال</li>
-                            <li><span class="legend-line percentile-85"></span> النسبة 85%: أعلى من 85% من الأطفال</li>
-                            <li><span class="legend-line percentile-50"></span> النسبة 50%: المتوسط الطبيعي</li>
-                            <li><span class="legend-line percentile-15"></span> النسبة 15%: أعلى من 15% من الأطفال</li>
-                            <li><span class="legend-line percentile-3"></span> النسبة 3%: أعلى من 3% من الأطفال</li>
+                                    <li><span class="legend-line percentile-97"></span> النسبة المئوية: موقع القياس داخل مرجع WHO، وليست حكمًا تشخيصيًا</li>
+                            <li><span class="legend-line percentile-95"></span> النسبة 95%: حد مرجعي مرتفع ضمن البيانات</li>
+                            <li><span class="legend-line percentile-50"></span> النسبة 50%: الوسيط المرجعي، وليس معيارًا تشخيصيًا</li>
+                            <li><span class="legend-line percentile-25"></span> النسبة 25%: قيمة مرجعية منخفضة نسبيًا</li>
+                            <li><span class="legend-line percentile-5"></span> النسبة 5%: حد مرجعي منخفض ضمن البيانات</li>
                         </ul>
                         <p class="chart-note">ملاحظة: هذه مخططات إرشادية عامة. يرجى استشارة طبيب الأطفال لتقييم دقيق
                             لنمو طفلك.</p>
@@ -692,11 +692,13 @@
 
     <!-- JavaScript -->
     <script src="../js/main.js"></script>
+    <script src="../js/medical/growth-engine.js"></script>
     <script src="../js/growth.js"></script>
     <script src="../js/faq.js"></script>
 
 
     <script defer src="../js/ads-manager.js"></script>
+    <script defer src="../js/search.js"></script>
 </body>
 
 </html>

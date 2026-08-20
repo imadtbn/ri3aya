@@ -1,7 +1,8 @@
 (function () {
     'use strict';
 
-    const rootPath = window.location.pathname.includes('/pages/') ? '../' : '';
+    const pathName = window.location.pathname;
+    const rootPath = pathName.includes('/pages/tools/') ? '../../' : pathName.includes('/pages/') ? '../' : '';
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     const byId = (id) => document.getElementById(id);
@@ -86,17 +87,34 @@
             trigger.setAttribute('aria-expanded', 'false');
             menu.setAttribute('role', 'menu');
 
-            trigger.addEventListener('click', (event) => {
-                event.preventDefault();
-                const open = !dropdown.classList.contains('open');
+            const close = (restoreFocus = false) => {
+                dropdown.classList.remove('open');
+                trigger.setAttribute('aria-expanded', 'false');
+                if (restoreFocus) trigger.focus();
+            };
+            const open = () => {
                 all('.dropdown.open').forEach((item) => {
                     item.classList.remove('open');
                     const itemTrigger = one(':scope > a', item);
                     if (itemTrigger) itemTrigger.setAttribute('aria-expanded', 'false');
                 });
-                dropdown.classList.toggle('open', open);
-                trigger.setAttribute('aria-expanded', String(open));
+                dropdown.classList.add('open');
+                trigger.setAttribute('aria-expanded', 'true');
+            };
+            trigger.addEventListener('click', (event) => {
+                event.preventDefault();
+                dropdown.classList.contains('open') ? close() : open();
             });
+            trigger.addEventListener('keydown', (event) => {
+                const links = all('a', menu);
+                if (event.key === 'ArrowDown') { event.preventDefault(); open(); links[0]?.focus(); }
+                if (event.key === 'Escape') { event.preventDefault(); close(true); }
+            });
+            all('a', menu).forEach((link, index, links) => link.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape') { event.preventDefault(); close(true); }
+                if (event.key === 'ArrowDown') { event.preventDefault(); links[(index + 1) % links.length]?.focus(); }
+                if (event.key === 'ArrowUp') { event.preventDefault(); links[(index - 1 + links.length) % links.length]?.focus(); }
+            }));
         });
     }
 
@@ -115,7 +133,7 @@
             vaccine: `${rootPath}pages/vaccine.html`,
             growth: `${rootPath}pages/growth.html`,
             cry: `${rootPath}pages/crying.html`,
-            routine: `${rootPath}pages/sleep.html`
+            routine: `${rootPath}pages/tools/routine.html`
         };
         all('.btn-tool[data-tool]').forEach((button) => {
             button.addEventListener('click', () => {
@@ -164,29 +182,8 @@
         });
     }
 
-    function initSearch() {
-        all('.search-container').forEach((container) => {
-            const input = one('.search-input', container);
-            const button = one('.search-btn', container);
-            if (!input) return;
-            const performSearch = () => {
-                const query = input.value.trim().toLocaleLowerCase('ar');
-                if (!query) return;
-                const candidates = all('main h2, main h3, main p, main li, .section-card, .article-card, .blog-card');
-                let firstMatch = null;
-                let count = 0;
-                candidates.forEach((item) => {
-                    const match = item.textContent.toLocaleLowerCase('ar').includes(query);
-                    item.toggleAttribute('hidden', !match);
-                    if (match) { count += 1; firstMatch ||= item; }
-                });
-                announce(count ? `تم العثور على ${count} نتيجة داخل الصفحة.` : 'لم نجد نتائج مطابقة في هذه الصفحة.', count ? 'success' : 'info');
-                firstMatch?.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'center' });
-            };
-            button?.addEventListener('click', performSearch);
-            input.addEventListener('keydown', (event) => { if (event.key === 'Enter') performSearch(); });
-        });
-    }
+    // يتولى js/search.js البحث الشامل في الموقع؛ يُترك هذا hook للتوافق مع الصفحات القديمة.
+    function initSearch() {}
 
     function initSmoothAnchors() {
         all('a[href^="#"]').forEach((anchor) => {

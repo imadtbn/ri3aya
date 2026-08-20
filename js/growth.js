@@ -1,839 +1,174 @@
+(function () {
+    'use strict';
 
-        // بيانات نموذجية لمخططات النمو (بيانات الذكور)
-        const growthData = {
-            male: {
-                weight: {
-                    labels: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"],
-                    datasets: [
-                        { label: "97%", data: [4.8, 6.0, 7.2, 8.1, 8.8, 9.4, 9.9, 10.4, 10.8, 11.2, 11.5, 11.9, 12.2], borderColor: "#ff6b6b", borderWidth: 2, fill: false },
-                        { label: "85%", data: [4.3, 5.4, 6.5, 7.3, 7.9, 8.4, 8.8, 9.2, 9.6, 9.9, 10.2, 10.5, 10.8], borderColor: "#4ecdc4", borderWidth: 2, fill: false },
-                        { label: "50%", data: [3.5, 4.5, 5.6, 6.4, 7.0, 7.5, 7.9, 8.3, 8.6, 8.9, 9.2, 9.4, 9.6], borderColor: "#45b7d1", borderWidth: 3, fill: false },
-                        { label: "15%", data: [2.9, 3.7, 4.8, 5.5, 6.1, 6.6, 7.0, 7.4, 7.7, 8.0, 8.3, 8.5, 8.7], borderColor: "#96ceb4", borderWidth: 2, fill: false },
-                        { label: "3%", data: [2.5, 3.2, 4.2, 4.9, 5.5, 6.0, 6.4, 6.8, 7.1, 7.4, 7.7, 7.9, 8.1], borderColor: "#feca57", borderWidth: 2, fill: false }
-                    ]
-                },
-                height: {
-                    labels: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"],
-                    datasets: [
-                        { label: "97%", data: [54, 59, 63, 66, 68, 70, 72, 73, 75, 76, 77, 78, 79], borderColor: "#ff6b6b", borderWidth: 2, fill: false },
-                        { label: "85%", data: [52, 57, 61, 64, 66, 68, 69, 71, 72, 73, 74, 75, 76], borderColor: "#4ecdc4", borderWidth: 2, fill: false },
-                        { label: "50%", data: [50, 55, 59, 62, 64, 66, 67, 69, 70, 71, 72, 73, 74], borderColor: "#45b7d1", borderWidth: 3, fill: false },
-                        { label: "15%", data: [48, 53, 57, 60, 62, 64, 65, 67, 68, 69, 70, 71, 72], borderColor: "#96ceb4", borderWidth: 2, fill: false },
-                        { label: "3%", data: [46, 51, 55, 58, 60, 62, 63, 65, 66, 67, 68, 69, 70], borderColor: "#feca57", borderWidth: 2, fill: false }
-                    ]
-                },
-                head: {
-                    labels: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"],
-                    datasets: [
-                        { label: "97%", data: [38, 41, 43, 44.5, 45.5, 46.5, 47, 47.5, 48, 48.5, 49, 49.5, 50], borderColor: "#ff6b6b", borderWidth: 2, fill: false },
-                        { label: "85%", data: [37, 40, 42, 43.5, 44.5, 45.5, 46, 46.5, 47, 47.5, 48, 48.5, 49], borderColor: "#4ecdc4", borderWidth: 2, fill: false },
-                        { label: "50%", data: [35, 38, 40, 41.5, 42.5, 43.5, 44, 44.5, 45, 45.5, 46, 46.5, 47], borderColor: "#45b7d1", borderWidth: 3, fill: false },
-                        { label: "15%", data: [34, 37, 39, 40.5, 41.5, 42.5, 43, 43.5, 44, 44.5, 45, 45.5, 46], borderColor: "#96ceb4", borderWidth: 2, fill: false },
-                        { label: "3%", data: [33, 36, 38, 39.5, 40.5, 41.5, 42, 42.5, 43, 43.5, 44, 44.5, 45], borderColor: "#feca57", borderWidth: 2, fill: false }
-                    ]
-                }
-            },
-            female: {
-                weight: {
-                    labels: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"],
-                    datasets: [
-                        { label: "97%", data: [4.6, 5.6, 6.6, 7.4, 8.0, 8.5, 8.9, 9.3, 9.7, 10.0, 10.3, 10.6, 10.9], borderColor: "#ff6b6b", borderWidth: 2, fill: false },
-                        { label: "85%", data: [4.1, 5.0, 6.0, 6.7, 7.3, 7.8, 8.2, 8.6, 8.9, 9.2, 9.5, 9.8, 10.0], borderColor: "#4ecdc4", borderWidth: 2, fill: false },
-                        { label: "50%", data: [3.4, 4.2, 5.1, 5.8, 6.4, 6.9, 7.3, 7.6, 7.9, 8.2, 8.5, 8.7, 8.9], borderColor: "#45b7d1", borderWidth: 3, fill: false },
-                        { label: "15%", data: [2.8, 3.5, 4.4, 5.0, 5.6, 6.0, 6.4, 6.7, 7.0, 7.3, 7.6, 7.8, 8.0], borderColor: "#96ceb4", borderWidth: 2, fill: false },
-                        { label: "3%", data: [2.4, 3.0, 3.9, 4.5, 5.0, 5.4, 5.8, 6.1, 6.4, 6.7, 7.0, 7.2, 7.4], borderColor: "#feca57", borderWidth: 2, fill: false }
-                    ]
-                },
-                height: {
-                    labels: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"],
-                    datasets: [
-                        { label: "97%", data: [53, 58, 62, 65, 67, 69, 70, 72, 73, 74, 75, 76, 77], borderColor: "#ff6b6b", borderWidth: 2, fill: false },
-                        { label: "85%", data: [51, 56, 60, 63, 65, 67, 68, 70, 71, 72, 73, 74, 75], borderColor: "#4ecdc4", borderWidth: 2, fill: false },
-                        { label: "50%", data: [49, 54, 58, 61, 63, 65, 66, 68, 69, 70, 71, 72, 73], borderColor: "#45b7d1", borderWidth: 3, fill: false },
-                        { label: "15%", data: [47, 52, 56, 59, 61, 63, 64, 66, 67, 68, 69, 70, 71], borderColor: "#96ceb4", borderWidth: 2, fill: false },
-                        { label: "3%", data: [45, 50, 54, 57, 59, 61, 62, 64, 65, 66, 67, 68, 69], borderColor: "#feca57", borderWidth: 2, fill: false }
-                    ]
-                },
-                head: {
-                    labels: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"],
-                    datasets: [
-                        { label: "97%", data: [37, 40, 42, 43.5, 44.5, 45.5, 46, 46.5, 47, 47.5, 48, 48.5, 49], borderColor: "#ff6b6b", borderWidth: 2, fill: false },
-                        { label: "85%", data: [36, 39, 41, 42.5, 43.5, 44.5, 45, 45.5, 46, 46.5, 47, 47.5, 48], borderColor: "#4ecdc4", borderWidth: 2, fill: false },
-                        { label: "50%", data: [34, 37, 39, 40.5, 41.5, 42.5, 43, 43.5, 44, 44.5, 45, 45.5, 46], borderColor: "#45b7d1", borderWidth: 3, fill: false },
-                        { label: "15%", data: [33, 36, 38, 39.5, 40.5, 41.5, 42, 42.5, 43, 43.5, 44, 44.5, 45], borderColor: "#96ceb4", borderWidth: 2, fill: false },
-                        { label: "3%", data: [32, 35, 37, 38.5, 39.5, 40.5, 41, 41.5, 42, 42.5, 43, 43.5, 44], borderColor: "#feca57", borderWidth: 2, fill: false }
-                    ]
-                }
+    const byId = (id) => document.getElementById(id);
+    let chart = null;
+    let activeIndicator = 'weightForAge';
+    let activeSex = 'male';
+    let datasetsReady = false;
+
+    const indicators = {
+        weight: { key: 'weightForAge', label: 'الوزن بالنسبة للعمر', unit: 'كجم', axis: 'العمر (شهر)' },
+        height: { key: 'lengthForAge', label: 'الطول بالنسبة للعمر', unit: 'سم', axis: 'العمر (شهر)' },
+        head: { key: 'headCircumferenceForAge', label: 'محيط الرأس بالنسبة للعمر', unit: 'سم', axis: 'العمر (شهر)' }
+    };
+
+    function announce(message, type = 'info') {
+        if (window.Ri3aya?.announce) window.Ri3aya.announce(message, type);
+    }
+
+    function renderLoading() {
+        const result = byId('growth-results');
+        if (result) result.innerHTML = '<div class="alert alert-info" role="status">جاري تحميل مرجع WHO الرسمي...</div>';
+    }
+
+    function renderError(error) {
+        const result = byId('growth-results');
+        if (result) result.innerHTML = `<div class="alert alert-warning" role="alert">تعذر حساب المؤشرات الآن. تحققي من الاتصال ثم حاولي مجددًا. (${error.message})</div>`;
+    }
+
+    function renderResults(assessment) {
+        const result = byId('growth-results');
+        if (!result) return;
+        const cards = assessment.results.map((item) => {
+            const z = item.z === null ? 'غير متاح' : item.z.toFixed(2);
+            const p = item.percentile === null ? 'غير متاح' : `${item.percentile.toFixed(1)}%`;
+            return `<article class="result-card ${item.interpretation.tone}">
+                <h3>${item.label}</h3>
+                <p class="result-value">${item.value} ${item.unit}</p>
+                <p><strong>درجة Z:</strong> ${z} · <strong>النسبة المئوية:</strong> ${p}</p>
+                <p class="result-status">${item.interpretation.label}</p>
+                <p>${item.interpretation.note}</p>
+            </article>`;
+        }).join('');
+        result.innerHTML = `<div class="results-container" role="region" aria-live="polite">
+            <div class="results-header"><h3><i class="fas fa-chart-pie"></i> مؤشر تثقيفي للنمو</h3><span>العمر: ${assessment.ageMonths.toFixed(1)} شهر</span></div>
+            <div class="results-grid">${cards || '<p>أدخلي قياسًا واحدًا على الأقل.</p>'}</div>
+            <div class="results-summary"><h4><i class="fas fa-circle-info"></i> مهم</h4><p>هذه النتائج مبنية على مرجع WHO LMS ولا تشخّص حالة صحية. قارني القياسات عبر الزمن وراجعي طبيب الأطفال عند القلق أو وجود تغير سريع.</p><p class="source-note">المصدر: WHO Child Growth Standards / CDC WHO LMS data files — الإصدار ${assessment.manifest.version}.</p></div>
+        </div>`;
+    }
+
+    async function calculate() {
+        const years = Number(byId('child-years')?.value || 0);
+        const months = Number(byId('child-months')?.value || 0);
+        const ageMonths = years * 12 + months;
+        const weight = Number(byId('child-weight')?.value || 0);
+        const length = Number(byId('child-height')?.value || 0);
+        const head = Number(byId('child-head')?.value || 0);
+        const sex = byId('child-gender')?.value || 'male';
+        if (ageMonths < 0 || ageMonths > 24) {
+            renderError(new Error('المرجع الحالي يدعم من الولادة حتى 24 شهرًا فقط، ولا يمدد النتائج تلقائيًا.'));
+            return;
+        }
+        if (![weight, length, head].some((value) => value > 0)) {
+            renderError(new Error('أدخلي قياسًا واحدًا على الأقل.'));
+            return;
+        }
+        renderLoading();
+        try {
+            const assessment = await window.Ri3ayaGrowth.assess({ sex, ageMonths, weight, length, head });
+            renderResults(assessment);
+            activeSex = sex;
+            if (datasetsReady) await updateChart();
+        } catch (error) {
+            renderError(error);
+        }
+    }
+
+    async function updateChart() {
+        const canvas = byId('growth-chart');
+        if (!canvas || !window.Chart || !window.Ri3ayaGrowth) return;
+        const data = await window.Ri3ayaGrowth.chartData(activeIndicator, activeSex);
+        if (chart) chart.destroy();
+        const meta = Object.values(indicators).find((item) => item.key === activeIndicator) || indicators.weight;
+        chart = new Chart(canvas.getContext('2d'), {
+            type: 'line',
+            data,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                interaction: { mode: 'index', intersect: false },
+                plugins: { legend: { display: true, position: 'bottom' }, title: { display: true, text: `${meta.label} — مرجع WHO (0–24 شهر)` } },
+                scales: { x: { title: { display: true, text: meta.axis } }, y: { title: { display: true, text: meta.unit }, beginAtZero: false } }
             }
-        };
-
-        // متغيرات الرسم البياني
-        let growthChart;
-        let currentChartType = 'weight';
-        let currentGender = 'male';
-
-        document.addEventListener('DOMContentLoaded', function() {
-            // تهيئة الرسم البياني
-            initGrowthChart();
-            
-            // تفعيل تبويبات الرسوم البيانية
-            const chartTabBtns = document.querySelectorAll('.chart-tab-btn');
-            
-            chartTabBtns.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    chartTabBtns.forEach(b => b.classList.remove('active'));
-                    btn.classList.add('active');
-                    
-                    currentChartType = btn.getAttribute('data-chart');
-                    updateChart();
-                });
-            });
-            
-            // تفعيل أداة حساب النمو
-            const calculateBtn = document.getElementById('calculate-growth');
-            
-            calculateBtn.addEventListener('click', function() {
-                calculateGrowth();
-            });
-            
-            // تفعيل الأسئلة الشائعة
-            const faqQuestions = document.querySelectorAll('.faq-question');
-            
-            faqQuestions.forEach(question => {
-                question.addEventListener('click', () => {
-                    const answer = question.nextElementSibling;
-                    const icon = question.querySelector('i');
-                    
-                    // إغلاق جميع الإجابات الأخرى
-                    document.querySelectorAll('.faq-answer').forEach(item => {
-                        if (item !== answer && item.classList.contains('active')) {
-                            item.classList.remove('active');
-                            item.previousElementSibling.querySelector('i').classList.remove('fa-chevron-up');
-                            item.previousElementSibling.querySelector('i').classList.add('fa-chevron-down');
-                        }
-                    });
-                    
-                    // تبديل الإجابة الحالية
-                    answer.classList.toggle('active');
-                    icon.classList.toggle('fa-chevron-down');
-                    icon.classList.toggle('fa-chevron-up');
-                });
-            });
-            
-            // تفعيل سجل النمو
-            initGrowthTracker();
-            
-            // تفعيل زر العودة للأعلى
-            const backToTopButton = document.querySelector('.back-to-top');
-            
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 300) {
-                    backToTopButton.classList.add('visible');
-                } else {
-                    backToTopButton.classList.remove('visible');
-                }
-            });
-            
-            backToTopButton.addEventListener('click', () => {
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-            });
-            
-            // حساب النمو افتراضياً عند تحميل الصفحة
-            calculateGrowth();
         });
+    }
 
-        // تهيئة الرسم البياني
-        function initGrowthChart() {
-            const ctx = document.getElementById('growth-chart').getContext('2d');
-            
-            growthChart = new Chart(ctx, {
-                type: 'line',
-                data: growthData.male.weight,
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        title: {
-                            display: true,
-                            text: 'مخطط الوزن للذكور (0-12 شهر)',
-                            font: {
-                                size: 16,
-                                family: "'Cairo', sans-serif"
-                            },
-                            color: '#333'
-                        },
-                        legend: {
-                            display: false
-                        }
-                    },
-                    scales: {
-                        x: {
-                            title: {
-                                display: true,
-                                text: 'العمر (أشهر)',
-                                font: {
-                                    size: 14,
-                                    family: "'Cairo', sans-serif"
-                                }
-                            }
-                        },
-                        y: {
-                            title: {
-                                display: true,
-                                text: 'الوزن (كجم)',
-                                font: {
-                                    size: 14,
-                                    family: "'Cairo', sans-serif"
-                                }
-                            }
-                        }
-                    }
-                }
-            });
-        }
+    function renderTracker() {
+        const body = byId('tracker-body');
+        if (!body) return;
+        const data = JSON.parse(localStorage.getItem('ri3aya-growth-tracker') || '[]').sort((a, b) => new Date(b.date) - new Date(a.date));
+        body.innerHTML = data.length ? data.map((item) => `<tr><td>${item.date}</td><td>${item.age} شهر</td><td>${item.weight || '—'}</td><td>${item.height || '—'}</td><td>${item.head || '—'}</td><td>${item.notes || '—'}</td></tr>`).join('') : '<tr><td colspan="6" class="empty-tracker">لا توجد قياسات مسجلة بعد.</td></tr>';
+    }
 
-        // تحديث الرسم البياني
-        function updateChart() {
-            const gender = document.getElementById('child-gender').value;
-            const chartTitle = getChartTitle(currentChartType, gender);
-            
-            growthChart.data = growthData[gender][currentChartType];
-            growthChart.options.plugins.title.text = chartTitle;
-            growthChart.update();
-        }
-
-        // الحصول على عنوان الرسم البياني
-        function getChartTitle(chartType, gender) {
-            const genderText = gender === 'male' ? 'الذكور' : 'الإناث';
-            const chartText = {
-                'weight': 'الوزن',
-                'height': 'الطول',
-                'head': 'محيط الرأس'
+    function initTracker() {
+        renderTracker();
+        const add = byId('add-measurement');
+        const clear = byId('clear-tracker');
+        const print = byId('print-tracker');
+        add?.addEventListener('click', () => {
+            const item = {
+                date: byId('track-date')?.value || new Date().toISOString().slice(0, 10),
+                age: Number(byId('track-age')?.value || 0),
+                weight: Number(byId('track-weight')?.value || 0) || '',
+                height: Number(byId('track-height')?.value || 0) || '',
+                head: Number(byId('track-head')?.value || 0) || '',
+                notes: byId('track-notes')?.value.trim() || ''
             };
-            
-            return `مخطط ${chartText[chartType]} ل${genderText} (0-12 شهر)`;
-        }
-
-        // حساب مؤشرات النمو
-        function calculateGrowth() {
-            const gender = document.getElementById('child-gender').value;
-            const years = parseInt(document.getElementById('child-years').value) || 0;
-            const months = parseInt(document.getElementById('child-months').value) || 0;
-            const weight = parseFloat(document.getElementById('child-weight').value) || 0;
-            const height = parseInt(document.getElementById('child-height').value) || 0;
-            const head = parseFloat(document.getElementById('child-head').value) || 0;
-            
-            const totalMonths = years * 12 + months;
-            
-            if (totalMonths === 0 || weight === 0 || height === 0 || head === 0) {
-                document.getElementById('growth-results').innerHTML = `
-                    <div class="alert alert-warning">
-                        <i class="fas fa-exclamation-triangle"></i> الرجاء إدخال جميع البيانات المطلوبة
-                    </div>
-                `;
+            if (item.age < 0 || item.age > 24 || ![item.weight, item.height, item.head].some(Boolean)) {
+                announce('أدخلي عمرًا بين 0 و24 شهرًا وقياسًا واحدًا على الأقل.', 'error');
                 return;
             }
-            
-            // تحديث الرسم البياني بناءً على الجنس
-            currentGender = gender;
-            updateChart();
-            
-            // حساب مؤشر كتلة الجسم (BMI)
-            const heightInMeters = height / 100;
-            const bmi = weight / (heightInMeters * heightInMeters);
-            
-            // تقييم الوزن حسب العمر
-            const weightStatus = evaluateWeightForAge(weight, totalMonths, gender);
-            
-            // تقييم الطول حسب العمر
-            const heightStatus = evaluateHeightForAge(height, totalMonths, gender);
-            
-            // تقييم محيط الرأس حسب العمر
-            const headStatus = evaluateHeadForAge(head, totalMonths, gender);
-            
-            // تقييم مؤشر كتلة الجسم
-            const bmiStatus = evaluateBMI(bmi, totalMonths, gender);
-            
-            // عرض النتائج
-            const resultsHTML = `
-                <div class="results-container">
-                    <div class="results-header">
-                        <h3><i class="fas fa-chart-pie"></i> نتائج تقييم النمو</h3>
-                        <span class="results-age">العمر: ${totalMonths} شهر</span>
-                    </div>
-                    
-                    <div class="results-grid">
-                        <div class="result-card ${weightStatus.class}">
-                            <h4><i class="fas fa-weight"></i> الوزن</h4>
-                            <div class="result-value">${weight.toFixed(1)} كجم</div>
-                            <div class="result-status">${weightStatus.text}</div>
-                            <p>${weightStatus.description}</p>
-                        </div>
-                        
-                        <div class="result-card ${heightStatus.class}">
-                            <h4><i class="fas fa-ruler-vertical"></i> الطول</h4>
-                            <div class="result-value">${height} سم</div>
-                            <div class="result-status">${heightStatus.text}</div>
-                            <p>${heightStatus.description}</p>
-                        </div>
-                        
-                        <div class="result-card ${headStatus.class}">
-                            <h4><i class="fas fa-brain"></i> محيط الرأس</h4>
-                            <div class="result-value">${head.toFixed(1)} سم</div>
-                            <div class="result-status">${headStatus.text}</div>
-                            <p>${headStatus.description}</p>
-                        </div>
-                        
-                        <div class="result-card ${bmiStatus.class}">
-                            <h4><i class="fas fa-balance-scale"></i> مؤشر كتلة الجسم</h4>
-                            <div class="result-value">${bmi.toFixed(1)}</div>
-                            <div class="result-status">${bmiStatus.text}</div>
-                            <p>${bmiStatus.description}</p>
-                        </div>
-                    </div>
-                    
-                    <div class="results-summary">
-                        <h4><i class="fas fa-clipboard-check"></i> التوصيات العامة</h4>
-                        <ul>
-                            <li>${getGeneralRecommendation(weightStatus, heightStatus)}</li>
-                            <li>تابعي نمو طفلك بانتظام وسجلي القياسات كل شهر</li>
-                            <li>التزمي بمواعيد زيارات الطبيب للفحوصات الدورية</li>
-                            <li>قدمي تغذية متوازنة ومناسبة لعمر الطفل</li>
-                        </ul>
-                    </div>
-                </div>
-            `;
-            
-            document.getElementById('growth-results').innerHTML = resultsHTML;
-        }
+            const data = JSON.parse(localStorage.getItem('ri3aya-growth-tracker') || '[]');
+            data.push(item);
+            localStorage.setItem('ri3aya-growth-tracker', JSON.stringify(data));
+            renderTracker();
+            announce('تم حفظ القياس محليًا على هذا الجهاز.', 'success');
+        });
+        clear?.addEventListener('click', () => {
+            if (!confirm('هل تريدين حذف سجل القياسات المحفوظ على هذا الجهاز؟')) return;
+            localStorage.removeItem('ri3aya-growth-tracker');
+            renderTracker();
+            announce('تم حذف السجل المحلي.', 'info');
+        });
+        print?.addEventListener('click', () => window.print());
+    }
 
-        // تقييم الوزن حسب العمر
-        function evaluateWeightForAge(weight, ageMonths, gender) {
-            // بيانات تقريبية للمتوسطات
-            const avgWeights = {
-                male: [3.5, 4.5, 5.6, 6.4, 7.0, 7.5, 7.9, 8.3, 8.6, 8.9, 9.2, 9.4, 9.6],
-                female: [3.4, 4.2, 5.1, 5.8, 6.4, 6.9, 7.3, 7.6, 7.9, 8.2, 8.5, 8.7, 8.9]
-            };
-            
-            if (ageMonths > 12) ageMonths = 12;
-            const avgWeight = avgWeights[gender][ageMonths];
-            const percentage = (weight / avgWeight) * 100;
-            
-            if (percentage > 120) {
-                return {
-                    class: 'warning',
-                    text: 'أعلى من المتوسط',
-                    description: 'الوزن أعلى من المتوقع لعمره. استشيري الطبيب إذا كان الوزن مستمراً في الارتفاع.'
-                };
-            } else if (percentage >= 90 && percentage <= 110) {
-                return {
-                    class: 'normal',
-                    text: 'طبيعي',
-                    description: 'الوزن ضمن المعدل الطبيعي لعمر الطفل. استمري في التغذية المناسبة.'
-                };
-            } else if (percentage >= 80 && percentage < 90) {
-                return {
-                    class: 'monitor',
-                    text: 'يحتاج مراقبة',
-                    description: 'الوزن أقل قليلاً من المتوسط. راجعي تغذية الطفل مع الطبيب.'
-                };
-            } else {
-                return {
-                    class: 'warning',
-                    text: 'أقل من المتوسط',
-                    description: 'الوزن أقل من المتوقع لعمره. راجعي الطبيب لفحص شامل.'
-                };
-            }
-        }
-
-        // تقييم الطول حسب العمر
-        function evaluateHeightForAge(height, ageMonths, gender) {
-            // بيانات تقريبية للمتوسطات
-            const avgHeights = {
-                male: [50, 55, 59, 62, 64, 66, 67, 69, 70, 71, 72, 73, 74],
-                female: [49, 54, 58, 61, 63, 65, 66, 68, 69, 70, 71, 72, 73]
-            };
-            
-            if (ageMonths > 12) ageMonths = 12;
-            const avgHeight = avgHeights[gender][ageMonths];
-            const percentage = (height / avgHeight) * 100;
-            
-            if (percentage > 105) {
-                return {
-                    class: 'normal',
-                    text: 'أطول من المتوسط',
-                    description: 'الطول أعلى من المتوسط. هذا مؤشر إيجابي إذا كان الوزن متناسباً.'
-                };
-            } else if (percentage >= 95 && percentage <= 105) {
-                return {
-                    class: 'normal',
-                    text: 'طبيعي',
-                    description: 'الطول ضمن المعدل الطبيعي لعمر الطفل.'
-                };
-            } else if (percentage >= 90 && percentage < 95) {
-                return {
-                    class: 'monitor',
-                    text: 'يحتاج مراقبة',
-                    description: 'الطول أقل قليلاً من المتوسط. تأكدي من التغذية المناسبة.'
-                };
-            } else {
-                return {
-                    class: 'warning',
-                    text: 'أقصر من المتوسط',
-                    description: 'الطول أقل من المتوقع لعمره. راجعي الطبيب للفحص.'
-                };
-            }
-        }
-
-        // تقييم محيط الرأس حسب العمر
-        function evaluateHeadForAge(head, ageMonths, gender) {
-            // بيانات تقريبية للمتوسطات
-            const avgHeads = {
-                male: [35, 38, 40, 41.5, 42.5, 43.5, 44, 44.5, 45, 45.5, 46, 46.5, 47],
-                female: [34, 37, 39, 40.5, 41.5, 42.5, 43, 43.5, 44, 44.5, 45, 45.5, 46]
-            };
-            
-            if (ageMonths > 12) ageMonths = 12;
-            const avgHead = avgHeads[gender][ageMonths];
-            const percentage = (head / avgHead) * 100;
-            
-            if (percentage > 105) {
-                return {
-                    class: 'warning',
-                    text: 'أكبر من المتوسط',
-                    description: 'محيط الرأس أكبر من المتوقع. راجعي الطبيب لاستبعاد أي مشاكل.'
-                };
-            } else if (percentage >= 95 && percentage <= 105) {
-                return {
-                    class: 'normal',
-                    text: 'طبيعي',
-                    description: 'محيط الرأس ضمن المعدل الطبيعي لنمو الدماغ.'
-                };
-            } else if (percentage >= 90 && percentage < 95) {
-                return {
-                    class: 'monitor',
-                    text: 'يحتاج مراقبة',
-                    description: 'محيط الرأس أقل قليلاً من المتوسط. تابعي النمو مع الطبيب.'
-                };
-            } else {
-                return {
-                    class: 'warning',
-                    text: 'أصغر من المتوسط',
-                    description: 'محيط الرأس أقل من المتوقع. راجعي الطبيب للفحص العصبي.'
-                };
-            }
-        }
-
-        // تقييم مؤشر كتلة الجسم
-        function evaluateBMI(bmi, ageMonths, gender) {
-            if (ageMonths <= 12) {
-                // معايير تقريبية للرضع
-                if (bmi > 18) {
-                    return {
-                        class: 'warning',
-                        text: 'مرتفع',
-                        description: 'مؤشر كتلة الجسم مرتفع. راجعي تغذية الطفل مع الطبيب.'
-                    };
-                } else if (bmi >= 14 && bmi <= 18) {
-                    return {
-                        class: 'normal',
-                        text: 'طبيعي',
-                        description: 'مؤشر كتلة الجسم ضمن المعدل الطبيعي للرضع.'
-                    };
-                } else {
-                    return {
-                        class: 'warning',
-                        text: 'منخفض',
-                        description: 'مؤشر كتلة الجسم منخفض. قد يحتاج الطفل لمزيد من التغذية.'
-                    };
-                }
-            }
-            
-            return {
-                class: 'normal',
-                text: 'غير متاح',
-                description: 'حاسبة مؤشر كتلة الجسم للأطفال فوق سنة متوفرة في زيارة الطبيب.'
-            };
-        }
-
-        // الحصول على التوصية العامة
-        function getGeneralRecommendation(weightStatus, heightStatus) {
-            if (weightStatus.class === 'normal' && heightStatus.class === 'normal') {
-                return 'نمو الطفل طبيعي ومتوازن. استمري في العناية والتغذية المناسبة.';
-            } else if (weightStatus.class === 'warning' && heightStatus.class === 'normal') {
-                return 'الوزن يحتاج اهتماماً مع الحفاظ على الطول الطبيعي. راجعي تغذية الطفل.';
-            } else if (weightStatus.class === 'normal' && heightStatus.class === 'warning') {
-                return 'الطول يحتاج متابعة مع الحفاظ على الوزن الطبيعي. تأكدي من التغذية الكافية.';
-            } else {
-                return 'النمو يحتاج لمتابعة طبية. راجعي طبيب الأطفال للفحص الشامل.';
-            }
-        }
-
-        // تهيئة سجل متابعة النمو
-        function initGrowthTracker() {
-            // تحميل البيانات من localStorage
-            const trackerData = JSON.parse(localStorage.getItem('growthTracker')) || [];
-            
-            // عرض البيانات في الجدول
-            displayTrackerData(trackerData);
-            
-            // تفعيل إضافة قياس جديد
-            const addBtn = document.getElementById('add-measurement');
-            const clearBtn = document.getElementById('clear-tracker');
-            const printBtn = document.getElementById('print-tracker');
-            
-            addBtn.addEventListener('click', addMeasurement);
-            clearBtn.addEventListener('click', clearTracker);
-            printBtn.addEventListener('click', printTracker);
-        }
-
-        // عرض بيانات سجل النمو
-        function displayTrackerData(data) {
-            const tbody = document.getElementById('tracker-body');
-            
-            if (data.length === 0) {
-                tbody.innerHTML = `
-                    <tr>
-                        <td colspan="6" class="empty-tracker">
-                            <i class="fas fa-clipboard-list"></i>
-                            <p>لا توجد قياسات مسجلة بعد. أضفي أول قياس لطفلك.</p>
-                        </td>
-                    </tr>
-                `;
-                return;
-            }
-            
-            // ترتيب البيانات من الأحدث إلى الأقدم
-            data.sort((a, b) => new Date(b.date) - new Date(a.date));
-            
-            let html = '';
-            data.forEach((item, index) => {
-                html += `
-                    <tr>
-                        <td>${item.date}</td>
-                        <td>${item.age} شهر</td>
-                        <td>${item.weight} كجم</td>
-                        <td>${item.height} سم</td>
-                        <td>${item.head} سم</td>
-                        <td>${item.notes || '-'}</td>
-                    </tr>
-                `;
-            });
-            
-            tbody.innerHTML = html;
-        }
-
-        // إضافة قياس جديد
-        function addMeasurement() {
-            const date = document.getElementById('track-date').value;
-            const age = document.getElementById('track-age').value;
-            const weight = document.getElementById('track-weight').value;
-            const height = document.getElementById('track-height').value;
-            const head = document.getElementById('track-head').value;
-            const notes = document.getElementById('track-notes').value;
-            
-            if (!date || !age || !weight || !height || !head) {
-                alert('الرجاء ملء جميع الحقول المطلوبة (التاريخ، العمر، الوزن، الطول، محيط الرأس)');
-                return;
-            }
-            
-            // تحميل البيانات الحالية
-            const trackerData = JSON.parse(localStorage.getItem('growthTracker')) || [];
-            
-            // إضافة القياس الجديد
-            trackerData.push({
-                date,
-                age: parseInt(age),
-                weight: parseFloat(weight),
-                height: parseInt(height),
-                head: parseFloat(head),
-                notes
-            });
-            
-            // حفظ البيانات
-            localStorage.setItem('growthTracker', JSON.stringify(trackerData));
-            
-            // تحديث العرض
-            displayTrackerData(trackerData);
-            
-            // مسح النموذج
-            document.getElementById('track-date').value = '';
-            document.getElementById('track-age').value = '';
-            document.getElementById('track-weight').value = '';
-            document.getElementById('track-height').value = '';
-            document.getElementById('track-head').value = '';
-            document.getElementById('track-notes').value = '';
-            
-            // إشعار النجاح
-            alert('تم إضافة القياس بنجاح إلى سجل النمو!');
-        }
-
-        // مسح سجل النمو
-        function clearTracker() {
-            if (confirm('هل أنت متأكدة من مسح جميع قياسات النمو؟ لا يمكن التراجع عن هذا الإجراء.')) {
-                localStorage.removeItem('growthTracker');
-                displayTrackerData([]);
-                alert('تم مسح سجل النمو بنجاح.');
-            }
-        }
-
-        // طباعة سجل النمو
-        function printTracker() {
-            const trackerData = JSON.parse(localStorage.getItem('growthTracker')) || [];
-            
-            if (trackerData.length === 0) {
-                alert('لا توجد بيانات لطباعتها. أضفي قياسات أولاً.');
-                return;
-            }
-            
-            // إنشاء نافذة طباعة
-            const printWindow = window.open('', '_blank');
-            printWindow.document.write(`
-                <!DOCTYPE html>
-                <html dir="rtl">
-                <head>
-                    <title>سجل نمو الطفل</title>
-                    <style>
-                        body { font-family: 'Cairo', sans-serif; padding: 20px; }
-                        h1 { color: #2e7d32; text-align: center; }
-                        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-                        th, td { border: 1px solid #ddd; padding: 10px; text-align: center; }
-                        th { background-color: #e8f5e9; }
-                        .print-date { text-align: left; margin-bottom: 20px; }
-                        @media print {
-                            .no-print { display: none; }
-                        }
-                    </style>
-                </head>
-                <body>
-                    <h1>سجل متابعة نمو الطفل</h1>
-                    <div class="print-date">تاريخ الطباعة: ${new Date().toLocaleDateString('ar-SA')}</div>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>التاريخ</th>
-                                <th>العمر (شهر)</th>
-                                <th>الوزن (كجم)</th>
-                                <th>الطول (سم)</th>
-                                <th>محيط الرأس (سم)</th>
-                                <th>ملاحظات</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            ${trackerData.map(item => `
-                                <tr>
-                                    <td>${item.date}</td>
-                                    <td>${item.age}</td>
-                                    <td>${item.weight}</td>
-                                    <td>${item.height}</td>
-                                    <td>${item.head}</td>
-                                    <td>${item.notes || '-'}</td>
-                                </tr>
-                            `).join('')}
-                        </tbody>
-                    </table>
-                    <div class="no-print" style="margin-top: 30px; text-align: center;">
-                        <button onclick="window.print()">طباعة</button>
-                        <button onclick="window.close()">إغلاق</button>
-                    </div>
-                </body>
-                </html>
-            `);
-            printWindow.document.close();
-        }
-
-
-
-        // إضافة إلى digestive.js
-document.addEventListener('DOMContentLoaded', function() {
-    // تفعيل التنقل بين الاضطرابات
-    const disorderNavBtns = document.querySelectorAll('.disorder-nav-btn');
-    const disorderCards = document.querySelectorAll('.disorders-overview.improved .disorder-card');
-    
-    if (disorderNavBtns.length > 0) {
-        disorderNavBtns.forEach(btn => {
-            btn.addEventListener('click', function() {
-                // إزالة النشاط من جميع الأزرار
-                disorderNavBtns.forEach(b => b.classList.remove('active'));
-                // إضافة النشاط للزر المختار
-                this.classList.add('active');
-                
-                // إخفاء جميع البطاقات
-                disorderCards.forEach(card => card.classList.remove('active'));
-                
-                // إظهار البطاقة المحددة
-                const disorderType = this.getAttribute('data-disorder');
-                const targetCard = document.querySelector(`.disorder-card[data-disorder="${disorderType}"]`);
-                if (targetCard) {
-                    targetCard.classList.add('active');
-                }
+    function initFaq() {
+        document.querySelectorAll('.faq-question').forEach((question) => {
+            const answer = question.nextElementSibling;
+            if (!answer) return;
+            question.addEventListener('click', () => {
+                const open = answer.classList.toggle('active');
+                question.setAttribute('aria-expanded', String(open));
             });
         });
     }
-    
-    // في حالة الهواتف، إظهار جميع البطاقات وإلغاء التنقل
-    function adjustForMobile() {
-        if (window.innerWidth <= 768) {
-            disorderCards.forEach(card => {
-                card.style.display = 'flex';
-            });
-            if (document.querySelector('.disorders-nav')) {
-                document.querySelector('.disorders-nav').style.display = 'none';
-            }
-        } else {
-            disorderCards.forEach(card => {
-                card.style.display = '';
-            });
-            if (document.querySelector('.disorders-nav')) {
-                document.querySelector('.disorders-nav').style.display = 'flex';
-            }
-        }
-    }
-    
-    // استدعاء الدالة عند التحميل وعند تغيير حجم النافذة
-    adjustForMobile();
-    window.addEventListener('resize', adjustForMobile);
-});
 
-// إضافة إلى الملف JavaScript الخاص بالصفحة
-document.addEventListener('DOMContentLoaded', function() {
-    // تفعيل الأسئلة الشائعة
-    const faqQuestions = document.querySelectorAll('.faq-question');
-    
-    faqQuestions.forEach(question => {
-        question.addEventListener('click', function() {
-            const faqItem = this.parentElement;
-            const isActive = faqItem.classList.contains('active');
-            
-            // إغلاق جميع الأسئلة الأخرى
-            document.querySelectorAll('.faq-item.active').forEach(item => {
-                if (item !== faqItem) {
-                    item.classList.remove('active');
-                }
-            });
-            
-            // تبديل حالة السؤال الحالي
-            faqItem.classList.toggle('active', !isActive);
-            
-            // إضافة تأثير صوتي خفيف (اختياري)
-            if (!isActive) {
-                const clickSound = new Audio('data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEAQB8AAEAfAAABAAgAZGF0YQ');
-                clickSound.volume = 0.1;
-                clickSound.play().catch(() => {});
-            }
-        });
+    document.addEventListener('DOMContentLoaded', async () => {
+        const years = byId('child-years');
+        if (years) years.max = '2';
+        const months = byId('child-months');
+        if (months) months.max = '11';
+        const calculateButton = byId('calculate-growth');
+        calculateButton?.addEventListener('click', calculate);
+        document.querySelectorAll('.chart-tab-btn').forEach((button) => button.addEventListener('click', async () => {
+            document.querySelectorAll('.chart-tab-btn').forEach((item) => item.classList.remove('active'));
+            button.classList.add('active');
+            activeIndicator = indicators[button.dataset.chart]?.key || 'weightForAge';
+            await updateChart();
+        }));
+        byId('child-gender')?.addEventListener('change', async (event) => { activeSex = event.target.value; await updateChart(); });
+        initTracker();
+        initFaq();
+        renderLoading();
+        try {
+            await window.Ri3ayaGrowth.load();
+            datasetsReady = true;
+            await updateChart();
+            await calculate();
+        } catch (error) {
+            renderError(error);
+        }
     });
-    
-    // زر عرض/إخفاء جميع الأسئلة
-    const toggleAllBtn = document.createElement('button');
-    toggleAllBtn.className = 'faq-toggle-all';
-    toggleAllBtn.innerHTML = '<span>عرض جميع الأسئلة</span><i class="fas fa-chevron-down"></i>';
-    
-    const faqActions = document.createElement('div');
-    faqActions.className = 'faq-actions';
-    faqActions.appendChild(toggleAllBtn);
-    
-    const faqList = document.querySelector('.faq-list');
-    if (faqList) {
-        faqList.parentNode.insertBefore(faqActions, faqList.nextSibling);
-        
-        toggleAllBtn.addEventListener('click', function() {
-            const allFaqItems = document.querySelectorAll('.faq-item');
-            const isAllOpen = Array.from(allFaqItems).every(item => item.classList.contains('active'));
-            
-            if (isAllOpen) {
-                // إغلاق جميع الأسئلة
-                allFaqItems.forEach(item => item.classList.remove('active'));
-                toggleAllBtn.innerHTML = '<span>عرض جميع الأسئلة</span><i class="fas fa-chevron-down"></i>';
-                toggleAllBtn.classList.remove('active');
-            } else {
-                // فتح جميع الأسئلة
-                allFaqItems.forEach(item => item.classList.add('active'));
-                toggleAllBtn.innerHTML = '<span>إخفاء جميع الأسئلة</span><i class="fas fa-chevron-up"></i>';
-                toggleAllBtn.classList.add('active');
-            }
-        });
-    }
-    
-    // إضافة خاصية البحث في الأسئلة الشائعة
-    const faqSection = document.querySelector('.faq-section .section-card');
-    if (faqSection) {
-        const searchContainer = document.createElement('div');
-        searchContainer.className = 'faq-search';
-        searchContainer.innerHTML = `
-            <input type="text" placeholder="ابحث في الأسئلة الشائعة..." id="faqSearch">
-            <i class="fas fa-search"></i>
-        `;
-        
-        const noResults = document.createElement('div');
-        noResults.className = 'faq-no-results';
-        noResults.innerHTML = `
-            <i class="fas fa-search"></i>
-            <h3>لم يتم العثور على نتائج</h3>
-            <p>جرب استخدام كلمات بحث أخرى</p>
-        `;
-        
-        faqSection.insertBefore(searchContainer, faqSection.querySelector('h2').nextSibling);
-        faqList.parentNode.insertBefore(noResults, faqList.nextSibling);
-        
-        const searchInput = document.getElementById('faqSearch');
-        const faqItems = document.querySelectorAll('.faq-item');
-        
-        searchInput.addEventListener('input', function() {
-            const searchTerm = this.value.trim().toLowerCase();
-            let hasResults = false;
-            
-            faqItems.forEach(item => {
-                const question = item.querySelector('.faq-question span').textContent.toLowerCase();
-                const answer = item.querySelector('.faq-answer p').textContent.toLowerCase();
-                
-                if (question.includes(searchTerm) || answer.includes(searchTerm)) {
-                    item.style.display = 'block';
-                    hasResults = true;
-                    
-                    // تمييز النص المطابق للبحث
-                    if (searchTerm.length > 2) {
-                        const regex = new RegExp(searchTerm, 'gi');
-                        const highlightedQuestion = question.replace(regex, match => `<span class="highlight">${match}</span>`);
-                        const highlightedAnswer = answer.replace(regex, match => `<span class="highlight">${match}</span>`);
-                        
-                        item.querySelector('.faq-question span').innerHTML = question.replace(regex, match => `<span class="highlight">${match}</span>`);
-                        item.querySelector('.faq-answer p').innerHTML = answer.replace(regex, match => `<span class="highlight">${match}</span>`);
-                    }
-                } else {
-                    item.style.display = 'none';
-                }
-            });
-            
-            // عرض/إخفاء رسالة عدم وجود نتائج
-            noResults.style.display = hasResults || searchTerm.length === 0 ? 'none' : 'block';
-            
-            // إغلاق جميع الأسئلة أثناء البحث
-            if (searchTerm.length > 0) {
-                faqItems.forEach(item => {
-                    if (item.style.display !== 'none') {
-                        item.classList.add('active');
-                    }
-                });
-                toggleAllBtn.innerHTML = '<span>إخفاء جميع الأسئلة</span><i class="fas fa-chevron-up"></i>';
-                toggleAllBtn.classList.add('active');
-            }
-        });
-    }
-});
-
-// إضافة أنماط تمييز النص في البحث
-const style = document.createElement('style');
-style.textContent = `
-    .highlight {
-        background-color: #FFF9C4;
-        padding: 2px 4px;
-        border-radius: 3px;
-        color: #333;
-        font-weight: bold;
-    }
-`;
-document.head.appendChild(style);
+})();

@@ -1,0 +1,11 @@
+{
+  "version": "2026-08",
+  "lastReviewed": "2026-08-20",
+  "sources": [
+    "https://www.nhs.uk/conditions/baby/first-year/baby-basics/soothing-a-crying-baby/",
+    "https://www.cdc.gov/parents/essentials/communication/crying.html"
+  ],
+  "scope": "تنظيم الملاحظات وعلامات الخطر فقط",
+  "forbiddenClaims": ["التشخيص من الصوت", "تحليل صوت طبي", "احتمال تشخيصي آلي"],
+  "disclaimer": "البكاء له أسباب كثيرة، ولا يستطيع الموقع تحديد السبب أو استبعاد المرض."
+}

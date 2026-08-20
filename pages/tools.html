@@ -29,7 +29,7 @@
 
 
     <!-- Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 
     <!-- Favicon -->
     <link rel="icon" href="../images/icons/icons.png" alt="icon" type="image/png" loading="lazy">
@@ -1136,7 +1136,7 @@
 
                                 <!-- النتائج -->
                                 <div class="step-content" id="step-5-content">
-                                    <h4><i class="fas fa-stethoscope"></i> نتائج تحليل البكاء</h4>
+                                    <h4><i class="fas fa-stethoscope"></i> دليل فهم بكاء الرضيع ومؤشرات الخطر</h4>
                                     <div id="cry-analysis-results">
                                         <!-- سيتم عرض النتائج هنا -->
                                     </div>
@@ -1160,52 +1160,18 @@
                                 </button>
                             </div>
 
-                            <!-- قسم تحليل الصوت الحي -->
-                            <div class="audio-analysis-section">
-                                <h4><i class="fas fa-microphone-alt"></i> تحليل صوت البكاء الحي</h4>
-                                <p>استخدمي الميكروفون لتحليل صوت بكاء طفلك في الوقت الحقيقي</p>
-
-                                <div class="audio-controls">
-                                    <button class="btn btn-primary" onclick="CryAudio.start()">
-                                        <i class="fas fa-play"></i> بدء التحليل الصوتي
-                                    </button>
-                                    <button class="btn btn-secondary" onclick="CryAudio.stop()">
-                                        <i class="fas fa-stop"></i> إيقاف التحليل
-                                    </button>
-                                    <div id="audio-status" class="status-indicator">جاهز</div>
-                                </div>
-
-                                <div class="audio-visualizer-container">
-                                    <div id="audio-visualizer"></div>
-                                </div>
-                            </div>
-
-                            <!-- قسم تحليل الأنماط -->
-                            <div class="pattern-analysis-section">
-                                <h4><i class="fas fa-wave-square"></i> تحليل نمط البكاء</h4>
-                                <p>سجلي نمط بكاء طفلك وحلليه لتحديد السبب</p>
-
-                                <div class="pattern-controls">
-                                    <button class="btn btn-primary" onclick="CryPattern.startRecording()">
-                                        <i class="fas fa-record-vinyl"></i> بدء تسجيل النمط
-                                    </button>
-                                    <button class="btn btn-secondary" onclick="CryPattern.stopRecording()">
-                                        <i class="fas fa-stop-circle"></i> إيقاف وتحليل
-                                    </button>
-                                </div>
-
-                                <div id="pattern-status" class="status-indicator"></div>
+                            <div class="safety-notice" role="note">
+                                <h4><i class="fas fa-circle-info"></i> حدود هذه الصفحة</h4>
+                                <p>لا يستطيع الموقع تشخيص سبب البكاء من الصوت أو الاختيارات. استخدمي الأسئلة فقط لتنظيم الملاحظات والتحقق من الاحتياجات الشائعة، واطلبي تقييمًا طبيًا عند وجود علامات خطر.</p>
                             </div>
 
                             <div class="tool-features">
                                 <h4><i class="fas fa-star"></i> مميزات هذه الأداة:</h4>
                                 <ul>
-                                    <li>تحليل متعدد الخطوات للبكاء</li>
-                                    <li>تشخيص مبدئي بأسباب البكاء مع احتمالات</li>
-                                    <li>تحليل صوتي في الوقت الحقيقي</li>
-                                    <li>تحليل أنماط البكاء الزمنية</li>
-                                    <li>اقتراح حلول عملية لكل حالة</li>
-                                    <li>إرشادات حول متى يجب استشارة الطبيب</li>
+                                    <li>تنظيم الملاحظات حول عمر الطفل وتوقيت البكاء</li>
+                                    <li>أسباب شائعة محتملة يجب التحقق منها</li>
+                                    <li>علامات خطر تستدعي التواصل مع طبيب الأطفال</li>
+                                    <li>إرشادات عامة لا تستبدل التقييم الطبي</li>
                                     <li>حفظ النتائج للمقارنة في المستقبل</li>
                                 </ul>
                             </div>
@@ -1215,307 +1181,13 @@
 
                 <!-- محتوى أداة الروتين -->
 <!-- محتوى أداة الروتين -->
-<div id="routine-content" class="tool-content">
+<section class="tool-content routine-redirect-card" aria-labelledby="routine-link-title">
     <div class="tool-header">
-        <h3><i class="fas fa-calendar-alt"></i> مولد الروتين اليومي الذكي</h3>
-        <p>أنشئ روتيناً يومياً مخصصاً لطفلك بناءً على عمره واحتياجاته ونمط حياتك</p>
+        <h3 id="routine-link-title"><i class="fas fa-calendar-alt"></i> مولد الروتين اليومي</h3>
+        <p>نقلنا مولد الروتين إلى صفحة مستقلة أخف وأوضح، حتى لا تُحمّل صفحة الأدوات كل موارد الروتين دفعة واحدة.</p>
     </div>
-
-    <div class="tool-body">
-        <div class="routine-generator">
-            <div class="routine-form">
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="routine-age"><i class="fas fa-baby"></i> عمر الطفل</label>
-                        <select id="routine-age" class="form-select">
-                            <option value="0-3">0-3 أشهر (حديث الولادة)</option>
-                            <option value="4-6" selected>4-6 أشهر (الرضيع)</option>
-                            <option value="7-9">7-9 أشهر (مرحلة الحبو)</option>
-                            <option value="10-12">10-12 شهر (الوقوف)</option>
-                            <option value="13-18">13-18 شهر (المشي المبكر)</option>
-                            <option value="19-24">19-24 شهر (ما قبل المدرسة)</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="routine-wakeup"><i class="fas fa-sun"></i> وقت الاستيقاظ الصباحي</label>
-                        <select id="routine-wakeup" class="form-select">
-                            <option value="6">6:00 صباحاً</option>
-                            <option value="6.5">6:30 صباحاً</option>
-                            <option value="7" selected>7:00 صباحاً</option>
-                            <option value="7.5">7:30 صباحاً</option>
-                            <option value="8">8:00 صباحاً</option>
-                            <option value="8.5">8:30 صباحاً</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="routine-naps"><i class="fas fa-bed"></i> عدد فترات القيلولة</label>
-                        <select id="routine-naps" class="form-select">
-                            <option value="4">4 قيلولات (حديث الولادة)</option>
-                            <option value="3" selected>3 قيلولات (1-4 أشهر)</option>
-                            <option value="2">قيلولتان (4-8 أشهر)</option>
-                            <option value="1">قيلولة واحدة (9-18 شهر)</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="routine-feeding"><i class="fas fa-utensils"></i> نوع التغذية</label>
-                        <select id="routine-feeding" class="form-select">
-                            <option value="breast">رضاعة طبيعية فقط</option>
-                            <option value="formula">رضاعة صناعية فقط</option>
-                            <option value="mixed" selected>رضاعة مختلطة</option>
-                            <option value="solid">طعام صلب + حليب</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="routine-activities"><i class="fas fa-child"></i> الأنشطة المفضلة</label>
-                    <div class="activity-options-grid">
-                        <div class="activity-option">
-                            <input type="checkbox" id="activity-outdoor" checked>
-                            <label for="activity-outdoor">
-                                <i class="fas fa-tree"></i>
-                                <span>اللعب خارج المنزل</span>
-                            </label>
-                        </div>
-                        <div class="activity-option">
-                            <input type="checkbox" id="activity-reading" checked>
-                            <label for="activity-reading">
-                                <i class="fas fa-book"></i>
-                                <span>قراءة القصص</span>
-                            </label>
-                        </div>
-                        <div class="activity-option">
-                            <input type="checkbox" id="activity-music" checked>
-                            <label for="activity-music">
-                                <i class="fas fa-music"></i>
-                                <span>الاستماع للموسيقى</span>
-                            </label>
-                        </div>
-                        <div class="activity-option">
-                            <input type="checkbox" id="activity-bath" checked>
-                            <label for="activity-bath">
-                                <i class="fas fa-bath"></i>
-                                <span>وقت الاستحمام</span>
-                            </label>
-                        </div>
-                        <div class="activity-option">
-                            <input type="checkbox" id="activity-massage" checked>
-                            <label for="activity-massage">
-                                <i class="fas fa-hands"></i>
-                                <span>التدليك</span>
-                            </label>
-                        </div>
-                        <div class="activity-option">
-                            <input type="checkbox" id="activity-tummy" checked>
-                            <label for="activity-tummy">
-                                <i class="fas fa-baby"></i>
-                                <span>وقت اللعب على البطن</span>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-buttons">
-                    <button class="btn btn-primary" id="generate-routine">
-                        <i class="fas fa-magic"></i> إنشاء الروتين الذكي
-                    </button>
-                    <button class="btn btn-secondary" id="reset-routine">
-                        <i class="fas fa-redo"></i> إعادة تعيين
-                    </button>
-                </div>
-            </div>
-
-            <!-- قسم عرض الروتين -->
-            <div class="routine-results" id="routine-results">
-                <div class="routine-welcome">
-                    <h4><i class="fas fa-calendar-plus"></i> مولد الروتين اليومي</h4>
-                    <p>اختر العمر والتفضيلات لإنشاء روتين يومي مخصص لطفلك.</p>
-                    <div class="welcome-tips">
-                        <p><i class="fas fa-lightbulb"></i> الروتين المنتظم يساعد الطفل على:</p>
-                        <ul>
-                            <li>النوم بشكل أفضل</li>
-                            <li>الشعور بالأمان والاستقرار</li>
-                            <li>التطور بطريقة صحية</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="tool-features">
-                <h4><i class="fas fa-star"></i> مميزات مولد الروتين:</h4>
-                <ul>
-                    <li>توليد روتين مخصص حسب العمر والاحتياجات</li>
-                    <li>مراعاة فترات النوم والرضاعة واللعب والأنشطة</li>
-                    <li>جدول زمني تفصيلي ليوم كامل</li>
-                    <li>نصائح عملية للالتزام بالروتين</li>
-                    <li>إمكانية حفظ وطباعة ومشاركة الروتين</li>
-                    <li>تعديل الروتين حسب تفضيلاتك</li>
-                    <li>متابعة تطور روتين الطفل مع نموه</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
-
-                <!-- محتوى أداة الدواء: وضع السلامة الطبية -->
-                <div id="medicine-content" class="tool-content">
-                    <div class="tool-header">
-                        <h3><i class="fas fa-shield-alt"></i> سلامة أدوية الأطفال</h3>
-                        <p>لا يحسب الموقع جرعات شخصية؛ لأن الجرعة تعتمد على العمر الدقيق والوزن وتركيز المستحضر والحالة الصحية.</p>
-                    </div>
-                    <div class="tool-body">
-                        <div class="medicine-safety-card" role="note">
-                            <div class="medicine-safety-icon" aria-hidden="true"><i class="fas fa-user-md"></i></div>
-                            <div>
-                                <h4>لا تعتمدي على حاسبة عامة لإعطاء الدواء</h4>
-                                <p>تحققي من اسم المادة الفعالة وتركيزها في العبوة، واستخدمي أداة القياس المرفقة، واسألي طبيب الأطفال أو الصيدلي قبل إعطاء أي دواء، خصوصًا للرضيع أو عند وجود مرض مزمن أو أدوية أخرى.</p>
-                                <ul>
-                                    <li>لا تعطي دواءً موصوفًا لطفل آخر ولا تخلطي مستحضرين لهما المادة الفعالة نفسها.</li>
-                                    <li>لا تعطي الإيبوبروفين لطفل أصغر من 6 أشهر إلا بتوجيه طبي، وراجعي الطبيب عند عدم التأكد من الجرعة.</li>
-                                    <li>إذا حدث ابتلاع زائد أو ظهرت صعوبة تنفس أو نعاس شديد أو تدهور سريع، اتصلي بالطوارئ أو مركز السموم المحلي فورًا.</li>
-                                </ul>
-                                <p class="medical-source-note"><strong>مرجع:</strong> <a href="https://medlineplus.gov/ency/patientinstructions/000772.htm" target="_blank" rel="noopener noreferrer">MedlinePlus — Ibuprofen dosing for children</a>.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- محتوى أداة الوجبات -->
-                <div id="meals-content" class="tool-content">
-                    <div class="tool-header">
-                        <h3><i class="fas fa-utensils"></i> مخطط وجبات الطعام</h3>
-                        <p>خططي لوجبات طفلك الأسبوعية مع مراعاة التنوع الغذائي والقيمة الغذائية والحساسيات</p>
-                    </div>
-
-                    <div class="tool-body">
-                        <div class="meal-planner">
-                            <div class="planner-controls">
-                                <div class="form-group">
-                                    <label for="planner-age"><i class="fas fa-baby"></i> عمر الطفل</label>
-                                    <select id="planner-age" class="form-select">
-                                        <option value="6-8">6-8 أشهر</option>
-                                        <option value="9-11">9-11 شهر</option>
-                                        <option value="12-18">12-18 شهر</option>
-                                        <option value="19-24">19-24 شهر</option>
-                                    </select>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="planner-allergies"><i class="fas fa-allergies"></i> الحساسيات
-                                        الغذائية</label>
-                                    <select id="planner-allergies" class="form-select">
-                                        <option value="none">لا توجد حساسيات</option>
-                                        <option value="dairy">حساسية الألبان</option>
-                                        <option value="eggs">حساسية البيض</option>
-                                        <option value="nuts">حساسية المكسرات</option>
-                                        <option value="wheat">حساسية القمح</option>
-                                    </select>
-                                </div>
-
-                                <button class="btn btn-primary" id="generate-meal-plan">
-                                    <i class="fas fa-calendar-plus"></i> إنشاء خطة الوجبات
-                                </button>
-                            </div>
-
-                            <!-- قسم الوجبات -->
-                            <div class="planner-results" id="meal-plan-results">
-                                <div class="welcome-message">
-                                    <h4>مخطط وجبات الطعام</h4>
-                                    <p>أنشئ خطة وجبات أسبوعية مخصصة لعمر طفلك واحتياجاته.</p>
-                                </div>
-                            </div>
-
-                            <div class="tool-features">
-                                <h4><i class="fas fa-star"></i> مميزات هذه الأداة:</h4>
-                                <ul>
-                                    <li>خطط وجبات مخصصة حسب العمر</li>
-                                    <li>مراعاة الحساسيات الغذائية</li>
-                                    <li>تنوع غذائي متوازن</li>
-                                    <li>جدول زمني للوجبات اليومية</li>
-                                    <li>نصائح للتحضير والتقديم</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- إدارة البيانات -->
-            <section class="data-management-section">
-                <h3><i class="fas fa-database"></i> إدارة بيانات طفلك</h3>
-                <p>إدارة وتصدير واستيراد جميع بيانات طفلك المحفوظة</p>
-
-                <div class="data-buttons">
-                    <button class="btn btn-primary" onclick="exportAllData()">
-                        <i class="fas fa-download"></i> تصدير جميع البيانات
-                    </button>
-                    <button class="btn btn-secondary" onclick="document.getElementById('import-file').click()">
-                        <i class="fas fa-upload"></i> استيراد البيانات
-                    </button>
-                    <input type="file" id="import-file" accept=".json" onchange="importData(event)" hidden>
-                    <button class="btn btn-danger" onclick="clearAllData()">
-                        <i class="fas fa-trash"></i> حذف جميع البيانات
-                    </button>
-                </div>
-
-                <div class="data-info">
-                    <p><i class="fas fa-info-circle"></i> جميع البيانات مخزنة محلياً على جهازك فقط. استخدمي خيار التصدير
-                        لنسخ احتياطي.</p>
-                </div>
-            </section>
-
-            <!-- قائمة النصائح السريعة -->
-            <section class="quick-tips-tools">
-                <div class="section-card">
-                    <h2><i class="fas fa-lightbulb"></i> نصائح سريعة لاستخدام الأدوات</h2>
-
-                    <div class="tips-grid-tools">
-                        <div class="tip-item-tool">
-                            <div class="tip-icon">
-                                <i class="fas fa-save"></i>
-                            </div>
-                            <div class="tip-content">
-                                <h3>احفظي نتائجك</h3>
-                                <p>احفظي نتائج الأدوات المختلفة لطفلك لمقارنتها لاحقاً ومتابعة التطور عبر الزمن.</p>
-                            </div>
-                        </div>
-
-                        <div class="tip-item-tool">
-                            <div class="tip-icon">
-                                <i class="fas fa-print"></i>
-                            </div>
-                            <div class="tip-content">
-                                <h3>اطبعي النتائج</h3>
-                                <p>اطبعي الجداول والخطط لاستخدامها خارج المنزل أو لمشاركتها مع طبيب الأطفال.</p>
-                            </div>
-                        </div>
-
-                        <div class="tip-item-tool">
-                            <div class="tip-icon">
-                                <i class="fas fa-bell"></i>
-                            </div>
-                            <div class="tip-content">
-                                <h3>استخدمي التنبيهات</h3>
-                                <p>سمحي بالإشعارات لتحصلي على تذكيرات بالتطعيمات ومواعيد القياسات المهمة.</p>
-                            </div>
-                        </div>
-
-                        <div class="tip-item-tool">
-                            <div class="tip-icon">
-                                <i class="fas fa-share-alt"></i>
-                            </div>
-                            <div class="tip-content">
-                                <h3>شاركي النتائج</h3>
-                                <p>شاركي نتائج الأدوات مع طبيب الأطفال أو أفراد العائلة لمتابعة أفضل لصحة طفلك.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
+    <a class="btn btn-primary" href="tools/routine.html"><i class="fas fa-arrow-left"></i> فتح مولد الروتين</a>
+</section>
     </main>
 
     <!-- تذييل الصفحة -->
@@ -1763,20 +1435,21 @@
                 console.log('أداة النمو جاهزة');
             }
 
-            // التحقق من تهيئة CryAI
-            if (typeof CryAI !== 'undefined') {
-                console.log('أداة تحليل البكاء جاهزة');
+                        // أداة البكاء تثقيفية فقط ولا تنفذ تشخيصًا أو تحليلًا صوتيًا.
+            if (typeof CryGuide !== 'undefined') {
+                console.log('دليل بكاء الرضيع جاهز');
             }
+
+
 
             // التحقق من تهيئة Routine
             if (typeof Routine !== 'undefined') {
                 console.log('أداة الروتين جاهزة');
             }
 
-            // التحقق من تهيئة Medicine
-            if (typeof Medicine !== 'undefined') {
-                console.log('أداة الدواء جاهزة');
-            }
+                        // لا توجد حاسبة جرعات شخصية في الإنتاج لأسباب تتعلق بسلامة الأطفال.
+
+
 
             // التحقق من تهيئة Meals
             if (typeof Meals !== 'undefined') {
@@ -1810,11 +1483,7 @@
                     document.getElementById('baby-head').value = 41;
                 }
 
-                // وزن افتراضي لحاسبة الدواء
-                const medWeightInput = document.getElementById('baby-weight-medicine');
-                if (medWeightInput && !medWeightInput.value) {
-                    medWeightInput.value = 8.5;
-                }
+
 
             }, 2000);
 
@@ -1870,20 +1539,6 @@
             }
         };
 
-        window.testCryAnalyzer = function () {
-            alert('ميزة تحليل البكاء قيد التطوير');
-        };
-
-        window.testRoutineGenerator = function () {
-            if (typeof Routine !== 'undefined' && Routine.generateRoutine) {
-                const ageSelect = document.getElementById('routine-age');
-                if (ageSelect) ageSelect.value = '4-6';
-                Routine.generateRoutine();
-            } else {
-                alert('أداة الروتين غير متاحة');
-            }
-        };
-
         window.testMealPlanner = function () {
             if (typeof Meals !== 'undefined' && Meals.generateMealPlan) {
                 const ageSelect = document.getElementById('planner-age');
@@ -1896,15 +1551,6 @@
         // إصلاحات فورية
         document.addEventListener('DOMContentLoaded', function () {
             // تهيئة الدوال المفقودة
-            window.CryAudio = window.CryAudio || {
-                start: function () { alert('ميزة التحليل الصوتي قيد التطوير'); },
-                stop: function () { console.log('إيقاف التحليل الصوتي'); }
-            };
-
-            window.CryPattern = window.CryPattern || {
-                startRecording: function () { alert('ميزة تحليل النمط قيد التطوير'); },
-                stopRecording: function () { console.log('إيقاف تسجيل النمط'); }
-            };
         });
     </script>
 
@@ -1952,8 +1598,6 @@
         <div class="test-buttons" style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 15px;">
             <button class="btn btn-sm btn-secondary" onclick="testVaccineCalculator()">اختبار التطعيمات</button>
             <button class="btn btn-sm btn-secondary" onclick="testGrowthTracker()">اختبار النمو</button>
-            <button class="btn btn-sm btn-secondary" onclick="testCryAnalyzer()">اختبار البكاء</button>
-            <button class="btn btn-sm btn-secondary" onclick="testRoutineGenerator()">اختبار الروتين</button>
             <button class="btn btn-sm btn-secondary" onclick="testMealPlanner()">اختبار الوجبات</button>
             <button class="btn btn-sm btn-primary" onclick="location.reload()">إعادة تحميل</button>
         </div>
@@ -1978,84 +1622,7 @@
     </script>
 
 
-<script>
-// تهيئة مولد الروتين
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('تهيئة مولد الروتين...');
-    
-    // ربط زر إعادة التعيين
-    const resetBtn = document.getElementById('reset-routine');
-    if (resetBtn) {
-        resetBtn.addEventListener('click', function() {
-            // إعادة تعيين القيم الافتراضية
-            document.getElementById('routine-age').value = '4-6';
-            document.getElementById('routine-wakeup').value = '7';
-            document.getElementById('routine-naps').value = '3';
-            document.getElementById('routine-feeding').value = 'mixed';
-            
-            // تفعيل جميع الأنشطة
-            document.querySelectorAll('.activity-option input').forEach(cb => {
-                cb.checked = true;
-            });
-            
-            // إعادة عرض رسالة الترحيب
-            const resultsDiv = document.getElementById('routine-results');
-            if (resultsDiv) {
-                resultsDiv.innerHTML = `
-                    <div class="routine-welcome">
-                        <h4><i class="fas fa-calendar-plus"></i> مولد الروتين اليومي</h4>
-                        <p>تم إعادة تعيين جميع الخيارات. يمكنك الآن إنشاء روتين جديد.</p>
-                        <div class="welcome-tips">
-                            <p><i class="fas fa-lightbulb"></i> نصيحة: جربي تغيير وقت الاستيقاظ لتناسب نمط حياتك</p>
-                        </div>
-                    </div>
-                `;
-            }
-            
-            alert('تم إعادة تعيين جميع الخيارات بنجاح!');
-        });
-    }
-    
-    // تعيين القيم الافتراضية
-    setTimeout(() => {
-        // تعيين وزن افتراضي لحاسبة الدواء
-        const weightInput = document.getElementById('baby-weight-medicine');
-        if (weightInput && !weightInput.value) {
-            weightInput.value = '8.5';
-        }
-        
-        // تعيين عمر افتراضي للروتين
-        const ageSelect = document.getElementById('routine-age');
-        if (ageSelect && !ageSelect.value) {
-            ageSelect.value = '4-6';
-        }
-    }, 1000);
-});
 
-// اختبار مولد الروتين
-window.testRoutineGenerator = function() {
-    console.log('اختبار مولد الروتين...');
-    
-    // تعيين قيم اختبارية
-    document.getElementById('routine-age').value = '4-6';
-    document.getElementById('routine-wakeup').value = '7';
-    document.getElementById('routine-naps').value = '3';
-    document.getElementById('routine-feeding').value = 'mixed';
-    
-    // تفعيل جميع الأنشطة
-    document.querySelectorAll('.activity-option input').forEach(cb => {
-        cb.checked = true;
-    });
-    
-    // إنشاء الروتين
-    if (window.Routine && Routine.generateRoutine) {
-        Routine.generateRoutine();
-        alert('تم إنشاء روتين تجريبي بنجاح!');
-    } else {
-        alert('مولد الروتين غير جاهز بعد. يرجى الانتظار...');
-    }
-};
-</script>
 
     <!-- في نهاية body -->
     <script>
@@ -2075,6 +1642,7 @@ window.testRoutineGenerator = function() {
 
 
     <script defer src="../js/ads-manager.js"></script>
+    <script defer src="../js/search.js"></script>
 </body>
 
 </html>

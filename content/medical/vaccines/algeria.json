@@ -1,0 +1,9 @@
+{
+  "country": "DZ",
+  "version": "verification-required",
+  "source": "https://sante.gov.dz/manuels/guide-de-la-vaccination/",
+  "secondarySource": "https://immunizationdata.who.int/",
+  "lastReviewed": "2026-08-20",
+  "status": "do-not-publish-fixed-schedule-without-current-official-confirmation",
+  "guidance": "تحققي من دفتر التلقيح والمركز الصحي ووزارة الصحة الجزائرية قبل اعتماد أي موعد أو حملة استدراكية. لا تعرض هذه البيانات جرعات أو مواعيد وطنية ثابتة."
+}

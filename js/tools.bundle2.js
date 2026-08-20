@@ -10,11 +10,8 @@ document.addEventListener('DOMContentLoaded', () => {
     Tabs.init();
     Vaccine.init();
     Growth.init();
-    CryAI.init();
-    CryAudio.init();
-    CryPattern.init();
-    Routine.init();
-    Medicine.init();
+    CryGuide.init();
+            Routine.init();
     Meals.init();
     Alerts.init();
 
@@ -500,240 +497,17 @@ const Growth = {
 };
 
 /* =========================
-   CRY AI - نظام تحليل البكاء المتقدم
+   CRY GUIDE - دليل تثقيفي آمن
    ========================= */
-
-const CryAI = {
-    currentState: {
-        age: null,
-        timing: null,
-        cryType: null,
-        symptoms: [],
-        intensity: 'medium',
-        duration: 'short',
-        pattern: 'continuous'
+const CryGuide = {
+    init() {},
+    selectOption() {
+        window.Ri3aya?.announce?.('هذه الأسئلة لتنظيم الملاحظات فقط ولا تشخّص سبب البكاء.', 'info');
     },
-
-    init() {
-        console.log('جاري تهيئة نظام تحليل البكاء...');
-
-        // تهيئة أزرار الاختيار
-        document.querySelectorAll('[data-age]').forEach(btn => {
-            btn.onclick = () => this.selectOption('age', btn.dataset.age);
-        });
-
-        document.querySelectorAll('[data-timing]').forEach(btn => {
-            btn.onclick = () => this.selectOption('timing', btn.dataset.timing);
-        });
-
-        document.querySelectorAll('[data-cry]').forEach(btn => {
-            btn.onclick = () => this.selectOption('cryType', btn.dataset.cry);
-        });
-
-        document.querySelectorAll('[data-symptom]').forEach(checkbox => {
-            checkbox.onchange = () => this.toggleSymptom(checkbox.dataset.symptom, checkbox.checked);
-        });
-
-        // أزرار التنقل
-        document.getElementById('next-step')?.addEventListener('click', () => this.nextStep());
-        document.getElementById('prev-step')?.addEventListener('click', () => this.prevStep());
-        document.getElementById('restart-decoder')?.addEventListener('click', () => this.restartAnalysis());
-        document.getElementById('save-analysis')?.addEventListener('click', () => this.saveAnalysis());
-
-        this.updateStep(1);
-    },
-
-    selectOption(type, value) {
-        this.currentState[type] = value;
-        this.highlightSelection(type, value);
-
-        // الانتقال التلقائي للخطوة التالية
-        setTimeout(() => this.nextStep(), 500);
-    },
-
-    toggleSymptom(symptom, isChecked) {
-        if (isChecked) {
-            this.currentState.symptoms.push(symptom);
-        } else {
-            const index = this.currentState.symptoms.indexOf(symptom);
-            if (index > -1) {
-                this.currentState.symptoms.splice(index, 1);
-            }
-        }
-    },
-
-    highlightSelection(type, value) {
-        // إزالة التحديد السابق
-        document.querySelectorAll(`[data-${type}]`).forEach(el => {
-            el.classList.remove('selected');
-        });
-
-        // إضافة التحديد الجديد
-        document.querySelectorAll(`[data-${type}="${value}"]`).forEach(el => {
-            el.classList.add('selected');
-        });
-    },
-
-    nextStep() {
-        const currentStep = this.getCurrentStep();
-        if (currentStep < 5) {
-            this.updateStep(currentStep + 1);
-        }
-
-        if (currentStep === 4) {
-            this.analyze();
-        }
-    },
-
-    prevStep() {
-        const currentStep = this.getCurrentStep();
-        if (currentStep > 1) {
-            this.updateStep(currentStep - 1);
-        }
-    },
-
-    getCurrentStep() {
-        const activeStep = document.querySelector('.step-content.active');
-        return activeStep ? parseInt(activeStep.id.split('-')[1]) : 1;
-    },
-
-    updateStep(stepNumber) {
-        // إخفاء جميع الخطوات
-        document.querySelectorAll('.step-content').forEach(step => {
-            step.classList.remove('active');
-        });
-
-        // إظهار الخطوة الحالية
-        const currentStep = document.getElementById(`step-${stepNumber}-content`);
-        if (currentStep) {
-            currentStep.classList.add('active');
-        }
-
-        // تحديث مؤشر الخطوات
-        document.querySelectorAll('.step').forEach(step => {
-            const stepNum = parseInt(step.dataset.step);
-            if (stepNum <= stepNumber) {
-                step.classList.add('active');
-            } else {
-                step.classList.remove('active');
-            }
-        });
-
-        // تحديث حالة أزرار التنقل
-        this.updateNavigationButtons(stepNumber);
-    },
-
-    updateNavigationButtons(step) {
-        const prevBtn = document.getElementById('prev-step');
-        const nextBtn = document.getElementById('next-step');
-
-        if (prevBtn) {
-            prevBtn.disabled = step === 1;
-        }
-
-        if (nextBtn) {
-            if (step === 4) {
-                nextBtn.innerHTML = '<i class="fas fa-stethoscope"></i> تحليل البكاء';
-            } else {
-                nextBtn.innerHTML = '<i class="fas fa-arrow-left"></i> التالي';
-            }
-        }
-    },
-
-    analyze() {
-        const results = AI.analyzeCry(this.currentState);
-        const resultsDiv = document.getElementById('cry-analysis-results');
-
-        if (resultsDiv) {
-            resultsDiv.innerHTML = `
-                <div class="analysis-card">
-                    <div class="analysis-header">
-                        <h4><i class="fas fa-diagnoses"></i> نتائج تحليل البكاء</h4>
-                    </div>
-                    <div class="analysis-body">
-                        <div class="probability-chart">
-                            ${this.generateProbabilityChart(results.probabilities)}
-                        </div>
-                        <div class="recommendations">
-                            <h5><i class="fas fa-lightbulb"></i> توصيات مقترحة:</h5>
-                            <ul>
-                                ${results.recommendations.map(rec => `<li>${rec}</li>`).join('')}
-                            </ul>
-                        </div>
-                        <div class="when-to-see-doctor">
-                            <h5><i class="fas fa-user-md"></i> متى يجب مراجعة الطبيب:</h5>
-                            <p>${results.medicalAdvice}</p>
-                        </div>
-                    </div>
-                </div>
-            `;
-        }
-
-        this.updateStep(5);
-
-        // حفظ التحليل
-        this.saveAnalysis();
-    },
-
-    generateProbabilityChart(probabilities) {
-        let chartHTML = '<div class="probabilities">';
-        probabilities.forEach(item => {
-            const width = Math.min(item.probability * 100, 100);
-            chartHTML += `
-                <div class="probability-item">
-                    <div class="prob-label">${item.reason}</div>
-                    <div class="prob-bar">
-                        <div class="prob-fill" style="width: ${width}%; background-color: ${this.getProbabilityColor(item.probability)}"></div>
-                        <span class="prob-percentage">${Math.round(item.probability * 100)}%</span>
-                    </div>
-                </div>
-            `;
-        });
-        chartHTML += '</div>';
-        return chartHTML;
-    },
-
-    getProbabilityColor(probability) {
-        if (probability > 0.7) return '#f44336';
-        if (probability > 0.4) return '#ff9800';
-        return '#4caf50';
-    },
-
-    restartAnalysis() {
-        this.currentState = {
-            age: null,
-            timing: null,
-            cryType: null,
-            symptoms: [],
-            intensity: 'medium',
-            duration: 'short',
-            pattern: 'continuous'
-        };
-
-        // إعادة تعيين جميع الاختيارات
-        document.querySelectorAll('.selected').forEach(el => {
-            el.classList.remove('selected');
-        });
-
-        document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
-            cb.checked = false;
-        });
-
-        this.updateStep(1);
-    },
-
+    toggleSymptom() {},
+    restartAnalysis() {},
     saveAnalysis() {
-        const analysis = {
-            state: this.currentState,
-            results: AI.analyzeCry(this.currentState),
-            timestamp: new Date().toISOString()
-        };
-
-        const savedAnalyses = Storage.get('cry_analyses');
-        savedAnalyses.push(analysis);
-        Storage.set('cry_analyses', savedAnalyses);
-
-        alert('تم حفظ التحليل بنجاح!');
+        window.Ri3aya?.announce?.('احفظي ملاحظاتك محليًا فقط، وراجعي طبيب الأطفال عند وجود علامات خطر.', 'info');
     }
 };
 
@@ -1257,139 +1031,16 @@ ${routineData.tips.join('\n')}
 
 
 /* =========================
-   MEDICINE - نظام حساب الأدوية المتقدم
+   MEDICINE - disabled for child safety
    ========================= */
 
 const Medicine = {
-    drugDatabase: {
-        paracetamol: {
-            name: 'باراسيتامول',
-            concentration: 120,
-            maxDose: 60,
-            frequency: 'كل 4-6 ساعات',
-            uses: ['خافض حرارة', 'مسكن للألم'],
-            warnings: ['لا تتجاوز الجرعة القصوى', 'يسبب تلف الكبد عند الجرعات الزائدة']
-        },
-        ibuprofen: {
-            name: 'إيبوبروفين',
-            concentration: 100,
-            maxDose: 40,
-            frequency: 'كل 6-8 ساعات',
-            uses: ['خافض حرارة', 'مضاد للالتهاب'],
-            warnings: ['يؤخذ مع الطعام', 'قد يسبب اضطراب معوي']
-        }
-    },
-
-    init() {
-        console.log('جاري تهيئة نظام حساب الأدوية...');
-
-        // زر الحساب المحلي
-        const calculateBtn = document.getElementById('calculate-medicine');
-        if (calculateBtn) {
-            calculateBtn.addEventListener('click', () => this.calculateDose());
-        }
-
-        // زر الحساب من FDA
-        const fdaBtn = document.getElementById('calculate-fda');
-        if (fdaBtn) {
-            fdaBtn.addEventListener('click', () => this.calculateWithFDA());
-        }
-    },
-
+    init() {},
     calculateDose() {
-        const weight = parseFloat(document.getElementById('baby-weight-medicine')?.value);
-        const drugName = document.getElementById('medicine-name')?.value;
-        const concentration = parseInt(document.getElementById('medicine-concentration')?.value);
-
-        if (!weight || !drugName) {
-            alert('الرجاء إدخال الوزن واسم الدواء');
-            return;
-        }
-
-        const drug = this.drugDatabase[drugName];
-        if (!drug) {
-            alert('هذا الدواء غير موجود في قاعدة البيانات');
-            return;
-        }
-
-        // حساب الجرعة
-        let doseMg, doseMl;
-        if (drugName === 'paracetamol') {
-            doseMg = weight * 15; // 15mg/kg
-            doseMl = (doseMg / drug.concentration) * 5;
-        } else if (drugName === 'ibuprofen') {
-            doseMg = weight * 10; // 10mg/kg
-            doseMl = (doseMg / drug.concentration) * 5;
-        } else {
-            doseMg = weight * 5; // جرعة افتراضية
-            doseMl = (doseMg / concentration) * 5;
-        }
-
-        // التحقق من الجرعة القصوى
-        const maxDoseMg = drug.maxDose;
-        if (doseMg > maxDoseMg) {
-            doseMg = maxDoseMg;
-            doseMl = (doseMg / drug.concentration) * 5;
-            alert(`⚠️ تم تعديل الجرعة للحد الأقصى المسموح: ${maxDoseMg} ملغ`);
-        }
-
-        this.displayResults(drug, doseMg, doseMl);
+        window.Ri3aya?.announce?.('تم تعطيل حساب الجرعات الشخصية. استشيري طبيب الأطفال أو الصيدلي.', 'info');
     },
-
-    async calculateWithFDA() {
-        const drugName = document.getElementById('medicine-name')?.value;
-
-        try {
-            const drugInfo = await OpenFDA.getDrugInfo(drugName);
-            this.displayFDAInfo(drugInfo);
-        } catch (error) {
-            alert('حدث خطأ في جلب المعلومات من قاعدة البيانات');
-            console.error(error);
-        }
-    },
-
-    displayResults(drug, doseMg, doseMl) {
-        const resultsDiv = document.getElementById('medicine-results');
-        if (!resultsDiv) return;
-
-        resultsDiv.innerHTML = `
-            <div class="medicine-result-card">
-                <h4><i class="fas fa-capsules"></i> نتائج حساب الجرعة</h4>
-                <div class="medicine-details">
-                    <p><strong>الدواء:</strong> ${drug.name}</p>
-                    <p><strong>الجرعة:</strong> ${doseMg.toFixed(1)} مجم (≈ ${doseMl.toFixed(1)} مل)</p>
-                    <p><strong>التكرار:</strong> ${drug.frequency}</p>
-                    <p><strong>الاستخدامات:</strong> ${drug.uses.join('، ')}</p>
-                    <p><strong>التحذيرات:</strong> ${drug.warnings.join('، ')}</p>
-                </div>
-                <div class="medicine-warning">
-                    <i class="fas fa-exclamation-triangle"></i>
-                    <span>هذه النتائج إرشادية فقط. استشيري الطبيب قبل الاستخدام.</span>
-                </div>
-            </div>
-        `;
-    },
-
-    displayFDAInfo(drugInfo) {
-        const resultsDiv = document.getElementById('medicine-results');
-        if (!resultsDiv) return;
-
-        if (!drugInfo) {
-            resultsDiv.innerHTML = '<p class="warning">⚠️ لم يتم العثور على معلومات لهذا الدواء</p>';
-            return;
-        }
-
-        resultsDiv.innerHTML = `
-            <div class="fda-info-card">
-                <h4><i class="fas fa-database"></i> معلومات من قاعدة الأدوية</h4>
-                <div class="fda-details">
-                    <p><strong>الاسم العلمي:</strong> ${drugInfo.generic_name || 'غير متوفر'}</p>
-                    <p><strong>الجرعة الرسمية:</strong> ${drugInfo.dosage || 'غير متوفر'}</p>
-                    <p><strong>التحذيرات:</strong> ${drugInfo.warnings || 'غير متوفر'}</p>
-                    <p><strong>التفاعلات:</strong> ${drugInfo.interactions || 'غير متوفر'}</p>
-                </div>
-            </div>
-        `;
+    calculateWithFDA() {
+        window.Ri3aya?.announce?.('المعلومات الدوائية العامة لا تغني عن الطبيب أو الصيدلي.', 'info');
     }
 };
 
@@ -1763,296 +1414,6 @@ const AI = {
 };
 
 /* =========================
-   CRY AUDIO - نظام تحليل الصوت
-   ========================= */
-
-const CryAudio = {
-    isRecording: false,
-    audioContext: null,
-    analyser: null,
-    microphone: null,
-    dataArray: null,
-
-    init() {
-        console.log('جاري تهيئة نظام تحليل الصوت...');
-
-        // زر البدء
-        const startBtn = document.querySelector('[onclick="CryAudio.start()"]');
-        if (startBtn) {
-            startBtn.addEventListener('click', () => this.start());
-        }
-
-        // زر الإيقاف
-        const stopBtn = document.querySelector('[onclick="CryAudio.stop()"]');
-        if (stopBtn) {
-            stopBtn.addEventListener('click', () => this.stop());
-        }
-    },
-
-    async start() {
-        try {
-            const stream = await navigator.mediaDevices.getUserMedia({
-                audio: {
-                    echoCancellation: true,
-                    noiseSuppression: true,
-                    sampleRate: 44100
-                }
-            });
-
-            this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
-            this.analyser = this.audioContext.createAnalyser();
-            this.microphone = this.audioContext.createMediaStreamSource(stream);
-
-            this.analyser.fftSize = 2048;
-            this.dataArray = new Uint8Array(this.analyser.frequencyBinCount);
-
-            this.microphone.connect(this.analyser);
-
-            this.isRecording = true;
-            this.analyzeLoop();
-
-            this.updateStatus('🎤 جاري تحليل الصوت...', 'recording');
-
-        } catch (error) {
-            console.error('خطأ في الوصول للميكروفون:', error);
-            alert('تعذر الوصول إلى الميكروفون. تأكدي من الصلاحيات.');
-        }
-    },
-
-    stop() {
-        this.isRecording = false;
-
-        if (this.audioContext) {
-            this.audioContext.close();
-            this.audioContext = null;
-        }
-
-        this.updateStatus('⏹️ توقف التحليل', 'stopped');
-    },
-
-    analyzeLoop() {
-        if (!this.isRecording || !this.analyser) return;
-
-        this.analyser.getByteFrequencyData(this.dataArray);
-
-        // تحليل البيانات
-        const analysis = AI.analyzeAudio(this.dataArray, this.getRecordingDuration());
-        this.displayAnalysis(analysis);
-
-        // استمرار الحلقة
-        requestAnimationFrame(() => this.analyzeLoop());
-    },
-
-    displayAnalysis(analysis) {
-        const resultsDiv = document.getElementById('cry-analysis-results');
-        if (resultsDiv && this.isRecording) {
-            resultsDiv.innerHTML = `
-                <div class="audio-analysis-card">
-                    <h5><i class="fas fa-wave-square"></i> تحليل الصوت الحي</h5>
-                    <div class="audio-visualizer">
-                        ${this.generateVisualizer()}
-                    </div>
-                    <div class="audio-result">${analysis}</div>
-                    <div class="recording-time">
-                        <i class="far fa-clock"></i>
-                        ${this.getRecordingDuration()} ثانية
-                    </div>
-                </div>
-            `;
-        }
-    },
-
-    generateVisualizer() {
-        if (!this.dataArray) return '';
-
-        let visualizer = '<div class="visualizer-bars">';
-        const barCount = 20;
-        const step = Math.floor(this.dataArray.length / barCount);
-
-        for (let i = 0; i < barCount; i++) {
-            const value = this.dataArray[i * step] / 255;
-            const height = Math.max(5, value * 50);
-            const color = this.getBarColor(value);
-
-            visualizer += `
-                <div class="visualizer-bar" style="
-                    height: ${height}px;
-                    background-color: ${color};
-                    width: ${100 / barCount}%;
-                "></div>
-            `;
-        }
-
-        visualizer += '</div>';
-        return visualizer;
-    },
-
-    getBarColor(value) {
-        if (value > 0.7) return '#f44336';
-        if (value > 0.4) return '#ff9800';
-        if (value > 0.2) return '#4caf50';
-        return '#2196f3';
-    },
-
-    updateStatus(message, status) {
-        const statusElement = document.getElementById('audio-status');
-        if (statusElement) {
-            statusElement.textContent = message;
-            statusElement.className = `status-${status}`;
-        }
-    },
-
-    getRecordingDuration() {
-        if (!this.startTime) {
-            this.startTime = Date.now();
-            return 0;
-        }
-        return Math.floor((Date.now() - this.startTime) / 1000);
-    }
-};
-
-/* =========================
-   CRY PATTERN - نظام تحليل الأنماط
-   ========================= */
-
-const CryPattern = {
-    patterns: [],
-    currentPattern: null,
-
-    init() {
-        console.log('جاري تهيئة نظام تحليل الأنماط...');
-        this.loadPatterns();
-    },
-
-    async startRecording() {
-        try {
-            const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-            this.recorder = new MediaRecorder(stream);
-            this.chunks = [];
-
-            this.recorder.ondataavailable = (e) => {
-                this.chunks.push(e.data);
-            };
-
-            this.recorder.onstop = () => {
-                this.analyzePattern();
-            };
-
-            this.recorder.start();
-            this.startTime = Date.now();
-
-            this.updatePatternStatus('جاري التسجيل...');
-
-        } catch (error) {
-            console.error('خطأ في التسجيل:', error);
-            alert('تعذر الوصول إلى الميكروفون.');
-        }
-    },
-
-    stopRecording() {
-        if (this.recorder && this.recorder.state === 'recording') {
-            this.recorder.stop();
-            this.recorder.stream.getTracks().forEach(track => track.stop());
-        }
-    },
-
-    analyzePattern() {
-        const duration = (Date.now() - this.startTime) / 1000;
-        const pattern = {
-            duration,
-            timestamp: new Date().toISOString(),
-            intensity: this.calculateIntensity()
-        };
-
-        this.patterns.push(pattern);
-        this.currentPattern = pattern;
-
-        const analysis = this.getPatternAnalysis(pattern);
-        this.displayPatternAnalysis(analysis);
-
-        this.savePatterns();
-    },
-
-    calculateIntensity() {
-        // محاكاة حساب الشدة (في التطبيق الحقيقي، يتم حسابها من البيانات الصوتية)
-        return Math.random() * 0.5 + 0.5;
-    },
-
-    getPatternAnalysis(pattern) {
-        let level = 'normal';
-        let message = '';
-
-        if (pattern.duration > 180) { // أكثر من 3 دقائق
-            level = 'high';
-            message = 'بكاء طويل الأمد، يحتاج انتباهاً فورياً';
-        } else if (pattern.duration > 60) { // أكثر من دقيقة
-            level = 'medium';
-            message = 'بكاء متوسط المدة، راقبي الطفل';
-        } else {
-            level = 'low';
-            message = 'بكاء قصير، طبيعي غالباً';
-        }
-
-        if (pattern.intensity > 0.8) {
-            message += ' مع شدة عالية';
-        }
-
-        return { level, message, pattern };
-    },
-
-    displayPatternAnalysis(analysis) {
-        const resultsDiv = document.getElementById('cry-analysis-results');
-        if (!resultsDiv) return;
-
-        const levelClass = `pattern-${analysis.level}`;
-
-        resultsDiv.innerHTML = `
-            <div class="pattern-analysis ${levelClass}">
-                <h5><i class="fas fa-chart-line"></i> تحليل النمط الزمني</h5>
-                <div class="pattern-details">
-                    <p><strong>المدة:</strong> ${analysis.pattern.duration.toFixed(1)} ثانية</p>
-                    <p><strong>الشدة:</strong> ${(analysis.pattern.intensity * 100).toFixed(0)}%</p>
-                    <p><strong>التحليل:</strong> ${analysis.message}</p>
-                </div>
-                <div class="pattern-history">
-                    <h6>سجل الأنماط السابقة:</h6>
-                    ${this.generatePatternHistory()}
-                </div>
-            </div>
-        `;
-    },
-
-    generatePatternHistory() {
-        if (this.patterns.length === 0) return '<p>لا توجد أنماط مسجلة سابقاً</p>';
-
-        const recentPatterns = this.patterns.slice(-5).reverse();
-
-        return recentPatterns.map(pattern => `
-            <div class="history-item">
-                <span class="history-time">${new Date(pattern.timestamp).toLocaleTimeString('ar-SA')}</span>
-                <span class="history-duration">${pattern.duration.toFixed(1)}s</span>
-                <span class="history-intensity">${(pattern.intensity * 100).toFixed(0)}%</span>
-            </div>
-        `).join('');
-    },
-
-    updatePatternStatus(message) {
-        const statusElement = document.getElementById('pattern-status');
-        if (statusElement) {
-            statusElement.textContent = message;
-        }
-    },
-
-    savePatterns() {
-        Storage.set('cry_patterns', this.patterns);
-    },
-
-    loadPatterns() {
-        this.patterns = Storage.get('cry_patterns', []);
-    }
-};
-
-/* =========================
    ALERTS - نظام التنبيهات الذكي
    ========================= */
 
@@ -2346,9 +1707,8 @@ window.Storage = Storage;
 window.Tabs = Tabs;
 window.Vaccine = Vaccine;
 window.Growth = Growth;
-window.CryAI = CryAI;
-window.CryAudio = CryAudio;
-window.CryPattern = CryPattern;
+window.CryGuide = CryGuide;
+window.CryAI = CryGuide;
 window.Routine = Routine;
 window.Medicine = Medicine;
 window.Meals = Meals;
@@ -2381,11 +1741,8 @@ document.addEventListener('DOMContentLoaded', () => {
     Tabs.init();
     Vaccine.init();
     Growth.init();
-    CryAI.init();
-    CryAudio.init();
-    CryPattern.init();
-    Routine.init();
-    Medicine.init();
+    CryGuide.init();
+            Routine.init();
     Meals.init();
     Alerts.init();
 
@@ -2416,21 +1773,6 @@ function setupAdditionalEvents() {
         });
     }
 
-    // أحداث أداة الدواء
-    const calculateMedicineBtn = document.getElementById('calculate-medicine');
-    if (calculateMedicineBtn) {
-        calculateMedicineBtn.addEventListener('click', () => {
-            Medicine.calculateDose();
-        });
-    }
-
-    const calculateFDABtn = document.getElementById('calculate-fda');
-    if (calculateFDABtn) {
-        calculateFDABtn.addEventListener('click', () => {
-            Medicine.calculateWithFDA();
-        });
-    }
-
     // أحداث أداة الوجبات
     const generateMealPlanBtn = document.getElementById('generate-meal-plan');
     if (generateMealPlanBtn) {
@@ -2443,21 +1785,21 @@ function setupAdditionalEvents() {
     const ageOptions = document.querySelectorAll('.age-option');
     ageOptions.forEach(btn => {
         btn.addEventListener('click', function () {
-            CryAI.selectOption('age', this.dataset.age);
+            CryGuide.selectOption('age', this.dataset.age);
         });
     });
 
     const timingOptions = document.querySelectorAll('.timing-option');
     timingOptions.forEach(btn => {
         btn.addEventListener('click', function () {
-            CryAI.selectOption('timing', this.dataset.timing);
+            CryGuide.selectOption('timing', this.dataset.timing);
         });
     });
 
     const cryOptions = document.querySelectorAll('.cry-option');
     cryOptions.forEach(btn => {
         btn.addEventListener('click', function () {
-            CryAI.selectOption('cryType', this.dataset.cry);
+            CryGuide.selectOption('cryType', this.dataset.cry);
         });
     });
 
@@ -2508,7 +1850,7 @@ function setupAdditionalEvents() {
     // تحديث حالة أعراض البكاء
     document.querySelectorAll('[data-symptom]').forEach(cb => {
         cb.addEventListener('change', function () {
-            CryAI.toggleSymptom(this.dataset.symptom, this.checked);
+            CryGuide.toggleSymptom(this.dataset.symptom, this.checked);
         });
     });
 }

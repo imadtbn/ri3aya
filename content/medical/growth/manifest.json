@@ -1,0 +1,44 @@
+{
+  "dataset": "WHO Child Growth Standards LMS",
+  "source": "https://www.cdc.gov/growthcharts/who-data-files.htm",
+  "whoSource": "https://www.who.int/tools/child-growth-standards/standards",
+  "version": "2024-09-02",
+  "lastReviewed": "2026-08-20",
+  "ageRangeMonths": [0, 24],
+  "sexValues": ["male", "female"],
+  "indicators": {
+    "weightForAge": {
+      "axis": "month",
+      "unit": "kg",
+      "files": {
+        "male": "who-lms/boys-weight-for-age.csv",
+        "female": "who-lms/girls-weight-for-age.csv"
+      }
+    },
+    "lengthForAge": {
+      "axis": "month",
+      "unit": "cm",
+      "files": {
+        "male": "who-lms/boys-length-for-age.csv",
+        "female": "who-lms/girls-length-for-age.csv"
+      }
+    },
+    "headCircumferenceForAge": {
+      "axis": "month",
+      "unit": "cm",
+      "files": {
+        "male": "who-lms/boys-head-circumference-for-age.csv",
+        "female": "who-lms/girls-head-circumference-for-age.csv"
+      }
+    },
+    "weightForLength": {
+      "axis": "length",
+      "unit": "kg",
+      "files": {
+        "male": "who-lms/boys-weight-for-length.csv",
+        "female": "who-lms/girls-weight-for-length.csv"
+      }
+    }
+  },
+  "disclaimer": "هذه البيانات مرجع تثقيفي ولا تُستخدم لتشخيص أو وصف علاج. يجب تفسير الاتجاهات والنتائج سريريًا بواسطة مختص."
+}
