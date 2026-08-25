@@ -49,8 +49,6 @@ th { color: var(--site-primary-dark); background: var(--site-surface-soft); }
 .medical-safety-note, .safety-notice { margin-block: 1.25rem; padding: 1rem 1.15rem; border: 1px solid #e0a11a; background: #fff8e7; color: #513b06; }
 .source-note, .medical-source-note { color: var(--site-muted); font-size: .92rem; }
 
-.ad-slot, .ad-container, .adsbygoogle { min-height: 5rem; }
-.ad-slot, .ad-container { margin-block: 1.5rem; }
 
 .back-to-top { z-index: 20; }
 .footer { margin-top: 3rem; }

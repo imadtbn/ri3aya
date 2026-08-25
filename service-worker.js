@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'ri3aya-v5-footer-20260820';
+const CACHE_VERSION = 'ri3aya-v6-ads-disabled-20260825';
 const APP_SHELL = [
     './',
     './index.html',
