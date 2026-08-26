@@ -415,3 +415,37 @@ th { color: var(--site-primary-dark); background: var(--site-surface-soft); }
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
+
+/* وحدات إعلان اختيارية: مخفية بلا أثر عند بقاء المعرفات placeholder */
+.site-ad[hidden] {
+    display: none !important;
+}
+
+.site-ad {
+    width: min(100%, 728px);
+    min-height: 90px;
+    margin: 1.25rem auto;
+    padding: .35rem 0;
+    text-align: center;
+    overflow: hidden;
+}
+
+.site-ad__label {
+    display: block;
+    margin-bottom: .25rem;
+    color: var(--site-muted, #64748b);
+    font-size: .72rem;
+    line-height: 1.3;
+}
+
+.site-ad ins.adsbygoogle {
+    display: block;
+    min-height: 50px;
+}
+
+@media (max-width: 640px) {
+    .site-ad {
+        min-height: 50px;
+        margin-block: 1rem;
+    }
+}

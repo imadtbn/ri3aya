@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'ri3aya-v6-ads-disabled-20260825';
+const CACHE_VERSION = 'ri3aya-v7-central-tags-20260826';
 const APP_SHELL = [
     './',
     './index.html',
@@ -9,7 +9,8 @@ const APP_SHELL = [
     './css/accessibility.css',
     './css/site-polish.css',
     './js/main.js',
-    './js/search.js'
+    './js/search.js',
+    './js/site-tags.js'
 ];
 
 self.addEventListener('install', (event) => {
