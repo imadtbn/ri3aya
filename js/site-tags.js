@@ -2,8 +2,9 @@
  * Ri3aya unified tags loader
  *
  * تم تفعيل GTM وGA4؛ يبقى AdSense وClarity معطلين حتى إدخال معرفاتهما.
- * يعمل GTM كمسار القياس الوحيد؛ لذلك لا يحمّل هذا الملف gtag.js أو Clarity
- * مباشرة حتى لا يتكرر page_view. يجب إعداد GA4 وClarity داخل حاوية GTM.
+ * حاوية GTM الحالية لا تحتوي Google tag لـGA4، لذلك يُستخدم مسار GA4 المباشر
+ * مؤقتًا من هذا الملف. بعد إعداد GA4 داخل GTM، غيّر ga4ManagedByGtm إلى true
+ * لمنع أي page_view مكرر. لا يُحمّل Clarity مباشرة؛ يُدار عبر GTM عند الجاهزية.
  */
 (function () {
     'use strict';
@@ -12,6 +13,7 @@
         gtmId: 'GTM-NPLKWQRN',
         ga4Id: 'G-GK64YX2FPB',
         clarityId: 'xxxxxxxxx',
+        ga4ManagedByGtm: false,
         adsenseClient: 'xxxxxxxxx',
         adSlots: Object.freeze({
             display: 'xxxxxxxxx',
@@ -22,6 +24,7 @@
 
     const state = window.__ri3ayaSiteTags = window.__ri3ayaSiteTags || {
         gtmLoaded: false,
+        ga4Loaded: false,
         adsLoaded: false,
         adsQueued: false
     };
@@ -54,6 +57,16 @@
         window.dataLayer.push({ 'gtm.start': Date.now(), event: 'gtm.js' });
         appendScript('https://www.googletagmanager.com/gtm.js?id=' + encodeURIComponent(CONFIG.gtmId), { async: true });
         state.gtmLoaded = true;
+    }
+
+    function initGa4Direct() {
+        if (CONFIG.ga4ManagedByGtm || isPlaceholder(CONFIG.ga4Id) || state.ga4Loaded || hasScriptSource('googletagmanager.com/gtag/js')) return;
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
+        window.gtag('js', new Date());
+        window.gtag('config', CONFIG.ga4Id, { send_page_view: true });
+        appendScript('https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(CONFIG.ga4Id), { async: true });
+        state.ga4Loaded = true;
     }
 
     function hideAdShell(shell) {
@@ -103,6 +116,7 @@
 
     function init() {
         initGtm();
+        initGa4Direct();
         initAds();
     }
 
