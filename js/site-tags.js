@@ -1,7 +1,7 @@
 /*
  * Ri3aya unified tags loader
  *
- * استبدل xxxxxxxxx بالمعرفات الحقيقية عند الجاهزية.
+ * تم تفعيل GTM وGA4؛ يبقى AdSense وClarity معطلين حتى إدخال معرفاتهما.
  * يعمل GTM كمسار القياس الوحيد؛ لذلك لا يحمّل هذا الملف gtag.js أو Clarity
  * مباشرة حتى لا يتكرر page_view. يجب إعداد GA4 وClarity داخل حاوية GTM.
  */
@@ -9,8 +9,8 @@
     'use strict';
 
     const CONFIG = Object.freeze({
-        gtmId: 'xxxxxxxxx',
-        ga4Id: 'xxxxxxxxx',
+        gtmId: 'GTM-NPLKWQRN',
+        ga4Id: 'G-GK64YX2FPB',
         clarityId: 'xxxxxxxxx',
         adsenseClient: 'xxxxxxxxx',
         adSlots: Object.freeze({

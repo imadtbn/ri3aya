@@ -6,7 +6,7 @@ import sys
 from bs4 import BeautifulSoup
 
 ROOT = Path(__file__).resolve().parents[1]
-PAGES = [ROOT / "index.html", *sorted((ROOT / "pages").rglob("*.html"))]
+PAGES = [*sorted(ROOT.glob("*.html")), *sorted((ROOT / "pages").rglob("*.html"))]
 DIRECT_MARKERS = (
     "googletagmanager.com/gtm.js",
     "googletagmanager.com/ns.html",
