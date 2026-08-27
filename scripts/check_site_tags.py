@@ -6,7 +6,11 @@ import sys
 from bs4 import BeautifulSoup
 
 ROOT = Path(__file__).resolve().parents[1]
-PAGES = [*sorted(ROOT.glob("*.html")), *sorted((ROOT / "pages").rglob("*.html"))]
+EXCLUDED_NAMES = {"google4e08a8803a39e9f9.html"}
+PAGES = [
+    page for page in [*sorted(ROOT.glob("*.html")), *sorted((ROOT / "pages").rglob("*.html"))]
+    if page.name not in EXCLUDED_NAMES
+]
 DIRECT_MARKERS = (
     "googletagmanager.com/gtm.js",
     "googletagmanager.com/ns.html",
