@@ -2,8 +2,9 @@
 import { createRequire } from 'node:module';
 import fs from 'node:fs'; import path from 'node:path'; import http from 'node:http'; import assert from 'node:assert/strict'; import { fileURLToPath } from 'node:url';
 const require=createRequire(import.meta.url), {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
-const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..'); let release=1;
+const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..'); let release=1, networkAvailable=true;
 const server=http.createServer((req,res)=>{
+ if(!networkAvailable){req.socket.destroy();return;}
  const pathname=new URL(req.url,'http://local').pathname;
  if(pathname==='/ri3aya/bootstrap'){res.setHeader('Content-Type','text/html');res.end('<html><body>bootstrap</body></html>');return;}
  if(!pathname.startsWith('/ri3aya/')){res.writeHead(404);res.end();return;}
@@ -35,9 +36,10 @@ try {
   await page.locator('#pwa-install').click();await page.waitForFunction(()=>window.promptCalls>0);
   assert.ok((await page.locator('#pwa-status').textContent()).includes(outcome==='accepted'?'قبول':'لاحقًا'));
  }
- await context.setOffline(true);
+ networkAvailable=false; await context.setOffline(true);
+ const disconnected=await page.evaluate(async()=>{try{await fetch('network-probe.json',{cache:'no-store'});return false;}catch(_){return true;}});assert.equal(disconnected,true,'Uncached requests must fail when the server is disconnected');
  for(const file of ['pages/articles/safe-sleep.html','pages/search.html?q=نوم&age=0&topic=sleep','pages/growth.html','pages/nutrition.html','pages/tools/routine.html']){
-  await page.goto(base+file);assert.ok((await page.locator('h1').textContent()).length>0);assert.equal(await page.evaluate(()=>navigator.onLine),false);
+  await page.goto(base+file);assert.ok((await page.locator('h1').textContent()).length>0);
   if(file.includes('search.html')){await page.locator('.search-result-card').first().waitFor();assert.ok((await page.locator('#discovery-results').textContent()).includes('النوم'));
   }else if(file==='pages/growth.html'){
    await page.locator('#track-age').fill('0');await page.locator('#track-date').fill('2026-10-11');await page.locator('#track-weight').fill('3.5');await page.locator('#add-measurement').click();await page.waitForFunction(()=>JSON.parse(localStorage.getItem('ri3aya-growth-tracker')||'[]').length===1);
@@ -46,7 +48,7 @@ try {
  await page.goto(base+'pages/not-cached/deep.html');assert.equal(page.url(),base+'offline.html');assert.equal(await page.locator('a[href="pages/blog.html"]').evaluate(a=>a.href),base+'pages/blog.html');
  // A resource request is never replaced by an HTML offline page.
  const missing=await page.evaluate(async()=>{try{const r=await fetch('missing.json');return {type:r.headers.get('content-type'),body:await r.text()};}catch(_){return {failed:true};}});assert.ok(missing.failed||!missing.type?.includes('text/html'));
- await context.setOffline(false);await page.goto(base+'pages/nutrition.html');await page.locator('#newFood').fill('مدخل غير محفوظ');
+ networkAvailable=true; await context.setOffline(false);await page.goto(base+'pages/nutrition.html');await page.locator('#newFood').fill('مدخل غير محفوظ');
  release=2;await page.locator('#pwa-check').click();await page.locator('#pwa-update').waitFor({state:'visible',timeout:30000});
  assert.equal(await page.locator('#newFood').inputValue(),'مدخل غير محفوظ');
  page.once('dialog',d=>d.dismiss());await page.locator('#pwa-update').click();assert.equal(await page.locator('#newFood').inputValue(),'مدخل غير محفوظ');
@@ -54,7 +56,7 @@ try {
  assert.equal(await page.evaluate(()=>JSON.parse(localStorage.getItem('foodRecords'))[0].food),'تفاح');
  const keys=await page.evaluate(()=>caches.keys());assert.ok(keys.includes('another-project-cache'));assert.equal(keys.filter(k=>k.startsWith('ri3aya-pwa-')).length,1);assert.ok(keys.some(k=>k.endsWith('-test2')));
  await page.goto(base+'index.html');assert.equal(await page.locator('body').getAttribute('data-test-release'),'2');
- await context.setOffline(true);await page.goto(base+'index.html');assert.equal(await page.locator('body').getAttribute('data-test-release'),'2');
+ networkAvailable=false; await context.setOffline(true);await page.goto(base+'index.html');assert.equal(await page.locator('body').getAttribute('data-test-release'),'2');
  assert.deepEqual(errors,[]);
  console.log(`PASS: ${snapshot.length} cached files, scoped cache cleanup, complete offline guides/search/WHO computation/local histories, nested fallback, install help/prompt, update cancellation/activation and preserved records.`);
 }finally{if(browser)await browser.close();server.close();}
