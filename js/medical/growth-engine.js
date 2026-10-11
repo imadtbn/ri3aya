@@ -81,7 +81,7 @@
         const manifestPromise = fetch(manifestUrl).then((response) => {
             if (!response.ok) throw new Error('تعذر تحميل manifest بيانات النمو');
             return response.json();
-        });
+        }).catch(error => { cache.delete('manifest'); throw error; });
         cache.set('manifest', manifestPromise);
         return manifestPromise;
     }
@@ -94,7 +94,7 @@
         const datasetPromise = fetch(DATA_ROOT + definition.files[sex]).then(async (response) => {
             if (!response.ok) throw new Error(`تعذر تحميل بيانات ${indicator}`);
             return parseCsv(await response.text());
-        });
+        }).catch(error => { cache.delete(cacheKey); throw error; });
         cache.set(cacheKey, datasetPromise);
         return datasetPromise;
     }
@@ -112,24 +112,25 @@
         if (!Number.isFinite(ageMonths) || ageMonths < 0 || ageMonths > manifest.ageRangeMonths[1]) {
             throw new Error(`يدعم المرجع الحالي الأعمار من 0 إلى ${manifest.ageRangeMonths[1]} شهرًا فقط`);
         }
-        const results = [];
+        for (const value of [weight, length, head]) {
+            if (value !== '' && value !== undefined && value !== null && (!Number.isFinite(value) || value < 0)) throw new Error('القياسات يجب أن تكون أرقامًا موجبة؛ اتركي القياس غير المتاح فارغًا.');
+        }
+        if (![weight, length, head].some(v => v > 0)) throw new Error('أدخلي قياسًا واحدًا على الأقل.');
         const add = async (key, value, label, unit, axisValue = ageMonths) => {
-            if (!(value > 0)) return;
+            if (!(value > 0)) return null;
             const rows = await loadDataset(manifest, key, sex);
             const row = readIndicator({ [key]: { [sex]: rows } }, key, sex, axisValue);
             const z = zScore(value, row);
-            results.push({ key, label, value, unit, z, percentile: percentile(z), interpretation: interpretation(z) });
+            return { key, label, value, unit, z, percentile: percentile(z), interpretation: interpretation(z) };
         };
-        await add('weightForAge', weight, 'الوزن بالنسبة للعمر', 'كجم');
-        await add('lengthForAge', length, 'الطول بالنسبة للعمر', 'سم');
-        await add('headCircumferenceForAge', head, 'محيط الرأس بالنسبة للعمر', 'سم');
-        if (weight > 0 && length > 0) {
-            const rows = await loadDataset(manifest, 'weightForLength', sex);
-            const row = readIndicator({ weightForLength: { [sex]: rows } }, 'weightForLength', sex, length);
-            const z = zScore(weight, row);
-            results.push({ key: 'weightForLength', label: 'الوزن بالنسبة للطول', value: weight, unit: 'كجم', z, percentile: percentile(z), interpretation: interpretation(z) });
-        }
-        return { manifest, ageMonths, results };
+        // Independent reference files load concurrently, preserving card order.
+        const results = (await Promise.all([
+            add('weightForAge', weight, 'الوزن بالنسبة للعمر', 'كجم'),
+            add('lengthForAge', length, 'الطول بالنسبة للعمر', 'سم'),
+            add('headCircumferenceForAge', head, 'محيط الرأس بالنسبة للعمر', 'سم'),
+            weight > 0 && length > 0 ? add('weightForLength', weight, 'الوزن بالنسبة للطول', 'كجم', length) : null
+        ])).filter(Boolean);
+        return { manifest, sex, ageMonths, results };
     }
 
     async function chartData(indicator, sex) {

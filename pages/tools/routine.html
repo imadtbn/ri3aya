@@ -67,11 +67,12 @@
             <h2 id="routine-form-title">إعداد الروتين</h2>
             <div class="form-row">
                 <div class="form-group"><label for="routine-age">عمر الطفل</label><select id="routine-age" class="form-select"><option value="0-3">0–3 أشهر</option><option value="4-6" selected>4–6 أشهر</option><option value="7-9">7–9 أشهر</option><option value="10-12">10–12 شهرًا</option><option value="13-18">13–18 شهرًا</option><option value="19-24">19–24 شهرًا</option></select></div>
-                <div class="form-group"><label for="routine-wakeup">وقت الاستيقاظ التقريبي</label><select id="routine-wakeup" class="form-select"><option value="6">06:00</option><option value="6.5">06:30</option><option value="7" selected>07:00</option><option value="7.5">07:30</option><option value="8">08:00</option></select></div>
-                <div class="form-group"><label for="routine-naps">عدد القيلولات التقريبي</label><select id="routine-naps" class="form-select"><option value="1">1</option><option value="2">2</option><option value="3" selected>3</option><option value="4">4</option></select></div>
+                <div class="form-group"><label for="routine-wakeup">وقت الاستيقاظ التقريبي</label><input id="routine-wakeup" class="form-input" type="time" value="07:00" required></div>
+                <div class="form-group"><label for="routine-naps">عدد القيلولات الذي تريدين تنظيمه</label><select id="routine-naps" class="form-select"><option value="1">1</option><option value="2">2</option><option value="3" selected>3</option><option value="4">4</option></select></div>
             </div>
             <div class="form-row"><div class="form-group"><label for="routine-feeding">نمط التغذية</label><select id="routine-feeding" class="form-select"><option value="breast">حليب/رضاعة</option><option value="solid">حليب مع طعام تكميلي مناسب للعمر</option></select></div></div>
             <fieldset class="form-group"><legend>أنشطة اختيارية</legend><label><input type="checkbox" id="activity-outdoor"> وقت خارج المنزل مناسب للعمر</label><label><input type="checkbox" id="activity-reading"> قراءة وتواصل</label><label><input type="checkbox" id="activity-music"> موسيقى هادئة</label><label><input type="checkbox" id="activity-bath"> استحمام آمن مع مراقبة مستمرة</label><label><input type="checkbox" id="activity-massage"> تواصل لمسي لطيف</label></fieldset>
+            <p>سيُدرج الروتين جميع الأنشطة المختارة وعدد القيلولات الذي تحددينه. المواعيد أمثلة مرنة، وليست خطة تغذية أو نوم طبية.</p>
             <button class="btn btn-primary" id="generate-routine" type="button"><i class="fas fa-wand-magic-sparkles"></i> إنشاء روتين تثقيفي</button>
         </section>
         <!-- local-data:start --><section class="local-data-panel" id="local-data-panel" data-scope="saved_routines" aria-labelledby="local-data-title">
@@ -83,6 +84,7 @@
 <p id="local-data-message" role="status" aria-live="polite"></p><noscript><p>تحتاج إدارة السجلات والتصدير إلى JavaScript. محتوى الأدلة يبقى قابلًا للقراءة.</p></noscript>
 </section><!-- local-data:end -->
 <section id="routine-results" class="routine-results" aria-live="polite"><div class="routine-welcome"><h2>سيظهر الروتين هنا</h2><p>اختاري الإعدادات ثم أنشئي روتينًا مرنًا.</p></div></section>
+        <p class="medical-source-note">للتوجيه العام: <a href="../sleep.html">دليل النوم الآمن</a> · <a href="../nutrition.html">دليل بداية الطعام</a>. لا يوجد عدد وجبات أو مجموع ساعات نوم محسوب طبيًا في هذا الروتين.</p>
         <aside class="medical-safety-note" role="note"><strong>ملاحظة سلامة:</strong><span>لا ينبغي استخدام الروتين لتأجيل الرضاعة عند الحاجة أو لتجاهل علامات المرض. تختلف احتياجات الأطفال، واستشيري مختصًا عند القلق.</span></aside>
     </main>
     <script defer src="../../js/main.js"></script>

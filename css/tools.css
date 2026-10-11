@@ -1347,3 +1347,9 @@ textarea:focus {
 .activity-outdoor .routine-activity {
     color: #009688;
 }
+/* Routine output is immediately readable, including without external icons. */
+.site-shell .routine-generator input[type="time"] { width: 100%; min-height: 44px; padding: 12px 15px; border: 2px solid #e9ecef; border-radius: 10px; background: #fff; color: #173b49; }
+.site-shell .routine-item { animation: none; opacity: 1; min-width: 0; }
+.site-shell .routine-time bdi { display: inline-block; }
+.site-shell .routine-actions .btn { flex: 0 1 auto; min-height: 44px; }
+.site-shell .routine-generator fieldset label { min-height: 44px; display: flex; align-items: center; gap: 10px; }

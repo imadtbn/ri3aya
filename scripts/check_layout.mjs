@@ -89,6 +89,31 @@ try {
         }
     }
     await page.setViewportSize({ width: 390, height: 900 });
+    await page.goto(base + 'pages/tools.html');
+    assert.equal(await page.locator('.tool-index-card:visible').count(), 7);
+    await page.locator('#tool-query').fill('النمو');
+    assert.equal(await page.locator('.tool-index-card:visible').count(), 1);
+    await page.locator('#tool-query').fill('');
+    await page.locator('#tool-goal').selectOption('followup');
+    await page.locator('#tool-age').fill('25');
+    assert.equal(await page.locator('.tool-index-card:visible').count(), 2);
+    await page.locator('#tool-goal').selectOption('organize');
+    assert.equal(await page.locator('.tool-index-card:visible').count(), 0);
+    assert.equal(await page.locator('#tool-no-match').isVisible(), true);
+    await page.locator('#tool-age').fill('0');
+    assert.equal(await page.locator('.tool-index-card:visible').count(), 1);
+    await page.locator('#tool-age').fill('-1');
+    assert.equal(await page.locator('#tool-age').getAttribute('aria-invalid'), 'true');
+    await page.locator('#tool-reset').click();
+    assert.equal(await page.locator('.tool-index-card:visible').count(), 7);
+    assert.equal(await page.evaluate(() => document.querySelector('#local-data-panel').getBoundingClientRect().top > document.querySelector('.tools-index-grid').getBoundingClientRect().bottom), true);
+    if (process.env.LAYOUT_SCREENSHOT_DIR) {
+        for (const width of [390, 1440]) {
+            await page.setViewportSize({ width, height: 900 });
+            await page.locator('#tool-chooser').screenshot({ path: path.join(process.env.LAYOUT_SCREENSHOT_DIR, `tools-chooser-${width}.png`) });
+        }
+        await page.setViewportSize({ width: 390, height: 900 });
+    }
     await page.goto(base + 'pages/tools/routine.html');
     const menu = page.locator('.mobile-menu-btn');
     await menu.click();
@@ -265,6 +290,10 @@ try {
     await page.locator('#disorderType').selectOption('gas'); await page.locator('#symptomSeverity').selectOption('mild'); await page.locator('#symptomDuration').fill('2'); await page.locator('#trackSymptom').click();
     assert.equal(await page.locator('#symptomHistory .tracker-history-item').count(), 13);
     await page.goto(base + 'pages/growth.html');
+    await page.locator('#growth-to-tracker').waitFor();
+    await page.locator('#growth-to-tracker').click();
+    assert.equal(await page.locator('#track-age').inputValue(), '3');
+    assert.equal(await page.locator('#track-weight').inputValue(), '6.5');
     assert.equal(await page.locator('#tracker-body .tracker-delete').count(), 1); assert.equal(await page.locator('#tracker-body img').count(), 0);
     await page.locator('#track-age').fill('0'); await page.locator('#track-date').fill('2026-10-11'); await page.locator('#track-weight').fill('3.5'); await page.locator('#track-sex').selectOption('female'); await page.locator('#track-notes').fill('قياس جديد');
     await page.locator('#add-measurement').click();
@@ -272,11 +301,30 @@ try {
     const measurement = await page.evaluate(() => JSON.parse(localStorage.getItem('ri3aya-growth-tracker'))[0]);
     assert.equal(measurement.age, 0); assert.equal(measurement.sex, 'female'); assert.ok(measurement.reference.version); assert.ok(measurement.results.length);
     page.once('dialog', dialog => dialog.accept()); await page.locator('#tracker-body .tracker-delete').first().click(); assert.equal(await page.locator('#tracker-body .tracker-delete').count(), 1);
-    await page.goto(base + 'pages/tools/routine.html'); await page.locator('#generate-routine').click();
+    await page.goto(base + 'pages/tools/routine.html');
+    await page.locator('#routine-wakeup').fill('23:45');
+    await page.locator('#routine-naps').selectOption('4');
+    await page.locator('#activity-reading').check();
+    await page.locator('#activity-bath').check();
+    await page.locator('#generate-routine').click();
+    assert.equal(await page.locator('.routine-activity').filter({ hasText: 'قيلولة' }).count(), 4);
+    assert.ok((await page.locator('.routine-timeline').textContent()).includes('(+1 يوم)'));
+    assert.equal(await page.locator('.routine-item').evaluateAll(items => items.every(el => Number(getComputedStyle(el).opacity) === 1)), true, 'All routine events must be visibly readable without entrance animation');
     page.once('dialog', dialog => dialog.accept('روتين <img src=x onerror=alert(1)>'));
     await page.locator('#save-routine').click(); assert.equal(await page.locator('.saved-routine-card').count(), 1);
     await page.reload(); assert.equal(await page.locator('.saved-routine-card').count(), 1); assert.equal(await page.locator('.saved-routine-card img').count(), 0);
     await page.locator('.saved-routine-card').getByRole('button', { name: 'عرض الروتين', exact: true }).click(); assert.equal(await page.locator('.routine-card').count(), 1);
+    assert.equal(await page.locator('#routine-wakeup').inputValue(), '23:45');
+    assert.equal(await page.locator('#routine-naps').inputValue(), '4');
+    assert.equal(await page.locator('#activity-bath').isChecked(), true);
+    if (process.env.LAYOUT_SCREENSHOT_DIR) {
+        await page.setViewportSize({ width: 390, height: 900 });
+        await page.locator('.routine-card').screenshot({ path: path.join(process.env.LAYOUT_SCREENSHOT_DIR, 'routine-updated-mobile.png') });
+    }
+    for (const width of [320, 390, 768, 1440]) {
+        await page.setViewportSize({ width, height: 900 });
+        assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), `Generated routine overflows at ${width}px`);
+    }
     await page.evaluate(() => Object.defineProperty(navigator, 'clipboard', { configurable:true, value: { writeText: () => Promise.reject(new Error('denied')) } }));
     await page.locator('#share-routine').click(); await page.locator('#routine-share-copy').waitFor(); assert.ok((await page.locator('#routine-share-copy').inputValue()).includes('روتين'));
     await page.goto(base + 'pages/tools.html');
