@@ -191,8 +191,8 @@ def build():
     ET.register_namespace('',ns)
     sitemap=ET.fromstring((ROOT/'sitemap.xml').read_text())
     existing={e.find(f'{{{ns}}}loc').text:e for e in sitemap}
-    for p in outputs:
-        if p.suffix!='.html':continue
+    for p in [ROOT/'index.html', *sorted(page_paths)]:
+        if p.suffix!='.html' or p.stem=='search' or p.parent.name=='articles' and p.stem not in articles:continue
         url=BASE+('' if p.name == 'index.html' else p.relative_to(ROOT).as_posix())
         entry=existing.get(url)
         if entry is None:
@@ -201,6 +201,8 @@ def build():
         if last is None:last=ET.SubElement(entry,f'{{{ns}}}lastmod')
         last.text=articles[p.stem]['updated_at'] if p.parent.name=='articles' else data['updated_at']
     for url,entry in existing.items():
+        if url.endswith('/pages/search.html'):
+            sitemap.remove(entry); continue
         if '/pages/articles/' in url and url.rsplit('/',1)[-1][:-5] not in articles:sitemap.remove(entry)
     ET.indent(sitemap,space='  ')
     outputs[ROOT/'sitemap.xml']='<?xml version="1.0" encoding="UTF-8"?>\n'+ET.tostring(sitemap,encoding='unicode')+'\n'

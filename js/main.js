@@ -157,12 +157,13 @@
             'اختبري ماء الاستحمام بوسيلة آمنة وتحققي من حرارته قبل وضع الطفل، مع بقائك بجانبه طوال الوقت.'
         ];
         const today = new Date().toISOString().slice(0, 10);
-        const saved = JSON.parse(localStorage.getItem('ri3aya-daily-tip') || 'null');
-        let index = saved && saved.date === today ? saved.index % tips.length : Math.floor(Date.now() / 86400000) % tips.length;
+        let saved = null;
+        try { saved = JSON.parse(localStorage.getItem('ri3aya-daily-tip') || 'null'); } catch (_) {}
+        let index = saved && Number.isInteger(saved.index) && saved.index >= 0 && saved.date === today ? saved.index % tips.length : Math.floor(Date.now() / 86400000) % tips.length;
         const render = () => { text.textContent = tips[index]; };
         next.addEventListener('click', () => {
             index = (index + 1) % tips.length;
-            localStorage.setItem('ri3aya-daily-tip', JSON.stringify({ date: today, index }));
+            try { localStorage.setItem('ri3aya-daily-tip', JSON.stringify({ date: today, index })); } catch (_) {}
             render();
         });
         render();
@@ -211,11 +212,6 @@
         });
     }
 
-    function registerPWA() {
-        if (!('serviceWorker' in navigator) || window.location.protocol === 'file:') return;
-        window.addEventListener('load', () => navigator.serviceWorker.register(`${rootPath}service-worker.js`).catch(() => {}));
-    }
-
     document.addEventListener('DOMContentLoaded', () => {
         initDate();
         initMobileMenu();
@@ -227,7 +223,6 @@
         initSearch();
         initSmoothAnchors();
         initImageSafety();
-        registerPWA();
         document.body.classList.add('is-ready');
     });
 

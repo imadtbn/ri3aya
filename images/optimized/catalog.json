@@ -1,0 +1,88 @@
+{
+  "images/crying.jpg": {
+    "width": 2880,
+    "height": 1920,
+    "variants": [
+      {
+        "src": "images/optimized/crying-320.webp",
+        "width": 320
+      },
+      {
+        "src": "images/optimized/crying-640.webp",
+        "width": 640
+      },
+      {
+        "src": "images/optimized/crying-960.webp",
+        "width": 960
+      }
+    ]
+  },
+  "images/sleep.jpg": {
+    "width": 1600,
+    "height": 1066,
+    "variants": [
+      {
+        "src": "images/optimized/sleep-320.webp",
+        "width": 320
+      },
+      {
+        "src": "images/optimized/sleep-640.webp",
+        "width": 640
+      },
+      {
+        "src": "images/optimized/sleep-960.webp",
+        "width": 960
+      }
+    ]
+  },
+  "images/step1.jpg": {
+    "width": 720,
+    "height": 564,
+    "variants": [
+      {
+        "src": "images/optimized/step1-320.webp",
+        "width": 320
+      },
+      {
+        "src": "images/optimized/step1-640.webp",
+        "width": 640
+      },
+      {
+        "src": "images/optimized/step1-720.webp",
+        "width": 720
+      }
+    ]
+  },
+  "images/step2.jpg": {
+    "width": 400,
+    "height": 248,
+    "variants": [
+      {
+        "src": "images/optimized/step2-320.webp",
+        "width": 320
+      },
+      {
+        "src": "images/optimized/step2-400.webp",
+        "width": 400
+      }
+    ]
+  },
+  "images/unsafe-crib.jpg": {
+    "width": 894,
+    "height": 894,
+    "variants": [
+      {
+        "src": "images/optimized/unsafe-crib-320.webp",
+        "width": 320
+      },
+      {
+        "src": "images/optimized/unsafe-crib-640.webp",
+        "width": 640
+      },
+      {
+        "src": "images/optimized/unsafe-crib-894.webp",
+        "width": 894
+      }
+    ]
+  }
+}

@@ -38,3 +38,25 @@ jobs:
         run: node scripts/test_search.cjs
       - name: Verify local data durability and exports
         run: node scripts/test_local_data.cjs
+      - name: Verify SEO and PWA metadata
+        run: python scripts/check_seo_pwa.py
+      - name: Verify release snapshot
+        run: python scripts/build_pwa.py --check
+
+  browser-acceptance:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install browser test dependency
+        run: npm install --no-save --no-package-lock playwright@1.62.1
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Responsive and tool acceptance
+        run: node scripts/check_layout.mjs
+      - name: Real offline and update acceptance
+        run: node scripts/check_pwa.mjs

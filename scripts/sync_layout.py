@@ -110,7 +110,7 @@ def layout(source, path):
     local_scope = {'tools': 'all', 'growth': 'ri3aya-growth-tracker', 'nutrition': 'foodRecords', 'digestive': 'symptomRecords', 'routine': 'saved_routines'}.get(path.stem) if path.parent.name != 'articles' else None
     if local_scope:
         page_css = [*page_css, 'local-data']
-    styles = ['main', 'responsive', *page_css, 'accessibility', 'animations', 'site-polish']
+    styles = ['main', 'responsive', *page_css, 'accessibility', 'animations', 'site-polish', 'pwa']
     source = re.sub(r'\s*</head>', '\n' + '\n'.join(f'<link rel="stylesheet" href="{root}css/{name}.css">' for name in styles) + '\n</head>', source, count=1)
     source = re.sub(r'<script\b[^>]*src=[\"\'][^\"\']*js/search-core\.js[\"\'][^>]*></script>\s*', '', source)
     source = source.replace('</head>', f'<script defer src="{root}js/search-core.js"></script>\n</head>')
@@ -137,7 +137,8 @@ def layout(source, path):
             anchor = match.group()
         source = source.replace(anchor, panel + anchor, 1)
     source = re.sub(r'<body([^>]*)>', lambda m: '<body' + (re.sub(r'class="([^"]*)"', lambda c: f'class="{c[1]} site-shell"' if 'site-shell' not in c[1].split() else c[0], m[1]) if 'class=' in m[1] else m[1] + ' class="site-shell"') + '>', source, count=1)
-    return source
+    from site_metadata import finish
+    return finish(source, path)
 
 def main():
     parser = argparse.ArgumentParser()

@@ -1,0 +1,10 @@
+.pwa-controls { padding: 1.25rem 0; border-top: 1px solid #52717d; margin-top: 1rem; }
+.pwa-actions { display: flex; flex-wrap: wrap; gap: .65rem; margin: .7rem 0; }
+.pwa-actions .btn { min-height: 44px; }
+.pwa-note { font-size: .85rem; color: #d9e6ea; max-width: 75ch; line-height: 1.9; }
+#pwa-status { font-weight: 600; }
+#pwa-help { max-width: min(600px, calc(100vw - 32px)); max-height: calc(100vh - 40px); padding: 1.5rem; border: 1px solid #bad3d9; border-radius: 16px; color: #173e4a; line-height: 1.9; }
+#pwa-help::backdrop { background: #143c49aa; }
+#pwa-help h2 { font-size: 1.3rem; }
+@media(max-width:600px) { .pwa-actions .btn { flex: 1 1 130px; } }
+@media print { .pwa-controls, #pwa-help { display: none !important; } }

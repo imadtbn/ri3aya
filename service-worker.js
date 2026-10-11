@@ -1,92 +1,30 @@
-const CACHE_VERSION = 'ri3aya-v13-phase5-20261011';
-const APP_SHELL = [
-    './',
-    './index.html',
-    './offline.html',
-    './manifest.json',
-    './css/main.css',
-    './css/responsive.css',
-    './css/accessibility.css',
-    './css/site-polish.css',
-    './js/main.js',
-    './js/search.js',
-    './js/search-core.js',
-    './js/local-data.js',
-    './css/local-data.css',
-    './js/search-page.js',
-    './css/search.css',
-    './css/articles.css',
-    './pages/search.html',
-    './search/index.json',
-    './js/site-tags.js'
-];
-
-self.addEventListener('install', (event) => {
-    event.waitUntil(
-        caches.open(CACHE_VERSION)
-            .then((cache) => cache.addAll(APP_SHELL))
-            .then(() => self.skipWaiting())
-    );
+/* One complete release per cache; activation of updates requires an explicit action. */
+importScripts('./pwa/config.js');
+const ROOT = new URL('./', self.location.href);
+const CACHE_NAME = 'ri3aya-pwa-' + self.RI3AYA_PWA.revision;
+const FILES = new Set(self.RI3AYA_PWA.files.map(path => new URL(path, ROOT).href));
+const OFFLINE = new URL('offline.html', ROOT).href;
+self.addEventListener('install', event => {
+    event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll([...FILES].map(url => new Request(url, { cache: 'reload' })))));
 });
-
-self.addEventListener('activate', (event) => {
-    event.waitUntil(
-        caches.keys()
-            .then((keys) => Promise.all(keys.filter((key) => key !== CACHE_VERSION).map((key) => caches.delete(key))))
-            .then(() => self.clients.claim())
-    );
+self.addEventListener('message', event => { if (event.data?.type === 'ACTIVATE_UPDATE') event.waitUntil(self.skipWaiting()); });
+self.addEventListener('activate', event => {
+    event.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(key => (key.startsWith('ri3aya-pwa-') || /^ri3aya-v\d+-/.test(key)) && key !== CACHE_NAME).map(key => caches.delete(key)))).then(() => self.clients.claim()));
 });
-
-async function networkFirst(request) {
-    try {
-        const response = await fetch(request);
-        if (response.ok) {
-            const cache = await caches.open(CACHE_VERSION);
-            await cache.put(request, response.clone());
-        }
-        return response;
-    } catch (_) {
-        return caches.match(request).then((cached) => cached || caches.match('./offline.html') || caches.match('./index.html'));
-    }
-}
-
-async function staleWhileRevalidate(request) {
-    const cached = await caches.match(request);
-    const update = fetch(request).then(async (response) => {
-        if (response.ok) {
-            const cache = await caches.open(CACHE_VERSION);
-            await cache.put(request, response.clone());
-        }
-        return response;
-    }).catch(() => cached);
-    return cached || update;
-}
-
-async function cacheFirst(request) {
-    const cached = await caches.match(request);
-    if (cached) return cached;
-    const response = await fetch(request);
-    if (response.ok) {
-        const cache = await caches.open(CACHE_VERSION);
-        await cache.put(request, response.clone());
-    }
-    return response;
-}
-
-self.addEventListener('fetch', (event) => {
-    const request = event.request;
-    const url = new URL(request.url);
-    if (request.method !== 'GET' || url.origin !== self.location.origin) return;
-
-    if (request.mode === 'navigate' || request.destination === 'document') {
-        event.respondWith(networkFirst(request));
-        return;
-    }
-    if (['style', 'script'].includes(request.destination) || url.pathname.endsWith('.json')) {
-        event.respondWith(staleWhileRevalidate(request));
-        return;
-    }
-    if (['image', 'font'].includes(request.destination)) {
-        event.respondWith(cacheFirst(request));
+self.addEventListener('fetch', event => {
+    const request = event.request, url = new URL(request.url);
+    if (request.method !== 'GET' || url.origin !== ROOT.origin || !url.pathname.startsWith(ROOT.pathname)) return;
+    // Search parameters remain in the browser URL, but share the same static HTML snapshot.
+    if (url.pathname === ROOT.pathname) url.pathname += 'index.html';
+    url.search = ''; url.hash = '';
+    if (FILES.has(url.href)) {
+        event.respondWith(caches.open(CACHE_NAME).then(async cache => {
+            const cached = await cache.match(url.href);
+            if (cached) return cached;
+            try { return await fetch(request); }
+            catch (_) { return request.mode === 'navigate' ? Response.redirect(OFFLINE) : new Response('Offline resource unavailable', { status: 503, headers: { 'Content-Type': 'text/plain;charset=utf-8' } }); }
+        }));
+    } else if (request.mode === 'navigate') {
+        event.respondWith(fetch(request).catch(() => Response.redirect(OFFLINE)));
     }
 });
