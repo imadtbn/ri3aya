@@ -2,7 +2,7 @@
     'use strict';
 
     const pathName = window.location.pathname;
-    const rootPath = pathName.includes('/pages/tools/') ? '../../' : pathName.includes('/pages/') ? '../' : '';
+    const rootPath = (pathName.includes('/pages/tools/') || pathName.includes('/pages/articles/')) ? '../../' : pathName.includes('/pages/') ? '../' : '';
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     const byId = (id) => document.getElementById(id);

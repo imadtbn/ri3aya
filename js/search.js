@@ -1,6 +1,6 @@
 (function () {
     'use strict';
-    const rootPath = location.pathname.includes('/pages/tools/') ? '../../' : location.pathname.includes('/pages/') ? '../' : '';
+    const rootPath = (location.pathname.includes('/pages/tools/') || location.pathname.includes('/pages/articles/')) ? '../../' : location.pathname.includes('/pages/') ? '../' : '';
     let indexPromise;
     const normalize = (value) => String(value || '').toLocaleLowerCase('ar')
         .replace(/[\u064B-\u065F\u0670ـ]/g, '').replace(/[إأآ]/g, 'ا')

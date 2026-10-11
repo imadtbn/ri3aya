@@ -29,3 +29,9 @@ jobs:
         run: python scripts/quality_gate.py
       - name: Verify generated shared layout
         run: python scripts/sync_layout.py --check
+      - name: Verify article library and discovery data
+        run: python scripts/build_articles.py --check
+      - name: Verify publication and review metadata
+        run: python scripts/check_article_library.py
+      - name: Verify drafts, withdrawal and medical sign-off
+        run: python scripts/test_article_publication.py
