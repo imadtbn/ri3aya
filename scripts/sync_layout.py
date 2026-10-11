@@ -127,7 +127,7 @@ def layout(source, path):
 <div class="local-data-actions">{all_actions}<button type="button" class="btn btn-secondary" id="local-refresh">تحديث حالة التخزين</button></div>
 <p id="local-data-message" role="status" aria-live="polite"></p><noscript><p>تحتاج إدارة السجلات والتصدير إلى JavaScript. محتوى الأدلة يبقى قابلًا للقراءة.</p></noscript>
 </section><!-- local-data:end -->\n'''
-        anchors = {'tools': '<section aria-labelledby="tools-list-title">', 'growth': '<section class="growth-tracker">', 'nutrition': '<div class="food-tracker">', 'digestive': '<div class="symptom-tracker">', 'routine': '<div id="routine-results"'}
+        anchors = {'tools': '<aside class="tools-index-note" role="note">', 'growth': '<section class="growth-tracker">', 'nutrition': '<div class="food-tracker">', 'digestive': '<div class="symptom-tracker">', 'routine': '<div id="routine-results"'}
         anchor = anchors[path.stem]
         if anchor not in source:
             # Routine results may have attributes in a different order.
