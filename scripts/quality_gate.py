@@ -51,6 +51,8 @@ for path in html_files:
         errors.append(f'Missing canonical: {path}')
     if not soup.find('script', src=re.compile(r'(?:^|/)search\.js$')):
         errors.append(f'Missing global search: {path}')
+    if len(soup.find_all('script', src=re.compile(r'(?:^|/)search-core\.js$'))) != 1:
+        errors.append(f'Expected one shared search engine: {path}')
     for image in soup.find_all('img'):
         if not image.get('alt'):
             errors.append(f'Image without alt: {path}')

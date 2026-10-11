@@ -120,3 +120,6 @@ body.site-shell {
 }
 .site-header .dropdown-menu { max-height: 70vh; overflow-y: auto; }
 .site-header .dropdown-menu li { opacity: 1; transform: none; }
+
+.site-header .advanced-search-link { padding: 8px 10px; font-size: .8rem; color: #126b70; flex: 0 0 auto; }
+.site-search-all { display: block; padding: 12px; color: #126b70; font-weight: 700; font-size: .85rem; }
