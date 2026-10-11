@@ -309,7 +309,7 @@
                                     <li>استخدام محلول ملحي للأنف لتخفيف الاحتقان</li>
                                     <li>شفط المخاط بلطف باستخدام شفاط الأنف</li>
                                     <li>ترطيب الغرفة باستخدام مرطب الهواء</li>
-                                    <li>رفع رأس الطفل قليلاً أثناء النوم</li>
+                                    <li>ضعي الرضيع على ظهره للنوم على سطح ثابت ومستوٍ وغير مائل، ولا ترفعي رأس السرير</li>
                                     <li>الإكثار من السوائل والرضاعة</li>
                                     <li>الراحة والنوم الكافي</li>
                                     <li>تجنب التدخين بالقرب من الطفل</li>
@@ -503,7 +503,7 @@
                                 <tr>
                                     <td><strong>المغص</strong></td>
                                     <td>بكاء مستمر، تقوس الظهر، انتفاخ البطن</td>
-                                    <td>تدليك البطن، وضعيات مريحة، حزام دافئ</td>
+                                    <td>مناقشة الأعراض مع الطبيب وتجنب الوسائل الحرارية على الجلد</td>
                                     <td>تجنب الأطعمة المسببة للمغص للمرضع</td>
                                 </tr>
                                 <tr>
@@ -515,7 +515,7 @@
                                 <tr>
                                     <td><strong>التسنين</strong></td>
                                     <td>سيلان اللعاب، تورم اللثة، بكاء، ارتفاع طفيف في الحرارة</td>
-                                    <td>عضاضة باردة، تدليك اللثة، مسكنات الألم</td>
+                                    <td>عضاضة مناسبة ونظيفة؛ استشارة الطبيب أو الصيدلي قبل أي دواء</td>
                                     <td>لا يمكن منعه، جزء طبيعي من النمو</td>
                                 </tr>
                                 <tr>
@@ -533,7 +533,7 @@
                                 <tr>
                                     <td><strong>الطفح الجلدي</strong></td>
                                     <td>بقع حمراء، بثور، حكة، تقشر الجلد</td>
-                                    <td>كريمات مرطبة، تجنب المهيجات، مضادات الهيستامين</td>
+                                    <td>تجنب المهيجات ومراجعة الطبيب لتحديد السبب والعلاج</td>
                                     <td>استخدام منتجات لطيفة، ترطيب البشرة</td>
                                 </tr>
                             </tbody>
@@ -542,18 +542,18 @@
                 </div>
             </section>
 
-            <!-- أداة تقييم الأعراض -->
+            <!-- أداة عرض ملخص الملاحظات -->
             <section class="symptom-checker">
                 <div class="section-card checker-card">
-                    <h2><i class="fas fa-diagnoses"></i> مساعد تقييم الأعراض</h2>
-                    <p>أدخلي أعراض طفلك للحصول على تقييم أولي وتوصيات</p>
+                    <h2><i class="fas fa-diagnoses"></i> سجل ملاحظات الأعراض</h2>
+                    <p>نظمي الملاحظات لمناقشتها مع الطبيب. لا تحدد الأداة السبب أو العلاج أو درجة الخطورة.</p>
 
                     <div class="checker-form">
                         <div class="form-group">
                             <label for="child-age-symptoms"><i class="fas fa-baby"></i> عمر الطفل</label>
                             <select id="child-age-symptoms" class="form-select">
-                                <option value="0-3">0-3 أشهر</option>
-                                <option value="4-6">4-6 أشهر</option>
+                                <option value="0-3">أقل من 3 أشهر</option>
+                                <option value="4-6">من 3 إلى 6 أشهر</option>
                                 <option value="7-12">7-12 شهر</option>
                                 <option value="1-2">1-2 سنة</option>
                             </select>
@@ -562,12 +562,12 @@
                         <div class="form-group">
                             <label><i class="fas fa-thermometer-half"></i> درجة الحرارة</label>
                             <div class="temperature-input">
-                                <input type="number" step="0.1" id="temperature" placeholder="مثال: 38.5" value="37.5">
+                                <input type="number" step="0.1" id="temperature" placeholder="مثال: 38.5" >
                                 <span>°م</span>
                                 <div class="temp-buttons">
-                                    <button class="temp-btn" data-temp="37.5">طبيعي</button>
-                                    <button class="temp-btn" data-temp="38.5">مرتفع</button>
-                                    <button class="temp-btn" data-temp="39.5">عالٍ</button>
+                                    <button class="temp-btn" data-temp="37.5">37.5°م</button>
+                                    <button class="temp-btn" data-temp="38.5">38.5°م</button>
+                                    <button class="temp-btn" data-temp="39.5">39.5°م</button>
                                 </div>
                             </div>
                         </div>
@@ -691,8 +691,8 @@
                             <div class="contact-item">
                                 <i class="fas fa-ambulance"></i>
                                 <div>
-                                    <h4>الطوارئ - الحماية المدنية</h4>
-                                    <a href="tel:1021" class="phone-number">1021</a>
+                                    <h4>الحماية المدنية — النجدة</h4>
+                                    <a href="tel:1021" class="phone-number">1021</a> أو <a href="tel:14" class="phone-number">14</a>
                                 </div>
                             </div>
 
@@ -893,20 +893,12 @@
                 </div>
                 <div class="footer-col">
                     <h3>اتصل بنا</h3>
-                    <ul class="footer-contact">
-                        <li><i class="fas fa-envelope" aria-hidden="true"></i><a href="mailto:info@raayatalarada.com">info@raayatalarada.com</a></li>
-                        <li><i class="fas fa-phone" aria-hidden="true"></i><a href="tel:+213123456789" dir="ltr">+213 12 345 6789</a></li>
-                        <li><i class="fas fa-map-marker-alt" aria-hidden="true"></i><span>الجزائر العاصمة، الجزائر</span></li>
-                    </ul>
+                    <ul class="footer-contact"><li><i class="fas fa-comment" aria-hidden="true"></i><a href="contact.html">ملاحظات حول الموقع</a></li><li><span>محتوى تثقيفي عام، وليس خدمة طبية.</span></li></ul>
                 </div>
                 <div class="footer-col">
                     <h3>النشرة البريدية</h3>
                     <p>احصلي على تنبيهات عامة حول المقالات والتحديثات.</p>
-                    <form class="newsletter-form" action="#" novalidate>
-                        <label class="sr-only" for="footer-email">البريد الإلكتروني</label>
-                        <input id="footer-email" name="email" type="email" placeholder="بريدك الإلكتروني" autocomplete="email" required>
-                        <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane" aria-hidden="true"></i> اشتراك</button>
-                    </form>
+                    <p class="source-note">الاشتراك غير متاح حاليًا؛ يمكنك متابعة المقالات من الموقع.</p>
                 </div>
             </div>
             <div class="footer-bottom">

@@ -793,7 +793,7 @@
                     
                     <div class="update-section">
                         <h3><i class="fas fa-history"></i> آخر تحديث</h3>
-                        <p><strong>تاريخ آخر تحديث:</strong> 15 أكتوبر 2023</p>
+                        <p><strong>تاريخ آخر تحديث:</strong> 11 أكتوبر 2026</p>
                         <p><strong>التغييرات الرئيسية:</strong> إضافة قسم خاص بخصوصية الأطفال، توضيح حقوق المستخدم، تحديث إجراءات حماية البيانات.</p>
                     </div>
                     
@@ -816,7 +816,7 @@
                 
                 <!-- تذييل الصفحة -->
                 <div class="last-updated">
-                    <p>آخر تحديث: 15 أكتوبر 2023</p>
+                    <p>آخر تحديث: 11 أكتوبر 2026</p>
                 </div>
                 
                 <!-- أزرار التنقل -->
@@ -857,20 +857,12 @@
                 </div>
                 <div class="footer-col">
                     <h3>اتصل بنا</h3>
-                    <ul class="footer-contact">
-                        <li><i class="fas fa-envelope" aria-hidden="true"></i><a href="mailto:info@raayatalarada.com">info@raayatalarada.com</a></li>
-                        <li><i class="fas fa-phone" aria-hidden="true"></i><a href="tel:+213123456789" dir="ltr">+213 12 345 6789</a></li>
-                        <li><i class="fas fa-map-marker-alt" aria-hidden="true"></i><span>الجزائر العاصمة، الجزائر</span></li>
-                    </ul>
+                    <ul class="footer-contact"><li><i class="fas fa-comment" aria-hidden="true"></i><a href="contact.html">ملاحظات حول الموقع</a></li><li><span>محتوى تثقيفي عام، وليس خدمة طبية.</span></li></ul>
                 </div>
                 <div class="footer-col">
                     <h3>النشرة البريدية</h3>
                     <p>احصلي على تنبيهات عامة حول المقالات والتحديثات.</p>
-                    <form class="newsletter-form" action="#" novalidate>
-                        <label class="sr-only" for="footer-email">البريد الإلكتروني</label>
-                        <input id="footer-email" name="email" type="email" placeholder="بريدك الإلكتروني" autocomplete="email" required>
-                        <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane" aria-hidden="true"></i> اشتراك</button>
-                    </form>
+                    <p class="source-note">الاشتراك غير متاح حاليًا؛ يمكنك متابعة المقالات من الموقع.</p>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -940,12 +932,7 @@
             });
             
             // محاكاة إرسال النشرة البريدية
-            document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
-                e.preventDefault();
-                const emailInput = this.querySelector('input[type="email"]');
-                alert(`شكراً على اشتراكك في نشرتنا البريدية! سيصلك جديدنا على ${emailInput.value}`);
-                emailInput.value = '';
-            });
+
             
             // تأثيرات الرسوم المتحركة عند التمرير
             const animatedElements = document.querySelectorAll('.animate');
@@ -971,6 +958,7 @@
         });
     </script>
 
-    <script defer src="../js/search.js"></script>
+    <script defer src="../js/main.js"></script>
+<script defer src="../js/search.js"></script>
 </body>
 </html>
