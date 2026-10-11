@@ -137,6 +137,34 @@ def layout(source, path):
             anchor = match.group()
         source = source.replace(anchor, panel + anchor, 1)
     source = re.sub(r'<body([^>]*)>', lambda m: '<body' + (re.sub(r'class="([^"]*)"', lambda c: f'class="{c[1]} site-shell"' if 'site-shell' not in c[1].split() else c[0], m[1]) if 'class=' in m[1] else m[1] + ' class="site-shell"') + '>', source, count=1)
+    # Keep wide data tables inside a named, keyboard-scrollable region.
+    # Edit only wrapper opening tags so authored table content stays intact.
+    soup = BeautifulSoup(source, 'html.parser')
+    wrappers = {}
+    for table in soup.select('main table'):
+        wrapper = table.parent
+        if wrapper.name != 'div':
+            continue
+        start, _ = span(source, wrapper)
+        wrappers[start] = wrapper
+    for start, wrapper in sorted(wrappers.items(), reverse=True):
+        end = source.index('>', start)
+        opening = source[start:end]
+        if 'content-table-scroll' not in wrapper.get('class', []):
+            if wrapper.has_attr('class'):
+                opening = re.sub(r'class="([^"]*)"', r'class="\1 content-table-scroll"', opening, count=1)
+            else:
+                opening += ' class="content-table-scroll"'
+        if not wrapper.has_attr('tabindex'):
+            opening += ' tabindex="0"'
+        if not wrapper.has_attr('role'):
+            opening += ' role="region"'
+        if not wrapper.has_attr('aria-label') and not wrapper.has_attr('aria-labelledby'):
+            section = wrapper.find_parent('section')
+            heading = section.find(['h2', 'h3']) if section else None
+            label = 'جدول — ' + (heading.get_text(' ', strip=True) if heading else 'بيانات المتابعة')
+            opening += f' aria-label="{html.escape(label, quote=True)}"'
+        source = source[:start] + opening + source[end:]
     from site_metadata import finish
     return finish(source, path)
 
