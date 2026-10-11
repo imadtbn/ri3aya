@@ -29,6 +29,18 @@ for path in [*ROOT.glob('js/**/*.js'), *ROOT.glob('pages/**/*.html'), ROOT / 'in
 
 for path in html_files:
     soup = BeautifulSoup(path.read_text(encoding='utf-8', errors='replace'), 'html.parser')
+    for selector in ('.site-header', '.site-hero', '.site-footer', '.site-header .search-input'):
+        if len(soup.select(selector)) != 1:
+            errors.append(f'Expected one {selector}: {path}')
+    styles = [link['href'].split('?', 1)[0] for link in soup.select('link[rel="stylesheet"]')]
+    if len(styles) != len(set(styles)):
+        errors.append(f'Duplicate stylesheet: {path}')
+    ids = [tag['id'] for tag in soup.select('[id]')]
+    if len(ids) != len(set(ids)):
+        errors.append(f'Duplicate HTML id: {path}')
+    for button in soup.select('.site-header button[aria-controls]'):
+        if not soup.find(id=button['aria-controls']):
+            errors.append(f'Missing disclosure target: {path}')
     if not soup.find('main'):
         errors.append(f'Missing main: {path}')
     if len(soup.find_all('h1')) != 1:
