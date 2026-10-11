@@ -35,13 +35,57 @@ try {
     const errors = [];
     page.on('pageerror', error => errors.push(error.message));
     const base = `http://127.0.0.1:${server.address().port}/`;
-    for (const width of [360, 390, 768, 1024, 1440]) {
+    for (const width of [320, 360, 390, 768, 1024, 1440]) {
         await page.setViewportSize({ width, height: 900 });
         for (const file of pages) {
             await page.goto(base + file, { waitUntil: 'load' });
             const layout = await page.evaluate(() => ({ scroll: document.documentElement.scrollWidth, search: document.querySelector('.search-input').getBoundingClientRect().width }));
             assert.ok(layout.scroll <= width + 1, `${file} overflows at ${width}px: ${layout.scroll}`);
             assert.ok(layout.search > 0, `${file} search hidden at ${width}px`);
+            // Notes contain prose, not a two-column icon/content grid. A page
+            // can pass the overflow check while a source link collapses to 10px.
+            for (const note of await page.locator('main .medical-safety-note').all()) {
+                const metrics = await note.evaluate(el => {
+                    const box = el.getBoundingClientRect();
+                    return { display: getComputedStyle(el).display, width: box.width,
+                        paragraphs: [...el.children].filter(e => e.tagName === 'P').map(e => e.getBoundingClientRect().width),
+                        overflow: el.scrollWidth > el.clientWidth + 1 };
+                });
+                assert.equal(metrics.display, 'block', `${file}: prose note must flow vertically`);
+                assert.equal(metrics.overflow, false, `${file}: note overflows at ${width}px`);
+                assert.ok(metrics.paragraphs.every(w => w >= metrics.width * .65), `${file}: cramped note paragraphs at ${width}px`);
+            }
+            for (const table of await page.locator('main table').all()) {
+                assert.equal(await table.locator('..').getAttribute('tabindex'), '0', `${file}: table needs keyboard scrolling`);
+                assert.equal(await table.locator('..').getAttribute('role'), 'region');
+            }
+        }
+    }
+    // Readability with enlarged text and long source links on a narrow screen.
+    await page.setViewportSize({ width: 360, height: 900 });
+    for (const file of ['pages/vaccine.html', 'pages/resources.html', 'pages/contact.html', 'pages/crying.html']) {
+        await page.goto(base + file);
+        await page.addStyleTag({ content: 'html { font-size: 200% !important; }' });
+        for (const note of await page.locator('main .medical-safety-note').all()) {
+            assert.equal(await note.evaluate(el => el.scrollWidth <= el.clientWidth + 1), true, `${file}: enlarged note clipped`);
+        }
+    }
+    await page.goto(base + 'pages/diapers.html');
+    const tableRegion = page.locator('.size-table-container');
+    await tableRegion.focus();
+    const beforeScroll = await tableRegion.evaluate(el => el.scrollLeft);
+    await page.keyboard.press('ArrowLeft');
+    await page.waitForTimeout(200);
+    assert.notEqual(await tableRegion.evaluate(el => el.scrollLeft), beforeScroll, 'Wide table must scroll with the keyboard in RTL');
+    if (process.env.LAYOUT_SCREENSHOT_DIR) {
+        fs.mkdirSync(process.env.LAYOUT_SCREENSHOT_DIR, { recursive: true });
+        for (const width of [360, 1440]) {
+            await page.setViewportSize({ width, height: 900 });
+            for (const file of ['vaccine', 'resources']) {
+                await page.goto(base + `pages/${file}.html`);
+                const target = page.locator(file === 'vaccine' ? 'section.vaccine-schedule' : '#resources');
+                await target.screenshot({ path: path.join(process.env.LAYOUT_SCREENSHOT_DIR, `${file}-${width}.png`) });
+            }
         }
     }
     await page.setViewportSize({ width: 390, height: 900 });
@@ -274,7 +318,7 @@ try {
     }
     // Keep both contexts open until browser shutdown (single-process Chromium).
     assert.deepEqual(errors, [], 'Uncaught local JavaScript errors');
-    console.log(`PASS: ${pages.length * 5} viewport checks, navigation, Arabic search, age/topic/type filtering, pagination, shared URLs, browser back, copy/fallback, retry, stale responses, local persistence/downloads/deletions/corruption/storage failures/cross-tab updates and static articles.`);
+    console.log(`PASS: ${pages.length * 6} viewport checks, readable notes/enlarged text, keyboard table scrolling, navigation, Arabic search, age/topic/type filtering, pagination, shared URLs, browser back, copy/fallback, retry, stale responses, local persistence/downloads/deletions/corruption/storage failures/cross-tab updates and static articles.`);
 } finally {
     if (browser) await browser.close();
     server.close();

@@ -123,3 +123,32 @@ body.site-shell {
 
 .site-header .advanced-search-link { padding: 8px 10px; font-size: .8rem; color: #126b70; flex: 0 0 auto; }
 .site-search-all { display: block; padding: 12px; color: #126b70; font-weight: 700; font-size: .85rem; }
+
+/* Content must remain readable independently of the old page-specific themes. */
+.site-shell main :is(h2, h3, h4) { line-height: 1.6; overflow-wrap: anywhere; }
+.site-shell main :is(p, li, dd) { overflow-wrap: anywhere; }
+.site-shell main .section-title { font-size: clamp(1.3rem, 2.5vw, 2rem); margin-bottom: 1.75rem; }
+.site-shell .legal-content { padding-block: 28px; }
+.site-shell .legal-content > .section-card { padding: clamp(20px, 4vw, 32px); margin-block: 24px; background: #fff; }
+.site-shell .legal-content > .section-card > h2:not(:first-child) { margin-top: 24px; }
+.site-shell main .faq-category h2 { color: var(--care-primary); }
+.site-shell .resource-list { display: grid; gap: 12px; margin-block: 20px; }
+.site-shell .resource-list p { margin: 0; }
+.site-shell .resource-list a { display: block; padding: 14px 18px; min-height: 44px; border: 1px solid var(--care-line); border-radius: 12px; background: #f7faf9; color: var(--care-primary); text-underline-offset: 4px; }
+.site-shell .resource-list a:hover { background: #e9f4f2; }
+.site-shell .vaccine-page > .container > .vaccine-schedule { margin: 28px 0; padding: clamp(18px, 4vw, 28px); border: 1px solid var(--care-line); border-radius: var(--care-radius); }
+.site-shell .vaccine-page > .container > .vaccine-schedule .schedule-note { margin-block: 24px; }
+.site-shell .vaccine-page .vaccine-checklist .checklist-item { min-width: 0; }
+.site-shell .vaccine-page .vaccine-checklist h3 { font-size: 1.1rem; margin-block: 12px 8px; }
+.site-shell .vaccine-page .vaccine-checklist p { margin: 0; }
+.site-shell .growth-page .alert-info { background: #edf6fb; border-inline-start: 4px solid #126b70; color: var(--care-ink); padding: 18px; border-radius: 12px; }
+.site-shell .content-table-scroll { max-width: 100%; min-width: 0; overflow-x: auto; overscroll-behavior-inline: contain; }
+.site-shell .content-table-scroll:focus-visible { outline: 3px solid #c77720; outline-offset: 3px; }
+.site-shell .content-table-scroll table { margin-block: 0; }
+.site-shell .back-to-top > i { display: none; }
+.site-shell .back-to-top::before { content: '↑'; font: 1.5rem/1 system-ui, sans-serif; }
+@media (max-width: 600px) {
+    .site-shell main .section-card { padding: 20px; }
+    .site-shell .vaccine-page .vaccine-checklist { gap: 12px; }
+    .site-shell .vaccine-page .vaccine-checklist .checklist-item { padding: 16px; }
+}

@@ -110,10 +110,25 @@ button:disabled,
     }
 }
 
-.medicine-safety-card,
 .medical-safety-note {
+    display: block;
+    padding: clamp(1rem, 3vw, 1.5rem);
+    border: 1px solid #f0b429;
+    border-inline-start: 4px solid #b77900;
+    border-radius: .75rem;
+    background: #fff8e1;
+    color: #3a2a00;
+    overflow-wrap: anywhere;
+    line-height: 1.85;
+}
+
+.medical-safety-note > p { margin: 0; }
+.medical-safety-note > p + p { margin-top: .85rem; }
+.medical-safety-note a { color: #126b70; text-underline-offset: .2em; }
+
+.medicine-safety-card {
     display: grid;
-    grid-template-columns: auto 1fr;
+    grid-template-columns: auto minmax(0, 1fr);
     gap: 1rem;
     align-items: start;
     padding: 1rem 1.15rem;
@@ -155,14 +170,14 @@ button:disabled,
     margin-top: 1rem;
 }
 
-.checklist-item {
+.vaccine-checklist .checklist-item {
     padding: 1rem;
     border: 1px solid rgba(20, 108, 148, .16);
     border-radius: .75rem;
     background: var(--card, #fff);
 }
 
-.checklist-item > i {
+.vaccine-checklist .checklist-item > i {
     color: #146c94;
     font-size: 1.35rem;
 }
