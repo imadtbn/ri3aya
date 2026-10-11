@@ -11,7 +11,13 @@ import { fileURLToPath } from 'node:url';
 const require = createRequire(import.meta.url);
 const { chromium } = require(process.env.PLAYWRIGHT_MODULE || 'playwright');
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const pages = ['index.html', ...fs.readdirSync(path.join(root, 'pages')).filter(p => p.endsWith('.html')).map(p => `pages/${p}`), 'pages/tools/routine.html'];
+function htmlPages(directory) {
+    return fs.readdirSync(directory, { withFileTypes: true }).flatMap(entry => {
+        const file = path.join(directory, entry.name);
+        return entry.isDirectory() ? htmlPages(file) : file.endsWith('.html') ? [path.relative(root, file).split(path.sep).join('/')] : [];
+    });
+}
+const pages = ['index.html', ...htmlPages(path.join(root, 'pages'))];
 const server = http.createServer((req, res) => {
     const file = path.resolve(root, '.' + decodeURIComponent(req.url.split('?')[0]));
     if (!file.startsWith(root + path.sep) || !fs.existsSync(file) || fs.statSync(file).isDirectory()) { res.writeHead(404); res.end(); return; }
@@ -71,8 +77,38 @@ try {
     await input.press('Escape');
     await page.waitForTimeout(650);
     assert.equal(await page.locator('.site-search-results').isVisible(), false);
+    await page.goto(base + 'pages/blog.html');
+    const catalog = JSON.parse(fs.readFileSync(path.join(root, 'content/articles/catalog.json'), 'utf8'));
+    const published = catalog.articles.filter(article => article.publication_status === 'published');
+    assert.equal(await page.locator('.library-card').count(), published.length);
+    for (const category of ['nutrition', 'care', 'safety', 'all']) {
+        await page.locator(`.library-filter[data-category="${category}"]`).click();
+        assert.equal(await page.locator('.library-card:visible').count(), published.filter(a => category === 'all' || a.category === category).length);
+    }
+    await page.goto(base + 'pages/articles/first-foods.html');
+    await input.fill('التكميلي');
+    await page.locator('.site-search-result[href="../../pages/articles/first-foods.html"]').waitFor();
+    await input.press('Escape');
+    if (process.env.LAYOUT_SCREENSHOT_DIR) {
+        fs.mkdirSync(process.env.LAYOUT_SCREENSHOT_DIR, { recursive: true });
+        await page.screenshot({ path: path.join(process.env.LAYOUT_SCREENSHOT_DIR, 'article-mobile.png'), fullPage: true });
+        await page.goto(base + 'pages/blog.html');
+        await page.setViewportSize({ width: 1440, height: 1000 });
+        await page.screenshot({ path: path.join(process.env.LAYOUT_SCREENSHOT_DIR, 'library-desktop.png'), fullPage: true });
+    }
+    const staticContext = await browser.newContext({ javaScriptEnabled: false, serviceWorkers: 'block' });
+    await staticContext.route('**/*', route => new URL(route.request().url()).hostname === '127.0.0.1' ? route.continue() : route.abort());
+    const staticPage = await staticContext.newPage();
+    await staticPage.goto(base + 'pages/blog.html');
+    assert.equal(await staticPage.locator('.library-card:visible').count(), published.length);
+    for (const article of published) {
+        await staticPage.goto(base + `pages/articles/${article.slug}.html`);
+        assert.equal(await staticPage.locator('.care-article').isVisible(), true);
+        assert.ok((await staticPage.locator('.article-review-panel').textContent()).includes('لم تتم بعد'));
+    }
+    // Keep both contexts open until browser shutdown (single-process Chromium).
     assert.deepEqual(errors, [], 'Uncaught local JavaScript errors');
-    console.log(`PASS: ${pages.length * 5} viewport checks, mobile navigation, keyboard, Arabic search, nested links, no results, clearing and stale responses.`);
+    console.log(`PASS: ${pages.length * 5} viewport checks, navigation, keyboard, Arabic search, nested article links, filtering, stale responses and static articles without JavaScript.`);
 } finally {
     if (browser) await browser.close();
     server.close();

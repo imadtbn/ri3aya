@@ -16,7 +16,7 @@ TOPICS = [('sleep', 'النوم الآمن'), ('nutrition', 'التغذية'), (
           ('diapers', 'الحفاضات'), ('digestive', 'الجهاز الهضمي'), ('diseases', 'الصحة'), ('tips', 'نصائح يومية')]
 PAGE_CSS = {'index': [], 'crying': ['crying-analyzer', 'improvements-crying'],
             'tools': ['tools', 'tools-index'], 'routine': ['tools'],
-            'sections': [], 'resources': [], 'terms': [], 'privacy': [], 'faq': [], 'disclaimer': []}
+            'blog': ['articles'], 'editorial-policy': ['articles'], 'sections': [], 'resources': [], 'terms': [], 'privacy': [], 'faq': [], 'disclaimer': []}
 
 def span(source, node):
     start = sum(len(line) for line in source.splitlines(keepends=True)[:node.sourceline - 1]) + node.sourcepos
@@ -33,7 +33,7 @@ def replace(source, node, content):
 
 def layout(source, path):
     soup = BeautifulSoup(source, 'html.parser')
-    root = '../../' if path.parent.name == 'tools' else '../' if path.name != 'index.html' else ''
+    root = '../' * (len(path.relative_to(ROOT).parts) - 1)
     link = lambda slug: root + ('index.html' if slug == 'index' else f'pages/{slug}.html')
     current = 'tools' if path.stem == 'routine' else path.stem
     def navlink(slug, label):
@@ -75,6 +75,8 @@ def layout(source, path):
     crumbs = '' if path.name == 'index.html' else f'<nav class="site-breadcrumb" aria-label="مسار التنقل"><ol><li><a href="{link("index")}">الرئيسية</a></li><li><a href="{link("tools" if current == "tools" else "sections")}">{"الأدوات" if current == "tools" else "أقسام الرعاية"}</a></li><li aria-current="page">{html.escape(title)}</li></ol></nav>'
     if current != 'index' and (current in ('sections', 'tools') or current not in dict(TOPICS)):
         crumbs = f'<nav class="site-breadcrumb" aria-label="مسار التنقل"><ol><li><a href="{link("index")}">الرئيسية</a></li><li aria-current="page">{html.escape(title)}</li></ol></nav>'
+    if path.parent.name == 'articles':
+        crumbs = f'<nav class="site-breadcrumb" aria-label="مسار التنقل"><ol><li><a href="{link("index")}">الرئيسية</a></li><li><a href="{link("blog")}">مكتبة المقالات</a></li><li aria-current="page">{html.escape(title)}</li></ol></nav>'
     cta = f'<div class="site-hero-actions"><a class="btn btn-primary" href="{link("sections")}">استكشفي أدلة الرعاية</a><a class="btn btn-secondary" href="{link("tools")}">أدوات المتابعة</a></div>' if current == 'index' else ''
     heading_id = f' id="{h1["id"]}"' if h1.get('id') else ''
     hero_markup = f'<section class="site-hero{" site-hero-home" if current == "index" else ""}"><div class="container site-hero-inner"><div>{crumbs}<h1{heading_id}>{html.escape(title)}</h1><p>{html.escape(description)}</p>{cta}</div>{image_markup}</div></section>'
@@ -100,7 +102,9 @@ def layout(source, path):
     source = re.sub(r'<link\b[^>]*href=["\'](?:\.\./)*css/[^"\']+["\'][^>]*>\s*', '', source, flags=re.I)
     if 'font-awesome/' not in source:
         source = source.replace('</head>', '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">\n</head>')
-    page_css = PAGE_CSS.get(path.stem, [path.stem])
+    page_css = ['articles'] if path.parent.name == 'articles' else PAGE_CSS.get(path.stem, [path.stem])
+    if path.stem in ('index', 'sections', 'resources', 'sleep', 'nutrition', 'bath', 'diapers', 'crying') and 'articles' not in page_css:
+        page_css = [*page_css, 'articles']
     styles = ['main', 'responsive', *page_css, 'accessibility', 'animations', 'site-polish']
     source = re.sub(r'\s*</head>', '\n' + '\n'.join(f'<link rel="stylesheet" href="{root}css/{name}.css">' for name in styles) + '\n</head>', source, count=1)
     source = re.sub(r'<body([^>]*)>', lambda m: '<body' + (re.sub(r'class="([^"]*)"', lambda c: f'class="{c[1]} site-shell"' if 'site-shell' not in c[1].split() else c[0], m[1]) if 'class=' in m[1] else m[1] + ' class="site-shell"') + '>', source, count=1)

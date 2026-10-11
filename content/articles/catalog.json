@@ -1,0 +1,444 @@
+{
+  "version": 1,
+  "language": "ar",
+  "sources": [
+    {
+      "id": "cdc-sleep",
+      "publisher": "CDC",
+      "title": "Helping Babies Sleep Safely",
+      "url": "https://www.cdc.gov/reproductive-health/features/babies-sleep.html",
+      "source_date": "2024-09-25",
+      "source_date_label": "تاريخ صفحة المصدر",
+      "checked_at": "2026-10-11"
+    },
+    {
+      "id": "who-feeding",
+      "publisher": "منظمة الصحة العالمية",
+      "title": "Guideline for complementary feeding of infants and young children 6–23 months",
+      "url": "https://www.who.int/publications/i/item/9789240081864",
+      "source_date": "2023-10-16",
+      "source_date_label": "تاريخ إصدار الدليل",
+      "checked_at": "2026-10-11"
+    },
+    {
+      "id": "nhs-feeding",
+      "publisher": "NHS",
+      "title": "Your baby’s first solid foods",
+      "url": "https://www.nhs.uk/baby/weaning-and-feeding/babys-first-solid-foods/",
+      "source_date": "2026-02-19",
+      "source_date_label": "تاريخ مراجعة المصدر",
+      "checked_at": "2026-10-11"
+    },
+    {
+      "id": "nhs-bath",
+      "publisher": "NHS",
+      "title": "Washing and bathing your baby",
+      "url": "https://www.nhs.uk/baby/caring-for-a-newborn/washing-and-bathing-your-baby/",
+      "source_date": "2024-07-23",
+      "source_date_label": "تاريخ مراجعة المصدر",
+      "checked_at": "2026-10-11"
+    },
+    {
+      "id": "nhs-diaper",
+      "publisher": "NHS",
+      "title": "Nappy rash",
+      "url": "https://www.nhs.uk/baby/caring-for-a-newborn/nappy-rash/",
+      "source_date": "2026-08-28",
+      "source_date_label": "تاريخ مراجعة المصدر",
+      "checked_at": "2026-10-11"
+    },
+    {
+      "id": "nhs-crying",
+      "publisher": "NHS",
+      "title": "Soothing a crying baby",
+      "url": "https://www.nhs.uk/baby/caring-for-a-newborn/soothing-a-crying-baby/",
+      "source_date": "2026-04-22",
+      "source_date_label": "تاريخ مراجعة المصدر",
+      "checked_at": "2026-10-11"
+    }
+  ],
+  "articles": [
+    {
+      "slug": "safe-sleep",
+      "title": "النوم الآمن: تجهيز سرير الرضيع",
+      "summary": "خطوات بسيطة لتجهيز مكان النوم وتقليل المخاطر، في الليل والقيلولة.",
+      "topic": "sleep",
+      "category": "safety",
+      "category_label": "النوم والسلامة",
+      "age_label": "من الولادة إلى 12 شهرًا",
+      "age_min_months": 0,
+      "age_max_months": 12,
+      "image": "images/safe-crib.webp",
+      "image_alt": "سرير رضيع خالٍ من الوسائد والأشياء اللينة",
+      "keywords": [
+        "نوم",
+        "سرير",
+        "قيلولة",
+        "ظهر",
+        "وسادة"
+      ],
+      "takeaway": "على الظهر، على سطح ثابت ومستوٍ، وفي سرير خالٍ من الأشياء اللينة.",
+      "sections": [
+        {
+          "id": "position",
+          "title": "وضعية النوم",
+          "text": "ابدئي كل فترة نوم بوضع الرضيع على ظهره، سواء في القيلولة أو ليلًا. النوم على الجانب ليس بديلًا لهذه الوضعية.",
+          "items": [],
+          "sources": [
+            "cdc-sleep"
+          ]
+        },
+        {
+          "id": "bed",
+          "title": "جهّزي السرير",
+          "text": "اختاري فراشًا ثابتًا ومستوياً داخل سرير مناسب للرضع؛ يكفي ملاءة مثبتة جيدًا.",
+          "items": [
+            "أبعدي الوسائد والألعاب والبطانيات الرخوة ومصدات السرير.",
+            "لا تستعملي الأسطح المائلة أو المنتجات المثقلة للنوم.",
+            "تجنبي تغطية الرأس أو تدفئة الطفل أكثر من اللازم."
+          ],
+          "sources": [
+            "cdc-sleep"
+          ]
+        },
+        {
+          "id": "room",
+          "title": "نفس الغرفة، ومساحة نوم مستقلة",
+          "text": "ضعي سرير الطفل في غرفة نومك، ويفضل حتى عمر 6 أشهر على الأقل. مشاركة الغرفة تختلف عن النوم على سرير البالغين، الذي قد يعرض الطفل للاختناق.",
+          "items": [],
+          "sources": [
+            "cdc-sleep"
+          ]
+        }
+      ],
+      "help": {
+        "title": "إذا بقي لديك قلق بشأن النوم",
+        "text": "ناقشي وضعية النوم والبيئة المناسبة مع طبيب الطفل، خصوصًا إذا كانت لديه احتياجات صحية خاصة. هذا المقال يشرح الوقاية العامة، ولا يقيّم حالة طفل بعينه.",
+        "sources": []
+      },
+      "related": [
+        "soothing-crying",
+        "safe-bath"
+      ],
+      "publication_status": "published",
+      "published_at": "2026-10-11",
+      "updated_at": "2026-10-11",
+      "editorial_review": {
+        "date": "2026-10-11",
+        "method": "صياغة عربية بمساعدة آلية مع تحقق من المصادر والروابط؛ ليست مراجعة طبية."
+      },
+      "medical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "credentials": null,
+        "date": null,
+        "evidence": null
+      }
+    },
+    {
+      "slug": "first-foods",
+      "title": "بداية الطعام التكميلي: متى وكيف نبدأ؟",
+      "summary": "علامات الاستعداد حول 6 أشهر، وخطوات التقديم مع استمرار الحليب.",
+      "topic": "nutrition",
+      "category": "nutrition",
+      "category_label": "التغذية",
+      "age_label": "من نحو 6 إلى 12 شهرًا",
+      "age_min_months": 6,
+      "age_max_months": 12,
+      "image": "images/nutrition-header.jpg",
+      "image_alt": "تحضير الطعام التكميلي للرضيع",
+      "keywords": [
+        "تغذية",
+        "طعام",
+        "صلب",
+        "ستة أشهر",
+        "فطام"
+      ],
+      "takeaway": "ابدئي حول 6 أشهر مع علامات الاستعداد، وبكميات صغيرة دون إجبار الطفل.",
+      "sections": [
+        {
+          "id": "ready",
+          "title": "راقبي الاستعداد",
+          "text": "تبدأ التغذية التكميلية عادةً حول 6 أشهر، إلى جانب حليب الأم أو الحليب الصناعي المناسب. إذا وُلد الطفل مبكرًا، اطلبي توجيهًا فرديًا.",
+          "items": [
+            "يجلس مع ثبات الرأس.",
+            "ينسق بين العينين واليدين والفم للوصول إلى الطعام.",
+            "يبلع الطعام بدل دفعه إلى الخارج."
+          ],
+          "sources": [
+            "who-feeding",
+            "nhs-feeding"
+          ]
+        },
+        {
+          "id": "start",
+          "title": "اجعلي البداية مرنة",
+          "text": "قدّمي كمية صغيرة وقوامًا لينًا مناسبًا لقدرة الطفل. لا تتوقعي كمية ثابتة؛ توقفي عند إغلاق الفم أو إدارة الرأس، واستمرّي في الحليب.",
+          "items": [
+            "لا تضيفي الملح أو السكر.",
+            "اغسلي يديك ونظفي سطح التحضير.",
+            "تحققي من أن الطعام الساخن برد قبل التقديم."
+          ],
+          "sources": [
+            "nhs-feeding"
+          ]
+        },
+        {
+          "id": "safety",
+          "title": "الأمان أثناء الوجبة",
+          "text": "اجعلي الطفل جالسًا بأمان في وضع قائم، وابقَي معه طوال الأكل. تجنبي المكسرات الكاملة والأطعمة الصلبة مثل الجزر والتفاح النيئين، وانزعي العظام والبذور الصلبة.",
+          "items": [],
+          "sources": [
+            "nhs-feeding"
+          ]
+        }
+      ],
+      "help": {
+        "title": "متى تحتاجين توجيهًا فرديًا؟",
+        "text": "إذا كانت لدى طفلك صعوبة مستمرة في البلع أو التغذية، ناقشيها مع مختص بدل تطبيق جدول عام. لا يقدم هذا المقال خطة لعلاج الحساسية أو مشاكل النمو.",
+        "sources": []
+      },
+      "related": [
+        "safe-bath",
+        "safe-sleep"
+      ],
+      "publication_status": "published",
+      "published_at": "2026-10-11",
+      "updated_at": "2026-10-11",
+      "editorial_review": {
+        "date": "2026-10-11",
+        "method": "صياغة عربية بمساعدة آلية مع تحقق من المصادر والروابط؛ ليست مراجعة طبية."
+      },
+      "medical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "credentials": null,
+        "date": null,
+        "evidence": null
+      }
+    },
+    {
+      "slug": "safe-bath",
+      "title": "استحمام الرضيع: التحضير والمراقبة",
+      "summary": "ترتيب المستلزمات، اختبار الماء، ودعم الطفل طوال الاستحمام.",
+      "topic": "bath",
+      "category": "care",
+      "category_label": "العناية اليومية",
+      "age_label": "من الولادة إلى 12 شهرًا",
+      "age_min_months": 0,
+      "age_max_months": 12,
+      "image": "images/bath-header.jpg",
+      "image_alt": "العناية بالرضيع أثناء الاستحمام",
+      "keywords": [
+        "استحمام",
+        "حمام",
+        "ماء",
+        "نظافة"
+      ],
+      "takeaway": "جهّزي كل شيء أولًا، ولا تتركي الرضيع وحده في الماء ولو للحظة.",
+      "sections": [
+        {
+          "id": "prepare",
+          "title": "قبل الاستحمام",
+          "text": "ليس ضروريًا استحمام الطفل يوميًا؛ يمكن تنظيف الوجه والرقبة واليدين ومنطقة الحفاض بعناية. اختاري وقتًا يكون فيه مستيقظًا ومرتاحًا، وغرفة دافئة.",
+          "items": [
+            "ضعي المنشفة والحفاض والملابس النظيفة في متناولك.",
+            "جهّزي ماءً دافئًا غير ساخن، واخلطيه جيدًا ثم اختبريه بالرسغ أو المرفق."
+          ],
+          "sources": [
+            "nhs-bath"
+          ]
+        },
+        {
+          "id": "hold",
+          "title": "أثناء الاستحمام",
+          "text": "ادعمي الرأس والكتفين وأبقي الرأس خارج الماء. لا تتركي الرضيع وحده، ولا تعتمدي على طفل أكبر أو كرسي حمام بدل مراقبة بالغ.",
+          "items": [],
+          "sources": [
+            "nhs-bath"
+          ]
+        },
+        {
+          "id": "finish",
+          "title": "بعد الاستحمام",
+          "text": "جففي الطفل برفق، خاصة ثنيات الجلد، ثم ألبسيه ليبقى دافئًا وأفرغي ماء الحمام. عند التنظيف، امسحي حول الأذن دون إدخال أعواد قطن داخلها.",
+          "items": [],
+          "sources": [
+            "nhs-bath"
+          ]
+        }
+      ],
+      "help": {
+        "title": "إذا احتجت إلى الابتعاد",
+        "text": "أنهي الاستحمام وخذي الطفل معك بدل تركه في الماء. هذه خطوات عناية عامة؛ أي مشكلة جلدية أو صحية تحتاج تقييمًا مناسبًا.",
+        "sources": [
+          "nhs-bath"
+        ]
+      },
+      "related": [
+        "diaper-care",
+        "safe-sleep"
+      ],
+      "publication_status": "published",
+      "published_at": "2026-10-11",
+      "updated_at": "2026-10-11",
+      "editorial_review": {
+        "date": "2026-10-11",
+        "method": "صياغة عربية بمساعدة آلية مع تحقق من المصادر والروابط؛ ليست مراجعة طبية."
+      },
+      "medical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "credentials": null,
+        "date": null,
+        "evidence": null
+      }
+    },
+    {
+      "slug": "diaper-care",
+      "title": "منطقة الحفاض: عناية لطيفة ومتى نطلب المساعدة",
+      "summary": "التغيير والتنظيف والتجفيف، مع حدود العناية المنزلية عند ظهور طفح.",
+      "topic": "diapers",
+      "category": "care",
+      "category_label": "العناية اليومية",
+      "age_label": "طوال فترة استخدام الحفاض",
+      "age_min_months": 0,
+      "age_max_months": 36,
+      "image": "images/diapers.webp",
+      "image_alt": "مستلزمات تغيير حفاض الرضيع",
+      "keywords": [
+        "حفاض",
+        "حفاضات",
+        "طفح",
+        "جلد",
+        "تغيير"
+      ],
+      "takeaway": "غيّري الحفاض المتسخ سريعًا، ونظفي الجلد برفق واتركيه جافًا.",
+      "sections": [
+        {
+          "id": "change",
+          "title": "عناية عند كل تغيير",
+          "text": "التلامس الطويل مع البول أو البراز والاحتكاك قد يهيّجان الجلد. اختاري حفاضًا مناسبًا للمقاس ولا تشديه بقوة.",
+          "items": [
+            "غيّري الحفاض الرطب أو المتسخ في أقرب وقت.",
+            "نظفي بالماء أو مناديل أطفال خالية من العطر والكحول.",
+            "جففي بلطف، ويمكن ترك الحفاض مفتوحًا لبعض الوقت عندما يكون ذلك مناسبًا."
+          ],
+          "sources": [
+            "nhs-diaper"
+          ]
+        },
+        {
+          "id": "avoid",
+          "title": "تجنبي المهيجات",
+          "text": "لا تستخدمي بودرة التلك أو المنتجات المعطرة أو المطهرات على الطفح. قد تنصح الصيدلية بكريم حاجز مناسب؛ الأدوية المضادة للفطريات أو غيرها ليست اختيارًا تلقائيًا لكل طفح.",
+          "items": [],
+          "sources": [
+            "nhs-diaper"
+          ]
+        }
+      ],
+      "help": {
+        "title": "متى تطلبين تقييمًا؟",
+        "text": "راجعي مختصًا إذا لم يختفِ الطفح، أو ازداد أو امتد إلى مناطق أخرى، أو ظهرت حرارة أو انزعاج شديد. لا يمكن معرفة سبب الطفح أو علاجه من صورة أو وصف عام فقط.",
+        "sources": [
+          "nhs-diaper"
+        ]
+      },
+      "related": [
+        "safe-bath",
+        "soothing-crying"
+      ],
+      "publication_status": "published",
+      "published_at": "2026-10-11",
+      "updated_at": "2026-10-11",
+      "editorial_review": {
+        "date": "2026-10-11",
+        "method": "صياغة عربية بمساعدة آلية مع تحقق من المصادر والروابط؛ ليست مراجعة طبية."
+      },
+      "medical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "credentials": null,
+        "date": null,
+        "evidence": null
+      }
+    },
+    {
+      "slug": "soothing-crying",
+      "title": "تهدئة البكاء: خطوات هادئة وحدود الأمان",
+      "summary": "طرق للتواصل مع الطفل، وحماية مقدم الرعاية، وعلامات تستدعي المساعدة.",
+      "topic": "crying",
+      "category": "care",
+      "category_label": "العناية اليومية",
+      "age_label": "من الولادة إلى 6 أشهر",
+      "age_min_months": 0,
+      "age_max_months": 6,
+      "image": "images/crying.jpg",
+      "image_alt": "أم تحمل رضيعها لتهدئته",
+      "keywords": [
+        "بكاء",
+        "تهدئة",
+        "رضيع",
+        "مغص",
+        "مساعدة"
+      ],
+      "takeaway": "حاولي التهدئة بلطف، واطلبي الدعم عند الإرهاق؛ لا تهزي الرضيع بعنف أبدًا.",
+      "sections": [
+        {
+          "id": "comfort",
+          "title": "ابدئي بالتواصل الهادئ",
+          "text": "احملي الطفل وتحدثي أو غني له بهدوء مع حركة لطيفة. قد تساعد الرضاعة عند الحاجة. ليست كل طريقة مناسبة لكل طفل، ولا يحدد صوت البكاء وحده السبب.",
+          "items": [],
+          "sources": [
+            "nhs-crying"
+          ]
+        },
+        {
+          "id": "support",
+          "title": "احمي نفسك وطفلك عند الإرهاق",
+          "text": "اطلبي من شخص موثوق مساعدتك. إذا شعرت بأنك تفقدين السيطرة، ضعي الطفل في سريره بأمان وخذي استراحة قصيرة لتهدئي ثم عودي إليه. لا تهزيه بعنف مهما طال البكاء.",
+          "items": [],
+          "sources": [
+            "nhs-crying"
+          ]
+        },
+        {
+          "id": "record",
+          "title": "دوّني ما يساعد المختص",
+          "text": "سجلي وقت البكاء ومدته وعلاقته بالرضعات. هذه ملاحظات للتواصل مع المختص، وليست وسيلة لتشخيص المغص أو المرض.",
+          "items": [],
+          "sources": [
+            "nhs-crying"
+          ]
+        }
+      ],
+      "help": {
+        "title": "علامات تستدعي المساعدة",
+        "text": "اطلبي تقييمًا إذا كان البكاء مستمرًا ولا يمكن تهدئته، أو تغير عن المعتاد، أو ترافق مع حرارة أو ضعف الرضاعة. صعوبة التنفس، الازرقاق، التشنج أو صعوبة الإيقاظ تستدعي مساعدة طبية طارئة محلية فورًا.",
+        "sources": [
+          "nhs-crying"
+        ]
+      },
+      "related": [
+        "safe-sleep",
+        "diaper-care"
+      ],
+      "publication_status": "published",
+      "published_at": "2026-10-11",
+      "updated_at": "2026-10-11",
+      "editorial_review": {
+        "date": "2026-10-11",
+        "method": "صياغة عربية بمساعدة آلية مع تحقق من المصادر والروابط؛ ليست مراجعة طبية."
+      },
+      "medical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "credentials": null,
+        "date": null,
+        "evidence": null
+      }
+    }
+  ],
+  "updated_at": "2026-10-11"
+}
