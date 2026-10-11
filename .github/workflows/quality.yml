@@ -36,3 +36,5 @@ jobs:
         run: python scripts/test_article_publication.py
       - name: Verify Arabic search and age filtering
         run: node scripts/test_search.cjs
+      - name: Verify local data durability and exports
+        run: node scripts/test_local_data.cjs

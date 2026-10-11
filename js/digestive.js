@@ -54,7 +54,7 @@ function initSymptomTracker() {
                 return;
             }
             
-            if (parseInt(symptomDuration) <= 0 || parseInt(symptomDuration) > 24) {
+            if (!Number.isFinite(Number(symptomDuration)) || Number(symptomDuration) < 1 || Number(symptomDuration) > 24) {
                 showTrackerMessage('الرجاء إدخال مدة صحيحة بين 1 و 24 ساعة', 'error');
                 return;
             }
@@ -70,10 +70,10 @@ function initSymptomTracker() {
             };
             
             // حفظ السجل
-            saveSymptomRecord(record);
+            if (!saveSymptomRecord(record)) return;
             
             // إضافة السجل إلى القائمة
-            addSymptomRecordToHistory(record);
+
             
             // مسح الحقول
             document.getElementById('disorderType').value = '';
@@ -86,117 +86,43 @@ function initSymptomTracker() {
     }
     
     function saveSymptomRecord(record) {
-        let records = JSON.parse(localStorage.getItem('symptomRecords') || '[]');
-        
-        // إضافة السجل الجديد
-        records.unshift(record);
-        
-        // الاحتفاظ فقط بآخر 10 سجلات
-        if (records.length > 10) {
-            records = records.slice(0, 10);
-        }
-        
-        // حفظ في localStorage
-        localStorage.setItem('symptomRecords', JSON.stringify(records));
+        const result = window.Ri3ayaLocal.add('symptomRecords', record);
+        if (!result.ok) { window.Ri3ayaLocal.notify(result.error); showTrackerMessage(result.error, 'error'); }
+        return result.ok;
     }
-    
+
     function loadSymptomHistory() {
-        const records = JSON.parse(localStorage.getItem('symptomRecords') || '[]');
-        
-        if (records.length > 0 && symptomHistory) {
-            records.forEach(record => {
-                addSymptomRecordToHistory(record);
-            });
-        } else if (symptomHistory) {
-            symptomHistory.innerHTML = '<p class="empty-history">لا توجد سجلات سابقة. ابدأي بتسجيل الأعراض اليوم.</p>';
-        }
-    }
-    
-    function addSymptomRecordToHistory(record) {
         if (!symptomHistory) return;
-        
-        // ترجمة القيم
-        const disorderNames = {
-            'colic': 'مغص',
-            'gas': 'غازات',
-            'reflux': 'ارتجاع',
-            'constipation': 'إمساك',
-            'diarrhea': 'إسهال'
-        };
-        
-        const severityNames = {
-            'mild': 'خفيفة',
-            'moderate': 'متوسطة',
-            'severe': 'شديدة'
-        };
-        
-        const severityColors = {
-            'mild': '#4CAF50',
-            'moderate': '#FF9800',
-            'severe': '#F44336'
-        };
-        
-        // إنشاء عنصر السجل
-        const recordElement = document.createElement('div');
-        recordElement.className = 'tracker-history-item';
-        recordElement.innerHTML = `
-            <div class="record-header">
-                <strong>${disorderNames[record.disorder] || record.disorder}</strong>
-                <span class="record-severity" style="background-color: ${severityColors[record.severity] || '#757575'}">
-                    ${severityNames[record.severity] || record.severity}
-                </span>
-            </div>
-            <div class="record-details">
-                <span><i class="far fa-clock"></i> ${record.duration}</span>
-                <span><i class="far fa-calendar"></i> ${record.date}</span>
-            </div>
-        `;
-        
-        // إضافة زر حذف
-        const deleteBtn = document.createElement('button');
-        deleteBtn.className = 'delete-record';
-        deleteBtn.innerHTML = '<i class="fas fa-times"></i>';
-        deleteBtn.title = 'حذف السجل';
-        deleteBtn.addEventListener('click', function(e) {
-            e.stopPropagation();
-            deleteSymptomRecord(record.id, recordElement);
+        const result = window.Ri3ayaLocal.read('symptomRecords');
+        symptomHistory.replaceChildren();
+        if (!result.ok || !result.records.length) {
+            const note = document.createElement('p'); note.className = 'empty-history';
+            note.textContent = result.ok ? 'لا توجد ملاحظات أعراض مسجلة بعد.' : result.error;
+            symptomHistory.append(note); return;
+        }
+        result.records.forEach(record => {
+            const element = document.createElement('div'); element.className = 'tracker-history-item';
+            const info = document.createElement('div'); info.className = 'record-info';
+            const values = [({colic:'مغص',gas:'غازات',reflux:'ارتجاع',constipation:'إمساك',diarrhea:'إسهال'})[record.disorder], ({mild:'خفيفة',moderate:'متوسطة',severe:'شديدة'})[record.severity], record.duration, record.date];
+            values.forEach((value, index) => { const node = document.createElement(index === 0 ? 'strong' : 'span'); node.textContent = value; info.append(node); });
+            const button = document.createElement('button'); button.type = 'button'; button.className = 'delete-record'; button.textContent = 'حذف'; button.setAttribute('aria-label', 'حذف هذا السجل');
+            button.addEventListener('click', () => {
+                if (!confirm('حذف هذا السجل من المتصفح؟')) return;
+                const deleted = window.Ri3ayaLocal.removeRecord('symptomRecords', record);
+                window.Ri3ayaLocal.notify(deleted.ok ? 'تم حذف السجل.' : deleted.error);
+                showTrackerMessage(deleted.ok ? 'تم حذف السجل.' : deleted.error, deleted.ok ? 'success' : 'error');
+            });
+            element.append(info, button); symptomHistory.append(element);
         });
-        
-        recordElement.querySelector('.record-header').appendChild(deleteBtn);
-        
-        // إضافة السجل إلى بداية القائمة
-        if (symptomHistory.querySelector('.empty-history')) {
-            symptomHistory.innerHTML = '';
-        }
-        
-        symptomHistory.insertBefore(recordElement, symptomHistory.firstChild);
     }
-    
-    function deleteSymptomRecord(id, element) {
-        // إزالة من localStorage
-        let records = JSON.parse(localStorage.getItem('symptomRecords') || '[]');
-        records = records.filter(record => record.id !== id);
-        localStorage.setItem('symptomRecords', JSON.stringify(records));
-        
-        // إزالة من الواجهة
-        element.remove();
-        
-        // إذا لم تعد هناك سجلات، عرض رسالة
-        if (symptomHistory.children.length === 0) {
-            symptomHistory.innerHTML = '<p class="empty-history">لا توجد سجلات سابقة. ابدأي بتسجيل الأعراض اليوم.</p>';
-        }
-        
-        showTrackerMessage('تم حذف السجل بنجاح', 'success');
-    }
-    
+    window.addEventListener('ri3aya-data-change', event => { if (!event.detail.key || event.detail.key === 'symptomRecords') loadSymptomHistory(); });
+
     function showTrackerMessage(message, type) {
         // إنشاء عنصر الرسالة
         const messageDiv = document.createElement('div');
         messageDiv.className = `tracker-message ${type}`;
-        messageDiv.innerHTML = `
-            <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i>
-            <span>${message}</span>
-        `;
+        messageDiv.textContent = message;
+        messageDiv.setAttribute('role', 'status');
         
         // إضافة الرسالة إلى الصفحة
         document.body.appendChild(messageDiv);

@@ -41,6 +41,8 @@ for path in html_files:
     for button in soup.select('.site-header button[aria-controls]'):
         if not soup.find(id=button['aria-controls']):
             errors.append(f'Missing disclosure target: {path}')
+    if not soup.find('meta', charset=re.compile(r'^utf-8$', re.I)):
+        errors.append(f'Missing UTF-8 declaration: {path}')
     if not soup.find('main'):
         errors.append(f'Missing main: {path}')
     if len(soup.find_all('h1')) != 1:
@@ -53,6 +55,9 @@ for path in html_files:
         errors.append(f'Missing global search: {path}')
     if len(soup.find_all('script', src=re.compile(r'(?:^|/)search-core\.js$'))) != 1:
         errors.append(f'Expected one shared search engine: {path}')
+    if path.relative_to(ROOT).as_posix() in ('pages/tools.html', 'pages/growth.html', 'pages/nutrition.html', 'pages/digestive.html', 'pages/tools/routine.html'):
+        if len(soup.select('#local-data-panel')) != 1 or len(soup.find_all('script', src=re.compile(r'(?:^|/)local-data\.js$'))) != 1:
+            errors.append(f'Missing or duplicate local data management: {path}')
     for image in soup.find_all('img'):
         if not image.get('alt'):
             errors.append(f'Image without alt: {path}')

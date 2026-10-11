@@ -32,6 +32,8 @@ def replace(source, node, content):
     return source[:start] + content + source[end:]
 
 def layout(source, path):
+    if not re.search(r'<meta\b[^>]*charset', source, re.I):
+        source = source.replace('<head>', '<head>\n<meta charset="UTF-8">', 1)
     soup = BeautifulSoup(source, 'html.parser')
     root = '../' * (len(path.relative_to(ROOT).parts) - 1)
     link = lambda slug: root + ('index.html' if slug == 'index' else f'pages/{slug}.html')
@@ -105,10 +107,35 @@ def layout(source, path):
     page_css = ['articles'] if path.parent.name == 'articles' else PAGE_CSS.get(path.stem, [path.stem])
     if path.stem in ('index', 'sections', 'resources', 'sleep', 'nutrition', 'bath', 'diapers', 'crying') and 'articles' not in page_css:
         page_css = [*page_css, 'articles']
+    local_scope = {'tools': 'all', 'growth': 'ri3aya-growth-tracker', 'nutrition': 'foodRecords', 'digestive': 'symptomRecords', 'routine': 'saved_routines'}.get(path.stem) if path.parent.name != 'articles' else None
+    if local_scope:
+        page_css = [*page_css, 'local-data']
     styles = ['main', 'responsive', *page_css, 'accessibility', 'animations', 'site-polish']
     source = re.sub(r'\s*</head>', '\n' + '\n'.join(f'<link rel="stylesheet" href="{root}css/{name}.css">' for name in styles) + '\n</head>', source, count=1)
     source = re.sub(r'<script\b[^>]*src=[\"\'][^\"\']*js/search-core\.js[\"\'][^>]*></script>\s*', '', source)
     source = source.replace('</head>', f'<script defer src="{root}js/search-core.js"></script>\n</head>')
+    source = re.sub(r'<script\b[^>]*src=["\'][^"\']*js/local-data\.js["\'][^>]*></script>\s*', '', source)
+    source = re.sub(r'<!-- local-data:start -->.*?<!-- local-data:end -->\s*', '', source, flags=re.S)
+    if local_scope:
+        source = source.replace('</head>', f'<script defer src="{root}js/local-data.js"></script>\n</head>')
+        all_actions = '<button type="button" class="btn btn-primary" id="local-export-all">تصدير سجلات المتابعة الأربعة</button><button type="button" class="btn local-delete" id="local-delete-all">حذف سجلات المتابعة الأربعة</button>' if local_scope == 'all' else ''
+        panel = f'''<!-- local-data:start --><section class="local-data-panel" id="local-data-panel" data-scope="{local_scope}" aria-labelledby="local-data-title">
+<h2 id="local-data-title">بيانات المتابعة على هذا المتصفح</h2>
+<p class="local-data-note">السجلات محفوظة محليًا في هذا المتصفح، ولا تُزامن بين الأجهزة. لا ترسل أدوات المتابعة هذه السجلات إلى خادم. مسح بيانات المتصفح أو استخدام وضع خاص قد يفقدها؛ احتفظي بنسخة مصدّرة. ملفات التصدير غير مشفّرة، فاحفظيها في مكان مناسب.</p>
+<p class="local-data-note">الإدارة هنا تخص قياسات النمو والطعام وملاحظات الأعراض والروتينات فقط. لا تمسح تفضيلات الموقع أو بيانات مواقع أخرى.</p>
+<div class="local-data-list" id="local-data-list"></div><p class="local-data-size" id="local-data-size"></p>
+<div class="local-data-actions">{all_actions}<button type="button" class="btn btn-secondary" id="local-refresh">تحديث حالة التخزين</button></div>
+<p id="local-data-message" role="status" aria-live="polite"></p><noscript><p>تحتاج إدارة السجلات والتصدير إلى JavaScript. محتوى الأدلة يبقى قابلًا للقراءة.</p></noscript>
+</section><!-- local-data:end -->\n'''
+        anchors = {'tools': '<section aria-labelledby="tools-list-title">', 'growth': '<section class="growth-tracker">', 'nutrition': '<div class="food-tracker">', 'digestive': '<div class="symptom-tracker">', 'routine': '<div id="routine-results"'}
+        anchor = anchors[path.stem]
+        if anchor not in source:
+            # Routine results may have attributes in a different order.
+            match = re.search(r'<(?:div|section)[^>]*id="routine-results"[^>]*>', source)
+            if not match:
+                raise ValueError(f'Missing local data anchor: {path}')
+            anchor = match.group()
+        source = source.replace(anchor, panel + anchor, 1)
     source = re.sub(r'<body([^>]*)>', lambda m: '<body' + (re.sub(r'class="([^"]*)"', lambda c: f'class="{c[1]} site-shell"' if 'site-shell' not in c[1].split() else c[0], m[1]) if 'class=' in m[1] else m[1] + ' class="site-shell"') + '>', source, count=1)
     return source
 

@@ -439,8 +439,8 @@ function initFoodTracker() {
             const currentDate = new Date().toISOString().split('T')[0];
             
             // التحقق من البيانات
-            if (!newFood) {
-                showTrackerMessage('الرجاء إدخال اسم الطعام', 'error');
+            if (!newFood || newFood.length > 100) {
+                showTrackerMessage('الرجاء إدخال اسم الطعام (حتى 100 حرف)', 'error');
                 return;
             }
             
@@ -464,10 +464,10 @@ function initFoodTracker() {
             };
             
             // حفظ السجل
-            saveFoodRecord(record);
+            if (!saveFoodRecord(record)) return;
             
             // إضافة السجل إلى القائمة
-            addFoodRecordToHistory(record);
+
             
             // مسح الحقول
             document.getElementById('newFood').value = '';
@@ -483,116 +483,43 @@ function initFoodTracker() {
     }
     
     function saveFoodRecord(record) {
-        let records = JSON.parse(localStorage.getItem('foodRecords') || '[]');
-        
-        // إضافة السجل الجديد
-        records.unshift(record);
-        
-        // الاحتفاظ فقط بآخر 15 سجل
-        if (records.length > 15) {
-            records = records.slice(0, 15);
-        }
-        
-        // حفظ في localStorage
-        localStorage.setItem('foodRecords', JSON.stringify(records));
+        const result = window.Ri3ayaLocal.add('foodRecords', record);
+        if (!result.ok) { window.Ri3ayaLocal.notify(result.error); showTrackerMessage(result.error, 'error'); }
+        return result.ok;
     }
-    
-    function loadFoodHistory() {
-        const records = JSON.parse(localStorage.getItem('foodRecords') || '[]');
-        
-        if (records.length > 0 && foodHistory) {
-            records.forEach(record => {
-                addFoodRecordToHistory(record);
-            });
-        } else if (foodHistory) {
-            foodHistory.innerHTML = '<p class="empty-history">لا توجد سجلات سابقة. ابدأي بتسجيل الأطعمة الجديدة.</p>';
-        }
-    }
-    
-    function addFoodRecordToHistory(record) {
-        if (!foodHistory) return;
-        
-        // تنسيق التاريخ
-        const dateObj = new Date(record.date);
-        const formattedDate = dateObj.toLocaleDateString('ar-SA', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric'
-        });
-        
-        // ترجمة رد الفعل
-        const reactionNames = {
-            'like': 'أعجبه',
-            'dislike': 'لم يعجبه',
-            'neutral': 'محايد'
-        };
-        
-        const reactionColors = {
-            'like': '#4CAF50',
-            'dislike': '#F44336',
-            'neutral': '#757575'
-        };
-        
-        // إنشاء عنصر السجل
-        const recordElement = document.createElement('div');
-        recordElement.className = 'tracker-history-item';
-        recordElement.innerHTML = `
-            <div class="record-info">
-                <strong class="food-record-name"></strong>
-                <span class="record-date">${formattedDate}</span>
-            </div>
-            <span class="food-reaction ${record.reaction}" style="background-color: ${reactionColors[record.reaction] + '20'}; color: ${reactionColors[record.reaction]}">
-                ${reactionNames[record.reaction]}
-            </span>
-        `;
-        
-        recordElement.querySelector('.food-record-name').textContent = record.food;
 
-        // إضافة زر حذف
-        const deleteBtn = document.createElement('button');
-        deleteBtn.className = 'delete-record';
-        deleteBtn.innerHTML = '<i class="fas fa-times"></i>';
-        deleteBtn.title = 'حذف السجل';
-        deleteBtn.addEventListener('click', function(e) {
-            e.stopPropagation();
-            deleteFoodRecord(record.id, recordElement);
+    function loadFoodHistory() {
+        if (!foodHistory) return;
+        const result = window.Ri3ayaLocal.read('foodRecords');
+        foodHistory.replaceChildren();
+        if (!result.ok || !result.records.length) {
+            const note = document.createElement('p'); note.className = 'empty-history';
+            note.textContent = result.ok ? 'لا توجد أطعمة مسجلة بعد.' : result.error;
+            foodHistory.append(note); return;
+        }
+        result.records.forEach(record => {
+            const element = document.createElement('div'); element.className = 'tracker-history-item';
+            const info = document.createElement('div'); info.className = 'record-info';
+            const values = [record.food, new Date(record.date + 'T12:00:00').toLocaleDateString('ar-DZ'), ({like:'أعجبه',dislike:'لم يعجبه',neutral:'محايد'})[record.reaction]];
+            values.forEach((value, index) => { const node = document.createElement(index === 0 ? 'strong' : 'span'); node.textContent = value; info.append(node); });
+            const button = document.createElement('button'); button.type = 'button'; button.className = 'delete-record'; button.textContent = 'حذف'; button.setAttribute('aria-label', 'حذف هذا السجل');
+            button.addEventListener('click', () => {
+                if (!confirm('حذف هذا السجل من المتصفح؟')) return;
+                const deleted = window.Ri3ayaLocal.removeRecord('foodRecords', record);
+                window.Ri3ayaLocal.notify(deleted.ok ? 'تم حذف السجل.' : deleted.error);
+                showTrackerMessage(deleted.ok ? 'تم حذف السجل.' : deleted.error, deleted.ok ? 'success' : 'error');
+            });
+            element.append(info, button); foodHistory.append(element);
         });
-        
-        recordElement.querySelector('.record-info').appendChild(deleteBtn);
-        
-        // إضافة السجل إلى بداية القائمة
-        if (foodHistory.querySelector('.empty-history')) {
-            foodHistory.innerHTML = '';
-        }
-        
-        foodHistory.insertBefore(recordElement, foodHistory.firstChild);
     }
-    
-    function deleteFoodRecord(id, element) {
-        // إزالة من localStorage
-        let records = JSON.parse(localStorage.getItem('foodRecords') || '[]');
-        records = records.filter(record => record.id !== id);
-        localStorage.setItem('foodRecords', JSON.stringify(records));
-        
-        // إزالة من الواجهة
-        element.remove();
-        
-        // إذا لم تعد هناك سجلات، عرض رسالة
-        if (foodHistory.children.length === 0) {
-            foodHistory.innerHTML = '<p class="empty-history">لا توجد سجلات سابقة. ابدأي بتسجيل الأطعمة الجديدة.</p>';
-        }
-        
-        showTrackerMessage('تم حذف السجل بنجاح', 'success');
-    }
-    
+    window.addEventListener('ri3aya-data-change', event => { if (!event.detail.key || event.detail.key === 'foodRecords') loadFoodHistory(); });
+
     function showTrackerMessage(message, type) {
         // إنشاء عنصر الرسالة
         const messageDiv = document.createElement('div');
         messageDiv.className = `tracker-message ${type}`;
-        messageDiv.innerHTML = `
-            <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i>
-            <span>${message}</span>
-        `;
+        messageDiv.textContent = message;
+        messageDiv.setAttribute('role', 'status');
         
         // إضافة الرسالة إلى الصفحة
         document.body.appendChild(messageDiv);

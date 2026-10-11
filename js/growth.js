@@ -123,12 +123,14 @@
     function renderTracker() {
         const body = byId('tracker-body');
         if (!body) return;
-        const data = JSON.parse(localStorage.getItem('ri3aya-growth-tracker') || '[]').sort((a, b) => new Date(b.date) - new Date(a.date));
-        body.innerHTML = data.length ? data.map((item) => {
+        const snapshot = window.Ri3ayaLocal.read('ri3aya-growth-tracker');
+        if (!snapshot.ok) { body.innerHTML = `<tr><td colspan="11">${escapeHtml(snapshot.error)}</td></tr>`; return; }
+        const data = snapshot.records.sort((a, b) => new Date(b.date) - new Date(a.date));
+        body.innerHTML = data.length ? data.map((item, index) => {
             const summary = resultSummary(item);
             return `<tr>
                 <td>${escapeHtml(item.date)}</td>
-                <td>${escapeHtml(item.age)} شهر</td>
+                <td>${escapeHtml(item.age)} شهر</td><td>${item.sex === "male" ? "ذكر" : item.sex === "female" ? "أنثى" : "غير مسجل"}</td>
                 <td>${escapeHtml(item.weight || '—')}</td>
                 <td>${escapeHtml(item.height || '—')}</td>
                 <td>${escapeHtml(item.head || '—')}</td>
@@ -136,8 +138,15 @@
                 <td>${escapeHtml(summary.z)}</td>
                 <td>${escapeHtml(summary.percentile)}</td>
                 <td>${escapeHtml(item.notes || '—')}</td>
+                <td><button type="button" class="tracker-delete" data-record="${index}" aria-label="حذف قياس ${escapeHtml(item.date)}">حذف</button></td>
             </tr>`;
-        }).join('') : '<tr><td colspan="9" class="empty-tracker">لا توجد قياسات مسجلة بعد.</td></tr>';
+        }).join('') : '<tr><td colspan="11" class="empty-tracker">لا توجد قياسات مسجلة بعد.</td></tr>';
+        body.querySelectorAll('.tracker-delete').forEach(button => button.addEventListener('click', () => {
+            if (!confirm('حذف هذا القياس من المتصفح؟')) return;
+            const result = window.Ri3ayaLocal.removeRecord('ri3aya-growth-tracker', data[Number(button.dataset.record)]);
+            const message = result.ok ? 'تم حذف القياس.' : result.error;
+            window.Ri3ayaLocal.notify(message); announce(message, result.ok ? 'info' : 'error');
+        }));
     }
 
     async function saveMeasurement() {
@@ -150,32 +159,34 @@
             head: Number(byId('track-head')?.value || 0) || '',
             notes: byId('track-notes')?.value.trim() || ''
         };
-        if (item.age < 0 || item.age > 24 || ![item.weight, item.height, item.head].some(Boolean)) {
+        if (!byId('track-age')?.value || !Number.isFinite(item.age) || item.age < 0 || item.age > 24 || ![item.weight, item.height, item.head].some(Boolean) || [item.weight, item.height, item.head].some(v => v !== '' && (!Number.isFinite(v) || v < 0)) || item.notes.length > 1000 || !/^\d{4}-\d{2}-\d{2}$/.test(item.date) || Number.isNaN(Date.parse(item.date))) {
             announce('أدخلي عمرًا بين 0 و24 شهرًا وقياسًا واحدًا على الأقل.', 'error');
             return;
         }
+        const button = byId('add-measurement');
+        if (button.disabled) return;
+        button.disabled = true;
         try {
             const assessment = await window.Ri3ayaGrowth.assess({ sex: item.sex, ageMonths: item.age, weight: item.weight, length: item.height, head: item.head });
             item.results = summarizeResults(assessment.results);
             item.reference = { source: assessment.manifest.source, version: assessment.manifest.version, reviewed: assessment.manifest.lastReviewed };
-            const data = JSON.parse(localStorage.getItem('ri3aya-growth-tracker') || '[]');
-            data.push(item);
-            localStorage.setItem('ri3aya-growth-tracker', JSON.stringify(data));
-            renderTracker();
+            const saved = window.Ri3ayaLocal.add('ri3aya-growth-tracker', item);
+            if (!saved.ok) { window.Ri3ayaLocal.notify(saved.error); announce(saved.error, 'error'); return; }
             announce('تم حساب المؤشرات المرجعية وحفظ القياس محليًا على هذا الجهاز.', 'success');
         } catch (error) {
             announce(`تعذر حساب القياس: ${error.message}`, 'error');
-        }
+        } finally { button.disabled = false; }
     }
 
     function initTracker() {
         renderTracker();
+        window.addEventListener('ri3aya-data-change', event => { if (!event.detail.key || event.detail.key === 'ri3aya-growth-tracker') renderTracker(); });
         byId('add-measurement')?.addEventListener('click', saveMeasurement);
         byId('clear-tracker')?.addEventListener('click', () => {
             if (!confirm('هل تريدين حذف سجل القياسات المحفوظ على هذا الجهاز؟')) return;
-            localStorage.removeItem('ri3aya-growth-tracker');
-            renderTracker();
-            announce('تم حذف السجل المحلي.', 'info');
+            const result = window.Ri3ayaLocal.clear('ri3aya-growth-tracker');
+            const message = result.ok ? 'تم حذف السجل المحلي.' : result.error;
+            window.Ri3ayaLocal.notify(message); announce(message, result.ok ? 'info' : 'error');
         });
         byId('print-tracker')?.addEventListener('click', () => window.print());
     }
