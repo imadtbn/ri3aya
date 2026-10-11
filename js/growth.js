@@ -5,7 +5,7 @@
     let chart = null;
     let activeIndicator = 'weightForAge';
     let activeSex = 'male';
-    let datasetsReady = false;
+    let chartRevision = 0;
 
     const indicators = {
         weight: { key: 'weightForAge', label: 'الوزن بالنسبة للعمر', unit: 'كجم', axis: 'العمر (شهر)' },
@@ -51,10 +51,22 @@
             <div class="results-header"><h3><i class="fas fa-chart-pie"></i> مؤشر تثقيفي للنمو</h3><span>العمر: ${assessment.ageMonths.toFixed(1)} شهر</span></div>
             <div class="results-grid">${cards || '<p>أدخلي قياسًا واحدًا على الأقل.</p>'}</div>
             <div class="results-summary"><h4><i class="fas fa-circle-info"></i> مهم</h4><p>هذه النتائج مبنية على مرجع WHO LMS ولا تشخّص حالة صحية. قارني القياسات عبر الزمن وراجعي طبيب الأطفال عند القلق أو وجود تغير سريع.</p><p class="source-note">المصدر: WHO Child Growth Standards / CDC WHO LMS data files — الإصدار ${escapeHtml(assessment.manifest.version)}.</p></div>
+            <button type="button" class="btn btn-primary" id="growth-to-tracker">نقل القياس إلى نموذج السجل</button>
         </div>`;
+        byId('growth-to-tracker').addEventListener('click', () => {
+            const values = { 'track-age': assessment.ageMonths, 'track-sex': assessment.sex,
+                'track-weight': assessment.results.find(r => r.key === 'weightForAge')?.value ?? '',
+                'track-height': assessment.results.find(r => r.key === 'lengthForAge')?.value ?? '',
+                'track-head': assessment.results.find(r => r.key === 'headCircumferenceForAge')?.value ?? '' };
+            for (const [id, value] of Object.entries(values)) if (byId(id)) byId(id).value = value;
+            byId('track-age')?.focus();
+            announce('نُقل القياس إلى النموذج. راجعي التاريخ والملاحظات ثم احفظيه.', 'info');
+        });
     }
 
     async function calculate() {
+        const button = byId('calculate-growth');
+        if (button?.disabled) return;
         const years = Number(byId('child-years')?.value || 0);
         const months = Number(byId('child-months')?.value || 0);
         const ageMonths = years * 12 + months;
@@ -62,7 +74,7 @@
         const length = Number(byId('child-height')?.value || 0);
         const head = Number(byId('child-head')?.value || 0);
         const sex = byId('child-gender')?.value || 'male';
-        if (ageMonths < 0 || ageMonths > 24) {
+        if (!Number.isInteger(years) || !Number.isInteger(months) || years < 0 || months < 0 || months > 11 || ageMonths > 24) {
             renderError(new Error('المرجع الحالي يدعم من الولادة حتى 24 شهرًا فقط، ولا يمدد النتائج تلقائيًا.'));
             return;
         }
@@ -70,23 +82,35 @@
             renderError(new Error('أدخلي قياسًا واحدًا على الأقل.'));
             return;
         }
+        if (button) { button.disabled = true; button.setAttribute('aria-busy', 'true'); }
         renderLoading();
         try {
             const assessment = await window.Ri3ayaGrowth.assess({ sex, ageMonths, weight, length, head });
-            renderResults(assessment);
             activeSex = sex;
-            if (datasetsReady) await updateChart();
+            renderResults(assessment);
+            await updateChart();
         } catch (error) {
             renderError(error);
-        }
+        } finally { if (button) { button.disabled = false; button.removeAttribute('aria-busy'); } }
     }
 
     async function updateChart() {
         const canvas = byId('growth-chart');
-        if (!canvas || !window.Chart || !window.Ri3ayaGrowth) return;
-        const data = await window.Ri3ayaGrowth.chartData(activeIndicator, activeSex);
+        if (!canvas || !window.Ri3ayaGrowth) return;
+        let status = byId('growth-chart-status');
+        if (!status) { status = document.createElement('p'); status.id = 'growth-chart-status'; status.setAttribute('role', 'status'); canvas.before(status); }
+        if (!window.Chart) { status.textContent = 'الرسم غير متاح حاليًا؛ يمكنك استخدام النتائج الرقمية والسجل المحلي.'; return; }
+        const revision = ++chartRevision;
+        const indicator = activeIndicator, sex = activeSex;
+        status.textContent = 'جارٍ تحميل الرسم…';
+        let data;
+        try { data = await window.Ri3ayaGrowth.chartData(indicator, sex); }
+        catch (error) { if (revision === chartRevision) status.textContent = `تعذر تحميل الرسم. أعيدي اختيار المؤشر للمحاولة: ${error.message}`; return; }
+        if (revision !== chartRevision) return;
+        status.textContent = '';
+
         if (chart) chart.destroy();
-        const meta = Object.values(indicators).find((item) => item.key === activeIndicator) || indicators.weight;
+        const meta = Object.values(indicators).find((item) => item.key === indicator) || indicators.weight;
         chart = new Chart(canvas.getContext('2d'), {
             type: 'line',
             data,
@@ -226,7 +250,6 @@
         renderLoading();
         try {
             await window.Ri3ayaGrowth.load();
-            datasetsReady = true;
             await updateChart();
             await calculate();
         } catch (error) {

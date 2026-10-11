@@ -7,7 +7,7 @@ const Routine = {
     savedRoutines: [],
 
     init() {
-        console.log('جاري تهيئة نظام الروتين...');
+
 
         // ربط زر إنشاء الروتين
         const generateBtn = document.getElementById('generate-routine');
@@ -53,11 +53,14 @@ const Routine = {
     },
 
     generateRoutine() {
-        console.log('جاري إنشاء الروتين...');
+
 
         // جمع البيانات من النموذج
         const age = document.getElementById('routine-age')?.value || '0-3';
-        const wakeup = parseFloat(document.getElementById('routine-wakeup')?.value) || 7;
+        const timeField = document.getElementById('routine-wakeup');
+        if (!timeField.reportValidity()) return;
+        const [hour, minute] = timeField.value.split(':').map(Number);
+        const wakeup = hour + minute / 60;
         const naps = parseInt(document.getElementById('routine-naps')?.value) || 3;
         const feeding = document.getElementById('routine-feeding')?.value || 'breast';
 
@@ -79,7 +82,9 @@ const Routine = {
         });
 
         // إنشاء الروتين
-        const routine = this.createRoutine(age, wakeup, naps, feeding, activities);
+        let routine;
+        try { routine = this.createRoutine(age, wakeup, naps, feeding, activities); }
+        catch (error) { window.Ri3ayaLocal.notify(error.message); return; }
 
         // حفظ الروتين الحالي
         this.currentRoutine = {
@@ -93,233 +98,48 @@ const Routine = {
     },
 
     createRoutine(age, wakeupTime, napsCount, feedingType, activities) {
-        const routines = {
-            '0-3': this.createNewbornRoutine(wakeupTime, feedingType, activities),
-            '4-6': this.createInfantRoutine(wakeupTime, napsCount, feedingType, activities),
-            '7-9': this.createCrawlerRoutine(wakeupTime, napsCount, feedingType, activities),
-            '10-12': this.createToddlerRoutine(wakeupTime, napsCount, feedingType, activities),
-            '13-18': this.createWalkerRoutine(wakeupTime, napsCount, feedingType, activities),
-            '19-24': this.createPreschoolerRoutine(wakeupTime, napsCount, feedingType, activities)
+        const ages = ['0-3', '4-6', '7-9', '10-12', '13-18', '19-24'];
+        const optional = {
+            outdoor: ['🌳', 'وقت خارج المنزل', 'مكان مناسب للعمر مع مراقبة مستمرة'],
+            reading: ['📚', 'قراءة وتواصل', 'اختاري قصة أو تواصلًا مناسبًا للعمر'],
+            music: ['🎵', 'موسيقى هادئة', 'توقفي إذا انزعج الطفل'],
+            bath: ['🛁', 'استحمام آمن', 'مراقبة مستمرة طوال الاستحمام'],
+            massage: ['🤲', 'تواصل لمسي لطيف', 'بحسب تقبل الطفل']
         };
-
-        return routines[age] || routines['0-3'];
-    },
-
-    createNewbornRoutine(wakeupTime, feedingType, activities) {
-        const routine = [];
-        const baseHour = wakeupTime;
-
-        routine.push({
-            time: this.formatTime(baseHour),
-            activity: 'الرضاعة',
-            icon: '🍼',
-            duration: '30 دقيقة',
-            notes: feedingType === 'breast' ? 'رضاعة طبيعية' : 'رضاعة صناعية'
-        });
-
-        routine.push({
-            time: this.formatTime(baseHour + 0.5),
-            activity: 'التجشؤ والهدوء',
-            icon: '🤱',
-            duration: '15 دقيقة',
-            notes: 'وضعية عمودية للتجشؤ'
-        });
-
-        routine.push({
-            time: this.formatTime(baseHour + 1),
-            activity: 'وقت النوم',
-            icon: '😴',
-            duration: '2 ساعة',
-            notes: 'نوم في سرير الطفل'
-        });
-
-        // إضافة أنشطة إذا كانت مختارة
-        if (activities.includes('music')) {
-            routine.push({
-                time: this.formatTime(baseHour + 3.5),
-                activity: 'الاستماع للموسيقى',
-                icon: '🎵',
-                duration: '20 دقيقة',
-                notes: 'موسيقى هادئة للاسترخاء'
-            });
+        if (!ages.includes(age) || !Number.isFinite(wakeupTime) || wakeupTime < 0 || wakeupTime >= 24 || !Number.isInteger(napsCount) || napsCount < 1 || napsCount > 4 || !['breast', 'solid'].includes(feedingType) || !Array.isArray(activities) || activities.some(a => !Object.hasOwn(optional, a))) {
+            throw new Error('تحققي من إعدادات العمر والوقت وعدد القيلولات والأنشطة.');
         }
-
-        if (activities.includes('massage')) {
-            routine.push({
-                time: this.formatTime(baseHour + 4),
-                activity: 'التدليك',
-                icon: '💆',
-                duration: '15 دقيقة',
-                notes: 'تدليك لطيف بزيت الأطفال'
-            });
+        const blocks = [{ icon: '🍼', activity: 'الحليب والتغذية', notes: feedingType === 'solid' ? 'طعام تكميلي مناسب للعمر مع الحليب؛ راجعي دليل التغذية' : 'الحليب حسب احتياجات الطفل؛ لا تؤخري الرضعة بسبب الجدول' },
+            { icon: '🧸', activity: 'لعب وتواصل', notes: 'لعب مناسب للعمر أثناء اليقظة وتحت المراقبة' }];
+        const selected = [...new Set(activities)].map(key => ({ icon: optional[key][0], activity: optional[key][1], notes: optional[key][2] }));
+        for (let n = 0; n < Math.max(napsCount, selected.length); n++) {
+            if (n < napsCount) blocks.push({ icon: '😴', activity: `قيلولة ${n + 1}`, notes: 'قدّمي النوم أو أخريه حسب حاجة الطفل، واتبعي دليل النوم الآمن' });
+            if (selected[n]) blocks.push(selected[n]);
         }
-
         return {
-            title: 'روتين حديث الولادة (0-3 أشهر)',
-            schedule: routine,
-            tips: [
-                'الرضاعة عند الطلب هي الأفضل في هذه المرحلة',
-                'استغلي فترات اليقظة للتواصل البصري واللمس',
-                'حافظي على درجة حرارة الغرفة بين 22-24 درجة'
-            ],
-            totalFeeds: '8-12 مرة يومياً',
-            totalSleep: '14-17 ساعة يومياً'
-        };
-    },
-
-    createInfantRoutine(wakeupTime, napsCount, feedingType, activities) {
-        const routine = [];
-        const baseHour = wakeupTime;
-
-        routine.push({
-            time: this.formatTime(baseHour),
-            activity: 'الرضاعة/الفطور',
-            icon: '🍼',
-            duration: '30 دقيقة',
-            notes: feedingType === 'solid' ? 'وجبة فطور + حليب' : 'رضاعة'
-        });
-
-        routine.push({
-            time: this.formatTime(baseHour + 0.5),
-            activity: 'لعب خفيف',
-            icon: '🧸',
-            duration: '45 دقيقة',
-            notes: 'ألعاب بصرية وسمعية'
-        });
-
-        routine.push({
-            time: this.formatTime(baseHour + 1.25),
-            activity: 'قيلولة الصباح',
-            icon: '😴',
-            duration: '1-2 ساعة',
-            notes: 'نوم في غرفة هادئة'
-        });
-
-        // إضافة المزيد من الأنشطة حسب العدد المحدد
-        if (napsCount >= 3) {
-            routine.push({
-                time: this.formatTime(baseHour + 3.5),
-                activity: 'قيلولة الظهر',
-                icon: '😴',
-                duration: '1-2 ساعة',
-                notes: 'بعد وجبة الغداء'
-            });
-        }
-
-        if (activities.includes('bath')) {
-            routine.push({
-                time: this.formatTime(baseHour + 6),
-                activity: 'وقت الاستحمام',
-                icon: '🛁',
-                duration: '20 دقيقة',
-                notes: 'ماء دافئ وهدوء'
-            });
-        }
-
-        return {
-            title: 'روتين الرضيع (4-6 أشهر)',
-            schedule: routine,
-            tips: [
-                'ابدأي إدخال الأطعمة الصلبة تدريجياً',
-                'حافظي على أوقات نوم منتظمة',
-                'شجعي الطفل على التقلب واللعب على البطن'
-            ],
-            totalFeeds: '5-6 مرات يومياً',
-            totalSleep: '12-16 ساعة يومياً'
-        };
-    },
-
-    createCrawlerRoutine(wakeupTime, napsCount, feedingType, activities) {
-        // ... كود مشابه للمراحل الأخرى ...
-        return this.createGenericRoutine('الحبو (7-9 أشهر)', wakeupTime, napsCount, activities);
-    },
-
-    createToddlerRoutine(wakeupTime, napsCount, feedingType, activities) {
-        // ... كود مشابه للمراحل الأخرى ...
-        return this.createGenericRoutine('المشي المبكر (10-12 شهر)', wakeupTime, napsCount, activities);
-    },
-
-    createWalkerRoutine(wakeupTime, napsCount, feedingType, activities) {
-        // ... كود مشابه للمراحل الأخرى ...
-        return this.createGenericRoutine('المشي (13-18 شهر)', wakeupTime, napsCount, activities);
-    },
-
-    createPreschoolerRoutine(wakeupTime, napsCount, feedingType, activities) {
-        // ... كود مشابه للمراحل الأخرى ...
-        return this.createGenericRoutine('ما قبل المدرسة (19-24 شهر)', wakeupTime, napsCount, activities);
-    },
-
-    createGenericRoutine(title, wakeupTime, napsCount, activities) {
-        const routine = [];
-        const baseHour = wakeupTime;
-
-        // روتين أساسي
-        routine.push({
-            time: this.formatTime(baseHour),
-            activity: 'الاستيقاظ والفطور',
-            icon: '☀️',
-            duration: '45 دقيقة',
-            notes: 'وجبة فطور متكاملة'
-        });
-
-        routine.push({
-            time: this.formatTime(baseHour + 1),
-            activity: 'لعب حر',
-            icon: '🧸',
-            duration: '1 ساعة',
-            notes: 'لعب حر مع الألعاب المناسبة'
-        });
-
-        if (napsCount >= 1) {
-            routine.push({
-                time: this.formatTime(baseHour + 2),
-                activity: 'قيلولة',
-                icon: '😴',
-                duration: '1-2 ساعة',
-                notes: 'نوم هادئ'
-            });
-        }
-
-        if (activities.includes('outdoor')) {
-            routine.push({
-                time: this.formatTime(baseHour + 4),
-                activity: 'اللعب خارج المنزل',
-                icon: '🌳',
-                duration: '30 دقيقة',
-                notes: 'تعرض لأشعة الشمس الصباحية'
-            });
-        }
-
-        if (activities.includes('reading')) {
-            routine.push({
-                time: this.formatTime(baseHour + 6),
-                activity: 'قراءة القصص',
-                icon: '📚',
-                duration: '20 دقيقة',
-                notes: 'قصص مصورة'
-            });
-        }
-
-        return {
-            title: title,
-            schedule: routine,
-            tips: [
-                'حافظي على روتين منتظم للنوم',
-                'قدمي وجبات صحية ومتنوعة',
-                'شجعي الطفل على المشاركة في الأنشطة'
-            ],
-            totalFeeds: '3 وجبات رئيسية + وجبتان خفيفتان',
-            totalSleep: '11-14 ساعة يومياً'
+            title: `روتين مرن — من ${age.split('-')[0]} إلى ${age.split('-')[1]} شهرًا`,
+            schedule: blocks.map((block, index) => ({ ...block, time: this.formatTime(wakeupTime + index * 1.5), duration: 'مرنة حسب حاجة الطفل' })),
+            tips: ['الأوقات أمثلة تنظيمية قابلة للتغيير، ولا تحدد مواعيد الرضاعة أو مدد النوم.', 'عدد القيلولات يعكس اختيارك، وليس توصية طبية.', 'تجاوز الجدول عند ظهور علامات الجوع أو التعب أو المرض.'],
+            totalFeeds: 'التغذية حسب حاجة الطفل',
+            totalSleep: `${napsCount} قيلولات اخترتها؛ المدة مرنة`
         };
     },
 
     formatTime(hour) {
-        const totalMinutes = hour * 60;
-        const hours = Math.floor(totalMinutes / 60);
-        const minutes = Math.round(totalMinutes % 60);
-        const period = hours >= 12 ? 'مساءً' : 'صباحاً';
-        const displayHour = hours > 12 ? hours - 12 : hours;
-        return `${displayHour}:${minutes.toString().padStart(2, '0')} ${period}`;
+        const total = Math.round(hour * 60);
+        const day = Math.floor(total / 1440);
+        const minutes = ((total % 1440) + 1440) % 1440;
+        const h = Math.floor(minutes / 60);
+        return `${String(h).padStart(2, '0')}:${String(minutes % 60).padStart(2, '0')}${day ? ` (+${day} يوم)` : ''}`;
+    },
+
+    restoreConfig(config = {}) {
+        for (const [id, value] of [['routine-age', config.age], ['routine-naps', config.naps], ['routine-feeding', config.feeding]]) {
+            const field = document.getElementById(id);
+            if (field && [...field.options].some(o => o.value === String(value))) field.value = String(value);
+        }
+        if (Number.isFinite(config.wakeup) && config.wakeup >= 0 && config.wakeup < 24) document.getElementById('routine-wakeup').value = this.formatTime(config.wakeup);
+        document.querySelectorAll('[id^="activity-"]').forEach(field => { field.checked = Array.isArray(config.activities) && config.activities.includes(field.id.replace('activity-', '')); });
     },
 
     displayRoutine(routine) {
@@ -329,7 +149,7 @@ const Routine = {
         const scheduleHTML = routine.schedule.map((item, index) => `
             <div class="routine-item" style="animation-delay: ${index * 0.1}s">
                 <div class="routine-time">
-                    <i class="far fa-clock"></i> ${escape(item.time)}
+                    <i class="far fa-clock"></i> <bdi dir="ltr">${escape(item.time)}</bdi>
                 </div>
                 <div class="routine-activity">
                     ${escape(item.icon)} ${escape(item.activity)}
@@ -365,7 +185,7 @@ const Routine = {
                 
                 <div class="routine-footer">
                     <div class="routine-tips">
-                        <h5><i class="fas fa-lightbulb"></i> نصائح للالتزام بالروتين:</h5>
+                        <h5><i class="fas fa-lightbulb"></i> إرشادات استخدام الروتين:</h5>
                         <ul>${tipsHTML}</ul>
                     </div>
                     
@@ -478,8 +298,8 @@ ${routineData.schedule.map(item => `${item.time} - ${item.icon} ${item.activity}
 💡 نصائح:
 ${routineData.tips.join('\n')}
 
-🛌 مجموع النوم: ${routineData.totalSleep}
-🍼 مجموع الوجبات: ${routineData.totalFeeds}
+🛌 تنظيم النوم: ${routineData.totalSleep}
+🍼 التغذية: ${routineData.totalFeeds}
 
 تم الإنشاء بواسطة تطبيق رعاية الرضع
         `.trim();
@@ -514,7 +334,7 @@ ${routineData.tips.join('\n')}
             const meta = document.createElement('p'); meta.textContent = `${record.title} · ${new Date(record.savedAt).toLocaleDateString('ar-DZ')}`;
             const actions = document.createElement('div'); actions.className = 'saved-routine-actions';
             const open = document.createElement('button'); open.type = 'button'; open.className = 'btn btn-primary'; open.textContent = 'عرض الروتين';
-            open.addEventListener('click', () => { this.currentRoutine = record; this.displayRoutine(record); document.getElementById('routine-results').scrollIntoView({ behavior: 'smooth', block: 'start' }); });
+            open.addEventListener('click', () => { this.currentRoutine = record; this.restoreConfig(record.config); this.displayRoutine(record); document.getElementById('routine-results').scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' }); });
             const del = document.createElement('button'); del.type = 'button'; del.className = 'btn tracker-delete'; del.textContent = 'حذف';
             del.addEventListener('click', () => { if (!confirm(`حذف الروتين «${record.name}»؟`)) return; const r = window.Ri3ayaLocal.removeRecord('saved_routines', record); window.Ri3ayaLocal.notify(r.ok ? 'تم حذف الروتين المحفوظ.' : r.error); });
             actions.append(open, del); card.append(title, meta, actions); section.append(card);

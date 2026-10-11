@@ -38,6 +38,8 @@ jobs:
         run: node scripts/test_search.cjs
       - name: Verify local data durability and exports
         run: node scripts/test_local_data.cjs
+      - name: Verify tool guidance, routine choices and growth recovery
+        run: node scripts/test_tools.cjs
       - name: Verify SEO and PWA metadata
         run: python scripts/check_seo_pwa.py
       - name: Verify release snapshot

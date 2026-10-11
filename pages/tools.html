@@ -64,15 +64,28 @@
 </header>
     <main id="main-content" class="container page-content">
         <section class="site-hero"><div class="container site-hero-inner"><div><nav class="site-breadcrumb" aria-label="مسار التنقل"><ol><li><a href="../index.html">الرئيسية</a></li><li aria-current="page">الأدوات التفاعلية</li></ol></nav><h1 id="tools-title">الأدوات التفاعلية</h1><p>اختاري الأداة المناسبة. كل الأدوات تثقيفية عامة، ولا تستبدل طبيب الأطفال ولا تقدم وصفات أو جرعات شخصية.</p></div></div></section>
+        <section class="tool-chooser" id="tool-chooser" aria-labelledby="tool-chooser-title" hidden>
+<h2 id="tool-chooser-title">ابحثي عن الأداة المناسبة</h2>
+<p>اختاري ما تريدين فعله، وأضيفي العمر لتحديد الأدوات التي تدعمه. تبقى الأدلة العامة متاحة للقراءة.</p>
+<div class="tool-chooser-fields">
+<div><label for="tool-query">بحث في الأدوات</label><input type="search" id="tool-query" maxlength="100" placeholder="نمو، روتين، طعام…"></div>
+<div><label for="tool-goal">ماذا تريدين؟</label><select id="tool-goal"><option value="all">جميع الأدوات</option><option value="followup">تسجيل ومتابعة</option><option value="organize">تنظيم اليوم</option><option value="care">أدلة العناية والسلامة</option></select></div>
+<div><label for="tool-age">العمر بالأشهر (اختياري)</label><input type="number" id="tool-age" min="0" max="36" step="1" placeholder="مثال: 6"></div>
+</div>
+<button type="button" class="btn btn-secondary" id="tool-reset">عرض جميع الأدوات</button>
+<p id="tool-match-count" role="status" aria-live="polite"></p>
+<p id="tool-no-match" hidden>لا توجد أداة تطابق هذه الخيارات. امسحي البحث أو اختاري هدفًا آخر؛ يمكنك أيضًا <a href="search.html">البحث في الأدلة والمقالات</a>.</p>
+</section>
         <section aria-labelledby="tools-list-title">
             <h2 id="tools-list-title" class="section-title">اختاري أداة</h2>
             <div class="tools-index-grid">
-                <article class="tool-index-card"><div class="tool-index-card__icon" aria-hidden="true"><i class="fas fa-chart-line"></i></div><h2>متابعة النمو</h2><p>احسبي مؤشرات WHO LMS واحفظي القياسات محليًا مع Z-score والنسبة المئوية التثقيفية.</p><a class="btn btn-primary" href="growth.html">فتح متابعة النمو</a></article>
-                <article class="tool-index-card"><div class="tool-index-card__icon" aria-hidden="true"><i class="fas fa-syringe"></i></div><h2>التحقق من التلقيح</h2><p>راجعي دفتر التلقيح والمركز الصحي ووزارة الصحة الجزائرية بدل اعتماد جدول ثابت غير مؤكد.</p><a class="btn btn-primary" href="vaccine.html">فتح صفحة التلقيح</a></article>
-                <article class="tool-index-card"><div class="tool-index-card__icon" aria-hidden="true"><i class="fas fa-calendar-alt"></i></div><h2>مولد الروتين</h2><p>أنشئي روتينًا مرنًا قائمًا على إشارات الطفل، مع عدم تأخير الرضاعة أو تجاهل علامات المرض.</p><a class="btn btn-primary" href="tools/routine.html">فتح مولد الروتين</a></article>
-                <article class="tool-index-card"><div class="tool-index-card__icon" aria-hidden="true"><i class="fas fa-baby-carriage"></i></div><h2>فهم البكاء</h2><p>دليل لتنظيم الملاحظات والتحقق من الاحتياجات الشائعة ومؤشرات الخطر، دون تحليل صوت أو تشخيص.</p><a class="btn btn-primary" href="crying.html">فتح دليل البكاء</a></article>
-                <article class="tool-index-card"><div class="tool-index-card__icon" aria-hidden="true"><i class="fas fa-bed"></i></div><h2>النوم الآمن</h2><p>إرشادات عامة حول وضعية النوم والسطح الآمن ومشاركة الغرفة، مع إحالة الحالات الخاصة للمختص.</p><a class="btn btn-primary" href="sleep.html">فتح النوم الآمن</a></article>
-                <article class="tool-index-card"><div class="tool-index-card__icon" aria-hidden="true"><i class="fas fa-utensils"></i></div><h2>التغذية التكميلية</h2><p>مبادئ عامة لإدخال الطعام المناسب للعمر والوقاية من الاختناق والحساسية دون خطة شخصية.</p><a class="btn btn-primary" href="nutrition.html">فتح التغذية</a></article>
+                <article class="tool-index-card" data-tool="growth" data-goal="followup" data-max-age="24"><div class="tool-index-card__icon" aria-hidden="true"><i class="fas fa-chart-line"></i></div><h2>متابعة النمو</h2><p>احسبي مؤشرات WHO LMS واحفظي القياسات محليًا مع Z-score والنسبة المئوية التثقيفية.</p><a class="btn btn-primary" href="growth.html">فتح متابعة النمو</a></article>
+                <article class="tool-index-card" data-tool="vaccine" data-goal="care"><div class="tool-index-card__icon" aria-hidden="true"><i class="fas fa-syringe"></i></div><h2>التحقق من التلقيح</h2><p>راجعي دفتر التلقيح والمركز الصحي ووزارة الصحة الجزائرية بدل اعتماد جدول ثابت غير مؤكد.</p><a class="btn btn-primary" href="vaccine.html">فتح صفحة التلقيح</a></article>
+                <article class="tool-index-card" data-tool="routine" data-goal="organize" data-max-age="24"><div class="tool-index-card__icon" aria-hidden="true"><i class="fas fa-calendar-alt"></i></div><h2>مولد الروتين</h2><p>أنشئي روتينًا مرنًا قائمًا على إشارات الطفل، مع عدم تأخير الرضاعة أو تجاهل علامات المرض.</p><a class="btn btn-primary" href="tools/routine.html">فتح مولد الروتين</a></article>
+                <article class="tool-index-card" data-tool="crying" data-goal="care"><div class="tool-index-card__icon" aria-hidden="true"><i class="fas fa-baby-carriage"></i></div><h2>فهم البكاء</h2><p>دليل لتنظيم الملاحظات والتحقق من الاحتياجات الشائعة ومؤشرات الخطر، دون تحليل صوت أو تشخيص.</p><a class="btn btn-primary" href="crying.html">فتح دليل البكاء</a></article>
+                <article class="tool-index-card" data-tool="sleep" data-goal="care"><div class="tool-index-card__icon" aria-hidden="true"><i class="fas fa-bed"></i></div><h2>النوم الآمن</h2><p>إرشادات عامة حول وضعية النوم والسطح الآمن ومشاركة الغرفة، مع إحالة الحالات الخاصة للمختص.</p><a class="btn btn-primary" href="sleep.html">فتح النوم الآمن</a></article>
+                <article class="tool-index-card" data-tool="nutrition" data-goal="followup"><div class="tool-index-card__icon" aria-hidden="true"><i class="fas fa-utensils"></i></div><h2>التغذية التكميلية</h2><p>مبادئ عامة لإدخال الطعام المناسب للعمر والوقاية من الاختناق والحساسية دون خطة شخصية.</p><a class="btn btn-primary" href="nutrition.html">فتح التغذية</a></article>
+                <article class="tool-index-card" data-tool="digestive" data-goal="followup"><div class="tool-index-card__icon" aria-hidden="true">📝</div><h2>ملاحظات الجهاز الهضمي</h2><p>سجّلي ملاحظات الأعراض محليًا وجهّزيها للمتابعة، مع الرجوع إلى علامات الخطر ودون تشخيص آلي.</p><a class="btn btn-primary" href="digestive.html#symptom-tracker">فتح سجل الملاحظات</a></article>
             </div>
         </section>
         <!-- local-data:start --><section class="local-data-panel" id="local-data-panel" data-scope="all" aria-labelledby="local-data-title">
@@ -95,5 +108,6 @@
     <button class="back-to-top" type="button" aria-label="العودة للأعلى"><i class="fas fa-chevron-up"></i></button>
     <script defer src="../js/main.js"></script>
     <script defer src="../js/search.js"></script>
+<script defer src="../js/tools-index.js"></script>
 </body>
 </html>
