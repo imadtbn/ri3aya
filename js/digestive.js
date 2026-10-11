@@ -1,6 +1,6 @@
 // تهيئة صفحة صحة الجهاز الهضمي
 document.addEventListener('DOMContentLoaded', function() {
-    // تهيئة أداة تشخيص الاضطرابات
+    // تهيئة دليل ملاحظات الجهاز الهضمي
     initDiagnosisTool();
     
     // تهيئة مسجل الأعراض
@@ -12,135 +12,25 @@ document.addEventListener('DOMContentLoaded', function() {
     // إضافة أي تفاعلات إضافية خاصة بصفحة الجهاز الهضمي
 });
 
-// أداة تشخيص الاضطرابات
+// دليل ملاحظات الجهاز الهضمي
 function initDiagnosisTool() {
-    const diagnoseBtn = document.getElementById('diagnoseDisorder');
-    const diagnosisResult = document.getElementById('diagnosisResult');
-    
-    if (diagnoseBtn && diagnosisResult) {
-        diagnoseBtn.addEventListener('click', function() {
-            const symptoms = [];
-            
-            // جمع الأعراض المحددة
-            document.querySelectorAll('.symptoms-checklist input[type="checkbox"]:checked').forEach(checkbox => {
-                symptoms.push(checkbox.value);
-            });
-            
-            // التحقق من اختيار أعراض
-            if (symptoms.length === 0) {
-                showDiagnosisError(diagnosisResult, 'الرجاء اختيار عرض واحد على الأقل');
-                return;
-            }
-            
-            // إخفاء النتيجة السابقة
-            diagnosisResult.style.display = 'none';
-            
-            // إضافة تأثير التحميل
-            this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري التحليل...';
-            this.disabled = true;
-            
-            // محاكاة وقت المعالجة
-            setTimeout(() => {
-                let diagnosis = '';
-                let description = '';
-                let recommendations = [];
-                let severity = '';
-                
-                // تحليل الأعراض وتقديم التشخيص المحتمل
-                if (symptoms.includes('بكاء') && symptoms.includes('انتفاخ')) {
-                    diagnosis = 'مغص الرضع';
-                    description = 'نوبات بكاء شديدة مع انتفاخ البطن وتصلبها، شائع بين عمر 2 أسابيع و4 أشهر';
-                    recommendations = [
-                        'حاولي وضعيات حمل مهدئة مثل وضعية النمر على الشجرة',
-                        'قومي بتدليك بطن الطفل باتجاه عقارب الساعة',
-                        'جربي تمارين الدراجة للساقين',
-                        'احملي الطفل عمودياً بعد الرضاعة'
-                    ];
-                    severity = 'متوسط';
-                } else if (symptoms.includes('تقيؤ') && symptoms.includes('رفض')) {
-                    diagnosis = 'ارتجاع مريئي';
-                    description = 'عودة محتويات المعدة إلى المريء بعد الرضاعة، قد يكون طبيعياً أو مرضياً';
-                    recommendations = [
-                        'أرضعي الطفل في وضع نصف جالس',
-                        'احملي الطفل عمودياً 20-30 دقيقة بعد الرضاعة',
-                        'قدمي وجبات صغيرة متكررة',
-                        'ارفعي رأس السرير قليلاً أثناء النوم'
-                    ];
-                    severity = 'خفيف إلى متوسط';
-                } else if (symptoms.includes('انتفاخ') && symptoms.includes('بكاء')) {
-                    diagnosis = 'غازات';
-                    description = 'تراكم الغازات في الأمعاء يسبب انتفاخاً وبكاءً وانزعاجاً';
-                    recommendations = [
-                        'قومي بتجشئة الطفل بعد كل رضعة',
-                        'استخدمي زجاجات الرضاعة المضادة للمغص',
-                        'مارسي تمارين الدراجة للساقين',
-                        'دلكي بطن الطفل بزيت دافئ'
-                    ];
-                    severity = 'خفيف';
-                } else if (symptoms.includes('براز') && symptoms.length === 1) {
-                    diagnosis = 'اضطراب في حركة الأمعاء';
-                    description = 'تغير في طبيعة البراز قد يشير إلى إمساك أو إسهال';
-                    recommendations = [
-                        'راقبي لون وقوام البراز',
-                        'زيدي كمية السوائل إذا كان الطفل يتناول الطعام الصلب',
-                        'سجلي عدد مرات التبرز',
-                        'استشيري الطبيب إذا استمر التغير أكثر من يومين'
-                    ];
-                    severity = 'يحدد حسب نوع التغير';
-                } else {
-                    diagnosis = 'اضطراب هضمي عام';
-                    description = 'مجموعة من الأعراض تشير إلى اضطراب في الجهاز الهضمي يحتاج مراقبة';
-                    recommendations = [
-                        'راقبي الأعراض وتسجيلها',
-                        'تأكدي من نظافة أدوات الرضاعة',
-                        'حافظي على روتين تغذية منتظم',
-                        'استشيري الطبيب إذا ساءت الأعراض'
-                    ];
-                    severity = 'يحدد حسب تطور الأعراض';
-                }
-                
-                // عرض النتيجة
-                diagnosisResult.innerHTML = `
-                    <h4><i class="fas fa-stethoscope"></i> التشخيص المحتمل</h4>
-                    <div class="diagnosis-type">
-                        <strong>${diagnosis}</strong>
-                        <span class="severity-badge">${severity}</span>
-                    </div>
-                    <p>${description}</p>
-                    
-                    <div class="diagnosis-details">
-                        <h5><i class="fas fa-list-check"></i> التوصيات</h5>
-                        <ul>
-                            ${recommendations.map(rec => `<li><i class="fas fa-check"></i> ${rec}</li>`).join('')}
-                        </ul>
-                    </div>
-                    
-                    <div class="diagnosis-warning">
-                        <p><i class="fas fa-exclamation-triangle"></i> <strong>تذكير:</strong> هذا التشخيص هو تقدير استرشادي بناءً على الأعراض المختارة. استشيري الطبيب للحصول على تشخيص دقيق وعلاج مناسب.</p>
-                    </div>
-                `;
-                diagnosisResult.style.display = 'block';
-                
-                // إعادة تعيين الزر
-                this.innerHTML = '<i class="fas fa-stethoscope"></i> احصلي على التشخيص المحتمل';
-                this.disabled = false;
-                
-                // التمرير إلى النتيجة
-                diagnosisResult.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            }, 1000);
-        });
-    }
-    
-    function showDiagnosisError(element, message) {
-        element.innerHTML = `
-            <div class="error-message">
-                <i class="fas fa-exclamation-circle"></i>
-                <p>${message}</p>
-            </div>
-        `;
-        element.style.display = 'block';
-        element.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    }
+    const button = document.getElementById('diagnoseDisorder');
+    const result = document.getElementById('diagnosisResult');
+    if (!button || !result) return;
+    button.addEventListener('click', () => {
+        const symptoms = Array.from(document.querySelectorAll('.symptoms-checklist input:checked')).map(input => input.value);
+        result.replaceChildren();
+        const heading = document.createElement('h4');
+        heading.textContent = symptoms.length ? 'ملخص الملاحظات' : 'اختاري ملاحظة واحدة على الأقل';
+        const summary = document.createElement('p');
+        summary.textContent = symptoms.length ? `الملاحظات المختارة: ${symptoms.join('، ')}. لا تحدد هذه القائمة سبب الأعراض ولا درجة خطورتها.` : 'لا يستطيع الموقع تشخيص اضطراب هضمي أو استبعاد المرض.';
+        const note = document.createElement('p');
+        note.textContent = 'عند صعوبة التنفس أو فقدان الوعي أو تغير اللون، اطلبي المساعدة العاجلة. عند القيء المتكرر أو رفض الرضاعة أو قلة التبول أو أعراض غير معتادة، تواصلي مع الطبيب. لا تنتظري نتيجة من الموقع.';
+        result.append(heading, summary, note);
+        result.style.display = 'block';
+        result.setAttribute('role', 'status');
+        result.setAttribute('aria-live', 'polite');
+    });
 }
 
 // مسجل الأعراض

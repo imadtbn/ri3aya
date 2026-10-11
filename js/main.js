@@ -64,7 +64,7 @@
         });
 
         all('.nav-menu a').forEach((link) => link.addEventListener('click', () => {
-            if (window.innerWidth <= 768) setMenuState(menu, button, false);
+            if (window.innerWidth <= 992) setMenuState(menu, button, false);
         }));
 
         document.addEventListener('click', (event) => {
@@ -74,7 +74,7 @@
             if (event.key === 'Escape') setMenuState(menu, button, false);
         });
         window.addEventListener('resize', () => {
-            if (window.innerWidth > 768) setMenuState(menu, button, false);
+            if (window.innerWidth > 992) setMenuState(menu, button, false);
         }, { passive: true });
     }
 

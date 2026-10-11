@@ -372,7 +372,7 @@
                 <ul>
                     <li><a href="../index.html"><i class="fas fa-home"></i> الرئيسية</a></li>
                     <li><a href="../index.html#sections"><i class="fas fa-info-circle"></i> عن الموقع</a></li>
-                    <li><a href="resources.html#resources"><i class="fas fa-book"></i> المصادر</a></li>
+                    <li><a href="resources.html"><i class="fas fa-book"></i> المصادر</a></li>
                     <li><a href="contact.html"><i class="fas fa-envelope"></i> اتصل بنا</a></li>
                 </ul>
             </nav>
@@ -467,22 +467,22 @@
                     <div class="contact-info">
                         <div class="contact-item">
                             <i class="fas fa-envelope"></i>
-                            <span>info@babycare.com</span>
+                            <span>قناة استقبال الرسائل لم تُفعّل بعد</span>
                         </div>
                         <div class="contact-item">
                             <i class="fas fa-phone"></i>
-                            <span>+966 12 345 6789</span>
+                            <span>لا يوجد هاتف دعم معلن</span>
                         </div>
                         <div class="contact-item">
                             <i class="fas fa-map-marker-alt"></i>
-                            <span>الرياض، المملكة العربية السعودية</span>
+                            <span>لا يوجد عنوان مكتب معلن</span>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="highlight-box">
-                <p>آخر تحديث: 15 أغسطس 2023</p>
+                <p>آخر تحديث تحريري: 11 أكتوبر 2026</p>
                 <p>نحن نحتفظ بالحق في تعديل بنود إخلاء المسؤولية هذه في أي وقت. يرجى مراجعة هذه الصفحة دورياً للاطلاع
                     على أي تحديثات.</p>
             </div>
@@ -518,20 +518,12 @@
                 </div>
                 <div class="footer-col">
                     <h3>اتصل بنا</h3>
-                    <ul class="footer-contact">
-                        <li><i class="fas fa-envelope" aria-hidden="true"></i><a href="mailto:info@raayatalarada.com">info@raayatalarada.com</a></li>
-                        <li><i class="fas fa-phone" aria-hidden="true"></i><a href="tel:+213123456789" dir="ltr">+213 12 345 6789</a></li>
-                        <li><i class="fas fa-map-marker-alt" aria-hidden="true"></i><span>الجزائر العاصمة، الجزائر</span></li>
-                    </ul>
+                    <ul class="footer-contact"><li><i class="fas fa-comment" aria-hidden="true"></i><a href="contact.html">ملاحظات حول الموقع</a></li><li><span>محتوى تثقيفي عام، وليس خدمة طبية.</span></li></ul>
                 </div>
                 <div class="footer-col">
                     <h3>النشرة البريدية</h3>
                     <p>احصلي على تنبيهات عامة حول المقالات والتحديثات.</p>
-                    <form class="newsletter-form" action="#" novalidate>
-                        <label class="sr-only" for="footer-email">البريد الإلكتروني</label>
-                        <input id="footer-email" name="email" type="email" placeholder="بريدك الإلكتروني" autocomplete="email" required>
-                        <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane" aria-hidden="true"></i> اشتراك</button>
-                    </form>
+                    <p class="source-note">الاشتراك غير متاح حاليًا؛ يمكنك متابعة المقالات من الموقع.</p>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -548,13 +540,6 @@
     <script>
         // Simple script to add current date to the disclaimer
         document.addEventListener('DOMContentLoaded', function () {
-            const updateDateElement = document.querySelector('.highlight-box p:first-child');
-            if (updateDateElement) {
-                const today = new Date();
-                const options = { year: 'numeric', month: 'long', day: 'numeric' };
-                const dateString = today.toLocaleDateString('ar-SA', options);
-                updateDateElement.textContent = `آخر تحديث: ${dateString}`;
-            }
 
             // Add smooth scrolling for anchor links
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -575,7 +560,8 @@
             });
         });
     </script>
-    <script defer src="../js/search.js"></script>
+    <script defer src="../js/main.js"></script>
+<script defer src="../js/search.js"></script>
 </body>
 
 </html>

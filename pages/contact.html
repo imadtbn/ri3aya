@@ -98,18 +98,18 @@
     <main id="main-content" class="container">
         <!-- رسائل التوجيه -->
         <div id="successMessage" class="message success-message" role="status" aria-live="polite">
-            <i class="fas fa-check-circle"></i> تم تجهيز رسالتك محليًا. هذه النسخة الثابتة لا ترسل الرسائل إلى خادم؛ استخدمي البريد الإلكتروني المباشر عند الحاجة.
+            <i class="fas fa-check-circle"></i> تم نسخ مسودة الرسالة على جهازك. لم تُرسل إلى فريق الموقع.
         </div>
 
         <div id="errorMessage" class="message error-message" role="alert" aria-live="assertive">
-            <i class="fas fa-exclamation-circle"></i> حدث خطأ أثناء إرسال الرسالة. يرجى المحاولة مرة أخرى.
+            <i class="fas fa-exclamation-circle"></i> تعذر النسخ التلقائي. يمكنك نسخ المسودة الظاهرة أدناه يدويًا.
         </div>
 
         <div class="contact-container">
             <!-- نموذج الاتصال -->
             <div class="contact-form-container animate delay-1">
-                <h2>أرسل رسالتك إلينا</h2>
-                <form id="contactForm">
+                <h2>جهّز ملاحظتك حول الموقع</h2><p id="contact-status" class="medical-safety-note">قناة استقبال الرسائل لم تُفعّل بعد. يساعدك هذا النموذج على نسخ مسودة محليًا فقط، ولا يرسل البيانات. لا تكتبي بيانات الطفل الطبية أو أي معلومات حساسة.</p>
+                <form id="contactForm" aria-describedby="contact-status">
                     <div class="form-group">
                         <label for="name">الاسم الكامل *</label>
                         <input type="text" id="name" class="form-control" placeholder="أدخل اسمك الكامل" required>
@@ -144,7 +144,7 @@
                     </div>
 
                     <button type="submit" class="btn btn-wide">
-                        <i class="fas fa-paper-plane"></i> إرسال الرسالة
+                        <i class="fas fa-copy"></i> نسخ مسودة الرسالة
                     </button>
                 </form>
             </div>
@@ -153,58 +153,7 @@
             <div class="contact-info-container">
                 <h2 class="animate delay-2">معلومات التواصل</h2>
 
-                <div class="contact-info-item animate delay-2">
-                    <div class="contact-info-icon">
-                        <i class="fas fa-map-marker-alt"></i>
-                    </div>
-                    <div class="contact-info-content">
-                        <h3>عنواننا</h3>
-                        <p>الجزائر العاصمة، الجزائر</p>
-                    </div>
-                </div>
-
-                <div class="contact-info-item animate delay-3">
-                    <div class="contact-info-icon">
-                        <i class="fas fa-phone-alt"></i>
-                    </div>
-                    <div class="contact-info-content">
-                        <h3>هاتفنا</h3>
-                        <p>+213 12 345 6789</p>
-                    </div>
-                </div>
-
-                <div class="contact-info-item animate delay-4">
-                    <div class="contact-info-icon">
-                        <i class="fas fa-envelope"></i>
-                    </div>
-                    <div class="contact-info-content">
-                        <h3>البريد الإلكتروني</h3>
-                        <p>info@raayatalarada.com</p>
-                    </div>
-                </div>
-
-                <div class="contact-info-item">
-                    <div class="contact-info-icon">
-                        <i class="fas fa-clock"></i>
-                    </div>
-                    <div class="contact-info-content">
-                        <h3>ساعات العمل</h3>
-                        <ul class="hours-list">
-<li><span class="day">الأحد - الخميس:</span> <span>09:00 ص - 05:00 م</span></li>
-                            <li><span class="day">الجمعة والسبت:</span> <span>الرد في أول يوم عمل</span></li>
-                            <li><span class="day">الرسائل العاجلة:</span> <span>راجعي الطوارئ المحلية</span></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- الخريطة -->
-                <div class="map-container">
-                    <div class="map-placeholder">
-                        <i class="fas fa-map-marked-alt"></i>
-                        <h3>خريطة موقعنا</h3>
-                        <p>الجزائر العاصمة، الجزائر</p>
-                    </div>
-                </div>
+                <div class="contact-info-item"><div class="contact-info-content"><h3>حالة التواصل</h3><p>لا يوجد حاليًا بريد أو هاتف دعم موثّق على الموقع. ستُعرض قناة التواصل عند تفعيلها.</p><p>يمكنك الرجوع إلى <a href="faq.html">الأسئلة الشائعة</a> و<a href="resources.html">الموارد الموثوقة</a>.</p></div></div>
             </div>
         </div>
 
@@ -214,7 +163,7 @@
             <div class="faq-container">
                 <div class="faq-item">
                     <h3><i class="fas fa-question-circle"></i> ما هي سرعة الرد على الاستفسارات؟</h3>
-                    <p>نراجع الرسائل العامة خلال أيام العمل بحسب طبيعتها. لا تُستخدم الصفحة للحالات الطبية العاجلة.</p>
+                    <p>النموذج يجهز مسودة محلية فقط؛ لا توجد خدمة استقبال رسائل أو مدة رد معلنة حاليًا.</p>
                 </div>
 
                 <div class="faq-item">
@@ -224,12 +173,12 @@
 
                 <div class="faq-item">
                     <h3><i class="fas fa-question-circle"></i> هل يوفر الموقع زيارات منزلية؟</h3>
-                    <p>لا يوفر الموقع حجز زيارات منزلية. يمكن إرسال ملاحظة تقنية أو تحريرية عامة عبر النموذج.</p>
+                    <p>لا يوفر الموقع حجز زيارات منزلية. يمكن تجهيز ملاحظة تقنية أو تحريرية كمسودة محلية فقط.</p>
                 </div>
 
                 <div class="faq-item">
                     <h3><i class="fas fa-question-circle"></i> هل تقدمون دورات تدريبية للأمهات الجدد؟</h3>
-                    <p>يمكن اقتراح موضوعات تعليمية جديدة عبر النموذج، وتُنشر المواد بعد مراجعة تحريرية مناسبة.</p>
+                    <p>لا يوجد حجز دورات عبر الموقع حاليًا. النموذج يجهز مسودة اقتراح فقط.</p>
                 </div>
             </div>
         </div>
@@ -265,20 +214,12 @@
                 </div>
                 <div class="footer-col">
                     <h3>اتصل بنا</h3>
-                    <ul class="footer-contact">
-                        <li><i class="fas fa-envelope" aria-hidden="true"></i><a href="mailto:info@raayatalarada.com">info@raayatalarada.com</a></li>
-                        <li><i class="fas fa-phone" aria-hidden="true"></i><a href="tel:+213123456789" dir="ltr">+213 12 345 6789</a></li>
-                        <li><i class="fas fa-map-marker-alt" aria-hidden="true"></i><span>الجزائر العاصمة، الجزائر</span></li>
-                    </ul>
+                    <ul class="footer-contact"><li><i class="fas fa-comment" aria-hidden="true"></i><a href="contact.html">ملاحظات حول الموقع</a></li><li><span>محتوى تثقيفي عام، وليس خدمة طبية.</span></li></ul>
                 </div>
                 <div class="footer-col">
                     <h3>النشرة البريدية</h3>
                     <p>احصلي على تنبيهات عامة حول المقالات والتحديثات.</p>
-                    <form class="newsletter-form" action="#" novalidate>
-                        <label class="sr-only" for="footer-email">البريد الإلكتروني</label>
-                        <input id="footer-email" name="email" type="email" placeholder="بريدك الإلكتروني" autocomplete="email" required>
-                        <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane" aria-hidden="true"></i> اشتراك</button>
-                    </form>
+                    <p class="source-note">الاشتراك غير متاح حاليًا؛ يمكنك متابعة المقالات من الموقع.</p>
                 </div>
             </div>
             <div class="footer-bottom">

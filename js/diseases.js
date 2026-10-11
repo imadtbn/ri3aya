@@ -103,140 +103,41 @@
                 });
             });
             
-            // تقييم افتراضي عند تحميل الصفحة
-            evaluateSymptoms();
         });
         
         // دالة تقييم الأعراض
         function evaluateSymptoms() {
             const age = document.getElementById('child-age-symptoms').value;
-            const temperature = parseFloat(document.getElementById('temperature').value) || 37.5;
-            
-            // جمع الأعراض المختارة
-            const selectedSymptoms = [];
-            document.querySelectorAll('input[name="symptoms"]:checked').forEach(checkbox => {
-                selectedSymptoms.push(checkbox.value);
-            });
-            
-            // تحليل النتائج
-            let severity = 'low';
-            let recommendation = '';
-            let actions = [];
-            
-            // تحليل درجة الحرارة
-            if (age === '0-3' && temperature >= 38) {
-                severity = 'high';
-                recommendation = 'تحذير: الرضع أقل من 3 أشهر مع حرارة 38°م أو أكثر يحتاجون تقييم طبي فوري. اذهبي للطوارئ الآن.';
-                actions = [
-                    'اذهبي إلى أقرب طوارئ أطفال فوراً',
-                    'لا تعطي أي دواء قبل استشارة الطبيب',
-                    'راقبي تنفس الطفل ووعيه'
-                ];
-            } else if (temperature >= 39.5) {
-                severity = 'high';
-                recommendation = 'درجة الحرارة مرتفعة جداً. استشيري الطبيب فوراً أو اذهبي للطوارئ.';
-                actions = [
-                    'اعطي خافض حرارة مناسب للعمر',
-                    'استخدمي كمادات فاترة',
-                    'استشيري الطبيب أو اذهبي للطوارئ'
-                ];
-            } else if (temperature >= 38.5) {
-                severity = 'medium';
-                recommendation = 'درجة الحرارة مرتفعة. راقبي الطفل جيداً واستشيري الطبيب إذا استمرت.';
-                actions = [
-                    'اعطي خافض حرارة مناسب للعمر',
-                    'راقبي درجة الحرارة كل 4 ساعات',
-                    'أكثري من السوائل والرضاعة',
-                    'استشيري الطبيب إذا استمرت الحرارة أكثر من 48 ساعة'
-                ];
-            } else {
-                severity = 'low';
-                recommendation = 'درجة الحرارة طبيعية أو مرتفعة قليلاً.';
-                actions = [
-                    'راقبي درجة الحرارة بانتظام',
-                    'أكثري من السوائل والرضاعة',
-                    'استشيري الطبيب إذا ظهرت أعراض جديدة'
-                ];
+            const input = document.getElementById('temperature');
+            const temperature = Number(input.value);
+            const result = document.getElementById('symptoms-results');
+            result.replaceChildren();
+            const message = document.createElement('p');
+            if (!input.value.trim() || !Number.isFinite(temperature) || temperature < 34 || temperature > 43) {
+                message.textContent = 'أدخلي قراءة حرارة صحيحة بين 34 و43°م. إذا كانت القراءة خارج هذا المجال أو كان الطفل مريضًا، تحققي من القياس واطلبي المشورة الطبية دون انتظار نتيجة الأداة.';
+                result.append(message);
+                return;
             }
-            
-            // تحليل الأعراض الإضافية
-            if (selectedSymptoms.length > 0) {
-                if (selectedSymptoms.includes('lethargy') || selectedSymptoms.includes('poor-feeding')) {
-                    if (severity !== 'high') severity = 'medium';
-                    recommendation += ' الخمول وضعف الرضاعة علامات خطيرة خاصة عند الرضع.';
-                    actions.push('راقبي مستوى نشاط الطفل واستشيري الطبيب إذا استمر الخمول');
-                }
-                
-                if (selectedSymptoms.includes('vomiting') && selectedSymptoms.includes('diarrhea')) {
-                    if (severity !== 'high') severity = 'medium';
-                    recommendation += ' القيء والإسهال قد يسببان الجفاف سريعاً.';
-                    actions.push('استخدمي محاليل معالجة الجفاف الفموية');
-                    actions.push('راقبي علامات الجفاف (قلة التبول، جفاف الفم)');
-                }
-                
-                if (selectedSymptoms.includes('rash')) {
-                    recommendation += ' الطفح الجلدي يحتاج تقييم طبي لمعرفة سببه.';
-                    actions.push('صوري الطفح الجلدي لتظهريه للطبيب');
-                    actions.push('تجنبي حك أو خدش الطفح');
-                }
-            }
-            
-            // تحديد لون النتيجة
-            let resultClass = '';
-            let resultIcon = '';
-            if (severity === 'high') {
-                resultClass = 'result-high';
-                resultIcon = 'fa-exclamation-circle';
-            } else if (severity === 'medium') {
-                resultClass = 'result-medium';
-                resultIcon = 'fa-exclamation-triangle';
-            } else {
-                resultClass = 'result-low';
-                resultIcon = 'fa-check-circle';
-            }
-            
-            // عرض النتائج
-            const resultsDiv = document.getElementById('symptoms-results');
-            resultsDiv.innerHTML = `
-                <div class="symptom-result ${resultClass}">
-                    <div class="result-header">
-                        <h3><i class="fas ${resultIcon}"></i> نتيجة التقييم</h3>
-                        <span class="result-severity">${severity === 'high' ? 'عالية' : severity === 'medium' ? 'متوسطة' : 'منخفضة'}</span>
-                    </div>
-                    <div class="result-body">
-                        <p><strong>التوصية:</strong> ${recommendation}</p>
-                        
-                        <div class="symptoms-list">
-                            <h4><i class="fas fa-clipboard-list"></i> الأعراض المدخلة:</h4>
-                            <ul>
-                                <li>العمر: ${getAgeText(age)}</li>
-                                <li>درجة الحرارة: ${temperature}°م</li>
-                                ${selectedSymptoms.length > 0 ? `
-                                    <li>الأعراض: ${selectedSymptoms.map(s => getSymptomText(s)).join('، ')}</li>
-                                ` : '<li>لا توجد أعراض إضافية</li>'}
-                            </ul>
-                        </div>
-                        
-                        <div class="actions-list">
-                            <h4><i class="fas fa-tasks"></i> الإجراءات الموصى بها:</h4>
-                            <ol>
-                                ${actions.map(action => `<li>${action}</li>`).join('')}
-                            </ol>
-                        </div>
-                        
-                        <div class="disclaimer">
-                            <p><i class="fas fa-info-circle"></i> <strong>تنويه:</strong> هذا التقييم للأغراض الإرشادية فقط وليس بديلاً عن الاستشارة الطبية. إذا كنت قلقة على صحة طفلك، استشيري الطبيب دائماً.</p>
-                        </div>
-                    </div>
-                </div>
-            `;
+            const symptoms = Array.from(document.querySelectorAll('input[name="symptoms"]:checked')).map(input => getSymptomText(input.value));
+            const heading = document.createElement('h3');
+            heading.textContent = 'ملخص الملاحظات لمناقشته مع الطبيب';
+            const summary = document.createElement('p');
+            summary.textContent = `العمر: ${getAgeText(age)} — الحرارة: ${temperature}°م — الملاحظات: ${symptoms.join('، ') || 'لم تُحدد ملاحظات إضافية'}.`;
+            message.textContent = age === '0-3' && temperature >= 38
+                ? 'إذا كان عمر الرضيع أقل من 3 أشهر وبلغت حرارته 38°م أو أكثر، اطلبي تقييمًا طبيًا عاجلًا.'
+                : 'هذه القائمة لا تشخّص الحالة ولا تستبعد المرض. تواصلي مع الطبيب عند المرض أو القلق، حتى لو لم تظهر حرارة مرتفعة.';
+            const warning = document.createElement('p');
+            warning.textContent = 'صعوبة التنفس أو فقدان الوعي أو تغير اللون إلى الأزرق تستدعي المساعدة العاجلة. الخمول غير المعتاد أو ضعف الرضاعة أو قلة التبول أو القيء المتكرر تستلزم التواصل مع الطبيب. لا يحدد الموقع دواءً أو جرعة.';
+            result.append(heading, summary, message, warning);
+            result.setAttribute('role', 'status');
+            result.setAttribute('aria-live', 'polite');
         }
-        
+
         // دالة للحصول على نص العمر
         function getAgeText(ageValue) {
             const ages = {
-                '0-3': '0-3 أشهر',
-                '4-6': '4-6 أشهر',
+                '0-3': 'أقل من 3 أشهر',
+                '4-6': 'من 3 إلى 6 أشهر',
                 '7-12': '7-12 شهر',
                 '1-2': '1-2 سنة'
             };

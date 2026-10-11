@@ -1,4 +1,5 @@
 from pathlib import Path
+from urllib.parse import urlsplit, unquote
 from bs4 import BeautifulSoup
 import json
 import re
@@ -20,7 +21,7 @@ for path in [*ROOT.glob('content/**/*.json'), ROOT / 'manifest.json', ROOT / 'se
     except Exception as exc:
         errors.append(f'JSON invalid: {path}: {exc}')
 
-risk_pattern = re.compile(r'\bdoseMg\b|\bdoseMl\b|\bmaxDaily\b|\bcalculateMedicineDose\b|\bmedicineDatabase\b|15mg/kg|10mg/kg|5mg/kg|\bCryAudio\b|\bCryPattern\b|getUserMedia|تشخيص مبدئي|تحليل صوت طبي|احتمالات تشخيصية', re.I)
+risk_pattern = re.compile(r'\bdoseMg\b|\bdoseMl\b|\bmaxDaily\b|\bcalculateMedicineDose\b|\bmedicineDatabase\b|15mg/kg|10mg/kg|5mg/kg|\bCryAudio\b|\bCryPattern\b|getUserMedia|تشخيص مبدئي|تحليل صوت طبي|احتمالات تشخيصية|ارفعي رأس السرير|رفع رأس الطفل قليلاً أثناء النوم|وقت النوم على البطن|التشخيص المحتمل|محلل بكاء الرضيع الذكي|احصل على التشخيص', re.I)
 for path in [*ROOT.glob('js/**/*.js'), *ROOT.glob('pages/**/*.html'), ROOT / 'index.html']:
     text = path.read_text(encoding='utf-8', errors='replace')
     if risk_pattern.search(text):
@@ -41,6 +42,13 @@ for path in html_files:
     for image in soup.find_all('img'):
         if not image.get('alt'):
             errors.append(f'Image without alt: {path}')
+    for tag in soup.select('a[href], link[href], img[src]'):
+        url = urlsplit(tag.get('href') or tag.get('src') or '')
+        if url.scheme or url.netloc or not url.path:
+            continue
+        target = (path.parent / unquote(url.path)).resolve()
+        if not target.exists():
+            errors.append(f'Missing local resource {url.path} in {path}')
     for script in soup.find_all('script', src=True):
         source = script['src'].split('?', 1)[0]
         if source.startswith(('http://', 'https://')):

@@ -5,18 +5,34 @@ document.addEventListener('DOMContentLoaded', () => {
     const phone = document.getElementById('phone');
 
     if (form && successMessage && errorMessage) {
-        form.addEventListener('submit', (event) => {
+        form.addEventListener('submit', async (event) => {
             event.preventDefault();
             if (!form.reportValidity()) return;
-
-            successMessage.style.display = 'block';
+            const value = id => document.getElementById(id)?.value.trim() || '';
+            const draft = `ملاحظة حول موقع رعاية\nالاسم: ${value('name')}\nالبريد: ${value('email')}\nالهاتف: ${value('phone')}\nالموضوع: ${value('subject')}\n\n${value('message')}`;
+            successMessage.style.display = 'none';
             errorMessage.style.display = 'none';
-            successMessage.focus?.();
-            form.reset();
-
-            window.setTimeout(() => {
-                successMessage.style.display = 'none';
-            }, 7000);
+            document.getElementById('contact-draft')?.parentElement.remove();
+            try {
+                if (!navigator.clipboard?.writeText) throw new Error('Clipboard unavailable');
+                await navigator.clipboard.writeText(draft);
+                successMessage.style.display = 'block';
+            } catch (_) {
+                errorMessage.style.display = 'block';
+                const label = document.createElement('label');
+                label.htmlFor = 'contact-draft';
+                label.textContent = 'المسودة للنسخ اليدوي — لم تُرسل';
+                const output = document.createElement('textarea');
+                output.id = 'contact-draft';
+                output.readOnly = true;
+                output.value = draft;
+                output.rows = 8;
+                output.setAttribute('aria-label', label.textContent);
+                label.append(output);
+                form.append(label);
+                output.focus();
+                output.select();
+            }
         });
     }
 

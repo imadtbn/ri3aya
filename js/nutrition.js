@@ -538,7 +538,7 @@ function initFoodTracker() {
         recordElement.className = 'tracker-history-item';
         recordElement.innerHTML = `
             <div class="record-info">
-                <strong>${record.food}</strong>
+                <strong class="food-record-name"></strong>
                 <span class="record-date">${formattedDate}</span>
             </div>
             <span class="food-reaction ${record.reaction}" style="background-color: ${reactionColors[record.reaction] + '20'}; color: ${reactionColors[record.reaction]}">
@@ -546,6 +546,8 @@ function initFoodTracker() {
             </span>
         `;
         
+        recordElement.querySelector('.food-record-name').textContent = record.food;
+
         // إضافة زر حذف
         const deleteBtn = document.createElement('button');
         deleteBtn.className = 'delete-record';

@@ -378,9 +378,7 @@
                                     <p>الأصوات الهادئة والمتكررة مثل صوت المكنسة أو مجفف الشعر أو التسجيلات الخاصة
                                         بالأصوات البيضاء يمكن أن تهدئ الطفل بشكل سحري.</p>
                                     <div class="sound-player">
-                                        <button class="btn-small" id="playWhiteNoise">
-                                            <i class="fas fa-play"></i> تشغيل صوت أبيض
-                                        </button>
+                                        <a class="btn-small" href="sleep.html">إرشادات النوم الآمن</a>
                                     </div>
                                 </div>
                             </div>
@@ -402,62 +400,23 @@
                         </div>
                     </article>
 
-                    <div class="crying-analyzer-container">
-                        <div class="analyzer-header">
-                            <h2><i class="fas fa-baby-cry"></i> محلل بكاء الرضيع الذكي</h2>
-                            <p>قومي بتسجيل بكاء طفلك لتحليله آلياً والحصول على تفسيرات محتملة واقتراحات عملية للتعامل مع
-                                الموقف</p>
-                        </div>
-
-                        <div class="recording-controls">
-                            <button id="record-btn" class="btn-primary">
-                                <i class="fas fa-microphone"></i> بدء تحليل البكاء
-                            </button>
-                            <div id="recording-status" class="status-ready">جاهز للتسجيل</div>
-                        </div>
-
-                        <div id="audio-visualization" class="audio-visualization">
-                            <!-- ستعرض هنا أشرطة التردد الصوتي -->
-                        </div>
-
-                        <div id="analysis-results" class="analysis-results">
-                            <!-- ستظهر هنا نتائج التحليل -->
-                        </div>
-
-                        <div id="alternative-patterns" class="alternative-patterns">
-                            <!-- ستظهر هنا الأنماط البديلة -->
-                        </div>
-
-                        <div id="pattern-library" class="pattern-library">
-                            <!-- سيتم إنشاء مكتبة الأنماط هنا تلقائياً -->
-                        </div>
-
-                        <div class="analysis-history">
-                            <div
-                                style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                                <h3>سجل التحليلات</h3>
-                                <button id="clear-history" class="btn-small">مسح السجل</button>
-                            </div>
-                            <div id="analysis-history">
-                                <!-- سيتم عرض سجل التحليلات هنا -->
-                            </div>
-                        </div>
-                    </div>
-
-                    <div id="message-container" class="message-container">
-                        <!-- ستظهر هنا الرسائل التنبيهية -->
-                    </div>
+                    <article class="content-section medical-safety-note" id="crying-guide">
+                        <div><h2>دليل ملاحظة البكاء</h2><p>لا يمكن تحديد سبب البكاء من الصوت أو من قائمة قصيرة من الأعراض. تحققي من علامات الخطر أولًا، ثم الحفاض والرضاعة والراحة، وسجلي ما لاحظته لمناقشته مع طبيب الأطفال.</p>
+                        <p>اطلبي المساعدة العاجلة عند صعوبة التنفس أو فقدان الوعي أو تغير اللون إلى الأزرق. عند المرض أو رفض الرضاعة أو البكاء غير المعتاد، تواصلي مع الطبيب دون انتظار نتيجة من الموقع.</p>
+                        <a class="btn btn-primary" href="#crying-red-flags">متى نطلب المساعدة؟</a>
+                        <p class="medical-source-note">المصدر: <a href="https://www.nhs.uk/conditions/baby/first-year/baby-basics/soothing-a-crying-baby/" rel="noopener" target="_blank">NHS — تهدئة الطفل الباكي</a>. مراجعة تحريرية: 11 أكتوبر 2026.</p></div>
+                    </article>
 
                     <!-- متى تستشيرين الطبيب -->
                     <article class="content-section warning-section">
                         <div class="warning-header">
                             <i class="fas fa-exclamation-triangle"></i>
-                            <h2>متى يجب استشارة الطبيب؟</h2>
+                            <h2 id="crying-red-flags">متى يجب استشارة الطبيب؟</h2>
                         </div>
                         <div class="warning-content">
                             <p>رغم أن البكاء طبيعي، إلا أن هناك حالات تستدعي الاتصال بالطبيب فوراً:</p>
                             <ul class="warning-list">
-                                <li><i class="fas fa-thermometer-full"></i> إذا كانت درجة حرارة الطفل أعلى من 38°C
+                                <li><i class="fas fa-thermometer-full"></i> إذا كانت درجة حرارة الطفل 38°C أو أكثر
                                     (للرضع أقل من 3 أشهر)</li>
                                 <li><i class="fas fa-ban"></i> إذا رفض الطفل الرضاعة بشكل كامل</li>
                                 <li><i class="fas fa-tint"></i> إذا لاحظتِ جفافاً في فم الطفل أو عدم تبول لمدة 6 ساعات
@@ -483,9 +442,9 @@
 
                 <!-- الشريط الجانبي -->
                 <aside class="sidebar">
-                    <!-- أداة مفسر البكاء -->
+                    <!-- أداة ملاحظات البكاء -->
                     <div class="sidebar-widget">
-                        <h3><i class="fas fa-diagnoses"></i> مفسر البكاء</h3>
+                        <h3><i class="fas fa-diagnoses"></i> ملاحظات البكاء</h3>
                         <div class="cry-analyzer">
                             <p>اختاري الأعراض التي تلاحظينها على طفلك:</p>
 
@@ -512,10 +471,10 @@
                             </div>
 
                             <button class="btn btn-primary analyze-btn">
-                                <i class="fas fa-search"></i> احصل على التشخيص
+                                <i class="fas fa-search"></i> عرض ملخص الملاحظات
                             </button>
 
-                            <div class="analysis-result" id="analysisResult">
+                            <div class="analysis-result" id="analysisResult" role="status" aria-live="polite">
                                 <!-- ستظهر النتيجة هنا -->
                             </div>
                         </div>
@@ -582,19 +541,19 @@
                     <div class="sidebar-widget">
                         <h3><i class="fas fa-download"></i> تنزيلات مفيدة</h3>
                         <div class="downloads">
-                            <a href="resources.html#resources" class="download-link" download>
+                            <a href="resources.html" class="download-link">
                                 <i class="fas fa-file-pdf"></i>
                                 <div>
                                     <h4>دليل فهم البكاء</h4>
-                                    <p>PDF - 1.2 MB</p>
+                                    <p>مصادر وإرشادات على الموقع</p>
                                 </div>
                             </a>
 
-                            <a href="resources.html#resources" class="download-link" download>
+                            <a href="resources.html" class="download-link">
                                 <i class="fas fa-clipboard-list"></i>
                                 <div>
                                     <h4>سجل يومي للطفل</h4>
-                                    <p>PDF - 0.8 MB</p>
+                                    <p>مصادر وإرشادات على الموقع</p>
                                 </div>
                             </a>
                         </div>
@@ -633,20 +592,12 @@
                 </div>
                 <div class="footer-col">
                     <h3>اتصل بنا</h3>
-                    <ul class="footer-contact">
-                        <li><i class="fas fa-envelope" aria-hidden="true"></i><a href="mailto:info@raayatalarada.com">info@raayatalarada.com</a></li>
-                        <li><i class="fas fa-phone" aria-hidden="true"></i><a href="tel:+213123456789" dir="ltr">+213 12 345 6789</a></li>
-                        <li><i class="fas fa-map-marker-alt" aria-hidden="true"></i><span>الجزائر العاصمة، الجزائر</span></li>
-                    </ul>
+                    <ul class="footer-contact"><li><i class="fas fa-comment" aria-hidden="true"></i><a href="contact.html">ملاحظات حول الموقع</a></li><li><span>محتوى تثقيفي عام، وليس خدمة طبية.</span></li></ul>
                 </div>
                 <div class="footer-col">
                     <h3>النشرة البريدية</h3>
                     <p>احصلي على تنبيهات عامة حول المقالات والتحديثات.</p>
-                    <form class="newsletter-form" action="#" novalidate>
-                        <label class="sr-only" for="footer-email">البريد الإلكتروني</label>
-                        <input id="footer-email" name="email" type="email" placeholder="بريدك الإلكتروني" autocomplete="email" required>
-                        <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane" aria-hidden="true"></i> اشتراك</button>
-                    </form>
+                    <p class="source-note">الاشتراك غير متاح حاليًا؛ يمكنك متابعة المقالات من الموقع.</p>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -662,6 +613,7 @@
 
     <!-- JavaScript الخاص بالصفحة -->
     <script src="../js/main.js"></script>
+<script defer src="../js/crying.js"></script>
 <script defer src="../js/search.js"></script>
 </body>
 

@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'ri3aya-v8-ga4-enabled-20260828';
+const CACHE_VERSION = 'ri3aya-v9-phase1-20261011';
 const APP_SHELL = [
     './',
     './index.html',
