@@ -6,7 +6,7 @@ import sys
 from bs4 import BeautifulSoup
 
 ROOT = Path(__file__).resolve().parents[1]
-EXCLUDED_NAMES = {"google4e08a8803a39e9f9.html"}
+EXCLUDED_NAMES = {"google4e08a8803a39e9f9.html", "offline.html"}
 PAGES = [
     page for page in [*sorted(ROOT.glob("*.html")), *sorted((ROOT / "pages").rglob("*.html"))]
     if page.name not in EXCLUDED_NAMES
