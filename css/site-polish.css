@@ -184,3 +184,30 @@ body.site-shell {
   .site-shell main :is(.section-card,.tool-card,.local-data-card) { padding:16px; }
   .site-shell .site-header-inner { min-width:0; }
 }
+
+/* Responsive completion: legacy page families */
+.site-shell :is(.rules-grid,.readiness-grid,.tips-grid,.disease-grid,.library-grid,.faq-grid,.stat-grid,.features-grid,.tool-index-grid,.article-grid) {
+  min-width:0; max-width:100%;
+}
+.site-shell :is(.rules-grid,.readiness-grid,.tips-grid,.disease-grid,.library-grid,.faq-grid,.stat-grid,.features-grid,.tool-index-grid,.article-grid) > * {
+  min-width:0; max-width:100%; overflow-wrap:anywhere;
+}
+.site-shell :is(.rule-card,.readiness-card,.library-card,.tool-index-card,.stat-card,.disease-content,.reminder-card) {
+  min-width:0; max-width:100%; overflow-wrap:anywhere;
+}
+.site-shell :is(.library-card,.tool-index-card) img { display:block; max-width:100%; height:auto; object-fit:cover; }
+.site-shell :is(.feature-list,.faq-answer,.disease-content,.reminder-result) { max-width:100%; overflow-wrap:anywhere; }
+.site-shell :is(.content-section,.section-card) :is(table,pre) { max-width:100%; }
+.site-shell .medical-safety-note { margin-block:18px; padding:clamp(16px,2vw,22px); border-radius:14px; border:1px solid #e8cf9c; border-inline-start:4px solid #a66b18; background:#fff8e8; color:#493720; }
+@media (max-width: 767px) {
+ .site-shell :is(.rules-grid,.readiness-grid,.tips-grid,.disease-grid,.library-grid,.faq-grid,.features-grid,.tool-index-grid,.article-grid) {
+   grid-template-columns:minmax(0,1fr);
+ }
+ .site-shell :is(.rule-card,.readiness-card,.library-card,.tool-index-card,.stat-card) { min-width:0; }
+ .site-shell .stat-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+ .site-shell :is(.reminder-form,.reminder-card) :is(input,button) { max-width:100%; }
+}
+@media (max-width: 380px) {
+ .site-shell .stat-grid { grid-template-columns:minmax(0,1fr); }
+ .site-shell :is(.btn,.btn-primary,.btn-secondary) { font-size:.92rem; }
+}
