@@ -71,7 +71,7 @@
             if (!menu.contains(event.target) && !button.contains(event.target)) setMenuState(menu, button, false);
         });
         document.addEventListener('keydown', (event) => {
-            if (event.key === 'Escape') setMenuState(menu, button, false);
+            if (event.key === 'Escape' && menu.classList.contains('active')) { setMenuState(menu, button, false); button.focus(); }
         });
         window.addEventListener('resize', () => {
             if (window.innerWidth > 992) setMenuState(menu, button, false);
@@ -79,13 +79,13 @@
     }
 
     function initDropdowns() {
-        all('.dropdown > a').forEach((trigger) => {
+        all('.dropdown-toggle').forEach((trigger) => {
             const dropdown = trigger.closest('.dropdown');
             const menu = one('.dropdown-menu', dropdown);
             if (!dropdown || !menu) return;
             trigger.setAttribute('aria-haspopup', 'true');
             trigger.setAttribute('aria-expanded', 'false');
-            menu.setAttribute('role', 'menu');
+            // Ordinary navigation links; disclosure button controls visibility.
 
             const close = (restoreFocus = false) => {
                 dropdown.classList.remove('open');
@@ -95,12 +95,14 @@
             const open = () => {
                 all('.dropdown.open').forEach((item) => {
                     item.classList.remove('open');
-                    const itemTrigger = one(':scope > a', item);
+                    const itemTrigger = one('.dropdown-toggle', item);
                     if (itemTrigger) itemTrigger.setAttribute('aria-expanded', 'false');
                 });
                 dropdown.classList.add('open');
                 trigger.setAttribute('aria-expanded', 'true');
             };
+            document.addEventListener('click', (event) => { if (!dropdown.contains(event.target)) close(); });
+            dropdown.addEventListener('focusout', (event) => { if (!dropdown.contains(event.relatedTarget)) close(); });
             trigger.addEventListener('click', (event) => {
                 event.preventDefault();
                 dropdown.classList.contains('open') ? close() : open();
