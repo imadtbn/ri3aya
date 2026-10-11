@@ -1,5 +1,6 @@
 (function () {
     'use strict';
+    const escape = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
 const Routine = {
     currentRoutine: null,
@@ -48,6 +49,7 @@ const Routine = {
 
         // تحميل الروتينات المحفوظة
         this.loadSavedRoutines();
+        window.addEventListener('ri3aya-data-change', event => { if (!event.detail.key || event.detail.key === 'saved_routines') this.loadSavedRoutines(); });
     },
 
     generateRoutine() {
@@ -327,32 +329,32 @@ const Routine = {
         const scheduleHTML = routine.schedule.map((item, index) => `
             <div class="routine-item" style="animation-delay: ${index * 0.1}s">
                 <div class="routine-time">
-                    <i class="far fa-clock"></i> ${item.time}
+                    <i class="far fa-clock"></i> ${escape(item.time)}
                 </div>
                 <div class="routine-activity">
-                    ${item.icon} ${item.activity}
+                    ${escape(item.icon)} ${escape(item.activity)}
                 </div>
                 <div class="routine-duration">
-                    <i class="fas fa-hourglass-half"></i> ${item.duration}
+                    <i class="fas fa-hourglass-half"></i> ${escape(item.duration)}
                 </div>
                 <div class="routine-notes">
-                    ${item.notes}
+                    ${escape(item.notes)}
                 </div>
             </div>
         `).join('');
 
-        const tipsHTML = routine.tips.map(tip => `<li>${tip}</li>`).join('');
+        const tipsHTML = routine.tips.map(tip => `<li>${escape(tip)}</li>`).join('');
 
         resultsDiv.innerHTML = `
             <div class="routine-card">
                 <div class="routine-header">
-                    <h4><i class="fas fa-calendar-day"></i> ${routine.title}</h4>
+                    <h4><i class="fas fa-calendar-day"></i> ${escape(routine.title)}</h4>
                     <div class="routine-stats">
                         <span class="stat">
-                            <i class="fas fa-bed"></i> ${routine.totalSleep}
+                            <i class="fas fa-bed"></i> ${escape(routine.totalSleep)}
                         </span>
                         <span class="stat">
-                            <i class="fas fa-utensils"></i> ${routine.totalFeeds}
+                            <i class="fas fa-utensils"></i> ${escape(routine.totalFeeds)}
                         </span>
                     </div>
                 </div>
@@ -396,17 +398,11 @@ const Routine = {
 
         const routineName = prompt('أدخل اسم للروتين:', `روتين ${this.currentRoutine.config.age}`);
 
-        if (routineName) {
-            const routineToSave = {
-                name: routineName,
-                ...this.currentRoutine,
-                savedAt: new Date().toISOString()
-            };
-
-            this.savedRoutines.push(routineToSave);
-            localStorage.setItem('saved_routines', JSON.stringify(this.savedRoutines));
-
-            alert(`تم حفظ الروتين "${routineName}" بنجاح!`);
+        if (routineName !== null && routineName.trim()) {
+            if (routineName.trim().length > 120) { window.Ri3ayaLocal.notify('اسم الروتين لا يتجاوز 120 حرفًا.'); return; }
+            const routineToSave = { ...this.currentRoutine, name: routineName.trim(), savedAt: new Date().toISOString() };
+            const result = window.Ri3ayaLocal.add('saved_routines', routineToSave);
+            window.Ri3ayaLocal.notify(result.ok ? 'تم حفظ الروتين محليًا. يمكنك فتحه من القائمة المحفوظة.' : result.error);
         }
     },
 
@@ -414,6 +410,7 @@ const Routine = {
         const routineCard = document.querySelector('.routine-card');
         if (routineCard) {
             const printWindow = window.open('', '_blank');
+            if (!printWindow) { window.Ri3ayaLocal.notify('تعذر فتح نافذة الطباعة. اسمحي بالنوافذ المنبثقة ثم حاولي مجددًا.'); return; }
             printWindow.document.write(`
                 <html dir="rtl">
                 <head>
@@ -487,28 +484,43 @@ ${routineData.tips.join('\n')}
 تم الإنشاء بواسطة تطبيق رعاية الرضع
         `.trim();
 
-        // نسخ إلى الحافظة
-        navigator.clipboard.writeText(shareText)
-            .then(() => alert('تم نسخ الروتين إلى الحافظة. يمكنك مشاركته الآن.'))
+        // Clipboard permissions can be unavailable; leave a selectable manual copy.
+        Promise.resolve().then(() => navigator.clipboard.writeText(shareText))
+            .then(() => window.Ri3ayaLocal.notify('تم نسخ الروتين إلى الحافظة.'))
             .catch(() => {
-                // طريقة بديلة للمتصفحات القديمة
-                const textArea = document.createElement('textarea');
-                textArea.value = shareText;
-                document.body.appendChild(textArea);
-                textArea.select();
-                document.execCommand('copy');
-                document.body.removeChild(textArea);
-                alert('تم نسخ الروتين إلى الحافظة.');
+                let textArea = document.getElementById('routine-share-copy');
+                if (!textArea) { textArea = document.createElement('textarea'); textArea.id = 'routine-share-copy'; textArea.readOnly = true; textArea.setAttribute('aria-label', 'نص الروتين للنسخ اليدوي'); textArea.style.width = '100%'; textArea.rows = 8; document.getElementById('routine-results').append(textArea); }
+                textArea.value = shareText; textArea.focus(); textArea.select();
+                window.Ri3ayaLocal.notify('تعذر النسخ التلقائي. انسخي النص من الحقل الظاهر.');
             });
     },
 
     loadSavedRoutines() {
-        const saved = localStorage.getItem('saved_routines');
-        if (saved) {
-            this.savedRoutines = JSON.parse(saved);
-            console.log(`تم تحميل ${this.savedRoutines.length} روتين محفوظ`);
+        const snapshot = window.Ri3ayaLocal.read('saved_routines');
+        this.savedRoutines = snapshot.ok ? snapshot.records : [];
+        let section = document.getElementById('saved-routines');
+        if (!section) {
+            section = document.createElement('section'); section.id = 'saved-routines'; section.setAttribute('aria-label', 'الروتينات المحفوظة');
+            document.getElementById('local-data-panel').after(section);
         }
+        section.replaceChildren();
+        const heading = document.createElement('h2'); heading.textContent = 'روتيناتك المحفوظة'; section.append(heading);
+        if (!snapshot.ok || !this.savedRoutines.length) {
+            const note = document.createElement('p'); note.textContent = snapshot.ok ? 'لا توجد روتينات محفوظة بعد.' : snapshot.error; section.append(note); return;
+        }
+        this.savedRoutines.forEach(record => {
+            const card = document.createElement('article'); card.className = 'saved-routine-card';
+            const title = document.createElement('h3'); title.textContent = record.name;
+            const meta = document.createElement('p'); meta.textContent = `${record.title} · ${new Date(record.savedAt).toLocaleDateString('ar-DZ')}`;
+            const actions = document.createElement('div'); actions.className = 'saved-routine-actions';
+            const open = document.createElement('button'); open.type = 'button'; open.className = 'btn btn-primary'; open.textContent = 'عرض الروتين';
+            open.addEventListener('click', () => { this.currentRoutine = record; this.displayRoutine(record); document.getElementById('routine-results').scrollIntoView({ behavior: 'smooth', block: 'start' }); });
+            const del = document.createElement('button'); del.type = 'button'; del.className = 'btn tracker-delete'; del.textContent = 'حذف';
+            del.addEventListener('click', () => { if (!confirm(`حذف الروتين «${record.name}»؟`)) return; const r = window.Ri3ayaLocal.removeRecord('saved_routines', record); window.Ri3ayaLocal.notify(r.ok ? 'تم حذف الروتين المحفوظ.' : r.error); });
+            actions.append(open, del); card.append(title, meta, actions); section.append(card);
+        });
     }
+
 };
 
     window.Ri3ayaRoutine = Routine;

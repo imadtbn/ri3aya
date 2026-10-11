@@ -22,10 +22,12 @@
 <link rel="stylesheet" href="../../css/main.css">
 <link rel="stylesheet" href="../../css/responsive.css">
 <link rel="stylesheet" href="../../css/tools.css">
+<link rel="stylesheet" href="../../css/local-data.css">
 <link rel="stylesheet" href="../../css/accessibility.css">
 <link rel="stylesheet" href="../../css/animations.css">
 <link rel="stylesheet" href="../../css/site-polish.css">
 <script defer src="../../js/search-core.js"></script>
+<script defer src="../../js/local-data.js"></script>
 </head>
 <body class="site-shell">
     <!-- Google Tag Manager (noscript) -->
@@ -66,7 +68,15 @@
             <fieldset class="form-group"><legend>أنشطة اختيارية</legend><label><input type="checkbox" id="activity-outdoor"> وقت خارج المنزل مناسب للعمر</label><label><input type="checkbox" id="activity-reading"> قراءة وتواصل</label><label><input type="checkbox" id="activity-music"> موسيقى هادئة</label><label><input type="checkbox" id="activity-bath"> استحمام آمن مع مراقبة مستمرة</label><label><input type="checkbox" id="activity-massage"> تواصل لمسي لطيف</label></fieldset>
             <button class="btn btn-primary" id="generate-routine" type="button"><i class="fas fa-wand-magic-sparkles"></i> إنشاء روتين تثقيفي</button>
         </section>
-        <section id="routine-results" class="routine-results" aria-live="polite"><div class="routine-welcome"><h2>سيظهر الروتين هنا</h2><p>اختاري الإعدادات ثم أنشئي روتينًا مرنًا.</p></div></section>
+        <!-- local-data:start --><section class="local-data-panel" id="local-data-panel" data-scope="saved_routines" aria-labelledby="local-data-title">
+<h2 id="local-data-title">بيانات المتابعة على هذا المتصفح</h2>
+<p class="local-data-note">السجلات محفوظة محليًا في هذا المتصفح، ولا تُزامن بين الأجهزة. لا ترسل أدوات المتابعة هذه السجلات إلى خادم. مسح بيانات المتصفح أو استخدام وضع خاص قد يفقدها؛ احتفظي بنسخة مصدّرة. ملفات التصدير غير مشفّرة، فاحفظيها في مكان مناسب.</p>
+<p class="local-data-note">الإدارة هنا تخص قياسات النمو والطعام وملاحظات الأعراض والروتينات فقط. لا تمسح تفضيلات الموقع أو بيانات مواقع أخرى.</p>
+<div class="local-data-list" id="local-data-list"></div><p class="local-data-size" id="local-data-size"></p>
+<div class="local-data-actions"><button type="button" class="btn btn-secondary" id="local-refresh">تحديث حالة التخزين</button></div>
+<p id="local-data-message" role="status" aria-live="polite"></p><noscript><p>تحتاج إدارة السجلات والتصدير إلى JavaScript. محتوى الأدلة يبقى قابلًا للقراءة.</p></noscript>
+</section><!-- local-data:end -->
+<section id="routine-results" class="routine-results" aria-live="polite"><div class="routine-welcome"><h2>سيظهر الروتين هنا</h2><p>اختاري الإعدادات ثم أنشئي روتينًا مرنًا.</p></div></section>
         <aside class="medical-safety-note" role="note"><strong>ملاحظة سلامة:</strong><span>لا ينبغي استخدام الروتين لتأجيل الرضاعة عند الحاجة أو لتجاهل علامات المرض. تختلف احتياجات الأطفال، واستشيري مختصًا عند القلق.</span></aside>
     </main>
     <script src="../../js/main.js"></script>

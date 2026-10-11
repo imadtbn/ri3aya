@@ -172,6 +172,96 @@ try {
         await page.setViewportSize({ width: 1440, height: 1000 });
         await page.screenshot({ path: path.join(process.env.LAYOUT_SCREENSHOT_DIR, 'library-desktop.png'), fullPage: true });
     }
+    // Phase 5: real persistence, downloads, confirmed deletions and storage failures.
+    await page.goto(base + 'pages/tools.html');
+    const fixtures = {
+        foodRecords: Array.from({ length: 23 }, (_, i) => ({ id: i, food: 'تفاح ' + i, date: '2026-10-11', reaction: 'like', timestamp: i })),
+        symptomRecords: Array.from({ length: 12 }, (_, i) => ({ id: i, date: '11 أكتوبر', disorder: 'gas', severity: 'mild', duration: '2 ساعة', timestamp: i })),
+        'ri3aya-growth-tracker': [{ date: '2026-10-11', age: 0, sex: 'female', weight: 3.5, height: '', head: '', notes: '<img src=x onerror=alert(1)>' }]
+    };
+    await page.evaluate(fixtures => { for (const [k,v] of Object.entries(fixtures)) localStorage.setItem(k, JSON.stringify(v)); localStorage.setItem('unrelated-test-data', 'keep'); }, fixtures);
+    await page.reload();
+    assert.ok((await page.locator('#local-data-list').textContent()).includes('23 سجل'));
+    assert.ok((await page.locator('#local-data-list').textContent()).includes('12 سجل'));
+    await page.goto(base + 'pages/nutrition.html');
+    assert.equal(await page.locator('#foodHistory .tracker-history-item').count(), 23, 'Do not truncate legacy food records');
+    await page.locator('#newFood').fill('<img src=x onerror=alert(1)>');
+    await page.locator('#foodDate').fill('2026-10-11');
+    await page.locator('.reaction-btn[data-reaction="like"]').click();
+    await page.locator('#trackFood').click();
+    assert.equal(await page.locator('#foodHistory .tracker-history-item').count(), 24);
+    assert.equal(await page.locator('#foodHistory img').count(), 0, 'Record content is literal text');
+    await page.reload(); assert.equal(await page.locator('#foodHistory .tracker-history-item').count(), 24);
+    const foodDownload = page.waitForEvent('download');
+    await page.locator('#local-data-panel').getByRole('button', { name: 'تصدير JSON', exact: true }).click();
+    const foodFile = await foodDownload;
+    const foodBackup = JSON.parse(fs.readFileSync(await foodFile.path(), 'utf8'));
+    assert.equal(foodBackup.records.foodRecords.length, 24);
+    assert.equal(foodBackup.records.foodRecords[0].food, '<img src=x onerror=alert(1)>');
+    const csvDownload = page.waitForEvent('download');
+    await page.locator('#local-data-panel').getByRole('button', { name: 'تصدير CSV', exact: true }).click();
+    const csvFile = await csvDownload; assert.ok(fs.readFileSync(await csvFile.path(), 'utf8').includes('تفاح 0'));
+    page.once('dialog', dialog => dialog.dismiss());
+    await page.locator('#foodHistory .delete-record').first().click(); assert.equal(await page.locator('#foodHistory .tracker-history-item').count(), 24);
+    page.once('dialog', dialog => dialog.accept());
+    await page.locator('#foodHistory .delete-record').first().click(); assert.equal(await page.locator('#foodHistory .tracker-history-item').count(), 23);
+    await page.evaluate(() => { window.savedSetItem = Storage.prototype.setItem; Storage.prototype.setItem = function(k,v) { if (k === 'foodRecords') throw new DOMException('full', 'QuotaExceededError'); return window.savedSetItem.call(this,k,v); }; });
+    await page.locator('#newFood').fill('حفظ متعذر'); await page.locator('#foodDate').fill('2026-10-11'); await page.locator('.reaction-btn[data-reaction="like"]').click();
+    await page.locator('#trackFood').click();
+    assert.equal(await page.locator('#newFood').inputValue(), 'حفظ متعذر');
+    assert.equal(await page.locator('#foodHistory .tracker-history-item').count(), 23);
+    assert.ok((await page.locator('#local-data-message').textContent()).includes('تعذر الحفظ'));
+    await page.evaluate(() => { Storage.prototype.setItem = window.savedSetItem; });
+    // Another tab updates the active history rather than overwriting a cached array.
+    const second = await context.newPage(); await second.goto(base + 'pages/tools.html');
+    await second.evaluate(() => window.Ri3ayaLocal.add('foodRecords', { food: 'موز من نافذة أخرى', date:'2026-10-11',reaction:'neutral'}));
+    await page.locator('#foodHistory .tracker-history-item').filter({ hasText: 'موز من نافذة أخرى' }).waitFor();
+    assert.equal(await page.locator('#foodHistory .tracker-history-item').count(), 24);
+    await page.goto(base + 'pages/digestive.html'); assert.equal(await page.locator('#symptomHistory .tracker-history-item').count(), 12);
+    await page.locator('#disorderType').selectOption('gas'); await page.locator('#symptomSeverity').selectOption('mild'); await page.locator('#symptomDuration').fill('2'); await page.locator('#trackSymptom').click();
+    assert.equal(await page.locator('#symptomHistory .tracker-history-item').count(), 13);
+    await page.goto(base + 'pages/growth.html');
+    assert.equal(await page.locator('#tracker-body .tracker-delete').count(), 1); assert.equal(await page.locator('#tracker-body img').count(), 0);
+    await page.locator('#track-age').fill('0'); await page.locator('#track-date').fill('2026-10-11'); await page.locator('#track-weight').fill('3.5'); await page.locator('#track-sex').selectOption('female'); await page.locator('#track-notes').fill('قياس جديد');
+    await page.locator('#add-measurement').click();
+    await page.waitForFunction(() => JSON.parse(localStorage.getItem('ri3aya-growth-tracker')).length === 2);
+    const measurement = await page.evaluate(() => JSON.parse(localStorage.getItem('ri3aya-growth-tracker'))[0]);
+    assert.equal(measurement.age, 0); assert.equal(measurement.sex, 'female'); assert.ok(measurement.reference.version); assert.ok(measurement.results.length);
+    page.once('dialog', dialog => dialog.accept()); await page.locator('#tracker-body .tracker-delete').first().click(); assert.equal(await page.locator('#tracker-body .tracker-delete').count(), 1);
+    await page.goto(base + 'pages/tools/routine.html'); await page.locator('#generate-routine').click();
+    page.once('dialog', dialog => dialog.accept('روتين <img src=x onerror=alert(1)>'));
+    await page.locator('#save-routine').click(); assert.equal(await page.locator('.saved-routine-card').count(), 1);
+    await page.reload(); assert.equal(await page.locator('.saved-routine-card').count(), 1); assert.equal(await page.locator('.saved-routine-card img').count(), 0);
+    await page.locator('.saved-routine-card').getByRole('button', { name: 'عرض الروتين', exact: true }).click(); assert.equal(await page.locator('.routine-card').count(), 1);
+    await page.evaluate(() => Object.defineProperty(navigator, 'clipboard', { configurable:true, value: { writeText: () => Promise.reject(new Error('denied')) } }));
+    await page.locator('#share-routine').click(); await page.locator('#routine-share-copy').waitFor(); assert.ok((await page.locator('#routine-share-copy').inputValue()).includes('روتين'));
+    await page.goto(base + 'pages/tools.html');
+    const allDownload = page.waitForEvent('download'); await page.locator('#local-export-all').click();
+    const allFile = await allDownload; assert.equal(await page.evaluate(() => document.activeElement.id), 'local-export-all'); const allBackup = JSON.parse(fs.readFileSync(await allFile.path(), 'utf8')); assert.equal(Object.keys(allBackup.records).length, 4); assert.equal(allBackup.records.saved_routines.length, 1);
+    if (process.env.LAYOUT_SCREENSHOT_DIR) {
+        await page.evaluate(() => document.activeElement?.blur());
+        await page.setViewportSize({width:390,height:900}); await page.locator('#local-data-panel').screenshot({path:path.join(process.env.LAYOUT_SCREENSHOT_DIR,'local-data-mobile.png')});
+        await page.setViewportSize({width:1440,height:1000}); await page.locator('#local-data-panel').screenshot({path:path.join(process.env.LAYOUT_SCREENSHOT_DIR,'local-data-desktop.png')});
+    }
+    page.once('dialog', dialog => dialog.dismiss()); await page.locator('#local-delete-all').click(); assert.equal(await page.evaluate(() => JSON.parse(localStorage.getItem('saved_routines')).length), 1);
+    page.once('dialog', dialog => dialog.accept()); await page.locator('#local-delete-all').click();
+    assert.equal(await page.evaluate(() => ['foodRecords','symptomRecords','ri3aya-growth-tracker','saved_routines'].every(k => localStorage.getItem(k) === null)), true);
+    assert.equal(await page.evaluate(() => localStorage.getItem('unrelated-test-data')), 'keep');
+    // Corrupt payload is retained, with an explicit raw backup instead of an invented empty record set.
+    await page.evaluate(() => localStorage.setItem('foodRecords','{broken'));
+    await page.goto(base + 'pages/nutrition.html'); assert.ok((await page.locator('#foodHistory').textContent()).includes('غير قابلة للقراءة'));
+    assert.equal(await page.locator('#local-data-panel').getByRole('button',{name:'تصدير JSON',exact:true}).isDisabled(),true);
+    const rawDownload = page.waitForEvent('download'); await page.locator('#local-data-panel').getByRole('button',{name:'نسخة خام',exact:true}).click();
+    const rawFile = await rawDownload; assert.equal(JSON.parse(fs.readFileSync(await rawFile.path(),'utf8')).raw.foodRecords,'{broken');
+    // Denied storage must not crash any of the five tool surfaces.
+    const blocked = await browser.newContext({serviceWorkers:'block'});
+    await blocked.route('**/*', route => new URL(route.request().url()).hostname === '127.0.0.1' ? route.continue() : route.abort());
+    await blocked.addInitScript(() => Object.defineProperty(window,'localStorage',{configurable:true,get(){throw new DOMException('denied','SecurityError');}}));
+    const deniedPage=await blocked.newPage(); deniedPage.on('pageerror', e=>errors.push(e.message));
+    for(const file of ['pages/tools.html','pages/growth.html','pages/nutrition.html','pages/digestive.html','pages/tools/routine.html']) {
+        await deniedPage.goto(base+file); assert.ok((await deniedPage.locator('#local-data-list').textContent()).includes('تعذر الوصول'));
+    }
+
     const staticContext = await browser.newContext({ javaScriptEnabled: false, serviceWorkers: 'block' });
     await staticContext.route('**/*', route => new URL(route.request().url()).hostname === '127.0.0.1' ? route.continue() : route.abort());
     const staticPage = await staticContext.newPage();
@@ -184,7 +274,7 @@ try {
     }
     // Keep both contexts open until browser shutdown (single-process Chromium).
     assert.deepEqual(errors, [], 'Uncaught local JavaScript errors');
-    console.log(`PASS: ${pages.length * 5} viewport checks, navigation, Arabic search, age/topic/type filtering, pagination, shared URLs, browser back, copy/fallback, retry, stale responses and static articles.`);
+    console.log(`PASS: ${pages.length * 5} viewport checks, navigation, Arabic search, age/topic/type filtering, pagination, shared URLs, browser back, copy/fallback, retry, stale responses, local persistence/downloads/deletions/corruption/storage failures/cross-tab updates and static articles.`);
 } finally {
     if (browser) await browser.close();
     server.close();

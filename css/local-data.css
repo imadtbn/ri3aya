@@ -1,0 +1,19 @@
+.local-data-panel { margin: 1.5rem 0; padding: 1.25rem; background: #fff; border: 1px solid #cddfe3; border-radius: 16px; color: #173e4a; min-width: 0; }
+.local-data-panel > h2 { font-size: 1.35rem; margin-bottom: .6rem; }
+.local-data-note, .local-data-size { color: #45636b; font-size: .95rem; line-height: 1.9; }
+.local-data-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin: 1rem 0; }
+.local-data-panel:not([data-scope="all"]) .local-data-list { display: block; }
+.local-data-card { padding: 1rem; border: 1px solid #dce7e9; border-radius: 12px; min-width: 0; }
+.local-data-card h3 { font-size: 1.1rem; }
+.local-data-status, #local-data-message { overflow-wrap: anywhere; line-height: 1.8; }
+.local-data-actions { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: .8rem; }
+.local-data-actions .btn { min-height: 44px; padding: .65rem .9rem; font-size: .9rem; }
+.local-data-panel .local-delete, .tracker-delete { background: #fff; color: #9d3434; border: 1px solid #c78888; }
+.local-data-panel button:disabled { opacity: .5; cursor: not-allowed; }
+#local-data-message { margin-top: .7rem; font-weight: 600; }
+.tracker-delete, .tracker-history-item .delete-record { min-height: 44px; min-width: 44px; cursor: pointer; }
+.saved-routine-card { background: #fff; border: 1px solid #dce7e9; border-radius: 12px; padding: 1rem; margin: .75rem 0; overflow-wrap: anywhere; }
+.saved-routine-card h3 { font-size: 1.1rem; }
+.saved-routine-actions { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: .7rem; }
+@media(max-width:600px) { .local-data-list { grid-template-columns: minmax(0, 1fr); } .local-data-panel { padding: 1rem; } .local-data-actions .btn { flex: 1 1 135px; } }
+@media print { .local-data-panel, .tracker-delete, .saved-routine-actions { display: none !important; } }
