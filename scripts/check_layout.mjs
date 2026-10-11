@@ -89,8 +89,84 @@ try {
     await input.fill('التكميلي');
     await page.locator('.site-search-result[href="../../pages/articles/first-foods.html"]').waitFor();
     await input.press('Escape');
+    // A native header submission opens the full search from a nested article.
+    await input.fill('نوم');
+    await input.press('Enter');
+    await page.waitForURL('**/pages/search.html?q=*');
+    await page.locator('.search-result-card').first().waitFor();
+    assert.equal(new URL(page.url()).searchParams.get('q'), 'نوم');
+    await page.goto(base + 'pages/search.html');
+    await page.locator('.search-result-card').first().waitFor();
+    const index = JSON.parse(fs.readFileSync(path.join(root, 'search/index.json'), 'utf8'));
+    const discoverable = index.items.filter(item => item.type !== 'page').length;
+    assert.equal(await page.locator('.search-result-card').count(), Math.min(8, discoverable));
+    await page.locator('#discovery-more').click();
+    assert.equal(await page.locator('.search-result-card').count(), Math.min(16, discoverable));
+    const fullAge = page.locator('#discovery-age');
+    await fullAge.fill('0'); await fullAge.press('Tab');
+    await page.locator('#discovery-type').selectOption('article');
+    await page.waitForFunction(() => document.querySelector('#discovery-results').getAttribute('aria-busy') === 'false');
+    assert.equal(await page.locator('.search-result-card').count(), 4);
+    await page.locator('#discovery-topic').selectOption('nutrition');
+    await page.locator('#discovery-empty').waitFor({ state: 'visible' });
+    await fullAge.fill('6'); await fullAge.press('Tab');
+    await page.locator('.search-result-card').first().waitFor();
+    assert.equal(await page.locator('.search-result-card').count(), 1);
+    assert.ok((await page.locator('.search-result-card').textContent()).includes('الطعام التكميلي'));
+    const sharedURL = page.url();
+    assert.equal(new URL(sharedURL).searchParams.get('age'), '6');
+    await page.reload();
+    await page.locator('.search-result-card').first().waitFor();
+    assert.equal(await fullAge.inputValue(), '6');
+    assert.equal(await page.locator('#discovery-topic').inputValue(), 'nutrition');
+    await page.locator('#discovery-topic').selectOption('sleep');
+    await page.waitForFunction(() => document.querySelector('#discovery-results').getAttribute('aria-busy') === 'false');
+    await page.goBack();
+    await page.waitForFunction(() => document.querySelector('#discovery-topic').value === 'nutrition' && document.querySelector('#discovery-results').getAttribute('aria-busy') === 'false');
+    assert.equal(await page.locator('.search-result-card').count(), 1);
+    await page.evaluate(() => Object.defineProperty(navigator, 'clipboard', { configurable: true, value: { writeText: async value => { window.copiedSearchURL = value; } } }));
+    await page.locator('#discovery-copy').click();
+    await page.getByText('تم نسخ رابط البحث والفلاتر.').waitFor();
+    assert.equal(new URL(await page.evaluate(() => window.copiedSearchURL)).searchParams.get('age'), '6');
+    await page.evaluate(() => Object.defineProperty(navigator, 'clipboard', { configurable: true, value: { writeText: async () => { throw new Error('denied'); } } }));
+    await page.locator('#discovery-copy').click();
+    await page.locator('#discovery-copy-fallback').waitFor({ state: 'visible' });
+    assert.equal(new URL(await page.locator('#discovery-share-link').inputValue()).searchParams.get('topic'), 'nutrition');
+    // Library restores all three filters and can clear them without losing cards.
+    await page.goto(base + 'pages/blog.html?q=طعام&age=6&topic=nutrition');
+    await page.waitForFunction(() => document.querySelector('#library-query').value === 'طعام');
+    assert.equal(await page.locator('.library-card:visible').count(), 1);
+    await page.locator('#library-reset').click();
+    assert.equal(await page.locator('.library-card:visible').count(), 5);
+    assert.equal(new URL(page.url()).search, '');
+    // A failed index can be retried; latest filters win while its response is delayed.
+    const failIndex = route => route.abort();
+    await context.route('**/search/index.json', failIndex);
+    await page.goto(base + 'pages/search.html');
+    await page.locator('#discovery-error').waitFor({ state: 'visible' });
+    await context.unroute('**/search/index.json', failIndex);
+    await page.locator('#discovery-retry').click();
+    await fullAge.fill('0'); await fullAge.press('Tab');
+    await fullAge.fill('6'); await fullAge.press('Tab');
+    await page.locator('#discovery-topic').selectOption('nutrition');
+    await page.locator('#discovery-type').selectOption('article');
+    await page.waitForFunction(() => document.querySelector('#discovery-results').getAttribute('aria-busy') === 'false');
+    assert.equal(await page.locator('.search-result-card').count(), 1);
+    assert.equal(await page.locator('#discovery-error').isVisible(), false);
+    await page.goto(base + 'pages/search.html?age=-1&topic=unknown&type=unknown');
+    await page.locator('.search-result-card').first().waitFor();
+    assert.equal(await fullAge.inputValue(), '');
+    assert.equal(new URL(page.url()).search, '');
     if (process.env.LAYOUT_SCREENSHOT_DIR) {
         fs.mkdirSync(process.env.LAYOUT_SCREENSHOT_DIR, { recursive: true });
+        await page.screenshot({ path: path.join(process.env.LAYOUT_SCREENSHOT_DIR, 'search-mobile.png'), fullPage: true });
+        await page.setViewportSize({ width: 1440, height: 1000 });
+        await page.screenshot({ path: path.join(process.env.LAYOUT_SCREENSHOT_DIR, 'search-desktop.png'), fullPage: true });
+    }
+    if (process.env.LAYOUT_SCREENSHOT_DIR) {
+        fs.mkdirSync(process.env.LAYOUT_SCREENSHOT_DIR, { recursive: true });
+        await page.setViewportSize({ width: 390, height: 900 });
+        await page.goto(base + 'pages/articles/first-foods.html');
         await page.screenshot({ path: path.join(process.env.LAYOUT_SCREENSHOT_DIR, 'article-mobile.png'), fullPage: true });
         await page.goto(base + 'pages/blog.html');
         await page.setViewportSize({ width: 1440, height: 1000 });
@@ -108,7 +184,7 @@ try {
     }
     // Keep both contexts open until browser shutdown (single-process Chromium).
     assert.deepEqual(errors, [], 'Uncaught local JavaScript errors');
-    console.log(`PASS: ${pages.length * 5} viewport checks, navigation, keyboard, Arabic search, nested article links, filtering, stale responses and static articles without JavaScript.`);
+    console.log(`PASS: ${pages.length * 5} viewport checks, navigation, Arabic search, age/topic/type filtering, pagination, shared URLs, browser back, copy/fallback, retry, stale responses and static articles.`);
 } finally {
     if (browser) await browser.close();
     server.close();

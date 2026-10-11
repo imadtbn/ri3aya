@@ -72,6 +72,7 @@
 <link rel="stylesheet" href="../css/accessibility.css">
 <link rel="stylesheet" href="../css/animations.css">
 <link rel="stylesheet" href="../css/site-polish.css">
+<script defer src="../js/search-core.js"></script>
 </head>
 <body class="site-shell">
     <!-- Google Tag Manager (noscript) -->
@@ -97,7 +98,7 @@
 <li><a href="../pages/tips.html">نصائح يومية</a></li></ul></li>
             <li><a href="../pages/tools.html">الأدوات</a></li><li><a href="../pages/blog.html">الأدلة والمقالات</a></li><li><a href="../pages/resources.html">المصادر</a></li><li><a href="../pages/faq.html">الأسئلة الشائعة</a></li>
         </ul></nav>
-        <div class="search-container"><label class="sr-only" for="site-search">ابحث في أدلة الرعاية</label><input id="site-search" class="search-input" type="search" placeholder="ابحث: نوم، تغذية، نمو…" autocomplete="off" aria-controls="site-search-results"><button class="search-btn" type="button" aria-label="بحث">بحث</button></div>
+        <form class="search-container" action="../pages/search.html" method="get" role="search"><label class="sr-only" for="site-search">ابحث في أدلة الرعاية</label><input id="site-search" class="search-input" name="q" type="search" maxlength="160" placeholder="ابحث: نوم، تغذية، نمو…" autocomplete="off" aria-controls="site-search-results"><button class="search-btn" type="submit" aria-label="بحث">بحث</button><a class="advanced-search-link" href="../pages/search.html">فلترة</a></form>
     </div>
 </header>
 <!-- رأس الصفحة -->

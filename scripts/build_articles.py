@@ -88,7 +88,7 @@ def page(path, title, description, content, image=None, schema=None, scripts='')
     return layout(text, path)
 
 def card(a, prefix='articles/', root='../'):
-    return f'''<article class="library-card" data-category="{esc(a['category'])}"><img src="{root}{esc(a['image'])}" alt="{esc(a['image_alt'])}" width="480" height="320" loading="lazy" decoding="async"><div class="library-card-content"><span class="article-category-label">{esc(a['category_label'])}</span><h2><a href="{prefix}{a['slug']}.html">{esc(a['title'])}</a></h2><p>{esc(a['summary'])}</p><p class="article-age">{esc(a['age_label'])}</p><span class="review-badge">{review_label(a)}</span><p class="article-card-date">تحقق تحريري: <time datetime="{a['editorial_review']['date']}">{a['editorial_review']['date']}</time></p><a class="btn btn-primary" href="{prefix}{a['slug']}.html">قراءة المقال</a></div></article>'''
+    return f'''<article class="library-card" data-category="{esc(a['category'])}" data-url="pages/articles/{a['slug']}.html"><img src="{root}{esc(a['image'])}" alt="{esc(a['image_alt'])}" width="480" height="320" loading="lazy" decoding="async"><div class="library-card-content"><span class="article-category-label">{esc(a['category_label'])}</span><h2><a href="{prefix}{a['slug']}.html">{esc(a['title'])}</a></h2><p>{esc(a['summary'])}</p><p class="article-age">{esc(a['age_label'])}</p><span class="review-badge">{review_label(a)}</span><p class="article-card-date">تحقق تحريري: <time datetime="{a['editorial_review']['date']}">{a['editorial_review']['date']}</time></p><a class="btn btn-primary" href="{prefix}{a['slug']}.html">قراءة المقال</a></div></article>'''
 
 def render_article(a, sources, articles):
     used = used_sources(a)
@@ -114,12 +114,22 @@ def render_article(a, sources, articles):
     schema = {'@context':'https://schema.org','@type':'Article','headline':a['title'],'description':a['summary'],'inLanguage':'ar','url':url,'mainEntityOfPage':url,'datePublished':a['published_at'],'dateModified':a['updated_at'],'author':{'@type':'Organization','name':'رعاية الرضع'},'publisher':{'@type':'Organization','name':'رعاية الرضع'},'citation':[sources[ref]['url'] for ref in used]}
     return page(ROOT/f'pages/articles/{a["slug"]}.html',a['title'],a['summary'],content,(a['image'],a['image_alt']),schema)
 
+def article_record(a):
+    topics=list(dict.fromkeys([a['topic'], a['category']]))
+    keywords=' '.join([a['title'],a['summary'],a['takeaway'],*a['keywords'],*[s['text']+' '+' '.join(s['items']) for s in a['sections']],a['help']['text']])
+    return {'title':a['title'],'url':f'pages/articles/{a["slug"]}.html','keywords':keywords,'summary':a['summary'],'type':'article','section':a['category_label'],'topics':topics,'age_scope':'range','age_label':a['age_label'],'age_min_months':a['age_min_months'],'age_max_months':a['age_max_months'],'medical_review_status':a['medical_review']['status']}
+
 def build():
     data, sources = load_catalog()
     articles = {a['slug']:a for a in data['articles'] if a['publication_status']=='published'}
     outputs = {ROOT/f'pages/articles/{a["slug"]}.html':render_article(a,sources,articles) for a in articles.values()}
     filters = ''.join(f'<button type="button" class="library-filter" data-category="{key}" aria-pressed="{str(key=="all").lower()}">{label}</button>' for key,label in [('all','كل المقالات'),('safety','النوم والسلامة'),('nutrition','التغذية'),('care','العناية اليومية')])
-    content = f'''<section class="library-intro"><h2>اقرئي موضوعًا واحدًا بخطوات واضحة</h2><p>{len(articles)} مقالات مستقلة بمصادر رسمية. لكل مقال فئة عمرية وحالة مراجعة وتواريخ واضحة.</p><p>«منشور» يصف إتاحة المقال؛ لا يعني اعتماده طبيًا. <a href="editorial-policy.html">اطّلعي على سياسة التحرير والمراجعة</a>.</p></section><div class="library-filters" role="group" aria-label="تصفية المقالات حسب الموضوع">{filters}</div><p id="library-count" role="status">{len(articles)} مقالات</p><div class="library-grid" id="articles">{''.join(card(a) for a in articles.values())}</div><noscript><p>تظهر جميع المقالات عند تعطيل JavaScript؛ روابطها تعمل مباشرة.</p></noscript>'''
+    library_records = [article_record(a) for a in articles.values()]
+    library_json = json.dumps(library_records, ensure_ascii=False).replace('<', '\\u003c')
+    content = f'''<section class="library-intro"><h2>اقرئي موضوعًا واحدًا بخطوات واضحة</h2><p>{len(articles)} مقالات مستقلة بمصادر رسمية. لكل مقال فئة عمرية وحالة مراجعة وتواريخ واضحة.</p><p>«منشور» يصف إتاحة المقال؛ لا يعني اعتماده طبيًا. <a href="editorial-policy.html">اطّلعي على سياسة التحرير والمراجعة</a>.</p></section>
+    <form id="library-controls" class="search-controls" action="blog.html" method="get"><div class="search-fields"><div><label for="library-query">ابحثي في المقالات</label><input id="library-query" name="q" type="search" maxlength="160" placeholder="نوم، طعام، استحمام…"></div><div><label for="library-age">عمر الطفل بالأشهر (اختياري)</label><input id="library-age" name="age" type="number" min="0" max="36" step="1" placeholder="كل الأعمار" aria-describedby="library-age-note"></div></div><div class="search-actions"><button class="btn btn-primary" type="submit">تطبيق البحث</button><button class="btn btn-secondary" type="button" id="library-reset">مسح الفلاتر</button><a id="library-full-search" href="search.html">البحث في الأدلة والأدوات أيضًا</a></div><p id="library-age-note" class="search-note">اكتبي عدد الأشهر المكتملة من 0 إلى 36. يطابق الفلتر النطاق العمري المعلن للمقال، ولا يوصي بعلاج أو يقيم حالة الطفل.</p></form>
+    <div class="library-filters" role="group" aria-label="تصفية المقالات حسب الموضوع">{filters}</div><p id="library-count" role="status">{len(articles)} مقالات</p><p id="library-empty" class="search-feedback" hidden>لا توجد مقالات تطابق هذه الاختيارات. جربي مسح العمر أو تغيير الموضوع.</p><div class="library-grid" id="articles">{''.join(card(a) for a in articles.values())}</div><script type="application/json" id="library-data">{library_json}</script><noscript><p>تظهر جميع المقالات عند تعطيل JavaScript؛ البحث والفلترة يحتاجان تفعيله، وروابط المقالات تعمل مباشرة.</p></noscript>'''
+
     schema = {'@context':'https://schema.org','@type':'CollectionPage','name':'مكتبة مقالات رعاية الرضع','url':BASE+'pages/blog.html','mainEntity':{'@type':'ItemList','itemListElement':[{'@type':'ListItem','position':i+1,'name':a['title'],'url':BASE+f'pages/articles/{a["slug"]}.html'} for i,a in enumerate(articles.values())]}}
     outputs[ROOT/'pages/blog.html'] = page(ROOT/'pages/blog.html','مكتبة مقالات رعاية الرضع','مقالات عربية مستقلة للنوم والتغذية والعناية اليومية، مع المصادر وحالة المراجعة الطبية.',content,schema=schema,scripts='<script defer src="../js/article-library.js"></script>')
     policy = '''<article class="care-article"><section class="article-section"><h2>المصادر والصياغة</h2><p>تعتمد المكتبة على صفحات رسمية مثل CDC وWHO وNHS. نكتب ملخصات عربية بمساعدة آلية ونربط كل قسم بمصدره. المقالات ليست ترجمات رسمية، ولا يعني ذكر الجهة أنها اعتمدت هذا الموقع.</p></section><section class="article-section"><h2>ما الفرق بين التواريخ؟</h2><ul><li>تاريخ النشر: أول إتاحة لهذه النسخة من المقال.</li><li>آخر تحديث: تعديل محتوى المقال.</li><li>التحقق التحريري: مراجعة المصادر والروابط والصياغة، وليس تقييمًا سريريًا.</li><li>تاريخ المصدر: تاريخ صفحة الجهة الأصلية؛ لا يُنسب إلى مراجعة مقالنا.</li><li>المراجعة الطبية: مراجعة فعلية من مختص محدد، مع تاريخ ومؤهلات ودليل مراجعة.</li></ul></section><section class="article-review-panel"><h2>حالات المراجعة الطبية</h2><ul><li>لم يُراجع طبيًا بعد: لم يُراجع المقال مختص؛ وهذه حالة المقالات الحالية.</li><li>بانتظار مراجعة طبية: أُدرج ضمن مسار مراجعة، دون اعتماد مكتمل.</li><li>مراجعة طبية موثقة: لا تُستخدم إلا مع اسم المراجع ومؤهلاته وتاريخ ودليل مراجعة قابل للتحقق.</li></ul><p>النشر وإتمام المراجعة الطبية حالتان مستقلتان. لا نعرض أسماء أطباء أو تواريخ اعتماد افتراضية.</p></section><section class="article-section"><h2>الحدود والتصحيح</h2><p>المقالات تثقيفية للعناية العامة، ولا تقدم تشخيصًا أو جرعات دواء أو استشارات فردية. لا تؤخري الرعاية عند القلق على صحة الطفل. عند اكتشاف خطأ جوهري يجب تصحيحه أو سحب المقال وتحديث المكتبة والبحث.</p><p>يمكنك <a href="contact.html">إعداد ملاحظة تصحيح محلية</a> تتضمن رابط المقال والفقرة والمصدر المقترح؛ نموذج التواصل الحالي لا يرسلها إلى الموقع.</p></section><a class="btn btn-primary" href="blog.html">العودة إلى مكتبة المقالات</a></article>'''
@@ -145,24 +155,37 @@ def build():
     assert old, 'Home article section missing'
     home = f'<section id="home-articles" class="latest-blog"><div class="container"><h2 class="section-title">مقالات بخطوات واضحة</h2><div class="library-grid">'+''.join(card(a,'pages/articles/','') for a in list(articles.values())[:3])+'</div><div class="text-center"><a class="btn btn-secondary" href="pages/blog.html">عرض مكتبة المقالات</a></div></div></section>'
     outputs[p] = layout(replace(text, old, home), p)
-    # Rebuild the shared search index from current content, excluding navigation and footer.
+    # Explicit discovery metadata avoids guessing age suitability from medical text.
+    discovery = json.loads((ROOT/'content/search/catalog.json').read_text())
+    topics = {entry['id']: entry['label'] for entry in discovery['topics']}
     search_items=[]
     page_paths = set((ROOT/'pages').rglob('*.html')) | {p for p in outputs if p.suffix == '.html'}
     for p in [ROOT/'index.html', *sorted(page_paths)]:
-        if p.parent.name=='articles' and p not in outputs: continue
+        if p.stem == 'search': continue
+        if p.parent.name=='articles':
+            if p.stem in articles: search_items.append(article_record(articles[p.stem]))
+            continue
         text=outputs.get(p,p.read_text() if p.exists() else '')
         soup=BeautifulSoup(text,'html.parser')
         main=soup.find('main')
         if not main: continue
-        for tag in main.select('script, style, nav, .article-review-panel, .article-sources'):
-            tag.decompose()
+        hero=soup.select_one('.site-hero p')
         title=soup.h1.get_text(' ',strip=True)
-        slug=p.stem
-        article=articles.get(slug) if p.parent.name=='articles' else None
-        keywords=' '.join(main.stripped_strings)
-        if article: keywords += ' '+' '.join(article['keywords'])
-        search_items.append({'title':title,'url':p.relative_to(ROOT).as_posix(),'keywords':keywords,'type':'article' if article else 'page','section':article['category_label'] if article else 'رعاية', **({'age_min_months':article['age_min_months'],'age_max_months':article['age_max_months'],'medical_review_status':article['medical_review']['status']} if article else {})})
-    outputs[ROOT/'search/index.json']=json.dumps({'version':data['updated_at'],'language':'ar','items':search_items},ensure_ascii=False,indent=2)+'\n'
+        url=p.relative_to(ROOT).as_posix()
+        meta=discovery['pages'][url]
+        assert meta['type'] in ('page','guide','tool'), 'Invalid discovery type'
+        assert set(meta['topics']) <= topics.keys(), 'Unknown discovery topic'
+        assert meta['age_scope'] in ('general','range'), 'Invalid age scope'
+        if meta['age_scope']=='range': assert 0<=meta['age_min_months']<=meta['age_max_months']<=36, 'Invalid discovery age'
+        for tag in main.select('script, style, nav, .article-review-panel, .article-sources, .article-discovery'):
+            tag.decompose()
+        keywords=' '.join(main.stripped_strings)+' '+' '.join(meta['keywords'])
+        search_items.append({'title':title,'url':url,'keywords':keywords,'summary':hero.get_text(' ',strip=True) if hero else title,'section':topics[meta['topics'][0]] if meta['topics'] else 'حول الموقع',**{key:value for key,value in meta.items() if key!='keywords'}})
+    outputs[ROOT/'search/index.json']=json.dumps({'schema_version':4,'version':discovery['updated_at'],'language':'ar','topics':discovery['topics'],'items':search_items},ensure_ascii=False,indent=2)+'\n'
+    topic_options=''.join(f'<option value="{key}">{esc(label)}</option>' for key,label in topics.items())
+    fallback=''.join(f'<li><a href="../{esc(item["url"])}">{esc(item["title"])}</a></li>' for item in search_items if item['type']!='page')
+    search_content=f'''<form id="discovery-form" class="search-controls" method="get" action="search.html"><div class="search-fields"><div><label for="discovery-query">كلمات البحث</label><input id="discovery-query" name="q" type="search" maxlength="160" autocomplete="off" placeholder="مثال: نوم، تلقيح، حفاضات"></div><div><label for="discovery-age">عمر الطفل بالأشهر (اختياري)</label><input id="discovery-age" name="age" type="number" min="0" max="36" step="1" placeholder="كل الأعمار" aria-describedby="discovery-age-note"></div><div><label for="discovery-topic">الموضوع</label><select id="discovery-topic" name="topic"><option value="all">كل المواضيع</option>{topic_options}</select></div><div><label for="discovery-type">نوع المحتوى</label><select id="discovery-type" name="type"><option value="all">كل الأنواع</option><option value="article">مقالات مستقلة</option><option value="guide">أدلة عامة</option><option value="tool">أدوات</option><option value="page">صفحات الموقع</option></select></div></div><div class="search-actions"><button type="submit" class="btn btn-primary">بحث وتطبيق الفلاتر</button><button type="button" class="btn btn-secondary" id="discovery-reset">مسح الفلاتر</button><button type="button" class="btn btn-secondary" id="discovery-copy">نسخ رابط النتائج</button></div><p id="discovery-age-note" class="search-note">العمر من 0 إلى 36 شهرًا. عند تحديده تظهر النتائج ذات النطاق العمري المعلن فقط؛ أزيلي فلتر العمر لعرض الأدلة العامة. الفلترة لتنظيم المحتوى وليست تقييمًا طبيًا.</p><p id="discovery-share-status" role="status"></p><div id="discovery-copy-fallback" hidden><label for="discovery-share-link">انسخي الرابط يدويًا</label><input id="discovery-share-link" readonly type="url"></div></form><p id="discovery-count" role="status">جارٍ تحميل فهرس البحث…</p><div id="discovery-error" class="search-feedback" hidden><p>تعذر تحميل البحث. تحققي من الاتصال ثم أعيدي المحاولة.</p><button id="discovery-retry" class="btn btn-primary" type="button">إعادة المحاولة</button><a href="blog.html">افتحي مكتبة المقالات</a></div><div id="discovery-empty" class="search-feedback" hidden><h2>لا توجد نتائج مطابقة</h2><p>جربي كلمة أقصر أو أزيلي أحد الفلاتر. يمكنك البدء بالنوم أو التغذية أو العناية اليومية.</p></div><div id="discovery-results" class="search-results-grid" aria-busy="true"></div><button id="discovery-more" class="btn btn-secondary" type="button" hidden>عرض 8 نتائج أخرى</button><noscript><p>البحث والفلترة يحتاجان JavaScript. يمكنك فتح المحتوى مباشرة:</p><ul>{fallback}</ul></noscript>'''
+    outputs[ROOT/'pages/search.html']=page(ROOT/'pages/search.html','البحث في رعاية الرضع','ابحثي في المقالات والأدلة والأدوات، وفلترِي النتائج حسب عمر الطفل والموضوع.',search_content,scripts='<script defer src="../js/search-page.js"></script>')
     # Keep existing URL dates; append only new, published pages with their own date.
     ns='http://www.sitemaps.org/schemas/sitemap/0.9'
     ET.register_namespace('',ns)

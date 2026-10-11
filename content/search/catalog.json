@@ -1,0 +1,287 @@
+{
+  "version": 1,
+  "updated_at": "2026-10-11",
+  "topics": [
+    {
+      "id": "sleep",
+      "label": "النوم الآمن"
+    },
+    {
+      "id": "nutrition",
+      "label": "التغذية"
+    },
+    {
+      "id": "care",
+      "label": "العناية اليومية"
+    },
+    {
+      "id": "crying",
+      "label": "البكاء"
+    },
+    {
+      "id": "growth",
+      "label": "النمو"
+    },
+    {
+      "id": "vaccine",
+      "label": "التلقيح"
+    },
+    {
+      "id": "bath",
+      "label": "الاستحمام"
+    },
+    {
+      "id": "diapers",
+      "label": "الحفاضات"
+    },
+    {
+      "id": "digestive",
+      "label": "الجهاز الهضمي"
+    },
+    {
+      "id": "diseases",
+      "label": "الصحة والأعراض"
+    },
+    {
+      "id": "tips",
+      "label": "نصائح عامة"
+    }
+  ],
+  "pages": {
+    "index.html": {
+      "type": "page",
+      "topics": [],
+      "age_scope": "general",
+      "age_min_months": null,
+      "age_max_months": null,
+      "age_label": "محتوى عام",
+      "keywords": []
+    },
+    "pages/bath.html": {
+      "type": "guide",
+      "topics": [
+        "bath",
+        "care"
+      ],
+      "age_scope": "general",
+      "age_min_months": null,
+      "age_max_months": null,
+      "age_label": "دليل عام دون فئة عمرية محددة",
+      "keywords": []
+    },
+    "pages/blog.html": {
+      "type": "page",
+      "topics": [],
+      "age_scope": "general",
+      "age_min_months": null,
+      "age_max_months": null,
+      "age_label": "محتوى عام",
+      "keywords": []
+    },
+    "pages/contact.html": {
+      "type": "page",
+      "topics": [],
+      "age_scope": "general",
+      "age_min_months": null,
+      "age_max_months": null,
+      "age_label": "محتوى عام",
+      "keywords": []
+    },
+    "pages/crying.html": {
+      "type": "guide",
+      "topics": [
+        "crying",
+        "care"
+      ],
+      "age_scope": "general",
+      "age_min_months": null,
+      "age_max_months": null,
+      "age_label": "دليل عام دون فئة عمرية محددة",
+      "keywords": []
+    },
+    "pages/diapers.html": {
+      "type": "guide",
+      "topics": [
+        "diapers",
+        "care"
+      ],
+      "age_scope": "general",
+      "age_min_months": null,
+      "age_max_months": null,
+      "age_label": "دليل عام دون فئة عمرية محددة",
+      "keywords": [
+        "حفاظات",
+        "حفاضات",
+        "حفاضة"
+      ]
+    },
+    "pages/digestive.html": {
+      "type": "guide",
+      "topics": [
+        "digestive"
+      ],
+      "age_scope": "general",
+      "age_min_months": null,
+      "age_max_months": null,
+      "age_label": "دليل عام دون فئة عمرية محددة",
+      "keywords": []
+    },
+    "pages/disclaimer.html": {
+      "type": "page",
+      "topics": [],
+      "age_scope": "general",
+      "age_min_months": null,
+      "age_max_months": null,
+      "age_label": "محتوى عام",
+      "keywords": []
+    },
+    "pages/diseases.html": {
+      "type": "guide",
+      "topics": [
+        "diseases"
+      ],
+      "age_scope": "general",
+      "age_min_months": null,
+      "age_max_months": null,
+      "age_label": "دليل عام دون فئة عمرية محددة",
+      "keywords": []
+    },
+    "pages/editorial-policy.html": {
+      "type": "page",
+      "topics": [],
+      "age_scope": "general",
+      "age_min_months": null,
+      "age_max_months": null,
+      "age_label": "محتوى عام",
+      "keywords": []
+    },
+    "pages/faq.html": {
+      "type": "page",
+      "topics": [],
+      "age_scope": "general",
+      "age_min_months": null,
+      "age_max_months": null,
+      "age_label": "محتوى عام",
+      "keywords": []
+    },
+    "pages/growth.html": {
+      "type": "tool",
+      "topics": [
+        "growth"
+      ],
+      "age_scope": "range",
+      "age_min_months": 0,
+      "age_max_months": 24,
+      "age_label": "من الولادة إلى 24 شهرًا — نطاق الأداة",
+      "keywords": []
+    },
+    "pages/nutrition.html": {
+      "type": "guide",
+      "topics": [
+        "nutrition"
+      ],
+      "age_scope": "general",
+      "age_min_months": null,
+      "age_max_months": null,
+      "age_label": "دليل عام دون فئة عمرية محددة",
+      "keywords": []
+    },
+    "pages/privacy.html": {
+      "type": "page",
+      "topics": [],
+      "age_scope": "general",
+      "age_min_months": null,
+      "age_max_months": null,
+      "age_label": "محتوى عام",
+      "keywords": []
+    },
+    "pages/resources.html": {
+      "type": "page",
+      "topics": [],
+      "age_scope": "general",
+      "age_min_months": null,
+      "age_max_months": null,
+      "age_label": "محتوى عام",
+      "keywords": []
+    },
+    "pages/sections.html": {
+      "type": "page",
+      "topics": [],
+      "age_scope": "general",
+      "age_min_months": null,
+      "age_max_months": null,
+      "age_label": "محتوى عام",
+      "keywords": []
+    },
+    "pages/sleep.html": {
+      "type": "guide",
+      "topics": [
+        "sleep"
+      ],
+      "age_scope": "general",
+      "age_min_months": null,
+      "age_max_months": null,
+      "age_label": "دليل عام دون فئة عمرية محددة",
+      "keywords": []
+    },
+    "pages/terms.html": {
+      "type": "page",
+      "topics": [],
+      "age_scope": "general",
+      "age_min_months": null,
+      "age_max_months": null,
+      "age_label": "محتوى عام",
+      "keywords": []
+    },
+    "pages/tips.html": {
+      "type": "guide",
+      "topics": [
+        "tips",
+        "care"
+      ],
+      "age_scope": "general",
+      "age_min_months": null,
+      "age_max_months": null,
+      "age_label": "دليل عام دون فئة عمرية محددة",
+      "keywords": []
+    },
+    "pages/tools/routine.html": {
+      "type": "tool",
+      "topics": [
+        "sleep",
+        "nutrition",
+        "care"
+      ],
+      "age_scope": "range",
+      "age_min_months": 0,
+      "age_max_months": 24,
+      "age_label": "من الولادة إلى 24 شهرًا — نطاق الأداة",
+      "keywords": []
+    },
+    "pages/tools.html": {
+      "type": "page",
+      "topics": [],
+      "age_scope": "general",
+      "age_min_months": null,
+      "age_max_months": null,
+      "age_label": "محتوى عام",
+      "keywords": []
+    },
+    "pages/vaccine.html": {
+      "type": "guide",
+      "topics": [
+        "vaccine"
+      ],
+      "age_scope": "general",
+      "age_min_months": null,
+      "age_max_months": null,
+      "age_label": "دليل عام دون فئة عمرية محددة",
+      "keywords": [
+        "لقاح",
+        "لقاحات",
+        "تطعيم",
+        "تطعيمات"
+      ]
+    }
+  }
+}

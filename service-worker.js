@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'ri3aya-v11-phase3-20261011';
+const CACHE_VERSION = 'ri3aya-v12-phase4-20261011';
 const APP_SHELL = [
     './',
     './index.html',
@@ -10,6 +10,12 @@ const APP_SHELL = [
     './css/site-polish.css',
     './js/main.js',
     './js/search.js',
+    './js/search-core.js',
+    './js/search-page.js',
+    './css/search.css',
+    './css/articles.css',
+    './pages/search.html',
+    './search/index.json',
     './js/site-tags.js'
 ];
 

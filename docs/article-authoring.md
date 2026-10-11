@@ -20,6 +20,7 @@ python scripts/check_article_library.py
 python scripts/test_article_publication.py
 python scripts/quality_gate.py
 python scripts/check_site_tags.py
+node scripts/test_search.cjs
 ```
 
 يجب أن لا يغيّر إعادة البناء الملفات إذا لم يتغير المصدر. يحافظ البناء على المقالات الثابتة وروابطها، ويستبعد المسودات والمقالات المسحوبة من التوصيات أيضًا.
@@ -33,3 +34,5 @@ node scripts/check_layout.mjs
 يتطلب Playwright ومتصفح Chromium مثبتين خارج الموقع الإنتاجي. يمكن تحديد مسار الحزمة عبر `PLAYWRIGHT_MODULE` ومسار المتصفح عبر `CHROMIUM_PATH`. يشمل الفحص جميع الصفحات recursively، وخمسة عروض، والبحث من مسار مقال متداخل، والتصفية، والقراءة دون JavaScript. يعزل خدمات CDN والتحليلات وService Worker، فلا يعد اختبار أداء خارجيًا أو مراجعة طبية.
 
 المقالات الحالية ملخصات عربية بمساعدة آلية من CDC وWHO وNHS، بتاريخ تحقق 2026-10-11. جميعها تحمل حالة «لم يُراجع طبيًا بعد». لا تمنح إعادة النشر اعتمادًا طبيًا.
+
+لصيانة تصنيف الأعمار والموضوعات وفهرس البحث، راجع `docs/search-maintenance.md`.

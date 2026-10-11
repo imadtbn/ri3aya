@@ -16,7 +16,7 @@ TOPICS = [('sleep', 'النوم الآمن'), ('nutrition', 'التغذية'), (
           ('diapers', 'الحفاضات'), ('digestive', 'الجهاز الهضمي'), ('diseases', 'الصحة'), ('tips', 'نصائح يومية')]
 PAGE_CSS = {'index': [], 'crying': ['crying-analyzer', 'improvements-crying'],
             'tools': ['tools', 'tools-index'], 'routine': ['tools'],
-            'blog': ['articles'], 'editorial-policy': ['articles'], 'sections': [], 'resources': [], 'terms': [], 'privacy': [], 'faq': [], 'disclaimer': []}
+            'search': ['articles', 'search'], 'blog': ['articles', 'search'], 'editorial-policy': ['articles'], 'sections': [], 'resources': [], 'terms': [], 'privacy': [], 'faq': [], 'disclaimer': []}
 
 def span(source, node):
     start = sum(len(line) for line in source.splitlines(keepends=True)[:node.sourceline - 1]) + node.sourcepos
@@ -49,7 +49,7 @@ def layout(source, path):
             <li class="dropdown"><div class="site-topic-link">{navlink('sections', 'أقسام الرعاية')}<button class="dropdown-toggle" type="button" aria-label="عرض موضوعات الرعاية" aria-controls="care-topics" aria-expanded="false">⌄</button></div><ul class="dropdown-menu" id="care-topics">{topics}</ul></li>
             <li>{navlink('tools', 'الأدوات')}</li><li>{navlink('blog', 'الأدلة والمقالات')}</li><li>{navlink('resources', 'المصادر')}</li><li>{navlink('faq', 'الأسئلة الشائعة')}</li>
         </ul></nav>
-        <div class="search-container"><label class="sr-only" for="site-search">ابحث في أدلة الرعاية</label><input id="site-search" class="search-input" type="search" placeholder="ابحث: نوم، تغذية، نمو…" autocomplete="off" aria-controls="site-search-results"><button class="search-btn" type="button" aria-label="بحث">بحث</button></div>
+        <form class="search-container" action="{root}pages/search.html" method="get" role="search"><label class="sr-only" for="site-search">ابحث في أدلة الرعاية</label><input id="site-search" class="search-input" name="q" type="search" maxlength="160" placeholder="ابحث: نوم، تغذية، نمو…" autocomplete="off" aria-controls="site-search-results"><button class="search-btn" type="submit" aria-label="بحث">بحث</button><a class="advanced-search-link" href="{root}pages/search.html">فلترة</a></form>
     </div>
 </header>'''
     old = soup.select_one('.site-header') or soup.select_one('nav.navbar')
@@ -107,6 +107,8 @@ def layout(source, path):
         page_css = [*page_css, 'articles']
     styles = ['main', 'responsive', *page_css, 'accessibility', 'animations', 'site-polish']
     source = re.sub(r'\s*</head>', '\n' + '\n'.join(f'<link rel="stylesheet" href="{root}css/{name}.css">' for name in styles) + '\n</head>', source, count=1)
+    source = re.sub(r'<script\b[^>]*src=[\"\'][^\"\']*js/search-core\.js[\"\'][^>]*></script>\s*', '', source)
+    source = source.replace('</head>', f'<script defer src="{root}js/search-core.js"></script>\n</head>')
     source = re.sub(r'<body([^>]*)>', lambda m: '<body' + (re.sub(r'class="([^"]*)"', lambda c: f'class="{c[1]} site-shell"' if 'site-shell' not in c[1].split() else c[0], m[1]) if 'class=' in m[1] else m[1] + ' class="site-shell"') + '>', source, count=1)
     return source
 
