@@ -152,27 +152,58 @@ body.sections-page .sections-grid h2 { font-size: 1.25rem; }
     .site-shell .vaccine-page .vaccine-checklist .checklist-item { padding: 16px; }
 }
 
-/* Stage 01: preserve intentional flex layouts of legacy care guides only. */
+/* Keep nutrition/crying articles wide; the expandable 2:1 flex sizing
+   previously let the sidebar occupy ~half the width, causing excess wrapping. */
 .site-shell .content-wrapper.preserve-legacy-layout {
-    display: flex;
-    gap: clamp(24px, 3vw, 40px);
-    align-items: flex-start;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 280px;
+    gap: clamp(20px, 2.6vw, 32px);
+    align-items: start;
 }
 .site-shell .content-wrapper.preserve-legacy-layout > .main-content {
-    flex: 2 1 0;
     min-width: 0;
+    width: 100%;
+    flex: initial;
 }
 .site-shell .content-wrapper.preserve-legacy-layout > .sidebar {
-    flex: 1 1 300px;
-    min-width: 280px;
+    min-width: 0;
+    width: 100%;
     position: sticky;
     top: 20px;
+    flex: initial;
 }
 @media (max-width: 992px) {
-    .site-shell .content-wrapper.preserve-legacy-layout { flex-direction: column; }
+    .site-shell .content-wrapper.preserve-legacy-layout {
+        grid-template-columns: minmax(0, 1fr);
+    }
     .site-shell .content-wrapper.preserve-legacy-layout > .sidebar {
         position: static;
-        width: 100%;
-        min-width: 0;
+    }
+}
+@media (max-width: 600px) {
+    /* Compact spacing without collapsing or hiding care information. */
+    .site-shell .content-wrapper.preserve-legacy-layout {
+        gap: 18px;
+        padding-block: 18px;
+    }
+    .site-shell .content-wrapper.preserve-legacy-layout .content-section p {
+        margin-bottom: 1rem;
+    }
+    .site-shell .content-wrapper.preserve-legacy-layout .content-section li {
+        margin-bottom: .5rem;
+    }
+    .site-shell .content-wrapper.preserve-legacy-layout .content-section h2 {
+        margin-bottom: 1rem;
+    }
+    .site-shell .content-wrapper.preserve-legacy-layout :is(.statistics-grid, .readiness-grid, .crying-types, .techniques-grid) {
+        gap: 14px;
+        margin-block: 18px;
+    }
+    .site-shell .content-wrapper.preserve-legacy-layout :is(.stat-card, .readiness-card, .crying-type-card) {
+        padding: 16px;
+    }
+    .site-shell .content-wrapper.preserve-legacy-layout .sidebar-widget {
+        padding: 18px;
+        margin-bottom: 16px;
     }
 }
