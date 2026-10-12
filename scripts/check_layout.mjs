@@ -42,6 +42,35 @@ try {
             const layout = await page.evaluate(() => ({ scroll: document.documentElement.scrollWidth, search: document.querySelector('.search-input').getBoundingClientRect().width }));
             assert.ok(layout.scroll <= width + 1, `${file} overflows at ${width}px: ${layout.scroll}`);
             assert.ok(layout.search > 0, `${file} search hidden at ${width}px`);
+            // Typography acceptance: the shared text palette is dark/black,
+            // while headings use Cairo and prose uses Tajawal. Functional
+            // accents and inverse-color buttons are intentionally excluded.
+            const typography = await page.evaluate(() => {
+                const body = getComputedStyle(document.body);
+                const heading = document.querySelector('main h2, main h3, .site-hero h1');
+                const headingStyle = heading ? getComputedStyle(heading) : null;
+                const paragraph = document.querySelector('main .article-section p, main .content-section > p, .site-hero p');
+                const paragraphStyle = paragraph ? getComputedStyle(paragraph) : null;
+                return {
+                    color: body.color,
+                    primaryFont: body.fontFamily,
+                    headingFont: headingStyle?.fontFamily || '',
+                    readingColor: paragraphStyle?.color || '',
+                    readingLineHeight: paragraphStyle ? parseFloat(paragraphStyle.lineHeight) : null
+                };
+            });
+            assert.equal(typography.color, 'rgb(17, 17, 17)',
+                `${file}: body text is not the expected near-black at ${width}px`);
+            assert.match(typography.primaryFont, /Tajawal/i,
+                `${file}: Tajawal must be the primary reading font`);
+            assert.match(typography.headingFont, /Cairo/i,
+                `${file}: Cairo must be available for headings`);
+            if (typography.readingColor) {
+                const rgb = typography.readingColor.match(/\\d+/g)?.slice(0, 3).map(Number);
+                if (rgb && rgb.length === 3) assert.ok(rgb.every(channel => channel <= 65),
+                    `${file}: paragraph text should have strong dark contrast`);
+            }
+
             const underlined = await page.locator('.site-shell a[href]').evaluateAll(links =>
                 links.filter(link => getComputedStyle(link).textDecorationLine !== 'none')
                     .slice(0, 4).map(link => link.getAttribute('href')));
