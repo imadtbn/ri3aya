@@ -79,31 +79,31 @@ function initReadinessChecker() {
                 
                 // تحليل النتائج
                 if (yesCount === 3) {
-                    resultTitle = 'مستعد تماماً!';
-                    resultMessage = 'طفلك يظهر جميع علامات الاستعداد للطعام الصلب. يمكنك البدء بتقديم أول وجبة له.';
+                    resultTitle = 'مؤشرات استعداد محتملة';
+                    resultMessage = 'توجد إشارات مشجعة، لكنها لا تثبت الاستعداد ولا تحدد متى يبدأ الطفل الأكل. يبدأ الطعام التكميلي عادة حول 6 أشهر مع توافر مهارات البلع والجلوس؛ استشيري المختص عند الشك أو الولادة المبكرة.';
                     resultClass = 'ready';
                     recommendations = [
-                        'ابدئي بحبوب الأطفال المدعمة بالحديد',
+                        'ناقشي تقديم طعام غني بالحديد وملائم للعمر مع المختص',
                         'قدمي كميات صغيرة جداً في البداية',
                         'اختاري وقتاً يكون فيه الطفل هادئاً ومستيقظاً',
                         'استمري في الرضاعة الطبيعية أو الصناعية'
                     ];
                 } else if (yesCount >= 2) {
-                    resultTitle = 'شبه مستعد';
-                    resultMessage = 'طفلك يظهر بعض علامات الاستعداد. يمكنك البدء ولكن بحذر، وراقبي ردود فعله.';
+                    resultTitle = 'بعض المؤشرات تحتاج متابعة';
+                    resultMessage = 'بعض الإشارات موجودة، لكن لا يمكن اعتبار النتيجة تصريحًا ببدء الطعام. تأكدي من العمر والقدرة على التحكم بالرأس والبلع، واطلبي توجيهًا فرديًا عند الحاجة.';
                     resultClass = 'almost-ready';
                     recommendations = [
-                        'ابدئي بكميات صغيرة جداً',
+                        'ابدئي بكميات صغيرة بعد تحقق العمر والاستعداد، ولا تجبري الطفل',
                         'راقبي الطفل جيداً أثناء الأكل',
                         'تأكدي من جلوس الطفل بشكل صحيح',
                         'إذا لم يكن مهتماً، انتظري أسبوعاً آخر وحاولي مجدداً'
                     ];
                 } else {
-                    resultTitle = 'ليس مستعداً بعد';
-                    resultMessage = 'طفلك لا يظهر علامات استعداد كافية للطعام الصلب. انتظري بضعة أسابيع وحاولي مرة أخرى.';
+                    resultTitle = 'راجعي المؤشرات مع الوقت';
+                    resultMessage = 'توجد مهارات لم تظهر بعد وفق إجاباتك. لا يمكن للأداة تحديد موعد البدء أو استبعاد مشكلة تغذية؛ تحدثي مع الطبيب إذا كانت هناك صعوبة مستمرة.';
                     resultClass = 'not-ready';
                     recommendations = [
-                        'انتظري حتى يبلغ الطفل 6 أشهر على الأقل',
+                        'التغذية التكميلية تبدأ عادة حول 6 أشهر وليس بناءً على مجموع الإجابات فقط',
                         'تابعي علامات الاستعداد كل أسبوع',
                         'استمري في الرضاعة الطبيعية أو الصناعية فقط',
                         'لا تجبري الطفل على الأكل قبل أن يكون مستعداً'
@@ -116,11 +116,11 @@ function initReadinessChecker() {
                     <div class="result-status ${resultClass}">
                         <strong>${resultTitle}</strong>
                     </div>
-                    <p>${resultMessage}</p>
+                    <p>${resultMessage}</p><p class="medical-safety-note">هذه أسئلة للتثقيف فقط؛ لا تشمل عمر الطفل أو تقييم البلع أو الحساسية أو حالته الطبية، ولا تقدّم حكمًا سريريًا.</p>
                     <p><small>الإجابات: ${yesCount} نعم، ${noCount} لا</small></p>
                     
                     <div class="result-recommendations">
-                        <h5><i class="fas fa-lightbulb"></i> التوصيات:</h5>
+                        <h5><i class="fas fa-lightbulb"></i> إرشادات عامة:</h5>
                         <ul>
                             ${recommendations.map(rec => `<li><i class="fas fa-check"></i> ${rec}</li>`).join('')}
                         </ul>
@@ -129,7 +129,7 @@ function initReadinessChecker() {
                 readinessResult.style.display = 'block';
                 
                 // إعادة تعيين الزر
-                this.innerHTML = '<i class="fas fa-calculator"></i> احسبي درجة الاستعداد';
+                this.innerHTML = '<i class="fas fa-clipboard-check"></i> راجعي مؤشرات الاستعداد';
                 this.disabled = false;
                 
                 // التمرير إلى النتيجة
@@ -223,7 +223,7 @@ function initMealGenerator() {
                     <div class="meal-tips">
                         <h5><i class="fas fa-lightbulb"></i> نصائح مهمة:</h5>
                         <ul>
-                            <li>قدمي صنفاً واحداً جديداً كل 3-5 أيام</li>
+                            <li>ابدئي بالأطعمة المفردة تدريجيًا لملاحظة التفاعل، مع الحفاظ على التنوع الملائم للعمر</li>
                             <li>راقبي الطفل للكشف عن أي علامات حساسية</li>
                             <li>استمري في الرضاعة الطبيعية أو الصناعية</li>
                             <li>لا تجبري الطفل على إنهاء الوجبة</li>
@@ -255,157 +255,39 @@ function initMealGenerator() {
 }
 
 // حاسبة كميات الطعام
+
 function initQuantityCalculator() {
-    const calculateBtn = document.getElementById('calculateQuantity');
-    const quantityResult = document.getElementById('quantityResult');
-    
-    if (calculateBtn && quantityResult) {
-        calculateBtn.addEventListener('click', function() {
-            const foodType = document.getElementById('foodType').value;
-            const childMonths = parseInt(document.getElementById('childMonths').value);
-            
-            // التحقق من المدخلات
-            if (!foodType || !childMonths || isNaN(childMonths) || childMonths < 6 || childMonths > 24) {
-                showCalculatorError(quantityResult, 'الرجاء إدخال بيانات صحيحة (العمر بين 6 و 24 شهراً)');
-                return;
-            }
-            
-            // إخفاء النتيجة السابقة
-            quantityResult.style.display = 'none';
-            
-            // إضافة تأثير التحميل
-            this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري الحساب...';
-            this.disabled = true;
-            
-            // محاكاة وقت المعالجة
-            setTimeout(() => {
-                let foodName = '';
-                let recommendedAmount = '';
-                let servingSize = '';
-                let tips = [];
-                
-                // تحديد الكمية بناءً على نوع الطعام والعمر
-                if (foodType === 'cereal') {
-                    foodName = 'حبوب الأطفال';
-                    
-                    if (childMonths <= 8) {
-                        recommendedAmount = '1-2 ملاعق طعام';
-                        servingSize = 'مرة أو مرتين يومياً';
-                    } else if (childMonths <= 12) {
-                        recommendedAmount = '¼ - ½ كوب';
-                        servingSize = 'مرتين يومياً';
-                    } else {
-                        recommendedAmount = '½ - ¾ كوب';
-                        servingSize = 'مرتين يومياً';
-                    }
-                    
-                    tips = [
-                        'اخلطي الحبوب بحليب الثدي أو الصناعي',
-                        'ابدئي بقوام سائل ثم زيدي السماكة تدريجياً',
-                        'اختاري حبوب الأطفال المدعمة بالحديد'
-                    ];
-                } else if (foodType === 'fruit') {
-                    foodName = 'الفواكه المهروسة';
-                    
-                    if (childMonths <= 8) {
-                        recommendedAmount = '1-2 ملاعق طعام';
-                        servingSize = 'مرة يومياً';
-                    } else if (childMonths <= 12) {
-                        recommendedAmount = '¼ - ½ كوب';
-                        servingSize = 'مرتين يومياً';
-                    } else {
-                        recommendedAmount = '½ - ¾ كوب';
-                        servingSize = 'مرتين يومياً';
-                    }
-                    
-                    tips = [
-                        'ابدئي بالفواكه سهلة الهضم مثل الموز والتفاح',
-                        'قشري الفواكه جيداً قبل التقديم',
-                        'تجنبي الفواكه المعلبة المضاف إليها سكر'
-                    ];
-                } else if (foodType === 'vegetable') {
-                    foodName = 'الخضروات المهروسة';
-                    
-                    if (childMonths <= 8) {
-                        recommendedAmount = '1-2 ملاعق طعام';
-                        servingSize = 'مرة يومياً';
-                    } else if (childMonths <= 12) {
-                        recommendedAmount = '¼ - ½ كوب';
-                        servingSize = 'مرتين يومياً';
-                    } else {
-                        recommendedAmount = '½ - ¾ كوب';
-                        servingSize = 'مرتين يومياً';
-                    }
-                    
-                    tips = [
-                        'ابدئي بالخضروات الحلوة مثل البطاطا الحلوة والجزر',
-                        'اطبخي الخضروات حتى تصبح طرية جداً',
-                        'اهرسي الخضرواس جيداً وقدميها بدون كتل'
-                    ];
-                } else if (foodType === 'protein') {
-                    foodName = 'البروتينات';
-                    
-                    if (childMonths <= 8) {
-                        recommendedAmount = '1-2 ملاعق طعام';
-                        servingSize = 'مرة يومياً';
-                    } else if (childMonths <= 12) {
-                        recommendedAmount = '¼ - ½ كوب';
-                        servingSize = 'مرتين يومياً';
-                    } else {
-                        recommendedAmount = '½ - ¾ كوب';
-                        servingSize = 'مرتين يومياً';
-                    }
-                    
-                    tips = [
-                        'ابدئي باللحوم المهروسة جيداً',
-                        'تأكدي من نزع العظام والجلد',
-                        'قدمي البياض بعد التأكد من عدم وجود حساسية للصفار'
-                    ];
-                }
-                
-                // عرض النتيجة
-                quantityResult.innerHTML = `
-                    <h4><i class="fas fa-weight"></i> الكمية الموصى بها</h4>
-                    <div class="quantity-details">
-                        <p><strong>نوع الطعام:</strong> ${foodName}</p>
-                        <p><strong>العمر:</strong> ${childMonths} شهراً</p>
-                        <p><strong>الكمية لكل وجبة:</strong> ${recommendedAmount}</p>
-                        <p><strong>عدد الوجبات:</strong> ${servingSize}</p>
-                    </div>
-                    
-                    <div class="quantity-tips">
-                        <h5><i class="fas fa-lightbulb"></i> نصائح:</h5>
-                        <ul>
-                            ${tips.map(tip => `<li>${tip}</li>`).join('')}
-                        </ul>
-                    </div>
-                    
-                    <div class="quantity-note">
-                        <p><small><i class="fas fa-info-circle"></i> هذه الكميات هي معدلات عامة. راقبي إشارات الجوع والشبع لدى طفلك.</small></p>
-                    </div>
-                `;
-                quantityResult.style.display = 'block';
-                
-                // إعادة تعيين الزر
-                this.innerHTML = '<i class="fas fa-calculator"></i> احسبي الكمية';
-                this.disabled = false;
-                
-                // التمرير إلى النتيجة
-                quantityResult.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            }, 600);
-        });
-    }
-    
-    function showCalculatorError(element, message) {
-        element.innerHTML = `
-            <div class="error-message">
-                <i class="fas fa-exclamation-circle"></i>
-                <p>${message}</p>
-            </div>
-        `;
-        element.style.display = 'block';
-        element.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    }
+    const button = document.getElementById('calculateQuantity');
+    const result = document.getElementById('quantityResult');
+    if (!button || !result) return;
+    const foodNames = { cereal: 'حبوب الأطفال', fruit: 'الفواكه', vegetable: 'الخضروات', protein: 'الأطعمة الغنية بالبروتين' };
+    button.addEventListener('click', function() {
+        const food = document.getElementById('foodType')?.value;
+        const raw = document.getElementById('childMonths')?.value;
+        const age = Number(raw);
+        if (!Object.hasOwn(foodNames, food) || raw === '' || !Number.isInteger(age) || age < 6 || age > 24) {
+            result.textContent = 'اختاري نوع الطعام وأدخلي عمرًا صحيحًا بين 6 و24 شهرًا.';
+            result.style.display = 'block';
+            return;
+        }
+        const frequency = age <= 8 ? 'تشير WHO إلى 2–3 وجبات تكميلية يوميًا عادةً لعمر 6–8 أشهر.'
+            : age <= 23 ? 'تشير WHO إلى 3–4 وجبات تكميلية يوميًا عادةً لعمر 9–23 شهرًا، مع وجبات خفيفة عند الحاجة.'
+            : 'بعد إتمام عامين تتنوع الوجبات بحسب نمو الطفل ونشاطه وعاداته الغذائية.';
+        const title = document.createElement('h4');
+        title.textContent = 'إرشادات عامة حسب العمر — ليست حاسبة جرعات أو حصص';
+        const description = document.createElement('p');
+        description.textContent = 'العمر: ' + age + ' شهرًا؛ نوع الطعام: ' + foodNames[food] + '. ' + frequency;
+        const note = document.createElement('p');
+        note.className = 'medical-safety-note';
+        note.textContent = 'لا توجد كمية ثابتة مناسبة لكل رضيع بناءً على العمر ونوع الطعام وحدهما. قدّمي قوامًا آمنًا وبكميات تتدرج وفق إشارات الجوع والشبع واستمرار الرضاعة، ولا تجبري الطفل على إنهاء وجبته. اسألي طبيب الطفل عند وجود قلق حول النمو أو البلع أو الحساسية.';
+        const source = document.createElement('a');
+        source.href = 'https://www.who.int/health-topics/complementary-feeding';
+        source.target = '_blank';
+        source.rel = 'noopener noreferrer';
+        source.textContent = 'المصدر: إرشادات منظمة الصحة العالمية للتغذية التكميلية';
+        result.replaceChildren(title, description, note, source);
+        result.style.display = 'block';
+    });
 }
 
 // سجل تقديم الأطعمة
