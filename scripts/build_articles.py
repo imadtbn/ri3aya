@@ -150,10 +150,14 @@ def build():
             'pages/articles/diaper-care.html': 'مقال العناية بالحفاض',
             'pages/articles/soothing-crying.html': 'مقال تهدئة البكاء'
         }
-        list_markup = ''.join(
-            f'<li><a href="{esc(item["path"].removeprefix("pages/"))}">{esc(labels.get(item["path"], item["path"]))}</a> — لم يُراجع طبيًا بعد؛ يلزم تقييم مختص مؤهل.</li>'
-            for item in queue_items
-        )
+        def public_review_item(item):
+            pathname = item['path']
+            label = esc(labels.get(pathname, pathname))
+            # Do not link to unpublished/draft/withdrawn articles; preserve their review queue status.
+            if pathname.startswith('pages/articles/') and pathname.rsplit('/', 1)[-1][:-5] not in articles:
+                return f'<li>{label} — غير منشور؛ ينتظر مراجعة مختص قبل الاعتماد.</li>'
+            return f'<li><a href="{esc(pathname.removeprefix("pages/"))}">{label}</a> — لم يُراجع طبيًا بعد؛ يلزم تقييم مختص مؤهل.</li>'
+        list_markup = ''.join(public_review_item(item) for item in queue_items)
         queue_markup = ('<section class="article-section" id="medical-review-queue">'
             '<h2>المواد التي تنتظر مراجعة طبية متخصصة</h2>'
             '<p><strong>الحالة الحالية:</strong> أُجري تدقيق تحريري للمصادر، لكنه لا يعادل مراجعة من طبيب أطفال.'
