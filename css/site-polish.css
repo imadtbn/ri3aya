@@ -30,6 +30,9 @@ body.site-shell {
 .site-shell main :is(.content-section, .article-section, .article-intro) :is(p, li) {
     line-height: 1.9;
 }
+.site-shell main :is(.content-section, .article-section, .article-intro) > p {
+    font-size: clamp(1rem, .3vw + .95rem, 1.0625rem);
+}
 .site-shell *, .site-shell *::before, .site-shell *::after { box-sizing: border-box; }
 .site-shell .container { width: min(1180px, calc(100% - 40px)); max-width: 1180px; margin-inline: auto; padding-inline: 0; }
 .site-shell img { max-width: 100%; }
