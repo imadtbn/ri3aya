@@ -37,7 +37,7 @@ for (const [age, result] of [[24, true], [25, false], [-1, false], [1.5, false],
 }
 
 class FixedDate extends Date {
-    constructor(...args) { super(...(args.length ? args : [2026, 9, 12, 12])); }
+    constructor(...args) { super(...(args.length ? args : [2026, 9, 12, 8])); }
     static now() { return new Date(2026, 9, 12, 12).getTime(); }
 }
 let initVaccine, pressVaccine;
@@ -56,6 +56,7 @@ for (const [value, expected] of [
     ['', 'أدخلي تاريخ الميلاد'],
     ['2026-10-13', 'من اليوم أو قبله'],
     ['2026-02-30', 'تاريخ ميلاد صحيحًا'],
+    ['2026-10-12', '0 شهرًا'],
     ['2026-09-12', '1 شهرًا'],
     ['2026-09-13', '0 شهرًا'],
     ['2024-10-12', '24 شهرًا']
