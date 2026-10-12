@@ -66,7 +66,7 @@ try {
             assert.match(typography.headingFont, /Cairo/i,
                 `${file}: Cairo must be available for headings`);
             if (typography.readingColor) {
-                const rgb = typography.readingColor.match(/\\d+/g)?.slice(0, 3).map(Number);
+                const rgb = typography.readingColor.match(/\d+/g)?.slice(0, 3).map(Number);
                 if (rgb && rgb.length === 3) assert.ok(rgb.every(channel => channel <= 65),
                     `${file}: paragraph text should have strong dark contrast`);
             }
