@@ -380,3 +380,15 @@ body.sections-page .sections-grid h2 { font-size: 1.25rem; }
         transition: none;
     }
 }
+
+/* Shared header: use the existing site icon instead of the letter placeholder. */
+.site-header[data-layout="shared-v2"] .site-brand-mark {
+    background-color: transparent;
+    background-image: url("../images/icons/app-512.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    color: transparent;
+    font-size: 0;
+    overflow: hidden;
+}
