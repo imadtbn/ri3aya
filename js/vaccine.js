@@ -43,7 +43,10 @@
                 const sameDate = pieces && birthDate.getFullYear() === Number(pieces[1]) &&
                     birthDate.getMonth() + 1 === Number(pieces[2]) &&
                     birthDate.getDate() === Number(pieces[3]);
-                if (!sameDate || birthDate > today || birthDate.getFullYear() < 1900) {
+                const localToday = [today.getFullYear(),
+                    String(today.getMonth() + 1).padStart(2, '0'),
+                    String(today.getDate()).padStart(2, '0')].join('-');
+                if (!sameDate || isoDate > localToday || birthDate.getFullYear() < 1900) {
                     result.innerHTML = '<div class="alert alert-warning" role="alert">اختاري تاريخ ميلاد صحيحًا، من اليوم أو قبله.</div>';
                     return;
                 }
