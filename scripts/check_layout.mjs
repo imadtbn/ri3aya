@@ -42,6 +42,30 @@ try {
             const layout = await page.evaluate(() => ({ scroll: document.documentElement.scrollWidth, search: document.querySelector('.search-input').getBoundingClientRect().width }));
             assert.ok(layout.scroll <= width + 1, `${file} overflows at ${width}px: ${layout.scroll}`);
             assert.ok(layout.search > 0, `${file} search hidden at ${width}px`);
+            // Text-led section cards must have measurable inner breathing room.
+            // Image-first home tiles are intentionally not selected (their art
+            // must reach the border without inset).
+            const textCardSpacing = await page.evaluate(() =>
+                [...document.querySelectorAll('main section > .section-card')].map(card => {
+                    const computed = getComputedStyle(card);
+                    const heading = card.querySelector(':scope > h2, :scope > h3');
+                    const edge = card.getBoundingClientRect();
+                    const textEdge = heading?.getBoundingClientRect();
+                    return {
+                        className: card.parentElement?.className || 'section',
+                        paddingStart: parseFloat(computed.paddingInlineStart),
+                        paddingEnd: parseFloat(computed.paddingInlineEnd),
+                        headingInset: textEdge ? edge.right - textEdge.right : null
+                    };
+                })
+            );
+            for (const card of textCardSpacing) {
+                assert.ok(card.paddingStart >= 16 && card.paddingEnd >= 16,
+                    `${file}: text touches section card edge at ${width}px (${JSON.stringify(card)})`);
+                if (card.headingInset !== null) assert.ok(card.headingInset >= 10,
+                    `${file}: title overlaps card edge at ${width}px (${JSON.stringify(card)})`);
+            }
+
             const shared = await page.evaluate(() => {
                 const q = selector => document.querySelector(selector);
                 const header = q('.site-header[data-layout="shared-v2"]');
