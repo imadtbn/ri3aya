@@ -47,7 +47,18 @@
         button.setAttribute('aria-expanded', String(open));
         document.body.classList.toggle('menu-open', open);
         const icon = one('i', button);
-        if (icon) icon.classList.toggle('fa-times', open), icon.classList.toggle('fa-bars', !open);
+        if (icon) {
+            icon.classList.toggle('fa-times', open);
+            icon.classList.toggle('fa-bars', !open);
+        } else {
+            // Shared-v2 uses a text glyph rather than an icon element.
+            button.textContent = open ? '×' : '☰';
+        }
+        button.setAttribute('aria-label', open ? 'إغلاق قائمة التنقل' : 'فتح قائمة التنقل');
+        if (!open) {
+            all('.dropdown.open', menu).forEach((item) => item.classList.remove('open'));
+            all('.dropdown-toggle', menu).forEach((trigger) => trigger.setAttribute('aria-expanded', 'false'));
+        }
     }
 
     function initMobileMenu() {
@@ -75,6 +86,10 @@
         });
         window.addEventListener('resize', () => {
             if (window.innerWidth > 992) setMenuState(menu, button, false);
+        }, { passive: true });
+        // Close an open overlay when the underlying page scrolls.
+        window.addEventListener('scroll', () => {
+            if (menu.classList.contains('active')) setMenuState(menu, button, false);
         }, { passive: true });
     }
 
