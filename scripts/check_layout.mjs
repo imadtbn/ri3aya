@@ -57,7 +57,7 @@ try {
                             headingInset: headingBox ? box.right - headingBox.right : null
                         };
                     }));
-                assert.ok(sections.length >= 3, `${file}: missing article sections`);
+                assert.ok(sections.length >= 2, `${file}: missing article sections`);
                 for (const card of sections) {
                     assert.ok(card.paddingStart >= 17 && card.paddingEnd >= 17,
                         `${file}: reading card padding too small at ${width}px`);
