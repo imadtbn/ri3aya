@@ -49,6 +49,9 @@ for (const p of ['pages/nutrition.html', 'pages/crying.html']) {
 }
 console.log('PASS: ' + files.length + ' HTML pages and ' + referencedCSS.size + ' local CSS files checked; no missing CSS links.');
 assert.match(stable, /Stage 02: shared component and small-screen stability/, 'Missing stage 02 component styles');
+assert.ok(stable.includes('Content-card spacing repair (2026-10-12)'), 'Textual section-card spacing patch missing');
+assert.ok(stable.includes('main :where(section > .section-card)'), 'Card padding must stay scoped to textual sections');
+assert.ok(!stable.includes('.site-shell main .section-card { padding:'), 'Never apply padding directly to all image and text cards');
 assert.ok(stable.includes('.site-header[data-layout="shared-v2"] .site-nav'), 'Mobile overlay CSS missing');
 assert.ok(stable.includes('.site-footer[data-layout="shared-v2"] .site-footer-grid'), 'Responsive footer CSS missing');
 assert.ok(!stable.includes('.site-shell main .section-card { padding: 20px; }'), 'Broad mobile card padding returned');
