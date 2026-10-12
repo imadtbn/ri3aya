@@ -147,7 +147,9 @@ body.sections-page .sections-grid h2 { font-size: 1.25rem; }
 .site-shell .content-table-scroll table { margin-block: 0; }
 .site-shell .back-to-top:not(:has(> i))::before { content: '↑'; font: 1.5rem/1 system-ui, sans-serif; }
 @media (max-width: 600px) {
-    .site-shell main .section-card { padding: 20px; }
+    body.sections-page .sections-grid > .section-card,
+    .site-shell main .intro-section > .section-card,
+    .site-shell .legal-content > .section-card { padding: 20px; }
     .site-shell .vaccine-page .vaccine-checklist { gap: 12px; }
     .site-shell .vaccine-page .vaccine-checklist .checklist-item { padding: 16px; }
 }
@@ -206,4 +208,108 @@ body.sections-page .sections-grid h2 { font-size: 1.25rem; }
         padding: 18px;
         margin-bottom: 16px;
     }
+}
+
+/* Stage 02: shared component and small-screen stability.
+   Changes are limited to the common shell and identified component classes.
+   Do not set layout/padding for every .section-card, .btn or grid. */
+.site-header[data-layout="shared-v2"] .site-header-inner > * { min-width: 0; }
+.site-header[data-layout="shared-v2"] .site-brand { min-width: 0; }
+.site-header[data-layout="shared-v2"] .site-brand > span:last-child { min-width: 0; }
+.site-header[data-layout="shared-v2"] .site-nav { min-width: 0; }
+.site-header[data-layout="shared-v2"] .nav-menu > li { min-width: 0; }
+.site-header[data-layout="shared-v2"] .dropdown-toggle:focus-visible,
+.site-header[data-layout="shared-v2"] .mobile-menu-btn:focus-visible {
+    outline: 3px solid #c77720; outline-offset: 3px;
+}
+.site-shell .site-hero-inner > div { min-width: 0; }
+.site-shell .site-hero .site-breadcrumb ol { max-width: 100%; }
+.site-shell .site-hero .site-breadcrumb li { min-width: 0; overflow-wrap: anywhere; }
+.site-shell .site-hero-actions > .btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    gap: 8px; min-width: 0; min-height: 44px; max-width: 100%;
+    text-decoration: none;
+}
+.site-shell main :is(.library-card, .tool-index-card) { min-width: 0; }
+.site-shell main :is(.library-card, .tool-index-card) :is(h2, p) { overflow-wrap: anywhere; }
+.site-shell main :is(.library-card, .tool-index-card) > a.btn,
+.site-shell main :is(.library-card, .tool-index-card) .btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    gap: 8px; min-height: 44px; max-width: 100%; text-align: center;
+}
+.site-shell main :is(.table-container, .table-responsive, .table-wrapper,
+    .vaccine-table-container, .size-table-container, .tracker-table-container,
+    .content-table-scroll) {
+    min-width: 0; max-width: 100%;
+    overflow-x: auto; overscroll-behavior-inline: contain;
+    -webkit-overflow-scrolling: touch;
+}
+.site-shell main :is(.table-container, .table-responsive, .table-wrapper,
+    .vaccine-table-container, .size-table-container, .tracker-table-container,
+    .content-table-scroll) > table { margin-inline: 0; }
+.site-footer[data-layout="shared-v2"] .site-footer-grid > * { min-width: 0; }
+.site-footer[data-layout="shared-v2"] .pwa-controls { min-width: 0; }
+.site-footer[data-layout="shared-v2"] .pwa-actions > .btn { min-width: 44px; }
+.site-footer[data-layout="shared-v2"] #pwa-help {
+    max-width: min(640px, calc(100% - 32px));
+    border-radius: 14px; border: 1px solid #d7e5e6;
+}
+@media (max-width: 992px) {
+    /* An overlay menu avoids shifting the hero when the burger opens. */
+    .site-header[data-layout="shared-v2"] .site-nav {
+        position: absolute; inset-inline: 0; top: 100%;
+        z-index: 110; padding: 0;
+        background: #fff; border-bottom: 1px solid var(--care-line);
+        box-shadow: 0 14px 28px rgba(23,59,73,.12);
+    }
+    .site-header[data-layout="shared-v2"] .nav-menu.active {
+        max-height: min(70vh, calc(100dvh - 140px));
+        overflow-y: auto; overscroll-behavior: contain;
+        padding: 12px clamp(16px, 4vw, 28px);
+    }
+    .site-header[data-layout="shared-v2"] .nav-menu.active > li,
+    .site-header[data-layout="shared-v2"] .site-topic-link { width: 100%; }
+    .site-header[data-layout="shared-v2"] .dropdown-menu {
+        max-height: min(45vh, 340px);
+        overflow-y: auto;
+    }
+}
+@media (max-width: 600px) {
+    .site-header[data-layout="shared-v2"] .site-header-inner {
+        grid-template-columns: minmax(0,1fr) auto;
+        gap: 8px 10px; padding-block: 12px;
+    }
+    .site-header[data-layout="shared-v2"] .site-brand-mark {
+        width: 40px; height: 40px; flex-shrink: 0;
+        border-radius: 12px; font-size: 1.3rem;
+    }
+    .site-header[data-layout="shared-v2"] .site-brand strong {
+        font-size: 1rem; line-height: 1.4;
+    }
+    .site-header[data-layout="shared-v2"] .search-container {
+        grid-column: 1 / -1; grid-row: 2;
+        min-width: 0; width: 100%;
+    }
+    .site-header[data-layout="shared-v2"] .search-input {
+        min-width: 0; padding-inline: 10px; font-size: .85rem;
+    }
+    .site-header[data-layout="shared-v2"] .search-btn { padding-inline: 10px; }
+    .site-header[data-layout="shared-v2"] .advanced-search-link {
+        padding-inline: 8px; white-space: nowrap;
+    }
+    .site-shell .site-hero-inner { gap: 16px; }
+    .site-shell .site-hero-actions > .btn { flex: 1 1 160px; }
+    .site-footer[data-layout="shared-v2"] .site-footer-grid { gap: 18px; }
+}
+@media (max-width: 480px) {
+    .site-footer[data-layout="shared-v2"] .site-footer-grid {
+        grid-template-columns: minmax(0,1fr);
+    }
+    .site-footer[data-layout="shared-v2"] .site-footer-grid > div {
+        grid-column: auto;
+    }
+    .site-footer[data-layout="shared-v2"] .pwa-actions > .btn {
+        flex: 1 1 100%; justify-content: center;
+    }
+    .site-shell .site-hero-actions > .btn { flex-basis: 100%; }
 }
