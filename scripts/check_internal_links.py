@@ -71,7 +71,7 @@ for page, soup in SOUPS.items():
 # CSS local background images, icon URLs and @imports.
 for stylesheet in sorted((ROOT / "css").rglob("*.css")):
     css = stylesheet.read_text(encoding="utf-8")
-    for match in re.finditer(r"url\\(\\s*['\\\"]?([^'\\\")]+)", css, re.I):
+    for match in re.finditer(r"url\(\s*['\"]?([^'\"\)]+)", css, re.I):
         raw = match.group(1).strip()
         if not raw or raw.startswith(("data:", "#")):
             continue
