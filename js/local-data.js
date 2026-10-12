@@ -2,14 +2,15 @@
 (function (scope) {
     'use strict';
     const text = (v, max = 10000) => typeof v === 'string' && v.length <= max;
+    const nonEmptyText = (v, max = 10000) => text(v, max) && v.trim().length > 0;
     const date = v => text(v, 10) && /^\d{4}-\d{2}-\d{2}$/.test(v) && !Number.isNaN(Date.parse(v)) && new Date(v).toISOString().slice(0, 10) === v;
     const number = v => typeof v === 'number' && Number.isFinite(v);
     const measurement = v => v === '' || (number(v) && v >= 0);
     const registry = {
         'ri3aya-growth-tracker': { label: 'قياسات النمو', file: 'growth', page: 'growth.html', valid: r => date(r.date) && number(r.age) && r.age >= 0 && r.age <= 24 && [r.weight, r.height, r.head].every(measurement) && (r.sex == null || ['male', 'female'].includes(r.sex)) && (r.notes == null || text(r.notes)) && (r.results == null || Array.isArray(r.results) && r.results.every(x => x && text(x.label) && text(x.unit) && number(x.value) && (x.z === null || number(x.z)) && (x.percentile === null || number(x.percentile)))) },
-        foodRecords: { label: 'سجل الطعام', file: 'food', page: 'nutrition.html', valid: r => text(r.food) && date(r.date) && ['like', 'dislike', 'neutral'].includes(r.reaction) },
-        symptomRecords: { label: 'ملاحظات الأعراض', file: 'symptoms', page: 'digestive.html', valid: r => text(r.date) && text(r.duration) && ['colic', 'gas', 'reflux', 'constipation', 'diarrhea'].includes(r.disorder) && ['mild', 'moderate', 'severe'].includes(r.severity) },
-        saved_routines: { label: 'الروتينات المحفوظة', file: 'routines', page: 'tools/routine.html', valid: r => text(r.name) && text(r.title) && text(r.savedAt) && !Number.isNaN(Date.parse(r.savedAt)) && r.config && text(r.config.age) && Array.isArray(r.schedule) && r.schedule.length <= 100 && r.schedule.every(s => s && ['time', 'activity', 'duration', 'icon'].every(k => text(s[k]))) && Array.isArray(r.tips) && r.tips.length <= 100 && r.tips.every(t => text(t)) && text(r.totalSleep) && text(r.totalFeeds) }
+        foodRecords: { label: 'سجل الطعام', file: 'food', page: 'nutrition.html', valid: r => nonEmptyText(r.food) && date(r.date) && ['like', 'dislike', 'neutral'].includes(r.reaction) },
+        symptomRecords: { label: 'ملاحظات الأعراض', file: 'symptoms', page: 'digestive.html', valid: r => date(r.date) && text(r.duration) && ['colic', 'gas', 'reflux', 'constipation', 'diarrhea'].includes(r.disorder) && ['mild', 'moderate', 'severe'].includes(r.severity) },
+        saved_routines: { label: 'الروتينات المحفوظة', file: 'routines', page: 'tools/routine.html', valid: r => nonEmptyText(r.name) && nonEmptyText(r.title) && text(r.savedAt) && !Number.isNaN(Date.parse(r.savedAt)) && r.config && text(r.config.age) && Array.isArray(r.schedule) && r.schedule.length <= 100 && r.schedule.every(s => s && ['time', 'activity', 'duration', 'icon'].every(k => text(s[k]))) && Array.isArray(r.tips) && r.tips.length <= 100 && r.tips.every(t => text(t)) && text(r.totalSleep) && text(r.totalFeeds) }
     };
     Object.values(registry).forEach(Object.freeze); Object.freeze(registry);
     const messages = {
