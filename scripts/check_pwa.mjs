@@ -9,6 +9,8 @@ const server=http.createServer((req,res)=>{
  if(pathname==='/ri3aya/bootstrap'){res.setHeader('Content-Type','text/html');res.end('<html><body>bootstrap</body></html>');return;}
  if(!pathname.startsWith('/ri3aya/')){res.writeHead(404);res.end();return;}
  const rel=decodeURIComponent(pathname.slice('/ri3aya/'.length))||'index.html',file=path.resolve(root,rel);
+ // A single noncritical image failing must not prevent the offline shell from installing.
+ if(release===1&&rel==='images/step6-food.jpg'){res.writeHead(503);res.end('image temporarily unavailable');return;}
  if(!file.startsWith(root+path.sep)||!fs.existsSync(file)||fs.statSync(file).isDirectory()){res.writeHead(404);res.end('missing');return;}
  res.setHeader('Content-Type',({'.html':'text/html;charset=utf-8','.js':'application/javascript;charset=utf-8','.css':'text/css;charset=utf-8','.json':'application/json','.csv':'text/csv','.png':'image/png','.webp':'image/webp','.jpg':'image/jpeg'})[path.extname(file)]||'application/octet-stream');res.setHeader('Cache-Control','no-store');
  let data=fs.readFileSync(file);
@@ -29,6 +31,7 @@ try {
  assert.equal(info.scope,base);assert.ok(info.keys.includes('another-project-cache'));assert.ok(!info.keys.includes('ri3aya-v12-old'));
  const snapshot=await page.evaluate(async()=>{const name=(await caches.keys()).find(k=>k.startsWith('ri3aya-pwa-'));return (await(await caches.open(name)).keys()).map(r=>r.url);});
  assert.ok(snapshot.length>100);assert.ok(snapshot.every(u=>u.startsWith(base)&&!u.includes('?')));
+ assert.ok(!snapshot.some(u=>u.endsWith('/images/step6-food.jpg')),'Failed optional image must not be precached');
  await page.locator('#pwa-install').click();assert.equal(await page.locator('#pwa-help').isVisible(),true);await page.locator('#pwa-help-close').click();
  // Test both accepted and dismissed deferred install prompts without pretending to install a native app.
  for(const outcome of ['dismissed','accepted']){
