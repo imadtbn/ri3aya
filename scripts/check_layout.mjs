@@ -126,10 +126,17 @@ try {
         fs.mkdirSync(process.env.LAYOUT_SCREENSHOT_DIR, { recursive: true });
         for (const width of [360, 1440]) {
             await page.setViewportSize({ width, height: 900 });
-            for (const file of ['vaccine', 'resources']) {
-                await page.goto(base + `pages/${file}.html`);
-                const target = page.locator(file === 'vaccine' ? 'section.vaccine-schedule' : '#resources');
-                await target.screenshot({ path: path.join(process.env.LAYOUT_SCREENSHOT_DIR, `${file}-${width}.png`) });
+            const targets = [
+                { name: 'vaccine', page: 'vaccine', selector: 'section.vaccine-schedule' },
+                { name: 'resources', page: 'resources', selector: '#resources' },
+                { name: 'tips', page: 'tips', selector: 'section.golden-tips' },
+                { name: 'growth-intro', page: 'growth', selector: 'section.intro-section' },
+                { name: 'growth-calculator', page: 'growth', selector: 'section.growth-calculator' }
+            ];
+            for (const item of targets) {
+                await page.goto(base + `pages/${item.page}.html`);
+                const target = page.locator(item.selector);
+                await target.screenshot({ path: path.join(process.env.LAYOUT_SCREENSHOT_DIR, `${item.name}-${width}.png`) });
             }
         }
     }
