@@ -1,0 +1,202 @@
+{
+  "version": 1,
+  "last_editorial_safety_audit": "2026-10-12",
+  "editorial_audit_status": "preliminary_sources_checked",
+  "medical_review_status": "not_reviewed",
+  "medical_review_completed": false,
+  "disclaimer": "التحقق التحريري بالمصادر لا يعد اعتمادًا طبيًا. لا توضع حالة medical_reviewed إلا مع اسم مختص مؤهل وتاريخ ومؤهلات ودليل مراجعة.",
+  "sources": [
+    {
+      "publisher": "CDC",
+      "url": "https://www.cdc.gov/sudden-infant-death/sleep-safely/index.html",
+      "focus": "safe_sleep"
+    },
+    {
+      "publisher": "WHO",
+      "url": "https://www.who.int/publications-detail-redirect/9789240081864",
+      "focus": "complementary_feeding"
+    },
+    {
+      "publisher": "CDC",
+      "url": "https://www.cdc.gov/infant-toddler-nutrition/foods-and-drinks/choking-hazards.html",
+      "focus": "choking_prevention"
+    },
+    {
+      "publisher": "CDC",
+      "url": "https://www.cdc.gov/vaccines-children/before-during-after-shots/when-your-child-is-sick.html",
+      "focus": "vaccination_with_mild_illness"
+    },
+    {
+      "publisher": "WHO",
+      "url": "https://www.who.int/tools/child-growth-standards",
+      "focus": "child_growth"
+    },
+    {
+      "publisher": "AAP",
+      "url": "https://www.healthychildren.org/english/health-issues/conditions/fever/pages/when-to-call-the-pediatrician.aspx",
+      "focus": "fever_red_flags"
+    }
+  ],
+  "queue": [
+    {
+      "path": "pages/sleep.html",
+      "priority": "critical",
+      "specialist": "طبيب أطفال ذو خبرة بصحة الرضع والنوم الآمن",
+      "needs": [
+        "سلامة سرير الرضيع ومشاركة الغرفة",
+        "أي أرقام ونسب خطر",
+        "إرشادات المواسم ودرجة الحرارة"
+      ],
+      "medical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "credentials": null,
+        "date": null,
+        "evidence": null
+      }
+    },
+    {
+      "path": "pages/nutrition.html",
+      "priority": "high",
+      "specialist": "طبيب أطفال أو اختصاصي تغذية أطفال",
+      "needs": [
+        "الاستعداد للتغذية حسب العمر والنمو",
+        "مخاطر الاختناق والحساسية والأطعمة المثيرة للحساسية",
+        "الوجبات والجداول حسب عمر الرضيع"
+      ],
+      "medical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "credentials": null,
+        "date": null,
+        "evidence": null
+      }
+    },
+    {
+      "path": "pages/vaccine.html",
+      "priority": "critical",
+      "specialist": "طبيب أطفال أو مختص تلقيح يعمل وفق الرزنامة الجزائرية الحالية",
+      "needs": [
+        "مطابقة التعليمات للرزنامة الرسمية الجزائرية الحالية",
+        "موانع واحتياطات التطعيم والتصرف عند التفاعل",
+        "عدم توليد تواريخ أو جرعات غير موثقة"
+      ],
+      "medical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "credentials": null,
+        "date": null,
+        "evidence": null
+      }
+    },
+    {
+      "path": "pages/growth.html",
+      "priority": "high",
+      "specialist": "طبيب أطفال ذو خبرة في قياسات النمو",
+      "needs": [
+        "سلامة تفسير منحنيات WHO وZ-score",
+        "العمر المصحح للخدج",
+        "مراحل التطور والتنبيهات التي تستدعي الفحص"
+      ],
+      "medical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "credentials": null,
+        "date": null,
+        "evidence": null
+      }
+    },
+    {
+      "path": "pages/diseases.html",
+      "priority": "critical",
+      "specialist": "طبيب أطفال/طوارئ أطفال",
+      "needs": [
+        "علامات الخطر في الحمى والتجفاف والتنفس",
+        "سلامة النصائح المنزلية",
+        "عدم إسناد تشخيص أو علاج إلى جدول أعراض"
+      ],
+      "medical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "credentials": null,
+        "date": null,
+        "evidence": null
+      }
+    },
+    {
+      "path": "pages/articles/safe-sleep.html",
+      "priority": "critical",
+      "specialist": "طبيب أطفال مطلع على توصيات النوم الآمن",
+      "needs": [
+        "وضعية النوم والأشياء داخل السرير والارتجاع"
+      ],
+      "medical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "credentials": null,
+        "date": null,
+        "evidence": null
+      }
+    },
+    {
+      "path": "pages/articles/first-foods.html",
+      "priority": "high",
+      "specialist": "طبيب أطفال أو اختصاصي تغذية أطفال",
+      "needs": [
+        "عمر إدخال الأطعمة والحساسية ومخاطر الاختناق"
+      ],
+      "medical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "credentials": null,
+        "date": null,
+        "evidence": null
+      }
+    },
+    {
+      "path": "pages/articles/safe-bath.html",
+      "priority": "high",
+      "specialist": "طبيب أطفال أو مختص بسلامة الرضع",
+      "needs": [
+        "سلامة حرارة الماء والغرق والمراقبة المباشرة"
+      ],
+      "medical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "credentials": null,
+        "date": null,
+        "evidence": null
+      }
+    },
+    {
+      "path": "pages/articles/diaper-care.html",
+      "priority": "medium",
+      "specialist": "طبيب أطفال أو جلدية أطفال",
+      "needs": [
+        "الطفح وعلامات العدوى وعناية الجلد"
+      ],
+      "medical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "credentials": null,
+        "date": null,
+        "evidence": null
+      }
+    },
+    {
+      "path": "pages/articles/soothing-crying.html",
+      "priority": "high",
+      "specialist": "طبيب أطفال أو مختص بصحة حديثي الولادة",
+      "needs": [
+        "علامات الخطر، تهدئة الرضيع دون هزّ، دعم مقدمي الرعاية"
+      ],
+      "medical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "credentials": null,
+        "date": null,
+        "evidence": null
+      }
+    }
+  ]
+}
