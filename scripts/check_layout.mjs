@@ -137,14 +137,26 @@ try {
     }
     await page.goto(base + 'pages/tools/routine.html');
     const menu = page.locator('.mobile-menu-btn');
+    const heroStart = (await page.locator('.site-hero').boundingBox()).y;
     await menu.click();
     await assert.doesNotReject(() => page.locator('.nav-menu').waitFor({ state: 'visible' }));
+    assert.ok(Math.abs((await page.locator('.site-hero').boundingBox()).y - heroStart) <= 1, 'Menu opening shifted the hero');
+    assert.equal((await menu.textContent()).trim(), '×');
+    assert.equal(await menu.getAttribute('aria-label'), 'إغلاق قائمة التنقل');
     await page.locator('.dropdown-toggle').click();
     await page.locator('.dropdown-toggle').press('ArrowDown');
     assert.equal(await page.evaluate(() => document.activeElement.closest('.dropdown-menu')?.id), 'care-topics');
     await page.keyboard.press('Escape');
     assert.equal(await menu.getAttribute('aria-expanded'), 'false');
     assert.equal(await page.evaluate(() => document.activeElement.className), 'mobile-menu-btn');
+    assert.equal((await menu.textContent()).trim(), '☰');
+    await menu.click();
+    await page.mouse.click(5, 5);
+    assert.equal(await menu.getAttribute('aria-expanded'), 'false', 'Outside click should close the menu');
+    await menu.click();
+    await page.evaluate(() => window.scrollTo(0, 350));
+    await page.waitForFunction(() => document.querySelector('.mobile-menu-btn').getAttribute('aria-expanded') === 'false');
+    await page.evaluate(() => window.scrollTo(0, 0));
     const input = page.locator('.search-input');
     await input.fill('النَّوْم');
     await page.locator('.site-search-result').first().waitFor();
