@@ -11,7 +11,11 @@ self.addEventListener('install', event => {
     event.waitUntil((async () => {
         const cache = await caches.open(CACHE_NAME);
         // Missing shell resources are a real installation failure.
-        await cache.addAll(CORE_URLS.map(url => new Request(url, { cache: 'reload' })));
+        // Batch critical requests instead of opening dozens of connections at once.
+        for (let index = 0; index < CORE_URLS.length; index += 12) {
+            await cache.addAll(CORE_URLS.slice(index, index + 12)
+                .map(url => new Request(url, { cache: 'reload' })));
+        }
         // Defer alternate responsive image sizes until the user actually opens them.
         const optional = [...FILES].filter(url =>
             !CORE_URLS.includes(url) &&
