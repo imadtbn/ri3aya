@@ -13,12 +13,12 @@
     };
     Object.values(registry).forEach(Object.freeze); Object.freeze(registry);
     const messages = {
-        blocked: 'تعذر الوصول إلى التخزين المحلي. تحققي من إعدادات المتصفح؛ لم تُحفظ التغييرات.',
-        corrupt: 'البيانات المحفوظة غير قابلة للقراءة. لم نغيّرها؛ صدّري نسخة خام قبل حذفها أو إصلاحها.',
+        blocked: 'المتصفح يمنع الوصول إلى السجلات المحلية. لم تتغير بياناتك؛ تحققي من إعدادات الخصوصية ثم حاولي مجددًا.',
+        corrupt: 'تعذر قراءة بعض السجلات. لم تُحذف؛ حمّلي نسخة خام منها قبل محاولة حذفها.',
         full: 'تعذر الحفظ: التخزين ممتلئ أو غير متاح. صدّري نسخة ثم احذفي سجلات لا تحتاجينها.',
         limit: 'بلغ السجل حد الأداة (1000 سجل أو 2 ميجابايت). صدّريه قبل حذف سجلات قديمة؛ لا نحذفها تلقائيًا.',
-        invalid: 'بيانات غير صالحة للحفظ. راجعي الحقول.',
-        missing: 'تغير السجل في نافذة أخرى. حدّثي القائمة ثم حاولي مجددًا.'
+        invalid: 'راجعي القيم المدخلة؛ لم يتم حفظ السجل.',
+        missing: 'هذا السجل غير موجود حاليًا. حدّثي القائمة وحاولي مجددًا.'
     };
     const fail = code => ({ ok: false, code, error: messages[code], records: [] });
     const valid = (key, records) => Array.isArray(records) && records.every(r => r && typeof r === 'object' && !Array.isArray(r) && registry[key].valid(r));
@@ -115,10 +115,10 @@
                     if (format === 'raw' && snapshot.code !== 'corrupt') continue;
                     const button = document.createElement('button'); button.type = 'button'; button.className = 'btn btn-secondary'; button.textContent = label;
                     button.disabled = format === 'raw' ? snapshot.code !== 'corrupt' : !snapshot.ok || !snapshot.records.length;
-                    button.addEventListener('click', () => { const r = download(exportData([key], format)); notify(r.ok ? 'بدأ تنزيل الملف؛ تحققي من مجلد التنزيلات.' : r.error); });
+                    button.addEventListener('click', () => { const r = download(exportData([key], format)); notify(r.ok ? 'تم طلب تنزيل الملف؛ تحققي من التنزيلات في متصفحك.' : r.error); });
                     actions.append(button);
                 }
-                const del = document.createElement('button'); del.type = 'button'; del.className = 'btn local-delete'; del.textContent = 'حذف هذا السجل بالكامل';
+                const del = document.createElement('button'); del.type = 'button'; del.className = 'btn local-delete'; del.textContent = 'حذف جميع بيانات ' + registry[key].label;
                 del.disabled = snapshot.ok && !snapshot.records.length || snapshot.code === 'blocked';
                 del.addEventListener('click', () => { if (!confirm(`حذف جميع بيانات «${registry[key].label}» من هذا المتصفح؟ صدّري نسخة أولًا إذا احتجتها. لا يمكن التراجع.`)) return; const r = clear(key); notify(r.ok ? 'تم حذف بيانات الأداة من هذا المتصفح.' : r.error); });
                 actions.append(del); card.append(title, status, actions); list.append(card);
@@ -129,11 +129,13 @@
             if (allDelete) allDelete.disabled = !keys.some(k => read(k).raw != null) || keys.every(k => read(k).code === 'blocked');
         }
         document.getElementById('local-refresh')?.addEventListener('click', refresh);
-        document.getElementById('local-export-all')?.addEventListener('click', () => { const r = download(exportData(keys)); notify(r.ok ? 'بدأ تنزيل نسخة من سجلات المتابعة الأربعة.' : r.error); });
+        document.getElementById('local-export-all')?.addEventListener('click', () => { const r = download(exportData(keys)); notify(r.ok ? 'تم طلب تنزيل نسخة السجلات؛ تحققي من التنزيلات في متصفحك.' : r.error); });
         document.getElementById('local-delete-all')?.addEventListener('click', () => {
             if (!confirm('حذف سجلات النمو والطعام والأعراض والروتينات من هذا المتصفح؟ لا يمكن التراجع. بقية تفضيلات الموقع لا تدخل هذا الحذف.')) return;
             const failures = keys.map(key => ({ key, ...clear(key) })).filter(r => !r.ok);
-            notify(failures.length ? `تعذر حذف: ${failures.map(r => registry[r.key].label).join('، ')}. تحققي من التخزين وأعيدي المحاولة.` : 'تم حذف سجلات المتابعة الأربعة من هذا المتصفح.');
+            notify(failures.length
+                ? `حُذفت المجموعات التي أمكن حذفها، وتعذر حذف: ${failures.map(r => registry[r.key].label).join('، ')}. أعيدي المحاولة بعد مراجعة إعدادات التخزين.`
+                : 'حُذفت سجلات المتابعة الأربعة من هذا المتصفح. لا تتأثر بيانات المواقع الأخرى.');
         });
         scope.addEventListener('ri3aya-data-change', refresh); refresh();
     });
