@@ -318,21 +318,33 @@ function initFoodTracker() {
         trackBtn.addEventListener('click', function() {
             const newFood = document.getElementById('newFood').value.trim();
             const foodDate = document.getElementById('foodDate').value;
-            const currentDate = new Date().toISOString().split('T')[0];
+            const today = new Date();
+            const localToday = today.getFullYear() + '-' +
+                String(today.getMonth() + 1).padStart(2, '0') + '-' +
+                String(today.getDate()).padStart(2, '0');
             
             // التحقق من البيانات
             if (!newFood || newFood.length > 100) {
-                showTrackerMessage('الرجاء إدخال اسم الطعام (حتى 100 حرف)', 'error');
+                showTrackerMessage('اكتبي اسم الطعام أولًا، بحد أقصى 100 حرف.', 'error');
                 return;
             }
             
             if (!foodDate) {
-                showTrackerMessage('الرجاء اختيار تاريخ التقديم', 'error');
+                showTrackerMessage('اختاري تاريخ تقديم الطعام قبل الحفظ.', 'error');
+                return;
+            }
+            const parsedDate = new Date(foodDate + 'T12:00:00');
+            const actualDate = !Number.isNaN(parsedDate.getTime()) &&
+                parsedDate.getFullYear() + '-' +
+                String(parsedDate.getMonth() + 1).padStart(2, '0') + '-' +
+                String(parsedDate.getDate()).padStart(2, '0') === foodDate;
+            if (!/^\d{4}-\d{2}-\d{2}$/.test(foodDate) || !actualDate || foodDate > localToday) {
+                showTrackerMessage('التاريخ غير صحيح أو في المستقبل. اختاري تاريخًا من اليوم أو قبله.', 'error');
                 return;
             }
             
             if (!selectedReaction) {
-                showTrackerMessage('الرجاء اختيار رد فعل الطفل', 'error');
+                showTrackerMessage('اختاري ملاحظة الطفل بعد تقديم الطعام، ثم احفظي السجل.', 'error');
                 return;
             }
             
@@ -360,7 +372,7 @@ function initFoodTracker() {
             selectedReaction = null;
             
             // عرض رسالة نجاح
-            showTrackerMessage('تم تسجيل الطعام بنجاح', 'success');
+            showTrackerMessage('حُفظ الطعام في هذا المتصفح. يمكنك تصدير سجلاتك من قسم بيانات المتابعة.', 'success');
         });
     }
     
