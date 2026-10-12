@@ -133,6 +133,36 @@ def build():
     schema = {'@context':'https://schema.org','@type':'CollectionPage','name':'مكتبة مقالات رعاية الرضع','url':BASE+'pages/blog.html','mainEntity':{'@type':'ItemList','itemListElement':[{'@type':'ListItem','position':i+1,'name':a['title'],'url':BASE+f'pages/articles/{a["slug"]}.html'} for i,a in enumerate(articles.values())]}}
     outputs[ROOT/'pages/blog.html'] = page(ROOT/'pages/blog.html','مكتبة مقالات رعاية الرضع','مقالات عربية مستقلة للنوم والتغذية والعناية اليومية، مع المصادر وحالة المراجعة الطبية.',content,schema=schema,scripts='<script defer src="../js/article-library.js"></script>')
     policy = '''<article class="care-article"><section class="article-section"><h2>المصادر والصياغة</h2><p>تعتمد المكتبة على صفحات رسمية مثل CDC وWHO وNHS. نكتب ملخصات عربية بمساعدة آلية ونربط كل قسم بمصدره. المقالات ليست ترجمات رسمية، ولا يعني ذكر الجهة أنها اعتمدت هذا الموقع.</p></section><section class="article-section"><h2>ما الفرق بين التواريخ؟</h2><ul><li>تاريخ النشر: أول إتاحة لهذه النسخة من المقال.</li><li>آخر تحديث: تعديل محتوى المقال.</li><li>التحقق التحريري: مراجعة المصادر والروابط والصياغة، وليس تقييمًا سريريًا.</li><li>تاريخ المصدر: تاريخ صفحة الجهة الأصلية؛ لا يُنسب إلى مراجعة مقالنا.</li><li>المراجعة الطبية: مراجعة فعلية من مختص محدد، مع تاريخ ومؤهلات ودليل مراجعة.</li></ul></section><section class="article-review-panel"><h2>حالات المراجعة الطبية</h2><ul><li>لم يُراجع طبيًا بعد: لم يُراجع المقال مختص؛ وهذه حالة المقالات الحالية.</li><li>بانتظار مراجعة طبية: أُدرج ضمن مسار مراجعة، دون اعتماد مكتمل.</li><li>مراجعة طبية موثقة: لا تُستخدم إلا مع اسم المراجع ومؤهلاته وتاريخ ودليل مراجعة قابل للتحقق.</li></ul><p>النشر وإتمام المراجعة الطبية حالتان مستقلتان. لا نعرض أسماء أطباء أو تواريخ اعتماد افتراضية.</p></section><section class="article-section"><h2>الحدود والتصحيح</h2><p>المقالات تثقيفية للعناية العامة، ولا تقدم تشخيصًا أو جرعات دواء أو استشارات فردية. لا تؤخري الرعاية عند القلق على صحة الطفل. عند اكتشاف خطأ جوهري يجب تصحيحه أو سحب المقال وتحديث المكتبة والبحث.</p><p>يمكنك <a href="contact.html">إعداد ملاحظة تصحيح محلية</a> تتضمن رابط المقال والفقرة والمصدر المقترح؛ نموذج التواصل الحالي لا يرسلها إلى الموقع.</p></section><a class="btn btn-primary" href="blog.html">العودة إلى مكتبة المقالات</a></article>'''
+    # Stage 03: this public queue must come from the canonical review register, not a manual HTML edit.
+    queue_file = ROOT / 'content/medical/review-queue.json'
+    if queue_file.is_file():
+        review_data = json.loads(queue_file.read_text(encoding='utf-8'))
+        queue_items = review_data.get('queue', [])
+        labels = {
+            'pages/sleep.html': 'النوم الآمن',
+            'pages/nutrition.html': 'التغذية التكميلية',
+            'pages/vaccine.html': 'التلقيح في الجزائر',
+            'pages/growth.html': 'متابعة النمو',
+            'pages/diseases.html': 'الأمراض الشائعة',
+            'pages/articles/safe-sleep.html': 'مقال النوم الآمن',
+            'pages/articles/first-foods.html': 'مقال بداية الطعام',
+            'pages/articles/safe-bath.html': 'مقال الاستحمام الآمن',
+            'pages/articles/diaper-care.html': 'مقال العناية بالحفاض',
+            'pages/articles/soothing-crying.html': 'مقال تهدئة البكاء'
+        }
+        list_markup = ''.join(
+            f'<li><a href="{esc(item["path"].removeprefix("pages/"))}">{esc(labels.get(item["path"], item["path"]))}</a> — لم يُراجع طبيًا بعد؛ يلزم تقييم مختص مؤهل.</li>'
+            for item in queue_items
+        )
+        queue_markup = ('<section class="article-section" id="medical-review-queue">'
+            '<h2>المواد التي تنتظر مراجعة طبية متخصصة</h2>'
+            '<p><strong>الحالة الحالية:</strong> أُجري تدقيق تحريري للمصادر، لكنه لا يعادل مراجعة من طبيب أطفال.'
+            ' لا يُعلن الاعتماد الطبي دون اسم مختص ومؤهلاته وتاريخ ودليل المراجعة.</p>'
+            f'<ul>{list_markup}</ul>'
+            '<p><a href="../content/medical/review-queue.json">السجل التفصيلي للمراجعة الطبية</a>.</p>'
+            '</section>')
+        assert 'medical-review-queue' not in policy, 'Review queue already part of policy template'
+        policy = policy.replace('<section class="article-section"><h2>الحدود والتصحيح', queue_markup + '<section class="article-section"><h2>الحدود والتصحيح', 1)
     outputs[ROOT/'pages/editorial-policy.html'] = page(ROOT/'pages/editorial-policy.html','سياسة التحرير والمراجعة','كيف نختار المصادر، وما الفرق بين التحقق التحريري والمراجعة الطبية وتواريخ المقالات؟',policy)
     # Discovery links stay static and in sync with published articles.
     for topic in ['sections', 'resources', *dict.fromkeys(a['topic'] for a in data['articles'])]:
@@ -199,7 +229,7 @@ def build():
             entry=ET.SubElement(sitemap,f'{{{ns}}}url');ET.SubElement(entry,f'{{{ns}}}loc').text=url
         last=entry.find(f'{{{ns}}}lastmod')
         if last is None:last=ET.SubElement(entry,f'{{{ns}}}lastmod')
-        last.text=articles[p.stem]['updated_at'] if p.parent.name=='articles' else data['updated_at']
+        last.text = articles[p.stem]['updated_at'] if p.parent.name == 'articles' else max(data['updated_at'], last.text or data['updated_at'])
     for url,entry in existing.items():
         if url.endswith('/pages/search.html'):
             sitemap.remove(entry); continue
