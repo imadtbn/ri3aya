@@ -6,7 +6,7 @@
         .replace(/ى/g, 'ي').replace(/ة/g, 'ه').replace(/[^\p{L}\p{N}\s]/gu, ' ').replace(/\s+/g, ' ').trim();
     const words = value => normalize(value).split(' ').filter(Boolean).map(word => word.startsWith('ال') && word.length > 3 ? word.slice(2) : word);
     const synonyms = [['نوم', 'نائم'], ['تلقيح', 'تطعيم', 'لقاح', 'لقاحات', 'تطعيمات'], ['حفاض', 'حفاضات', 'حفاضه', 'حفاظات'], ['غذاء', 'تغذيه'], ['حمام', 'استحمام'], ['بكاء', 'يبكي']];
-    const aliases = new Map(synonyms.flatMap(group => group.map(word => [word, group])));
+    const aliases = new Map(synonyms.flatMap(group => { const normalized = group.map(normalize); return normalized.map(word => [word, normalized]); }));
     const topicIDs = ['sleep', 'nutrition', 'care', 'crying', 'growth', 'vaccine', 'bath', 'diapers', 'digestive', 'diseases', 'tips', 'safety'];
     function rootPath() {
         const segments = location.pathname.split('/pages/');
@@ -39,7 +39,12 @@
     function filter(items, state) {
         const groups = words(state.q).map(word => aliases.get(word) || [word]);
         if (String(state.q || '').trim() && !groups.length) return [];
-        const prepared = items.map(prepare);
+        const seen = new Set();
+        const prepared = items.filter(item => {
+            if (!item || !item.url || seen.has(item.url)) return false;
+            seen.add(item.url);
+            return true;
+        }).map(prepare);
         return prepared.filter(({ item, text }) =>
             ageMatches(item, state.age) && (state.topic === 'all' || !state.topic || item.topics?.includes(state.topic)) &&
             (state.type === 'all' || !state.type || item.type === state.type) &&
