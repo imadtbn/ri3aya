@@ -191,3 +191,22 @@ button:disabled,
         grid-template-columns: 1fr;
     }
 }
+
+/* Medical editorial status stage 03: no implication of clinician approval. */
+.site-shell .medical-review-status {
+    margin-block: clamp(14px, 2vw, 22px);
+    padding: clamp(14px, 2vw, 20px);
+    border: 1px solid #dcc99f;
+    border-inline-start: 4px solid #a67824;
+    border-radius: 14px;
+    background: #fff9ec;
+    color: #4a381b;
+    line-height: 1.8;
+    overflow-wrap: anywhere;
+}
+.site-shell .medical-review-status strong { display: block; color: #493512; }
+.site-shell .medical-review-status p { margin: 4px 0 0; font-size: .94rem; }
+.site-shell .medical-review-status a { color: #126b70; text-decoration: underline; text-underline-offset: 3px; }
+@media (max-width: 600px) {
+    .site-shell .medical-review-status { margin-block: 12px; padding: 14px; }
+}
