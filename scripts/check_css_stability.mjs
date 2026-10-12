@@ -34,6 +34,9 @@ assert.ok(stable.includes('body.sections-page .sections-grid > .section-card'), 
 assert.ok(!stable.includes('.site-shell .sections-grid .section-card { display: block; padding: 28px;'), 'Global section padding has regressed');
 assert.ok(!stable.includes('.site-shell .back-to-top > i { display: none; }'), 'Back-to-top icon hidden');
 assert.ok(stable.includes('.content-wrapper.preserve-legacy-layout'), 'Legacy layout fix missing');
+assert.match(stable, /\.content-wrapper\.preserve-legacy-layout\s*\{\s*display:\s*grid;[\s\S]*?grid-template-columns:\s*minmax\(0,\s*1fr\)\s+280px;/, 'Guide layout must reserve a narrow fixed sidebar');
+assert.ok(!stable.includes('flex: 2 1 0;'), 'Expandable guide columns would squeeze the main article again');
+assert.ok(!stable.includes('flex: 1 1 300px;'), 'Sidebar must not consume half the article width');
 for (const p of ['pages/nutrition.html', 'pages/crying.html']) {
     assert.match(read(p), /class="content-wrapper preserve-legacy-layout"/, 'Page layout marker missing: ' + p);
 }
