@@ -30,9 +30,9 @@ body.site-shell {
 .site-shell .sidebar { position: static; }
 .site-shell .sidebar-widget { background: #fff; padding: 22px; margin-bottom: 24px; }
 .site-shell .sections-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; padding-block: 32px; }
-.site-shell .sections-grid .section-card { display: block; padding: 28px; background: #fff; color: var(--care-ink); text-decoration: none; }
-.site-shell .sections-grid .section-card:hover { border-color: var(--care-primary); }
-.site-shell .sections-grid h2 { font-size: 1.25rem; }
+body.sections-page .sections-grid > .section-card { display: block; padding: 28px; background: #fff; color: var(--care-ink); text-decoration: none; }
+body.sections-page .sections-grid > .section-card:hover { border-color: var(--care-primary); }
+body.sections-page .sections-grid h2 { font-size: 1.25rem; }
 .site-shell .page-content { padding-block: 32px; }
 .site-shell :is(.table-container, .table-responsive, .table-wrapper) { max-width: 100%; overflow-x: auto; }
 .site-shell :is(.form-row, .form-group) { min-width: 0; }
@@ -145,10 +145,34 @@ body.site-shell {
 .site-shell .content-table-scroll { max-width: 100%; min-width: 0; overflow-x: auto; overscroll-behavior-inline: contain; }
 .site-shell .content-table-scroll:focus-visible { outline: 3px solid #c77720; outline-offset: 3px; }
 .site-shell .content-table-scroll table { margin-block: 0; }
-.site-shell .back-to-top > i { display: none; }
-.site-shell .back-to-top::before { content: '↑'; font: 1.5rem/1 system-ui, sans-serif; }
+.site-shell .back-to-top:not(:has(> i))::before { content: '↑'; font: 1.5rem/1 system-ui, sans-serif; }
 @media (max-width: 600px) {
     .site-shell main .section-card { padding: 20px; }
     .site-shell .vaccine-page .vaccine-checklist { gap: 12px; }
     .site-shell .vaccine-page .vaccine-checklist .checklist-item { padding: 16px; }
+}
+
+/* Stage 01: preserve intentional flex layouts of legacy care guides only. */
+.site-shell .content-wrapper.preserve-legacy-layout {
+    display: flex;
+    gap: clamp(24px, 3vw, 40px);
+    align-items: flex-start;
+}
+.site-shell .content-wrapper.preserve-legacy-layout > .main-content {
+    flex: 2 1 0;
+    min-width: 0;
+}
+.site-shell .content-wrapper.preserve-legacy-layout > .sidebar {
+    flex: 1 1 300px;
+    min-width: 280px;
+    position: sticky;
+    top: 20px;
+}
+@media (max-width: 992px) {
+    .site-shell .content-wrapper.preserve-legacy-layout { flex-direction: column; }
+    .site-shell .content-wrapper.preserve-legacy-layout > .sidebar {
+        position: static;
+        width: 100%;
+        min-width: 0;
+    }
 }
