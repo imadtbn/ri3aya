@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - '.github/workflows/stage06-sync-release.yml'
+      - 'pages/tools.html'
   workflow_dispatch:
 
 permissions:
