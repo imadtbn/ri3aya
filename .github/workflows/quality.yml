@@ -76,6 +76,16 @@ jobs:
         run: node scripts/check_layout.mjs
       - name: Real offline and update acceptance
         run: node scripts/check_pwa.mjs
+      - name: Capture synthetic rendering performance
+        run: node scripts/measure_performance.mjs
+      - name: Upload performance measurements
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ri3aya-stage06-performance
+          path: artifacts/performance-lab.json
+          if-no-files-found: ignore
+          retention-days: 7
       - name: Upload screenshot evidence
         if: always()
         uses: actions/upload-artifact@v4
