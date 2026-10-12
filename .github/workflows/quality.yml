@@ -42,6 +42,16 @@ jobs:
         run: node scripts/test_tools.cjs
       - name: Verify SEO and PWA metadata
         run: python scripts/check_seo_pwa.py
+      - name: Check all internal links and fragments
+        run: python scripts/check_internal_links.py
+      - name: Verify CSS and unified shared components
+        run: node scripts/check_css_stability.mjs
+      - name: Verify medical status and safety guardrails
+        run: node scripts/check_medical_safety.mjs
+      - name: Verify tools, dates and search boundaries
+        run: node scripts/test_stage04.cjs
+      - name: Verify ad placeholders and offline asset guards
+        run: node scripts/test_stage05.cjs
       - name: Verify release snapshot
         run: python scripts/build_pwa.py --check
 
@@ -58,7 +68,19 @@ jobs:
         run: npm install --no-save --no-package-lock playwright@1.62.1
       - name: Install Chromium
         run: npx playwright install --with-deps chromium
+      - name: Prepare visual evidence directory
+        run: mkdir -p artifacts/screens
       - name: Responsive and tool acceptance
+        env:
+          LAYOUT_SCREENSHOT_DIR: artifacts/screens
         run: node scripts/check_layout.mjs
       - name: Real offline and update acceptance
         run: node scripts/check_pwa.mjs
+      - name: Upload screenshot evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ri3aya-stage06-visual-evidence
+          path: artifacts/screens
+          if-no-files-found: ignore
+          retention-days: 7
