@@ -30,7 +30,16 @@
 
     function renderError(error) {
         const result = byId('growth-results');
-        if (result) result.innerHTML = `<div class="alert alert-warning" role="alert">تعذر حساب المؤشرات الآن. تحققي من الاتصال ثم حاولي مجددًا. (${escapeHtml(error.message)})</div>`;
+        if (!result) return;
+        const detail = String(error?.message || '');
+        const message = /24 شهرًا/.test(detail)
+            ? 'هذه الأداة تدعم عمر 0–24 شهرًا فقط.'
+            : /قياسًا واحدًا/.test(detail)
+                ? 'أدخلي الوزن أو الطول أو محيط الرأس أولًا.'
+                : /غير صالحة|أرقامًا موجبة|العمر|القياسات/.test(detail)
+                    ? 'راجعي العمر والقياسات؛ استخدمي أرقامًا صحيحة ومناسبة للحقول.'
+                    : 'تعذر تحميل بيانات النمو المرجعية. تحققي من الاتصال واضغطي حساب مجددًا.';
+        result.innerHTML = `<div class="alert alert-warning" role="alert">${escapeHtml(message)}</div>`;
     }
 
     function renderResults(assessment) {
@@ -175,7 +184,10 @@
 
     async function saveMeasurement() {
         const item = {
-            date: byId('track-date')?.value || new Date().toISOString().slice(0, 10),
+            date: byId('track-date')?.value || (() => {
+                const now = new Date();
+                return [now.getFullYear(), String(now.getMonth() + 1).padStart(2, '0'), String(now.getDate()).padStart(2, '0')].join('-');
+            })(),
             age: Number(byId('track-age')?.value || 0),
             sex: byId('track-sex')?.value || byId('child-gender')?.value || 'male',
             weight: Number(byId('track-weight')?.value || 0) || '',
@@ -183,8 +195,11 @@
             head: Number(byId('track-head')?.value || 0) || '',
             notes: byId('track-notes')?.value.trim() || ''
         };
-        if (!byId('track-age')?.value || !Number.isFinite(item.age) || item.age < 0 || item.age > 24 || ![item.weight, item.height, item.head].some(Boolean) || [item.weight, item.height, item.head].some(v => v !== '' && (!Number.isFinite(v) || v < 0)) || item.notes.length > 1000 || !/^\d{4}-\d{2}-\d{2}$/.test(item.date) || Number.isNaN(Date.parse(item.date))) {
-            announce('أدخلي عمرًا بين 0 و24 شهرًا وقياسًا واحدًا على الأقل.', 'error');
+        if (!byId('track-age')?.value || !Number.isFinite(item.age) || item.age < 0 || item.age > 24 || ![item.weight, item.height, item.head].some(Boolean) || [item.weight, item.height, item.head].some(v => v !== '' && (!Number.isFinite(v) || v < 0)) || item.notes.length > 1000 || !/^\d{4}-\d{2}-\d{2}$/.test(item.date) || Number.isNaN(Date.parse(item.date)) || item.date > (() => {
+            const now = new Date();
+            return [now.getFullYear(), String(now.getMonth() + 1).padStart(2, '0'), String(now.getDate()).padStart(2, '0')].join('-');
+        })()) {
+            announce('راجعي تاريخ القياس (ليس في المستقبل)، والعمر 0–24 شهرًا، وأدخلي قياسًا موجبًا واحدًا على الأقل.', 'error');
             return;
         }
         const button = byId('add-measurement');
