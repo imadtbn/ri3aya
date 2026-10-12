@@ -329,3 +329,34 @@ body.sections-page .sections-grid h2 { font-size: 1.25rem; }
         padding: clamp(18px, 4vw, 22px);
     }
 }
+
+
+/* Global link presentation: no default underlines across the site.
+   Interactive feedback comes from color/background and visible keyboard focus.
+   Buttons, visual tiles, and the dark navigation retain their own colors. */
+.site-shell a:any-link,
+.site-shell a:any-link:hover,
+.site-shell a:any-link:focus-visible {
+    text-decoration: none;
+    text-decoration-line: none;
+}
+.site-shell a:any-link:focus-visible {
+    outline: 3px solid #126b70;
+    outline-offset: 3px;
+    border-radius: 5px;
+}
+.site-shell main :is(p, li, td, dd, blockquote) > a:any-link:not([class]) {
+    color: var(--care-primary, #126b70);
+    font-weight: 600;
+    border-radius: 4px;
+    transition: color .18s ease, background-color .18s ease;
+}
+.site-shell main :is(p, li, td, dd, blockquote) > a:any-link:not([class]):hover {
+    color: #07565c;
+    background-color: rgba(18, 107, 112, .10);
+}
+@media (prefers-reduced-motion: reduce) {
+    .site-shell main :is(p, li, td, dd, blockquote) > a:any-link:not([class]) {
+        transition: none;
+    }
+}
