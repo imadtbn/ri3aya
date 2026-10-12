@@ -6,6 +6,8 @@ on:
     paths:
       - '.github/workflows/stage06-sync-release.yml'
       - 'pages/tools.html'
+      - 'css/site-polish.css'
+      - 'scripts/check_layout.mjs'
   workflow_dispatch:
 
 permissions:
