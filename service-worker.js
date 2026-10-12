@@ -1,4 +1,4 @@
-/* Restore existing page styles: release 2026-10-11. Updates activate upon user confirmation. */
+/* CSS stability release 2026-10-12; updates activate upon user confirmation. */
 importScripts('./pwa/config.js');
 const ROOT = new URL('./', self.location.href);
 const CACHE_NAME = 'ri3aya-pwa-' + self.RI3AYA_PWA.revision;
