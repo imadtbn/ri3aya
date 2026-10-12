@@ -29,7 +29,15 @@
         const birthDateInput = document.getElementById('birth-date');
         const result = document.getElementById('vaccine-result');
         if (calculateButton && birthDateInput && result) {
+            const day = document.getElementById('birth-day');
+            const month = document.getElementById('birth-month');
+            const year = document.getElementById('birth-year');
+            for (let n = 1; n <= 31; n++) day.add(new Option(String(n), String(n)));
+            for (let n = 1; n <= 12; n++) month.add(new Option(String(n).padStart(2, '0'), String(n)));
+            for (let n = new Date().getFullYear(); n >= 1900; n--) year.add(new Option(String(n), String(n)));
+
             calculateButton.addEventListener('click', () => {
+                birthDateInput.value = day.value && month.value && year.value ? [year.value, month.value.padStart(2, '0'), day.value.padStart(2, '0')].join('-') : '';
                 if (!birthDateInput.value) {
                     result.innerHTML = '<div class="alert alert-warning" role="alert">أدخلي تاريخ الميلاد أولًا، ثم خذي دفتر التلقيح إلى المركز الصحي للتحقق من الموعد التالي.</div>';
                     return;
