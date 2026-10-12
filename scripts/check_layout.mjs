@@ -125,6 +125,11 @@ try {
     assert.equal(await page.locator('.tool-index-card:visible').count(), 1);
     await page.locator('#tool-age').fill('-1');
     assert.equal(await page.locator('#tool-age').getAttribute('aria-invalid'), 'true');
+    assert.equal(await page.locator('.tool-index-card:visible').count(), 0, 'Invalid age must not leave old tool results');
+    await page.locator('#tool-age').fill('1.5');
+    assert.equal(await page.locator('#tool-age').getAttribute('aria-invalid'), 'true', 'Age must be a whole month');
+    assert.equal(await page.locator('.tool-index-card:visible').count(), 0);
+
     await page.locator('#tool-reset').click();
     assert.equal(await page.locator('.tool-index-card:visible').count(), 7);
     assert.equal(await page.evaluate(() => document.querySelector('#local-data-panel').getBoundingClientRect().top > document.querySelector('.tools-index-grid').getBoundingClientRect().bottom), true);
@@ -287,6 +292,12 @@ try {
     assert.ok((await page.locator('#local-data-list').textContent()).includes('12 سجل'));
     await page.goto(base + 'pages/nutrition.html');
     assert.equal(await page.locator('#foodHistory .tracker-history-item').count(), 23, 'Do not truncate legacy food records');
+    await page.locator('#newFood').fill('سجل بتاريخ مستقبلي');
+    await page.locator('#foodDate').fill('2099-01-01');
+    await page.locator('.reaction-btn[data-reaction="like"]').click();
+    await page.locator('#trackFood').click();
+    assert.equal(await page.locator('#foodHistory .tracker-history-item').count(), 23, 'Future food date must not save');
+    assert.equal(await page.locator('#newFood').inputValue(), 'سجل بتاريخ مستقبلي', 'Invalid input must be preserved for correction');
     await page.locator('#newFood').fill('<img src=x onerror=alert(1)>');
     await page.locator('#foodDate').fill('2026-10-11');
     await page.locator('.reaction-btn[data-reaction="like"]').click();
