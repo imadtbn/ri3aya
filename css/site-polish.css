@@ -1,17 +1,34 @@
 /* Shared visual system. Shell selectors are isolated from legacy article styles. */
+/* Site typography: near-black reading text, Tajawal for body copy,
+   Cairo for headings; preserve accent/action and alert colors. */
 body.site-shell {
-    --care-ink: #173b49;
-    --care-muted: #526970;
+    --care-ink: #111111;
+    --care-muted: #303030;
     --care-primary: #126b70;
     --care-line: #d7e5e6;
     --care-radius: 18px;
+    --gray-800: #111111;
+    --gray-700: #262626;
+    --gray-600: #363636;
+    --font-primary: 'Tajawal', 'Cairo', Tahoma, Arial, sans-serif;
+    --font-secondary: 'Cairo', 'Tajawal', Tahoma, Arial, sans-serif;
     --primary-color: var(--care-primary);
     --primary-light: #e9f4f2;
-    font-family: 'Cairo', 'Tajawal', sans-serif;
+    font-family: var(--font-primary);
+    font-size: 1rem;
+    font-weight: 400;
     color: var(--care-ink);
     background: #f7faf9;
     line-height: 1.85;
+    text-rendering: optimizeLegibility;
     margin: 0;
+}
+.site-shell :is(h1, h2, h3, h4, h5, h6) {
+    font-family: var(--font-secondary);
+    letter-spacing: normal;
+}
+.site-shell main :is(.content-section, .article-section, .article-intro) :is(p, li) {
+    line-height: 1.9;
 }
 .site-shell *, .site-shell *::before, .site-shell *::after { box-sizing: border-box; }
 .site-shell .container { width: min(1180px, calc(100% - 40px)); max-width: 1180px; margin-inline: auto; padding-inline: 0; }
