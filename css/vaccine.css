@@ -794,3 +794,17 @@
     background: #ffffff;
     border-left: 4px solid #4a90e2;
 }
+/* Vaccine review card spacing and birth date selection */
+.site-shell .medical-review-status.container { box-sizing:border-box; width:min(calc(100% - 32px),1180px); margin:20px auto 26px; padding:clamp(18px,3vw,26px)!important; border-radius:16px; overflow-wrap:anywhere; }
+.site-shell .medical-review-status.container strong { display:block; line-height:1.9; margin-bottom:10px; }
+.site-shell .medical-review-status.container p { margin:0; line-height:1.95; }
+.site-shell .medical-review-status.container a { overflow-wrap:anywhere; }
+.birth-date-label { display:block; font-weight:700; margin-bottom:10px; }
+.birth-date-fields { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; width:100%; }
+.birth-date-fields > div { min-width:0; }
+.birth-date-fields label { display:block; margin-bottom:6px; font-size:.9rem; }
+.birth-date-fields select { width:100%; min-width:0; min-height:46px; padding:9px 12px; border:1px solid #b7ced0; border-radius:11px; background:#fff; color:#163b3e; font:inherit; }
+.birth-date-fields select:focus-visible { outline:3px solid #87c9cc; outline-offset:2px; }
+.birth-date-hint { display:block; margin-top:9px; line-height:1.7; }
+.reminder-form .form-group { min-width:0; flex:1 1 320px; }
+@media(max-width:420px) { .site-shell .medical-review-status.container { width:calc(100% - 24px); padding:16px!important; } .birth-date-fields { gap:6px; } .birth-date-fields select { padding:8px 4px; font-size:.9rem; } }
