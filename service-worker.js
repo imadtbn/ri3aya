@@ -12,7 +12,10 @@ self.addEventListener('install', event => {
         const cache = await caches.open(CACHE_NAME);
         // Missing shell resources are a real installation failure.
         await cache.addAll(CORE_URLS.map(url => new Request(url, { cache: 'reload' })));
-        const optional = [...FILES].filter(url => !CORE_URLS.includes(url));
+        // Defer alternate responsive image sizes until the user actually opens them.
+        const optional = [...FILES].filter(url =>
+            !CORE_URLS.includes(url) &&
+            !/\/optimized\/[^/]+-(?:320|960)\.webp$/i.test(new URL(url).pathname));
         // Limit concurrent fetches on phones / unstable connections.
         let cursor = 0;
         const workers = Array.from({ length: Math.min(5, optional.length) }, async () => {
@@ -39,8 +42,17 @@ self.addEventListener('fetch', event => {
         event.respondWith(caches.open(CACHE_NAME).then(async cache => {
             const cached = await cache.match(url.href);
             if (cached) return cached;
-            try { return await fetch(request); }
-            catch (_) { return request.mode === 'navigate' ? Response.redirect(OFFLINE) : new Response('المورد غير متاح دون اتصال', { status: 503, headers: { 'Content-Type': 'text/plain;charset=utf-8' } }); }
+            try {
+                const response = await fetch(request);
+                if (response.ok && /\.(?:webp|png|jpe?g|svg)$/i.test(url.pathname)) {
+                    // An image omitted from precache becomes available offline after its first visit.
+                    await cache.put(url.href, response.clone()).catch(() => {});
+                }
+                return response;
+            } catch (_) {
+                return request.mode === 'navigate' ? Response.redirect(OFFLINE)
+                    : new Response('المورد غير متاح دون اتصال', { status: 503, headers: { 'Content-Type': 'text/plain;charset=utf-8' } });
+            }
         }));
     } else if (request.mode === 'navigate') {
         event.respondWith(fetch(request).catch(() => Response.redirect(OFFLINE)));
