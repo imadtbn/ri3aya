@@ -30,6 +30,16 @@ body.site-shell {
 .site-shell .sidebar { position: static; }
 .site-shell .sidebar-widget { background: #fff; padding: 22px; margin-bottom: 24px; }
 .site-shell .sections-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; padding-block: 32px; }
+/* Content-card spacing repair (2026-10-12).
+   The legacy .section-card sets no padding, which leaves article headings and
+   paragraphs touching the borders. Target only cards directly inside content
+   sections; image-first home/section tiles live inside .sections-grid and keep
+   their edge-to-edge artwork. :where() deliberately keeps specificity low so
+   specialized page styles (e.g. FAQ cards) can retain their own spacing. */
+.site-shell main :where(section > .section-card) {
+    padding: clamp(22px, 2.5vw, 32px);
+}
+
 body.sections-page .sections-grid > .section-card { display: block; padding: 28px; background: #fff; color: var(--care-ink); text-decoration: none; }
 body.sections-page .sections-grid > .section-card:hover { border-color: var(--care-primary); }
 body.sections-page .sections-grid h2 { font-size: 1.25rem; }
@@ -312,4 +322,10 @@ body.sections-page .sections-grid h2 { font-size: 1.25rem; }
         flex: 1 1 100%; justify-content: center;
     }
     .site-shell .site-hero-actions > .btn { flex-basis: 100%; }
+}
+
+@media (max-width: 600px) {
+    .site-shell main :where(section > .section-card) {
+        padding: clamp(18px, 4vw, 22px);
+    }
 }
