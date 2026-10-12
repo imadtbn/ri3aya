@@ -94,3 +94,50 @@ jobs:
           path: artifacts/screens
           if-no-files-found: ignore
           retention-days: 7
+
+  stable-release:
+    name: Verify published site and tag stable release
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: [quality, browser-acceptance]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout verified commit
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Wait for GitHub Pages to serve verified PWA revision
+        shell: bash
+        run: |
+          set -euo pipefail
+          revision=$(sed -n 's/.*"revision":"\([^"]*\)".*/\1/p' pwa/config.js)
+          test -n "$revision"
+          echo "Verified repository revision: $revision"
+          for attempt in $(seq 1 18); do
+            if curl --fail --location --silent --show-error \
+              --connect-timeout 10 --max-time 20 \
+              -H 'Cache-Control: no-cache' \
+              "https://imadtbn.github.io/ri3aya/pwa/config.js?verify=${GITHUB_SHA}" \
+              | grep -Fq "\"revision\":\"$revision\""; then
+              echo "GitHub Pages serves the accepted PWA release."
+              exit 0
+            fi
+            echo "Pages has not deployed the accepted revision yet (attempt $attempt/18)."
+            sleep 10
+          done
+          echo "::error::Published version does not match verified repository release."
+          exit 1
+      - name: Tag accepted stable version
+        shell: bash
+        run: |
+          set -euo pipefail
+          tag=ri3aya-stable-20261012
+          if git ls-remote --exit-code --tags origin "refs/tags/$tag" >/dev/null 2>&1; then
+            echo "Stable release tag already exists: $tag"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git tag -a "$tag" -m "Ri3aya stage 06: tests passed, offline PWA and Pages revision verified"
+          git push origin "refs/tags/$tag"
