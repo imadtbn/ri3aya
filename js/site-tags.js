@@ -82,10 +82,24 @@
             : CONFIG.adSlots[key] || CONFIG.adSlots.display;
     }
 
+    function validAdClient(value) {
+        return typeof value === 'string' && /^ca-pub-\d{10,20}$/.test(value.trim());
+    }
+
+    function validAdSlot(value) {
+        return typeof value === 'string' && /^\d{6,20}$/.test(value.trim());
+    }
+
     function queueAds(units) {
-        if (state.adsQueued || !units.length || !window.adsbygoogle) return;
-        units.forEach((unit) => {
+        if (!units.length || !window.adsbygoogle) return;
+        units.forEach(unit => {
             if (unit.dataset.siteAdQueued === 'true') return;
+            // Do not push a responsive ad into an invisible or narrow slot.
+            const shell = unit.closest('[data-site-ad-shell]');
+            if (unit.getBoundingClientRect().width < 250) {
+                hideAdShell(shell);
+                return;
+            }
             unit.dataset.adClient = CONFIG.adsenseClient;
             unit.dataset.adSlot = resolveSlot(unit);
             unit.dataset.siteAdQueued = 'true';
@@ -93,25 +107,42 @@
                 (window.adsbygoogle = window.adsbygoogle || []).push({});
             } catch (_) {
                 delete unit.dataset.siteAdQueued;
-                hideAdShell(unit.closest('[data-site-ad-shell]'));
+                hideAdShell(shell);
             }
         });
-        state.adsQueued = true;
+        state.adsQueued = units.some(unit => unit.dataset.siteAdQueued === 'true');
     }
 
     function initAds() {
         const units = Array.from(document.querySelectorAll('ins.adsbygoogle[data-site-ad]'));
         if (!units.length) return;
-        if (isPlaceholder(CONFIG.adsenseClient) || units.some((unit) => isPlaceholder(resolveSlot(unit)))) {
-            units.forEach((unit) => hideAdShell(unit.closest('[data-site-ad-shell]')));
-            return;
-        }
+        const ready = units.filter(unit => {
+            const shell = unit.closest('[data-site-ad-shell]');
+            if (!validAdClient(CONFIG.adsenseClient) || !validAdSlot(resolveSlot(unit))) {
+                hideAdShell(shell);
+                return false;
+            }
+            // All ad shells start hidden; reveal only real configured units.
+            if (shell) {
+                shell.hidden = false;
+                shell.removeAttribute('aria-hidden');
+            }
+            unit.style.display = 'block';
+            unit.style.width = '100%';
+            const parentWidth = unit.parentElement?.getBoundingClientRect().width || 0;
+            if (parentWidth < 250) {
+                hideAdShell(shell);
+                return false;
+            }
+            return true;
+        });
+        if (!ready.length) return;
         if (!state.adsLoaded && !hasScriptSource('pagead2.googlesyndication.com/pagead/js/adsbygoogle.js')) {
             const script = appendScript('https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=' + encodeURIComponent(CONFIG.adsenseClient), { async: true, crossorigin: 'anonymous' });
-            if (script) script.addEventListener('load', () => queueAds(units), { once: true });
+            if (script) script.addEventListener('load', () => queueAds(ready), { once: true });
         }
         state.adsLoaded = true;
-        if (window.adsbygoogle) queueAds(units);
+        if (window.adsbygoogle) queueAds(ready);
     }
 
     function init() {
