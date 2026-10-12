@@ -42,6 +42,27 @@ try {
             const layout = await page.evaluate(() => ({ scroll: document.documentElement.scrollWidth, search: document.querySelector('.search-input').getBoundingClientRect().width }));
             assert.ok(layout.scroll <= width + 1, `${file} overflows at ${width}px: ${layout.scroll}`);
             assert.ok(layout.search > 0, `${file} search hidden at ${width}px`);
+            const shared = await page.evaluate(() => {
+                const q = selector => document.querySelector(selector);
+                const header = q('.site-header[data-layout="shared-v2"]');
+                const footer = q('.site-footer[data-layout="shared-v2"]');
+                const nav = q('.site-header .site-nav');
+                return {
+                    valid: Boolean(header && footer && q('.site-hero') && q('.mobile-menu-btn')),
+                    headerOverflow: header ? header.scrollWidth > innerWidth + 1 : true,
+                    footerOverflow: footer ? footer.scrollWidth > innerWidth + 1 : true,
+                    navPosition: nav ? getComputedStyle(nav).position : '',
+                    toggleWidth: q('.mobile-menu-btn')?.getBoundingClientRect().width || 0
+                };
+            });
+            assert.ok(shared.valid, `${file}: missing shared layout component`);
+            assert.equal(shared.headerOverflow, false, `${file}: header overflow at ${width}px`);
+            assert.equal(shared.footerOverflow, false, `${file}: footer overflow at ${width}px`);
+            if (width <= 992) {
+                assert.equal(shared.navPosition, 'absolute', `${file}: menu should overlay hero`);
+                assert.ok(shared.toggleWidth >= 44, `${file}: small menu target`);
+            }
+
             // Notes contain prose, not a two-column icon/content grid. A page
             // can pass the overflow check while a source link collapses to 10px.
             for (const note of await page.locator('main .medical-safety-note').all()) {
