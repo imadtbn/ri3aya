@@ -286,8 +286,13 @@
 
                     <div class="reminder-form">
                         <div class="form-group">
-                            <label for="birth-date"><i class="fas fa-calendar-alt"></i> تاريخ ميلاد الطفل</label>
-                            <input type="date" id="birth-date" class="date-input">
+                            <span class="birth-date-label" id="birth-date-label"><i class="fas fa-calendar-alt"></i> تاريخ ميلاد الطفل</span>
+<div class="birth-date-fields" role="group" aria-labelledby="birth-date-label">
+<div><label for="birth-day">اليوم</label><select id="birth-day"><option value="">اليوم</option></select></div>
+<div><label for="birth-month">الشهر</label><select id="birth-month"><option value="">الشهر</option></select></div>
+<div><label for="birth-year">السنة</label><select id="birth-year"><option value="">السنة</option></select></div>
+</div><input type="hidden" id="birth-date">
+<small class="birth-date-hint">اختاري اليوم والشهر والسنة. لا يتم حفظ تاريخ الميلاد.</small>
                         </div>
                         <button class="btn btn-primary" id="calculate-vaccines">
                             <i class="fas fa-calculator"></i> احسب العمر التقريبي
