@@ -24,6 +24,13 @@ for (const file of files) {
         assert.ok(fs.existsSync(local), 'Missing CSS: ' + path.relative(root, file) + ' -> ' + href);
         referencedCSS.add(path.relative(root, local).split(path.sep).join('/'));
     }
+    const header = source.match(/<header\b[^>]*class=["'][^"']*site-header[^"']*["'][^>]*data-layout=["']shared-v2["']/i);
+    const footer = source.match(/<footer\b[^>]*class=["'][^"']*site-footer[^"']*["'][^>]*data-layout=["']shared-v2["']/i);
+    assert.ok(header && footer, 'Missing shared header/footer: ' + file);
+    assert.match(source, /class=["'][^"']*site-hero\b/i, 'Missing shared hero: ' + file);
+    assert.match(source, /class=["'][^"']*mobile-menu-btn\b/i, 'Missing mobile menu button: ' + file);
+    assert.match(source, /id=["']primary-navigation["']/i, 'Missing navigation target: ' + file);
+    assert.match(source, /id=["']site-search["']/i, 'Missing shared search: ' + file);
     const shared = styles.findIndex(s => s.includes('site-polish.css'));
     assert.ok(shared !== -1, 'Shared stylesheet absent: ' + file);
     const main = styles.findIndex(s => /(^|\/)main\.css$/.test(s));
@@ -41,4 +48,11 @@ for (const p of ['pages/nutrition.html', 'pages/crying.html']) {
     assert.match(read(p), /class="content-wrapper preserve-legacy-layout"/, 'Page layout marker missing: ' + p);
 }
 console.log('PASS: ' + files.length + ' HTML pages and ' + referencedCSS.size + ' local CSS files checked; no missing CSS links.');
-console.log('PASS: shared CSS order and stage-01 layout conflict guards.');
+assert.match(stable, /Stage 02: shared component and small-screen stability/, 'Missing stage 02 component styles');
+assert.ok(stable.includes('.site-header[data-layout="shared-v2"] .site-nav'), 'Mobile overlay CSS missing');
+assert.ok(stable.includes('.site-footer[data-layout="shared-v2"] .site-footer-grid'), 'Responsive footer CSS missing');
+assert.ok(!stable.includes('.site-shell main .section-card { padding: 20px; }'), 'Broad mobile card padding returned');
+const mainJs = read('js/main.js');
+assert.ok(mainJs.includes("button.textContent = open ? '×' : '☰'"), 'Burger glyph not synchronized');
+assert.ok(mainJs.includes("if (!open) {"), 'Closing mobile menu must reset dropdown state');
+console.log('PASS: shared components, CSS order, mobile nav state, and stage-01/02 regression guards.');
