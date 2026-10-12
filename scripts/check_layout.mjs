@@ -42,6 +42,31 @@ try {
             const layout = await page.evaluate(() => ({ scroll: document.documentElement.scrollWidth, search: document.querySelector('.search-input').getBoundingClientRect().width }));
             assert.ok(layout.scroll <= width + 1, `${file} overflows at ${width}px: ${layout.scroll}`);
             assert.ok(layout.search > 0, `${file} search hidden at ${width}px`);
+            const underlined = await page.locator('.site-shell a[href]').evaluateAll(links =>
+                links.filter(link => getComputedStyle(link).textDecorationLine !== 'none')
+                    .slice(0, 4).map(link => link.getAttribute('href')));
+            assert.deepEqual(underlined, [], `${file}: links must not be underlined at ${width}px`);
+            if (file === 'pages/sleep.html') {
+                const resourceCards = await page.locator('.sleep-resource-sidebar :is(.related-article, .download-link)')
+                    .evaluateAll(links => links.map(link => {
+                        const css = getComputedStyle(link);
+                        return {
+                            display: css.display,
+                            decoration: css.textDecorationLine,
+                            padding: parseFloat(css.paddingInlineStart),
+                            radius: parseFloat(css.borderTopLeftRadius),
+                            background: css.backgroundColor
+                        };
+                    }));
+                assert.equal(resourceCards.length, 6, 'Expected three related articles and three resource links');
+                for (const card of resourceCards) {
+                    assert.equal(card.display, 'grid', `Sleep resource link must be a card at ${width}px`);
+                    assert.equal(card.decoration, 'none', 'No underline on sleep resources');
+                    assert.ok(card.padding >= 11 && card.radius >= 10, 'Resource card padding/radius too small');
+                    assert.notEqual(card.background, 'rgba(0, 0, 0, 0)', 'Resource card needs distinct background');
+                }
+            }
+
             if (file.startsWith('pages/articles/')) {
                 const sections = await page.locator('.care-article > .article-section').evaluateAll(cards =>
                     cards.map(card => {
@@ -163,7 +188,9 @@ try {
                 { name: 'growth-intro', page: 'growth', selector: 'section.intro-section' },
                 { name: 'growth-calculator', page: 'growth', selector: 'section.growth-calculator' },
                 { name: 'article-crying', page: 'articles/soothing-crying', selector: '#comfort' },
-                { name: 'article-sleep', page: 'articles/safe-sleep', selector: '#position' }
+                { name: 'article-sleep', page: 'articles/safe-sleep', selector: '#position' },
+                { name: 'sleep-related', page: 'sleep', selector: '.sleep-resource-sidebar .sidebar-widget:has(> .related-articles)' },
+                { name: 'sleep-resources', page: 'sleep', selector: '.sleep-resource-sidebar .sidebar-widget:has(> .downloads)' }
             ];
             for (const item of targets) {
                 await page.goto(base + `pages/${item.page}.html`);
