@@ -1,4 +1,4 @@
-/* Medical editorial safety release 2026-10-12; offline update activation remains user-controlled. */
+/* Stage-04 validated tools and search release 2026-10-12; activation remains user-controlled. */
 importScripts('./pwa/config.js');
 const ROOT = new URL('./', self.location.href);
 const CACHE_NAME = 'ri3aya-pwa-' + self.RI3AYA_PWA.revision;
