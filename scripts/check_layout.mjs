@@ -339,6 +339,9 @@ try {
     assert.equal(await page.locator('#track-age').inputValue(), '3');
     assert.equal(await page.locator('#track-weight').inputValue(), '6.5');
     assert.equal(await page.locator('#tracker-body .tracker-delete').count(), 1); assert.equal(await page.locator('#tracker-body img').count(), 0);
+    await page.locator('#track-age').fill('0'); await page.locator('#track-date').fill('2099-01-01'); await page.locator('#track-weight').fill('3.5'); await page.locator('#track-sex').selectOption('female'); await page.locator('#track-notes').fill('تاريخ مستقبلي');
+    await page.locator('#add-measurement').click();
+    assert.equal(await page.locator('#tracker-body .tracker-delete').count(), 1, 'Future growth date must be rejected');
     await page.locator('#track-age').fill('0'); await page.locator('#track-date').fill('2026-10-11'); await page.locator('#track-weight').fill('3.5'); await page.locator('#track-sex').selectOption('female'); await page.locator('#track-notes').fill('قياس جديد');
     await page.locator('#add-measurement').click();
     await page.waitForFunction(() => JSON.parse(localStorage.getItem('ri3aya-growth-tracker')).length === 2);
