@@ -682,7 +682,7 @@
     border: 1px solid #d7e5e6;
     border-radius: 13px;
     background: #f7faf9;
-    color: #173b49;
+    color: var(--care-ink, #111111);
     text-decoration: none;
     box-shadow: none;
     transition: background-color .18s ease, border-color .18s ease,
@@ -705,7 +705,7 @@
 }
 .site-shell .sleep-resource-sidebar :is(.related-article, .download-link) h4 {
     margin: 0 0 3px;
-    color: #173b49;
+    color: var(--care-ink, #111111);
     font-size: .95rem;
     line-height: 1.5;
     font-weight: 700;
@@ -713,7 +713,7 @@
 }
 .site-shell .sleep-resource-sidebar :is(.related-article, .download-link) p {
     margin: 0;
-    color: #526970;
+    color: var(--care-muted, #303030);
     font-size: .82rem;
     line-height: 1.65;
     overflow-wrap: anywhere;
