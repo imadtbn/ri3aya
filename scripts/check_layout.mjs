@@ -42,6 +42,36 @@ try {
             const layout = await page.evaluate(() => ({ scroll: document.documentElement.scrollWidth, search: document.querySelector('.search-input').getBoundingClientRect().width }));
             assert.ok(layout.scroll <= width + 1, `${file} overflows at ${width}px: ${layout.scroll}`);
             assert.ok(layout.search > 0, `${file} search hidden at ${width}px`);
+            if (file.startsWith('pages/articles/')) {
+                const sections = await page.locator('.care-article > .article-section').evaluateAll(cards =>
+                    cards.map(card => {
+                        const css = getComputedStyle(card);
+                        const box = card.getBoundingClientRect();
+                        const headingBox = card.querySelector('h2')?.getBoundingClientRect();
+                        return {
+                            paddingStart: parseFloat(css.paddingInlineStart),
+                            paddingEnd: parseFloat(css.paddingInlineEnd),
+                            background: css.backgroundColor,
+                            borderWidth: parseFloat(css.borderTopWidth),
+                            borderRadius: parseFloat(css.borderTopLeftRadius),
+                            headingInset: headingBox ? box.right - headingBox.right : null
+                        };
+                    }));
+                assert.ok(sections.length >= 3, `${file}: missing article sections`);
+                for (const card of sections) {
+                    assert.ok(card.paddingStart >= 17 && card.paddingEnd >= 17,
+                        `${file}: reading card padding too small at ${width}px`);
+                    assert.equal(card.background, 'rgb(255, 255, 255)', `${file}: reading card background`);
+                    assert.ok(card.borderWidth >= 1 && card.borderRadius >= 12,
+                        `${file}: reading card requires a visible rounded frame`);
+                    assert.ok(card.headingInset >= 10, `${file}: article heading touches the card edge`);
+                }
+                const related = page.locator('.care-article > .article-related');
+                assert.equal(await related.count(), 1, `${file}: related content missing`);
+                assert.ok(await related.evaluate(el => parseFloat(getComputedStyle(el).paddingInlineStart)) >= 17,
+                    `${file}: related-card padding missing`);
+            }
+
             // Text-led section cards must have measurable inner breathing room.
             // Image-first home tiles are intentionally not selected (their art
             // must reach the border without inset).
@@ -131,7 +161,9 @@ try {
                 { name: 'resources', page: 'resources', selector: '#resources' },
                 { name: 'tips', page: 'tips', selector: 'section.golden-tips' },
                 { name: 'growth-intro', page: 'growth', selector: 'section.intro-section' },
-                { name: 'growth-calculator', page: 'growth', selector: 'section.growth-calculator' }
+                { name: 'growth-calculator', page: 'growth', selector: 'section.growth-calculator' },
+                { name: 'article-crying', page: 'articles/soothing-crying', selector: '#comfort' },
+                { name: 'article-sleep', page: 'articles/safe-sleep', selector: '#position' }
             ];
             for (const item of targets) {
                 await page.goto(base + `pages/${item.page}.html`);
