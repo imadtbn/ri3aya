@@ -91,6 +91,8 @@ try {
             assert.equal(localFailures.length, 0, relativePath + ' missing resource: ' + localFailures.join(', '));
             assert.ok(metrics.documentWidth <= viewportWidth + 1,
                 relativePath + ' horizontal overflow at ' + viewportWidth);
+            assert.ok(metrics.cls <= 0.1,
+                relativePath + ' CLS regression at ' + viewportWidth + ': ' + metrics.cls.toFixed(3));
             rows.push({ page: relativePath, viewportWidth, requests, images, ...metrics, pageErrors });
             await page.close();
         }
