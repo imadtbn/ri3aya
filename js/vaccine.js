@@ -34,14 +34,25 @@
                     result.innerHTML = '<div class="alert alert-warning" role="alert">أدخلي تاريخ الميلاد أولًا، ثم خذي دفتر التلقيح إلى المركز الصحي للتحقق من الموعد التالي.</div>';
                     return;
                 }
-                const birthDate = new Date(`${birthDateInput.value}T00:00:00`);
-                if (Number.isNaN(birthDate.getTime()) || birthDate > new Date()) {
-                    result.innerHTML = '<div class="alert alert-warning" role="alert">تحققي من أن التاريخ صحيح وليس في المستقبل.</div>';
+                const isoDate = birthDateInput.value;
+                const pieces = /^(\d{4})-(\d{2})-(\d{2})$/.exec(isoDate);
+                const birthDate = pieces
+                    ? new Date(Number(pieces[1]), Number(pieces[2]) - 1, Number(pieces[3]), 12)
+                    : new Date(NaN);
+                const today = new Date();
+                const sameDate = pieces && birthDate.getFullYear() === Number(pieces[1]) &&
+                    birthDate.getMonth() + 1 === Number(pieces[2]) &&
+                    birthDate.getDate() === Number(pieces[3]);
+                if (!sameDate || birthDate > today || birthDate.getFullYear() < 1900) {
+                    result.innerHTML = '<div class="alert alert-warning" role="alert">اختاري تاريخ ميلاد صحيحًا، من اليوم أو قبله.</div>';
                     return;
                 }
-                const ageDays = Math.floor((Date.now() - birthDate.getTime()) / 86400000);
-                const ageMonths = Math.max(0, Math.floor(ageDays / 30.4375));
-                result.innerHTML = `<div class="alert alert-info" role="status"><h4><i class="fas fa-calendar-check"></i> عمر تقريبي: ${ageMonths} شهرًا</h4><p>هذا الحساب تقريبي للتذكير فقط، ولا يحدد اللقاح أو الجرعة. تحققي من دفتر التلقيح ومن المركز الصحي أو الطبيب المتابع لطفلك لمعرفة الموعد الصحيح.</p></div>`;
+                // Count full calendar months; do not approximate months using 30.4375 days.
+                const ageMonths = Math.max(0,
+                    (today.getFullYear() - birthDate.getFullYear()) * 12 +
+                    (today.getMonth() - birthDate.getMonth()) -
+                    (today.getDate() < birthDate.getDate() ? 1 : 0));
+                result.innerHTML = `<div class="alert alert-info" role="status"><h4><i class="fas fa-calendar-check"></i> العمر بالشهور المكتملة: ${ageMonths} شهرًا</h4><p>هذا الحساب تقريبي للتذكير فقط، ولا يحدد اللقاح أو الجرعة. تحققي من دفتر التلقيح ومن المركز الصحي أو الطبيب المتابع لطفلك لمعرفة الموعد الصحيح.</p></div>`;
             });
         }
     });
