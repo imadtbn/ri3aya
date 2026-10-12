@@ -210,3 +210,17 @@ button:disabled,
 @media (max-width: 600px) {
     .site-shell .medical-review-status { margin-block: 12px; padding: 14px; }
 }
+
+/* Stage 05: keep unconfigured/unfilled responsive ad boxes out of layout. */
+.site-shell [data-site-ad-shell][hidden],
+.site-shell [data-site-ad-shell]:has(ins.adsbygoogle[data-ad-status="unfilled"]) {
+    display: none !important;
+}
+.site-shell [data-site-ad-shell] {
+    min-width: 0;
+    max-width: 100%;
+    overflow: clip;
+}
+.site-shell [data-site-ad-shell] ins.adsbygoogle {
+    max-width: 100%;
+}
