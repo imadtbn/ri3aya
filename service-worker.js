@@ -5,8 +5,8 @@ const CACHE_NAME = 'ri3aya-pwa-' + self.RI3AYA_PWA.revision;
 const FILES = new Set(self.RI3AYA_PWA.files.map(path => new URL(path, ROOT).href));
 const OFFLINE = new URL('offline.html', ROOT).href;
 // Guarantee a usable offline shell; a single optional asset must not abort an update.
-const CORE = ['index.html', 'offline.html', 'css/main.css', 'css/site-polish.css', 'js/main.js', 'js/pwa.js'];
-const CORE_URLS = CORE.map(path => new URL(path, ROOT).href);
+// Keep articles, scripts, styles and medical reference data reliably offline.
+const CORE_URLS = [...FILES].filter(url => /\.(?:html|css|js|json|csv)$/i.test(new URL(url).pathname));
 self.addEventListener('install', event => {
     event.waitUntil((async () => {
         const cache = await caches.open(CACHE_NAME);
