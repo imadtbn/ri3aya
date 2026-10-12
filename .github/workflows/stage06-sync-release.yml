@@ -7,6 +7,8 @@ on:
       - '.github/workflows/stage06-sync-release.yml'
       - 'pages/tools.html'
       - 'css/site-polish.css'
+      - 'css/sleep.css'
+      - 'pages/sleep.html'
       - 'css/articles.css'
       - 'scripts/check_layout.mjs'
   workflow_dispatch:
