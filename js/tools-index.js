@@ -1,6 +1,7 @@
 (function () {
     'use strict';
     const matches = (tool, state, normalize) => {
+        if (state.age !== null && (!Number.isInteger(state.age) || state.age < 0 || state.age > 36)) return false;
         const words = normalize(state.query || '').split(' ').filter(Boolean);
         return (state.goal === 'all' || tool.goal === state.goal)
             && (state.age === null || tool.maxAge === null || state.age <= tool.maxAge)
@@ -22,9 +23,14 @@
             card.el.querySelector('h2').after(note);
         }
         function update() {
-            age.setAttribute('aria-invalid', String(!age.validity.valid));
-            if (!age.validity.valid) {
-                document.getElementById('tool-match-count').textContent = 'أدخلي عمرًا صحيحًا من 0 إلى 36 شهرًا، أو اتركي العمر فارغًا.';
+            const ageIsValid = age.validity.valid && (age.value === '' ||
+                (/^\d+$/.test(age.value) && Number(age.value) >= 0 && Number(age.value) <= 36));
+            age.setAttribute('aria-invalid', String(!ageIsValid));
+            if (!ageIsValid) {
+                for (const card of cards) card.el.hidden = true;
+                document.getElementById('tool-no-match').hidden = true;
+                document.getElementById('tool-match-count').textContent =
+                    'العمر غير صحيح. أدخلي عددًا صحيحًا من 0 إلى 36 شهرًا، أو امسحي الحقل لعرض الأدوات.';
                 return;
             }
             const state = { query: query.value.trim(), goal: goal.value, age: age.value === '' ? null : Number(age.value) };
