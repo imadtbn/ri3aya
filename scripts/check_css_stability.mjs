@@ -49,6 +49,12 @@ for (const p of ['pages/nutrition.html', 'pages/crying.html']) {
 }
 console.log('PASS: ' + files.length + ' HTML pages and ' + referencedCSS.size + ' local CSS files checked; no missing CSS links.');
 assert.match(stable, /Stage 02: shared component and small-screen stability/, 'Missing stage 02 component styles');
+
+assert.ok(stable.includes('--care-ink: #111111;'), 'Near-black text theme is missing');
+assert.ok(stable.includes('--care-muted: #303030;'), 'Readable secondary-text color is missing');
+assert.ok(stable.includes("--font-primary: 'Tajawal'"), 'Tajawal body font is missing');
+assert.ok(stable.includes("--font-secondary: 'Cairo'"), 'Cairo heading font is missing');
+
 assert.ok(stable.includes('Content-card spacing repair (2026-10-12)'), 'Textual section-card spacing patch missing');
 assert.ok(stable.includes('main :where(section > .section-card)'), 'Card padding must stay scoped to textual sections');
 assert.ok(!stable.includes('.site-shell main .section-card { padding:'), 'Never apply padding directly to all image and text cards');
