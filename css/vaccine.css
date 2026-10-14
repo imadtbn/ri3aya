@@ -952,3 +952,7 @@
   .vax-static-grid article {gap:9px;flex-wrap:wrap;}
 }
 @media(prefers-reduced-motion:reduce) {.vax-progress-track>div {transition:none;}}
+
+/* Historic entries that predate the schedule are not overdue. */
+.vax-pill-review { background:#f1f1f1; color:#424f54; border:1px solid #d1d7d9; }
+.vax-is-review .vax-dose-text small { color:#536168; }
