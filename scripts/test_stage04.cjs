@@ -21,9 +21,9 @@ vm.runInNewContext(load('js/tools-index.js'), {
 const engine = searchWindow.Ri3ayaSearch;
 const chooser = searchWindow.Ri3ayaTools;
 const indexed = [
-    { title: 'جدول التلقيح', section: 'الصحة', keywords: 'لقاح', age_scope: 'range',
+    { title: 'جدول التلقيح', url: 'pages/vaccine.html', section: 'الصحة', keywords: 'لقاح', age_scope: 'range',
       age_min_months: 0, age_max_months: 12, type: 'guide', topics: ['vaccine'] },
-    { title: 'النوم الآمن', section: 'النوم', keywords: 'قيلولة', age_scope: 'range',
+    { title: 'النوم الآمن', url: 'pages/sleep.html', section: 'النوم', keywords: 'قيلولة', age_scope: 'range',
       age_min_months: 0, age_max_months: 36, type: 'article', topics: ['sleep'] }
 ];
 check(engine.normalize('النَّوْم') === 'النوم', 'Arabic normalization');
