@@ -42,6 +42,19 @@ try {
             const layout = await page.evaluate(() => ({ scroll: document.documentElement.scrollWidth, search: document.querySelector('.search-input').getBoundingClientRect().width }));
             assert.ok(layout.scroll <= width + 1, `${file} overflows at ${width}px: ${layout.scroll}`);
             assert.ok(layout.search > 0, `${file} search hidden at ${width}px`);
+            const ads = await page.locator('main ins.adsbygoogle[data-site-ad]').evaluateAll(units =>
+                units.map(unit => ({
+                    slot: unit.getAttribute('data-ad-slot'),
+                    shellWidth: unit.closest('[data-site-ad-shell]')?.getBoundingClientRect().width || 0,
+                    hasLabel: unit.closest('[data-site-ad-shell]')?.querySelector('.site-ad__label')?.textContent.trim() === 'إعلان',
+                    visible: getComputedStyle(unit.closest('[data-site-ad-shell]')).display !== 'none'
+                }))
+            );
+            assert.equal(ads.length, 2, `${file}: expected exactly two AdSense containers`);
+            assert.deepEqual(ads.map(ad => ad.slot), ['7867079394', '3143411927'], `${file}: ad slots are misordered`);
+            assert.ok(ads.every(ad => ad.shellWidth > 0 && ad.shellWidth <= width + 1 && ad.hasLabel && ad.visible),
+                `${file}: advertising reserve overflows, has no label or is hidden at ${width}px`);
+
             // Typography acceptance: the shared text palette is dark/black,
             // while headings use Cairo and prose uses Tajawal. Functional
             // accents and inverse-color buttons are intentionally excluded.
