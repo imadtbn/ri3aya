@@ -1,9 +1,157 @@
 {
   "country": "DZ",
-  "version": "verification-required",
-  "source": "https://sante.gov.dz/manuels/guide-de-la-vaccination/",
-  "secondarySource": "https://immunizationdata.who.int/",
-  "lastReviewed": "2026-08-20",
-  "status": "do-not-publish-fixed-schedule-without-current-official-confirmation",
-  "guidance": "تحققي من دفتر التلقيح والمركز الصحي ووزارة الصحة الجزائرية قبل اعتماد أي موعد أو حملة استدراكية. لا تعرض هذه البيانات جرعات أو مواعيد وطنية ثابتة."
+  "referenceVersion": "2023+2026-amendment",
+  "basis": "دفتر الصحة الجزائري: الجدول الوطني للتلقيح 2023، ص84 و85 و90، وتعليمة رقم 19 المؤرخة 03 أكتوبر 2023",
+  "uploadedDocument": "CamScanner 14-10-2026 (user-supplied pages of Algerian health booklet)",
+  "amendment": "الجريدة الرسمية الجزائرية رقم 36 بتاريخ 17 مايو 2026، ص40: إضافة التلقيح ضد فيروس الورم الحليمي البشري HPV في سن 11-13 سنة",
+  "amendmentSource": "https://www.joradp.dz/FTP/jo-francais/2026/F2026036.pdf",
+  "status": "reference-based; not individually medically reviewed",
+  "notes": [
+    "التاريخ المحسوب يُشير إلى السن الوارد في الرزنامة، ولا يثبت الحصول على جرعة.",
+    "الفترات 11–13 و16–18 سنة ليست يومًا وحيدًا للإعطاء؛ يُحدد موعد الجرعة داخلها مع المركز.",
+    "لا تُحوِّل الجرعات الفائتة تلقائيًا إلى خطة استدراكية؛ يحددها الفريق الصحي.",
+    "الحملات الاستثنائية والتغييرات اللاحقة لا تظهر تلقائيًا."
+  ],
+  "vaccines": {
+    "BCG": {
+      "label": "BCG",
+      "description": "لقاح السل",
+      "route": "داخل الجلد (ID)"
+    },
+    "HBV": {
+      "label": "HBV",
+      "description": "لقاح التهاب الكبد الفيروسي ب",
+      "route": "الحقن العضلي (IM)"
+    },
+    "HEXA": {
+      "label": "DTCaVPI-Hib-HBV",
+      "description": "الخناق والكزاز والسعال الديكي وشلل الأطفال والمستدمية النزلية ب والتهاب الكبد ب",
+      "route": "الحقن العضلي (IM)"
+    },
+    "VPC": {
+      "label": "VPC",
+      "description": "لقاح المكورات الرئوية المقترن",
+      "route": "الحقن العضلي (IM)"
+    },
+    "VPO": {
+      "label": "VPO",
+      "description": "لقاح شلل الأطفال الفموي",
+      "route": "عن طريق الفم (PO)"
+    },
+    "ROR": {
+      "label": "ROR",
+      "description": "الحصبة والنكاف والحصبة الألمانية",
+      "route": "تحت الجلد (SC)"
+    },
+    "DTCP": {
+      "label": "DTCaVPI",
+      "description": "الخناق والكزاز والسعال الديكي وشلل الأطفال",
+      "route": ""
+    },
+    "DT": {
+      "label": "dT",
+      "description": "الخناق والكزاز (صيغة البالغين)",
+      "route": ""
+    },
+    "HPV": {
+      "label": "HPV",
+      "description": "فيروس الورم الحليمي البشري — إضافة تنظيمية لسنة 2026",
+      "route": ""
+    }
+  },
+  "stages": [
+    {
+      "id": "birth",
+      "months": 0,
+      "label": "عند الولادة",
+      "vaccines": [
+        "BCG",
+        "HBV"
+      ],
+      "source": "2023"
+    },
+    {
+      "id": "m2",
+      "months": 2,
+      "label": "شهران",
+      "vaccines": [
+        "HEXA",
+        "VPC",
+        "VPO"
+      ],
+      "source": "2023"
+    },
+    {
+      "id": "m4",
+      "months": 4,
+      "label": "4 أشهر",
+      "vaccines": [
+        "HEXA",
+        "VPC",
+        "VPO"
+      ],
+      "source": "2023"
+    },
+    {
+      "id": "m11",
+      "months": 11,
+      "label": "11 شهرًا",
+      "vaccines": [
+        "ROR"
+      ],
+      "source": "2023"
+    },
+    {
+      "id": "m12",
+      "months": 12,
+      "label": "12 شهرًا",
+      "vaccines": [
+        "HEXA",
+        "VPC",
+        "VPO"
+      ],
+      "source": "2023"
+    },
+    {
+      "id": "m18",
+      "months": 18,
+      "label": "18 شهرًا",
+      "vaccines": [
+        "ROR"
+      ],
+      "source": "2023"
+    },
+    {
+      "id": "y6",
+      "months": 72,
+      "label": "6 سنوات",
+      "vaccines": [
+        "DTCP"
+      ],
+      "source": "2023"
+    },
+    {
+      "id": "y11",
+      "months": 132,
+      "endMonths": 168,
+      "label": "11–13 سنة",
+      "vaccines": [
+        "DT",
+        "HPV"
+      ],
+      "source": "2023+2026"
+    },
+    {
+      "id": "y16",
+      "months": 192,
+      "endMonths": 228,
+      "label": "16–18 سنة",
+      "vaccines": [
+        "DT"
+      ],
+      "source": "2023"
+    }
+  ],
+  "adultBooster": "بعد ذلك يرد لقاح dT كل 10 سنوات؛ لا تحدد هذه الأداة مواعيد الاستدراك أو جرعات البالغين.",
+  "bcgScar": "يشير دفتر الصحة (ص91 في نسخ أخرى، والصفحة الرابعة من الملف المرفق) إلى فحص أثر BCG ابتداءً من عمر 3 أشهر لدى الفريق الصحي."
 }
