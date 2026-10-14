@@ -808,3 +808,147 @@
 .birth-date-hint { display:block; margin-top:9px; line-height:1.7; }
 .reminder-form .form-group { min-width:0; flex:1 1 320px; }
 @media(max-width:420px) { .site-shell .medical-review-status.container { width:calc(100% - 24px); padding:16px!important; } .birth-date-fields { gap:6px; } .birth-date-fields select { padding:8px 4px; font-size:.9rem; } }
+
+
+/* Algeria vaccination planner — scoped to vaccine page, 2026-10-14 */
+.vax-planner {
+  --vax-teal: #126b70;
+  --vax-dark: #124448;
+  --vax-border: #d7e5e6;
+  --vax-ink: #182f32;
+  --vax-muted: #4c6264;
+  --vax-surface: #fff;
+  --vax-soft: #f1f8f7;
+  margin-block: clamp(24px,4vw,42px);
+  color: var(--vax-ink);
+  min-width: 0;
+}
+.vax-planner :is(.vax-heading,.vax-date-card,.vax-interpretation,.vax-dashboard,.vax-static) { min-width:0; }
+.vax-planner h2,.vax-planner h3,.vax-planner h4 { margin-top:0; line-height:1.45; }
+.vax-planner p { margin-top:0; line-height:1.85; }
+.vax-heading {
+  display:flex; gap:20px; align-items:center; justify-content:space-between;
+  padding:clamp(22px,3.5vw,36px);
+  border-radius:22px;
+  background:linear-gradient(125deg,#e1f3ef 0%,#fff 90%);
+  border:1px solid #b7d6d4;
+  margin-bottom:16px;
+}
+.vax-heading h2 {font-size:clamp(1.35rem,2.5vw,2rem); color:#124448; margin:10px 0;}
+.vax-heading p {margin-bottom:0;max-width:65ch;}
+.vax-eyebrow {font-size:.82rem; font-weight:700;color:#155f62;display:inline-flex;align-items:center;gap:9px;}
+.vax-heading-icon {width:82px;height:82px;display:grid;place-items:center;background:#d7eeeb;color:#126b70;border-radius:25px;flex-shrink:0;font-size:2rem;}
+.vax-source-note {
+ display:flex; align-items:flex-start; gap:12px; margin-bottom:18px;
+ background:#fffbf3; padding:clamp(15px,2.4vw,20px);
+ border:1px solid #eadabc; border-right:4px solid #c58c36; border-radius:14px;
+ overflow-wrap:anywhere; font-size:.93rem; line-height:1.9;
+}
+.vax-source-note > i {color:#9b681e; margin-top:5px;}
+.vax-date-card,.vax-dashboard,.vax-static,.vax-interpretation {
+ border:1px solid var(--vax-border); border-radius:20px;
+ padding:clamp(17px,3vw,28px); background:var(--vax-surface);
+ box-shadow:0 9px 24px rgba(20,70,70,.045);margin-bottom:20px;
+}
+.vax-date-title {display:flex; gap:14px;align-items:center; margin-bottom:18px;}
+.vax-date-title > i {width:44px;height:44px;border-radius:13px;background:#e3f4f0;color:#126b70;display:grid;place-items:center;flex:0 0 44px;}
+.vax-date-title h3 {margin:0 0 3px;font-size:1.2rem;color:var(--vax-dark);}
+.vax-date-title p {margin:0;color:var(--vax-muted);}
+.vax-date-form {display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:16px;}
+.vax-birth-input {min-width:0;}
+.vax-planner .birth-date-label {margin-bottom:8px;display:block;font-weight:700;color:var(--vax-dark);}
+.vax-planner .birth-date-fields {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;}
+.vax-planner .birth-date-fields>div {min-width:0;}
+.vax-planner .birth-date-fields label {display:block;margin-bottom:6px;font-size:.88rem;color:var(--vax-muted);}
+.vax-planner .birth-date-fields select {display:block;min-width:0;width:100%;height:50px;border:1px solid #b9d2d1;border-radius:12px;padding:8px 10px;background:#fff;color:var(--vax-dark);font-size:1rem;}
+.vax-planner .birth-date-fields select:focus-visible {outline:3px solid #c58c36;outline-offset:2px;}
+.vax-planner .vax-calculate {min-height:50px;display:inline-flex;align-items:center;justify-content:center;gap:9px;padding-inline:20px;max-width:100%;white-space:normal;font-weight:700;}
+.vax-planner .vax-calculate:disabled {opacity:.55;cursor:wait;}
+.vax-form-message {padding:12px 15px;border:1px solid #e0b0a7;border-radius:12px;background:#fff3f0;color:#822d27;margin:14px 0;}
+.vax-privacy {font-size:.87rem;color:var(--vax-muted);margin:14px 0 0 !important;overflow-wrap:anywhere;}
+.vax-privacy i {color:#126b70;margin-left:6px;}
+.vax-static h3 {font-size:1.15rem;color:var(--vax-dark);margin-bottom:15px;}
+.vax-static-grid {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;}
+.vax-static-grid article {display:flex;justify-content:space-between;align-items:center;gap:13px;min-width:0;background:#f7faf9;padding:13px 15px;border:1px solid var(--vax-border);border-radius:12px;}
+.vax-static-grid article>b {flex:0 0 auto;color:#145b60;}
+.vax-static-grid article span {min-width:0;overflow-wrap:anywhere;text-align:left;direction:rtl;font-size:.9rem;}
+.vax-static-grid article span small {color:#8c5718;}
+.vax-dashboard[hidden],.vax-static[hidden] {display:none !important;}
+.vax-dashboard-top {display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:20px;}
+.vax-dashboard-top h3 {font-size:clamp(1.15rem,2vw,1.55rem);color:var(--vax-dark);margin:0 0 5px;}
+.vax-dashboard-top p {font-size:.92rem;color:var(--vax-muted);margin:0;}
+.vax-dashboard-top button {display:inline-flex;align-items:center;gap:7px;}
+.vax-kpis {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-bottom:18px;}
+.vax-kpi {background:var(--vax-soft);border:1px solid #d0e7e2;border-radius:14px;padding:15px;text-align:center;min-width:0;}
+.vax-kpi:nth-child(2) {background:#fff8ef;border-color:#f1dcc1;}
+.vax-kpi span {display:block;color:var(--vax-muted);font-size:.88rem;line-height:1.5;min-height:2.65em;}
+.vax-kpi strong {display:block;font-size:clamp(1.55rem,3vw,2rem);line-height:1.4;color:#155a5f;font-variant-numeric:tabular-nums;}
+.vax-kpi:nth-child(2) strong {color:#93551e;}
+.vax-progress {margin-bottom:16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+.vax-progress-track {height:10px;min-width:100px;background:#e4eded;border-radius:99px;flex:1;overflow:hidden;}
+.vax-progress-track>div {height:100%;width:0;background:linear-gradient(90deg,#29867f,#126b70);border-radius:99px;transition:width .2s;}
+.vax-progress span {font-size:.85rem;color:var(--vax-muted);}
+.vax-filters {display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 18px;}
+.vax-filter {border:1px solid #c5d9d8;color:#13595d;padding:8px 17px;border-radius:999px;min-height:44px;cursor:pointer;background:#fff;font-weight:700;}
+.vax-filter.is-active {background:#126b70;border-color:#126b70;color:#fff;}
+.vax-timeline {display:grid;gap:15px;min-width:0;}
+.vax-stage {border:1px solid var(--vax-border);border-radius:15px;overflow:hidden;background:#fff;min-width:0;}
+.vax-stage-head {display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px 12px;padding:14px 18px;background:#edf7f5;border-bottom:1px solid var(--vax-border);}
+.vax-stage-head h4 {font-size:1.07rem;color:#124448;margin:0;}
+.vax-stage-head p {color:#4d6567;font-size:.87rem;line-height:1.5;margin:3px 0 0;direction:rtl;}
+.vax-2026 {background:#fff0d6;color:#72460c;border:1px solid #dfbb76;border-radius:100px;padding:3px 11px;font-size:.79rem;}
+.vax-dose-list {display:grid;}
+.vax-dose {padding:14px 18px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px 16px;align-items:center;min-width:0;border-bottom:1px solid #e9f0ef;}
+.vax-dose:last-child {border-bottom:0;}
+.vax-dose.vax-is-done {background:#f5faf8;}
+.vax-dose-main {display:flex;align-items:flex-start;gap:12px;cursor:pointer;min-width:0;margin:0;}
+.vax-dose-main input[type=checkbox] {appearance:auto;flex:0 0 20px;inline-size:20px;block-size:20px;margin:5px 0 0;accent-color:#126b70;}
+.vax-dose-text {min-width:0;line-height:1.55;}
+.vax-dose-text strong {display:block;font-size:.98rem;color:#1a3538;overflow-wrap:anywhere;}
+.vax-code {display:inline-block;font-size:.82rem;color:#126b70;direction:ltr;unicode-bidi:isolate;white-space:normal;}
+.vax-dose-text small {display:block;font-size:.8rem;color:#506668;margin-top:4px;overflow-wrap:anywhere;}
+.vax-dose-text small.vax-updated {color:#855b1e;}
+.vax-status-area {display:flex;flex-direction:column;align-items:flex-start;gap:5px;max-width:210px;}
+.vax-pill {display:inline-block;border-radius:100px;padding:4px 10px;font-size:.76rem;line-height:1.5;font-weight:700;}
+.vax-pill-done {background:#dff3eb;color:#15573c;}
+.vax-pill-upcoming {background:#eaf0fa;color:#214a7d;}
+.vax-pill-due {background:#fff1cf;color:#7a4b09;}
+.vax-pill-overdue {background:#ffebe7;color:#912f28;}
+.vax-countdown {color:#52696a;font-size:.83rem;line-height:1.6;font-variant-numeric:tabular-nums;}
+.vax-is-overdue .vax-countdown {color:#912f28;}
+.vax-completion-date {grid-column:1/-1;padding:10px 15px;border-radius:10px;background:#ecf6f2;display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px;font-size:.85rem;}
+.vax-completion-date label {flex:1 1 200px;}
+.vax-completion-date input {flex:0 1 180px;max-width:100%;min-height:42px;padding:7px 9px;color:#1b484c;background:#fff;border:1px solid #b6d2ce;border-radius:9px;direction:ltr;text-align:center;}
+.vax-no-results {padding:20px;text-align:center;background:#f7faf9;border-radius:12px;color:var(--vax-muted);}
+.vax-storage-actions {display:flex;flex-wrap:wrap;gap:10px;margin-top:22px;}
+.vax-storage-actions button {display:inline-flex;align-items:center;justify-content:center;gap:8px;}
+.vax-delete {background:#fff8f7 !important;border:1px solid #a94d42 !important;color:#92372e !important;}
+#vax-save-message {font-size:.87rem;color:var(--vax-muted);margin:11px 0 0;min-height:1.5em;}
+.vax-interpretation {background:#f7fbfa;}
+.vax-interpretation h3 {font-size:1.1rem;color:var(--vax-dark);}
+.vax-interpretation p {font-size:.94rem;color:#334a4c;}
+.vax-interpretation p:last-child {margin-bottom:0;}
+.vax-interpretation .vax-reference {font-size:.84rem;color:#496265;}
+@media(max-width:800px) {
+  .vax-heading-icon {width:60px;height:60px;flex-basis:60px;font-size:1.6rem;}
+  .vax-date-form {grid-template-columns:1fr;}
+  .vax-date-form .vax-calculate {width:100%;}
+  .vax-static-grid {grid-template-columns:1fr;}
+}
+@media(max-width:560px) {
+  .vax-heading {align-items:flex-start;padding:18px;}
+  .vax-heading-icon {display:none;}
+  .vax-date-card,.vax-dashboard,.vax-static,.vax-interpretation {padding:16px;border-radius:15px;}
+  .vax-planner .birth-date-fields {gap:7px;}
+  .vax-planner .birth-date-fields select {font-size:.9rem;padding:7px 5px;}
+  .vax-kpis {gap:7px;}
+  .vax-kpi {padding:10px 6px;}
+  .vax-kpi span {font-size:.78rem;min-height:3.6em;}
+  .vax-stage-head {padding:12px;}
+  .vax-dose {grid-template-columns:1fr;padding:13px 12px;gap:10px;}
+  .vax-status-area {margin-right:32px;max-width:100%;flex-direction:row;align-items:center;flex-wrap:wrap;}
+  .vax-completion-date {padding:10px;}
+  .vax-storage-actions {display:grid;grid-template-columns:1fr;}
+  .vax-static-grid article {gap:9px;flex-wrap:wrap;}
+}
+@media(prefers-reduced-motion:reduce) {.vax-progress-track>div {transition:none;}}
