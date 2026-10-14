@@ -146,7 +146,7 @@
             $('vax-next-count').textContent = future;
             const percent = parts.length ? Math.round(done * 100 / parts.length) : 0;
             $('vax-progress-bar').style.width = percent + '%';
-            $('vax-progress-label').textContent = done + ' من ' + parts.length + ' جرعة مؤشرة كمنجزة (' + percent + '%)';
+            $('vax-progress-label').textContent = done + ' من ' + parts.length + ' بند تلقيح مؤشّر كمنجز (' + percent + '%)';
             const timeline = $('vax-timeline');
             timeline.replaceChildren();
             let shown = 0;
@@ -188,7 +188,7 @@
                     vaccineTitle.append(el('bdi', 'vax-code', ' ' + info.label));
                     textHolder.append(vaccineTitle);
                     if (info.route) textHolder.append(el('small', null, info.route));
-                    if (item.code === 'HPV') textHolder.append(el('small', 'vax-updated', 'أُضيف للبرنامج سنة 2026؛ يُؤكد الفريق الصحي ملاءمته.'));
+                    if (item.code === 'HPV') textHolder.append(el('small', 'vax-updated', 'أُضيف سنة 2026؛ عدد جرعاته وملاءمته يحددهما المركز. لا تؤشري على الإنجاز إلا بعد تأكيد اكتمال التلقيح.'));
                     label.append(checkbox, textHolder);
                     row.append(label);
                     const statusText = el('div', 'vax-status-area');
@@ -206,7 +206,7 @@
                     row.append(statusText);
                     if (item.status === 'done') {
                         const optional = el('div', 'vax-completion-date');
-                        const dateLabel = el('label', null, 'تاريخ إعطاء اللقاح (اختياري من دفتر الصحة):');
+                        const dateLabel = el('label', null, (item.code === 'HPV' ? 'تاريخ تأكيد اكتمال التلقيح (اختياري):' : 'تاريخ إعطاء اللقاح (اختياري من دفتر الصحة):'));
                         const dateInput = el('input');
                         dateInput.type = 'date';
                         dateInput.value = completed[item.key] || '';
