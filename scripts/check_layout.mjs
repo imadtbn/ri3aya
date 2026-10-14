@@ -402,7 +402,7 @@ try {
     await page.goto(base + 'pages/tools.html');
     const fixtures = {
         foodRecords: Array.from({ length: 23 }, (_, i) => ({ id: i, food: 'تفاح ' + i, date: '2026-10-11', reaction: 'like', timestamp: i })),
-        symptomRecords: Array.from({ length: 12 }, (_, i) => ({ id: i, date: '11 أكتوبر', disorder: 'gas', severity: 'mild', duration: '2 ساعة', timestamp: i })),
+        symptomRecords: Array.from({ length: 12 }, (_, i) => ({ id: i, date: '2026-10-11', disorder: 'gas', severity: 'mild', duration: '2 ساعة', timestamp: i })),
         'ri3aya-growth-tracker': [{ date: '2026-10-11', age: 0, sex: 'female', weight: 3.5, height: '', head: '', notes: '<img src=x onerror=alert(1)>' }]
     };
     await page.evaluate(fixtures => { for (const [k,v] of Object.entries(fixtures)) localStorage.setItem(k, JSON.stringify(v)); localStorage.setItem('unrelated-test-data', 'keep'); }, fixtures);

@@ -50,8 +50,10 @@ jobs:
         run: node scripts/check_medical_safety.mjs
       - name: Verify tools, dates and search boundaries
         run: node scripts/test_stage04.cjs
-      - name: Verify ad placeholders and offline asset guards
+      - name: Verify two AdSense placements and offline asset guards
         run: node scripts/test_stage05.cjs
+      - name: Verify unified analytics and ad tags
+        run: python scripts/check_site_tags.py
       - name: Verify release snapshot
         run: python scripts/build_pwa.py --check
 
