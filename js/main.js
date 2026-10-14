@@ -42,18 +42,44 @@
         }).format(new Date());
     }
 
+    // Icons are added only inside the shared navigation; existing links stay semantic.
+    function initNavigationIcons() {
+        const nav = one('.site-header[data-layout="shared-v2"] .site-nav');
+        if (!nav) return;
+        const icons = {
+            index: 'house', sections: 'heart-pulse', tools: 'toolbox',
+            blog: 'book-open', resources: 'file-medical', faq: 'circle-question',
+            sleep: 'moon', nutrition: 'bowl-food', crying: 'face-sad-tear',
+            growth: 'chart-line', vaccine: 'syringe', bath: 'bath',
+            diapers: 'baby', digestive: 'notes-medical',
+            diseases: 'stethoscope', tips: 'lightbulb'
+        };
+        all('.nav-menu a[href]', nav).forEach((link) => {
+            const filename = link.pathname.split('/').pop();
+            const slug = filename.endsWith('.html') ? filename.slice(0, -5) : filename;
+            const name = icons[slug];
+            if (!name || one('.nav-link-icon', link)) return;
+            const icon = document.createElement('i');
+            icon.className = 'nav-link-icon fa-solid fa-' + name;
+            icon.setAttribute('aria-hidden', 'true');
+            link.prepend(icon);
+        });
+        const button = one('.mobile-menu-btn', nav.closest('.site-header'));
+        if (button && !one('.menu-toggle-lines', button)) {
+            const bars = document.createElement('span');
+            bars.className = 'menu-toggle-lines';
+            bars.setAttribute('aria-hidden', 'true');
+            for (let i = 0; i < 3; i += 1) bars.appendChild(document.createElement('span'));
+            button.replaceChildren(bars);
+            button.setAttribute('aria-label', 'فتح قائمة التنقل');
+        }
+    }
+
     function setMenuState(menu, button, open) {
         menu.classList.toggle('active', open);
         button.setAttribute('aria-expanded', String(open));
         document.body.classList.toggle('menu-open', open);
-        const icon = one('i', button);
-        if (icon) {
-            icon.classList.toggle('fa-times', open);
-            icon.classList.toggle('fa-bars', !open);
-        } else {
-            // Shared-v2 uses a text glyph rather than an icon element.
-            button.textContent = open ? '×' : '☰';
-        }
+        // aria-expanded controls the CSS transition between menu and close icons.
         button.setAttribute('aria-label', open ? 'إغلاق قائمة التنقل' : 'فتح قائمة التنقل');
         if (!open) {
             all('.dropdown.open', menu).forEach((item) => item.classList.remove('open'));
@@ -229,6 +255,7 @@
 
     document.addEventListener('DOMContentLoaded', () => {
         initDate();
+        initNavigationIcons();
         initMobileMenu();
         initDropdowns();
         initBackToTop();

@@ -62,6 +62,11 @@ assert.ok(stable.includes('.site-header[data-layout="shared-v2"] .site-nav'), 'M
 assert.ok(stable.includes('.site-footer[data-layout="shared-v2"] .site-footer-grid'), 'Responsive footer CSS missing');
 assert.ok(!stable.includes('.site-shell main .section-card { padding: 20px; }'), 'Broad mobile card padding returned');
 const mainJs = read('js/main.js');
-assert.ok(mainJs.includes("button.textContent = open ? '×' : '☰'"), 'Burger glyph not synchronized');
+assert.ok(mainJs.includes('initNavigationIcons();'), 'Navigation icon initialization missing');
+assert.ok(mainJs.includes("bars.appendChild(document.createElement('span'))"), 'Three-line toggle missing');
+assert.ok(mainJs.includes("button.setAttribute('aria-expanded', String(open))"), 'Menu ARIA state missing');
+assert.ok(!mainJs.includes('button.textContent = open ?'), 'Menu state must preserve animated bars');
 assert.ok(mainJs.includes("if (!open) {"), 'Closing mobile menu must reset dropdown state');
 console.log('PASS: shared components, CSS order, mobile nav state, and stage-01/02 regression guards.');
+
+assert.ok(stable.includes('Semantic icons for the shared navigation'), 'Navigation theme styles missing');
