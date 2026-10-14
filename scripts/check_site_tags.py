@@ -42,6 +42,12 @@ for page in PAGES:
     if re.search(r"\bgtag\s*\(", inline) or "clarity(" in inline or "adsbygoogle.push" in inline:
         errors.append(f"{page.relative_to(ROOT)}: legacy inline analytics/ads code found")
     units = soup.select("ins.adsbygoogle[data-site-ad]")
+    main = soup.find("main")
+    if main is None or len(main.select("ins.adsbygoogle[data-site-ad]")) != 2:
+        errors.append(f"{page.relative_to(ROOT)}: both AdSense units must be inside main")
+    if [unit.get("data-ad-slot") for unit in units] != ["7867079394", "3143411927"]:
+        errors.append(f"{page.relative_to(ROOT)}: ad slots must follow feed then display")
+
     if len(units) != 2:
         errors.append(f"{page.relative_to(ROOT)}: expected exactly 2 ad units, found {len(units)}")
     if sorted(unit.get("data-ad-slot") for unit in units) != ["3143411927", "7867079394"]:
