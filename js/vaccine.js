@@ -111,7 +111,7 @@
             let nearest = null, late = false;
             for (const stage of program.stages) {
                 const due = addMonths(birth, stage.months);
-                const end = stage.endMonths ? addMonths(birth, stage.endMonths) : due;
+                const end = stage.endMonths ? new Date(addMonths(birth, stage.endMonths).getTime() - DAY) : due;
                 for (const code of stage.vaccines) {
                     const key = stage.id + ':' + code;
                     const status = markStatus(stage, key, due, end, today);
@@ -156,7 +156,7 @@
                 const identity = el('div');
                 identity.append(el('h4', null, stage.label));
                 const period = stage.endMonths
-                    ? shortDate(addMonths(birth, stage.months)) + ' — ' + shortDate(addMonths(birth, stage.endMonths))
+                    ? shortDate(addMonths(birth, stage.months)) + ' — ' + shortDate(new Date(addMonths(birth, stage.endMonths).getTime() - DAY))
                     : shortDate(addMonths(birth, stage.months));
                 identity.append(el('p', null, period));
                 header.append(identity);
