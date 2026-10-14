@@ -42,15 +42,16 @@ class FixedDate extends Date {
 }
 let initVaccine, pressVaccine;
 const birth = { value: '' }, vaccineOut = { innerHTML: '' };
+const birthDay = { value: '', add() {} }, birthMonth = { value: '', add() {} }, birthYear = { value: '', add() {} };
 const vaccineDoc = {
     addEventListener: (type, listener) => { if (type === 'DOMContentLoaded') initVaccine = listener; },
     querySelectorAll: () => [],
     getElementById: id => ({
         'calculate-vaccines': { addEventListener: (_, callback) => { pressVaccine = callback; } },
-        'birth-date': birth, 'vaccine-result': vaccineOut
+        'birth-date': birth, 'birth-day': birthDay, 'birth-month': birthMonth, 'birth-year': birthYear, 'vaccine-result': vaccineOut
     })[id] || null
 };
-vm.runInNewContext(load('js/vaccine.js'), { document: vaccineDoc, Date: FixedDate });
+vm.runInNewContext(load('js/vaccine.js'), { document: vaccineDoc, Date: FixedDate, Option: class { constructor(label,value) { this.label=label; this.value=value; } } });
 initVaccine();
 for (const [value, expected] of [
     ['', 'أدخلي تاريخ الميلاد'],
@@ -61,7 +62,8 @@ for (const [value, expected] of [
     ['2026-09-13', '0 شهرًا'],
     ['2024-10-12', '24 شهرًا']
 ]) {
-    birth.value = value;
+    const [y,m,d] = value ? value.split('-') : ['', '', ''];
+    birthYear.value = y; birthMonth.value = m ? String(Number(m)) : ''; birthDay.value = d ? String(Number(d)) : '';
     pressVaccine();
     check(vaccineOut.innerHTML.includes(expected), 'Vaccine calendar calculation: ' + (value || 'empty'));
 }
