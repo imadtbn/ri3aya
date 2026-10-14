@@ -68,6 +68,40 @@ def refs(a, ids):
     order = used_sources(a)
     return '<span class="article-citations">' + ' '.join(f'<a href="#source-{esc(ref)}" aria-label="المصدر {order.index(ref)+1}">[{order.index(ref)+1}]</a>' for ref in ids) + '</span>' if ids else ''
 
+
+def add_ads_to_generated(source, path):
+    """Static slots are part of the HTML to reserve space before rendering."""
+    def slot(kind):
+        if kind == 'feed':
+            return ('''\n<!-- ri3aya-ad:feed -->
+<aside class="site-ad site-ad--feed" data-site-ad-shell aria-label="مساحة إعلانية"><span class="site-ad__label">إعلان</span><ins class="adsbygoogle" style="display:block" data-site-ad data-site-ad-key="inFeed" data-ad-client="ca-pub-5656416032906373" data-ad-slot="7867079394" data-ad-format="fluid" data-ad-layout-key="-fr+57+4a-dc+8g"></ins></aside>\n''')
+        return ('''\n<!-- ri3aya-ad:display -->
+<aside class="site-ad site-ad--display" data-site-ad-shell aria-label="مساحة إعلانية"><span class="site-ad__label">إعلان</span><ins class="adsbygoogle" style="display:block" data-site-ad data-site-ad-key="display" data-ad-client="ca-pub-5656416032906373" data-ad-slot="3143411927" data-ad-format="auto" data-full-width-responsive="true"></ins></aside>\n''')
+    match = re.search(r'<main\b[^>]*>', source, flags=re.I)
+    if not match:
+        raise ValueError(f'Missing main on {path}')
+    end = source.index('</main>', match.end())
+    body = source[match.end():end]
+    sections = list(re.finditer(r'</section\s*>', body, flags=re.I))
+    if sections:
+        selected = sections[1] if len(sections) > 1 else sections[0]
+        first = selected.end()
+        if first > len(body) * 0.75:
+            first = sections[0].end()
+    else:
+        form = re.search(r'</form\s*>', body, flags=re.I)
+        paragraph = re.search(r'</p\s*>', body, flags=re.I)
+        first = (form or paragraph).end() if (form or paragraph) else 0
+    if path.name == 'blog.html':
+        form_end = re.search(r'</form\s*>', body, flags=re.I)
+        if form_end:
+            first = form_end.end()
+    source_start = body.find('<section id="sources"') if path.parent.name == 'articles' else -1
+    second = source_start if source_start > first else len(body)
+    output = body[:second] + slot('display') + body[second:]
+    output = output[:first] + slot('feed') + output[first:]
+    return source[:match.end()] + output + source[end:]
+
 def page(path, title, description, content, image=None, schema=None, scripts=''):
     root = '../' * (len(path.relative_to(ROOT).parts) - 1)
     image_html = f'<img src="{root}{esc(image[0])}" alt="{esc(image[1])}" width="480" height="320">' if image else ''
@@ -85,7 +119,7 @@ def page(path, title, description, content, image=None, schema=None, scripts='')
 <main id="main-content" class="container library-main">{content}</main><footer></footer>
 <script defer src="{root}js/main.js"></script><script defer src="{root}js/search.js"></script>{scripts}</body></html>
 '''
-    return layout(text, path)
+    return layout(add_ads_to_generated(text, path), path)
 
 def card(a, prefix='articles/', root='../'):
     return f'''<article class="library-card" data-category="{esc(a['category'])}" data-url="pages/articles/{a['slug']}.html"><img src="{root}{esc(a['image'])}" alt="{esc(a['image_alt'])}" width="480" height="320" loading="lazy" decoding="async"><div class="library-card-content"><span class="article-category-label">{esc(a['category_label'])}</span><h2><a href="{prefix}{a['slug']}.html">{esc(a['title'])}</a></h2><p>{esc(a['summary'])}</p><p class="article-age">{esc(a['age_label'])}</p><span class="review-badge">{review_label(a)}</span><p class="article-card-date">تحقق تحريري: <time datetime="{a['editorial_review']['date']}">{a['editorial_review']['date']}</time></p><a class="btn btn-primary" href="{prefix}{a['slug']}.html">قراءة المقال</a></div></article>'''

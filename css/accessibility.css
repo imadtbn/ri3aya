@@ -211,16 +211,54 @@ button:disabled,
     .site-shell .medical-review-status { margin-block: 12px; padding: 14px; }
 }
 
-/* Stage 05: keep unconfigured/unfilled responsive ad boxes out of layout. */
-.site-shell [data-site-ad-shell][hidden],
-.site-shell [data-site-ad-shell]:has(ins.adsbygoogle[data-ad-status="unfilled"]) {
-    display: none !important;
-}
+
+/* Real AdSense placements: stable, centered, transparent reserves prevent CLS.
+   Fluid ads can still resize; keep these units below the initial viewport. */
 .site-shell [data-site-ad-shell] {
-    min-width: 0;
+    display: block;
+    box-sizing: border-box;
+    position: relative;
+    width: min(100%, 880px);
     max-width: 100%;
-    overflow: clip;
+    min-width: 0;
+    margin: clamp(28px, 4vw, 44px) auto;
+    padding: 8px 0 12px;
+    text-align: center;
+    flex: 0 1 100%;
+    grid-column: 1 / -1;
+    background: transparent;
+    border: 0;
+    overflow-x: clip;
+    isolation: isolate;
+}
+.site-shell [data-site-ad-shell][hidden] { display: none !important; }
+.site-shell [data-site-ad-shell] .site-ad__label {
+    display: block;
+    margin: 0 0 10px;
+    color: #67777b;
+    font-size: 0.72rem;
+    line-height: 1.5;
+    font-weight: 400;
+    letter-spacing: .02em;
 }
 .site-shell [data-site-ad-shell] ins.adsbygoogle {
+    display: block;
+    width: 100%;
     max-width: 100%;
+    min-width: 0;
+    margin: 0 auto;
+}
+.site-shell .site-ad--feed { min-height: 204px; }
+.site-shell .site-ad--display { min-height: 286px; }
+@media (max-width: 600px) {
+    .site-shell [data-site-ad-shell] {
+        width: 100%;
+        margin: 26px auto;
+        padding-inline: 0;
+    }
+    .site-shell .site-ad--feed { min-height: 180px; }
+    .site-shell .site-ad--display { min-height: 258px; }
+}
+@media (max-width: 320px) {
+    .site-shell [data-site-ad-shell] { margin-inline: 0; }
 }

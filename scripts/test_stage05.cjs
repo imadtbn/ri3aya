@@ -1,5 +1,6 @@
+
 'use strict';
-/** Stage 05 asset/advertising guards. Run: node scripts/test_stage05.cjs */
+/** Test configured two-slot AdSense delivery and existing offline guards. */
 const fs = require('node:fs');
 const vm = require('node:vm');
 const assert = require('node:assert/strict');
@@ -7,47 +8,65 @@ const path = require('node:path');
 const root = path.resolve(__dirname, '..');
 const read = p => fs.readFileSync(path.join(root, p), 'utf8');
 const source = read('js/site-tags.js');
-function simulate(script, width) {
+const client = 'ca-pub-5656416032906373';
+assert.ok(source.includes("adsenseClient: '" + client + "'"));
+assert.ok(source.includes("display: '3143411927'"));
+assert.ok(source.includes("inFeed: '7867079394'"));
+
+function simulate(width) {
     const loaded = [];
-    const shell = { hidden: true, attributes: {}, setAttribute(k,v) { this.attributes[k] = v; }, removeAttribute(k) { delete this.attributes[k]; } };
-    const ins = {
-        style: {}, dataset: {},
-        getAttribute(k) { return k === 'data-ad-slot' ? 'xxxxxxxxx' : null; },
-        closest() { return shell; },
-        getBoundingClientRect() { return { width }; },
-        parentElement: { getBoundingClientRect() { return { width }; } }
-    };
+    const shells = [{}, {}];
+    const slots = ['7867079394', '3143411927'];
+    const units = slots.map((slot, index) => ({
+        style: {},
+        dataset: { siteAdKey: index === 0 ? 'inFeed' : 'display', adSlot: slot },
+        getAttribute() { return null; },
+        hasAttribute() { return false; },
+        closest(selector) { return selector === '[data-site-ad-shell]' ? shells[index] : null; },
+        getClientRects() { return [{ width }]; },
+        getBoundingClientRect() { return { width }; }
+    }));
     const document = {
         scripts: loaded,
         readyState: 'complete',
-        querySelectorAll(sel) { return sel.includes('ins.adsbygoogle') ? [ins] : []; },
-        createElement(name) {
-            assert.equal(name, 'script');
-            return { setAttribute(k,v) { this[k] = v; }, addEventListener() {} };
-        },
+        querySelectorAll(selector) { return selector.includes('ins.adsbygoogle') ? units : []; },
+        createElement() { return { setAttribute(k,v) { this[k] = v; }, addEventListener() {} }; },
         head: { appendChild(el) { loaded.push(el); } }
     };
-    const window = { dataLayer: [], adsbygoogle: [], __ri3ayaSiteTags: null };
-    vm.runInNewContext(script, { document, window, Date, encodeURIComponent });
-    return { scripts: loaded.map(el => el.src), shell, ins, window };
+    function IntersectionObserver(callback) {
+        this.observe = unit => callback([{ target: unit, isIntersecting: true }]);
+        this.unobserve = () => {};
+    }
+    const window = { dataLayer: [], adsbygoogle: [], IntersectionObserver };
+    vm.runInNewContext(source, { document, window, Date, encodeURIComponent, IntersectionObserver, console });
+    return { loaded: loaded.filter(el => (el.src || '').includes('adsbygoogle.js')), units, window };
 }
-const placeholder = simulate(source, 320);
-assert.equal(placeholder.shell.hidden, true, 'Placeholder ads must stay hidden');
-assert.equal(placeholder.scripts.some(src => src.includes('adsbygoogle.js')), false, 'Do not fetch AdSense with fake IDs');
-assert.equal(placeholder.window.adsbygoogle.length, 0, 'No placeholder ad pushes');
+const good = simulate(320);
+assert.equal(good.loaded.length, 1, 'AdSense must load once');
+assert.equal(good.window.adsbygoogle.length, 2, 'Two viable ad units must be queued');
+assert.deepEqual(good.units.map(unit => unit.dataset.adSlot), ['7867079394', '3143411927']);
+const narrow = simulate(81);
+assert.equal(narrow.loaded.length, 0, 'No ad request in an 81px slot');
+assert.equal(narrow.window.adsbygoogle.length, 0, 'No push in an 81px slot');
 
-const configured = source
-    .replace("adsenseClient: 'xxxxxxxxx'", "adsenseClient: 'ca-pub-1234567890123456'")
-    .replace("display: 'xxxxxxxxx'", "display: '1234567890'");
-const good = simulate(configured, 320);
-assert.equal(good.shell.hidden, false, 'Configured ad must be unhidden');
-assert.ok(good.scripts.some(src => src.includes('adsbygoogle.js')), 'Configured AdSense script missing');
-assert.equal(good.window.adsbygoogle.length, 1, 'Configured ad should be queued only once');
-assert.equal(good.ins.dataset.adSlot, '1234567890');
-const narrow = simulate(configured, 81);
-assert.equal(narrow.shell.hidden, true, 'Tiny 81px slot must not be displayed');
-assert.equal(narrow.window.adsbygoogle.length, 0, 'Never push into tiny ad slot');
-assert.equal(narrow.scripts.some(src => src.includes('adsbygoogle.js')), false, 'Avoid ad request when no viable slot');
+const htmlPages = [path.join(root, 'index.html')];
+function collect(dir) {
+    for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+        const item = path.join(dir, entry.name);
+        if (entry.isDirectory()) collect(item);
+        else if (entry.name.endsWith('.html')) htmlPages.push(item);
+    }
+}
+collect(path.join(root, 'pages'));
+for (const file of htmlPages) {
+    const html = fs.readFileSync(file, 'utf8');
+    assert.equal((html.match(/<ins class="adsbygoogle"/g) || []).length, 2, file + ': two ads required');
+    assert.match(html, /data-ad-slot="7867079394"/, file + ': in-feed missing');
+    assert.match(html, /data-ad-slot="3143411927"/, file + ': display missing');
+    assert.ok(!/data-site-ad-shell hidden/.test(html), file + ': configured shell is hidden');
+}
+assert.match(read('css/accessibility.css'), /site-ad--display/);
+console.log('PASS: ' + htmlPages.length + ' public pages have exactly 2 static ad reserves; one loader, mobile width guard.');
 
 const worker = read('service-worker.js');
 assert.match(worker, /CORE_URLS.*filter/);
@@ -65,5 +84,5 @@ for (const file of manifest.files) assert.ok(fs.existsSync(path.join(root, file)
 for (const required of ['index.html','offline.html','pages/nutrition.html','pages/growth.html','pages/search.html','search/index.json','content/medical/growth/manifest.json']) {
     assert.ok(manifest.files.includes(required), 'Critical offline file missing: '+required);
 }
-console.log('PASS: fake ad units hidden, configured ads can display at viable widths, narrow slots blocked.');
+console.log('PASS: configured AdSense units are responsive; narrow slots are not initialized.');
 console.log('PASS: optional PWA image handling and ' + manifest.files.length + ' local precache references exist.');

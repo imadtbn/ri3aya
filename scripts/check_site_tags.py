@@ -41,13 +41,18 @@ for page in PAGES:
     inline = " ".join(script.get_text(" ", strip=True) for script in soup.find_all("script", src=False))
     if re.search(r"\bgtag\s*\(", inline) or "clarity(" in inline or "adsbygoogle.push" in inline:
         errors.append(f"{page.relative_to(ROOT)}: legacy inline analytics/ads code found")
-    for unit in soup.select("ins.adsbygoogle[data-site-ad]"):
+    units = soup.select("ins.adsbygoogle[data-site-ad]")
+    if len(units) != 2:
+        errors.append(f"{page.relative_to(ROOT)}: expected exactly 2 ad units, found {len(units)}")
+    if sorted(unit.get("data-ad-slot") for unit in units) != ["3143411927", "7867079394"]:
+        errors.append(f"{page.relative_to(ROOT)}: wrong AdSense slot IDs")
+    for unit in units:
         ad_unit_count += 1
         shell = unit.find_parent(attrs={"data-site-ad-shell": True})
         if shell is None:
             errors.append(f"{page.relative_to(ROOT)}: ad unit is outside data-site-ad-shell")
-        elif not shell.has_attr("hidden"):
-            errors.append(f"{page.relative_to(ROOT)}: ad shell must be hidden while IDs are placeholders")
+        elif shell.has_attr("hidden"):
+            errors.append(f"{page.relative_to(ROOT)}: configured ad shell must not be hidden")
 
 central = ROOT / "js" / "site-tags.js"
 if not central.is_file():

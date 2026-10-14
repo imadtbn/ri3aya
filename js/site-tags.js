@@ -1,7 +1,7 @@
 /*
  * Ri3aya unified tags loader
  *
- * تم تفعيل GTM وGA4؛ يبقى AdSense وClarity معطلين حتى إدخال معرفاتهما.
+ * تم تفعيل GTM وGA4 وAdSense؛ يظل Clarity غير مهيأ.
  * حاوية GTM الحالية لا تحتوي Google tag لـGA4، لذلك يُستخدم مسار GA4 المباشر
  * مؤقتًا من هذا الملف. بعد إعداد GA4 داخل GTM، غيّر ga4ManagedByGtm إلى true
  * لمنع أي page_view مكرر. لا يُحمّل Clarity مباشرة؛ يُدار عبر GTM عند الجاهزية.
@@ -14,11 +14,11 @@
         ga4Id: 'G-GK64YX2FPB',
         clarityId: 'xxxxxxxxx',
         ga4ManagedByGtm: false,
-        adsenseClient: 'xxxxxxxxx',
+        adsenseClient: 'ca-pub-5656416032906373',
         adSlots: Object.freeze({
-            display: 'xxxxxxxxx',
-            inFeed: 'xxxxxxxxx',
-            inArticle: 'xxxxxxxxx'
+            display: '3143411927',
+            inFeed: '7867079394',
+            inArticle: '3143411927'
         })
     });
 
@@ -69,19 +69,6 @@
         state.ga4Loaded = true;
     }
 
-    function hideAdShell(shell) {
-        if (!shell) return;
-        shell.hidden = true;
-        shell.setAttribute('aria-hidden', 'true');
-    }
-
-    function resolveSlot(unit) {
-        const key = unit.getAttribute('data-site-ad-key') || 'display';
-        return unit.getAttribute('data-ad-slot') && !isPlaceholder(unit.getAttribute('data-ad-slot'))
-            ? unit.getAttribute('data-ad-slot')
-            : CONFIG.adSlots[key] || CONFIG.adSlots.display;
-    }
-
     function validAdClient(value) {
         return typeof value === 'string' && /^ca-pub-\d{10,20}$/.test(value.trim());
     }
@@ -90,59 +77,68 @@
         return typeof value === 'string' && /^\d{6,20}$/.test(value.trim());
     }
 
-    function queueAds(units) {
-        if (!units.length || !window.adsbygoogle) return;
-        units.forEach(unit => {
-            if (unit.dataset.siteAdQueued === 'true') return;
-            // Do not push a responsive ad into an invisible or narrow slot.
-            const shell = unit.closest('[data-site-ad-shell]');
-            if (unit.getBoundingClientRect().width < 250) {
-                hideAdShell(shell);
-                return;
-            }
-            unit.dataset.adClient = CONFIG.adsenseClient;
-            unit.dataset.adSlot = resolveSlot(unit);
-            unit.dataset.siteAdQueued = 'true';
-            try {
-                (window.adsbygoogle = window.adsbygoogle || []).push({});
-            } catch (_) {
-                delete unit.dataset.siteAdQueued;
-                hideAdShell(shell);
-            }
-        });
-        state.adsQueued = units.some(unit => unit.dataset.siteAdQueued === 'true');
+    function resolveSlot(unit) {
+        const key = unit.dataset.siteAdKey || 'display';
+        return unit.dataset.adSlot || CONFIG.adSlots[key] || CONFIG.adSlots.display;
     }
 
     function initAds() {
         const units = Array.from(document.querySelectorAll('ins.adsbygoogle[data-site-ad]'));
-        if (!units.length) return;
-        const ready = units.filter(unit => {
-            const shell = unit.closest('[data-site-ad-shell]');
-            if (!validAdClient(CONFIG.adsenseClient) || !validAdSlot(resolveSlot(unit))) {
-                hideAdShell(shell);
-                return false;
+        if (!units.length || !validAdClient(CONFIG.adsenseClient)) return;
+
+        const allowed = units.filter(unit =>
+            validAdSlot(resolveSlot(unit)) &&
+            unit.closest('[data-site-ad-shell]') &&
+            !unit.closest('[hidden]')
+        );
+        if (!allowed.length) return;
+
+        function ensureLoader() {
+            if (state.adsLoaded) return;
+            state.adsLoaded = true;
+            if (!hasScriptSource('pagead2.googlesyndication.com/pagead/js/adsbygoogle.js')) {
+                appendScript(
+                    'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=' +
+                    encodeURIComponent(CONFIG.adsenseClient),
+                    { async: true, crossorigin: 'anonymous' }
+                );
             }
-            // All ad shells start hidden; reveal only real configured units.
-            if (shell) {
-                shell.hidden = false;
-                shell.removeAttribute('aria-hidden');
-            }
-            unit.style.display = 'block';
-            unit.style.width = '100%';
-            const parentWidth = unit.parentElement?.getBoundingClientRect().width || 0;
-            if (parentWidth < 250) {
-                hideAdShell(shell);
-                return false;
-            }
-            return true;
-        });
-        if (!ready.length) return;
-        if (!state.adsLoaded && !hasScriptSource('pagead2.googlesyndication.com/pagead/js/adsbygoogle.js')) {
-            const script = appendScript('https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=' + encodeURIComponent(CONFIG.adsenseClient), { async: true, crossorigin: 'anonymous' });
-            if (script) script.addEventListener('load', () => queueAds(ready), { once: true });
         }
-        state.adsLoaded = true;
-        if (window.adsbygoogle) queueAds(ready);
+
+        function loadUnit(unit) {
+            if (unit.dataset.siteAdQueued === 'true' || unit.hasAttribute('data-adsbygoogle-status')) return true;
+            // AdSense In-feed requires at least 250px of usable width.
+            // Never push into hidden/narrow units (avoids No slot size errors).
+            const width = unit.getBoundingClientRect().width;
+            if (!unit.getClientRects().length || width < 250) return false;
+            unit.dataset.adClient = CONFIG.adsenseClient;
+            unit.dataset.adSlot = resolveSlot(unit);
+            ensureLoader();
+            window.adsbygoogle = window.adsbygoogle || [];
+            try {
+                window.adsbygoogle.push({});
+                unit.dataset.siteAdQueued = 'true';
+                return true;
+            } catch (error) {
+                // Do not retry the same failed slot automatically.
+                unit.dataset.siteAdQueued = 'true';
+                console.warn('تعذر تهيئة موضع إعلان رعاية الرضع', error);
+                return false;
+            }
+        }
+
+        if ('IntersectionObserver' in window) {
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) return;
+                    if (loadUnit(entry.target)) observer.unobserve(entry.target);
+                });
+            }, { rootMargin: '600px 0px' });
+            allowed.forEach(unit => observer.observe(unit));
+        } else {
+            // Older browsers keep normal ad delivery without an observer.
+            allowed.forEach(loadUnit);
+        }
     }
 
     function init() {
