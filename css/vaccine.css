@@ -956,3 +956,29 @@
 /* Historic entries that predate the schedule are not overdue. */
 .vax-pill-review { background:#f1f1f1; color:#424f54; border:1px solid #d1d7d9; }
 .vax-is-review .vax-dose-text small { color:#536168; }
+
+/* Three balanced, accessible filter buttons on phones. */
+@media (max-width: 640px) {
+  .vax-planner .vax-filters {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 6px;
+    width: 100%;
+    margin: 14px 0 18px;
+  }
+  .vax-planner .vax-filter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-width: 0;
+    min-height: 44px;
+    padding: 8px 5px;
+    border-radius: 12px;
+    font-size: clamp(.76rem, 3.3vw, .94rem);
+    line-height: 1.4;
+    white-space: normal;
+    text-align: center;
+    overflow-wrap: normal;
+  }
+}
