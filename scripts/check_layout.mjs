@@ -278,7 +278,28 @@ try {
     await menu.click();
     await assert.doesNotReject(() => page.locator('.nav-menu').waitFor({ state: 'visible' }));
     assert.ok(Math.abs((await page.locator('.site-hero').boundingBox()).y - heroStart) <= 1, 'Menu opening shifted the hero');
-    assert.equal((await menu.textContent()).trim(), '×');
+    assert.equal(await page.locator('.mobile-menu-btn .menu-toggle-lines > span').count(), 3, 'Burger must have three bars');
+    assert.equal(await menu.getAttribute('aria-expanded'), 'true');
+    assert.equal(await page.locator('.site-header').evaluate(el => el.classList.contains('nav-open')), true);
+    const mobilePanel = await page.evaluate(() => {
+        const header = document.querySelector('.site-header');
+        const nav = header.querySelector('.site-nav');
+        const link = nav.querySelector('.nav-menu > li:first-child a');
+        const rect = link.getBoundingClientRect();
+        const hit = document.elementFromPoint(rect.left + rect.width / 2, rect.top + rect.height / 2);
+        return {
+            gap: nav.getBoundingClientRect().top - header.getBoundingClientRect().bottom,
+            visible: getComputedStyle(nav).visibility,
+            hit: hit === link || link.contains(hit),
+            layer: Number(getComputedStyle(header).zIndex),
+            adCount: document.querySelectorAll('main [data-site-ad-shell]').length
+        };
+    });
+    assert.ok(Math.abs(mobilePanel.gap) <= 2, 'Menu must be directly below the complete header');
+    assert.equal(mobilePanel.visible, 'visible');
+    assert.ok(mobilePanel.hit, 'The first link is covered by another layer');
+    assert.ok(mobilePanel.layer >= 1000, 'Header navigation must be above regular ad reserves');
+    assert.equal(mobilePanel.adCount, 2, 'Navigation should coexist with both ad reserves');
     assert.equal(await menu.getAttribute('aria-label'), 'إغلاق قائمة التنقل');
     await page.locator('.dropdown-toggle').click();
     await page.locator('.dropdown-toggle').press('ArrowDown');
@@ -286,14 +307,17 @@ try {
     await page.keyboard.press('Escape');
     assert.equal(await menu.getAttribute('aria-expanded'), 'false');
     assert.equal(await page.evaluate(() => document.activeElement.className), 'mobile-menu-btn');
-    assert.equal((await menu.textContent()).trim(), '☰');
+    assert.equal(await page.locator('.site-header').evaluate(el => el.classList.contains('nav-open')), false);
+    assert.equal(await page.locator('.site-nav').evaluate(el => getComputedStyle(el).visibility), 'hidden');
     await menu.click();
     await page.mouse.click(5, 5);
     assert.equal(await menu.getAttribute('aria-expanded'), 'false', 'Outside click should close the menu');
     await menu.click();
     await page.evaluate(() => window.scrollTo(0, 350));
-    await page.waitForFunction(() => document.querySelector('.mobile-menu-btn').getAttribute('aria-expanded') === 'false');
+    assert.equal(await menu.getAttribute('aria-expanded'), 'true', 'Touch/page scrolling must not unexpectedly close the menu');
     await page.evaluate(() => window.scrollTo(0, 0));
+    await menu.click();
+    assert.equal(await menu.getAttribute('aria-expanded'), 'false');
     const input = page.locator('.search-input');
     await input.fill('النَّوْم');
     await page.locator('.site-search-result').first().waitFor();

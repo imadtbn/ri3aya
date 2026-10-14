@@ -79,6 +79,7 @@
         menu.classList.toggle('active', open);
         button.setAttribute('aria-expanded', String(open));
         document.body.classList.toggle('menu-open', open);
+        button.closest('.site-header')?.classList.toggle('nav-open', open);
         // aria-expanded controls the CSS transition between menu and close icons.
         button.setAttribute('aria-label', open ? 'إغلاق قائمة التنقل' : 'فتح قائمة التنقل');
         if (!open) {
@@ -113,10 +114,9 @@
         window.addEventListener('resize', () => {
             if (window.innerWidth > 992) setMenuState(menu, button, false);
         }, { passive: true });
-        // Close an open overlay when the underlying page scrolls.
-        window.addEventListener('scroll', () => {
-            if (menu.classList.contains('active')) setMenuState(menu, button, false);
-        }, { passive: true });
+        // The navigation scrolls independently. Do not auto-close on window
+        // scroll, since address-bar resizing and touch gestures can fire it.
+
     }
 
     function initDropdowns() {

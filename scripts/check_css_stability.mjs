@@ -70,3 +70,7 @@ assert.ok(mainJs.includes("if (!open) {"), 'Closing mobile menu must reset dropd
 console.log('PASS: shared components, CSS order, mobile nav state, and stage-01/02 regression guards.');
 
 assert.ok(stable.includes('Semantic icons for the shared navigation'), 'Navigation theme styles missing');
+assert.ok(stable.includes('Shared navigation overlay: isolated above on-page ad slots.'), 'Mobile overlay layering guard missing');
+assert.ok(stable.includes('visibility: hidden;') && stable.includes('pointer-events: none;'), 'Closed mobile overlay should not intercept ad/page clicks');
+assert.ok(mainJs.includes("classList.toggle('nav-open', open)"), 'Header overlay state is not synchronized');
+assert.ok(!mainJs.includes('Close an open overlay when the underlying page scrolls.'), 'Scroll auto-close regression returned');

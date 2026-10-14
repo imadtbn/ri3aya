@@ -45,6 +45,20 @@ self.addEventListener('fetch', event => {
     if (FILES.has(url.href)) {
         event.respondWith(caches.open(CACHE_NAME).then(async cache => {
             const cached = await cache.match(url.href);
+            // Keep the shared navigation functional after a site release even
+            // when an installed PWA still has the previous snapshot revision.
+            // Network-first only for these two small shell assets; offline uses cache.
+            if (/\/(?:js\/main\.js|css\/site-polish\.css)$/.test(url.pathname)) {
+                try {
+                    const fresh = await fetch(new Request(url.href, { cache: 'no-cache' }));
+                    if (fresh.ok) {
+                        await cache.put(url.href, fresh.clone()).catch(() => {});
+                        return fresh;
+                    }
+                } catch (_) { /* Offline: fall back to installed CSS/JS. */ }
+                if (cached) return cached;
+                return new Response('المورد غير متاح دون اتصال', { status: 503 });
+            }
             if (cached) return cached;
             try {
                 const response = await fetch(request);
