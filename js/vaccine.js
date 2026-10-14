@@ -5,6 +5,8 @@
     'use strict';
     const STORAGE_KEY = 'ri3aya-vaccination-v1';
     const DAY = 86400000;
+    const NATIONAL_START = Date.UTC(2023, 9, 15);
+    const HPV_AMENDMENT = Date.UTC(2026, 4, 17);
     const $ = id => document.getElementById(id);
     const pad = n => String(n).padStart(2, '0');
     const el = (tag, cls, text) => {
@@ -97,8 +99,10 @@
                 notify('تعذر حفظ السجل في هذا المتصفح. يمكنك تصدير نسخة للاحتفاظ بها.');
             }
         }
-        const markStatus = (stage, key, due, end, now) => {
+        const markStatus = (stage, key, code, due, end, now) => {
             if (Object.prototype.hasOwnProperty.call(completed, key)) return 'done';
+            // Historical doses must not be diagnosed as missed under a later national schedule.
+            if (end.getTime() < NATIONAL_START || (code === 'HPV' && end.getTime() < HPV_AMENDMENT)) return 'review';
             if (now.getTime() < due.getTime()) return 'upcoming';
             if (now.getTime() > end.getTime()) return 'overdue';
             return 'due';
@@ -114,9 +118,10 @@
                 const end = stage.endMonths ? new Date(addMonths(birth, stage.endMonths).getTime() - DAY) : due;
                 for (const code of stage.vaccines) {
                     const key = stage.id + ':' + code;
-                    const status = markStatus(stage, key, due, end, today);
+                    const status = markStatus(stage, key, code, due, end, today);
                     parts.push({ stage, code, key, status, due, end });
                     if (status === 'done') done++;
+                    else if (status === 'review') { /* Show as unverified; not an overdue dose. */ }
                     else if (status === 'upcoming') {
                         future++;
                         if (!nearest || due < nearest.due) nearest = { due, label: stage.label };
@@ -135,7 +140,7 @@
             $('vax-next').textContent = late ? 'توجد مواعيد تجاوزت تاريخها المرجعي دون تأشير؛ راجعي المركز الصحي.' :
                 dueCount ? 'توجد جرعات حان موعدها أو تقع ضمن فترة إعطائها؛ تحققي من الدفتر.' :
                 nearest ? 'الموعد القادم: ' + nearest.label + '، يوم ' + shortDate(nearest.due) :
-                'لا توجد مواعيد غير منجزة في الرزنامة المعروضة حتى عمر 18 سنة.';
+                'لا توجد مواعيد حالية غير منجزة؛ راجعي الجرعات التاريخية مع دفتر الصحة عند وجودها.';
             $('vax-done-count').textContent = done;
             $('vax-due-count').textContent = dueCount;
             $('vax-next-count').textContent = future;
@@ -188,7 +193,8 @@
                     row.append(label);
                     const statusText = el('div', 'vax-status-area');
                     const statusLabel = { done: 'منجز وفق اختيارك', due: 'حان الموعد / ضمن الفترة',
-                        overdue: 'متأخر عن الموعد المرجعي', upcoming: 'قيد الانتظار' };
+                        overdue: 'متأخر عن الموعد المرجعي', upcoming: 'قيد الانتظار',
+                        review: 'تاريخي — تحققي من دفتر الصحة' };
                     statusText.append(el('span', 'vax-pill vax-pill-' + item.status, statusLabel[item.status]));
                     if (item.status === 'upcoming') {
                         const left = Math.round((item.due - today) / DAY);
