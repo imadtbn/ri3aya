@@ -465,3 +465,139 @@
         padding: 1rem;
     }
 }
+
+/* إصلاح توزيع النصوص والصور في صفحة الاستحمام */
+.bath-page,
+.bath-page .container {
+    min-width: 0;
+}
+
+.bath-page .steps-timeline {
+    width: 100%;
+    max-width: 100%;
+}
+
+.bath-page .step-card {
+    display: grid;
+    grid-template-columns: 3.75rem minmax(0, 1fr) minmax(140px, 190px);
+    align-items: start;
+    gap: 1.25rem;
+    width: 100%;
+    min-width: 0;
+}
+
+.bath-page .step-number {
+    grid-column: 1;
+    margin: 0;
+    width: 3.25rem;
+    height: 3.25rem;
+}
+
+.bath-page .step-content {
+    grid-column: 2;
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    overflow-wrap: anywhere;
+}
+
+.bath-page .step-content ul {
+    margin: 0;
+}
+
+.bath-page .step-content li {
+    line-height: 1.8;
+}
+
+.bath-page .step-image {
+    grid-column: 3;
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+}
+
+.bath-page .step-image img {
+    display: block;
+    width: 100%;
+    max-width: 190px;
+    height: 145px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.bath-page .site-hero-image {
+    display: block;
+    width: min(100%, 360px);
+    max-width: 100%;
+    height: auto;
+    max-height: 280px;
+    object-fit: cover;
+    border-radius: 16px;
+}
+
+@media (max-width: 760px) {
+    .bath-page .step-card {
+        grid-template-columns: 2.75rem minmax(0, 1fr);
+        gap: 0.75rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .bath-page .step-number {
+        grid-column: 1;
+        grid-row: 1;
+        width: 2.5rem;
+        height: 2.5rem;
+        font-size: 1.1rem;
+    }
+
+    .bath-page .step-content {
+        grid-column: 2;
+        grid-row: 1;
+        padding: 1rem;
+    }
+
+    .bath-page .step-image {
+        grid-column: 2;
+        grid-row: 2;
+        max-width: 100%;
+    }
+
+    .bath-page .step-image img {
+        width: 100%;
+        max-width: 100%;
+        height: clamp(150px, 48vw, 240px);
+        object-fit: cover;
+    }
+
+    .bath-page .section-card {
+        padding: clamp(1rem, 4vw, 1.5rem);
+    }
+
+    .bath-page .section-card h2,
+    .bath-page .section-title {
+        font-size: clamp(1.25rem, 5vw, 1.6rem);
+        line-height: 1.5;
+    }
+
+    .bath-page .step-content li {
+        padding-right: 1.25rem;
+        line-height: 1.75;
+    }
+}
+
+@media (max-width: 420px) {
+    .bath-page .step-card {
+        grid-template-columns: 2.25rem minmax(0, 1fr);
+        gap: 0.5rem;
+    }
+
+    .bath-page .step-number {
+        width: 2.1rem;
+        height: 2.1rem;
+        font-size: 1rem;
+    }
+
+    .bath-page .step-content {
+        padding: 0.8rem;
+    }
+}
