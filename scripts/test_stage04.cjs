@@ -41,7 +41,6 @@ class FixedDate extends Date {
     static now() { return new Date(2026, 9, 12, 12).getTime(); }
 }
 let initVaccine, submitVaccine;
-const birthDay = { value: '', add() {} }, birthMonth = { value: '', add() {} }, birthYear = { value: '', add() {} };
 const vaccineNodes = new Map();
 const mockElement = () => ({
     value: '', textContent: '', innerHTML: '', hidden: false, disabled: false, dataset: {},
@@ -59,11 +58,10 @@ const vaccineDoc = {
         return vaccineNodes.get(id);
     }
 };
+const birthDay = vaccineDoc.getElementById('birth-day'), birthMonth = vaccineDoc.getElementById('birth-month'), birthYear = vaccineDoc.getElementById('birth-year');
+birthDay.add = birthMonth.add = birthYear.add = function () {};
 const vaccineForm = vaccineDoc.getElementById('vax-birth-form');
 vaccineForm.addEventListener = (type, callback) => { if (type === 'submit') submitVaccine = callback; };
-vaccineDoc.getElementById('birth-day').add = birthDay.add;
-vaccineDoc.getElementById('birth-month').add = birthMonth.add;
-vaccineDoc.getElementById('birth-year').add = birthYear.add;
 vaccineDoc.getElementById('birth-day').value = '';
 vaccineDoc.getElementById('birth-month').value = '';
 vaccineDoc.getElementById('birth-year').value = '';
