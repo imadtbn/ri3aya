@@ -212,6 +212,16 @@
     "images/vaccine.webp": "dd4acd6a9a34e1a33a572f1ae58f96a2206cf987abafae07b5ce61cdbbf0dde3",
     "index.html": "d993f78c2c06c911eeabaa847d268b0924e5a1952c19c38880105e6e219555c5",
     "js/article-library.js": "a284002a880c7e8a4529882f7f6a721561839e87def0d2c4537224025e8c24e5",
-    "js/bath.js": "7fa1d7ab82b4dc658c61aa47228ab2d1f849b31a1544f45df7fcebed785afe65"
+    "js/bath.js": "7fa1d7ab82b4dc658c61aa47228ab2d1f849b31a1544f45df7fcebed785afe65",
+    "js/contact.js": "ee76b859af4dfddcbd5c5a6ee472a10036846050544b57edec4aea699a251b03",
+    "js/crying.js": "7c7b9f89d7e2023e464fcf3dc0b754fdae55cfd1cd791a66f84ae61816c00834",
+    "js/diapers.js": "85ec2249dc80cb12695a4918ae076724937c252c87ec7ff01e4325c578eff455",
+    "js/digestive.js": "f93bce5081eb03928ee54d3b515d8aa864ac14d0ccdff0e672fc713ef25c4609",
+    "js/diseases.js": "dbb3794f0491ff70adb060c874a708b5c34cc7d1c11b8aa51b2655c392b76910",
+    "js/faq.js": "f9a94258466fa000cb3e4968560277d293dc5c484a03731ec4c69fe5e68bd6ea",
+    "js/growth.js": "5be473ecb76ae3a5c72c3e8bde2f119bc47ee261394c3ec87907cd9e687177f5",
+    "js/local-data.js": "d8f02bef0b2ecfdae5f00269508b053600f5ebaff0d4fb8f799fece39d232626",
+    "js/main.js": "1b47dacf366aa39257e04808627c9c8ef3aa32d43e3a6a32132bc09bf47174a8",
+    "js/medical/growth-engine.js": "cfe2ecfc7ba35cfdaae9470abc6b95ebcdecb2ef19f0264f15956d48b9db60ec"
   }
 }
