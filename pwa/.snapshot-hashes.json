@@ -242,6 +242,16 @@
     "pages/articles/safe-sleep.html": "7dfd6c16b1530a6824b4abf218222c1e1a1de6ef717542853da3a6a95f0449e4",
     "pages/articles/soothing-crying.html": "4cbacda592e21864420cd8c751eb46066bbaf5bc15a5cacab1ba496a7d1fe805",
     "pages/bath.html": "cea19eadc2dcea896592eda47b111e016c24c6ba379a2c259d871b1fe03960f1",
-    "pages/blog.html": "0c3651ca517557d09211bed981df70c74acf9912a311246818485d52608ca03a"
+    "pages/blog.html": "0c3651ca517557d09211bed981df70c74acf9912a311246818485d52608ca03a",
+    "pages/contact.html": "cf87f0addef390c3bc2e721b6bac3658f1bb8167f65b76e7683491d68e50068b",
+    "pages/crying.html": "eb7ffe4a46acb7cef27ee10d4d7c0c12e1292f215cb9ba3af2897866542ca3b4",
+    "pages/diapers.html": "c6ce9e0cb85353edc578b599723562a71a0ffa8ddcf115556ef460f8f7e31bbb",
+    "pages/digestive.html": "2bcec9974162e31e6c0031ad42b31669f3ab6c3044b5eda2422bb709e89c4941",
+    "pages/disclaimer.html": "5c78357e787e3b4c9a1ec13bb1e4a12d4b36d4296a051643aeff0d70e8f8ffce",
+    "pages/diseases.html": "f5544ea140434cbf0689e955ea2aac975c55fa4f1de9d2a9b473a42f5f0b79eb",
+    "pages/editorial-policy.html": "210fba8ea52be58b4b5c08abc9a008eb2d0e4eeca86f8012a8def8f8d6cee50a",
+    "pages/faq.html": "14028479217b8341501c0df1113ef84697dac8dbaafbe38cb01defad36176358",
+    "pages/growth.html": "0e9ccf2b9fe07349ca477fdc4bdf4826a446dc5ac139e97c40c62d2b977b146d",
+    "pages/nutrition.html": "5b2b5b155f76e429ef3dd29a2605141c7908216466891ba4eb5d8b93719aabf4"
   }
 }
