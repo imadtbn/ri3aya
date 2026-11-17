@@ -105,7 +105,7 @@ def add_ads_to_generated(source, path):
 def page(path, title, description, content, image=None, schema=None, scripts=''):
     root = '../' * (len(path.relative_to(ROOT).parts) - 1)
     image_html = f'<img src="{root}{esc(image[0])}" alt="{esc(image[1])}" width="480" height="320">' if image else ''
-    schema_html = '<script type="application/ld+json">' + json.dumps(schema, ensure_ascii=False).replace('<', '\\u003c') + '</script>' if schema else ''
+    schema_html = '<script type="application/ld+json">' + json.dumps(schema, ensure_ascii=False, separators=(',', ':')).replace('<', '\\u003c') + '</script>' if schema else ''
     text = f'''<!DOCTYPE html>
 <html lang="ar" dir="rtl"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{esc(title)} | رعاية الرضع</title><meta name="description" content="{esc(description)}">
