@@ -40,20 +40,41 @@ def finish(source, path):
     soup = BeautifulSoup(source, 'html.parser')
     title = soup.h1.get_text(' ',strip=True)
     description = soup.find('meta',attrs={'name':'description'})['content']
-    common = [{ '@type':'WebPage', '@id':canonical+'#webpage', 'url':canonical, 'name':title, 'description':description, 'inLanguage':'ar', 'isPartOf':{'@id':BASE+'#website'} }]
+
+    # SEO terms are maintained in the editorial discovery catalogs, not in generated HTML.
+    relative_path = path.relative_to(ROOT).as_posix()
+    discovery = json.loads((ROOT/'content/search/catalog.json').read_text(encoding='utf-8'))
+    page_record = discovery.get('pages', {}).get(relative_path, {})
+    keywords = list(dict.fromkeys(page_record.get('keywords', [])))
+    if path.parent.name == 'articles':
+        article_catalog = json.loads((ROOT/'content/articles/catalog.json').read_text(encoding='utf-8'))
+        article_record = next((item for item in article_catalog['articles'] if item['slug'] == path.stem and item['publication_status'] == 'published'), None)
+        if article_record:
+            keywords = list(dict.fromkeys(article_record.get('keywords', [])))
+    webpage = { '@type':'WebPage', '@id':canonical+'#webpage', 'url':canonical, 'name':title, 'description':description, 'inLanguage':'ar', 'isPartOf':{'@id':BASE+'#website'} }
+    if keywords:
+        webpage['keywords'] = keywords
+    common = [
+        {'@type':'Organization','@id':BASE+'#organization','name':'رعاية الرضع','url':BASE,'logo':BASE+'images/icons/app-512.png'},
+        {'@type':'WebSite','@id':BASE+'#website','name':'رعاية الرضع','url':BASE,'inLanguage':'ar','publisher':{'@id':BASE+'#organization'}},
+        webpage
+    ]
     crumbs=[]
+    page_directory = BASE if path.parent == ROOT else BASE + path.parent.relative_to(ROOT).as_posix().strip('/') + '/'
     for li in soup.select('.site-breadcrumb li'):
         link=li.find('a')
-        crumbs.append({'@type':'ListItem','position':len(crumbs)+1,'name':li.get_text(' ',strip=True),'item':urljoin(canonical,link['href']) if link else canonical})
-    if crumbs: common.append({'@type':'BreadcrumbList','itemListElement':crumbs})
-    if path.name=='index.html':
-        common.extend([{'@type':'Organization','@id':BASE+'#organization','name':'رعاية الرضع','url':BASE,'logo':BASE+'images/icons/app-512.png'}, {'@type':'WebSite','@id':BASE+'#website','name':'رعاية الرضع','url':BASE,'inLanguage':'ar','publisher':{'@id':BASE+'#organization'}}])
+        item_url = urljoin(page_directory, link['href']) if link else canonical
+        if item_url == BASE + 'index.html':
+            item_url = BASE
+        crumbs.append({'@type':'ListItem','position':len(crumbs)+1,'name':li.get_text(' ',strip=True),'item':item_url})
+    if crumbs:
+        common.append({'@type':'BreadcrumbList','itemListElement':crumbs})
     metadata=f'''<link rel="icon" href="{root}images/icons/favicon.png" type="image/png" sizes="32x32">
 <link rel="apple-touch-icon" href="{root}images/icons/apple-touch-icon.png" sizes="180x180">
 <meta name="theme-color" content="#126b70"><meta property="og:site_name" content="رعاية الرضع"><meta property="og:locale" content="ar_DZ">
 <meta property="og:image" content="{BASE}images/icons/app-512.png"><meta property="og:image:width" content="512"><meta property="og:image:height" content="512"><meta property="og:image:alt" content="أيقونة موقع رعاية الرضع">
 <meta name="twitter:card" content="summary"><meta name="twitter:image" content="{BASE}images/icons/app-512.png">
-<script type="application/ld+json" id="site-seo">{json.dumps({'@context':'https://schema.org','@graph':common},ensure_ascii=False).replace('<', chr(92)+'u003c')}</script>'''
+<script type="application/ld+json" id="site-seo">{json.dumps({'@context':'https://schema.org','@graph':common},ensure_ascii=False,separators=(',',':')).replace('<', chr(92)+'u003c')}</script>'''
     if path.stem=='search':
         source=re.sub(r'<meta\b[^>]*name="robots"[^>]*>\s*','',source)
         metadata+='<meta name="robots" content="noindex, follow">'

@@ -40,32 +40,76 @@ class FixedDate extends Date {
     constructor(...args) { super(...(args.length ? args : [2026, 9, 12, 8])); }
     static now() { return new Date(2026, 9, 12, 12).getTime(); }
 }
-let initVaccine, pressVaccine;
-const birth = { value: '' }, vaccineOut = { innerHTML: '' };
-const birthDay = { value: '', add() {} }, birthMonth = { value: '', add() {} }, birthYear = { value: '', add() {} };
+let initVaccine, submitVaccine;
+const vaccineNodes = new Map();
+const mockElement = () => ({
+    value: '', textContent: '', innerHTML: '', hidden: false, disabled: false, dataset: {},
+    style: {}, children: [], classList: { add() {}, remove() {}, toggle() {} },
+    addEventListener() {}, setAttribute() {}, append(...items) { this.children.push(...items); },
+    appendChild(item) { this.children.push(item); }, replaceChildren(...items) { this.children = items; },
+    scrollIntoView() {}, focus() {}, remove() {}, click() {}
+});
 const vaccineDoc = {
     addEventListener: (type, listener) => { if (type === 'DOMContentLoaded') initVaccine = listener; },
     querySelectorAll: () => [],
-    getElementById: id => ({
-        'calculate-vaccines': { addEventListener: (_, callback) => { pressVaccine = callback; } },
-        'birth-date': birth, 'birth-day': birthDay, 'birth-month': birthMonth, 'birth-year': birthYear, 'vaccine-result': vaccineOut
-    })[id] || null
+    createElement: () => mockElement(),
+    getElementById: id => {
+        if (!vaccineNodes.has(id)) vaccineNodes.set(id, mockElement());
+        return vaccineNodes.get(id);
+    }
 };
-vm.runInNewContext(load('js/vaccine.js'), { document: vaccineDoc, Date: FixedDate, Option: class { constructor(label,value) { this.label=label; this.value=value; } } });
+const birthDay = vaccineDoc.getElementById('birth-day'), birthMonth = vaccineDoc.getElementById('birth-month'), birthYear = vaccineDoc.getElementById('birth-year');
+birthDay.add = birthMonth.add = birthYear.add = function () {};
+const vaccineForm = vaccineDoc.getElementById('vax-birth-form');
+vaccineForm.addEventListener = (type, callback) => { if (type === 'submit') submitVaccine = callback; };
+vaccineDoc.getElementById('birth-day').value = '';
+vaccineDoc.getElementById('birth-month').value = '';
+vaccineDoc.getElementById('birth-year').value = '';
+const syncPromise = (value, error = null) => ({
+    then(callback) {
+        if (error) return syncPromise(undefined, error);
+        try { return syncPromise(callback(value)); } catch (nextError) { return syncPromise(undefined, nextError); }
+    },
+    catch(callback) {
+        if (!error) return this;
+        try { return syncPromise(callback(error)); } catch (nextError) { return syncPromise(undefined, nextError); }
+    }
+});
+vm.runInNewContext(load('js/vaccine.js'), {
+    document: vaccineDoc, Date: FixedDate,
+    Option: class { constructor(label, value) { this.label = label; this.value = value; } },
+    fetch: () => syncPromise({ ok: true, json: () => JSON.parse(load('content/medical/vaccines/algeria.json')) }),
+    localStorage: { getItem: () => null, setItem() {}, removeItem() {} },
+    confirm: () => true
+});
 initVaccine();
+check(typeof submitVaccine === 'function', 'Vaccine birth form submit handler');
 for (const [value, expected] of [
-    ['', 'أدخلي تاريخ الميلاد'],
-    ['2026-10-13', 'من اليوم أو قبله'],
-    ['2026-02-30', 'تاريخ ميلاد صحيحًا'],
-    ['2026-10-12', '0 شهرًا'],
-    ['2026-09-12', '1 شهرًا'],
-    ['2026-09-13', '0 شهرًا'],
-    ['2024-10-12', '24 شهرًا']
+    ['', 'اختاري يومًا وشهرًا وسنة صحيحة'],
+    ['2026-10-13', 'اليوم أو قبله'],
+    ['2026-02-30', 'اليوم أو قبله']
 ]) {
-    const [y,m,d] = value ? value.split('-') : ['', '', ''];
-    birthYear.value = y; birthMonth.value = m ? String(Number(m)) : ''; birthDay.value = d ? String(Number(d)) : '';
-    pressVaccine();
-    check(vaccineOut.innerHTML.includes(expected), 'Vaccine calendar calculation: ' + (value || 'empty'));
+    const [y, m, d] = value ? value.split('-') : ['', '', ''];
+    birthYear.value = y;
+    birthMonth.value = m ? String(Number(m)) : '';
+    birthDay.value = d ? String(Number(d)) : '';
+    submitVaccine({ preventDefault() {} });
+    check(vaccineDoc.getElementById('vax-form-message').textContent.includes(expected),
+        'Vaccine calendar validation: ' + (value || 'empty'));
+}
+for (const [value, expected] of [
+    ['2026-10-12', '0 شهر'],
+    ['2026-09-12', '1 شهر'],
+    ['2026-09-13', '0 شهر'],
+    ['2024-10-12', '2 سنة و0 شهر']
+]) {
+    const [y, m, d] = value.split('-');
+    birthYear.value = y;
+    birthMonth.value = String(Number(m));
+    birthDay.value = String(Number(d));
+    submitVaccine({ preventDefault() {} });
+    check(vaccineDoc.getElementById('vax-age').textContent.includes(expected),
+        'Vaccine calendar calculation: ' + value);
 }
 
 // Food dates are validated in the user's local calendar before trying storage.

@@ -249,7 +249,7 @@ try {
     await page.locator('#tool-query').fill('');
     await page.locator('#tool-goal').selectOption('followup');
     await page.locator('#tool-age').fill('25');
-    assert.equal(await page.locator('.tool-index-card:visible').count(), 2);
+    assert.equal(await page.locator('.tool-index-card:visible').count(), 3, 'General follow-up guides remain available beyond 24 months');
     await page.locator('#tool-goal').selectOption('organize');
     assert.equal(await page.locator('.tool-index-card:visible').count(), 0);
     assert.equal(await page.locator('#tool-no-match').isVisible(), true);
