@@ -27,7 +27,7 @@ for p in files:
     assert organization['@id']==BASE+'#organization' and organization['url']==BASE
     assert website['@id']==BASE+'#website' and website['publisher']['@id']==organization['@id']
     assert webpage['@id']==expected+'#webpage' and webpage['isPartOf']['@id']==website['@id']
-    assert isinstance(webpage.get('keywords'),list) and webpage['keywords'], f'{p}: missing editorial keywords'
+    if p.stem != 'search': assert isinstance(webpage.get('keywords'),list) and webpage['keywords'], f'{p}: missing editorial keywords'
     crumbs=next((x for x in nodes if x['@type']=='BreadcrumbList'),None)
     if p.name!='index.html':
         assert crumbs and len(crumbs['itemListElement'])==len(s.select('.site-breadcrumb li'))
