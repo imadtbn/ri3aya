@@ -34,7 +34,9 @@ for p in files:
         assert crumbs['itemListElement'][0]['item']==BASE, f'{p}: breadcrumb home URL must be the canonical root'
         page_dir=BASE if p.parent==ROOT else BASE+p.parent.relative_to(ROOT).as_posix().strip('/')+'/'
         for n,(item,li) in enumerate(zip(crumbs['itemListElement'],s.select('.site-breadcrumb li')),1):
-            assert item['position']==n and item['item']==(urljoin(page_dir,li.a['href']) if li.a else expected), f'{p}: breadcrumb URL mismatch'
+            expected_item = urljoin(page_dir,li.a['href']) if li.a else expected
+            if expected_item == BASE + 'index.html': expected_item = BASE
+            assert item['position']==n and item['item']==expected_item, f'{p}: breadcrumb URL mismatch'
     for img in s.find_all('img'):
         assert img.get('width') and img.get('height') and img.get('decoding')=='async'
         assert img.get('loading')==('eager' if 'site-hero-image' in img.get('class',[]) else 'lazy')
