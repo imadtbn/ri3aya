@@ -36,6 +36,8 @@ for slug, a in articles.items():
         assert sources[key]['checked_at'] in li.get_text(), 'Source access date missing'
     schema = json.loads(soup.find('script', type='application/ld+json').string)
     assert schema['@type'] == 'Article' and schema['dateModified'] == a['updated_at'], 'Incorrect Article schema'
+    assert schema['keywords'] == a['keywords'], 'Article keywords must come from the canonical article catalog'
+    assert schema['author']['@id'] == BASE + '#organization' and schema['publisher']['@id'] == BASE + '#organization', 'Article publisher IDs must be shared'
     assert set(schema['citation']) == {sources[key]['url'] for key in used_sources(a)}, 'Schema source mismatch'
     assert 'reviewedBy' not in schema and 'lastReviewed' not in schema, 'Editorial dates must not masquerade as medical sign-off'
 print(f'Article integrity passed: {len(articles)} published articles, source anchors, date roles, review labels and discovery URLs.')
