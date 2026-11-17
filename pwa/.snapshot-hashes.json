@@ -132,5 +132,16 @@
     "pages/vaccine.html",
     "search/index.json"
   ],
-  "hashes": {}
+  "hashes": {
+    "content/medical/crying/guidance.json": "965d25e85ff99586dba20d6a794e981d220339e3a3bb8a569a380d8d86836e54",
+    "content/medical/growth/manifest.json": "42c4fbfdaa752ba5e2bda20aa7b4ded50adccc7bfdf864707d09e8633cc6442f",
+    "content/medical/growth/who-lms/boys-head-circumference-for-age.csv": "5af6d648fb119568016fcdc7c53a61687a9cd9093ba100fe44bc0ddf7f5bf8fb",
+    "content/medical/growth/who-lms/boys-length-for-age.csv": "42df3d55815c8f55bd64bffdda466913a24caeed6a9b3c7c651569a45b20d6f9",
+    "content/medical/growth/who-lms/boys-weight-for-age.csv": "6fcb43be71ced3fb068d992a86f2a50ef7bb4c2b615b4554e67b6371578d0d7f",
+    "content/medical/growth/who-lms/boys-weight-for-length.csv": "e040da71179fc9fe7e9c65945ded38ef3b9cd78842b291495de9cfdd7c9ae313",
+    "content/medical/growth/who-lms/girls-head-circumference-for-age.csv": "8e95121c0bf437cda44bf6de168a2672c8a387d8343f4001c0dc5afb71b0bcc3",
+    "content/medical/growth/who-lms/girls-length-for-age.csv": "1b06300e72c137078e6fbed4a52238c04e2a3c445665e7f739ae62f34c294911",
+    "content/medical/growth/who-lms/girls-weight-for-age.csv": "00a152538466f649d58d66665e8f1fc0ab25bc3157c4706197eb772925ef7cae",
+    "content/medical/growth/who-lms/girls-weight-for-length.csv": "62bda284c392a0371234db737ddd52e32f9b76a4df7864c8b1fdbe5018f583af"
+  }
 }
