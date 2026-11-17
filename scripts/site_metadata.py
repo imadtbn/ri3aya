@@ -72,7 +72,7 @@ def finish(source, path):
 <meta name="theme-color" content="#126b70"><meta property="og:site_name" content="رعاية الرضع"><meta property="og:locale" content="ar_DZ">
 <meta property="og:image" content="{BASE}images/icons/app-512.png"><meta property="og:image:width" content="512"><meta property="og:image:height" content="512"><meta property="og:image:alt" content="أيقونة موقع رعاية الرضع">
 <meta name="twitter:card" content="summary"><meta name="twitter:image" content="{BASE}images/icons/app-512.png">
-<script type="application/ld+json" id="site-seo">{json.dumps({'@context':'https://schema.org','@graph':common},ensure_ascii=False).replace('<', chr(92)+'u003c')}</script>'''
+<script type="application/ld+json" id="site-seo">{json.dumps({'@context':'https://schema.org','@graph':common},ensure_ascii=False,separators=(',',':')).replace('<', chr(92)+'u003c')}</script>'''
     if path.stem=='search':
         source=re.sub(r'<meta\b[^>]*name="robots"[^>]*>\s*','',source)
         metadata+='<meta name="robots" content="noindex, follow">'
