@@ -182,6 +182,16 @@
     "images/icons/favicon.png": "aff0ce2d4b15e284856ace8f0e49ac8dfe6c3263706c8bbbde1a0332d658f898",
     "images/icons/maskable-512.png": "b7f84baac00994bb8fae7107044ea3d231228e6b502446e7f043e16e7e7bfc16",
     "images/nutrition-header.jpg": "e806a070ee7b8f698f638930237f2423ccb6aef47d2270c8f8ac03026841da04",
-    "images/nutrition.webp": "2610bfa71384efb8ab13807e77028225b546d936fe8c7d647a6a6393a1967022"
+    "images/nutrition.webp": "2610bfa71384efb8ab13807e77028225b546d936fe8c7d647a6a6393a1967022",
+    "images/optimized/crying-320.webp": "0a058b3471bfa9daf8f9d6c4c12529eb0c6db2991d69163e9cd147fe2e670010",
+    "images/optimized/crying-640.webp": "c68951080a2d15bc830b28bb9bdc55ac56f4c194754aae63ceda317ac729b228",
+    "images/optimized/crying-960.webp": "82ca3419d3d01bb1bf1f6142f23c58a764333a955125da00a55744a48b74c81c",
+    "images/optimized/sleep-320.webp": "82ada9d86bf1bb34f54d9341506a9ad24cee0da9c51f204de2712987d528dfd4",
+    "images/optimized/sleep-640.webp": "b9c4a82b7607b374a902256522740968c9bfdd84ec3946207f855dae4b328d2c",
+    "images/optimized/sleep-960.webp": "2b6d720336040449328d76769dfda4cd43134e05d244d1437881223ec60af706",
+    "images/optimized/step1-320.webp": "33b4e8184daf6d7a73978765fff317c2f4f1ed99c1e3fbeea4e2cd28267a391c",
+    "images/optimized/step1-640.webp": "8d05c8cf67a28db375a365d078ec5c8aa46aa9f2263a6f5ab73ad30df9202a31",
+    "images/optimized/step1-720.webp": "5f9896a5ee300474fd42c4a45fb49a25963b334abb0578dd0940debb1003dbbd",
+    "images/optimized/step2-320.webp": "dce77bed6744a2bec75b3d7e0e26097c2f03be528f1b22c99739002be222c293"
   }
 }
