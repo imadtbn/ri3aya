@@ -162,6 +162,16 @@
     "css/main.css": "60c11047913584d007798003c91c86dbe7ccf1fa1537d61a63da233ef1912a5f",
     "css/nutrition.css": "fa12eff2efba87dbc04f1670e0ca581826fe619ac98b5008d60389076054726b",
     "css/pwa.css": "136ddfe6e5b117cf7b21e703033e09b0e212672a59737c9621497fcfc1e0f893",
-    "css/responsive.css": "351477e4de333d90ff160669f54aea1fb9aef0796a86b61554a5ac63cf910705"
+    "css/responsive.css": "351477e4de333d90ff160669f54aea1fb9aef0796a86b61554a5ac63cf910705",
+    "css/search.css": "0c29c784cfbf401c44f379af291937e8bc05d8aae70a89a32dc35d7d1b37c891",
+    "css/site-polish.css": "e48d64cb9fcfcef14f98a07f6252d73a8fc40cd92cfca513aa340305d966ad5c",
+    "css/sleep.css": "322265b57d9e84f0960367c34b77791d22873f22fb0da8f83e0729580fb2e04d",
+    "css/tips.css": "7a1d163137a46fe50c7bf6400930a1375b63cef1e997b9886bb4bac172bf6096",
+    "css/tools-index.css": "cdbef9087d093175b04374cb850f37f16801e4b0d66816b889dd59f9f6be9ae4",
+    "css/tools.css": "dabe6ad6df97b8b942640150aea41834236de548b752e7a28f7d6a9cd27484f1",
+    "css/vaccine.css": "aa53632b40451bd904b68328a95669d2e9a7a89ab82fb8c4d19ed318d172d85c",
+    "images/bath-header.jpg": "c8dcae6f00e13f7d9ecf1a2529a8fccc0c52b7067bfd6891e5680899234cf8c4",
+    "images/diapers.webp": "6897b7d8ca7b1dfbc7bd47b19d125d52170688cd0549b5e5db0a66b5332bf86d",
+    "images/digestive.jpg": "764dcb7c258031e7dcf7259f35e79eaf419c61b45275b966ab5b017f500b4eb7"
   }
 }
