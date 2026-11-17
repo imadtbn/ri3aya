@@ -232,6 +232,16 @@
     "js/sleep.js": "a353e7099a6c025bff2f9f4b774e2fce798e609b511e25e1fac94b3aa2ebf3ce",
     "js/tips.js": "1957ef042370d96bf26efacc94e9facc9663c7750e4b35d2a965197ff7f73d91",
     "js/tools-index.js": "5fa40190206ade5a8ae6d219f617a2d7615e66dc47ac50fe00b72f4eebfffd95",
-    "js/tools/routine.js": "02e6b07e046611864da6d723d6af2f45000c5518ff11f73ccb46edd18a612ad4"
+    "js/tools/routine.js": "02e6b07e046611864da6d723d6af2f45000c5518ff11f73ccb46edd18a612ad4",
+    "js/vaccine.js": "8615b6a33b3cbb9aa095571bb09abfde5809ca70e8ce6059c8ed3e98e4d54e27",
+    "manifest.json": "1c3473879b8d6bb8a9aea742ed45f3e5b18967cfd7da35bc47dc4df3a0841711",
+    "offline.html": "c6204f202426a4f5209abd1fc45a5e37625e17c54abb00a9d1d375c656d9d756",
+    "pages/articles/diaper-care.html": "c033810a32a099bca6913cbe679899cbbade6f2ea38ce05b955f095bbe4fff0b",
+    "pages/articles/first-foods.html": "e0e1fcfc4c9b4663c3f6430cc84ab7f6457a07b972e4d683979bd817a81496ec",
+    "pages/articles/safe-bath.html": "ad00c0b38b3316ca60caea0a31ded3c9eb37814280fc0c3590f500fac32118b6",
+    "pages/articles/safe-sleep.html": "7dfd6c16b1530a6824b4abf218222c1e1a1de6ef717542853da3a6a95f0449e4",
+    "pages/articles/soothing-crying.html": "4cbacda592e21864420cd8c751eb46066bbaf5bc15a5cacab1ba496a7d1fe805",
+    "pages/bath.html": "cea19eadc2dcea896592eda47b111e016c24c6ba379a2c259d871b1fe03960f1",
+    "pages/blog.html": "0c3651ca517557d09211bed981df70c74acf9912a311246818485d52608ca03a"
   }
 }
