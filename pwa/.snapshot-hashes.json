@@ -252,6 +252,17 @@
     "pages/editorial-policy.html": "210fba8ea52be58b4b5c08abc9a008eb2d0e4eeca86f8012a8def8f8d6cee50a",
     "pages/faq.html": "14028479217b8341501c0df1113ef84697dac8dbaafbe38cb01defad36176358",
     "pages/growth.html": "0e9ccf2b9fe07349ca477fdc4bdf4826a446dc5ac139e97c40c62d2b977b146d",
-    "pages/nutrition.html": "5b2b5b155f76e429ef3dd29a2605141c7908216466891ba4eb5d8b93719aabf4"
+    "pages/nutrition.html": "5b2b5b155f76e429ef3dd29a2605141c7908216466891ba4eb5d8b93719aabf4",
+    "pages/privacy.html": "fb48aff31d632687400e01329f4871fecf15bc61d6bcebeed0279838953a5964",
+    "pages/resources.html": "5343cfbf896a0f217fee6f0d87a56e04aadcf767acef08d0ac5549fa7f65ec7b",
+    "pages/search.html": "975cb9473e74cda43305814a5cf14bd7f8c7d8823d4d94c21ccb8504a110ee90",
+    "pages/sections.html": "4e42dbd557b7adbbcab68d6f14e950611cab612d3ac63ad44115b36b30dcd7d5",
+    "pages/sleep.html": "ae3d45661e11e53e6b0297a9619a0a427f6b05e9f4b7dc677104234da6dc8737",
+    "pages/terms.html": "e742bef047a33e994bffca4092a3e3ba45a3b1850a56f0be3048733346274de7",
+    "pages/tips.html": "48521dd959240ffbc91cfdc15c2c60bf9ba277a6875c7e3fb8a831c4d75db46a",
+    "pages/tools.html": "96ebb7cf17feb1dea16014b91eabee2ebefda205cd601b817e99db2cb1130948",
+    "pages/tools/routine.html": "a1db277000e0b0b00bd08465accb570f6a19b3429ee9375e8cc3ef6d897fb792",
+    "pages/vaccine.html": "888cddb7c1d2d601db12b4f8af620701b8273054cceee23b27a41fbdd5554384",
+    "search/index.json": "99a5dd9c6c09630f15d8f44148f91915f3efe2f6f27819dc604ddae01f08686b"
   }
 }
