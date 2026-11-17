@@ -152,6 +152,16 @@
     "css/articles.css": "6fb6a7c326c5ae33027f2ddbf1a5d6e12d24740cfd1c8d6aa4388a1554d3b351",
     "css/bath.css": "76e0635b86fe84899df18974ea7efc82dc2341844b186d2cf45288485490ee1f",
     "css/contact.css": "7be4f6bee2fb63e14f61f942ef1c41eaca7f4a2595c04fa38136e23c8756a72a",
-    "css/crying-analyzer.css": "1a4f13cf7ca6a20f225eb3d41edaa9c8df4432e1894d018e42ac95b5333c537c"
+    "css/crying-analyzer.css": "1a4f13cf7ca6a20f225eb3d41edaa9c8df4432e1894d018e42ac95b5333c537c",
+    "css/diapers.css": "1b4d3aeddd4ff8e5b17a92dc08fe8b0eef19641b52af472874467ec288b4ece4",
+    "css/digestive.css": "c80c2aac291a510aa4057a4f4216e27c46383a84e444e5988f68e792a9df0b71",
+    "css/diseases.css": "a4dd560d86e4f89a47569fb61672f1e68c20d1868de3742be130f1430fcf2f65",
+    "css/growth.css": "8f2a8f9dff2af383536fd6645e7e95863531b91b32f3f673d800d8c0e30401d6",
+    "css/improvements-crying.css": "8def4210ca0a84ea9562fab04e6f43c7ee4c44dfc9adec4fd3f39cc1880c6332",
+    "css/local-data.css": "88c41b05e7aa13a413cf48220d753841bfc2c624d89c1f2b539b1f5ece6bcb65",
+    "css/main.css": "60c11047913584d007798003c91c86dbe7ccf1fa1537d61a63da233ef1912a5f",
+    "css/nutrition.css": "fa12eff2efba87dbc04f1670e0ca581826fe619ac98b5008d60389076054726b",
+    "css/pwa.css": "136ddfe6e5b117cf7b21e703033e09b0e212672a59737c9621497fcfc1e0f893",
+    "css/responsive.css": "351477e4de333d90ff160669f54aea1fb9aef0796a86b61554a5ac63cf910705"
   }
 }
