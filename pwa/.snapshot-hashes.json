@@ -192,6 +192,16 @@
     "images/optimized/step1-320.webp": "33b4e8184daf6d7a73978765fff317c2f4f1ed99c1e3fbeea4e2cd28267a391c",
     "images/optimized/step1-640.webp": "8d05c8cf67a28db375a365d078ec5c8aa46aa9f2263a6f5ab73ad30df9202a31",
     "images/optimized/step1-720.webp": "5f9896a5ee300474fd42c4a45fb49a25963b334abb0578dd0940debb1003dbbd",
-    "images/optimized/step2-320.webp": "dce77bed6744a2bec75b3d7e0e26097c2f03be528f1b22c99739002be222c293"
+    "images/optimized/step2-320.webp": "dce77bed6744a2bec75b3d7e0e26097c2f03be528f1b22c99739002be222c293",
+    "images/optimized/step2-400.webp": "19e49e024198e97aa06a039e71e13b0ac60af1631b4e5f6ff6b7e72d22e38617",
+    "images/optimized/unsafe-crib-320.webp": "17ff0ca2ae9ba46fc238189268a387556b0a09e1e9426b933077e47fb38ea9a2",
+    "images/optimized/unsafe-crib-640.webp": "5de10f42d8246cb767409972976f945262fc0e3904e7546498556d4b6244574f",
+    "images/optimized/unsafe-crib-894.webp": "a363e3e7d2b83226e21770706fe2aea19b8502326888e16da61cbcf8117d2f32",
+    "images/safe-crib.webp": "a19dd4e794ff140d31ef0ad2931a994cab36f2b90d60b2b38e422e35d1877e99",
+    "images/step1-food.jpg": "6d9489cf3ba33d3a6eb9329d8520c1b1157ea0dc7fd408be32b5fdc09eb4f67c",
+    "images/step2-food.jpg": "eb53f009d038a4661232f20e8eb59cc0d31f04ce69745577e85d8f0dc77a5d1d",
+    "images/step3-food.jpg": "6b177cc8e25812a823af3355578ed80081cf38b380d30b28b91c5988dd048e89",
+    "images/step3.jpg": "473eab3becbe772221f62347915fc0dc04e1bbc7d343f1585d1ba8b4869ad8fa",
+    "images/step4-food.jpg": "da5352a12e55de8c83fb6e3afd5897e13a425e241d0b895bcbb4305838f5f4f4"
   }
 }
