@@ -64,6 +64,8 @@ def finish(source, path):
     for li in soup.select('.site-breadcrumb li'):
         link=li.find('a')
         item_url = urljoin(page_directory, link['href']) if link else canonical
+        if item_url == BASE + 'index.html':
+            item_url = BASE
         crumbs.append({'@type':'ListItem','position':len(crumbs)+1,'name':li.get_text(' ',strip=True),'item':item_url})
     if crumbs:
         common.append({'@type':'BreadcrumbList','itemListElement':crumbs})
