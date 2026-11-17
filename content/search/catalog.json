@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "updated_at": "2026-10-11",
   "topics": [
     {
@@ -55,7 +55,14 @@
       "age_min_months": null,
       "age_max_months": null,
       "age_label": "محتوى عام",
-      "keywords": []
+      "keywords": [
+        "رعاية الرضع",
+        "العناية بحديثي الولادة",
+        "صحة الطفل الرضيع",
+        "baby care",
+        "newborn care",
+        "soins du nourrisson"
+      ]
     },
     "pages/bath.html": {
       "type": "guide",
@@ -67,7 +74,13 @@
       "age_min_months": null,
       "age_max_months": null,
       "age_label": "دليل عام دون فئة عمرية محددة",
-      "keywords": []
+      "keywords": [
+        "استحمام الرضيع",
+        "حمام المولود",
+        "سلامة حمام الطفل",
+        "baby bath safety",
+        "bain du bébé"
+      ]
     },
     "pages/blog.html": {
       "type": "page",
@@ -76,7 +89,12 @@
       "age_min_months": null,
       "age_max_months": null,
       "age_label": "محتوى عام",
-      "keywords": []
+      "keywords": [
+        "مقالات رعاية الرضع",
+        "أدلة العناية بالطفل",
+        "infant care articles",
+        "articles de soins pour bébé"
+      ]
     },
     "pages/contact.html": {
       "type": "page",
@@ -85,7 +103,11 @@
       "age_min_months": null,
       "age_max_months": null,
       "age_label": "محتوى عام",
-      "keywords": []
+      "keywords": [
+        "التواصل مع الموقع",
+        "ملاحظات الموقع",
+        "contact website"
+      ]
     },
     "pages/crying.html": {
       "type": "guide",
@@ -97,7 +119,13 @@
       "age_min_months": null,
       "age_max_months": null,
       "age_label": "دليل عام دون فئة عمرية محددة",
-      "keywords": []
+      "keywords": [
+        "بكاء الرضيع",
+        "تهدئة الطفل",
+        "أسباب بكاء حديث الولادة",
+        "baby crying",
+        "pleurs du bébé"
+      ]
     },
     "pages/diapers.html": {
       "type": "guide",
@@ -110,9 +138,11 @@
       "age_max_months": null,
       "age_label": "دليل عام دون فئة عمرية محددة",
       "keywords": [
-        "حفاظات",
-        "حفاضات",
-        "حفاضة"
+        "العناية بالحفاض",
+        "طفح الحفاض",
+        "تغيير حفاض الرضيع",
+        "diaper care",
+        "soins des couches"
       ]
     },
     "pages/digestive.html": {
@@ -124,7 +154,13 @@
       "age_min_months": null,
       "age_max_months": null,
       "age_label": "دليل عام دون فئة عمرية محددة",
-      "keywords": []
+      "keywords": [
+        "مغص الرضيع",
+        "غازات الرضع",
+        "الإمساك عند الرضع",
+        "infant digestion",
+        "digestion du nourrisson"
+      ]
     },
     "pages/disclaimer.html": {
       "type": "page",
@@ -133,7 +169,11 @@
       "age_min_months": null,
       "age_max_months": null,
       "age_label": "محتوى عام",
-      "keywords": []
+      "keywords": [
+        "إخلاء المسؤولية",
+        "حدود المحتوى الصحي",
+        "health information disclaimer"
+      ]
     },
     "pages/diseases.html": {
       "type": "guide",
@@ -144,7 +184,13 @@
       "age_min_months": null,
       "age_max_months": null,
       "age_label": "دليل عام دون فئة عمرية محددة",
-      "keywords": []
+      "keywords": [
+        "صحة الرضيع",
+        "أعراض تستدعي الطبيب",
+        "أمراض الأطفال الشائعة",
+        "infant health",
+        "santé du nourrisson"
+      ]
     },
     "pages/editorial-policy.html": {
       "type": "page",
@@ -153,7 +199,13 @@
       "age_min_months": null,
       "age_max_months": null,
       "age_label": "محتوى عام",
-      "keywords": []
+      "keywords": [
+        "سياسة التحرير",
+        "مراجعة المصادر",
+        "المراجعة الطبية للمقالات",
+        "editorial policy",
+        "medical review policy"
+      ]
     },
     "pages/faq.html": {
       "type": "page",
@@ -162,7 +214,12 @@
       "age_min_months": null,
       "age_max_months": null,
       "age_label": "محتوى عام",
-      "keywords": []
+      "keywords": [
+        "أسئلة شائعة عن الرضع",
+        "العناية بالطفل",
+        "newborn care questions",
+        "questions soins bébé"
+      ]
     },
     "pages/growth.html": {
       "type": "tool",
@@ -173,7 +230,14 @@
       "age_min_months": 0,
       "age_max_months": 24,
       "age_label": "من الولادة إلى 24 شهرًا — نطاق الأداة",
-      "keywords": []
+      "keywords": [
+        "نمو الرضيع",
+        "وزن الطفل",
+        "طول الطفل",
+        "متابعة نمو الأطفال",
+        "infant growth",
+        "croissance du bébé"
+      ]
     },
     "pages/nutrition.html": {
       "type": "guide",
@@ -184,7 +248,13 @@
       "age_min_months": null,
       "age_max_months": null,
       "age_label": "دليل عام دون فئة عمرية محددة",
-      "keywords": []
+      "keywords": [
+        "تغذية الرضع",
+        "الطعام التكميلي",
+        "الرضاعة الطبيعية",
+        "complementary feeding",
+        "alimentation du nourrisson"
+      ]
     },
     "pages/privacy.html": {
       "type": "page",
@@ -193,7 +263,11 @@
       "age_min_months": null,
       "age_max_months": null,
       "age_label": "محتوى عام",
-      "keywords": []
+      "keywords": [
+        "سياسة الخصوصية",
+        "خصوصية بيانات الموقع",
+        "privacy policy"
+      ]
     },
     "pages/resources.html": {
       "type": "page",
@@ -202,7 +276,14 @@
       "age_min_months": null,
       "age_max_months": null,
       "age_label": "محتوى عام",
-      "keywords": []
+      "keywords": [
+        "مصادر صحة الطفل",
+        "منظمة الصحة العالمية",
+        "CDC",
+        "WHO",
+        "NHS",
+        "infant health resources"
+      ]
     },
     "pages/sections.html": {
       "type": "page",
@@ -211,7 +292,11 @@
       "age_min_months": null,
       "age_max_months": null,
       "age_label": "محتوى عام",
-      "keywords": []
+      "keywords": [
+        "أقسام رعاية الرضع",
+        "أدلة النوم والتغذية والنمو",
+        "baby care guides"
+      ]
     },
     "pages/sleep.html": {
       "type": "guide",
@@ -222,7 +307,13 @@
       "age_min_months": null,
       "age_max_months": null,
       "age_label": "دليل عام دون فئة عمرية محددة",
-      "keywords": []
+      "keywords": [
+        "النوم الآمن للرضيع",
+        "وضعية نوم الطفل",
+        "سرير الرضيع",
+        "safe infant sleep",
+        "sommeil sécuritaire bébé"
+      ]
     },
     "pages/terms.html": {
       "type": "page",
@@ -231,7 +322,11 @@
       "age_min_months": null,
       "age_max_months": null,
       "age_label": "محتوى عام",
-      "keywords": []
+      "keywords": [
+        "شروط الاستخدام",
+        "شروط استخدام الموقع",
+        "website terms of use"
+      ]
     },
     "pages/tips.html": {
       "type": "guide",
@@ -243,7 +338,12 @@
       "age_min_months": null,
       "age_max_months": null,
       "age_label": "دليل عام دون فئة عمرية محددة",
-      "keywords": []
+      "keywords": [
+        "نصائح يومية للأمهات",
+        "العناية اليومية بالرضيع",
+        "baby care tips",
+        "conseils bébé"
+      ]
     },
     "pages/tools/routine.html": {
       "type": "tool",
@@ -256,7 +356,13 @@
       "age_min_months": 0,
       "age_max_months": 24,
       "age_label": "من الولادة إلى 24 شهرًا — نطاق الأداة",
-      "keywords": []
+      "keywords": [
+        "روتين الرضيع اليومي",
+        "جدول نوم الطفل",
+        "تنظيم الرضاعة والنوم",
+        "baby routine planner",
+        "routine bébé"
+      ]
     },
     "pages/tools.html": {
       "type": "page",
@@ -265,7 +371,13 @@
       "age_min_months": null,
       "age_max_months": null,
       "age_label": "محتوى عام",
-      "keywords": []
+      "keywords": [
+        "أدوات متابعة الرضع",
+        "حاسبات نمو الطفل",
+        "أدوات رعاية الطفل",
+        "baby care tools",
+        "outils bébé"
+      ]
     },
     "pages/vaccine.html": {
       "type": "guide",
@@ -277,10 +389,11 @@
       "age_max_months": null,
       "age_label": "دليل عام دون فئة عمرية محددة",
       "keywords": [
-        "لقاح",
-        "لقاحات",
-        "تطعيم",
-        "تطعيمات"
+        "جدول التلقيح في الجزائر",
+        "تلقيح الرضع",
+        "تطعيمات الطفل",
+        "Algeria infant vaccination schedule",
+        "vaccination bébé Algérie"
       ]
     }
   }
